@@ -126,6 +126,15 @@ def execute_plan(plan: TaskPlan) -> Dict[str, Any]:
         context["news"] = []
         result["data"]["recovery_note"] = "News fetch failed - partial results returned"
     
+    # Sentiment × Trend Fusion: enhance trends with narrative signals
+    if context.get("trends") and context.get("sentiment"):
+        try:
+            from app.tools.trends import fuse_trends_with_sentiment
+            context["trends"] = fuse_trends_with_sentiment(context["trends"], context["sentiment"])
+            log("INFO", "Sentiment-Trend fusion applied")
+        except Exception as e:
+            log("WARN", f"Fusion skipped: {e}")
+    
     # Set final data from context
     result["data"] = context
     result["success"] = len(result["errors"]) == 0 or len(context.get("news", [])) > 0

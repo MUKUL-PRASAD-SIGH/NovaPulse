@@ -261,15 +261,40 @@ User Input → Planner Agent → Task JSON → Executor Agent
 
 ---
 
-### 📊 Trend Extraction Pipeline
+### 📊 Trend Intelligence V2 — *"Velocity, Not Just Frequency"*
+
+> 📝 **OLD:** Keyword counting → *"OpenAI: 5 mentions"*  
+> 🔥 **NEW:** Time-weighted velocity detection → *"🔥 OpenAI GPT rising fast"*
 
 ```
-Headlines → Tokenization → Proper Noun NER → Frequency Count → Top-K Trends
+┌─────────────────────────────────────────────────────────────────────────┐
+│  📊 TREND INTELLIGENCE V2                                               │
+├─────────────────────────────────────────────────────────────────────────┤
+│  🔥 Rising Fast    │  📈 Rising    │  ➡️ Stable    │  📉 Fading        │
+│  India Trade Deal  │  Market Rally │  Fed Policy   │  Old Topic        │
+│  score: 12.5       │  score: 8.2   │  score: 5.0   │                   │
+├─────────────────────────────────────────────────────────────────────────┤
+│  ⏱️ Time Weighting  │  <2hrs=3x │ <6hrs=2.5x │ <24hrs=1.5x            │
+│  📝 N-Gram Phrases  │  "OpenAI GPT" not "OpenAI" + "GPT"              │
+│  ⚖️ Source Weights   │  Tavily=1.5x │ GNews=1.3x │ RSS=1.0x            │
+└─────────────────────────────────────────────────────────────────────────┘
 ```
 
-- Extracts **entities** (companies, people, topics)
-- Filters stopwords (*"The", "Report", "Update"*)
-- Ranks by **mention frequency** across all sources
+**🔧 Under the Hood:**
+
+| Feature | What It Does |
+|---------|--------------|
+| **Time Weighting** | Recent articles get 3x weight (2hrs) → 1.5x (24hrs) |
+| **N-Gram Phrases** | Bigram/trigram extraction: "OpenAI GPT" not split |
+| **Velocity Tracking** | History-based rising/fading via `trends_history.json` |
+| **Source Reliability** | Tavily=1.5x, GNews=1.3x, RSS=1.0x scoring |
+| **Story Direction** | 🟢 Positive / 🔴 Critical/Risk / 🟡 Controversial / 🔵 Emerging |
+| **News Cycle Stage** | 🆕 Breaking / 🔥 Peak Focus / 📰 Major / 📉 Losing Attention |
+| **Why Trending (LLM)** | Nova-powered: *"Trade deal announced after Modi-Trump call"* |
+| **News Summary** | Topic-aware: *"Active coverage on India, Trump themes"* |
+
+> 🧠 **Hybrid Analysis:** Score-based velocity + Nova LLM headline analysis  
+> 💡 **Mental Model:** *Trend = Attention* | *Sentiment = Framing* | *Narrative = Story*
 
 ---
 

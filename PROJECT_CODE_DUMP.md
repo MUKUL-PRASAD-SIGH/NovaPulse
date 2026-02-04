@@ -8,7 +8,7 @@
 {
   ".\\.codebase_snapshot.json": {
     "lines": 130,
-    "hash": "6c2be1d6058c8b30d5dc01fd89101515"
+    "hash": "e2f58902016d8bcd146b542f98227fe9"
   },
   ".\\app\\main.py": {
     "lines": 54,
@@ -19,8 +19,8 @@
     "hash": "7c9b6221ca583d1aaea94a721698e460"
   },
   ".\\app\\agents\\executor_agent.py": {
-    "lines": 381,
-    "hash": "83c585050b0a70e717626bcf06e911d8"
+    "lines": 390,
+    "hash": "19dfc0b58928613408005e116047d276"
   },
   ".\\app\\agents\\planner_agent.py": {
     "lines": 143,
@@ -31,8 +31,8 @@
     "hash": "76ac74c499c0c71b6ef72828b91ce243"
   },
   ".\\app\\api\\routes.py": {
-    "lines": 241,
-    "hash": "018eb4e404ca302d6b742f8b9a7ad612"
+    "lines": 294,
+    "hash": "ec351cc73958433fbb8e821ba51f3bdc"
   },
   ".\\app\\api\\__init__.py": {
     "lines": 4,
@@ -51,20 +51,24 @@
     "hash": "742c36db885a99ae9418435b34b3ec9b"
   },
   ".\\app\\memory\\logs.json": {
-    "lines": 2107,
-    "hash": "a1b1de6c5d0728f79f2c26528e588fdb"
+    "lines": 2093,
+    "hash": "9cf74ff6271e51302c1c47c02115d84e"
   },
   ".\\app\\memory\\plans.json": {
-    "lines": 1239,
-    "hash": "5741fbe970f1b7f6f85f0613897cc456"
+    "lines": 1497,
+    "hash": "270e7088bfc923053e377997f7126281"
   },
   ".\\app\\memory\\results.json": {
-    "lines": 4093,
-    "hash": "ba272064447600db9fbfadd8c04f0992"
+    "lines": 6081,
+    "hash": "b89abf7737f1f4b5d886a2c57e046eb9"
   },
   ".\\app\\memory\\store.py": {
     "lines": 50,
     "hash": "c0dd0f0968f2f5da0b04192fd3a3a780"
+  },
+  ".\\app\\memory\\trends_history.json": {
+    "lines": 1,
+    "hash": "f18b79fc671cce4aa374d31df2a4be37"
   },
   ".\\app\\memory\\__init__.py": {
     "lines": 2,
@@ -79,8 +83,8 @@
     "hash": "299420ef5dcb6404a23441b4ba98b3fb"
   },
   ".\\app\\tools\\exporter.py": {
-    "lines": 158,
-    "hash": "b918e6de155ec978e104914de558754a"
+    "lines": 406,
+    "hash": "6dfde84cb89910dc172fd84e2bece7cc"
   },
   ".\\app\\tools\\gnews_fetcher.py": {
     "lines": 81,
@@ -111,24 +115,24 @@
     "hash": "eed0d6448ffd21dfd062195529571be6"
   },
   ".\\app\\tools\\trends.py": {
-    "lines": 29,
-    "hash": "dce53ebdec9b97caf17c1f6c5ab132e1"
+    "lines": 702,
+    "hash": "32e3c69d750e600d0f01bb698343a532"
   },
   ".\\app\\tools\\__init__.py": {
     "lines": 4,
     "hash": "70a1f8f216345bdd5a65a265581bad79"
   },
   ".\\frontend\\app.js": {
-    "lines": 1055,
-    "hash": "8f4658c2c3e9ce441feaa1b89e5b68d0"
+    "lines": 1380,
+    "hash": "69bee67d05686bd997d105984d266473"
   },
   ".\\frontend\\index.html": {
-    "lines": 169,
-    "hash": "3eec8d0c3cc242e561c85aec11357c88"
+    "lines": 286,
+    "hash": "cf7e175785322d0176f03b00816020f4"
   },
   ".\\frontend\\style.css": {
-    "lines": 1721,
-    "hash": "dbe7ce9c8f6e8dd47de7d8af6a332806"
+    "lines": 2432,
+    "hash": "65ec350b5ccadca07774d37a65d1cf32"
   },
   ".\\scripts\\export_code_to_md.py": {
     "lines": 153,
@@ -340,6 +344,15 @@ def execute_plan(plan: TaskPlan) -> Dict[str, Any]:
         # Instead of full rewrite, add empty news fallback
         context["news"] = []
         result["data"]["recovery_note"] = "News fetch failed - partial results returned"
+    
+    # Sentiment × Trend Fusion: enhance trends with narrative signals
+    if context.get("trends") and context.get("sentiment"):
+        try:
+            from app.tools.trends import fuse_trends_with_sentiment
+            context["trends"] = fuse_trends_with_sentiment(context["trends"], context["sentiment"])
+            log("INFO", "Sentiment-Trend fusion applied")
+        except Exception as e:
+            log("WARN", f"Fusion skipped: {e}")
     
     # Set final data from context
     result["data"] = context
@@ -1145,673 +1158,6 @@ Core module - Nova AI client and base configurations
 
 ```json
 [
-  {
-    "timestamp": "2026-02-04T13:26:32.593688",
-    "level": "INFO",
-    "message": "Planning task for: india us trade deal"
-  },
-  {
-    "timestamp": "2026-02-04T13:26:34.572946",
-    "level": "INFO",
-    "message": "Nova plan generated",
-    "data": {
-      "plan": {
-        "intent": "Fetch and summarize news on India-US trade deal, then export the report.",
-        "domain": "India-US trade deal",
-        "steps": [
-          {
-            "tool": "news_fetcher",
-            "params": {
-              "topic": "india us trade deal",
-              "sources": [
-                "google"
-              ],
-              "limit": 5
-            }
-          },
-          {
-            "tool": "summarizer",
-            "params": {
-              "news_items": "$.news_fetcher.news_items"
-            }
-          },
-          {
-            "tool": "exporter",
-            "params": {
-              "filename": "india_us_trade_deal_report",
-              "format": "json"
-            }
-          }
-        ]
-      }
-    }
-  },
-  {
-    "timestamp": "2026-02-04T13:26:34.598537",
-    "level": "INFO",
-    "message": "Executing plan: Fetch and summarize news on India-US trade deal, then export the report.",
-    "data": {
-      "steps": 3
-    }
-  },
-  {
-    "timestamp": "2026-02-04T13:26:34.616866",
-    "level": "DEBUG",
-    "message": "Running tool: news_fetcher",
-    "data": {
-      "params": [
-        "topic",
-        "sources",
-        "limit"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-02-04T13:26:34.635139",
-    "level": "INFO",
-    "message": "Multi-source fetch for: india us trade deal"
-  },
-  {
-    "timestamp": "2026-02-04T13:26:41.220324",
-    "level": "INFO",
-    "message": "Multi-source complete: 15 articles from 3 sources"
-  },
-  {
-    "timestamp": "2026-02-04T13:26:41.244993",
-    "level": "DEBUG",
-    "message": "Running tool: summarizer",
-    "data": {
-      "params": [
-        "news_items"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-02-04T13:26:43.055917",
-    "level": "DEBUG",
-    "message": "Running tool: exporter",
-    "data": {
-      "params": [
-        "filename",
-        "format",
-        "data"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-02-04T13:26:43.084130",
-    "level": "INFO",
-    "message": "Execution complete: 3 tools run"
-  },
-  {
-    "timestamp": "2026-02-04T13:32:24.480888",
-    "level": "INFO",
-    "message": "Planning task for: Movies"
-  },
-  {
-    "timestamp": "2026-02-04T13:32:26.095595",
-    "level": "INFO",
-    "message": "Nova plan generated",
-    "data": {
-      "plan": {
-        "intent": "Fetch and export latest news about movies",
-        "domain": "movies",
-        "steps": [
-          {
-            "tool": "news_fetcher",
-            "params": {
-              "topic": "movies",
-              "limit": 5
-            }
-          },
-          {
-            "tool": "exporter",
-            "params": {
-              "filename": "movies_report",
-              "format": "json"
-            }
-          }
-        ]
-      }
-    }
-  },
-  {
-    "timestamp": "2026-02-04T13:32:26.119320",
-    "level": "INFO",
-    "message": "Executing plan: Fetch and export latest news about movies",
-    "data": {
-      "steps": 2
-    }
-  },
-  {
-    "timestamp": "2026-02-04T13:32:26.138320",
-    "level": "DEBUG",
-    "message": "Running tool: news_fetcher",
-    "data": {
-      "params": [
-        "topic",
-        "limit"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-02-04T13:32:26.155850",
-    "level": "INFO",
-    "message": "Multi-source fetch for: movies"
-  },
-  {
-    "timestamp": "2026-02-04T13:32:33.104449",
-    "level": "INFO",
-    "message": "Multi-source complete: 15 articles from 3 sources"
-  },
-  {
-    "timestamp": "2026-02-04T13:32:33.125342",
-    "level": "DEBUG",
-    "message": "Running tool: exporter",
-    "data": {
-      "params": [
-        "filename",
-        "format",
-        "data"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-02-04T13:32:33.153103",
-    "level": "INFO",
-    "message": "Execution complete: 2 tools run"
-  },
-  {
-    "timestamp": "2026-02-04T13:33:01.824219",
-    "level": "INFO",
-    "message": "Planning task for: Stock Market with summarize and sentiment analysis and trends"
-  },
-  {
-    "timestamp": "2026-02-04T13:33:03.654364",
-    "level": "INFO",
-    "message": "Nova plan generated",
-    "data": {
-      "plan": {
-        "intent": "Fetch and analyze stock market news with summarization, sentiment analysis, and trending topics extraction",
-        "domain": "Stock Market",
-        "steps": [
-          {
-            "tool": "news_fetcher",
-            "params": {
-              "topic": "Stock Market",
-              "limit": 5
-            }
-          },
-          {
-            "tool": "summarizer",
-            "params": {
-              "news_items": "news_fetcher output"
-            }
-          },
-          {
-            "tool": "sentiment",
-            "params": {
-              "news_items": "news_fetcher output"
-            }
-          },
-          {
-            "tool": "trends",
-            "params": {
-              "news_items": "news_fetcher output"
-            }
-          },
-          {
-            "tool": "exporter",
-            "params": {
-              "filename": "stock_market_report",
-              "format": "json"
-            }
-          }
-        ]
-      }
-    }
-  },
-  {
-    "timestamp": "2026-02-04T13:33:03.678655",
-    "level": "INFO",
-    "message": "Executing plan: Fetch and analyze stock market news with summarization, sentiment analysis, and trending topics extraction",
-    "data": {
-      "steps": 5
-    }
-  },
-  {
-    "timestamp": "2026-02-04T13:33:03.700075",
-    "level": "DEBUG",
-    "message": "Running tool: news_fetcher",
-    "data": {
-      "params": [
-        "topic",
-        "limit"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-02-04T13:33:03.718840",
-    "level": "INFO",
-    "message": "Multi-source fetch for: Stock Market"
-  },
-  {
-    "timestamp": "2026-02-04T13:33:10.355173",
-    "level": "INFO",
-    "message": "Multi-source complete: 14 articles from 3 sources"
-  },
-  {
-    "timestamp": "2026-02-04T13:33:10.370683",
-    "level": "DEBUG",
-    "message": "Running tool: summarizer",
-    "data": {
-      "params": [
-        "news_items"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-02-04T13:33:12.172682",
-    "level": "DEBUG",
-    "message": "Running tool: sentiment",
-    "data": {
-      "params": [
-        "news_items"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-02-04T13:33:13.458967",
-    "level": "DEBUG",
-    "message": "Running tool: trends",
-    "data": {
-      "params": [
-        "news_items"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-02-04T13:33:13.479335",
-    "level": "DEBUG",
-    "message": "Running tool: exporter",
-    "data": {
-      "params": [
-        "filename",
-        "format",
-        "data"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-02-04T13:33:13.502712",
-    "level": "INFO",
-    "message": "Execution complete: 5 tools run"
-  },
-  {
-    "timestamp": "2026-02-04T14:38:33.443576",
-    "level": "INFO",
-    "message": "Planning task for: India US trade deal with summarize and sentiment analysis and trends"
-  },
-  {
-    "timestamp": "2026-02-04T14:38:35.353268",
-    "level": "INFO",
-    "message": "Nova plan generated",
-    "data": {
-      "plan": {
-        "intent": "Fetch news on India-US trade deal, summarize, perform sentiment analysis, extract trends, and export the results",
-        "domain": "India-US trade deal",
-        "steps": [
-          {
-            "tool": "news_fetcher",
-            "params": {
-              "topic": "India-US trade deal",
-              "limit": 5
-            }
-          },
-          {
-            "tool": "summarizer",
-            "params": {
-              "news_items": "news_fetcher_output"
-            }
-          },
-          {
-            "tool": "sentiment",
-            "params": {
-              "news_items": "news_fetcher_output"
-            }
-          },
-          {
-            "tool": "trends",
-            "params": {
-              "news_items": "news_fetcher_output"
-            }
-          },
-          {
-            "tool": "exporter",
-            "params": {
-              "filename": "India-US_trade_deal_report",
-              "format": "json"
-            }
-          }
-        ]
-      }
-    }
-  },
-  {
-    "timestamp": "2026-02-04T14:38:35.385480",
-    "level": "INFO",
-    "message": "Executing plan: Fetch news on India-US trade deal, summarize, perform sentiment analysis, extract trends, and export the results",
-    "data": {
-      "steps": 5
-    }
-  },
-  {
-    "timestamp": "2026-02-04T14:38:35.407398",
-    "level": "DEBUG",
-    "message": "Running tool: news_fetcher",
-    "data": {
-      "params": [
-        "topic",
-        "limit"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-02-04T14:38:35.429536",
-    "level": "INFO",
-    "message": "Multi-source fetch for: India-US trade deal"
-  },
-  {
-    "timestamp": "2026-02-04T14:38:37.515760",
-    "level": "ERROR",
-    "message": "GNews failed: Client error '400 Bad Request' for url 'https://gnews.io/api/v4/search?apikey=a7519075e5f8447070cc6f0047260ca2&q=India-US+trade+deal&lang=en&max=5'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400"
-  },
-  {
-    "timestamp": "2026-02-04T14:38:42.200091",
-    "level": "INFO",
-    "message": "Multi-source complete: 10 articles from 3 sources"
-  },
-  {
-    "timestamp": "2026-02-04T14:38:42.224043",
-    "level": "DEBUG",
-    "message": "Running tool: summarizer",
-    "data": {
-      "params": [
-        "news_items"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-02-04T14:38:44.269089",
-    "level": "DEBUG",
-    "message": "Running tool: sentiment",
-    "data": {
-      "params": [
-        "news_items"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-02-04T14:38:45.806287",
-    "level": "DEBUG",
-    "message": "Running tool: trends",
-    "data": {
-      "params": [
-        "news_items"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-02-04T14:38:45.830670",
-    "level": "DEBUG",
-    "message": "Running tool: exporter",
-    "data": {
-      "params": [
-        "filename",
-        "format",
-        "data"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-02-04T14:38:45.860977",
-    "level": "INFO",
-    "message": "Execution complete: 5 tools run"
-  },
-  {
-    "timestamp": "2026-02-04T15:32:46.829799",
-    "level": "INFO",
-    "message": "Planning task for: iNDIA  US TRADE DEAL"
-  },
-  {
-    "timestamp": "2026-02-04T15:32:49.305536",
-    "level": "INFO",
-    "message": "Nova plan generated",
-    "data": {
-      "plan": {
-        "intent": "Fetch and summarize news about India-US trade deal",
-        "domain": "India-US trade deal",
-        "steps": [
-          {
-            "tool": "news_fetcher",
-            "params": {
-              "topic": "India-US trade deal",
-              "sources": [
-                "google"
-              ],
-              "limit": 5
-            }
-          },
-          {
-            "tool": "summarizer",
-            "params": {
-              "news_items": "news from news_fetcher"
-            }
-          },
-          {
-            "tool": "exporter",
-            "params": {
-              "filename": "India-US_trade_deal_report",
-              "format": "json"
-            }
-          }
-        ]
-      }
-    }
-  },
-  {
-    "timestamp": "2026-02-04T15:32:49.333806",
-    "level": "INFO",
-    "message": "Executing plan: Fetch and summarize news about India-US trade deal",
-    "data": {
-      "steps": 3
-    }
-  },
-  {
-    "timestamp": "2026-02-04T15:32:49.358054",
-    "level": "DEBUG",
-    "message": "Running tool: news_fetcher",
-    "data": {
-      "params": [
-        "topic",
-        "sources",
-        "limit"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-02-04T15:32:49.377786",
-    "level": "INFO",
-    "message": "Multi-source fetch for: India-US trade deal"
-  },
-  {
-    "timestamp": "2026-02-04T15:32:52.113874",
-    "level": "ERROR",
-    "message": "GNews failed: Client error '400 Bad Request' for url 'https://gnews.io/api/v4/search?apikey=a7519075e5f8447070cc6f0047260ca2&q=India-US+trade+deal&lang=en&max=5'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400"
-  },
-  {
-    "timestamp": "2026-02-04T15:32:56.334558",
-    "level": "INFO",
-    "message": "Multi-source complete: 10 articles from 3 sources"
-  },
-  {
-    "timestamp": "2026-02-04T15:32:56.368762",
-    "level": "DEBUG",
-    "message": "Running tool: summarizer",
-    "data": {
-      "params": [
-        "news_items"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-02-04T15:32:58.271604",
-    "level": "DEBUG",
-    "message": "Running tool: exporter",
-    "data": {
-      "params": [
-        "filename",
-        "format",
-        "data"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-02-04T15:32:58.303751",
-    "level": "INFO",
-    "message": "Execution complete: 3 tools run"
-  },
-  {
-    "timestamp": "2026-02-04T15:33:01.281724",
-    "level": "INFO",
-    "message": "Planning task for: iNDIA  US TRADE DEAL with sentiment analysis"
-  },
-  {
-    "timestamp": "2026-02-04T15:33:03.106468",
-    "level": "INFO",
-    "message": "Nova plan generated",
-    "data": {
-      "plan": {
-        "intent": "Fetch news on India-US trade deal and perform sentiment analysis",
-        "domain": "India-US Trade Deal",
-        "steps": [
-          {
-            "tool": "news_fetcher",
-            "params": {
-              "topic": "India-US Trade Deal",
-              "limit": 5
-            }
-          },
-          {
-            "tool": "sentiment",
-            "params": {
-              "news_items": "news_fetcher_output"
-            }
-          },
-          {
-            "tool": "exporter",
-            "params": {
-              "filename": "India-US_Trade_Deal_Sentiment_Analysis",
-              "format": "json"
-            }
-          }
-        ]
-      }
-    }
-  },
-  {
-    "timestamp": "2026-02-04T15:33:03.135260",
-    "level": "INFO",
-    "message": "Executing plan: Fetch news on India-US trade deal and perform sentiment analysis",
-    "data": {
-      "steps": 3
-    }
-  },
-  {
-    "timestamp": "2026-02-04T15:33:03.155179",
-    "level": "DEBUG",
-    "message": "Running tool: news_fetcher",
-    "data": {
-      "params": [
-        "topic",
-        "limit"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-02-04T15:33:03.174504",
-    "level": "INFO",
-    "message": "Multi-source fetch for: India-US Trade Deal"
-  },
-  {
-    "timestamp": "2026-02-04T15:33:05.330761",
-    "level": "ERROR",
-    "message": "GNews failed: Client error '400 Bad Request' for url 'https://gnews.io/api/v4/search?apikey=a7519075e5f8447070cc6f0047260ca2&q=India-US+Trade+Deal&lang=en&max=5'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400"
-  },
-  {
-    "timestamp": "2026-02-04T15:33:10.365560",
-    "level": "INFO",
-    "message": "Multi-source complete: 10 articles from 3 sources"
-  },
-  {
-    "timestamp": "2026-02-04T15:33:10.390689",
-    "level": "DEBUG",
-    "message": "Running tool: sentiment",
-    "data": {
-      "params": [
-        "news_items"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-02-04T15:33:12.886911",
-    "level": "DEBUG",
-    "message": "Running tool: exporter",
-    "data": {
-      "params": [
-        "filename",
-        "format",
-        "data"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-02-04T15:33:12.914083",
-    "level": "INFO",
-    "message": "Execution complete: 3 tools run"
-  },
-  {
-    "timestamp": "2026-02-04T16:15:47.790703",
-    "level": "INFO",
-    "message": "Planning task for: India EU trade deal"
-  },
-  {
-    "timestamp": "2026-02-04T16:15:50.306790",
-    "level": "INFO",
-    "message": "Nova plan generated",
-    "data": {
-      "plan": {
-        "intent": "Fetch and export news on India EU trade deal",
-        "domain": "India EU trade deal",
-        "steps": [
-          {
-            "tool": "news_fetcher",
-            "params": {
-              "topic": "India EU trade deal",
-              "limit": 5
-            }
-          },
-          {
-            "tool": "exporter",
-            "params": {
-              "filename": "India_EU_trade_deal_report",
-              "format": "json"
-            }
-          }
-        ]
-      }
-    }
-  },
   {
     "timestamp": "2026-02-04T16:15:50.338769",
     "level": "INFO",
@@ -3257,6 +2603,651 @@ Core module - Nova AI client and base configurations
     "timestamp": "2026-02-04T19:26:21.628617",
     "level": "INFO",
     "message": "Execution complete: 2 tools run, 0 skipped, 0 fallbacks used"
+  },
+  {
+    "timestamp": "2026-02-04T20:18:15.451214",
+    "level": "INFO",
+    "message": "Planning task for: INDIAN STOCK MARKET TODAY"
+  },
+  {
+    "timestamp": "2026-02-04T20:18:18.136744",
+    "level": "INFO",
+    "message": "Nova plan generated",
+    "data": {
+      "plan": {
+        "intent": "Fetch and export the latest news about the Indian stock market today",
+        "domain": "Indian stock market",
+        "steps": [
+          {
+            "tool": "news_fetcher",
+            "params": {
+              "topic": "Indian stock market today",
+              "sources": [
+                "google"
+              ],
+              "limit": 5
+            }
+          },
+          {
+            "tool": "exporter",
+            "params": {
+              "filename": "Indian_stock_market_today",
+              "format": "json"
+            }
+          }
+        ]
+      }
+    }
+  },
+  {
+    "timestamp": "2026-02-04T20:18:18.169828",
+    "level": "INFO",
+    "message": "Executing plan: Fetch and export the latest news about the Indian stock market today",
+    "data": {
+      "steps": 2
+    }
+  },
+  {
+    "timestamp": "2026-02-04T20:18:18.190806",
+    "level": "DEBUG",
+    "message": "Running tool: news_fetcher",
+    "data": {
+      "params": [
+        "topic",
+        "sources",
+        "limit"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T20:18:18.212635",
+    "level": "INFO",
+    "message": "Multi-source fetch for: Indian stock market today"
+  },
+  {
+    "timestamp": "2026-02-04T20:18:25.206938",
+    "level": "INFO",
+    "message": "Multi-source complete: 13 articles from 3 sources"
+  },
+  {
+    "timestamp": "2026-02-04T20:18:25.232647",
+    "level": "DEBUG",
+    "message": "Running tool: exporter",
+    "data": {
+      "params": [
+        "filename",
+        "format",
+        "data"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T20:18:25.274549",
+    "level": "INFO",
+    "message": "Execution complete: 2 tools run, 0 skipped, 0 fallbacks used"
+  },
+  {
+    "timestamp": "2026-02-04T20:18:35.547230",
+    "level": "INFO",
+    "message": "Planning task for: INDIAN STOCK MARKET TODAY with summarize and sentiment analysis and trends"
+  },
+  {
+    "timestamp": "2026-02-04T20:18:37.359291",
+    "level": "INFO",
+    "message": "Nova plan generated",
+    "data": {
+      "plan": {
+        "intent": "Fetch, summarize, analyze sentiment, and extract trends for the Indian stock market today",
+        "domain": "Indian stock market",
+        "steps": [
+          {
+            "tool": "news_fetcher",
+            "params": {
+              "topic": "INDIAN STOCK MARKET TODAY",
+              "sources": [
+                "google"
+              ],
+              "limit": 5
+            }
+          },
+          {
+            "tool": "summarizer",
+            "params": {
+              "news_items": "fetched news"
+            }
+          },
+          {
+            "tool": "sentiment",
+            "params": {
+              "news_items": "fetched news"
+            }
+          },
+          {
+            "tool": "trends",
+            "params": {
+              "news_items": "fetched news"
+            }
+          },
+          {
+            "tool": "exporter",
+            "params": {
+              "filename": "indian_stock_market_report",
+              "format": "json"
+            }
+          }
+        ]
+      }
+    }
+  },
+  {
+    "timestamp": "2026-02-04T20:18:37.382656",
+    "level": "INFO",
+    "message": "Executing plan: Fetch, summarize, analyze sentiment, and extract trends for the Indian stock market today",
+    "data": {
+      "steps": 5
+    }
+  },
+  {
+    "timestamp": "2026-02-04T20:18:37.397057",
+    "level": "DEBUG",
+    "message": "Running tool: news_fetcher",
+    "data": {
+      "params": [
+        "topic",
+        "sources",
+        "limit"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T20:18:37.412080",
+    "level": "INFO",
+    "message": "Multi-source fetch for: INDIAN STOCK MARKET TODAY"
+  },
+  {
+    "timestamp": "2026-02-04T20:18:44.644792",
+    "level": "INFO",
+    "message": "Multi-source complete: 15 articles from 3 sources"
+  },
+  {
+    "timestamp": "2026-02-04T20:18:44.672789",
+    "level": "DEBUG",
+    "message": "Running tool: summarizer",
+    "data": {
+      "params": [
+        "news_items"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T20:18:46.628566",
+    "level": "DEBUG",
+    "message": "Running tool: sentiment",
+    "data": {
+      "params": [
+        "news_items"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T20:18:49.465976",
+    "level": "DEBUG",
+    "message": "Running tool: trends",
+    "data": {
+      "params": [
+        "news_items"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T20:18:49.497396",
+    "level": "DEBUG",
+    "message": "Running tool: exporter",
+    "data": {
+      "params": [
+        "filename",
+        "format",
+        "data"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T20:18:49.519974",
+    "level": "INFO",
+    "message": "Sentiment-Trend fusion applied"
+  },
+  {
+    "timestamp": "2026-02-04T20:18:49.558379",
+    "level": "INFO",
+    "message": "Execution complete: 5 tools run, 0 skipped, 0 fallbacks used"
+  },
+  {
+    "timestamp": "2026-02-04T21:13:46.638567",
+    "level": "INFO",
+    "message": "Planning task for: India US trade deal"
+  },
+  {
+    "timestamp": "2026-02-04T21:13:49.524913",
+    "level": "INFO",
+    "message": "Nova plan generated",
+    "data": {
+      "plan": {
+        "intent": "Fetch and export news on India US trade deal",
+        "domain": "India US trade deal",
+        "steps": [
+          {
+            "tool": "news_fetcher",
+            "params": {
+              "topic": "India US trade deal",
+              "limit": 5
+            }
+          },
+          {
+            "tool": "exporter",
+            "params": {
+              "filename": "India_US_trade_deal_report",
+              "format": "json"
+            }
+          }
+        ]
+      }
+    }
+  },
+  {
+    "timestamp": "2026-02-04T21:13:49.576485",
+    "level": "INFO",
+    "message": "Executing plan: Fetch and export news on India US trade deal",
+    "data": {
+      "steps": 2
+    }
+  },
+  {
+    "timestamp": "2026-02-04T21:13:49.603872",
+    "level": "DEBUG",
+    "message": "Running tool: news_fetcher",
+    "data": {
+      "params": [
+        "topic",
+        "limit"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T21:13:49.631220",
+    "level": "INFO",
+    "message": "Multi-source fetch for: India US trade deal"
+  },
+  {
+    "timestamp": "2026-02-04T21:13:57.113840",
+    "level": "INFO",
+    "message": "Multi-source complete: 15 articles from 3 sources"
+  },
+  {
+    "timestamp": "2026-02-04T21:13:57.152210",
+    "level": "DEBUG",
+    "message": "Running tool: exporter",
+    "data": {
+      "params": [
+        "filename",
+        "format",
+        "data"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T21:13:57.248813",
+    "level": "INFO",
+    "message": "Execution complete: 2 tools run, 0 skipped, 0 fallbacks used"
+  },
+  {
+    "timestamp": "2026-02-04T21:14:07.250598",
+    "level": "INFO",
+    "message": "Planning task for: India US trade deal with summarize and sentiment analysis and trends"
+  },
+  {
+    "timestamp": "2026-02-04T21:14:09.653593",
+    "level": "INFO",
+    "message": "Nova plan generated",
+    "data": {
+      "plan": {
+        "intent": "Fetch, summarize, perform sentiment analysis, and extract trends for the India-US trade deal",
+        "domain": "India-US trade deal",
+        "steps": [
+          {
+            "tool": "news_fetcher",
+            "params": {
+              "topic": "India-US trade deal",
+              "limit": 5
+            }
+          },
+          {
+            "tool": "summarizer",
+            "params": {
+              "news_items": "{{news_fetcher.output}}"
+            }
+          },
+          {
+            "tool": "sentiment",
+            "params": {
+              "news_items": "{{news_fetcher.output}}"
+            }
+          },
+          {
+            "tool": "trends",
+            "params": {
+              "news_items": "{{news_fetcher.output}}"
+            }
+          },
+          {
+            "tool": "exporter",
+            "params": {
+              "filename": "India-US_trade_deal_report",
+              "format": "json"
+            }
+          }
+        ]
+      }
+    }
+  },
+  {
+    "timestamp": "2026-02-04T21:14:09.690423",
+    "level": "INFO",
+    "message": "Executing plan: Fetch, summarize, perform sentiment analysis, and extract trends for the India-US trade deal",
+    "data": {
+      "steps": 5
+    }
+  },
+  {
+    "timestamp": "2026-02-04T21:14:09.721856",
+    "level": "DEBUG",
+    "message": "Running tool: news_fetcher",
+    "data": {
+      "params": [
+        "topic",
+        "limit"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T21:14:09.746279",
+    "level": "INFO",
+    "message": "Multi-source fetch for: India-US trade deal"
+  },
+  {
+    "timestamp": "2026-02-04T21:14:12.271204",
+    "level": "ERROR",
+    "message": "GNews failed: Client error '400 Bad Request' for url 'https://gnews.io/api/v4/search?apikey=a7519075e5f8447070cc6f0047260ca2&q=India-US+trade+deal&lang=en&max=5'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400"
+  },
+  {
+    "timestamp": "2026-02-04T21:14:17.378227",
+    "level": "INFO",
+    "message": "Multi-source complete: 10 articles from 3 sources"
+  },
+  {
+    "timestamp": "2026-02-04T21:14:17.406428",
+    "level": "DEBUG",
+    "message": "Running tool: summarizer",
+    "data": {
+      "params": [
+        "news_items"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T21:14:19.488258",
+    "level": "DEBUG",
+    "message": "Running tool: sentiment",
+    "data": {
+      "params": [
+        "news_items"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T21:14:22.042106",
+    "level": "DEBUG",
+    "message": "Running tool: trends",
+    "data": {
+      "params": [
+        "news_items"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T21:14:22.073513",
+    "level": "DEBUG",
+    "message": "Running tool: exporter",
+    "data": {
+      "params": [
+        "filename",
+        "format",
+        "data"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T21:14:22.093554",
+    "level": "INFO",
+    "message": "Sentiment-Trend fusion applied"
+  },
+  {
+    "timestamp": "2026-02-04T21:14:22.133175",
+    "level": "INFO",
+    "message": "Execution complete: 5 tools run, 0 skipped, 0 fallbacks used"
+  },
+  {
+    "timestamp": "2026-02-04T21:29:20.411258",
+    "level": "INFO",
+    "message": "Planning task for: India US trade deal"
+  },
+  {
+    "timestamp": "2026-02-04T21:29:23.056965",
+    "level": "INFO",
+    "message": "Nova plan generated",
+    "data": {
+      "plan": {
+        "intent": "Fetch and export news on India-US trade deal",
+        "domain": "India US trade deal",
+        "steps": [
+          {
+            "tool": "news_fetcher",
+            "params": {
+              "topic": "India US trade deal",
+              "limit": 5
+            }
+          },
+          {
+            "tool": "exporter",
+            "params": {
+              "filename": "India_US_trade_deal_report",
+              "format": "json"
+            }
+          }
+        ]
+      }
+    }
+  },
+  {
+    "timestamp": "2026-02-04T21:29:23.093556",
+    "level": "INFO",
+    "message": "Executing plan: Fetch and export news on India-US trade deal",
+    "data": {
+      "steps": 2
+    }
+  },
+  {
+    "timestamp": "2026-02-04T21:29:23.119714",
+    "level": "DEBUG",
+    "message": "Running tool: news_fetcher",
+    "data": {
+      "params": [
+        "topic",
+        "limit"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T21:29:23.149249",
+    "level": "INFO",
+    "message": "Multi-source fetch for: India US trade deal"
+  },
+  {
+    "timestamp": "2026-02-04T21:29:30.113655",
+    "level": "INFO",
+    "message": "Multi-source complete: 15 articles from 3 sources"
+  },
+  {
+    "timestamp": "2026-02-04T21:29:30.140510",
+    "level": "DEBUG",
+    "message": "Running tool: exporter",
+    "data": {
+      "params": [
+        "filename",
+        "format",
+        "data"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T21:29:30.202775",
+    "level": "INFO",
+    "message": "Execution complete: 2 tools run, 0 skipped, 0 fallbacks used"
+  },
+  {
+    "timestamp": "2026-02-04T21:29:34.043013",
+    "level": "INFO",
+    "message": "Planning task for: India US trade deal with summarize and sentiment analysis and trends"
+  },
+  {
+    "timestamp": "2026-02-04T21:29:36.478399",
+    "level": "INFO",
+    "message": "Nova plan generated",
+    "data": {
+      "plan": {
+        "intent": "Fetch, summarize, perform sentiment analysis, and extract trends for the India-US trade deal news",
+        "domain": "India-US trade deal",
+        "steps": [
+          {
+            "tool": "news_fetcher",
+            "params": {
+              "topic": "India-US trade deal",
+              "limit": 5
+            }
+          },
+          {
+            "tool": "summarizer",
+            "params": {
+              "news_items": "{{news_fetcher.output}}"
+            }
+          },
+          {
+            "tool": "sentiment",
+            "params": {
+              "news_items": "{{news_fetcher.output}}"
+            }
+          },
+          {
+            "tool": "trends",
+            "params": {
+              "news_items": "{{news_fetcher.output}}"
+            }
+          },
+          {
+            "tool": "exporter",
+            "params": {
+              "filename": "India-US_trade_deal_report",
+              "format": "json"
+            }
+          }
+        ]
+      }
+    }
+  },
+  {
+    "timestamp": "2026-02-04T21:29:36.521489",
+    "level": "INFO",
+    "message": "Executing plan: Fetch, summarize, perform sentiment analysis, and extract trends for the India-US trade deal news",
+    "data": {
+      "steps": 5
+    }
+  },
+  {
+    "timestamp": "2026-02-04T21:29:36.555852",
+    "level": "DEBUG",
+    "message": "Running tool: news_fetcher",
+    "data": {
+      "params": [
+        "topic",
+        "limit"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T21:29:36.585689",
+    "level": "INFO",
+    "message": "Multi-source fetch for: India-US trade deal"
+  },
+  {
+    "timestamp": "2026-02-04T21:29:39.047367",
+    "level": "ERROR",
+    "message": "GNews failed: Client error '400 Bad Request' for url 'https://gnews.io/api/v4/search?apikey=a7519075e5f8447070cc6f0047260ca2&q=India-US+trade+deal&lang=en&max=5'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400"
+  },
+  {
+    "timestamp": "2026-02-04T21:29:43.803904",
+    "level": "INFO",
+    "message": "Multi-source complete: 10 articles from 3 sources"
+  },
+  {
+    "timestamp": "2026-02-04T21:29:43.835709",
+    "level": "DEBUG",
+    "message": "Running tool: summarizer",
+    "data": {
+      "params": [
+        "news_items"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T21:29:45.826396",
+    "level": "DEBUG",
+    "message": "Running tool: sentiment",
+    "data": {
+      "params": [
+        "news_items"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T21:29:48.236046",
+    "level": "DEBUG",
+    "message": "Running tool: trends",
+    "data": {
+      "params": [
+        "news_items"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T21:29:48.283922",
+    "level": "DEBUG",
+    "message": "Running tool: exporter",
+    "data": {
+      "params": [
+        "filename",
+        "format",
+        "data"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T21:29:48.313893",
+    "level": "INFO",
+    "message": "Sentiment-Trend fusion applied"
+  },
+  {
+    "timestamp": "2026-02-04T21:29:48.359310",
+    "level": "INFO",
+    "message": "Execution complete: 5 tools run, 0 skipped, 0 fallbacks used"
   }
 ]
 ```
@@ -4551,6 +4542,210 @@ Core module - Nova AI client and base configurations
           "tool": "exporter",
           "params": {
             "filename": "indian_stock_market_today",
+            "format": "json"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T20:18:18.145724",
+    "user_input": "INDIAN STOCK MARKET TODAY",
+    "plan": {
+      "intent": "Fetch and export the latest news about the Indian stock market today",
+      "domain": "Indian stock market",
+      "steps": [
+        {
+          "tool": "news_fetcher",
+          "params": {
+            "topic": "Indian stock market today",
+            "sources": [
+              "google"
+            ],
+            "limit": 5
+          }
+        },
+        {
+          "tool": "exporter",
+          "params": {
+            "filename": "Indian_stock_market_today",
+            "format": "json"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T20:18:37.363891",
+    "user_input": "INDIAN STOCK MARKET TODAY with summarize and sentiment analysis and trends",
+    "plan": {
+      "intent": "Fetch, summarize, analyze sentiment, and extract trends for the Indian stock market today",
+      "domain": "Indian stock market",
+      "steps": [
+        {
+          "tool": "news_fetcher",
+          "params": {
+            "topic": "INDIAN STOCK MARKET TODAY",
+            "sources": [
+              "google"
+            ],
+            "limit": 5
+          }
+        },
+        {
+          "tool": "summarizer",
+          "params": {
+            "news_items": "fetched news"
+          }
+        },
+        {
+          "tool": "sentiment",
+          "params": {
+            "news_items": "fetched news"
+          }
+        },
+        {
+          "tool": "trends",
+          "params": {
+            "news_items": "fetched news"
+          }
+        },
+        {
+          "tool": "exporter",
+          "params": {
+            "filename": "indian_stock_market_report",
+            "format": "json"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T21:13:49.553780",
+    "user_input": "India US trade deal",
+    "plan": {
+      "intent": "Fetch and export news on India US trade deal",
+      "domain": "India US trade deal",
+      "steps": [
+        {
+          "tool": "news_fetcher",
+          "params": {
+            "topic": "India US trade deal",
+            "limit": 5
+          }
+        },
+        {
+          "tool": "exporter",
+          "params": {
+            "filename": "India_US_trade_deal_report",
+            "format": "json"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T21:14:09.661924",
+    "user_input": "India US trade deal with summarize and sentiment analysis and trends",
+    "plan": {
+      "intent": "Fetch, summarize, perform sentiment analysis, and extract trends for the India-US trade deal",
+      "domain": "India-US trade deal",
+      "steps": [
+        {
+          "tool": "news_fetcher",
+          "params": {
+            "topic": "India-US trade deal",
+            "limit": 5
+          }
+        },
+        {
+          "tool": "summarizer",
+          "params": {
+            "news_items": "{{news_fetcher.output}}"
+          }
+        },
+        {
+          "tool": "sentiment",
+          "params": {
+            "news_items": "{{news_fetcher.output}}"
+          }
+        },
+        {
+          "tool": "trends",
+          "params": {
+            "news_items": "{{news_fetcher.output}}"
+          }
+        },
+        {
+          "tool": "exporter",
+          "params": {
+            "filename": "India-US_trade_deal_report",
+            "format": "json"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T21:29:23.066001",
+    "user_input": "India US trade deal",
+    "plan": {
+      "intent": "Fetch and export news on India-US trade deal",
+      "domain": "India US trade deal",
+      "steps": [
+        {
+          "tool": "news_fetcher",
+          "params": {
+            "topic": "India US trade deal",
+            "limit": 5
+          }
+        },
+        {
+          "tool": "exporter",
+          "params": {
+            "filename": "India_US_trade_deal_report",
+            "format": "json"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T21:29:36.487388",
+    "user_input": "India US trade deal with summarize and sentiment analysis and trends",
+    "plan": {
+      "intent": "Fetch, summarize, perform sentiment analysis, and extract trends for the India-US trade deal news",
+      "domain": "India-US trade deal",
+      "steps": [
+        {
+          "tool": "news_fetcher",
+          "params": {
+            "topic": "India-US trade deal",
+            "limit": 5
+          }
+        },
+        {
+          "tool": "summarizer",
+          "params": {
+            "news_items": "{{news_fetcher.output}}"
+          }
+        },
+        {
+          "tool": "sentiment",
+          "params": {
+            "news_items": "{{news_fetcher.output}}"
+          }
+        },
+        {
+          "tool": "trends",
+          "params": {
+            "news_items": "{{news_fetcher.output}}"
+          }
+        },
+        {
+          "tool": "exporter",
+          "params": {
+            "filename": "India-US_trade_deal_report",
             "format": "json"
           }
         }
@@ -8901,6 +9096,1748 @@ Core module - Nova AI client and base configurations
       "regenerated": [],
       "success": true
     }
+  },
+  {
+    "timestamp": "2026-02-04T20:18:25.241972",
+    "result": {
+      "intent": "Fetch and export the latest news about the Indian stock market today",
+      "domain": "Indian stock market",
+      "tools_executed": [
+        {
+          "tool": "news_fetcher",
+          "success": true,
+          "retries": 0,
+          "used_fallback": false,
+          "regenerated": false
+        },
+        {
+          "tool": "exporter",
+          "success": true,
+          "retries": 0,
+          "used_fallback": false,
+          "regenerated": false
+        }
+      ],
+      "data": {
+        "news": [
+          {
+            "title": "S&P 500 tumbles nearly 1% as investors rotate out of tech, Dow slides more than 160 points: Live updates - CNBC",
+            "link": "https://news.google.com/rss/articles/CBMid0FVX3lxTE82S1M0OFFxSjNTQnRWT21VRGRUbzUxemRyYXNZdGZqdnF0dTE1bTJZMHZWOWFEZnNfN0VmWEZ0TlhwS09SVGVDRVRzTGhoS3ZfdlF2SnNTVUFxcFFJa1E2QmZERnBkMkg2WTA5SGZoLTMyQ2RJTTQ00gF8QVVfeXFMTm1SS1FGeVk1YmtNNkF2TUxCYk45XzJiYzFYSnN3S1dIZ0Fud3M2OG9uVjlpZzFuVnZrc05pMG9waXJmS1NCQ3VaaHJUSnY1MTFTLTJmNDhkRzV2cXVsQVFsOGR2WjluMHd2UkJ3bTFTdGExY2xNaERIVE1ZZw?oc=5",
+            "source": "rss",
+            "published": "Tue, 03 Feb 2026 21:15:41 GMT"
+          },
+          {
+            "title": "Market Highlights: Sensex settles 78 pts higher, Nifty above 25,750; Trent, Eternal rise 5% each - The Economic Times",
+            "link": "https://news.google.com/rss/articles/CBMisAJBVV95cUxPamhnS0U5dmg0bGxCdzdHWGZ2a1loYWlxS0wtcnB4aENTRENzNEtIdUZJWi1uNlYtSWZiTW9ab3JuRVNrd1M1VmxDUFVxbm9PZjJ0WElPamZHY0o4Vkw5WEw5S0laM3Q1QTlndkF6M0NpakhyU1FBOE5HcENBLVhxVDdUUnN0OGtkRG82dXJkOURWZHJnRFN3Wk5acjhIUkpMUnY4SjVRSjc3Z1dUek5nRFVYY3gwdmlHTHNQVFVCS2lmdzVkUXF2U29hUFlFMW5hUEhFLU5UMldSdTNIeWVOYk9XNHA2ZEx4cUxNUXg5Qm9lWGdjaUpKM0RaMXRFSGNrNnAxN0F5QUVTNnp2X1BpLW5HQzVjei1KMllSNThrMGlybzhybUxzRG1KTnRpbkNT0gG2AkFVX3lxTE02c0VFUUFVdURGZFVaS1BLWllobndScGNTTVJ5WE0xM3FFSnlkTVZueVV2NEVRRjBsMUs1WHJSajNJWGw4NGR1SG1RVzRxRjVPN1pRUzJjaGxRUFpTYVJHeHJfb3RPaXJvZkkxWXVVMTZFMFItUEZDakNSNVdWNFFrSXByZk10ZmVPWm94eTRubUJ3Z0twa0xTZEcteVZUZG5rVWVIbUZvMmRoNlNFakpwSzdfYnAtN05UTkRFaWtzZ2tpdW1PWjNvQXZsUmVIMEdjMHYxcUJTandWSm8wXzlia09UMWRGU0tmR1NlWE9oSFhwVzZNUDFmTVZuM3Jfakp5NHo4YjM5TXZBYUFpUWpDMkJQOEYzcVQ1XzRQczVYY3p3bUJoV19LYjM2MnljS1FIaERPNmc?oc=5",
+            "source": "rss",
+            "published": "Wed, 04 Feb 2026 14:39:29 GMT"
+          },
+          {
+            "title": "Stock market today: Nifty50 opens in red; BSE Sensex down over 250 points - Times of India",
+            "link": "https://news.google.com/rss/articles/CBMijAJBVV95cUxQd3piX2hRTmlCYkU0UzFCLTNqSWJjUHFYV192TEtEYWl4ZG14QmlMUDBJWVJLRG1XLTdXMzVqOHV1VDRRaV9TakZOMzF3cldHSV9oY0ZST1NsQjdfODh2Q3ZaaHdrUnBCLW1VSTFtQmFtb1UyU3NSaWxITS16RThTd3NEbHR3NnpiNkVMRDhBa3RiLThiNnQ0b1dDVE05OUZIZG9PdFJLMUJ2ZTlUbVhXX050YjQxUDJ4ejRUOUNGSFlSXzMwT2ZvcEx1aVJKY3h6WVJhZ05VZ3VXZWdGcjBOTjdVRzZhTDNGS3AtX0w0ZFNkR05EV09kRlVPVzl4MVZVd0gxX1hKZ3BTZF9h0gGSAkFVX3lxTFB2V1BOZEVoRVpqTlNuMHdLRUNTQ25Qa1lZb09XUENaZjBoZmQzYklzTDBtSHdST1hJMlJMY2FiN3FLbnN5ZlNnLUItQk44VVB5a1ZCcExSaE1GTHZhbE9URVBnMFhaaUxJX0xUa2pKdnJXd3dNNWE2VkVjaUFqeGJVSENJcDAwYzc3cWVyeTFRUlJ4YzY2YkJpeDIxV0pPQ1VtUWJRcXY0ZFhrbXNWUUNlZjZZaEp6b0RzSlNWNEc0UEdVUUJ6RTh3czVmdTI5Wi0yazJjSExBeUl3OVhMT0x3ZVozTEN0Q01BZmV0TmRRT3VqSEhMV3c2SGRPWkVIb1MyTW9vbkw3by1oMWV3TER1VlE?oc=5",
+            "source": "rss",
+            "published": "Wed, 04 Feb 2026 03:48:00 GMT"
+          },
+          {
+            "title": "Stock market today: Dow, S&P 500, Nasdaq jump to kick off February as gold, silver, bitcoin remain volatile - Yahoo Finance",
+            "link": "https://news.google.com/rss/articles/CBMi5wFBVV95cUxQc0F4TE9UblcyRVIyTkVPQnJWZWtyTUgteHBtb2NGeDZPR1o4dE9FOFA4dUVlOEdmbW9VUTE3c0NJMUFFcW83d0N5LVQwVHYyODU2bXR3YzQ1NlZVVHJPQkhwcHUzcndOc0xrVFVqX0FubEd3NzBEWHJDY1hRUDBqcWF2azhFbnNWNFZWd2lvS3cwN0lnYlkzWmlVdmR6TTdRM1hNTEVwcVM1ZmZab29yUHk5ZHZ0NWdFR2FGNlZCeHdXSmg0UU9uRUk3d1BhbzVpcEZrOWExaVM3VjBzN0V2SFRkVFY3Rk0?oc=5",
+            "source": "rss",
+            "published": "Mon, 02 Feb 2026 21:06:10 GMT"
+          },
+          {
+            "title": "Stock Market Today: Sensex, Nifty Clock Best One-Day Gains In Nine Months - NDTV Profit",
+            "link": "https://news.google.com/rss/articles/CBMikgJBVV95cUxNTHlmc0FhMk9qcmZwQnR2TjU4QkdoZThpV080bzFHMUJNZXBUWVFyNFpPeXF6eGtuV2pTcU1EZFRwbWxJd3RQNmhNV2R5ck1YbHkySjVVeGZtSmtvSkJXN1huOWpZWVNVTUZKUjQ5REZlZE14RnloelZwaWh6QWVFVmUtaWNod1o3QjlVZkdMM2lmOFhveE53Z2I2NHUxemM5VHE3NUs1UWpTa3JrWWVXTnJPNWxzRk5CNHYxSEFwME9TZDVreU9hTEZqUGpwRXVHcmFJWmNFWmZSWWx3ZXVqT2h4aU9SRWc5WnlKRFV1X3VSOTZRT3MxU1ptaVRBc0RaaW9tUy1wQk1UYndpaldaVkxR0gGaAkFVX3lxTFBrZnVNbnRIcDBMZmp0LUFDemVxZlE1YWRuTV9wa2dFRDRMbGFuTkZad3Q1UlE4c2F5MjFwUGRnMDg0a3J0bTQxU3l5aS1CX291ZWdCOVNIV2xxSWs4MnpLLV9hWUVxTjRTZmlkM0FaRjAtVWZpX2lsLU5wNm1fLWdHektzY0RqX0RyeUppUUpTWWZCSnJndXVBa3lINHRsNVBCS3pDdWFGZFdiMExlZmN2SHNxbEVaUFVTMmJ1dWJlMmZubUd1N2xValVpUWlYVTBHZkdEUk1vS2dDZVdQRUVWd2ZhNy1Hai1xQ1pKMVlFOXplWlNOamw3WWt0THQ2c042cng0ejlSdmtZTkd0QWt6aWt5TU9JaUFIUQ?oc=5",
+            "source": "rss",
+            "published": "Wed, 04 Feb 2026 08:58:37 GMT"
+          },
+          {
+            "title": "Stocks to watch: Trent, BPCL, Bajaj Finance, Nazara Tech among among 10 shares in focus today; full list here",
+            "link": "https://www.livemint.com/market/stock-market-news/stocks-to-watch-trent-bpcl-bajaj-finance-nazara-tech-among-among-10-shares-in-focus-today-full-list-here-11770168283418.html",
+            "source": "gnews",
+            "published": "2026-02-04T02:09:06Z"
+          },
+          {
+            "title": "Nifty 50, Sensex today: What to expect from Indian stock market in trade on February 4",
+            "link": "https://www.livemint.com/market/stock-market-news/nifty-50-sensex-today-what-to-expect-from-indian-stock-market-in-trade-on-february-4-11770137046970.html",
+            "source": "gnews",
+            "published": "2026-02-04T01:50:54Z"
+          },
+          {
+            "title": "Investors' Wealth Swells By Rs 7 Lakh Crore As Bulls Grip Nifty, Sensex On India-US Trade Deal Announcement",
+            "link": "https://www.ndtvprofit.com/markets/stock-market-today-investors-wealth-swells-nearly-rs-7-lakh-crore-as-bulls-grip-nifty-sensex-on-india-us-trade-deal-announcement-10937766",
+            "source": "gnews",
+            "published": "2026-02-03T10:12:07Z"
+          },
+          {
+            "title": "Sensex jumps over 2,000 points, investors earn over \u20b912 lakh crore- 10 key highlights from Indian stock market today",
+            "link": "https://www.livemint.com/market/sensex-jumps-over-2-000-points-investors-earn-over-rs-12-lakh-crore-10-key-highlights-from-indian-stock-market-today-11770112329110.html",
+            "source": "gnews",
+            "published": "2026-02-03T10:06:14Z"
+          },
+          {
+            "title": "Here's Why Stock Market Is Up Today India-US Trade Deal",
+            "link": "https://www.ndtvprofit.com/markets/heres-why-stock-market-is-up-today-india-us-trade-deal-10935641",
+            "source": "gnews",
+            "published": "2026-02-03T04:17:26Z"
+          },
+          {
+            "title": "Asia stock markets today: live updates",
+            "link": "https://www.cnbc.com/2025/08/08/asia-stock-markets-today-live-updates-nikkei-225-asx-200-kospi-hang-seng-csi-300-sensex-nifty-50.html",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "Indian shares notch best day in 9 months as Reliance ...",
+            "link": "https://www.reuters.com/world/india/indian-shares-set-gap-up-open-after-us-trade-deal-2026-02-03/",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "India's markets get tariff relief but not a buy yet",
+            "link": "https://www.reuters.com/world/india/indias-markets-get-tariff-relief-not-buy-yet-2026-02-04/",
+            "source": "tavily",
+            "published": ""
+          }
+        ],
+        "exported_file": "output/Indian_stock_market_today_20260204_201825.json"
+      },
+      "errors": [],
+      "skipped": [],
+      "fallbacks_used": [],
+      "regenerated": [],
+      "success": true
+    }
+  },
+  {
+    "timestamp": "2026-02-04T20:18:49.526498",
+    "result": {
+      "intent": "Fetch, summarize, analyze sentiment, and extract trends for the Indian stock market today",
+      "domain": "Indian stock market",
+      "tools_executed": [
+        {
+          "tool": "news_fetcher",
+          "success": true,
+          "retries": 0,
+          "used_fallback": false,
+          "regenerated": false
+        },
+        {
+          "tool": "summarizer",
+          "success": true,
+          "retries": 0,
+          "used_fallback": false,
+          "regenerated": false
+        },
+        {
+          "tool": "sentiment",
+          "success": true,
+          "retries": 0,
+          "used_fallback": false,
+          "regenerated": false
+        },
+        {
+          "tool": "trends",
+          "success": true,
+          "retries": 0,
+          "used_fallback": false,
+          "regenerated": false
+        },
+        {
+          "tool": "exporter",
+          "success": true,
+          "retries": 0,
+          "used_fallback": false,
+          "regenerated": false
+        }
+      ],
+      "data": {
+        "news": [
+          {
+            "title": "S&P 500 tumbles nearly 1% as investors rotate out of tech, Dow slides more than 160 points: Live updates - CNBC",
+            "link": "https://news.google.com/rss/articles/CBMid0FVX3lxTE82S1M0OFFxSjNTQnRWT21VRGRUbzUxemRyYXNZdGZqdnF0dTE1bTJZMHZWOWFEZnNfN0VmWEZ0TlhwS09SVGVDRVRzTGhoS3ZfdlF2SnNTVUFxcFFJa1E2QmZERnBkMkg2WTA5SGZoLTMyQ2RJTTQ00gF8QVVfeXFMTm1SS1FGeVk1YmtNNkF2TUxCYk45XzJiYzFYSnN3S1dIZ0Fud3M2OG9uVjlpZzFuVnZrc05pMG9waXJmS1NCQ3VaaHJUSnY1MTFTLTJmNDhkRzV2cXVsQVFsOGR2WjluMHd2UkJ3bTFTdGExY2xNaERIVE1ZZw?oc=5",
+            "source": "rss",
+            "published": "Tue, 03 Feb 2026 21:15:41 GMT"
+          },
+          {
+            "title": "Market Highlights: Sensex settles 78 pts higher, Nifty above 25,750; Trent, Eternal rise 5% each - The Economic Times",
+            "link": "https://news.google.com/rss/articles/CBMisAJBVV95cUxPamhnS0U5dmg0bGxCdzdHWGZ2a1loYWlxS0wtcnB4aENTRENzNEtIdUZJWi1uNlYtSWZiTW9ab3JuRVNrd1M1VmxDUFVxbm9PZjJ0WElPamZHY0o4Vkw5WEw5S0laM3Q1QTlndkF6M0NpakhyU1FBOE5HcENBLVhxVDdUUnN0OGtkRG82dXJkOURWZHJnRFN3Wk5acjhIUkpMUnY4SjVRSjc3Z1dUek5nRFVYY3gwdmlHTHNQVFVCS2lmdzVkUXF2U29hUFlFMW5hUEhFLU5UMldSdTNIeWVOYk9XNHA2ZEx4cUxNUXg5Qm9lWGdjaUpKM0RaMXRFSGNrNnAxN0F5QUVTNnp2X1BpLW5HQzVjei1KMllSNThrMGlybzhybUxzRG1KTnRpbkNT0gG2AkFVX3lxTE02c0VFUUFVdURGZFVaS1BLWllobndScGNTTVJ5WE0xM3FFSnlkTVZueVV2NEVRRjBsMUs1WHJSajNJWGw4NGR1SG1RVzRxRjVPN1pRUzJjaGxRUFpTYVJHeHJfb3RPaXJvZkkxWXVVMTZFMFItUEZDakNSNVdWNFFrSXByZk10ZmVPWm94eTRubUJ3Z0twa0xTZEcteVZUZG5rVWVIbUZvMmRoNlNFakpwSzdfYnAtN05UTkRFaWtzZ2tpdW1PWjNvQXZsUmVIMEdjMHYxcUJTandWSm8wXzlia09UMWRGU0tmR1NlWE9oSFhwVzZNUDFmTVZuM3Jfakp5NHo4YjM5TXZBYUFpUWpDMkJQOEYzcVQ1XzRQczVYY3p3bUJoV19LYjM2MnljS1FIaERPNmc?oc=5",
+            "source": "rss",
+            "published": "Wed, 04 Feb 2026 14:39:29 GMT"
+          },
+          {
+            "title": "Stock market today: Nifty50 opens in red; BSE Sensex down over 250 points - Times of India",
+            "link": "https://news.google.com/rss/articles/CBMijAJBVV95cUxQd3piX2hRTmlCYkU0UzFCLTNqSWJjUHFYV192TEtEYWl4ZG14QmlMUDBJWVJLRG1XLTdXMzVqOHV1VDRRaV9TakZOMzF3cldHSV9oY0ZST1NsQjdfODh2Q3ZaaHdrUnBCLW1VSTFtQmFtb1UyU3NSaWxITS16RThTd3NEbHR3NnpiNkVMRDhBa3RiLThiNnQ0b1dDVE05OUZIZG9PdFJLMUJ2ZTlUbVhXX050YjQxUDJ4ejRUOUNGSFlSXzMwT2ZvcEx1aVJKY3h6WVJhZ05VZ3VXZWdGcjBOTjdVRzZhTDNGS3AtX0w0ZFNkR05EV09kRlVPVzl4MVZVd0gxX1hKZ3BTZF9h0gGSAkFVX3lxTFB2V1BOZEVoRVpqTlNuMHdLRUNTQ25Qa1lZb09XUENaZjBoZmQzYklzTDBtSHdST1hJMlJMY2FiN3FLbnN5ZlNnLUItQk44VVB5a1ZCcExSaE1GTHZhbE9URVBnMFhaaUxJX0xUa2pKdnJXd3dNNWE2VkVjaUFqeGJVSENJcDAwYzc3cWVyeTFRUlJ4YzY2YkJpeDIxV0pPQ1VtUWJRcXY0ZFhrbXNWUUNlZjZZaEp6b0RzSlNWNEc0UEdVUUJ6RTh3czVmdTI5Wi0yazJjSExBeUl3OVhMT0x3ZVozTEN0Q01BZmV0TmRRT3VqSEhMV3c2SGRPWkVIb1MyTW9vbkw3by1oMWV3TER1VlE?oc=5",
+            "source": "rss",
+            "published": "Wed, 04 Feb 2026 03:48:00 GMT"
+          },
+          {
+            "title": "Stock market today: Dow, S&P 500, Nasdaq jump to kick off February as gold, silver, bitcoin remain volatile - Yahoo Finance",
+            "link": "https://news.google.com/rss/articles/CBMi5wFBVV95cUxQc0F4TE9UblcyRVIyTkVPQnJWZWtyTUgteHBtb2NGeDZPR1o4dE9FOFA4dUVlOEdmbW9VUTE3c0NJMUFFcW83d0N5LVQwVHYyODU2bXR3YzQ1NlZVVHJPQkhwcHUzcndOc0xrVFVqX0FubEd3NzBEWHJDY1hRUDBqcWF2azhFbnNWNFZWd2lvS3cwN0lnYlkzWmlVdmR6TTdRM1hNTEVwcVM1ZmZab29yUHk5ZHZ0NWdFR2FGNlZCeHdXSmg0UU9uRUk3d1BhbzVpcEZrOWExaVM3VjBzN0V2SFRkVFY3Rk0?oc=5",
+            "source": "rss",
+            "published": "Mon, 02 Feb 2026 21:06:10 GMT"
+          },
+          {
+            "title": "Stock Market Today: Sensex, Nifty Clock Best One-Day Gains In Nine Months - NDTV Profit",
+            "link": "https://news.google.com/rss/articles/CBMikgJBVV95cUxNTHlmc0FhMk9qcmZwQnR2TjU4QkdoZThpV080bzFHMUJNZXBUWVFyNFpPeXF6eGtuV2pTcU1EZFRwbWxJd3RQNmhNV2R5ck1YbHkySjVVeGZtSmtvSkJXN1huOWpZWVNVTUZKUjQ5REZlZE14RnloelZwaWh6QWVFVmUtaWNod1o3QjlVZkdMM2lmOFhveE53Z2I2NHUxemM5VHE3NUs1UWpTa3JrWWVXTnJPNWxzRk5CNHYxSEFwME9TZDVreU9hTEZqUGpwRXVHcmFJWmNFWmZSWWx3ZXVqT2h4aU9SRWc5WnlKRFV1X3VSOTZRT3MxU1ptaVRBc0RaaW9tUy1wQk1UYndpaldaVkxR0gGaAkFVX3lxTFBrZnVNbnRIcDBMZmp0LUFDemVxZlE1YWRuTV9wa2dFRDRMbGFuTkZad3Q1UlE4c2F5MjFwUGRnMDg0a3J0bTQxU3l5aS1CX291ZWdCOVNIV2xxSWs4MnpLLV9hWUVxTjRTZmlkM0FaRjAtVWZpX2lsLU5wNm1fLWdHektzY0RqX0RyeUppUUpTWWZCSnJndXVBa3lINHRsNVBCS3pDdWFGZFdiMExlZmN2SHNxbEVaUFVTMmJ1dWJlMmZubUd1N2xValVpUWlYVTBHZkdEUk1vS2dDZVdQRUVWd2ZhNy1Hai1xQ1pKMVlFOXplWlNOamw3WWt0THQ2c042cng0ejlSdmtZTkd0QWt6aWt5TU9JaUFIUQ?oc=5",
+            "source": "rss",
+            "published": "Wed, 04 Feb 2026 08:58:37 GMT"
+          },
+          {
+            "title": "Stocks to watch: Trent, BPCL, Bajaj Finance, Nazara Tech among among 10 shares in focus today; full list here",
+            "link": "https://www.livemint.com/market/stock-market-news/stocks-to-watch-trent-bpcl-bajaj-finance-nazara-tech-among-among-10-shares-in-focus-today-full-list-here-11770168283418.html",
+            "source": "gnews",
+            "published": "2026-02-04T02:09:06Z"
+          },
+          {
+            "title": "Nifty 50, Sensex today: What to expect from Indian stock market in trade on February 4",
+            "link": "https://www.livemint.com/market/stock-market-news/nifty-50-sensex-today-what-to-expect-from-indian-stock-market-in-trade-on-february-4-11770137046970.html",
+            "source": "gnews",
+            "published": "2026-02-04T01:50:54Z"
+          },
+          {
+            "title": "Investors' Wealth Swells By Rs 7 Lakh Crore As Bulls Grip Nifty, Sensex On India-US Trade Deal Announcement",
+            "link": "https://www.ndtvprofit.com/markets/stock-market-today-investors-wealth-swells-nearly-rs-7-lakh-crore-as-bulls-grip-nifty-sensex-on-india-us-trade-deal-announcement-10937766",
+            "source": "gnews",
+            "published": "2026-02-03T10:12:07Z"
+          },
+          {
+            "title": "Sensex jumps over 2,000 points, investors earn over \u20b912 lakh crore- 10 key highlights from Indian stock market today",
+            "link": "https://www.livemint.com/market/sensex-jumps-over-2-000-points-investors-earn-over-rs-12-lakh-crore-10-key-highlights-from-indian-stock-market-today-11770112329110.html",
+            "source": "gnews",
+            "published": "2026-02-03T10:06:14Z"
+          },
+          {
+            "title": "Here's Why Stock Market Is Up Today India-US Trade Deal",
+            "link": "https://www.ndtvprofit.com/markets/heres-why-stock-market-is-up-today-india-us-trade-deal-10935641",
+            "source": "gnews",
+            "published": "2026-02-03T04:17:26Z"
+          },
+          {
+            "title": "Stock market today: Live updates",
+            "link": "https://www.cnbc.com/2026/02/03/stock-market-today-live-updates.html",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "India's markets get tariff relief but not a buy yet",
+            "link": "https://www.reuters.com/world/india/indias-markets-get-tariff-relief-not-buy-yet-2026-02-04/",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "Indian shares post modest gains as IT selloff tempers US ...",
+            "link": "https://www.reuters.com/world/india/indian-stocks-set-extend-gains-us-trade-deal-tech-sell-off-may-cap-upside-2026-02-04/",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "Today's Top Stories",
+            "link": "https://www.reuters.com/world/india/",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "Stock Price, Quote and News",
+            "link": "https://www.cnbc.com/quotes/.NSEI",
+            "source": "tavily",
+            "published": ""
+          }
+        ],
+        "summary": {
+          "summary": "The financial news highlights a mixed performance in global and Indian stock markets, with the S&P 500 and Dow experiencing declines, while Indian indices like the Sensex and Nifty show gains, driven by positive sentiment from the India-US trade deal.",
+          "key_points": [
+            "Global market volatility with mixed performances in the S&P 500, Dow, and Nasdaq.",
+            "Positive market sentiment in India, particularly in the Sensex and Nifty, influenced by the India-US trade deal.",
+            "Specific stocks and indices showing notable movements, with Trent, Eternal, and others experiencing significant gains."
+          ]
+        },
+        "sentiment": {
+          "overall": "neutral",
+          "mood_label": "cautious optimism",
+          "confidence": "medium",
+          "direction": "stable",
+          "momentum_strength": "moderate",
+          "risk_level": "moderate",
+          "market_bias": "balanced",
+          "reasoning": "The headlines reflect a mix of positive gains and negative declines across different indices and markets. The presence of both upward and downward movements suggests a cautious optimism, with investors possibly rotating out of tech sectors while also seizing opportunities in other sectors.",
+          "positive_signals": [
+            "Sensex settles 78 pts higher",
+            "Nifty above 25,750",
+            "Trent, Eternal rise 5% each",
+            "Sensex, Nifty Clock Best One-Day Gains In Nine Months",
+            "Investors' Wealth Swells By Rs 7 Lakh Crore",
+            "Sensex jumps over 2,000 points, investors earn over \u20b912 lakh crore",
+            "Here's Why Stock Market Is Up Today India-US Trade Deal"
+          ],
+          "negative_signals": [
+            "S&P 500 tumbles nearly 1%",
+            "Dow slides more than 160 points",
+            "Nifty50 opens in red; BSE Sensex down over 250 points",
+            "India's markets get tariff relief but not a buy yet"
+          ],
+          "emerging_themes": [
+            "sector rotation",
+            "trade deal impact",
+            "market volatility"
+          ],
+          "score": 0.45,
+          "breakdown": {
+            "positive": 7,
+            "neutral": 3,
+            "negative": 4
+          }
+        },
+        "trends": {
+          "trending_topics": [
+            {
+              "topic": "Sensex",
+              "score": 24.43,
+              "mentions": 24,
+              "velocity": "stable",
+              "velocity_icon": "\u27a1\ufe0f",
+              "sentiment_alignment": "neutral",
+              "fusion_score": 0.5,
+              "narrative": "Neutral Trend",
+              "narrative_icon": "\u26aa\u27a1\ufe0f"
+            },
+            {
+              "topic": "Stock",
+              "score": 16.43,
+              "mentions": 16,
+              "velocity": "stable",
+              "velocity_icon": "\u27a1\ufe0f",
+              "sentiment_alignment": "neutral",
+              "fusion_score": 0.5,
+              "narrative": "Neutral Trend",
+              "narrative_icon": "\u26aa\u27a1\ufe0f"
+            },
+            {
+              "topic": "Nifty",
+              "score": 14.43,
+              "mentions": 14,
+              "velocity": "stable",
+              "velocity_icon": "\u27a1\ufe0f",
+              "sentiment_alignment": "neutral",
+              "fusion_score": 0.5,
+              "narrative": "Neutral Trend",
+              "narrative_icon": "\u26aa\u27a1\ufe0f"
+            },
+            {
+              "topic": "today",
+              "score": 12.72,
+              "mentions": 12,
+              "velocity": "stable",
+              "velocity_icon": "\u27a1\ufe0f",
+              "sentiment_alignment": "neutral",
+              "fusion_score": 0.5,
+              "narrative": "Neutral Trend",
+              "narrative_icon": "\u26aa\u27a1\ufe0f"
+            },
+            {
+              "topic": "Indian",
+              "score": 11.88,
+              "mentions": 11,
+              "velocity": "stable",
+              "velocity_icon": "\u27a1\ufe0f",
+              "sentiment_alignment": "neutral",
+              "fusion_score": 0.5,
+              "narrative": "Neutral Trend",
+              "narrative_icon": "\u26aa\u27a1\ufe0f"
+            },
+            {
+              "topic": "Trent",
+              "score": 11.12,
+              "mentions": 11,
+              "velocity": "stable",
+              "velocity_icon": "\u27a1\ufe0f",
+              "sentiment_alignment": "neutral",
+              "fusion_score": 0.5,
+              "narrative": "Neutral Trend",
+              "narrative_icon": "\u26aa\u27a1\ufe0f"
+            },
+            {
+              "topic": "India",
+              "score": 10.1,
+              "mentions": 10,
+              "velocity": "stable",
+              "velocity_icon": "\u27a1\ufe0f",
+              "sentiment_alignment": "neutral",
+              "fusion_score": 0.5,
+              "narrative": "Neutral Trend",
+              "narrative_icon": "\u26aa\u27a1\ufe0f"
+            },
+            {
+              "topic": "Market",
+              "score": 9.43,
+              "mentions": 9,
+              "velocity": "stable",
+              "velocity_icon": "\u27a1\ufe0f",
+              "sentiment_alignment": "neutral",
+              "fusion_score": 0.5,
+              "narrative": "Neutral Trend",
+              "narrative_icon": "\u26aa\u27a1\ufe0f"
+            },
+            {
+              "topic": "Stock market today",
+              "score": 7.5,
+              "mentions": 7,
+              "velocity": "stable",
+              "velocity_icon": "\u27a1\ufe0f",
+              "sentiment_alignment": "neutral",
+              "fusion_score": 0.5,
+              "narrative": "Neutral Trend",
+              "narrative_icon": "\u26aa\u27a1\ufe0f"
+            },
+            {
+              "topic": "February",
+              "score": 7.38,
+              "mentions": 7,
+              "velocity": "stable",
+              "velocity_icon": "\u27a1\ufe0f",
+              "sentiment_alignment": "neutral",
+              "fusion_score": 0.5,
+              "narrative": "Neutral Trend",
+              "narrative_icon": "\u26aa\u27a1\ufe0f"
+            }
+          ],
+          "rising_topics": [],
+          "fading_topics": [],
+          "total_articles": 15,
+          "analysis_timestamp": "2026-02-04T20:18:49.478853",
+          "narrative_signals": [],
+          "market_narrative": "Stable market with limited narrative shifts"
+        },
+        "exported_file": "output/indian_stock_market_report_20260204_201849.json"
+      },
+      "errors": [],
+      "skipped": [],
+      "fallbacks_used": [],
+      "regenerated": [],
+      "success": true
+    }
+  },
+  {
+    "timestamp": "2026-02-04T21:13:57.208426",
+    "result": {
+      "intent": "Fetch and export news on India US trade deal",
+      "domain": "India US trade deal",
+      "tools_executed": [
+        {
+          "tool": "news_fetcher",
+          "success": true,
+          "retries": 0,
+          "used_fallback": false,
+          "regenerated": false
+        },
+        {
+          "tool": "exporter",
+          "success": true,
+          "retries": 0,
+          "used_fallback": false,
+          "regenerated": false
+        }
+      ],
+      "data": {
+        "news": [
+          {
+            "title": "Here's who analysts expect to gain from India\u2019s U.S. and EU trade deals - CNBC",
+            "link": "https://news.google.com/rss/articles/CBMimwFBVV95cUxNWmJMcE51QzZjSlJHLWNmVV9hb0loRUk0clJMdGZ1VnkwX3FjQVhyekNuX0pjTC02Tng3MWVabExwYnVCcUxNbDFfcmNoa2NFdW9Yd0laNjdiSTU0RGpqY3Y0bllUbDlIWnJ3eW5mVGlyc1puR3FadVZjTGFQMFBIc3dVTjlNV1JMdUpKOHB0ZE9POFFSWGU2UTloY9IBoAFBVV95cUxNVTJCZGw3Qk1sQ0xPbmFaMlVIZHZLazc2cjY0ZkVwSW52cnBTd0E5S2pLaFAxYXBwS2NQN1ZBTGtjRXQ4WkF4T2hsVEhTYzBBWXpxUE4zaVhSaUtycUlkMUFhdlpaZWtRM3dMaDZJMkRUZUlqa21PZmdQMlRhd3VhMnBxYnl6YnNmajN2T3F3UnR1Y2c0TV9MdXhDeWJybnkz?oc=5",
+            "source": "rss",
+            "published": "Tue, 03 Feb 2026 23:18:15 GMT"
+          },
+          {
+            "title": "Hope and uncertainty as India and US strike long-delayed trade deal - BBC",
+            "link": "https://news.google.com/rss/articles/CBMiWkFVX3lxTFBoRHZ3eDU2UERBbkZfcHFSSFdicTdPTFdCM2pMQjJORmV6TGFhT3poR2hzamVwN1V1QlF4UDIwMTFDT0gwZUJwb2EyX05Kd1VINnhEdU9fVDIyZw?oc=5",
+            "source": "rss",
+            "published": "Tue, 03 Feb 2026 06:29:43 GMT"
+          },
+          {
+            "title": "'Movers, shaker, and beggars': Pakistan's national meltdown over the India-US trade deal - Times of India",
+            "link": "https://news.google.com/rss/articles/CBMi5AFBVV95cUxNV0NkbWtra3hJYnBPOVdibm9FUmRqNHlFMVdNQ09KQ2IzU1pGZUVSZm5kN1FQRVh3VURqYmlwVGY5Y0gybU95RWgzRERuMnAtTmVCMjZxRURoQkVSbnJSZ0w1alU3bUNVSzlMVGZnT3ZsQ1RRSEd0OW44NHo5eGZQRXJYOW1JS29veG1xb1htX2FjNm1ZbFF4STJUSzVRd21xQjZNanhRY0tDWTNJZVNsa3hjX21DNkNuLVluMFdBYTZKTG5WNW1hUWpYRVR6RkV4QmJBZlVsb1hUVk1hMzJESElOSmzSAeoBQVVfeXFMTVVnVEJIOHRmTXVYa3M0NHEwRkhjOUJUNnNnbzFMYjhJR2lBb3JmWnNnclBid2ZDSjN3YWI1ZGRXRHVRbXpFenZlT2ZDdWU0V0VLM2NVd0RKS1FVMW9UTGt2b1dRcVlDZ1U5Z09IMGNtX0Q3TDV6bVpheDhSaDgtd0F4QkkxSmNVNFlzV2dkT3VHdXhoamg2Zkg2WFJvdzdXVTRVM0YyYTBSYWVGTERvWkNuWEhWeHItLXpvUGE0ZlR4aWMwdUlzbzd4ZW44MFl2S3p5ajBxUU4xZno0MlNPdEhYd0tYYTh6NzJB?oc=5",
+            "source": "rss",
+            "published": "Wed, 04 Feb 2026 15:03:00 GMT"
+          },
+          {
+            "title": "India to keep some farm protections in US trade deal, will buy US aircraft, arms, energy - Reuters",
+            "link": "https://news.google.com/rss/articles/CBMixgFBVV95cUxNcng4MEdUWDFQNFBmckpxbVNzTmh5bWpTN0IyZ3NRYUNWTjZ1WFhlZDNYRkVLZGk5SXBXSVowTlRKNU5OZEwzdGpWNGRXSjhwVUV2TU1wT1FXVXZFamFfR2tfOTQ5WXV6TXRzUTdPSTc4RFp0bVVPRTRzMzltUDVPVjBjZVd0aC10NVkwZmF5U0NFcElCeHhSVXQ3bWpicU5Pd1oxdnRCSUR5cHJTbm1uNnU1SXRPWE05d1lYd3p0VTlqNTFGbnc?oc=5",
+            "source": "rss",
+            "published": "Tue, 03 Feb 2026 14:55:33 GMT"
+          },
+          {
+            "title": "U.S. and India seal trade deal after months of diplomatic tensions - The Washington Post",
+            "link": "https://news.google.com/rss/articles/CBMif0FVX3lxTE9WUnVyOXh0UHUtZjJVNmUxdEJmUW9vXzhMSVc3bnh2aTRnWVZxQU12dHZpbGl6bEVvM1BFWmJlMmlmZ3ZvNVhkWkQ2RFQtNnNhVVRJYjlHZ2RURGRMVDhNNFB1UWhIZU5fQV8tck5IVUxUVjRRMFl1RFdhN1NyYWM?oc=5",
+            "source": "rss",
+            "published": "Tue, 03 Feb 2026 04:13:04 GMT"
+          },
+          {
+            "title": "US-India Trade Deal: A Zero-Tariff Revolution",
+            "link": "https://www.devdiscourse.com/article/business/3792748-us-india-trade-deal-a-zero-tariff-revolution",
+            "source": "gnews",
+            "published": "2026-02-04T03:37:34Z"
+          },
+          {
+            "title": "'From critical minerals to energy and nukes': Check what Jaishankar and Rubio discussed after India-US trade deal",
+            "link": "https://zeenews.india.com/world/from-critical-minerals-to-energy-and-nukes-check-what-jaishankar-and-rubio-discussed-after-india-us-trade-deal-3013576.html",
+            "source": "gnews",
+            "published": "2026-02-04T03:37:12Z"
+          },
+          {
+            "title": "Silver rate today climbs 6% as investors rush to buy the dip after the crash - Another spike on the way?",
+            "link": "https://www.livemint.com/market/commodities/silver-rate-today-climbs-4-gold-price-up-3-as-investors-rush-to-buy-the-dip-after-crash-another-spike-on-the-way-11770173523941.html",
+            "source": "gnews",
+            "published": "2026-02-04T03:37:06Z"
+          },
+          {
+            "title": "Day Deliberations On Interest Rate From Wednesday",
+            "link": "https://www.outlookmoney.com/banking/rbi-to-start-3-day-deliberations-on-interest-rate-from-wednesday",
+            "source": "gnews",
+            "published": "2026-02-04T03:35:22Z"
+          },
+          {
+            "title": "Jaishankar and Rubio \u2018welcome\u2019 India-US trade deal, discuss critical minerals and energy security",
+            "link": "https://indianexpress.com/article/world/jaishankar-and-rubio-welcome-india-us-trade-deal-discuss-critical-minerals-and-energy-security-10512396/",
+            "source": "gnews",
+            "published": "2026-02-04T03:34:17Z"
+          },
+          {
+            "title": "US and India reach trade deal, Trump says after Modi call",
+            "link": "https://www.bbc.com/news/articles/c5yve1x9zv0o",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "Quest Means Business",
+            "link": "https://transcripts.cnn.com/show/qmb/date/2026-02-02/segment/01",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "Trump says U.S. and India reached trade deal, will lower ...",
+            "link": "https://www.cnbc.com/2026/02/02/trump-india-trade-deal-tariffs.html",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "US to cut tariffs on India to 18%, India agrees to end ...",
+            "link": "https://www.reuters.com/world/india/trump-says-agreed-trade-deal-with-india-2026-02-02/",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "U.S.-India trade talks revamp as Trump sees other deals ...",
+            "link": "https://www.cnbc.com/2026/01/28/us-india-trade-talks-trump-tariffs.html",
+            "source": "tavily",
+            "published": ""
+          }
+        ],
+        "exported_file": "output/India_US_trade_deal_report_20260204_211357.json"
+      },
+      "errors": [],
+      "skipped": [],
+      "fallbacks_used": [],
+      "regenerated": [],
+      "success": true
+    }
+  },
+  {
+    "timestamp": "2026-02-04T21:14:22.102307",
+    "result": {
+      "intent": "Fetch, summarize, perform sentiment analysis, and extract trends for the India-US trade deal",
+      "domain": "India-US trade deal",
+      "tools_executed": [
+        {
+          "tool": "news_fetcher",
+          "success": true,
+          "retries": 0,
+          "used_fallback": false,
+          "regenerated": false
+        },
+        {
+          "tool": "summarizer",
+          "success": true,
+          "retries": 0,
+          "used_fallback": false,
+          "regenerated": false
+        },
+        {
+          "tool": "sentiment",
+          "success": true,
+          "retries": 0,
+          "used_fallback": false,
+          "regenerated": false
+        },
+        {
+          "tool": "trends",
+          "success": true,
+          "retries": 0,
+          "used_fallback": false,
+          "regenerated": false
+        },
+        {
+          "tool": "exporter",
+          "success": true,
+          "retries": 0,
+          "used_fallback": false,
+          "regenerated": false
+        }
+      ],
+      "data": {
+        "news": [
+          {
+            "title": "Here's who analysts expect to gain from India\u2019s U.S. and EU trade deals - CNBC",
+            "link": "https://news.google.com/rss/articles/CBMimwFBVV95cUxNWmJMcE51QzZjSlJHLWNmVV9hb0loRUk0clJMdGZ1VnkwX3FjQVhyekNuX0pjTC02Tng3MWVabExwYnVCcUxNbDFfcmNoa2NFdW9Yd0laNjdiSTU0RGpqY3Y0bllUbDlIWnJ3eW5mVGlyc1puR3FadVZjTGFQMFBIc3dVTjlNV1JMdUpKOHB0ZE9POFFSWGU2UTloY9IBoAFBVV95cUxNVTJCZGw3Qk1sQ0xPbmFaMlVIZHZLazc2cjY0ZkVwSW52cnBTd0E5S2pLaFAxYXBwS2NQN1ZBTGtjRXQ4WkF4T2hsVEhTYzBBWXpxUE4zaVhSaUtycUlkMUFhdlpaZWtRM3dMaDZJMkRUZUlqa21PZmdQMlRhd3VhMnBxYnl6YnNmajN2T3F3UnR1Y2c0TV9MdXhDeWJybnkz?oc=5",
+            "source": "rss",
+            "published": "Tue, 03 Feb 2026 23:18:15 GMT"
+          },
+          {
+            "title": "Hope and uncertainty as India and US strike long-delayed trade deal - BBC",
+            "link": "https://news.google.com/rss/articles/CBMiWkFVX3lxTFBoRHZ3eDU2UERBbkZfcHFSSFdicTdPTFdCM2pMQjJORmV6TGFhT3poR2hzamVwN1V1QlF4UDIwMTFDT0gwZUJwb2EyX05Kd1VINnhEdU9fVDIyZw?oc=5",
+            "source": "rss",
+            "published": "Tue, 03 Feb 2026 06:29:43 GMT"
+          },
+          {
+            "title": "'Movers, shaker, and beggars': Pakistan's national meltdown over the India-US trade deal - Times of India",
+            "link": "https://news.google.com/rss/articles/CBMi5AFBVV95cUxNV0NkbWtra3hJYnBPOVdibm9FUmRqNHlFMVdNQ09KQ2IzU1pGZUVSZm5kN1FQRVh3VURqYmlwVGY5Y0gybU95RWgzRERuMnAtTmVCMjZxRURoQkVSbnJSZ0w1alU3bUNVSzlMVGZnT3ZsQ1RRSEd0OW44NHo5eGZQRXJYOW1JS29veG1xb1htX2FjNm1ZbFF4STJUSzVRd21xQjZNanhRY0tDWTNJZVNsa3hjX21DNkNuLVluMFdBYTZKTG5WNW1hUWpYRVR6RkV4QmJBZlVsb1hUVk1hMzJESElOSmzSAeoBQVVfeXFMTVVnVEJIOHRmTXVYa3M0NHEwRkhjOUJUNnNnbzFMYjhJR2lBb3JmWnNnclBid2ZDSjN3YWI1ZGRXRHVRbXpFenZlT2ZDdWU0V0VLM2NVd0RKS1FVMW9UTGt2b1dRcVlDZ1U5Z09IMGNtX0Q3TDV6bVpheDhSaDgtd0F4QkkxSmNVNFlzV2dkT3VHdXhoamg2Zkg2WFJvdzdXVTRVM0YyYTBSYWVGTERvWkNuWEhWeHItLXpvUGE0ZlR4aWMwdUlzbzd4ZW44MFl2S3p5ajBxUU4xZno0MlNPdEhYd0tYYTh6NzJB?oc=5",
+            "source": "rss",
+            "published": "Wed, 04 Feb 2026 15:03:00 GMT"
+          },
+          {
+            "title": "Did Trump Jump the Gun With the US-India Trade Deal Announcement? - The Diplomat \u2013 Asia-Pacific Current Affairs Magazine",
+            "link": "https://news.google.com/rss/articles/CBMingFBVV95cUxOSUlneWJNdUNseHF4SjlOLXhCdWhWcUVhOExWaHlsbnVmWkxiU0hycUxpUGxZbDR3TTFJOHdEM19fVlNteEZ0bEFIU3h6MzdROWQ4RmZYdC1uOGJUeEFEZy1WWnpFZS03ZzhoSjk2M3AxYm9vRE4tNkZUcno4M3Jaa19pRmp4NkNWTHVkVWp1eEg1YXJRc01zaTNlUlRMZw?oc=5",
+            "source": "rss",
+            "published": "Wed, 04 Feb 2026 13:24:13 GMT"
+          },
+          {
+            "title": "India to keep some farm protections in US trade deal, will buy US aircraft, arms, energy - Reuters",
+            "link": "https://news.google.com/rss/articles/CBMixgFBVV95cUxNcng4MEdUWDFQNFBmckpxbVNzTmh5bWpTN0IyZ3NRYUNWTjZ1WFhlZDNYRkVLZGk5SXBXSVowTlRKNU5OZEwzdGpWNGRXSjhwVUV2TU1wT1FXVXZFamFfR2tfOTQ5WXV6TXRzUTdPSTc4RFp0bVVPRTRzMzltUDVPVjBjZVd0aC10NVkwZmF5U0NFcElCeHhSVXQ3bWpicU5Pd1oxdnRCSUR5cHJTbm1uNnU1SXRPWE05d1lYd3p0VTlqNTFGbnc?oc=5",
+            "source": "rss",
+            "published": "Tue, 03 Feb 2026 14:55:33 GMT"
+          },
+          {
+            "title": "India's Modi praised for US trade deal as opposition ...",
+            "link": "https://apnews.com/article/india-us-trade-deal-trump-modi-3ce866a869dae9fd10449a6f70c2a4ed",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "US and India reach trade deal, Trump says after Modi call",
+            "link": "https://www.bbc.com/news/articles/c5yve1x9zv0o",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "India's Nifty 50 closes 2.5% higher as long-awaited U.S. ...",
+            "link": "https://www.cnbc.com/2026/02/03/india-nifty-50-soars-india-us-trade-deal-trum-modi.html",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "Trump responds to Europe with U.S.-India trade deal",
+            "link": "https://www.cnbc.com/2026/02/03/trump-us-india-trade-deal-europe-india-deal-compared.html",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "'Devil in the details': India-U.S. deal raises hopes for a reset",
+            "link": "https://www.cnbc.com/2026/02/03/us-india-trade-framework-tariffs-reset-modi-trump-new-delhi-russian-oil-venezuela.html",
+            "source": "tavily",
+            "published": ""
+          }
+        ],
+        "summary": {
+          "summary": "The headlines discuss the long-awaited U.S.-India trade deal, focusing on potential gains for India, mixed reactions in India and Pakistan, and specific agreements like farm protections, aircraft purchases, and energy deals. There is also mention of the timing of the announcement and the impact on stock markets.",
+          "key_points": [
+            "Potential gains and benefits for India from the trade deal.",
+            "Mixed reactions and uncertainty surrounding the deal, particularly in Pakistan.",
+            "Specific agreements and provisions within the trade deal, including farm protections and defense purchases."
+          ]
+        },
+        "sentiment": {
+          "overall": "neutral",
+          "mood_label": "cautious optimism",
+          "confidence": "medium",
+          "direction": "stable",
+          "momentum_strength": "moderate",
+          "risk_level": "moderate",
+          "market_bias": "balanced",
+          "reasoning": "The headlines reflect a mix of optimism about the potential benefits of the trade deal, particularly for certain sectors, while also expressing caution about the uncertainties and potential challenges. The market reaction, as indicated by the Nifty 50's increase, suggests some positive sentiment, but the presence of risk signals and concerns about the details tempers the overall narrative.",
+          "positive_signals": [
+            "Expected gains for certain sectors",
+            "Market reaction with Nifty 50 closing higher",
+            "Praise for Modi's role in the deal"
+          ],
+          "negative_signals": [
+            "Uncertainty and concerns about the deal",
+            "Potential negative impact on Pakistan",
+            "Focus on 'devil in the details'"
+          ],
+          "emerging_themes": [
+            "Sector-specific gains",
+            "Geopolitical implications",
+            "Detailed scrutiny of the deal"
+          ],
+          "score": 0.5,
+          "breakdown": {
+            "positive": 5,
+            "neutral": 3,
+            "negative": 2
+          }
+        },
+        "trends": {
+          "trending_topics": [
+            {
+              "topic": "India",
+              "score": 39.5,
+              "mentions": 39,
+              "velocity": "rising_fast",
+              "velocity_icon": "\ud83d\udd25",
+              "story_direction": "Strong Coverage",
+              "story_icon": "\ud83d\udfe2",
+              "coverage_growth": "Rising Fast",
+              "tone_of_coverage": "Neutral/Mixed",
+              "news_cycle_stage": "Peak Focus",
+              "news_cycle_icon": "\ud83d\udd25",
+              "why_trending": [
+                "Coverage increased across multiple sources",
+                "High mention frequency in recent articles",
+                "Spike in mentions in last 6 hours"
+              ],
+              "narrative": "Strong Coverage",
+              "narrative_icon": "\ud83d\udfe2",
+              "fusion_score": 1.0
+            },
+            {
+              "topic": "deal",
+              "score": 11.0,
+              "mentions": 11,
+              "velocity": "rising_fast",
+              "velocity_icon": "\ud83d\udd25",
+              "story_direction": "Strong Coverage",
+              "story_icon": "\ud83d\udfe2",
+              "coverage_growth": "Rising Fast",
+              "tone_of_coverage": "Neutral/Mixed",
+              "news_cycle_stage": "Peak Focus",
+              "news_cycle_icon": "\ud83d\udd25",
+              "why_trending": [
+                "Coverage increased across multiple sources",
+                "Moderate coverage in news cycle",
+                "Spike in mentions in last 6 hours"
+              ],
+              "narrative": "Strong Coverage",
+              "narrative_icon": "\ud83d\udfe2",
+              "fusion_score": 1.0
+            },
+            {
+              "topic": "trade",
+              "score": 11.0,
+              "mentions": 11,
+              "velocity": "rising_fast",
+              "velocity_icon": "\ud83d\udd25",
+              "story_direction": "Strong Coverage",
+              "story_icon": "\ud83d\udfe2",
+              "coverage_growth": "Rising Fast",
+              "tone_of_coverage": "Neutral/Mixed",
+              "news_cycle_stage": "Peak Focus",
+              "news_cycle_icon": "\ud83d\udd25",
+              "why_trending": [
+                "Coverage increased across multiple sources",
+                "Moderate coverage in news cycle",
+                "Spike in mentions in last 6 hours"
+              ],
+              "narrative": "Strong Coverage",
+              "narrative_icon": "\ud83d\udfe2",
+              "fusion_score": 1.0
+            },
+            {
+              "topic": "Trump",
+              "score": 9.5,
+              "mentions": 9,
+              "velocity": "rising_fast",
+              "velocity_icon": "\ud83d\udd25",
+              "story_direction": "Strong Coverage",
+              "story_icon": "\ud83d\udfe2",
+              "coverage_growth": "Rising Fast",
+              "tone_of_coverage": "Neutral/Mixed",
+              "news_cycle_stage": "Active Coverage",
+              "news_cycle_icon": "\ud83d\uddde\ufe0f",
+              "why_trending": [
+                "Coverage increased across multiple sources",
+                "Moderate coverage in news cycle",
+                "Spike in mentions in last 6 hours"
+              ],
+              "narrative": "Strong Coverage",
+              "narrative_icon": "\ud83d\udfe2",
+              "fusion_score": 1.0
+            },
+            {
+              "topic": "Modi",
+              "score": 7.5,
+              "mentions": 7,
+              "velocity": "rising_fast",
+              "velocity_icon": "\ud83d\udd25",
+              "story_direction": "Strong Coverage",
+              "story_icon": "\ud83d\udfe2",
+              "coverage_growth": "Rising Fast",
+              "tone_of_coverage": "Neutral/Mixed",
+              "news_cycle_stage": "Breaking Story",
+              "news_cycle_icon": "\ud83c\udd95",
+              "why_trending": [
+                "Coverage increased across multiple sources",
+                "Spike in mentions in last 6 hours",
+                "Mixed or balanced coverage"
+              ],
+              "narrative": "Strong Coverage",
+              "narrative_icon": "\ud83d\udfe2",
+              "fusion_score": 1.0
+            },
+            {
+              "topic": "US trade",
+              "score": 5.85,
+              "mentions": 5,
+              "velocity": "rising_fast",
+              "velocity_icon": "\ud83d\udd25",
+              "story_direction": "Strong Coverage",
+              "story_icon": "\ud83d\udfe2",
+              "coverage_growth": "Rising Fast",
+              "tone_of_coverage": "Neutral/Mixed",
+              "news_cycle_stage": "Breaking Story",
+              "news_cycle_icon": "\ud83c\udd95",
+              "why_trending": [
+                "Coverage increased across multiple sources",
+                "Spike in mentions in last 6 hours",
+                "Mixed or balanced coverage"
+              ],
+              "narrative": "Strong Coverage",
+              "narrative_icon": "\ud83d\udfe2",
+              "fusion_score": 1.0
+            },
+            {
+              "topic": "US trade deal",
+              "score": 5.4,
+              "mentions": 5,
+              "velocity": "rising_fast",
+              "velocity_icon": "\ud83d\udd25",
+              "story_direction": "Strong Coverage",
+              "story_icon": "\ud83d\udfe2",
+              "coverage_growth": "Rising Fast",
+              "tone_of_coverage": "Neutral/Mixed",
+              "news_cycle_stage": "Breaking Story",
+              "news_cycle_icon": "\ud83c\udd95",
+              "why_trending": [
+                "Coverage increased across multiple sources",
+                "Spike in mentions in last 6 hours",
+                "Mixed or balanced coverage"
+              ],
+              "narrative": "Strong Coverage",
+              "narrative_icon": "\ud83d\udfe2",
+              "fusion_score": 1.0
+            },
+            {
+              "topic": "Asia",
+              "score": 5.0,
+              "mentions": 5,
+              "velocity": "rising_fast",
+              "velocity_icon": "\ud83d\udd25",
+              "story_direction": "Strong Coverage",
+              "story_icon": "\ud83d\udfe2",
+              "coverage_growth": "Rising Fast",
+              "tone_of_coverage": "Neutral/Mixed",
+              "news_cycle_stage": "Breaking Story",
+              "news_cycle_icon": "\ud83c\udd95",
+              "why_trending": [
+                "Coverage increased across multiple sources",
+                "Spike in mentions in last 6 hours",
+                "Mixed or balanced coverage"
+              ],
+              "narrative": "Strong Coverage",
+              "narrative_icon": "\ud83d\udfe2",
+              "fusion_score": 1.0
+            },
+            {
+              "topic": "Times",
+              "score": 5.0,
+              "mentions": 5,
+              "velocity": "stable",
+              "velocity_icon": "\u27a1\ufe0f",
+              "story_direction": "Stable Coverage",
+              "story_icon": "\u26aa",
+              "coverage_growth": "Steady",
+              "tone_of_coverage": "Neutral/Mixed",
+              "news_cycle_stage": "Active Coverage",
+              "news_cycle_icon": "\ud83d\uddde\ufe0f",
+              "why_trending": [
+                "Mixed or balanced coverage"
+              ],
+              "narrative": "Stable Coverage",
+              "narrative_icon": "\u26aa",
+              "fusion_score": 0.5
+            },
+            {
+              "topic": "Movers",
+              "score": 5.0,
+              "mentions": 5,
+              "velocity": "rising_fast",
+              "velocity_icon": "\ud83d\udd25",
+              "story_direction": "Strong Coverage",
+              "story_icon": "\ud83d\udfe2",
+              "coverage_growth": "Rising Fast",
+              "tone_of_coverage": "Neutral/Mixed",
+              "news_cycle_stage": "Breaking Story",
+              "news_cycle_icon": "\ud83c\udd95",
+              "why_trending": [
+                "Coverage increased across multiple sources",
+                "Spike in mentions in last 6 hours",
+                "Mixed or balanced coverage"
+              ],
+              "narrative": "Strong Coverage",
+              "narrative_icon": "\ud83d\udfe2",
+              "fusion_score": 1.0
+            }
+          ],
+          "rising_topics": [
+            {
+              "topic": "India",
+              "score": 39.5,
+              "mentions": 39,
+              "velocity": "rising_fast",
+              "velocity_value": 1.0
+            },
+            {
+              "topic": "deal",
+              "score": 11.0,
+              "mentions": 11,
+              "velocity": "rising_fast",
+              "velocity_value": 1.0
+            },
+            {
+              "topic": "trade",
+              "score": 11.0,
+              "mentions": 11,
+              "velocity": "rising_fast",
+              "velocity_value": 1.0
+            },
+            {
+              "topic": "Trump",
+              "score": 9.5,
+              "mentions": 9,
+              "velocity": "rising_fast",
+              "velocity_value": 1.0
+            },
+            {
+              "topic": "Modi",
+              "score": 7.5,
+              "mentions": 7,
+              "velocity": "rising_fast",
+              "velocity_value": 1.0
+            }
+          ],
+          "fading_topics": [],
+          "total_articles": 10,
+          "analysis_timestamp": "2026-02-04T21:14:22.057349",
+          "active_narratives": [
+            {
+              "topic": "India",
+              "story_direction": "Strong Coverage",
+              "story_icon": "\ud83d\udfe2",
+              "coverage": "Rising Fast",
+              "tone": "Neutral/Mixed",
+              "news_cycle": "Peak Focus",
+              "why_trending": [
+                "Coverage increased across multiple sources",
+                "High mention frequency in recent articles",
+                "Spike in mentions in last 6 hours"
+              ]
+            },
+            {
+              "topic": "deal",
+              "story_direction": "Strong Coverage",
+              "story_icon": "\ud83d\udfe2",
+              "coverage": "Rising Fast",
+              "tone": "Neutral/Mixed",
+              "news_cycle": "Peak Focus",
+              "why_trending": [
+                "Coverage increased across multiple sources",
+                "Moderate coverage in news cycle",
+                "Spike in mentions in last 6 hours"
+              ]
+            },
+            {
+              "topic": "trade",
+              "story_direction": "Strong Coverage",
+              "story_icon": "\ud83d\udfe2",
+              "coverage": "Rising Fast",
+              "tone": "Neutral/Mixed",
+              "news_cycle": "Peak Focus",
+              "why_trending": [
+                "Coverage increased across multiple sources",
+                "Moderate coverage in news cycle",
+                "Spike in mentions in last 6 hours"
+              ]
+            },
+            {
+              "topic": "Trump",
+              "story_direction": "Strong Coverage",
+              "story_icon": "\ud83d\udfe2",
+              "coverage": "Rising Fast",
+              "tone": "Neutral/Mixed",
+              "news_cycle": "Active Coverage",
+              "why_trending": [
+                "Coverage increased across multiple sources",
+                "Moderate coverage in news cycle",
+                "Spike in mentions in last 6 hours"
+              ]
+            },
+            {
+              "topic": "Modi",
+              "story_direction": "Strong Coverage",
+              "story_icon": "\ud83d\udfe2",
+              "coverage": "Rising Fast",
+              "tone": "Neutral/Mixed",
+              "news_cycle": "Breaking Story",
+              "why_trending": [
+                "Coverage increased across multiple sources",
+                "Spike in mentions in last 6 hours",
+                "Mixed or balanced coverage"
+              ]
+            }
+          ],
+          "news_narrative_summary": "Active story movement around India, deal",
+          "narrative_signals": [
+            {
+              "topic": "India",
+              "story_direction": "Strong Coverage",
+              "story_icon": "\ud83d\udfe2",
+              "coverage": "Rising Fast",
+              "tone": "Neutral/Mixed",
+              "news_cycle": "Peak Focus",
+              "why_trending": [
+                "Coverage increased across multiple sources",
+                "High mention frequency in recent articles",
+                "Spike in mentions in last 6 hours"
+              ]
+            },
+            {
+              "topic": "deal",
+              "story_direction": "Strong Coverage",
+              "story_icon": "\ud83d\udfe2",
+              "coverage": "Rising Fast",
+              "tone": "Neutral/Mixed",
+              "news_cycle": "Peak Focus",
+              "why_trending": [
+                "Coverage increased across multiple sources",
+                "Moderate coverage in news cycle",
+                "Spike in mentions in last 6 hours"
+              ]
+            },
+            {
+              "topic": "trade",
+              "story_direction": "Strong Coverage",
+              "story_icon": "\ud83d\udfe2",
+              "coverage": "Rising Fast",
+              "tone": "Neutral/Mixed",
+              "news_cycle": "Peak Focus",
+              "why_trending": [
+                "Coverage increased across multiple sources",
+                "Moderate coverage in news cycle",
+                "Spike in mentions in last 6 hours"
+              ]
+            },
+            {
+              "topic": "Trump",
+              "story_direction": "Strong Coverage",
+              "story_icon": "\ud83d\udfe2",
+              "coverage": "Rising Fast",
+              "tone": "Neutral/Mixed",
+              "news_cycle": "Active Coverage",
+              "why_trending": [
+                "Coverage increased across multiple sources",
+                "Moderate coverage in news cycle",
+                "Spike in mentions in last 6 hours"
+              ]
+            },
+            {
+              "topic": "Modi",
+              "story_direction": "Strong Coverage",
+              "story_icon": "\ud83d\udfe2",
+              "coverage": "Rising Fast",
+              "tone": "Neutral/Mixed",
+              "news_cycle": "Breaking Story",
+              "why_trending": [
+                "Coverage increased across multiple sources",
+                "Spike in mentions in last 6 hours",
+                "Mixed or balanced coverage"
+              ]
+            }
+          ],
+          "market_narrative": "Active story movement around India, deal"
+        },
+        "exported_file": "output/India-US_trade_deal_report_20260204_211422.json"
+      },
+      "errors": [],
+      "skipped": [],
+      "fallbacks_used": [],
+      "regenerated": [],
+      "success": true
+    }
+  },
+  {
+    "timestamp": "2026-02-04T21:29:30.168402",
+    "result": {
+      "intent": "Fetch and export news on India-US trade deal",
+      "domain": "India US trade deal",
+      "tools_executed": [
+        {
+          "tool": "news_fetcher",
+          "success": true,
+          "retries": 0,
+          "used_fallback": false,
+          "regenerated": false
+        },
+        {
+          "tool": "exporter",
+          "success": true,
+          "retries": 0,
+          "used_fallback": false,
+          "regenerated": false
+        }
+      ],
+      "data": {
+        "news": [
+          {
+            "title": "Here's who analysts expect to gain from India\u2019s U.S. and EU trade deals - CNBC",
+            "link": "https://news.google.com/rss/articles/CBMimwFBVV95cUxNWmJMcE51QzZjSlJHLWNmVV9hb0loRUk0clJMdGZ1VnkwX3FjQVhyekNuX0pjTC02Tng3MWVabExwYnVCcUxNbDFfcmNoa2NFdW9Yd0laNjdiSTU0RGpqY3Y0bllUbDlIWnJ3eW5mVGlyc1puR3FadVZjTGFQMFBIc3dVTjlNV1JMdUpKOHB0ZE9POFFSWGU2UTloY9IBoAFBVV95cUxNVTJCZGw3Qk1sQ0xPbmFaMlVIZHZLazc2cjY0ZkVwSW52cnBTd0E5S2pLaFAxYXBwS2NQN1ZBTGtjRXQ4WkF4T2hsVEhTYzBBWXpxUE4zaVhSaUtycUlkMUFhdlpaZWtRM3dMaDZJMkRUZUlqa21PZmdQMlRhd3VhMnBxYnl6YnNmajN2T3F3UnR1Y2c0TV9MdXhDeWJybnkz?oc=5",
+            "source": "rss",
+            "published": "Tue, 03 Feb 2026 23:18:15 GMT"
+          },
+          {
+            "title": "Hope and uncertainty as India and US strike long-delayed trade deal - BBC",
+            "link": "https://news.google.com/rss/articles/CBMiWkFVX3lxTFBoRHZ3eDU2UERBbkZfcHFSSFdicTdPTFdCM2pMQjJORmV6TGFhT3poR2hzamVwN1V1QlF4UDIwMTFDT0gwZUJwb2EyX05Kd1VINnhEdU9fVDIyZw?oc=5",
+            "source": "rss",
+            "published": "Tue, 03 Feb 2026 06:29:43 GMT"
+          },
+          {
+            "title": "'Movers, shaker, and beggars': Pakistan's national meltdown over the India-US trade deal - Times of India",
+            "link": "https://news.google.com/rss/articles/CBMi5AFBVV95cUxNV0NkbWtra3hJYnBPOVdibm9FUmRqNHlFMVdNQ09KQ2IzU1pGZUVSZm5kN1FQRVh3VURqYmlwVGY5Y0gybU95RWgzRERuMnAtTmVCMjZxRURoQkVSbnJSZ0w1alU3bUNVSzlMVGZnT3ZsQ1RRSEd0OW44NHo5eGZQRXJYOW1JS29veG1xb1htX2FjNm1ZbFF4STJUSzVRd21xQjZNanhRY0tDWTNJZVNsa3hjX21DNkNuLVluMFdBYTZKTG5WNW1hUWpYRVR6RkV4QmJBZlVsb1hUVk1hMzJESElOSmzSAeoBQVVfeXFMTVVnVEJIOHRmTXVYa3M0NHEwRkhjOUJUNnNnbzFMYjhJR2lBb3JmWnNnclBid2ZDSjN3YWI1ZGRXRHVRbXpFenZlT2ZDdWU0V0VLM2NVd0RKS1FVMW9UTGt2b1dRcVlDZ1U5Z09IMGNtX0Q3TDV6bVpheDhSaDgtd0F4QkkxSmNVNFlzV2dkT3VHdXhoamg2Zkg2WFJvdzdXVTRVM0YyYTBSYWVGTERvWkNuWEhWeHItLXpvUGE0ZlR4aWMwdUlzbzd4ZW44MFl2S3p5ajBxUU4xZno0MlNPdEhYd0tYYTh6NzJB?oc=5",
+            "source": "rss",
+            "published": "Wed, 04 Feb 2026 15:03:00 GMT"
+          },
+          {
+            "title": "India to keep some farm protections in US trade deal, will buy US aircraft, arms, energy - Reuters",
+            "link": "https://news.google.com/rss/articles/CBMixgFBVV95cUxNcng4MEdUWDFQNFBmckpxbVNzTmh5bWpTN0IyZ3NRYUNWTjZ1WFhlZDNYRkVLZGk5SXBXSVowTlRKNU5OZEwzdGpWNGRXSjhwVUV2TU1wT1FXVXZFamFfR2tfOTQ5WXV6TXRzUTdPSTc4RFp0bVVPRTRzMzltUDVPVjBjZVd0aC10NVkwZmF5U0NFcElCeHhSVXQ3bWpicU5Pd1oxdnRCSUR5cHJTbm1uNnU1SXRPWE05d1lYd3p0VTlqNTFGbnc?oc=5",
+            "source": "rss",
+            "published": "Tue, 03 Feb 2026 14:55:33 GMT"
+          },
+          {
+            "title": "India\u2019s Modi praised for US trade deal as opposition questions impact on agriculture - AP News",
+            "link": "https://news.google.com/rss/articles/CBMilAFBVV95cUxNWDNCak5lSDZTblVncEU5am1tRkRFNjYyZllqb2xhWmotbzBSeVhmUU82UWlJS3hJbGdYWjFGbVpPVlV6SGRxWC0zRnQwVUZOb1Z1ZDFacnprRjBBM1A4dFdyUEpONXhqOThQcGhkcjQwdTVxemZSdGU0MzRPelFRbS1vcHF1c190QUluR3p2YUNKcl9W?oc=5",
+            "source": "rss",
+            "published": "Wed, 04 Feb 2026 06:50:00 GMT"
+          },
+          {
+            "title": "'China+1 strategy' to play out fully: Sitharaman after India-US deal sealed. What is it?",
+            "link": "https://www.hindustantimes.com/india-news/china1-strategy-to-play-out-fully-nirmala-sitharaman-after-india-us-deal-sealed-what-is-it-101770174190763.html",
+            "source": "gnews",
+            "published": "2026-02-04T03:47:06Z"
+          },
+          {
+            "title": "US-India Trade Deal: A Zero-Tariff Revolution",
+            "link": "https://www.devdiscourse.com/article/business/3792748-us-india-trade-deal-a-zero-tariff-revolution",
+            "source": "gnews",
+            "published": "2026-02-04T03:37:34Z"
+          },
+          {
+            "title": "'From critical minerals to energy and nukes': Check what Jaishankar and Rubio discussed after India-US trade deal",
+            "link": "https://zeenews.india.com/world/from-critical-minerals-to-energy-and-nukes-check-what-jaishankar-and-rubio-discussed-after-india-us-trade-deal-3013576.html",
+            "source": "gnews",
+            "published": "2026-02-04T03:37:12Z"
+          },
+          {
+            "title": "Silver rate today climbs 6% as investors rush to buy the dip after the crash - Another spike on the way?",
+            "link": "https://www.livemint.com/market/commodities/silver-rate-today-climbs-4-gold-price-up-3-as-investors-rush-to-buy-the-dip-after-crash-another-spike-on-the-way-11770173523941.html",
+            "source": "gnews",
+            "published": "2026-02-04T03:37:06Z"
+          },
+          {
+            "title": "Day Deliberations On Interest Rate From Wednesday",
+            "link": "https://www.outlookmoney.com/banking/rbi-to-start-3-day-deliberations-on-interest-rate-from-wednesday",
+            "source": "gnews",
+            "published": "2026-02-04T03:35:22Z"
+          },
+          {
+            "title": "US and India reach trade deal, Trump says after Modi call",
+            "link": "https://www.bbc.com/news/articles/c5yve1x9zv0o",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "Quest Means Business",
+            "link": "https://transcripts.cnn.com/show/qmb/date/2026-02-02/segment/01",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "Trump responds to Europe with U.S.-India trade deal",
+            "link": "https://www.cnbc.com/2026/02/03/trump-us-india-trade-deal-europe-india-deal-compared.html",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "India-US trade deal: Hope and uncertainty as Trump cuts ...",
+            "link": "https://www.bbc.com/news/articles/cpwnlwj80p8o",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "'Devil in the details': India-U.S. deal raises hopes for a reset",
+            "link": "https://www.cnbc.com/2026/02/03/us-india-trade-framework-tariffs-reset-modi-trump-new-delhi-russian-oil-venezuela.html",
+            "source": "tavily",
+            "published": ""
+          }
+        ],
+        "exported_file": "output/India_US_trade_deal_report_20260204_212930.json"
+      },
+      "errors": [],
+      "skipped": [],
+      "fallbacks_used": [],
+      "regenerated": [],
+      "success": true
+    }
+  },
+  {
+    "timestamp": "2026-02-04T21:29:48.325200",
+    "result": {
+      "intent": "Fetch, summarize, perform sentiment analysis, and extract trends for the India-US trade deal news",
+      "domain": "India-US trade deal",
+      "tools_executed": [
+        {
+          "tool": "news_fetcher",
+          "success": true,
+          "retries": 0,
+          "used_fallback": false,
+          "regenerated": false
+        },
+        {
+          "tool": "summarizer",
+          "success": true,
+          "retries": 0,
+          "used_fallback": false,
+          "regenerated": false
+        },
+        {
+          "tool": "sentiment",
+          "success": true,
+          "retries": 0,
+          "used_fallback": false,
+          "regenerated": false
+        },
+        {
+          "tool": "trends",
+          "success": true,
+          "retries": 0,
+          "used_fallback": false,
+          "regenerated": false
+        },
+        {
+          "tool": "exporter",
+          "success": true,
+          "retries": 0,
+          "used_fallback": false,
+          "regenerated": false
+        }
+      ],
+      "data": {
+        "news": [
+          {
+            "title": "Here's who analysts expect to gain from India\u2019s U.S. and EU trade deals - CNBC",
+            "link": "https://news.google.com/rss/articles/CBMimwFBVV95cUxNWmJMcE51QzZjSlJHLWNmVV9hb0loRUk0clJMdGZ1VnkwX3FjQVhyekNuX0pjTC02Tng3MWVabExwYnVCcUxNbDFfcmNoa2NFdW9Yd0laNjdiSTU0RGpqY3Y0bllUbDlIWnJ3eW5mVGlyc1puR3FadVZjTGFQMFBIc3dVTjlNV1JMdUpKOHB0ZE9POFFSWGU2UTloY9IBoAFBVV95cUxNVTJCZGw3Qk1sQ0xPbmFaMlVIZHZLazc2cjY0ZkVwSW52cnBTd0E5S2pLaFAxYXBwS2NQN1ZBTGtjRXQ4WkF4T2hsVEhTYzBBWXpxUE4zaVhSaUtycUlkMUFhdlpaZWtRM3dMaDZJMkRUZUlqa21PZmdQMlRhd3VhMnBxYnl6YnNmajN2T3F3UnR1Y2c0TV9MdXhDeWJybnkz?oc=5",
+            "source": "rss",
+            "published": "Tue, 03 Feb 2026 23:18:15 GMT"
+          },
+          {
+            "title": "Hope and uncertainty as India and US strike long-delayed trade deal - BBC",
+            "link": "https://news.google.com/rss/articles/CBMiWkFVX3lxTFBoRHZ3eDU2UERBbkZfcHFSSFdicTdPTFdCM2pMQjJORmV6TGFhT3poR2hzamVwN1V1QlF4UDIwMTFDT0gwZUJwb2EyX05Kd1VINnhEdU9fVDIyZw?oc=5",
+            "source": "rss",
+            "published": "Tue, 03 Feb 2026 06:29:43 GMT"
+          },
+          {
+            "title": "'Movers, shaker, and beggars': Pakistan's national meltdown over the India-US trade deal - Times of India",
+            "link": "https://news.google.com/rss/articles/CBMi5AFBVV95cUxNV0NkbWtra3hJYnBPOVdibm9FUmRqNHlFMVdNQ09KQ2IzU1pGZUVSZm5kN1FQRVh3VURqYmlwVGY5Y0gybU95RWgzRERuMnAtTmVCMjZxRURoQkVSbnJSZ0w1alU3bUNVSzlMVGZnT3ZsQ1RRSEd0OW44NHo5eGZQRXJYOW1JS29veG1xb1htX2FjNm1ZbFF4STJUSzVRd21xQjZNanhRY0tDWTNJZVNsa3hjX21DNkNuLVluMFdBYTZKTG5WNW1hUWpYRVR6RkV4QmJBZlVsb1hUVk1hMzJESElOSmzSAeoBQVVfeXFMTVVnVEJIOHRmTXVYa3M0NHEwRkhjOUJUNnNnbzFMYjhJR2lBb3JmWnNnclBid2ZDSjN3YWI1ZGRXRHVRbXpFenZlT2ZDdWU0V0VLM2NVd0RKS1FVMW9UTGt2b1dRcVlDZ1U5Z09IMGNtX0Q3TDV6bVpheDhSaDgtd0F4QkkxSmNVNFlzV2dkT3VHdXhoamg2Zkg2WFJvdzdXVTRVM0YyYTBSYWVGTERvWkNuWEhWeHItLXpvUGE0ZlR4aWMwdUlzbzd4ZW44MFl2S3p5ajBxUU4xZno0MlNPdEhYd0tYYTh6NzJB?oc=5",
+            "source": "rss",
+            "published": "Wed, 04 Feb 2026 15:03:00 GMT"
+          },
+          {
+            "title": "India to keep some farm protections in US trade deal, will buy US aircraft, arms, energy - Reuters",
+            "link": "https://news.google.com/rss/articles/CBMixgFBVV95cUxNcng4MEdUWDFQNFBmckpxbVNzTmh5bWpTN0IyZ3NRYUNWTjZ1WFhlZDNYRkVLZGk5SXBXSVowTlRKNU5OZEwzdGpWNGRXSjhwVUV2TU1wT1FXVXZFamFfR2tfOTQ5WXV6TXRzUTdPSTc4RFp0bVVPRTRzMzltUDVPVjBjZVd0aC10NVkwZmF5U0NFcElCeHhSVXQ3bWpicU5Pd1oxdnRCSUR5cHJTbm1uNnU1SXRPWE05d1lYd3p0VTlqNTFGbnc?oc=5",
+            "source": "rss",
+            "published": "Tue, 03 Feb 2026 14:55:33 GMT"
+          },
+          {
+            "title": "U.S. and India seal trade deal after months of diplomatic tensions - The Washington Post",
+            "link": "https://news.google.com/rss/articles/CBMif0FVX3lxTE9WUnVyOXh0UHUtZjJVNmUxdEJmUW9vXzhMSVc3bnh2aTRnWVZxQU12dHZpbGl6bEVvM1BFWmJlMmlmZ3ZvNVhkWkQ2RFQtNnNhVVRJYjlHZ2RURGRMVDhNNFB1UWhIZU5fQV8tck5IVUxUVjRRMFl1RFdhN1NyYWM?oc=5",
+            "source": "rss",
+            "published": "Tue, 03 Feb 2026 04:13:04 GMT"
+          },
+          {
+            "title": "Supply Chain Latest: US-India Trade Deal",
+            "link": "https://www.bloomberg.com/news/newsletters/2025-05-20/supply-chain-latest-us-india-trade-deal",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "India's U.S. and EU trade deals: Who will gain",
+            "link": "https://www.cnbc.com/2026/02/04/trump-india-us-eu-trade-war-deals-tariffs-delhi-washington.html",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "India's Modi praised for US trade deal as opposition ...",
+            "link": "https://apnews.com/article/india-us-trade-deal-trump-modi-3ce866a869dae9fd10449a6f70c2a4ed",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "India-US trade deal: Hope and uncertainty as Trump cuts ...",
+            "link": "https://www.bbc.com/news/articles/cpwnlwj80p8o",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "'Devil in the details': India-U.S. deal raises hopes for a reset",
+            "link": "https://www.cnbc.com/2026/02/03/us-india-trade-framework-tariffs-reset-modi-trump-new-delhi-russian-oil-venezuela.html",
+            "source": "tavily",
+            "published": ""
+          }
+        ],
+        "summary": {
+          "summary": "India has recently concluded significant trade deals with the U.S. and EU, eliciting a mix of optimism and apprehension. The agreements aim to boost bilateral trade and economic ties, though concerns remain about the impact on domestic sectors, particularly agriculture. The deals also reflect broader geopolitical shifts and the potential for improved relations between the involved countries.",
+          "key_points": [
+            "Bilateral trade enhancement between India, the U.S., and the EU.",
+            "Domestic concerns and impacts, especially on agriculture.",
+            "Geopolitical implications and potential for improved relations."
+          ]
+        },
+        "sentiment": {
+          "overall": "neutral",
+          "mood_label": "cautious optimism",
+          "confidence": "medium",
+          "direction": "stable",
+          "momentum_strength": "moderate",
+          "risk_level": "moderate",
+          "market_bias": "balanced",
+          "reasoning": "The headlines reflect a mix of optimism about potential gains from the trade deals and uncertainty regarding the specifics and implications. While there are positive expectations for certain sectors and economic benefits, there are also concerns about the impact on other areas, particularly agriculture.",
+          "positive_signals": [
+            "Analysts expect gains from trade deals",
+            "India to buy US aircraft, arms, energy",
+            "Praise for Modi's role in the deal"
+          ],
+          "negative_signals": [
+            "Hope and uncertainty",
+            "Pakistan's national meltdown",
+            "Farm protections to be retained"
+          ],
+          "emerging_themes": [
+            "Sectoral gains",
+            "Geopolitical tensions",
+            "Regulatory impacts"
+          ],
+          "score": 0.5,
+          "breakdown": {
+            "positive": 5,
+            "neutral": 4,
+            "negative": 3
+          }
+        },
+        "trends": {
+          "trending_topics": [
+            {
+              "topic": "India",
+              "score": 37.75,
+              "mentions": 37,
+              "velocity": "stable",
+              "velocity_icon": "\u27a1\ufe0f",
+              "story_direction": "Stable Coverage",
+              "story_icon": "\u26aa",
+              "coverage_growth": "Steady",
+              "tone_of_coverage": "Neutral/Mixed",
+              "news_cycle_stage": "Major Story",
+              "news_cycle_icon": "\ud83d\udcf0",
+              "why_trending": [
+                "Central theme in today's coverage",
+                "Balanced reporting across outlets"
+              ],
+              "narrative": "Stable Coverage",
+              "narrative_icon": "\u26aa",
+              "fusion_score": 0.5
+            },
+            {
+              "topic": "Hope",
+              "score": 6.25,
+              "mentions": 6,
+              "velocity": "rising_fast",
+              "velocity_icon": "\ud83d\udd25",
+              "story_direction": "Strong Coverage",
+              "story_icon": "\ud83d\udfe2",
+              "coverage_growth": "Rising Fast",
+              "tone_of_coverage": "Neutral/Mixed",
+              "news_cycle_stage": "Breaking Story",
+              "news_cycle_icon": "\ud83c\udd95",
+              "why_trending": [
+                "'Hope' gaining traction in news cycle",
+                "Sudden surge in last 6 hours",
+                "Factual coverage without strong stance"
+              ],
+              "narrative": "Strong Coverage",
+              "narrative_icon": "\ud83d\udfe2",
+              "fusion_score": 1.0
+            },
+            {
+              "topic": "India US",
+              "score": 5.85,
+              "mentions": 5,
+              "velocity": "rising",
+              "velocity_icon": "\ud83d\udcc8",
+              "story_direction": "Strong Coverage",
+              "story_icon": "\ud83d\udfe2",
+              "coverage_growth": "Rising",
+              "tone_of_coverage": "Neutral/Mixed",
+              "news_cycle_stage": "Active Coverage",
+              "news_cycle_icon": "\ud83d\uddde\ufe0f",
+              "why_trending": [
+                "Cross-platform media attention detected",
+                "Factual coverage without strong stance"
+              ],
+              "narrative": "Strong Coverage",
+              "narrative_icon": "\ud83d\udfe2",
+              "fusion_score": 0.75
+            },
+            {
+              "topic": "Pakistan",
+              "score": 5.0,
+              "mentions": 5,
+              "velocity": "stable",
+              "velocity_icon": "\u27a1\ufe0f",
+              "story_direction": "Stable Coverage",
+              "story_icon": "\u26aa",
+              "coverage_growth": "Steady",
+              "tone_of_coverage": "Neutral/Mixed",
+              "news_cycle_stage": "Active Coverage",
+              "news_cycle_icon": "\ud83d\uddde\ufe0f",
+              "why_trending": [
+                "Balanced reporting across outlets"
+              ],
+              "narrative": "Stable Coverage",
+              "narrative_icon": "\u26aa",
+              "fusion_score": 0.5
+            },
+            {
+              "topic": "US India",
+              "score": 4.55,
+              "mentions": 4,
+              "velocity": "stable",
+              "velocity_icon": "\u27a1\ufe0f",
+              "story_direction": "Stable Coverage",
+              "story_icon": "\u26aa",
+              "coverage_growth": "Steady",
+              "tone_of_coverage": "Neutral/Mixed",
+              "news_cycle_stage": "Background",
+              "news_cycle_icon": "\ud83d\udcda",
+              "why_trending": [
+                "Balanced reporting across outlets"
+              ],
+              "narrative": "Stable Coverage",
+              "narrative_icon": "\u26aa",
+              "fusion_score": 0.5
+            },
+            {
+              "topic": "India EU",
+              "score": 3.9,
+              "mentions": 3,
+              "velocity": "rising_fast",
+              "velocity_icon": "\ud83d\udd25",
+              "story_direction": "Strong Coverage",
+              "story_icon": "\ud83d\udfe2",
+              "coverage_growth": "Rising Fast",
+              "tone_of_coverage": "Neutral/Mixed",
+              "news_cycle_stage": "Breaking Story",
+              "news_cycle_icon": "\ud83c\udd95",
+              "why_trending": [
+                "'India EU' gaining traction in news cycle",
+                "Real-time news momentum",
+                "Neutral journalistic framing"
+              ],
+              "narrative": "Strong Coverage",
+              "narrative_icon": "\ud83d\udfe2",
+              "fusion_score": 1.0
+            },
+            {
+              "topic": "Modi",
+              "score": 3.75,
+              "mentions": 3,
+              "velocity": "fading",
+              "velocity_icon": "\u2198\ufe0f",
+              "story_direction": "Stable Coverage",
+              "story_icon": "\u26aa",
+              "coverage_growth": "Declining",
+              "tone_of_coverage": "Neutral/Mixed",
+              "news_cycle_stage": "Losing Attention",
+              "news_cycle_icon": "\ud83d\udcc9",
+              "why_trending": [
+                "Balanced reporting across outlets"
+              ],
+              "narrative": "Stable Coverage",
+              "narrative_icon": "\u26aa",
+              "fusion_score": 0.25
+            },
+            {
+              "topic": "Trump",
+              "score": 3.75,
+              "mentions": 3,
+              "velocity": "fading_fast",
+              "velocity_icon": "\ud83d\udcc9",
+              "story_direction": "Low Coverage",
+              "story_icon": "\u26aa",
+              "coverage_growth": "Dropping Fast",
+              "tone_of_coverage": "Neutral/Mixed",
+              "news_cycle_stage": "Losing Attention",
+              "news_cycle_icon": "\ud83d\udcc9",
+              "why_trending": [
+                "Neutral journalistic framing"
+              ],
+              "narrative": "Low Coverage",
+              "narrative_icon": "\u26aa",
+              "fusion_score": 0.0
+            },
+            {
+              "topic": "Devil",
+              "score": 3.75,
+              "mentions": 3,
+              "velocity": "stable",
+              "velocity_icon": "\u27a1\ufe0f",
+              "story_direction": "Stable Coverage",
+              "story_icon": "\u26aa",
+              "coverage_growth": "Steady",
+              "tone_of_coverage": "Neutral/Mixed",
+              "news_cycle_stage": "Background",
+              "news_cycle_icon": "\ud83d\udcda",
+              "why_trending": [
+                "Neutral journalistic framing"
+              ],
+              "narrative": "Stable Coverage",
+              "narrative_icon": "\u26aa",
+              "fusion_score": 0.5
+            },
+            {
+              "topic": "Hope uncertainty",
+              "score": 3.25,
+              "mentions": 3,
+              "velocity": "rising_fast",
+              "velocity_icon": "\ud83d\udd25",
+              "story_direction": "Strong Coverage",
+              "story_icon": "\ud83d\udfe2",
+              "coverage_growth": "Rising Fast",
+              "tone_of_coverage": "Neutral/Mixed",
+              "news_cycle_stage": "Breaking Story",
+              "news_cycle_icon": "\ud83c\udd95",
+              "why_trending": [
+                "Cross-platform media attention detected",
+                "Breaking story dynamics detected",
+                "Neutral journalistic framing"
+              ],
+              "narrative": "Strong Coverage",
+              "narrative_icon": "\ud83d\udfe2",
+              "fusion_score": 1.0
+            }
+          ],
+          "rising_topics": [
+            {
+              "topic": "Hope",
+              "score": 6.25,
+              "mentions": 6,
+              "velocity": "rising_fast",
+              "velocity_value": 1.0
+            },
+            {
+              "topic": "India US",
+              "score": 5.85,
+              "mentions": 5,
+              "velocity": "rising",
+              "velocity_value": 0.5
+            },
+            {
+              "topic": "India EU",
+              "score": 3.9,
+              "mentions": 3,
+              "velocity": "rising_fast",
+              "velocity_value": 1.0
+            },
+            {
+              "topic": "Hope uncertainty",
+              "score": 3.25,
+              "mentions": 3,
+              "velocity": "rising_fast",
+              "velocity_value": 1.0
+            }
+          ],
+          "fading_topics": [
+            {
+              "topic": "Modi",
+              "score": 3.75,
+              "mentions": 3,
+              "velocity": "fading",
+              "velocity_value": -0.5
+            },
+            {
+              "topic": "Trump",
+              "score": 3.75,
+              "mentions": 3,
+              "velocity": "fading_fast",
+              "velocity_value": -0.6052631578947368
+            }
+          ],
+          "total_articles": 10,
+          "analysis_timestamp": "2026-02-04T21:29:48.257658",
+          "topic_insights": {},
+          "active_narratives": [
+            {
+              "topic": "India",
+              "story_direction": "Stable Coverage",
+              "story_icon": "\u26aa",
+              "coverage": "Steady",
+              "tone": "Neutral/Mixed",
+              "news_cycle": "Major Story",
+              "why_trending": [
+                "Central theme in today's coverage",
+                "Balanced reporting across outlets"
+              ]
+            },
+            {
+              "topic": "Hope",
+              "story_direction": "Strong Coverage",
+              "story_icon": "\ud83d\udfe2",
+              "coverage": "Rising Fast",
+              "tone": "Neutral/Mixed",
+              "news_cycle": "Breaking Story",
+              "why_trending": [
+                "'Hope' gaining traction in news cycle",
+                "Sudden surge in last 6 hours",
+                "Factual coverage without strong stance"
+              ]
+            },
+            {
+              "topic": "India US",
+              "story_direction": "Strong Coverage",
+              "story_icon": "\ud83d\udfe2",
+              "coverage": "Rising",
+              "tone": "Neutral/Mixed",
+              "news_cycle": "Active Coverage",
+              "why_trending": [
+                "Cross-platform media attention detected",
+                "Factual coverage without strong stance"
+              ]
+            },
+            {
+              "topic": "India EU",
+              "story_direction": "Strong Coverage",
+              "story_icon": "\ud83d\udfe2",
+              "coverage": "Rising Fast",
+              "tone": "Neutral/Mixed",
+              "news_cycle": "Breaking Story",
+              "why_trending": [
+                "'India EU' gaining traction in news cycle",
+                "Real-time news momentum",
+                "Neutral journalistic framing"
+              ]
+            },
+            {
+              "topic": "Hope uncertainty",
+              "story_direction": "Strong Coverage",
+              "story_icon": "\ud83d\udfe2",
+              "coverage": "Rising Fast",
+              "tone": "Neutral/Mixed",
+              "news_cycle": "Breaking Story",
+              "why_trending": [
+                "Cross-platform media attention detected",
+                "Breaking story dynamics detected",
+                "Neutral journalistic framing"
+              ]
+            }
+          ],
+          "news_narrative_summary": "Active story movement around India, Hope",
+          "narrative_signals": [
+            {
+              "topic": "India",
+              "story_direction": "Stable Coverage",
+              "story_icon": "\u26aa",
+              "coverage": "Steady",
+              "tone": "Neutral/Mixed",
+              "news_cycle": "Major Story",
+              "why_trending": [
+                "Central theme in today's coverage",
+                "Balanced reporting across outlets"
+              ]
+            },
+            {
+              "topic": "Hope",
+              "story_direction": "Strong Coverage",
+              "story_icon": "\ud83d\udfe2",
+              "coverage": "Rising Fast",
+              "tone": "Neutral/Mixed",
+              "news_cycle": "Breaking Story",
+              "why_trending": [
+                "'Hope' gaining traction in news cycle",
+                "Sudden surge in last 6 hours",
+                "Factual coverage without strong stance"
+              ]
+            },
+            {
+              "topic": "India US",
+              "story_direction": "Strong Coverage",
+              "story_icon": "\ud83d\udfe2",
+              "coverage": "Rising",
+              "tone": "Neutral/Mixed",
+              "news_cycle": "Active Coverage",
+              "why_trending": [
+                "Cross-platform media attention detected",
+                "Factual coverage without strong stance"
+              ]
+            },
+            {
+              "topic": "India EU",
+              "story_direction": "Strong Coverage",
+              "story_icon": "\ud83d\udfe2",
+              "coverage": "Rising Fast",
+              "tone": "Neutral/Mixed",
+              "news_cycle": "Breaking Story",
+              "why_trending": [
+                "'India EU' gaining traction in news cycle",
+                "Real-time news momentum",
+                "Neutral journalistic framing"
+              ]
+            },
+            {
+              "topic": "Hope uncertainty",
+              "story_direction": "Strong Coverage",
+              "story_icon": "\ud83d\udfe2",
+              "coverage": "Rising Fast",
+              "tone": "Neutral/Mixed",
+              "news_cycle": "Breaking Story",
+              "why_trending": [
+                "Cross-platform media attention detected",
+                "Breaking story dynamics detected",
+                "Neutral journalistic framing"
+              ]
+            }
+          ],
+          "market_narrative": "Active story movement around India, Hope"
+        },
+        "exported_file": "output/India-US_trade_deal_report_20260204_212948.json"
+      },
+      "errors": [],
+      "skipped": [],
+      "fallbacks_used": [],
+      "regenerated": [],
+      "success": true
+    }
   }
 ]
 ```
@@ -8959,6 +10896,13 @@ def get_recent_plans(limit: int = 10) -> List[Dict]:
 def get_recent_results(limit: int = 10) -> List[Dict]:
     return _load("results.json")[-limit:]
 
+```
+
+---
+## 📄 .\app\memory\trends_history.json
+
+```json
+{"timestamp": "2026-02-04T21:29:48.256666", "topics": [{"topic": "India", "score": 37.75}, {"topic": "Hope", "score": 6.25}, {"topic": "India US", "score": 5.8500000000000005}, {"topic": "Pakistan", "score": 5.0}, {"topic": "US India", "score": 4.550000000000001}, {"topic": "India EU", "score": 3.9000000000000004}, {"topic": "Modi", "score": 3.75}, {"topic": "Trump", "score": 3.75}, {"topic": "Devil", "score": 3.75}, {"topic": "Hope uncertainty", "score": 3.25}, {"topic": "gain", "score": 3.0}, {"topic": "Pakistan national", "score": 2.6}, {"topic": "Reuters", "score": 2.5}, {"topic": "uncertainty", "score": 2.5}, {"topic": "India US India", "score": 2.4}]}
 ```
 
 ---
@@ -9159,16 +11103,34 @@ def _export_markdown(data: Dict, filename: str, timestamp: str) -> str:
             lines.append(f"**🔥 Emerging Themes:** {themes}")
             lines.append("")
     
-    # Trends Section
+    # Trends Section V2
     if "trends" in data and data["trends"]:
         t = data["trends"]
         if t.get("trending_topics"):
             lines.append("\n## 📊 Trending Topics\n")
-            lines.append("| Topic | Mentions |")
-            lines.append("|-------|----------|")
+            
+            # Rising topics
+            if t.get("rising_topics"):
+                lines.append("**🔥 Rising:**")
+                for topic in t.get("rising_topics", [])[:4]:
+                    icon = topic.get("velocity_icon", "📈")
+                    lines.append(f"- {icon} {topic.get('topic')} (score: {topic.get('score', 0)})")
+                lines.append("")
+            
+            # Main trends table
+            lines.append("| Topic | Score | Velocity |")
+            lines.append("|-------|-------|----------|")
             for topic in t.get("trending_topics", [])[:8]:
-                lines.append(f"| {topic.get('topic')} | {topic.get('mentions')} |")
+                icon = topic.get("velocity_icon", "➡️")
+                lines.append(f"| {topic.get('topic')} | {topic.get('score', topic.get('mentions', 0))} | {icon} |")
             lines.append("")
+            
+            # Fading topics
+            if t.get("fading_topics"):
+                lines.append("**📉 Fading:**")
+                for topic in t.get("fading_topics", [])[:3]:
+                    lines.append(f"- {topic.get('topic')}")
+                lines.append("")
     
     # Articles Section
     if "news" in data and data["news"]:
@@ -10285,34 +12247,720 @@ async def fetch_tavily(topic: str, limit: int = 5) -> Dict:
 ## 📄 .\app\tools\trends.py
 
 ```py
-"""Trend extraction tool - extracts trending topics from headlines."""
+"""Trend Intelligence V2 - Time-weighted, phrase-aware, velocity-enabled trend detection."""
 import re
+import json
+import os
 from collections import Counter
-from typing import List, Dict
+from datetime import datetime, timedelta
+from typing import List, Dict, Tuple
+from dateutil import parser as date_parser
 
-STOPWORDS = {"the", "a", "an", "and", "or", "but", "in", "on", "at", "to", "for", "of", "with", "by", "from", "as", "is", "was", "are", "were", "be", "have", "has", "had", "do", "does", "did", "will", "would", "could", "should", "it", "its", "this", "that", "new", "says", "said", "after", "before", "into"}
+# Stopwords for filtering - includes generic headline words
+STOPWORDS = {
+    # Common words
+    "the", "a", "an", "and", "or", "but", "in", "on", "at", "to", "for", "of", 
+    "with", "by", "from", "as", "is", "was", "are", "were", "be", "have", "has", 
+    "had", "do", "does", "did", "will", "would", "could", "should", "it", "its",
+    "this", "that", "new", "says", "said", "after", "before", "into", "how", "why",
+    "what", "when", "where", "who", "which", "more", "most", "some", "any", "all",
+    "just", "now", "live", "update", "updates", "report", "reports", "news",
+    # Generic headline words (not meaningful as trends)
+    "today", "here", "full", "list", "check", "top", "best", "latest", "breaking",
+    "stock", "stocks", "market", "markets", "share", "shares", "price", "prices",
+    "gains", "falls", "rises", "drops", "higher", "lower", "points", "percent",
+    "highlights", "watch", "focus", "key", "major", "big", "small", "each",
+    "among", "over", "under", "about", "lakh", "crore", "investors", "trading",
+    "february", "january", "march", "april", "monday", "tuesday", "wednesday",
+    "thursday", "friday", "saturday", "sunday", "week", "month", "year", "daily",
+    # Generic news/business terms
+    "deal", "deals", "trade", "talks", "agreement", "announce", "announced",
+    "asia", "pacific", "europe", "africa", "movers", "times", "current", "affairs",
+    "magazine", "analyst", "analysts", "experts", "sources", "details", "expected"
+}
+
+# Source reliability weights
+SOURCE_WEIGHTS = {
+    "tavily": 1.5,      # AI-curated search
+    "gnews": 1.3,       # Google News API
+    "rss": 1.0,         # RSS feeds
+    "unknown": 0.8
+}
+
+# Trend history file
+TRENDS_HISTORY_FILE = "app/memory/trends_history.json"
 
 
 def extract_trends(news_items: List[Dict]) -> Dict:
-    """Extract trending topics from news headlines."""
+    """
+    Extract trending topics with V2 intelligence:
+    - Time-weighted scoring
+    - N-gram phrase detection
+    - Trend velocity indicators
+    - Source reliability weighting
+    """
     if not news_items:
-        return {"trending_topics": [], "total_articles": 0}
+        return {
+            "trending_topics": [],
+            "rising_topics": [],
+            "fading_topics": [],
+            "total_articles": 0,
+            "analysis_timestamp": datetime.now().isoformat()
+        }
     
-    all_words = []
-    for item in news_items:
-        title = item.get("title", "")
-        proper_nouns = re.findall(r'\b[A-Z][a-z]+(?:\s+[A-Z][a-z]+)*\b', title)
-        all_words.extend(proper_nouns)
-        words = re.findall(r'\b[A-Za-z]{3,}\b', title)
-        filtered = [w for w in words if w.lower() not in STOPWORDS]
-        all_words.extend(filtered)
+    # Extract weighted topics
+    topic_scores = _extract_weighted_topics(news_items)
     
-    top_topics = Counter(all_words).most_common(10)
+    # Get top topics with scores
+    sorted_topics = sorted(topic_scores.items(), key=lambda x: x[1], reverse=True)[:15]
+    
+    # Calculate velocity by comparing with history
+    velocity_data = _calculate_velocity(sorted_topics)
+    
+    # Categorize by velocity
+    rising = []
+    fading = []
+    stable = []
+    
+    for topic, score in sorted_topics[:10]:
+        velocity = velocity_data.get(topic, 0)
+        topic_data = {
+            "topic": topic,
+            "score": round(score, 2),
+            "mentions": int(score),  # For backward compatibility
+            "velocity": _velocity_label(velocity),
+            "velocity_value": velocity
+        }
+        
+        if velocity > 0.3:
+            rising.append(topic_data)
+        elif velocity < -0.3:
+            fading.append(topic_data)
+        else:
+            stable.append(topic_data)
+    
+    # Save current snapshot for future velocity calculation
+    _save_trends_snapshot(sorted_topics)
+    
+    # Build final output
+    all_topics = []
+    for topic, score in sorted_topics[:10]:
+        velocity = velocity_data.get(topic, 0)
+        all_topics.append({
+            "topic": topic,
+            "score": round(score, 2),
+            "mentions": int(score),
+            "velocity": _velocity_label(velocity),
+            "velocity_icon": _velocity_icon(velocity)
+        })
+    
+    # Generate LLM-powered insights for top topics
+    topic_insights = _generate_llm_topic_insights(news_items, [t["topic"] for t in all_topics[:5]])
     
     return {
-        "trending_topics": [{"topic": word, "mentions": count} for word, count in top_topics],
-        "total_articles": len(news_items)
+        "trending_topics": all_topics,
+        "rising_topics": rising[:5],
+        "fading_topics": fading[:3],
+        "total_articles": len(news_items),
+        "analysis_timestamp": datetime.now().isoformat(),
+        "topic_insights": topic_insights
     }
+
+
+def _generate_llm_topic_insights(news_items: List[Dict], top_topics: List[str]) -> Dict[str, Dict]:
+    """
+    Use Nova LLM to analyze headlines and generate contextual insights for each trending topic.
+    Returns a dict mapping topic -> {insight, emotion, angle}
+    """
+    import os
+    import json
+    import boto3
+    from dotenv import load_dotenv
+    load_dotenv()
+    
+    if not news_items or not top_topics:
+        return {}
+    
+    # Skip if using mock mode
+    if os.getenv("USE_MOCK_PLANNER", "true").lower() == "true":
+        return {}
+    
+    try:
+        client = boto3.client('bedrock-runtime', region_name=os.getenv("AWS_REGION", "us-east-1"))
+        
+        # Build headlines string for context
+        headlines = [item.get("title", "") for item in news_items[:15]]
+        headlines_text = "\n".join([f"- {h}" for h in headlines if h])
+        
+        topics_text = ", ".join(top_topics[:5])
+        
+        prompt = f"""Analyze these news headlines and explain why each topic is trending.
+
+Headlines:
+{headlines_text}
+
+Top Topics: {topics_text}
+
+For each topic, provide a brief insight (1 sentence max) explaining WHY it's getting coverage right now.
+
+Return ONLY valid JSON:
+{{"topic_name": {{"insight": "brief why explanation", "emotion": "one word", "angle": "positive/negative/neutral"}}, ...}}"""
+
+        body = {
+            "messages": [{"role": "user", "content": [{"text": prompt}]}],
+            "inferenceConfig": {"maxTokens": 500, "temperature": 0.7}
+        }
+        
+        response = client.invoke_model(
+            modelId='amazon.nova-lite-v1:0',
+            body=json.dumps(body),
+            contentType='application/json'
+        )
+        
+        result = json.loads(response['body'].read())
+        output_text = result.get('output', {}).get('message', {}).get('content', [{}])[0].get('text', '{}')
+        
+        # Parse JSON from response
+        if "{" in output_text and "}" in output_text:
+            json_start = output_text.find("{")
+            json_end = output_text.rfind("}") + 1
+            json_str = output_text[json_start:json_end]
+            return json.loads(json_str)
+        
+        return {}
+    except Exception as e:
+        # Fallback to empty if LLM fails
+        return {}
+
+
+def fuse_trends_with_sentiment(trends_data: Dict, sentiment_data: Dict) -> Dict:
+    """
+    Fuse trend intelligence with sentiment analysis to create narrative signals.
+    
+    Returns enhanced trends with per-topic sentiment correlation and narrative labels.
+    """
+    if not trends_data or not sentiment_data:
+        return trends_data
+    
+    # Extract sentiment indicators
+    market_bias = sentiment_data.get("market_bias", "balanced")
+    sentiment_direction = sentiment_data.get("direction", "stable")
+    confidence = sentiment_data.get("confidence", "medium")
+    positive_signals = sentiment_data.get("positive_signals", [])
+    negative_signals = sentiment_data.get("negative_signals", [])
+    
+    # Convert sentiment to numeric score (-1 to 1)
+    sentiment_score = _calculate_sentiment_score(sentiment_data)
+    
+    # Get source spread from trends
+    source_spread = trends_data.get("source_spread", {})
+    
+    # Enhance trending topics with full narrative intelligence
+    enhanced_topics = []
+    active_narratives = []
+    
+    for topic in trends_data.get("trending_topics", []):
+        topic_name = topic.get("topic", "")
+        velocity = topic.get("velocity", "stable")
+        velocity_value = _velocity_to_numeric(velocity)
+        score = topic.get("score", 0)
+        
+        # Calculate fusion score
+        fusion_score = (velocity_value + 1) * (sentiment_score + 1) / 2
+        
+        # Determine news-safe narrative
+        narrative = _determine_narrative(velocity_value, sentiment_score, fusion_score)
+        
+        # Determine news cycle stage
+        news_cycle = _determine_news_cycle(velocity_value, score)
+        
+        # Generate coverage tone description
+        tone = _get_tone_description(sentiment_score)
+        
+        # Generate coverage growth description
+        coverage_growth = _get_coverage_growth(velocity)
+        
+        # Get LLM insights for this topic (from pre-computed data)
+        topic_insights = trends_data.get("topic_insights", {})
+        llm_insight = topic_insights.get(topic_name, {})
+        
+        # Generate "Why Trending" - HYBRID of LLM insights + score-based
+        why_trending = _generate_why_trending(velocity, score, sentiment_score, source_spread, topic_name)
+        
+        # Prepend LLM insight if available (more contextual/specific)
+        if llm_insight.get("insight"):
+            why_trending = [llm_insight["insight"]] + why_trending[:2]
+        
+        enhanced_topic = {
+            **topic,
+            # News-friendly labels
+            "story_direction": narrative["label"],
+            "story_icon": narrative["icon"],
+            "coverage_growth": coverage_growth,
+            "tone_of_coverage": tone,
+            "news_cycle_stage": news_cycle["stage"],
+            "news_cycle_icon": news_cycle["icon"],
+            "why_trending": why_trending,
+            # Keep original for compatibility
+            "narrative": narrative["label"],
+            "narrative_icon": narrative["icon"],
+            "fusion_score": round(fusion_score, 2)
+        }
+        enhanced_topics.append(enhanced_topic)
+        
+        # Build active narratives (top stories)
+        if score > 5 or velocity_value > 0.3:
+            active_narratives.append({
+                "topic": topic_name,
+                "story_direction": narrative["label"],
+                "story_icon": narrative["icon"],
+                "coverage": coverage_growth,
+                "tone": tone,
+                "news_cycle": news_cycle["stage"],
+                "why_trending": why_trending
+            })
+    
+    # Generate news narrative summary
+    news_summary = _generate_news_narrative_summary(
+        enhanced_topics, sentiment_score, trends_data.get("rising_topics", [])
+    )
+    
+    return {
+        **trends_data,
+        "trending_topics": enhanced_topics,
+        "active_narratives": active_narratives[:5],
+        "news_narrative_summary": news_summary,
+        # Keep for backward compatibility
+        "narrative_signals": active_narratives[:5],
+        "market_narrative": news_summary
+    }
+
+
+def _calculate_sentiment_score(sentiment: Dict) -> float:
+    """Convert sentiment data to numeric score (-1 to 1)."""
+    bias = sentiment.get("market_bias", "balanced")
+    direction = sentiment.get("direction", "stable")
+    
+    # Base score from bias
+    if bias == "risk_on":
+        base = 0.6
+    elif bias == "risk_off":
+        base = -0.6
+    else:
+        base = 0
+    
+    # Adjust by direction
+    if direction == "improving":
+        base += 0.3
+    elif direction == "deteriorating":
+        base -= 0.3
+    
+    return max(-1, min(1, base))
+
+
+def _velocity_to_numeric(velocity: str) -> float:
+    """Convert velocity label to numeric value."""
+    mapping = {
+        "rising_fast": 1.0,
+        "rising": 0.5,
+        "stable": 0,
+        "fading": -0.5,
+        "fading_fast": -1.0
+    }
+    return mapping.get(velocity, 0)
+
+
+def _sentiment_alignment(score: float) -> str:
+    """Get sentiment alignment label."""
+    if score > 0.3:
+        return "positive"
+    elif score < -0.3:
+        return "negative"
+    return "neutral"
+
+
+def _determine_narrative(velocity: float, sentiment: float, fusion: float) -> Dict:
+    """Determine the narrative signal based on trend and sentiment fusion."""
+    if velocity > 0.3 and sentiment > 0.3:
+        return {"label": "Positive Momentum", "icon": "🟢"}
+    elif velocity > 0.3 and sentiment < -0.3:
+        return {"label": "Controversial Coverage", "icon": "🟡"}
+    elif velocity < -0.3 and sentiment < -0.3:
+        return {"label": "Critical/Risk Coverage", "icon": "🔴"}
+    elif velocity < -0.3 and sentiment > 0.3:
+        return {"label": "Recovery Watch", "icon": "🟡"}
+    elif fusion > 0.6:
+        return {"label": "Strong Coverage", "icon": "🟢"}
+    elif velocity > 0.5:
+        return {"label": "Emerging Story", "icon": "🔵"}
+    elif fusion < 0.2:
+        return {"label": "Low Coverage", "icon": "⚪"}
+    else:
+        return {"label": "Stable Coverage", "icon": "⚪"}
+
+
+def _determine_news_cycle(velocity: float, score: float) -> Dict:
+    """Determine news cycle stage based on velocity and score."""
+    if velocity > 0.7 and score < 8:
+        return {"stage": "Breaking Story", "icon": "🆕"}
+    elif velocity > 0.3 and score > 10:
+        return {"stage": "Peak Focus", "icon": "🔥"}
+    elif velocity < -0.3:
+        return {"stage": "Losing Attention", "icon": "📉"}
+    elif score > 15:
+        return {"stage": "Major Story", "icon": "📰"}
+    elif score < 5:
+        return {"stage": "Background", "icon": "📚"}
+    else:
+        return {"stage": "Active Coverage", "icon": "🗞️"}
+
+
+def _get_tone_description(sentiment_score: float) -> str:
+    """Get readable tone description from sentiment score."""
+    if sentiment_score > 0.5:
+        return "Highly Positive"
+    elif sentiment_score > 0.2:
+        return "Mostly Positive"
+    elif sentiment_score > -0.2:
+        return "Neutral/Mixed"
+    elif sentiment_score > -0.5:
+        return "Mostly Critical"
+    else:
+        return "Highly Critical"
+
+
+def _get_coverage_growth(velocity: str) -> str:
+    """Get readable coverage growth description."""
+    mapping = {
+        "rising_fast": "Rising Fast",
+        "rising": "Rising",
+        "stable": "Steady",
+        "fading": "Declining",
+        "fading_fast": "Dropping Fast"
+    }
+    return mapping.get(velocity, "Steady")
+
+
+def _generate_why_trending(velocity: str, score: float, sentiment: float, source_spread: Dict, topic: str = "") -> List[str]:
+    """Generate dynamic, topic-aware explanations for why topic is trending."""
+    import random
+    reasons = []
+    
+    # Dynamic coverage templates (randomly picked)
+    rising_templates = [
+        f"'{topic}' gaining traction in news cycle",
+        "Breaking into mainstream coverage",
+        "Multiple outlets picking up this story",
+        "Cross-platform media attention detected",
+        "Story momentum building rapidly"
+    ]
+    
+    high_score_templates = [
+        f"High frequency in recent headlines",
+        "Dominant narrative in current news cycle",
+        f"'{topic}' mentioned across 10+ articles",
+        "Central theme in today's coverage"
+    ]
+    
+    moderate_score_templates = [
+        "Steady presence in news feeds",
+        "Consistent coverage across sources",
+        "Active but not dominant story"
+    ]
+    
+    spike_templates = [
+        "Sudden surge in last 6 hours",
+        "Breaking story dynamics detected",
+        "Rapid acceleration in coverage",
+        "Real-time news momentum"
+    ]
+    
+    positive_templates = [
+        "Optimistic framing in headlines",
+        "Positive sentiment in coverage",
+        "Favorable media narrative"
+    ]
+    
+    negative_templates = [
+        "Critical tone in reporting",
+        "Risk/concern framing detected",
+        "Cautionary coverage angle"
+    ]
+    
+    neutral_templates = [
+        "Balanced reporting across outlets",
+        "Factual coverage without strong stance",
+        "Neutral journalistic framing"
+    ]
+    
+    # Build reasons dynamically
+    if velocity in ["rising_fast", "rising"]:
+        reasons.append(random.choice(rising_templates))
+    
+    if score > 12:
+        reasons.append(random.choice(high_score_templates))
+    elif score > 8:
+        reasons.append(random.choice(moderate_score_templates))
+    
+    if velocity == "rising_fast":
+        reasons.append(random.choice(spike_templates))
+    
+    # Sentiment-based reasons
+    if sentiment > 0.3:
+        reasons.append(random.choice(positive_templates))
+    elif sentiment < -0.3:
+        reasons.append(random.choice(negative_templates))
+    else:
+        reasons.append(random.choice(neutral_templates))
+    
+    # Source spread
+    if source_spread:
+        source_count = len([v for v in source_spread.values() if v > 0])
+        if source_count >= 3:
+            reasons.append(f"Covered across {source_count} source types")
+    
+    # Deduplicate and return
+    unique_reasons = list(dict.fromkeys(reasons))
+    return unique_reasons[:3] if unique_reasons else ["Active in current news cycle"]
+
+
+def _generate_news_narrative_summary(topics: List, sentiment_score: float, rising: List) -> str:
+    """Generate news-friendly narrative summary."""
+    rising_count = len(rising)
+    top_topics = [t.get("topic", "") for t in topics[:3]]
+    
+    if not top_topics:
+        return "Limited news activity in this domain"
+    
+    topic_str = ", ".join(top_topics[:2])
+    
+    if sentiment_score > 0.4 and rising_count >= 2:
+        return f"Active positive coverage on {topic_str} with multiple emerging stories"
+    elif sentiment_score > 0.2:
+        return f"Positive media attention on {topic_str} themes"
+    elif sentiment_score < -0.4:
+        return f"Critical coverage environment focusing on {topic_str}"
+    elif sentiment_score < -0.2:
+        return f"Mixed narrative with cautious coverage on {topic_str}"
+    elif rising_count >= 2:
+        return f"Active story movement around {topic_str}"
+    else:
+        return f"Stable coverage with focus on {topic_str}"
+
+
+def _overall_narrative(sentiment_score: float, rising_topics: List) -> str:
+    """Generate overall narrative summary (backward compatibility)."""
+    return _generate_news_narrative_summary([], sentiment_score, rising_topics)
+
+
+def _extract_weighted_topics(news_items: List[Dict]) -> Dict[str, float]:
+    """Extract topics with time and source weighting."""
+    topic_scores = Counter()
+    now = datetime.now()
+    
+    for item in news_items:
+        title = item.get("title", "")
+        source = item.get("source", "unknown").lower()
+        published = item.get("published", "")
+        
+        # Calculate time weight
+        time_weight = _calculate_time_weight(published, now)
+        
+        # Get source weight
+        source_weight = SOURCE_WEIGHTS.get(source, 0.8)
+        
+        # Combined weight
+        weight = time_weight * source_weight
+        
+        # Extract single words (proper nouns prioritized)
+        proper_nouns = re.findall(r'\b[A-Z][a-z]+(?:\s+[A-Z][a-z]+)*\b', title)
+        for noun in proper_nouns:
+            if noun.lower() not in STOPWORDS and len(noun) > 2:
+                topic_scores[noun] += weight * 1.5  # Boost proper nouns
+        
+        # Extract regular words
+        words = re.findall(r'\b[A-Za-z]{3,}\b', title)
+        for word in words:
+            if word.lower() not in STOPWORDS:
+                topic_scores[word] += weight
+        
+        # Extract bigrams (2-word phrases)
+        bigrams = _extract_ngrams(title, 2)
+        for bigram in bigrams:
+            topic_scores[bigram] += weight * 1.3  # Boost phrases
+        
+        # Extract trigrams (3-word phrases) 
+        trigrams = _extract_ngrams(title, 3)
+        for trigram in trigrams:
+            topic_scores[trigram] += weight * 1.2
+    
+    # Merge similar topics (basic dedup)
+    topic_scores = _merge_similar_topics(topic_scores)
+    
+    return topic_scores
+
+
+def _extract_ngrams(text: str, n: int) -> List[str]:
+    """Extract n-gram phrases from text."""
+    # Clean and tokenize
+    words = re.findall(r'\b[A-Za-z]{2,}\b', text)
+    words = [w for w in words if w.lower() not in STOPWORDS]
+    
+    ngrams = []
+    for i in range(len(words) - n + 1):
+        phrase = " ".join(words[i:i+n])
+        # Only include if it starts with uppercase (proper phrase)
+        if words[i][0].isupper():
+            ngrams.append(phrase)
+    
+    return ngrams
+
+
+def _calculate_time_weight(published: str, now: datetime) -> float:
+    """Calculate time-based weight. Recent = higher weight."""
+    if not published:
+        return 1.0  # Default weight if no timestamp
+    
+    try:
+        # Parse the published date
+        pub_date = date_parser.parse(published, fuzzy=True)
+        
+        # Make timezone naive for comparison
+        if pub_date.tzinfo:
+            pub_date = pub_date.replace(tzinfo=None)
+        
+        # Calculate hours ago
+        delta = now - pub_date
+        hours_ago = delta.total_seconds() / 3600
+        
+        # Time weighting: newer = higher weight
+        if hours_ago < 2:
+            return 3.0      # Last 2 hours: 3x weight
+        elif hours_ago < 6:
+            return 2.5      # Last 6 hours: 2.5x weight
+        elif hours_ago < 12:
+            return 2.0      # Last 12 hours: 2x weight
+        elif hours_ago < 24:
+            return 1.5      # Last 24 hours: 1.5x weight
+        elif hours_ago < 48:
+            return 1.0      # Last 2 days: 1x weight
+        else:
+            return 0.5      # Older: 0.5x weight
+            
+    except Exception:
+        return 1.0  # Default on parse error
+
+
+def _merge_similar_topics(scores: Counter) -> Counter:
+    """Merge similar topics (e.g., 'AI' and 'AI model' into 'AI')."""
+    merged = Counter()
+    sorted_topics = sorted(scores.items(), key=lambda x: len(x[0]))
+    
+    merged_into = {}
+    
+    for topic, score in sorted_topics:
+        topic_lower = topic.lower()
+        found_parent = False
+        
+        # Check if this topic is part of a longer phrase we've seen
+        for existing in list(merged.keys()):
+            if topic_lower in existing.lower() and topic != existing:
+                merged_into[topic] = existing
+                merged[existing] += score * 0.5  # Partial merge
+                found_parent = True
+                break
+        
+        if not found_parent:
+            merged[topic] = score
+    
+    return merged
+
+
+def _calculate_velocity(current_topics: List[Tuple[str, float]]) -> Dict[str, float]:
+    """Calculate trend velocity by comparing with previous snapshot."""
+    velocity = {}
+    previous = _load_trends_snapshot()
+    
+    if not previous:
+        # No history, all topics are neutral
+        return {topic: 0 for topic, _ in current_topics}
+    
+    prev_scores = {item["topic"]: item["score"] for item in previous}
+    
+    for topic, current_score in current_topics:
+        prev_score = prev_scores.get(topic, 0)
+        
+        if prev_score == 0:
+            # New topic = rising
+            velocity[topic] = 1.0
+        else:
+            # Calculate percentage change
+            change = (current_score - prev_score) / prev_score
+            velocity[topic] = max(-1.0, min(1.0, change))  # Clamp to [-1, 1]
+    
+    return velocity
+
+
+def _velocity_label(velocity: float) -> str:
+    """Convert velocity value to label."""
+    if velocity > 0.5:
+        return "rising_fast"
+    elif velocity > 0.2:
+        return "rising"
+    elif velocity < -0.5:
+        return "fading_fast"
+    elif velocity < -0.2:
+        return "fading"
+    else:
+        return "stable"
+
+
+def _velocity_icon(velocity: float) -> str:
+    """Get velocity indicator icon."""
+    if velocity > 0.5:
+        return "🔥"  # Rising fast
+    elif velocity > 0.2:
+        return "📈"  # Rising
+    elif velocity < -0.5:
+        return "📉"  # Fading fast
+    elif velocity < -0.2:
+        return "↘️"  # Fading
+    else:
+        return "➡️"  # Stable
+
+
+def _save_trends_snapshot(topics: List[Tuple[str, float]]) -> None:
+    """Save current trends for velocity calculation."""
+    try:
+        os.makedirs(os.path.dirname(TRENDS_HISTORY_FILE), exist_ok=True)
+        snapshot = {
+            "timestamp": datetime.now().isoformat(),
+            "topics": [{"topic": t, "score": s} for t, s in topics]
+        }
+        with open(TRENDS_HISTORY_FILE, 'w') as f:
+            json.dump(snapshot, f)
+    except Exception:
+        pass  # Silently fail on save errors
+
+
+def _load_trends_snapshot() -> List[Dict]:
+    """Load previous trends snapshot."""
+    try:
+        if os.path.exists(TRENDS_HISTORY_FILE):
+            with open(TRENDS_HISTORY_FILE, 'r') as f:
+                data = json.load(f)
+                
+            # Check if snapshot is recent (within 6 hours)
+            snapshot_time = date_parser.parse(data["timestamp"])
+            if snapshot_time.tzinfo:
+                snapshot_time = snapshot_time.replace(tzinfo=None)
+            
+            if datetime.now() - snapshot_time < timedelta(hours=6):
+                return data.get("topics", [])
+    except Exception:
+        pass
+    
+    return []
 
 ```
 
@@ -11040,16 +13688,67 @@ function displayIntelligence(data) {
         `;
     }
 
-    // Trends
+    // Trends V2
     if (data.trends && data.trends.trending_topics) {
+        const trends = data.trends;
         html += `
             <div class="intel-section">
                 <h4>📊 Trending Topics</h4>
+                ${trends.rising_topics && trends.rising_topics.length > 0 ? `
+                    <div class="trend-category rising">
+                        <span class="category-label">🔥 Rising</span>
+                        <div class="trend-tags">
+                            ${trends.rising_topics.slice(0, 4).map(t =>
+            `<span class="trend-tag rising-tag">${t.velocity_icon || '📈'} ${t.topic} <small title="Weighted Score = Mentions × Time Weight × Source Weight">(${t.score})</small></span>`
+        ).join('')}
+                        </div>
+                    </div>
+                ` : ''}
                 <div class="trend-tags">
-                    ${data.trends.trending_topics.slice(0, 8).map(t =>
-            `<span class="trend-tag">${t.topic} (${t.mentions})</span>`
+                    ${trends.trending_topics.slice(0, 8).map(t =>
+            `<span class="trend-tag ${t.velocity === 'rising' || t.velocity === 'rising_fast' ? 'rising-tag' : t.velocity === 'fading' || t.velocity === 'fading_fast' ? 'fading-tag' : ''}">${t.velocity_icon || '➡️'} ${t.topic} <small title="Weighted Score = Mentions × Time Weight × Source Weight">(${t.score || t.mentions})</small></span>`
         ).join('')}
                 </div>
+                ${trends.fading_topics && trends.fading_topics.length > 0 ? `
+                    <div class="trend-category fading">
+                        <span class="category-label">📉 Fading</span>
+                        <div class="trend-tags">
+                            ${trends.fading_topics.slice(0, 3).map(t =>
+            `<span class="trend-tag fading-tag">${t.velocity_icon || '↘️'} ${t.topic}</span>`
+        ).join('')}
+                        </div>
+                    </div>
+                ` : ''}
+                ${trends.active_narratives && trends.active_narratives.length > 0 ? `
+                    <div class="active-narratives">
+                        <h5>📰 Active News Narratives</h5>
+                        <div class="narrative-list">
+                            ${trends.active_narratives.slice(0, 4).map(n => `
+                                <div class="narrative-card ${n.story_direction?.includes('Positive') ? 'positive' : n.story_direction?.includes('Critical') ? 'critical' : 'neutral'}">
+                                    <div class="narrative-header">
+                                        <span class="story-icon">${n.story_icon || '📰'}</span>
+                                        <span class="story-topic">${n.topic}</span>
+                                        <span class="news-cycle">${n.news_cycle || 'Active'}</span>
+                                    </div>
+                                    <div class="narrative-details">
+                                        <span title="Story Direction">📖 ${n.story_direction || 'Stable Coverage'}</span>
+                                        <span title="Coverage Growth">📊 ${n.coverage || 'Steady'}</span>
+                                        <span title="Tone of Coverage">🗞️ ${n.tone || 'Neutral'}</span>
+                                    </div>
+                                    ${n.why_trending && n.why_trending.length > 0 ? `
+                                        <div class="why-trending">
+                                            <small>Why trending:</small>
+                                            <ul>${n.why_trending.slice(0, 2).map(r => `<li>${r}</li>`).join('')}</ul>
+                                        </div>
+                                    ` : ''}
+                                </div>
+                            `).join('')}
+                        </div>
+                        ${trends.news_narrative_summary ? `
+                            <p class="news-summary">💡 <strong>News Summary:</strong> ${trends.news_narrative_summary}</p>
+                        ` : ''}
+                    </div>
+                ` : ''}
             </div>
         `;
     }
@@ -12508,12 +15207,237 @@ body {
 }
 
 .trend-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
     background: var(--accent-light);
     color: var(--accent);
     padding: 0.3rem 0.7rem;
     border-radius: 6px;
     font-size: 0.75rem;
     font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.trend-tag small {
+    opacity: 0.7;
+    font-size: 0.65rem;
+}
+
+.trend-tag.rising-tag {
+    background: rgba(16, 185, 129, 0.15);
+    color: #10b981;
+    border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.trend-tag.fading-tag {
+    background: rgba(239, 68, 68, 0.1);
+    color: #ef4444;
+    border: 1px solid rgba(239, 68, 68, 0.2);
+    opacity: 0.8;
+}
+
+/* Trend Categories */
+.trend-category {
+    margin: 0.6rem 0;
+    padding: 0.5rem;
+    border-radius: 8px;
+}
+
+.trend-category.rising {
+    background: rgba(16, 185, 129, 0.05);
+    border-left: 3px solid #10b981;
+}
+
+.trend-category.fading {
+    background: rgba(239, 68, 68, 0.05);
+    border-left: 3px solid #ef4444;
+}
+
+.trend-category .category-label {
+    display: block;
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 0.4rem;
+    opacity: 0.8;
+}
+
+/* Narrative Signals */
+.narrative-signals {
+    margin-top: 1rem;
+    padding: 0.75rem;
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.08), rgba(16, 185, 129, 0.05));
+    border-radius: 10px;
+    border: 1px solid rgba(99, 102, 241, 0.2);
+}
+
+.narrative-signals h5 {
+    font-size: 0.8rem;
+    color: var(--accent);
+    margin-bottom: 0.6rem;
+}
+
+.signal-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.signal-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.4rem 0.6rem;
+    border-radius: 6px;
+    font-size: 0.75rem;
+}
+
+.signal-item.bullish {
+    background: rgba(16, 185, 129, 0.1);
+    border-left: 3px solid #10b981;
+}
+
+.signal-item.bearish {
+    background: rgba(239, 68, 68, 0.1);
+    border-left: 3px solid #ef4444;
+}
+
+.signal-item.neutral {
+    background: rgba(148, 163, 184, 0.1);
+    border-left: 3px solid #94a3b8;
+}
+
+.signal-icon {
+    font-size: 1rem;
+}
+
+.signal-topic {
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.signal-label {
+    color: var(--text-muted);
+    margin-left: auto;
+    font-size: 0.7rem;
+}
+
+.market-narrative {
+    margin-top: 0.6rem;
+    padding-top: 0.5rem;
+    border-top: 1px dashed rgba(255, 255, 255, 0.1);
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    font-style: italic;
+}
+
+/* Active News Narratives */
+.active-narratives {
+    margin-top: 1rem;
+    padding: 0.75rem;
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.08), rgba(99, 102, 241, 0.05));
+    border-radius: 10px;
+    border: 1px solid rgba(59, 130, 246, 0.2);
+}
+
+.active-narratives h5 {
+    font-size: 0.85rem;
+    color: #3b82f6;
+    margin-bottom: 0.6rem;
+}
+
+.narrative-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.narrative-card {
+    padding: 0.6rem;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.03);
+    border-left: 3px solid #6b7280;
+}
+
+.narrative-card.positive {
+    border-left-color: #10b981;
+    background: rgba(16, 185, 129, 0.05);
+}
+
+.narrative-card.critical {
+    border-left-color: #ef4444;
+    background: rgba(239, 68, 68, 0.05);
+}
+
+.narrative-header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.4rem;
+}
+
+.story-icon {
+    font-size: 1rem;
+}
+
+.story-topic {
+    font-weight: 600;
+    color: var(--text-primary);
+    flex: 1;
+}
+
+.news-cycle {
+    font-size: 0.65rem;
+    padding: 0.15rem 0.4rem;
+    background: rgba(99, 102, 241, 0.15);
+    border-radius: 4px;
+    color: var(--accent);
+}
+
+.narrative-details {
+    display: flex;
+    gap: 0.8rem;
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    margin-bottom: 0.4rem;
+}
+
+.narrative-details span {
+    cursor: help;
+}
+
+.why-trending {
+    padding-top: 0.4rem;
+    border-top: 1px dashed rgba(255, 255, 255, 0.1);
+}
+
+.why-trending small {
+    font-size: 0.65rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.why-trending ul {
+    margin: 0.3rem 0 0;
+    padding-left: 1rem;
+    font-size: 0.7rem;
+    color: var(--text-secondary);
+}
+
+.why-trending li {
+    margin-bottom: 0.2rem;
+}
+
+.news-summary {
+    margin-top: 0.6rem;
+    padding: 0.5rem;
+    background: rgba(59, 130, 246, 0.1);
+    border-radius: 6px;
+    font-size: 0.75rem;
+    color: var(--text-secondary);
 }
 
 /* News Panel */

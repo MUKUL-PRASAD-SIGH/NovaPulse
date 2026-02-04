@@ -142,16 +142,34 @@ def _export_markdown(data: Dict, filename: str, timestamp: str) -> str:
             lines.append(f"**🔥 Emerging Themes:** {themes}")
             lines.append("")
     
-    # Trends Section
+    # Trends Section V2
     if "trends" in data and data["trends"]:
         t = data["trends"]
         if t.get("trending_topics"):
             lines.append("\n## 📊 Trending Topics\n")
-            lines.append("| Topic | Mentions |")
-            lines.append("|-------|----------|")
+            
+            # Rising topics
+            if t.get("rising_topics"):
+                lines.append("**🔥 Rising:**")
+                for topic in t.get("rising_topics", [])[:4]:
+                    icon = topic.get("velocity_icon", "📈")
+                    lines.append(f"- {icon} {topic.get('topic')} (score: {topic.get('score', 0)})")
+                lines.append("")
+            
+            # Main trends table
+            lines.append("| Topic | Score | Velocity |")
+            lines.append("|-------|-------|----------|")
             for topic in t.get("trending_topics", [])[:8]:
-                lines.append(f"| {topic.get('topic')} | {topic.get('mentions')} |")
+                icon = topic.get("velocity_icon", "➡️")
+                lines.append(f"| {topic.get('topic')} | {topic.get('score', topic.get('mentions', 0))} | {icon} |")
             lines.append("")
+            
+            # Fading topics
+            if t.get("fading_topics"):
+                lines.append("**📉 Fading:**")
+                for topic in t.get("fading_topics", [])[:3]:
+                    lines.append(f"- {topic.get('topic')}")
+                lines.append("")
     
     # Articles Section
     if "news" in data and data["news"]:

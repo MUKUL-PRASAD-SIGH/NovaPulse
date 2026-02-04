@@ -1289,5 +1289,251 @@
         }
       ]
     }
+  },
+  {
+    "timestamp": "2026-02-04T20:18:18.145724",
+    "user_input": "INDIAN STOCK MARKET TODAY",
+    "plan": {
+      "intent": "Fetch and export the latest news about the Indian stock market today",
+      "domain": "Indian stock market",
+      "steps": [
+        {
+          "tool": "news_fetcher",
+          "params": {
+            "topic": "Indian stock market today",
+            "sources": [
+              "google"
+            ],
+            "limit": 5
+          }
+        },
+        {
+          "tool": "exporter",
+          "params": {
+            "filename": "Indian_stock_market_today",
+            "format": "json"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T20:18:37.363891",
+    "user_input": "INDIAN STOCK MARKET TODAY with summarize and sentiment analysis and trends",
+    "plan": {
+      "intent": "Fetch, summarize, analyze sentiment, and extract trends for the Indian stock market today",
+      "domain": "Indian stock market",
+      "steps": [
+        {
+          "tool": "news_fetcher",
+          "params": {
+            "topic": "INDIAN STOCK MARKET TODAY",
+            "sources": [
+              "google"
+            ],
+            "limit": 5
+          }
+        },
+        {
+          "tool": "summarizer",
+          "params": {
+            "news_items": "fetched news"
+          }
+        },
+        {
+          "tool": "sentiment",
+          "params": {
+            "news_items": "fetched news"
+          }
+        },
+        {
+          "tool": "trends",
+          "params": {
+            "news_items": "fetched news"
+          }
+        },
+        {
+          "tool": "exporter",
+          "params": {
+            "filename": "indian_stock_market_report",
+            "format": "json"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T21:13:49.553780",
+    "user_input": "India US trade deal",
+    "plan": {
+      "intent": "Fetch and export news on India US trade deal",
+      "domain": "India US trade deal",
+      "steps": [
+        {
+          "tool": "news_fetcher",
+          "params": {
+            "topic": "India US trade deal",
+            "limit": 5
+          }
+        },
+        {
+          "tool": "exporter",
+          "params": {
+            "filename": "India_US_trade_deal_report",
+            "format": "json"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T21:14:09.661924",
+    "user_input": "India US trade deal with summarize and sentiment analysis and trends",
+    "plan": {
+      "intent": "Fetch, summarize, perform sentiment analysis, and extract trends for the India-US trade deal",
+      "domain": "India-US trade deal",
+      "steps": [
+        {
+          "tool": "news_fetcher",
+          "params": {
+            "topic": "India-US trade deal",
+            "limit": 5
+          }
+        },
+        {
+          "tool": "summarizer",
+          "params": {
+            "news_items": "{{news_fetcher.output}}"
+          }
+        },
+        {
+          "tool": "sentiment",
+          "params": {
+            "news_items": "{{news_fetcher.output}}"
+          }
+        },
+        {
+          "tool": "trends",
+          "params": {
+            "news_items": "{{news_fetcher.output}}"
+          }
+        },
+        {
+          "tool": "exporter",
+          "params": {
+            "filename": "India-US_trade_deal_report",
+            "format": "json"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T21:29:23.066001",
+    "user_input": "India US trade deal",
+    "plan": {
+      "intent": "Fetch and export news on India-US trade deal",
+      "domain": "India US trade deal",
+      "steps": [
+        {
+          "tool": "news_fetcher",
+          "params": {
+            "topic": "India US trade deal",
+            "limit": 5
+          }
+        },
+        {
+          "tool": "exporter",
+          "params": {
+            "filename": "India_US_trade_deal_report",
+            "format": "json"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T21:29:36.487388",
+    "user_input": "India US trade deal with summarize and sentiment analysis and trends",
+    "plan": {
+      "intent": "Fetch, summarize, perform sentiment analysis, and extract trends for the India-US trade deal news",
+      "domain": "India-US trade deal",
+      "steps": [
+        {
+          "tool": "news_fetcher",
+          "params": {
+            "topic": "India-US trade deal",
+            "limit": 5
+          }
+        },
+        {
+          "tool": "summarizer",
+          "params": {
+            "news_items": "{{news_fetcher.output}}"
+          }
+        },
+        {
+          "tool": "sentiment",
+          "params": {
+            "news_items": "{{news_fetcher.output}}"
+          }
+        },
+        {
+          "tool": "trends",
+          "params": {
+            "news_items": "{{news_fetcher.output}}"
+          }
+        },
+        {
+          "tool": "exporter",
+          "params": {
+            "filename": "India-US_trade_deal_report",
+            "format": "json"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T21:38:40.258748",
+    "user_input": "India US trade deal with summarize and sentiment analysis and trends",
+    "plan": {
+      "intent": "Fetch news on India-US trade deal, summarize, perform sentiment analysis, extract trends, and export the results.",
+      "domain": "India-US trade deal",
+      "steps": [
+        {
+          "tool": "news_fetcher",
+          "params": {
+            "topic": "India-US trade deal",
+            "limit": 5
+          }
+        },
+        {
+          "tool": "summarizer",
+          "params": {
+            "news_items": "news_fetcher output"
+          }
+        },
+        {
+          "tool": "sentiment",
+          "params": {
+            "news_items": "news_fetcher output"
+          }
+        },
+        {
+          "tool": "trends",
+          "params": {
+            "news_items": "news_fetcher output"
+          }
+        },
+        {
+          "tool": "exporter",
+          "params": {
+            "filename": "India-US_trade_deal_report",
+            "format": "json"
+          }
+        }
+      ]
+    }
   }
 ]

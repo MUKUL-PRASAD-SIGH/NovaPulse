@@ -708,16 +708,67 @@ function displayIntelligence(data) {
         `;
     }
 
-    // Trends
+    // Trends V2
     if (data.trends && data.trends.trending_topics) {
+        const trends = data.trends;
         html += `
             <div class="intel-section">
                 <h4>📊 Trending Topics</h4>
+                ${trends.rising_topics && trends.rising_topics.length > 0 ? `
+                    <div class="trend-category rising">
+                        <span class="category-label">🔥 Rising</span>
+                        <div class="trend-tags">
+                            ${trends.rising_topics.slice(0, 4).map(t =>
+            `<span class="trend-tag rising-tag">${t.velocity_icon || '📈'} ${t.topic} <small title="Weighted Score = Mentions × Time Weight × Source Weight">(${t.score})</small></span>`
+        ).join('')}
+                        </div>
+                    </div>
+                ` : ''}
                 <div class="trend-tags">
-                    ${data.trends.trending_topics.slice(0, 8).map(t =>
-            `<span class="trend-tag">${t.topic} (${t.mentions})</span>`
+                    ${trends.trending_topics.slice(0, 8).map(t =>
+            `<span class="trend-tag ${t.velocity === 'rising' || t.velocity === 'rising_fast' ? 'rising-tag' : t.velocity === 'fading' || t.velocity === 'fading_fast' ? 'fading-tag' : ''}">${t.velocity_icon || '➡️'} ${t.topic} <small title="Weighted Score = Mentions × Time Weight × Source Weight">(${t.score || t.mentions})</small></span>`
         ).join('')}
                 </div>
+                ${trends.fading_topics && trends.fading_topics.length > 0 ? `
+                    <div class="trend-category fading">
+                        <span class="category-label">📉 Fading</span>
+                        <div class="trend-tags">
+                            ${trends.fading_topics.slice(0, 3).map(t =>
+            `<span class="trend-tag fading-tag">${t.velocity_icon || '↘️'} ${t.topic}</span>`
+        ).join('')}
+                        </div>
+                    </div>
+                ` : ''}
+                ${trends.active_narratives && trends.active_narratives.length > 0 ? `
+                    <div class="active-narratives">
+                        <h5>📰 Active News Narratives</h5>
+                        <div class="narrative-list">
+                            ${trends.active_narratives.slice(0, 4).map(n => `
+                                <div class="narrative-card ${n.story_direction?.includes('Positive') ? 'positive' : n.story_direction?.includes('Critical') ? 'critical' : 'neutral'}">
+                                    <div class="narrative-header">
+                                        <span class="story-icon">${n.story_icon || '📰'}</span>
+                                        <span class="story-topic">${n.topic}</span>
+                                        <span class="news-cycle">${n.news_cycle || 'Active'}</span>
+                                    </div>
+                                    <div class="narrative-details">
+                                        <span title="Story Direction">📖 ${n.story_direction || 'Stable Coverage'}</span>
+                                        <span title="Coverage Growth">📊 ${n.coverage || 'Steady'}</span>
+                                        <span title="Tone of Coverage">🗞️ ${n.tone || 'Neutral'}</span>
+                                    </div>
+                                    ${n.why_trending && n.why_trending.length > 0 ? `
+                                        <div class="why-trending">
+                                            <small>Why trending:</small>
+                                            <ul>${n.why_trending.slice(0, 2).map(r => `<li>${r}</li>`).join('')}</ul>
+                                        </div>
+                                    ` : ''}
+                                </div>
+                            `).join('')}
+                        </div>
+                        ${trends.news_narrative_summary ? `
+                            <p class="news-summary">💡 <strong>News Summary:</strong> ${trends.news_narrative_summary}</p>
+                        ` : ''}
+                    </div>
+                ` : ''}
             </div>
         `;
     }

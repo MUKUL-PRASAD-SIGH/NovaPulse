@@ -549,12 +549,237 @@ body {
 }
 
 .trend-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
     background: var(--accent-light);
     color: var(--accent);
     padding: 0.3rem 0.7rem;
     border-radius: 6px;
     font-size: 0.75rem;
     font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.trend-tag small {
+    opacity: 0.7;
+    font-size: 0.65rem;
+}
+
+.trend-tag.rising-tag {
+    background: rgba(16, 185, 129, 0.15);
+    color: #10b981;
+    border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.trend-tag.fading-tag {
+    background: rgba(239, 68, 68, 0.1);
+    color: #ef4444;
+    border: 1px solid rgba(239, 68, 68, 0.2);
+    opacity: 0.8;
+}
+
+/* Trend Categories */
+.trend-category {
+    margin: 0.6rem 0;
+    padding: 0.5rem;
+    border-radius: 8px;
+}
+
+.trend-category.rising {
+    background: rgba(16, 185, 129, 0.05);
+    border-left: 3px solid #10b981;
+}
+
+.trend-category.fading {
+    background: rgba(239, 68, 68, 0.05);
+    border-left: 3px solid #ef4444;
+}
+
+.trend-category .category-label {
+    display: block;
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 0.4rem;
+    opacity: 0.8;
+}
+
+/* Narrative Signals */
+.narrative-signals {
+    margin-top: 1rem;
+    padding: 0.75rem;
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.08), rgba(16, 185, 129, 0.05));
+    border-radius: 10px;
+    border: 1px solid rgba(99, 102, 241, 0.2);
+}
+
+.narrative-signals h5 {
+    font-size: 0.8rem;
+    color: var(--accent);
+    margin-bottom: 0.6rem;
+}
+
+.signal-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.signal-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.4rem 0.6rem;
+    border-radius: 6px;
+    font-size: 0.75rem;
+}
+
+.signal-item.bullish {
+    background: rgba(16, 185, 129, 0.1);
+    border-left: 3px solid #10b981;
+}
+
+.signal-item.bearish {
+    background: rgba(239, 68, 68, 0.1);
+    border-left: 3px solid #ef4444;
+}
+
+.signal-item.neutral {
+    background: rgba(148, 163, 184, 0.1);
+    border-left: 3px solid #94a3b8;
+}
+
+.signal-icon {
+    font-size: 1rem;
+}
+
+.signal-topic {
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.signal-label {
+    color: var(--text-muted);
+    margin-left: auto;
+    font-size: 0.7rem;
+}
+
+.market-narrative {
+    margin-top: 0.6rem;
+    padding-top: 0.5rem;
+    border-top: 1px dashed rgba(255, 255, 255, 0.1);
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    font-style: italic;
+}
+
+/* Active News Narratives */
+.active-narratives {
+    margin-top: 1rem;
+    padding: 0.75rem;
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.08), rgba(99, 102, 241, 0.05));
+    border-radius: 10px;
+    border: 1px solid rgba(59, 130, 246, 0.2);
+}
+
+.active-narratives h5 {
+    font-size: 0.85rem;
+    color: #3b82f6;
+    margin-bottom: 0.6rem;
+}
+
+.narrative-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.narrative-card {
+    padding: 0.6rem;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.03);
+    border-left: 3px solid #6b7280;
+}
+
+.narrative-card.positive {
+    border-left-color: #10b981;
+    background: rgba(16, 185, 129, 0.05);
+}
+
+.narrative-card.critical {
+    border-left-color: #ef4444;
+    background: rgba(239, 68, 68, 0.05);
+}
+
+.narrative-header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.4rem;
+}
+
+.story-icon {
+    font-size: 1rem;
+}
+
+.story-topic {
+    font-weight: 600;
+    color: var(--text-primary);
+    flex: 1;
+}
+
+.news-cycle {
+    font-size: 0.65rem;
+    padding: 0.15rem 0.4rem;
+    background: rgba(99, 102, 241, 0.15);
+    border-radius: 4px;
+    color: var(--accent);
+}
+
+.narrative-details {
+    display: flex;
+    gap: 0.8rem;
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    margin-bottom: 0.4rem;
+}
+
+.narrative-details span {
+    cursor: help;
+}
+
+.why-trending {
+    padding-top: 0.4rem;
+    border-top: 1px dashed rgba(255, 255, 255, 0.1);
+}
+
+.why-trending small {
+    font-size: 0.65rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.why-trending ul {
+    margin: 0.3rem 0 0;
+    padding-left: 1rem;
+    font-size: 0.7rem;
+    color: var(--text-secondary);
+}
+
+.why-trending li {
+    margin-bottom: 0.2rem;
+}
+
+.news-summary {
+    margin-top: 0.6rem;
+    padding: 0.5rem;
+    background: rgba(59, 130, 246, 0.1);
+    border-radius: 6px;
+    font-size: 0.75rem;
+    color: var(--text-secondary);
 }
 
 /* News Panel */
