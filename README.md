@@ -105,20 +105,74 @@ Finance terms in Sentiment Intelligence are highlighted and show explanations on
 
 ---
 
-### 💾 Local Storage & Persistence
+### 💾 Multi-Layer Storage Architecture
 
-| Data | Storage | Retention |
-|------|---------|-----------|
-| **Search History** | LocalStorage | Last 10 searches |
-| **Language Preferences** | LocalStorage | Permanent |
-| **Dictionary Toggle** | LocalStorage | Permanent |
-| **Execution Logs** | `app/memory/logs.json` | All sessions |
-| **Saved Plans** | `app/memory/plans.json` | All sessions |
-| **Results Archive** | `app/memory/results.json` | All sessions |
-| **Exported Reports** | `output/` folder | Timestamped files |
-
+| Layer | Storage | Data | Retention |
+|-------|---------|------|-----------|
+| **Frontend** | LocalStorage | Search history, language prefs, settings | Permanent |
+| **Backend** | `app/memory/plans.json` | User task plans | All sessions |
+| **Backend** | `app/memory/results.json` | Execution outputs | All sessions |
+| **Backend** | `app/memory/logs.json` | Runtime logs & diagnostics | All sessions |
+| **Export** | `output/` folder | Timestamped reports | Permanent |
 
 ---
+
+## 🏗️ Sentiment & Intelligence Layer Architecture
+
+> *Not just features. A mini intelligence platform.*
+
+### 🔄 End-to-End System Flow
+
+```
+User Input → Planner Agent → Task JSON → Executor Agent
+                                              ↓
+            ┌────────────────────────────────────────────────┐
+            │  Tools: News → Summary → Sentiment → Trends   │
+            └────────────────────────────────────────────────┘
+                                              ↓
+                              Memory Store → UI Rendering
+                                              ↓
+                    Supplementary: /translate │ /dictionary │ /languages
+```
+
+### ⚙️ Dictionary Engine
+
+| Aspect | Design |
+|--------|--------|
+| **Primary API** | Merriam-Webster (if key available) |
+| **Fallback API** | Free Dictionary API (zero config) |
+| **Trigger** | Click DICT → Type → GO |
+| **Reliability** | Dynamic API fallback, zero breakage |
+
+### 🌐 Translation Engine
+
+| Aspect | Design |
+|--------|--------|
+| **API** | MyMemory (no key required) |
+| **Limit** | 500 chars/request (quota protection) |
+| **Languages** | 18 languages, max 3 selected |
+| **Prefs** | Persisted in LocalStorage |
+
+### ⭐ Architecture Highlights
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│  ✅ Multi-layer persistence (Frontend + Backend)               │
+│  ✅ External API fallback reliability model                    │
+│  ✅ Preference-aware UI behavior                               │
+│  ✅ Modular tool-driven intelligence pipeline                  │
+│  ✅ Feature toggle driven UX                                   │
+└─────────────────────────────────────────────────────────────────┘
+```
+
+### 🚀 Future Extensions
+
+| Feature | Status |
+|---------|--------|
+| Dictionary result caching | Planned |
+| Automatic language detection | Planned |
+| Usage analytics dashboard | Planned |
+| Adaptive translation suggestions | Planned |
 
 ## 🎯 Feature Deep-Dive
 
