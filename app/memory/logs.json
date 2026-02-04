@@ -1,0 +1,825 @@
+[
+  {
+    "timestamp": "2026-02-04T12:04:19.440485",
+    "level": "INFO",
+    "message": "Planning task for: Get AI  news about moltbot"
+  },
+  {
+    "timestamp": "2026-02-04T12:04:21.017778",
+    "level": "ERROR",
+    "message": "Nova planner error: An error occurred (AccessDeniedException) when calling the InvokeModel operation: User: arn:aws:iam::279715468174:user/MukulPrasad is not authorized to perform: bedrock:InvokeModel on resource: arn:aws:bedrock:us-east-1::foundation-model/amazon.nova-lite-v1:0 because no identity-based policy allows the bedrock:InvokeModel action"
+  },
+  {
+    "timestamp": "2026-02-04T12:04:21.034587",
+    "level": "INFO",
+    "message": "Executing plan: Get ai news intelligence",
+    "data": {
+      "steps": 2
+    }
+  },
+  {
+    "timestamp": "2026-02-04T12:04:21.047820",
+    "level": "DEBUG",
+    "message": "Running tool: news_fetcher",
+    "data": {
+      "params": [
+        "topic",
+        "sources",
+        "limit"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T12:04:22.109092",
+    "level": "DEBUG",
+    "message": "Running tool: exporter",
+    "data": {
+      "params": [
+        "filename",
+        "format",
+        "data"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T12:04:22.127195",
+    "level": "INFO",
+    "message": "Execution complete: 2 tools run"
+  },
+  {
+    "timestamp": "2026-02-04T12:16:20.981641",
+    "level": "INFO",
+    "message": "Planning task for: latest news about moltbot"
+  },
+  {
+    "timestamp": "2026-02-04T12:16:22.163856",
+    "level": "ERROR",
+    "message": "Nova planner error: An error occurred (ValidationException) when calling the InvokeModel operation: Malformed input request: #: required key [messages] not found, please reformat your input and try again."
+  },
+  {
+    "timestamp": "2026-02-04T12:16:22.186875",
+    "level": "INFO",
+    "message": "Executing plan: Get ai news intelligence",
+    "data": {
+      "steps": 2
+    }
+  },
+  {
+    "timestamp": "2026-02-04T12:16:22.203222",
+    "level": "DEBUG",
+    "message": "Running tool: news_fetcher",
+    "data": {
+      "params": [
+        "topic",
+        "sources",
+        "limit"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T12:16:23.523422",
+    "level": "DEBUG",
+    "message": "Running tool: exporter",
+    "data": {
+      "params": [
+        "filename",
+        "format",
+        "data"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T12:16:23.542558",
+    "level": "INFO",
+    "message": "Execution complete: 2 tools run"
+  },
+  {
+    "timestamp": "2026-02-04T12:18:22.907687",
+    "level": "INFO",
+    "message": "Planning task for: latest news about moltbot"
+  },
+  {
+    "timestamp": "2026-02-04T12:18:24.530473",
+    "level": "INFO",
+    "message": "Nova plan generated",
+    "data": {
+      "plan": {
+        "intent": "Fetch and export the latest news about Moltbot",
+        "domain": "technology",
+        "steps": [
+          {
+            "tool": "news_fetcher",
+            "params": {
+              "topic": "moltbot",
+              "sources": [
+                "google"
+              ],
+              "limit": 5
+            }
+          },
+          {
+            "tool": "exporter",
+            "params": {
+              "data": "",
+              "filename": "moltbot_news_report",
+              "format": "json"
+            }
+          }
+        ]
+      }
+    }
+  },
+  {
+    "timestamp": "2026-02-04T12:18:24.548213",
+    "level": "INFO",
+    "message": "Executing plan: Fetch and export the latest news about Moltbot",
+    "data": {
+      "steps": 2
+    }
+  },
+  {
+    "timestamp": "2026-02-04T12:18:24.564476",
+    "level": "DEBUG",
+    "message": "Running tool: news_fetcher",
+    "data": {
+      "params": [
+        "topic",
+        "sources",
+        "limit"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T12:18:25.838914",
+    "level": "DEBUG",
+    "message": "Running tool: exporter",
+    "data": {
+      "params": [
+        "data",
+        "filename",
+        "format"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T12:18:25.855502",
+    "level": "ERROR",
+    "message": "Tool exporter failed: 'str' object is not a mapping"
+  },
+  {
+    "timestamp": "2026-02-04T12:18:25.872685",
+    "level": "INFO",
+    "message": "Execution complete: 2 tools run"
+  },
+  {
+    "timestamp": "2026-02-04T12:19:42.650897",
+    "level": "INFO",
+    "message": "Planning task for: News about Moltbot"
+  },
+  {
+    "timestamp": "2026-02-04T12:19:44.374049",
+    "level": "INFO",
+    "message": "Nova plan generated",
+    "data": {
+      "plan": {
+        "intent": "Fetch and export news about Moltbot",
+        "domain": "Moltbot",
+        "steps": [
+          {
+            "tool": "news_fetcher",
+            "params": {
+              "topic": "Moltbot",
+              "sources": [
+                "google"
+              ],
+              "limit": 5
+            }
+          },
+          {
+            "tool": "exporter",
+            "params": {
+              "data": "",
+              "filename": "moltbot_news_report",
+              "format": "json"
+            }
+          }
+        ]
+      }
+    }
+  },
+  {
+    "timestamp": "2026-02-04T12:19:44.391087",
+    "level": "INFO",
+    "message": "Executing plan: Fetch and export news about Moltbot",
+    "data": {
+      "steps": 2
+    }
+  },
+  {
+    "timestamp": "2026-02-04T12:19:44.407613",
+    "level": "DEBUG",
+    "message": "Running tool: news_fetcher",
+    "data": {
+      "params": [
+        "topic",
+        "sources",
+        "limit"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T12:19:45.645701",
+    "level": "DEBUG",
+    "message": "Running tool: exporter",
+    "data": {
+      "params": [
+        "data",
+        "filename",
+        "format"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T12:19:45.663371",
+    "level": "INFO",
+    "message": "Execution complete: 2 tools run"
+  },
+  {
+    "timestamp": "2026-02-04T12:20:26.666569",
+    "level": "INFO",
+    "message": "Planning task for: News about Moltbot from 3rd and 4th feb"
+  },
+  {
+    "timestamp": "2026-02-04T12:20:28.285574",
+    "level": "INFO",
+    "message": "Nova plan generated",
+    "data": {
+      "plan": {
+        "intent": "Fetch and export news about Moltbot from 3rd and 4th February",
+        "domain": "Moltbot",
+        "steps": [
+          {
+            "tool": "news_fetcher",
+            "params": {
+              "topic": "Moltbot",
+              "sources": [
+                "google"
+              ],
+              "limit": 5
+            }
+          },
+          {
+            "tool": "exporter",
+            "params": {
+              "data": "news_items",
+              "filename": "moltbot_news_report",
+              "format": "json"
+            }
+          }
+        ]
+      }
+    }
+  },
+  {
+    "timestamp": "2026-02-04T12:20:28.306174",
+    "level": "INFO",
+    "message": "Executing plan: Fetch and export news about Moltbot from 3rd and 4th February",
+    "data": {
+      "steps": 2
+    }
+  },
+  {
+    "timestamp": "2026-02-04T12:20:28.323587",
+    "level": "DEBUG",
+    "message": "Running tool: news_fetcher",
+    "data": {
+      "params": [
+        "topic",
+        "sources",
+        "limit"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T12:20:28.655715",
+    "level": "DEBUG",
+    "message": "Running tool: exporter",
+    "data": {
+      "params": [
+        "data",
+        "filename",
+        "format"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T12:20:28.677215",
+    "level": "INFO",
+    "message": "Execution complete: 2 tools run"
+  },
+  {
+    "timestamp": "2026-02-04T12:20:50.096730",
+    "level": "INFO",
+    "message": "Planning task for: cra accident"
+  },
+  {
+    "timestamp": "2026-02-04T12:20:51.918555",
+    "level": "INFO",
+    "message": "Nova plan generated",
+    "data": {
+      "plan": {
+        "intent": "Fetch and export news about a car accident in CRA",
+        "domain": "car accident",
+        "steps": [
+          {
+            "tool": "news_fetcher",
+            "params": {
+              "topic": "cra accident",
+              "sources": [
+                "google"
+              ],
+              "limit": 5
+            }
+          },
+          {
+            "tool": "exporter",
+            "params": {
+              "filename": "cra_accident_report",
+              "format": "json"
+            }
+          }
+        ]
+      }
+    }
+  },
+  {
+    "timestamp": "2026-02-04T12:20:51.938558",
+    "level": "INFO",
+    "message": "Executing plan: Fetch and export news about a car accident in CRA",
+    "data": {
+      "steps": 2
+    }
+  },
+  {
+    "timestamp": "2026-02-04T12:20:51.954272",
+    "level": "DEBUG",
+    "message": "Running tool: news_fetcher",
+    "data": {
+      "params": [
+        "topic",
+        "sources",
+        "limit"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T12:20:51.989823",
+    "level": "DEBUG",
+    "message": "Running tool: exporter",
+    "data": {
+      "params": [
+        "filename",
+        "format",
+        "data"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T12:20:52.011964",
+    "level": "INFO",
+    "message": "Execution complete: 2 tools run"
+  },
+  {
+    "timestamp": "2026-02-04T12:20:56.711841",
+    "level": "INFO",
+    "message": "Planning task for: car accident"
+  },
+  {
+    "timestamp": "2026-02-04T12:20:58.194092",
+    "level": "INFO",
+    "message": "Nova plan generated",
+    "data": {
+      "plan": {
+        "intent": "Fetch and export news about a car accident",
+        "domain": "car accident",
+        "steps": [
+          {
+            "tool": "news_fetcher",
+            "params": {
+              "topic": "car accident",
+              "sources": [
+                "google"
+              ],
+              "limit": 5
+            }
+          },
+          {
+            "tool": "exporter",
+            "params": {
+              "filename": "car_accident_report",
+              "format": "json"
+            }
+          }
+        ]
+      }
+    }
+  },
+  {
+    "timestamp": "2026-02-04T12:20:58.214677",
+    "level": "INFO",
+    "message": "Executing plan: Fetch and export news about a car accident",
+    "data": {
+      "steps": 2
+    }
+  },
+  {
+    "timestamp": "2026-02-04T12:20:58.230705",
+    "level": "DEBUG",
+    "message": "Running tool: news_fetcher",
+    "data": {
+      "params": [
+        "topic",
+        "sources",
+        "limit"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T12:20:58.260238",
+    "level": "DEBUG",
+    "message": "Running tool: exporter",
+    "data": {
+      "params": [
+        "filename",
+        "format",
+        "data"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T12:20:58.280079",
+    "level": "INFO",
+    "message": "Execution complete: 2 tools run"
+  },
+  {
+    "timestamp": "2026-02-04T12:21:24.986910",
+    "level": "INFO",
+    "message": "Planning task for: \"News about Moltbot\""
+  },
+  {
+    "timestamp": "2026-02-04T12:21:26.484558",
+    "level": "INFO",
+    "message": "Nova plan generated",
+    "data": {
+      "plan": {
+        "intent": "Fetch and export news about Moltbot",
+        "domain": "technology",
+        "steps": [
+          {
+            "tool": "news_fetcher",
+            "params": {
+              "topic": "Moltbot",
+              "sources": [
+                "google"
+              ],
+              "limit": 5
+            }
+          },
+          {
+            "tool": "exporter",
+            "params": {
+              "filename": "moltbot_news_report",
+              "format": "json"
+            }
+          }
+        ]
+      }
+    }
+  },
+  {
+    "timestamp": "2026-02-04T12:21:26.505331",
+    "level": "INFO",
+    "message": "Executing plan: Fetch and export news about Moltbot",
+    "data": {
+      "steps": 2
+    }
+  },
+  {
+    "timestamp": "2026-02-04T12:21:26.523504",
+    "level": "DEBUG",
+    "message": "Running tool: news_fetcher",
+    "data": {
+      "params": [
+        "topic",
+        "sources",
+        "limit"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T12:21:27.778514",
+    "level": "DEBUG",
+    "message": "Running tool: exporter",
+    "data": {
+      "params": [
+        "filename",
+        "format",
+        "data"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T12:21:27.799287",
+    "level": "INFO",
+    "message": "Execution complete: 2 tools run"
+  },
+  {
+    "timestamp": "2026-02-04T12:22:04.339951",
+    "level": "INFO",
+    "message": "Planning task for: car accident news"
+  },
+  {
+    "timestamp": "2026-02-04T12:22:06.033800",
+    "level": "INFO",
+    "message": "Nova plan generated",
+    "data": {
+      "plan": {
+        "intent": "Fetch and export recent car accident news",
+        "domain": "car accident",
+        "steps": [
+          {
+            "tool": "news_fetcher",
+            "params": {
+              "topic": "car accident",
+              "sources": [
+                "google"
+              ],
+              "limit": 5
+            }
+          },
+          {
+            "tool": "exporter",
+            "params": {
+              "data": "news_items",
+              "filename": "car_accident_news_report",
+              "format": "json"
+            }
+          }
+        ]
+      }
+    }
+  },
+  {
+    "timestamp": "2026-02-04T12:22:06.052492",
+    "level": "INFO",
+    "message": "Executing plan: Fetch and export recent car accident news",
+    "data": {
+      "steps": 2
+    }
+  },
+  {
+    "timestamp": "2026-02-04T12:22:06.066010",
+    "level": "DEBUG",
+    "message": "Running tool: news_fetcher",
+    "data": {
+      "params": [
+        "topic",
+        "sources",
+        "limit"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T12:22:06.092552",
+    "level": "DEBUG",
+    "message": "Running tool: exporter",
+    "data": {
+      "params": [
+        "data",
+        "filename",
+        "format"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T12:22:06.113775",
+    "level": "INFO",
+    "message": "Execution complete: 2 tools run"
+  },
+  {
+    "timestamp": "2026-02-04T12:23:42.942684",
+    "level": "INFO",
+    "message": "Planning task for: stock market news"
+  },
+  {
+    "timestamp": "2026-02-04T12:23:44.555529",
+    "level": "INFO",
+    "message": "Nova plan generated",
+    "data": {
+      "plan": {
+        "intent": "Fetch and export the latest stock market news",
+        "domain": "stock market",
+        "steps": [
+          {
+            "tool": "news_fetcher",
+            "params": {
+              "topic": "stock market",
+              "sources": [
+                "google"
+              ],
+              "limit": 5
+            }
+          },
+          {
+            "tool": "exporter",
+            "params": {
+              "filename": "stock_market_news",
+              "format": "json"
+            }
+          }
+        ]
+      }
+    }
+  },
+  {
+    "timestamp": "2026-02-04T12:23:44.576520",
+    "level": "INFO",
+    "message": "Executing plan: Fetch and export the latest stock market news",
+    "data": {
+      "steps": 2
+    }
+  },
+  {
+    "timestamp": "2026-02-04T12:23:44.590756",
+    "level": "DEBUG",
+    "message": "Running tool: news_fetcher",
+    "data": {
+      "params": [
+        "topic",
+        "sources",
+        "limit"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T12:23:44.619849",
+    "level": "DEBUG",
+    "message": "Running tool: exporter",
+    "data": {
+      "params": [
+        "filename",
+        "format",
+        "data"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T12:23:44.640655",
+    "level": "INFO",
+    "message": "Execution complete: 2 tools run"
+  },
+  {
+    "timestamp": "2026-02-04T12:26:39.402193",
+    "level": "INFO",
+    "message": "Planning task for: stock market"
+  },
+  {
+    "timestamp": "2026-02-04T12:26:41.216285",
+    "level": "INFO",
+    "message": "Nova plan generated",
+    "data": {
+      "plan": {
+        "intent": "Fetch and export the latest news about the stock market",
+        "domain": "stock market",
+        "steps": [
+          {
+            "tool": "news_fetcher",
+            "params": {
+              "topic": "stock market",
+              "sources": [
+                "google"
+              ],
+              "limit": 5
+            }
+          },
+          {
+            "tool": "exporter",
+            "params": {
+              "filename": "stock_market_news",
+              "format": "json"
+            }
+          }
+        ]
+      }
+    }
+  },
+  {
+    "timestamp": "2026-02-04T12:26:41.243732",
+    "level": "INFO",
+    "message": "Executing plan: Fetch and export the latest news about the stock market",
+    "data": {
+      "steps": 2
+    }
+  },
+  {
+    "timestamp": "2026-02-04T12:26:41.257826",
+    "level": "DEBUG",
+    "message": "Running tool: news_fetcher",
+    "data": {
+      "params": [
+        "topic",
+        "sources",
+        "limit"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T12:26:42.569069",
+    "level": "DEBUG",
+    "message": "Running tool: exporter",
+    "data": {
+      "params": [
+        "filename",
+        "format",
+        "data"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T12:26:42.589611",
+    "level": "INFO",
+    "message": "Execution complete: 2 tools run"
+  },
+  {
+    "timestamp": "2026-02-04T12:26:59.310849",
+    "level": "INFO",
+    "message": "Planning task for: India US trade deal"
+  },
+  {
+    "timestamp": "2026-02-04T12:27:00.950858",
+    "level": "INFO",
+    "message": "Nova plan generated",
+    "data": {
+      "plan": {
+        "intent": "Fetch and export news on India US trade deal",
+        "domain": "India US trade deal",
+        "steps": [
+          {
+            "tool": "news_fetcher",
+            "params": {
+              "topic": "India US trade deal",
+              "sources": [
+                "google"
+              ],
+              "limit": 5
+            }
+          },
+          {
+            "tool": "exporter",
+            "params": {
+              "filename": "India_US_trade_deal_report",
+              "format": "json"
+            }
+          }
+        ]
+      }
+    }
+  },
+  {
+    "timestamp": "2026-02-04T12:27:00.975718",
+    "level": "INFO",
+    "message": "Executing plan: Fetch and export news on India US trade deal",
+    "data": {
+      "steps": 2
+    }
+  },
+  {
+    "timestamp": "2026-02-04T12:27:00.989484",
+    "level": "DEBUG",
+    "message": "Running tool: news_fetcher",
+    "data": {
+      "params": [
+        "topic",
+        "sources",
+        "limit"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T12:27:02.046147",
+    "level": "DEBUG",
+    "message": "Running tool: exporter",
+    "data": {
+      "params": [
+        "filename",
+        "format",
+        "data"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T12:27:02.067661",
+    "level": "INFO",
+    "message": "Execution complete: 2 tools run"
+  }
+]

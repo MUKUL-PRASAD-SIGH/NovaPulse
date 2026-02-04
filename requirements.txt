@@ -1,0 +1,13 @@
+# AWS SDK
+boto3>=1.34.0
+
+# Web Framework
+fastapi>=0.109.0
+uvicorn>=0.27.0
+
+# HTTP/Utils
+python-dotenv>=1.0.0
+pydantic>=2.5.0
+
+# News RSS Parser (REQUIRED!)
+feedparser>=6.0.10

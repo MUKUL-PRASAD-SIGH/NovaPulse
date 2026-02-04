@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nova Intelligence Agent</title>
+    <meta name="description" content="AI-powered news intelligence with voice interface">
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <h1>🧠 Nova Intelligence Agent</h1>
+            <p class="tagline">Not just news. Intelligence.</p>
+        </header>
+
+        <!-- Feature Badges -->
+        <div class="features">
+            <span class="badge">📰 Multi-Source</span>
+            <span class="badge">🧠 AI Summary</span>
+            <span class="badge">💭 Sentiment</span>
+            <span class="badge">📊 Trends</span>
+            <span class="badge">💾 Export</span>
+        </div>
+
+        <!-- Input Section -->
+        <div class="input-section">
+            <button id="micBtn" class="mic-btn" title="Click to speak">
+                <span class="mic-icon">🎤</span>
+            </button>
+            <input 
+                type="text" 
+                id="textInput" 
+                placeholder="Say or type: 'Get AI news with sentiment analysis'" 
+                autocomplete="off"
+            >
+            <button id="sendBtn" class="send-btn">Send</button>
+        </div>
+
+        <!-- Status -->
+        <div id="status" class="status"></div>
+
+        <!-- Results Grid -->
+        <div class="results-grid">
+            <!-- Plan Panel -->
+            <div class="panel plan-panel">
+                <div class="panel-header">
+                    <h3>📋 Execution Plan</h3>
+                </div>
+                <pre id="planOutput"></pre>
+            </div>
+
+            <!-- Intelligence Panel -->
+            <div class="panel intel-panel">
+                <div class="panel-header">
+                    <h3>🧠 Intelligence Report</h3>
+                </div>
+                <div id="intelOutput" class="intel-content"></div>
+            </div>
+        </div>
+
+        <!-- News Articles -->
+        <div class="panel news-panel">
+            <div class="panel-header">
+                <h3>📰 Articles</h3>
+            </div>
+            <div id="newsOutput" class="news-grid"></div>
+        </div>
+
+        <!-- Example Commands -->
+        <div class="examples">
+            <p>Try saying:</p>
+            <div class="example-chips">
+                <button class="chip" data-cmd="Get top AI news">AI News</button>
+                <button class="chip" data-cmd="Get crypto news with sentiment analysis">Crypto Sentiment</button>
+                <button class="chip" data-cmd="What's trending in tech?">Tech Trends</button>
+                <button class="chip" data-cmd="Get AI news and summarize">AI Summary</button>
+                <button class="chip" data-cmd="Export tech news as markdown">Export MD</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="/static/app.js"></script>
+</body>
+</html>

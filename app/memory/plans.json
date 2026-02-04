@@ -1,0 +1,330 @@
+[
+  {
+    "timestamp": "2026-02-04T12:04:21.019786",
+    "user_input": "Get AI  news about moltbot",
+    "plan": {
+      "intent": "Get ai news intelligence",
+      "domain": "ai",
+      "steps": [
+        {
+          "tool": "news_fetcher",
+          "params": {
+            "topic": "ai",
+            "sources": [
+              "google"
+            ],
+            "limit": 5
+          }
+        },
+        {
+          "tool": "exporter",
+          "params": {
+            "filename": "ai_intelligence",
+            "format": "json"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T12:16:22.168864",
+    "user_input": "latest news about moltbot",
+    "plan": {
+      "intent": "Get ai news intelligence",
+      "domain": "ai",
+      "steps": [
+        {
+          "tool": "news_fetcher",
+          "params": {
+            "topic": "ai",
+            "sources": [
+              "google"
+            ],
+            "limit": 5
+          }
+        },
+        {
+          "tool": "exporter",
+          "params": {
+            "filename": "ai_intelligence",
+            "format": "json"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T12:18:24.533661",
+    "user_input": "latest news about moltbot",
+    "plan": {
+      "intent": "Fetch and export the latest news about Moltbot",
+      "domain": "technology",
+      "steps": [
+        {
+          "tool": "news_fetcher",
+          "params": {
+            "topic": "moltbot",
+            "sources": [
+              "google"
+            ],
+            "limit": 5
+          }
+        },
+        {
+          "tool": "exporter",
+          "params": {
+            "data": "",
+            "filename": "moltbot_news_report",
+            "format": "json"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T12:19:44.377046",
+    "user_input": "News about Moltbot",
+    "plan": {
+      "intent": "Fetch and export news about Moltbot",
+      "domain": "Moltbot",
+      "steps": [
+        {
+          "tool": "news_fetcher",
+          "params": {
+            "topic": "Moltbot",
+            "sources": [
+              "google"
+            ],
+            "limit": 5
+          }
+        },
+        {
+          "tool": "exporter",
+          "params": {
+            "data": "",
+            "filename": "moltbot_news_report",
+            "format": "json"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T12:20:28.288259",
+    "user_input": "News about Moltbot from 3rd and 4th feb",
+    "plan": {
+      "intent": "Fetch and export news about Moltbot from 3rd and 4th February",
+      "domain": "Moltbot",
+      "steps": [
+        {
+          "tool": "news_fetcher",
+          "params": {
+            "topic": "Moltbot",
+            "sources": [
+              "google"
+            ],
+            "limit": 5
+          }
+        },
+        {
+          "tool": "exporter",
+          "params": {
+            "data": "news_items",
+            "filename": "moltbot_news_report",
+            "format": "json"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T12:20:51.921552",
+    "user_input": "cra accident",
+    "plan": {
+      "intent": "Fetch and export news about a car accident in CRA",
+      "domain": "car accident",
+      "steps": [
+        {
+          "tool": "news_fetcher",
+          "params": {
+            "topic": "cra accident",
+            "sources": [
+              "google"
+            ],
+            "limit": 5
+          }
+        },
+        {
+          "tool": "exporter",
+          "params": {
+            "filename": "cra_accident_report",
+            "format": "json"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T12:20:58.197557",
+    "user_input": "car accident",
+    "plan": {
+      "intent": "Fetch and export news about a car accident",
+      "domain": "car accident",
+      "steps": [
+        {
+          "tool": "news_fetcher",
+          "params": {
+            "topic": "car accident",
+            "sources": [
+              "google"
+            ],
+            "limit": 5
+          }
+        },
+        {
+          "tool": "exporter",
+          "params": {
+            "filename": "car_accident_report",
+            "format": "json"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T12:21:26.489067",
+    "user_input": "\"News about Moltbot\"",
+    "plan": {
+      "intent": "Fetch and export news about Moltbot",
+      "domain": "technology",
+      "steps": [
+        {
+          "tool": "news_fetcher",
+          "params": {
+            "topic": "Moltbot",
+            "sources": [
+              "google"
+            ],
+            "limit": 5
+          }
+        },
+        {
+          "tool": "exporter",
+          "params": {
+            "filename": "moltbot_news_report",
+            "format": "json"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T12:22:06.036813",
+    "user_input": "car accident news",
+    "plan": {
+      "intent": "Fetch and export recent car accident news",
+      "domain": "car accident",
+      "steps": [
+        {
+          "tool": "news_fetcher",
+          "params": {
+            "topic": "car accident",
+            "sources": [
+              "google"
+            ],
+            "limit": 5
+          }
+        },
+        {
+          "tool": "exporter",
+          "params": {
+            "data": "news_items",
+            "filename": "car_accident_news_report",
+            "format": "json"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T12:23:44.560391",
+    "user_input": "stock market news",
+    "plan": {
+      "intent": "Fetch and export the latest stock market news",
+      "domain": "stock market",
+      "steps": [
+        {
+          "tool": "news_fetcher",
+          "params": {
+            "topic": "stock market",
+            "sources": [
+              "google"
+            ],
+            "limit": 5
+          }
+        },
+        {
+          "tool": "exporter",
+          "params": {
+            "filename": "stock_market_news",
+            "format": "json"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T12:26:41.220804",
+    "user_input": "stock market",
+    "plan": {
+      "intent": "Fetch and export the latest news about the stock market",
+      "domain": "stock market",
+      "steps": [
+        {
+          "tool": "news_fetcher",
+          "params": {
+            "topic": "stock market",
+            "sources": [
+              "google"
+            ],
+            "limit": 5
+          }
+        },
+        {
+          "tool": "exporter",
+          "params": {
+            "filename": "stock_market_news",
+            "format": "json"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T12:27:00.953863",
+    "user_input": "India US trade deal",
+    "plan": {
+      "intent": "Fetch and export news on India US trade deal",
+      "domain": "India US trade deal",
+      "steps": [
+        {
+          "tool": "news_fetcher",
+          "params": {
+            "topic": "India US trade deal",
+            "sources": [
+              "google"
+            ],
+            "limit": 5
+          }
+        },
+        {
+          "tool": "exporter",
+          "params": {
+            "filename": "India_US_trade_deal_report",
+            "format": "json"
+          }
+        }
+      ]
+    }
+  }
+]

@@ -1,0 +1,19 @@
+# Environment
+.env
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+
+# Output files
+output/
+
+# Memory (optional - keep if you want history)
+# app/memory/*.json
+
+# IDE
+.vscode/
+.idea/

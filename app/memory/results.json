@@ -1,0 +1,528 @@
+[
+  {
+    "timestamp": "2026-02-04T12:04:22.111094",
+    "result": {
+      "intent": "Get ai news intelligence",
+      "domain": "ai",
+      "tools_executed": [
+        {
+          "tool": "news_fetcher",
+          "success": true
+        },
+        {
+          "tool": "exporter",
+          "success": true
+        }
+      ],
+      "data": {
+        "news": [
+          {
+            "title": "\u2018Deepfakes spreading and more AI companions\u2019: seven takeaways from the latest artificial intelligence safety report - The Guardian",
+            "link": "https://news.google.com/rss/articles/CBMisgFBVV95cUxNQWlOVl9Db2UtMkJkWFhsYnZYeHBqQUZoY2tVMWZyWDFtVk5mUFZLMU80WDZidFZqMUpLR2hGZGVzQUtpakQzT3AxOWNEcEcwdDJZWHFWdGplUTFrcjNmY2pHM3FpQVhhT2Z3YjQ3aXlYS2txcVNyc3J5dWZwS1ZEU3cxRU1aYmxlQWk0WjVCTGxoRkYwT2RjSGpQczQwZldpODhDX0dFU3dKN25sb2lxaUVR?oc=5",
+            "source": "google",
+            "published": "Tue, 03 Feb 2026 05:00:00 GMT"
+          },
+          {
+            "title": "My Top Artificial Intelligence (AI) Stocks to Buy in 2026 - The Motley Fool",
+            "link": "https://news.google.com/rss/articles/CBMimAFBVV95cUxNdENqVnpqall6MnVFN1hSMkFWRlFtNmhKcHVGX3NlVkRqRmYzMW5pSmNITzJadmhxRkhZRXBtdzJXcjI0ZWhXNG1zOHNWcHZSQ1lGR0pqTWxDN1RyZkRuVXZrTjRDUk11dW1FOEY2YTMwVzJOSGhBNjlfdC1BaGRJcU5DVTlPYUpabXdkMVg5emh2Yzg4MFc4Tw?oc=5",
+            "source": "google",
+            "published": "Mon, 02 Feb 2026 07:00:00 GMT"
+          },
+          {
+            "title": "Is Nvidia the Best Artificial Intelligence (AI) Stock to Buy Right Now? - Nasdaq",
+            "link": "https://news.google.com/rss/articles/CBMilAFBVV95cUxPT3VNcVpNZUlvUnVuT2puOHFySWJuakxEVWg3MTFSZktZQTloRFFuTGhId1JHRmR6em0wYXUxZHRReFM3MFM5LU52TFlod1J6dGx3VGlLZjdrM2tXUXBfdFRlZ09sOEYtMWJvSERjaVh5VjB4X3M0QkdZeTFGM1I5QlZGRm92ZEF5TUNjcklKQUdNRDU1?oc=5",
+            "source": "google",
+            "published": "Tue, 03 Feb 2026 15:20:00 GMT"
+          },
+          {
+            "title": "The Top 3 Artificial Intelligence (AI) Chip Stocks to Buy With $50,000 in 2026 - The Motley Fool",
+            "link": "https://news.google.com/rss/articles/CBMimAFBVV95cUxQMHh0VFZzX0JNN0dRNXVkQWJXTXJQTUpnOEwzeVpzeUR6RjFRNEZScGlMd2p3VjdhQjhNWkdhNENaUXJZejhZZ1NNRk5vWE43SWs3SzhseWtQNUxRbE9vbWJrak9GZ0lMektkSDBtMTlTTnVOWDdYemtMNDZJLXEwbHpXUmZaaU9OLTFGRmpJMi0wRTRCWHI0QQ?oc=5",
+            "source": "google",
+            "published": "Wed, 28 Jan 2026 05:00:00 GMT"
+          },
+          {
+            "title": "Artificial intelligence researchers hit by flood of \u2018slop\u2019 - Financial Times",
+            "link": "https://news.google.com/rss/articles/CBMicEFVX3lxTE9tMWJreG4tdTVFYzlCUEJCb0VfdDBVUHNISTlnVjdOMHFSQmZfOFhHQW5TZzE3TVg5MmhseVlhUy1NXzNyajlYQ2lRUU02S0NRV3BmcG8wcUE2OFZlWm5keXdkSWFnLTl1aTdfOGJKYTM?oc=5",
+            "source": "google",
+            "published": "Sun, 01 Feb 2026 05:01:37 GMT"
+          }
+        ],
+        "exported_file": "output/ai_intelligence_20260204_120422.json"
+      },
+      "errors": [],
+      "success": true
+    }
+  },
+  {
+    "timestamp": "2026-02-04T12:16:23.527548",
+    "result": {
+      "intent": "Get ai news intelligence",
+      "domain": "ai",
+      "tools_executed": [
+        {
+          "tool": "news_fetcher",
+          "success": true
+        },
+        {
+          "tool": "exporter",
+          "success": true
+        }
+      ],
+      "data": {
+        "news": [
+          {
+            "title": "\u2018Deepfakes spreading and more AI companions\u2019: seven takeaways from the latest artificial intelligence safety report - The Guardian",
+            "link": "https://news.google.com/rss/articles/CBMisgFBVV95cUxNQWlOVl9Db2UtMkJkWFhsYnZYeHBqQUZoY2tVMWZyWDFtVk5mUFZLMU80WDZidFZqMUpLR2hGZGVzQUtpakQzT3AxOWNEcEcwdDJZWHFWdGplUTFrcjNmY2pHM3FpQVhhT2Z3YjQ3aXlYS2txcVNyc3J5dWZwS1ZEU3cxRU1aYmxlQWk0WjVCTGxoRkYwT2RjSGpQczQwZldpODhDX0dFU3dKN25sb2lxaUVR?oc=5",
+            "source": "google",
+            "published": "Tue, 03 Feb 2026 05:00:00 GMT"
+          },
+          {
+            "title": "My Top Artificial Intelligence (AI) Stocks to Buy in 2026 - The Motley Fool",
+            "link": "https://news.google.com/rss/articles/CBMimAFBVV95cUxNdENqVnpqall6MnVFN1hSMkFWRlFtNmhKcHVGX3NlVkRqRmYzMW5pSmNITzJadmhxRkhZRXBtdzJXcjI0ZWhXNG1zOHNWcHZSQ1lGR0pqTWxDN1RyZkRuVXZrTjRDUk11dW1FOEY2YTMwVzJOSGhBNjlfdC1BaGRJcU5DVTlPYUpabXdkMVg5emh2Yzg4MFc4Tw?oc=5",
+            "source": "google",
+            "published": "Mon, 02 Feb 2026 07:00:00 GMT"
+          },
+          {
+            "title": "Is Nvidia the Best Artificial Intelligence (AI) Stock to Buy Right Now? - Nasdaq",
+            "link": "https://news.google.com/rss/articles/CBMilAFBVV95cUxPT3VNcVpNZUlvUnVuT2puOHFySWJuakxEVWg3MTFSZktZQTloRFFuTGhId1JHRmR6em0wYXUxZHRReFM3MFM5LU52TFlod1J6dGx3VGlLZjdrM2tXUXBfdFRlZ09sOEYtMWJvSERjaVh5VjB4X3M0QkdZeTFGM1I5QlZGRm92ZEF5TUNjcklKQUdNRDU1?oc=5",
+            "source": "google",
+            "published": "Tue, 03 Feb 2026 15:20:00 GMT"
+          },
+          {
+            "title": "The Top 3 Artificial Intelligence (AI) Chip Stocks to Buy With $50,000 in 2026 - The Motley Fool",
+            "link": "https://news.google.com/rss/articles/CBMimAFBVV95cUxQMHh0VFZzX0JNN0dRNXVkQWJXTXJQTUpnOEwzeVpzeUR6RjFRNEZScGlMd2p3VjdhQjhNWkdhNENaUXJZejhZZ1NNRk5vWE43SWs3SzhseWtQNUxRbE9vbWJrak9GZ0lMektkSDBtMTlTTnVOWDdYemtMNDZJLXEwbHpXUmZaaU9OLTFGRmpJMi0wRTRCWHI0QQ?oc=5",
+            "source": "google",
+            "published": "Wed, 28 Jan 2026 05:00:00 GMT"
+          },
+          {
+            "title": "CNBC's The China Connection newsletter: For Chinese businesses, it's not about which AI is the smartest - CNBC",
+            "link": "https://news.google.com/rss/articles/CBMi0gFBVV95cUxNbmFXVS1UcHNHVk44NzltRkt3cF9KS3labHBoZEF2TDdsUVV0LXU5MFd4RGlLMHpkWTZrQndheEZDWnM4R045X21DOFoyemljSHFJN3pyN01iNTFWbDVmeG9NUWVaWmhWU0pFOVdTQi1LaVF5ZjF6MG56NlM1STNJMVplX2w4ektFSXdTdjdrZW9rMTZXeDBWc0hmT2MzMHpYam40alpsLVdGTFJEdkItQkZ6UVdfaDNlSHNhdTFvOGk5YnlkOFV3c2xVOHdQd1BjY3fSAdcBQVVfeXFMT0NLYUtlX1Brb3RfWUxsSFBkbjltUnFhcUkzQ0xxRFoyTmFjMHcyY01iMVVjUzB3MGE1UUV0YWpFTlBVazczcG5uckNUVlVLamtub3k1QjFwUW8wT0lGOFZXT21UUkw2Z0xUZXo3bmtRZi02NnNpNm80WjB5WThWd1VVbWFoMHpfVnNmdVRUazRRck5PYXg0bUx4R2FIaGFFMUJWRzVqV2U0SFNKMVQ5TFZ3OUxWOVVEVWdlRjFNT0tMRi1McWFZNG5jS3FnZUtnbXhSZ0JPdW8?oc=5",
+            "source": "google",
+            "published": "Wed, 04 Feb 2026 06:21:54 GMT"
+          }
+        ],
+        "exported_file": "output/ai_intelligence_20260204_121623.json"
+      },
+      "errors": [],
+      "success": true
+    }
+  },
+  {
+    "timestamp": "2026-02-04T12:18:25.857503",
+    "result": {
+      "intent": "Fetch and export the latest news about Moltbot",
+      "domain": "technology",
+      "tools_executed": [
+        {
+          "tool": "news_fetcher",
+          "success": true
+        },
+        {
+          "tool": "exporter",
+          "success": false,
+          "error": "exporter: 'str' object is not a mapping"
+        }
+      ],
+      "data": {
+        "news": [
+          {
+            "title": "From Clawdbot to Moltbot to OpenClaw: Meet the AI agent generating buzz and fear globally - CNBC",
+            "link": "https://news.google.com/rss/articles/CBMirgFBVV95cUxNVzdTelA1NnJuQVF4ZWhRZXdQSWlKVl9fRUZrelNlOWFsSWQ1QkNnVVpGam5mcmdpcXpwOFBrN0pFZHJITE9ERW8yb2xPNnVpWUZLZUd0Sm5GcTFRRmNxZjNTWGVSWWxxTk1paFNSSDZuNkw3bUNQNkZUOGMxT3c1VWpscW1acUVlTE0tQ2I5TXU3cTRNWjR2TWo3YUJ5dnBEY1ZfREdKN05faC1DZlHSAbMBQVVfeXFMT1BCQ1NUQkRwOXhtYnhmakw5OHZtMjJIRDlwR1V3UkJPZFB6REt1ZXE3ODhEQmhvMURQbzdPQ24wdkpkb1A4UTYyMEFwRVdFUU1MRjNkdlNlMENlMHI1aWdWRmVLLTN2T1RoTEVaZjFCM01tcU9CNEp0ejlobUVkdTFFWkdyVVZiM3d5VWFGbHI1T2tVYWkzS3ZnVlR0SU02c0dwX0VVMGt5QnoxSGZIeGVPWTA?oc=5",
+            "source": "google",
+            "published": "Mon, 02 Feb 2026 09:40:35 GMT"
+          },
+          {
+            "title": "\u201cA sci-fi horror movie\u201d: Moltbot AI goes rogue and won\u2019t stop calling - Cybernews",
+            "link": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE4tNjZELTNseDA2dG9qSzMwM2xPanhwMVY3U3F0U2Y3YmJpYkpjMFcwNEFFZ3NRV2dRdkNFMVVjYVY3WjVBNWR3ZjJxSS01Z21Lc3p0b0JGX3hPdXpabWc?oc=5",
+            "source": "google",
+            "published": "Mon, 02 Feb 2026 08:54:31 GMT"
+          },
+          {
+            "title": "From Clawdbot to Moltbot to OpenClaw: Security Experts Detail Critical Vulnerabilities and 6 Immediate Hardening Steps for the Viral AI Agent - Security Boulevard",
+            "link": "https://news.google.com/rss/articles/CBMiiwJBVV95cUxQRG1VLVlEUVdUV1UwXzYtclhnalZlWFBjV09QMV8tZmZtWUdSV01rdWE3Sl9CZTdBdVlXZ1NWdlJGR0htNXFiUGt4ZUMtQUdEWHFCajJmZjRzaVktX1JsOWp6LUpweEdqeldETU9Uek5PQ25Rc2Z6TktFcTFQSXZRRW9pWkRzMHE2ZjFqMkN2V2ZXOXZyMzBBOXlpbUxtVTQ4Wm01ZUlVRDJ0OVZjTU9hc1NzbGhlTEhYeGlIWEhGQ2JCVkRpS3hnWDU1QVQ2dTYxQ3E1OC1tbERtQV9HTlZrRTMteTJqakI2MnVHZ3JtWmZYNEhxSDRoTlRyT1A3MVdOTDlCYkZxckg4aDg?oc=5",
+            "source": "google",
+            "published": "Wed, 04 Feb 2026 04:51:30 GMT"
+          },
+          {
+            "title": "Clawdbot is now Moltbot for reasons that should be obvious (updated) - Mashable",
+            "link": "https://news.google.com/rss/articles/CBMiekFVX3lxTFA2cnprU1I4Y1ZIWndOMTBqZ0JVYUhHbUtQN210YXZzTTZSRkZEY29UOVBxMTV3WjNwNk1ka080aVNVVE01WG9kUWJwOUNlcW9xZ2lKUzVGUmZITFdGVy04dGVnaUFiRnRTcko4M3Z4Q3FBeTRiS1QwTXdB?oc=5",
+            "source": "google",
+            "published": "Fri, 30 Jan 2026 20:40:00 GMT"
+          },
+          {
+            "title": "Moltbook, a social network where AI agents hang together, may be 'the most interesting place on the internet right now' - Fortune",
+            "link": "https://news.google.com/rss/articles/CBMivwFBVV95cUxQWlhLZDF6eVhQd2RmSFFsVmxqUkV4dHNZcGIybjdDWEpPSnRqNUc1N1NIMXBiNmdLU3JaTndwcS01ZnhLNXFtOEthV0dSRnMtVkdVb2NfbHNJNktzN3BMY1VhQWN2X0xzZzFRRWNrSUo5YjlkYU9ad3ZBT0M4bWJseUo5SWROQTdkdEpqcG1sc2VCcXpyalVYN1hfektkeG8tMFJySVM5X01FcFFweC00MDZ1eGVXN0l2V1RTVWZvNA?oc=5",
+            "source": "google",
+            "published": "Sat, 31 Jan 2026 17:51:00 GMT"
+          }
+        ]
+      },
+      "errors": [
+        "exporter: 'str' object is not a mapping"
+      ],
+      "success": false
+    }
+  },
+  {
+    "timestamp": "2026-02-04T12:19:45.647703",
+    "result": {
+      "intent": "Fetch and export news about Moltbot",
+      "domain": "Moltbot",
+      "tools_executed": [
+        {
+          "tool": "news_fetcher",
+          "success": true
+        },
+        {
+          "tool": "exporter",
+          "success": true
+        }
+      ],
+      "data": {
+        "news": [
+          {
+            "title": "From Clawdbot to Moltbot to OpenClaw: Meet the AI agent generating buzz and fear globally - CNBC",
+            "link": "https://news.google.com/rss/articles/CBMirgFBVV95cUxNVzdTelA1NnJuQVF4ZWhRZXdQSWlKVl9fRUZrelNlOWFsSWQ1QkNnVVpGam5mcmdpcXpwOFBrN0pFZHJITE9ERW8yb2xPNnVpWUZLZUd0Sm5GcTFRRmNxZjNTWGVSWWxxTk1paFNSSDZuNkw3bUNQNkZUOGMxT3c1VWpscW1acUVlTE0tQ2I5TXU3cTRNWjR2TWo3YUJ5dnBEY1ZfREdKN05faC1DZlHSAbMBQVVfeXFMT1BCQ1NUQkRwOXhtYnhmakw5OHZtMjJIRDlwR1V3UkJPZFB6REt1ZXE3ODhEQmhvMURQbzdPQ24wdkpkb1A4UTYyMEFwRVdFUU1MRjNkdlNlMENlMHI1aWdWRmVLLTN2T1RoTEVaZjFCM01tcU9CNEp0ejlobUVkdTFFWkdyVVZiM3d5VWFGbHI1T2tVYWkzS3ZnVlR0SU02c0dwX0VVMGt5QnoxSGZIeGVPWTA?oc=5",
+            "source": "google",
+            "published": "Mon, 02 Feb 2026 09:40:35 GMT"
+          },
+          {
+            "title": "\u201cA sci-fi horror movie\u201d: Moltbot AI goes rogue and won\u2019t stop calling - Cybernews",
+            "link": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE4tNjZELTNseDA2dG9qSzMwM2xPanhwMVY3U3F0U2Y3YmJpYkpjMFcwNEFFZ3NRV2dRdkNFMVVjYVY3WjVBNWR3ZjJxSS01Z21Lc3p0b0JGX3hPdXpabWc?oc=5",
+            "source": "google",
+            "published": "Mon, 02 Feb 2026 08:54:31 GMT"
+          },
+          {
+            "title": "From Clawdbot to Moltbot to OpenClaw: Security Experts Detail Critical Vulnerabilities and 6 Immediate Hardening Steps for the Viral AI Agent - Security Boulevard",
+            "link": "https://news.google.com/rss/articles/CBMiiwJBVV95cUxQRG1VLVlEUVdUV1UwXzYtclhnalZlWFBjV09QMV8tZmZtWUdSV01rdWE3Sl9CZTdBdVlXZ1NWdlJGR0htNXFiUGt4ZUMtQUdEWHFCajJmZjRzaVktX1JsOWp6LUpweEdqeldETU9Uek5PQ25Rc2Z6TktFcTFQSXZRRW9pWkRzMHE2ZjFqMkN2V2ZXOXZyMzBBOXlpbUxtVTQ4Wm01ZUlVRDJ0OVZjTU9hc1NzbGhlTEhYeGlIWEhGQ2JCVkRpS3hnWDU1QVQ2dTYxQ3E1OC1tbERtQV9HTlZrRTMteTJqakI2MnVHZ3JtWmZYNEhxSDRoTlRyT1A3MVdOTDlCYkZxckg4aDg?oc=5",
+            "source": "google",
+            "published": "Wed, 04 Feb 2026 04:51:30 GMT"
+          },
+          {
+            "title": "Clawdbot is now Moltbot for reasons that should be obvious (updated) - Mashable",
+            "link": "https://news.google.com/rss/articles/CBMiekFVX3lxTFA2cnprU1I4Y1ZIWndOMTBqZ0JVYUhHbUtQN210YXZzTTZSRkZEY29UOVBxMTV3WjNwNk1ka080aVNVVE01WG9kUWJwOUNlcW9xZ2lKUzVGUmZITFdGVy04dGVnaUFiRnRTcko4M3Z4Q3FBeTRiS1QwTXdB?oc=5",
+            "source": "google",
+            "published": "Fri, 30 Jan 2026 20:40:00 GMT"
+          },
+          {
+            "title": "Moltbook, a social network where AI agents hang together, may be 'the most interesting place on the internet right now' - Fortune",
+            "link": "https://news.google.com/rss/articles/CBMivwFBVV95cUxQWlhLZDF6eVhQd2RmSFFsVmxqUkV4dHNZcGIybjdDWEpPSnRqNUc1N1NIMXBiNmdLU3JaTndwcS01ZnhLNXFtOEthV0dSRnMtVkdVb2NfbHNJNktzN3BMY1VhQWN2X0xzZzFRRWNrSUo5YjlkYU9ad3ZBT0M4bWJseUo5SWROQTdkdEpqcG1sc2VCcXpyalVYN1hfektkeG8tMFJySVM5X01FcFFweC00MDZ1eGVXN0l2V1RTVWZvNA?oc=5",
+            "source": "google",
+            "published": "Sat, 31 Jan 2026 17:51:00 GMT"
+          }
+        ],
+        "exported_file": "output/moltbot_news_report_20260204_121945.json"
+      },
+      "errors": [],
+      "success": true
+    }
+  },
+  {
+    "timestamp": "2026-02-04T12:20:28.660021",
+    "result": {
+      "intent": "Fetch and export news about Moltbot from 3rd and 4th February",
+      "domain": "Moltbot",
+      "tools_executed": [
+        {
+          "tool": "news_fetcher",
+          "success": true
+        },
+        {
+          "tool": "exporter",
+          "success": true
+        }
+      ],
+      "data": {
+        "news": [
+          {
+            "title": "From Clawdbot to Moltbot to OpenClaw: Meet the AI agent generating buzz and fear globally - CNBC",
+            "link": "https://news.google.com/rss/articles/CBMirgFBVV95cUxNVzdTelA1NnJuQVF4ZWhRZXdQSWlKVl9fRUZrelNlOWFsSWQ1QkNnVVpGam5mcmdpcXpwOFBrN0pFZHJITE9ERW8yb2xPNnVpWUZLZUd0Sm5GcTFRRmNxZjNTWGVSWWxxTk1paFNSSDZuNkw3bUNQNkZUOGMxT3c1VWpscW1acUVlTE0tQ2I5TXU3cTRNWjR2TWo3YUJ5dnBEY1ZfREdKN05faC1DZlHSAbMBQVVfeXFMT1BCQ1NUQkRwOXhtYnhmakw5OHZtMjJIRDlwR1V3UkJPZFB6REt1ZXE3ODhEQmhvMURQbzdPQ24wdkpkb1A4UTYyMEFwRVdFUU1MRjNkdlNlMENlMHI1aWdWRmVLLTN2T1RoTEVaZjFCM01tcU9CNEp0ejlobUVkdTFFWkdyVVZiM3d5VWFGbHI1T2tVYWkzS3ZnVlR0SU02c0dwX0VVMGt5QnoxSGZIeGVPWTA?oc=5",
+            "source": "google",
+            "published": "Mon, 02 Feb 2026 09:40:35 GMT"
+          },
+          {
+            "title": "\u201cA sci-fi horror movie\u201d: Moltbot AI goes rogue and won\u2019t stop calling - Cybernews",
+            "link": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE4tNjZELTNseDA2dG9qSzMwM2xPanhwMVY3U3F0U2Y3YmJpYkpjMFcwNEFFZ3NRV2dRdkNFMVVjYVY3WjVBNWR3ZjJxSS01Z21Lc3p0b0JGX3hPdXpabWc?oc=5",
+            "source": "google",
+            "published": "Mon, 02 Feb 2026 08:54:31 GMT"
+          },
+          {
+            "title": "From Clawdbot to Moltbot to OpenClaw: Security Experts Detail Critical Vulnerabilities and 6 Immediate Hardening Steps for the Viral AI Agent - Security Boulevard",
+            "link": "https://news.google.com/rss/articles/CBMiiwJBVV95cUxQRG1VLVlEUVdUV1UwXzYtclhnalZlWFBjV09QMV8tZmZtWUdSV01rdWE3Sl9CZTdBdVlXZ1NWdlJGR0htNXFiUGt4ZUMtQUdEWHFCajJmZjRzaVktX1JsOWp6LUpweEdqeldETU9Uek5PQ25Rc2Z6TktFcTFQSXZRRW9pWkRzMHE2ZjFqMkN2V2ZXOXZyMzBBOXlpbUxtVTQ4Wm01ZUlVRDJ0OVZjTU9hc1NzbGhlTEhYeGlIWEhGQ2JCVkRpS3hnWDU1QVQ2dTYxQ3E1OC1tbERtQV9HTlZrRTMteTJqakI2MnVHZ3JtWmZYNEhxSDRoTlRyT1A3MVdOTDlCYkZxckg4aDg?oc=5",
+            "source": "google",
+            "published": "Wed, 04 Feb 2026 04:51:30 GMT"
+          },
+          {
+            "title": "Clawdbot is now Moltbot for reasons that should be obvious (updated) - Mashable",
+            "link": "https://news.google.com/rss/articles/CBMiekFVX3lxTFA2cnprU1I4Y1ZIWndOMTBqZ0JVYUhHbUtQN210YXZzTTZSRkZEY29UOVBxMTV3WjNwNk1ka080aVNVVE01WG9kUWJwOUNlcW9xZ2lKUzVGUmZITFdGVy04dGVnaUFiRnRTcko4M3Z4Q3FBeTRiS1QwTXdB?oc=5",
+            "source": "google",
+            "published": "Fri, 30 Jan 2026 20:40:00 GMT"
+          },
+          {
+            "title": "Moltbook, a social network where AI agents hang together, may be 'the most interesting place on the internet right now' - Fortune",
+            "link": "https://news.google.com/rss/articles/CBMivwFBVV95cUxQWlhLZDF6eVhQd2RmSFFsVmxqUkV4dHNZcGIybjdDWEpPSnRqNUc1N1NIMXBiNmdLU3JaTndwcS01ZnhLNXFtOEthV0dSRnMtVkdVb2NfbHNJNktzN3BMY1VhQWN2X0xzZzFRRWNrSUo5YjlkYU9ad3ZBT0M4bWJseUo5SWROQTdkdEpqcG1sc2VCcXpyalVYN1hfektkeG8tMFJySVM5X01FcFFweC00MDZ1eGVXN0l2V1RTVWZvNA?oc=5",
+            "source": "google",
+            "published": "Sat, 31 Jan 2026 17:51:00 GMT"
+          }
+        ],
+        "exported_file": "output/moltbot_news_report_20260204_122028.json"
+      },
+      "errors": [],
+      "success": true
+    }
+  },
+  {
+    "timestamp": "2026-02-04T12:20:51.994516",
+    "result": {
+      "intent": "Fetch and export news about a car accident in CRA",
+      "domain": "car accident",
+      "tools_executed": [
+        {
+          "tool": "news_fetcher",
+          "success": true
+        },
+        {
+          "tool": "exporter",
+          "success": true
+        }
+      ],
+      "data": {
+        "news": [],
+        "exported_file": "output/cra_accident_report_20260204_122051.json"
+      },
+      "errors": [],
+      "success": true
+    }
+  },
+  {
+    "timestamp": "2026-02-04T12:20:58.262241",
+    "result": {
+      "intent": "Fetch and export news about a car accident",
+      "domain": "car accident",
+      "tools_executed": [
+        {
+          "tool": "news_fetcher",
+          "success": true
+        },
+        {
+          "tool": "exporter",
+          "success": true
+        }
+      ],
+      "data": {
+        "news": [],
+        "exported_file": "output/car_accident_report_20260204_122058.json"
+      },
+      "errors": [],
+      "success": true
+    }
+  },
+  {
+    "timestamp": "2026-02-04T12:21:27.782515",
+    "result": {
+      "intent": "Fetch and export news about Moltbot",
+      "domain": "technology",
+      "tools_executed": [
+        {
+          "tool": "news_fetcher",
+          "success": true
+        },
+        {
+          "tool": "exporter",
+          "success": true
+        }
+      ],
+      "data": {
+        "news": [
+          {
+            "title": "From Clawdbot to Moltbot to OpenClaw: Meet the AI agent generating buzz and fear globally - CNBC",
+            "link": "https://news.google.com/rss/articles/CBMirgFBVV95cUxNVzdTelA1NnJuQVF4ZWhRZXdQSWlKVl9fRUZrelNlOWFsSWQ1QkNnVVpGam5mcmdpcXpwOFBrN0pFZHJITE9ERW8yb2xPNnVpWUZLZUd0Sm5GcTFRRmNxZjNTWGVSWWxxTk1paFNSSDZuNkw3bUNQNkZUOGMxT3c1VWpscW1acUVlTE0tQ2I5TXU3cTRNWjR2TWo3YUJ5dnBEY1ZfREdKN05faC1DZlHSAbMBQVVfeXFMT1BCQ1NUQkRwOXhtYnhmakw5OHZtMjJIRDlwR1V3UkJPZFB6REt1ZXE3ODhEQmhvMURQbzdPQ24wdkpkb1A4UTYyMEFwRVdFUU1MRjNkdlNlMENlMHI1aWdWRmVLLTN2T1RoTEVaZjFCM01tcU9CNEp0ejlobUVkdTFFWkdyVVZiM3d5VWFGbHI1T2tVYWkzS3ZnVlR0SU02c0dwX0VVMGt5QnoxSGZIeGVPWTA?oc=5",
+            "source": "google",
+            "published": "Mon, 02 Feb 2026 09:40:35 GMT"
+          },
+          {
+            "title": "\u201cA sci-fi horror movie\u201d: Moltbot AI goes rogue and won\u2019t stop calling - Cybernews",
+            "link": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE4tNjZELTNseDA2dG9qSzMwM2xPanhwMVY3U3F0U2Y3YmJpYkpjMFcwNEFFZ3NRV2dRdkNFMVVjYVY3WjVBNWR3ZjJxSS01Z21Lc3p0b0JGX3hPdXpabWc?oc=5",
+            "source": "google",
+            "published": "Mon, 02 Feb 2026 08:54:31 GMT"
+          },
+          {
+            "title": "From Clawdbot to Moltbot to OpenClaw: Security Experts Detail Critical Vulnerabilities and 6 Immediate Hardening Steps for the Viral AI Agent - Security Boulevard",
+            "link": "https://news.google.com/rss/articles/CBMiiwJBVV95cUxQRG1VLVlEUVdUV1UwXzYtclhnalZlWFBjV09QMV8tZmZtWUdSV01rdWE3Sl9CZTdBdVlXZ1NWdlJGR0htNXFiUGt4ZUMtQUdEWHFCajJmZjRzaVktX1JsOWp6LUpweEdqeldETU9Uek5PQ25Rc2Z6TktFcTFQSXZRRW9pWkRzMHE2ZjFqMkN2V2ZXOXZyMzBBOXlpbUxtVTQ4Wm01ZUlVRDJ0OVZjTU9hc1NzbGhlTEhYeGlIWEhGQ2JCVkRpS3hnWDU1QVQ2dTYxQ3E1OC1tbERtQV9HTlZrRTMteTJqakI2MnVHZ3JtWmZYNEhxSDRoTlRyT1A3MVdOTDlCYkZxckg4aDg?oc=5",
+            "source": "google",
+            "published": "Wed, 04 Feb 2026 04:51:30 GMT"
+          },
+          {
+            "title": "Clawdbot is now Moltbot for reasons that should be obvious (updated) - Mashable",
+            "link": "https://news.google.com/rss/articles/CBMiekFVX3lxTFA2cnprU1I4Y1ZIWndOMTBqZ0JVYUhHbUtQN210YXZzTTZSRkZEY29UOVBxMTV3WjNwNk1ka080aVNVVE01WG9kUWJwOUNlcW9xZ2lKUzVGUmZITFdGVy04dGVnaUFiRnRTcko4M3Z4Q3FBeTRiS1QwTXdB?oc=5",
+            "source": "google",
+            "published": "Fri, 30 Jan 2026 20:40:00 GMT"
+          },
+          {
+            "title": "Moltbook, a social network where AI agents hang together, may be 'the most interesting place on the internet right now' - Fortune",
+            "link": "https://news.google.com/rss/articles/CBMivwFBVV95cUxQWlhLZDF6eVhQd2RmSFFsVmxqUkV4dHNZcGIybjdDWEpPSnRqNUc1N1NIMXBiNmdLU3JaTndwcS01ZnhLNXFtOEthV0dSRnMtVkdVb2NfbHNJNktzN3BMY1VhQWN2X0xzZzFRRWNrSUo5YjlkYU9ad3ZBT0M4bWJseUo5SWROQTdkdEpqcG1sc2VCcXpyalVYN1hfektkeG8tMFJySVM5X01FcFFweC00MDZ1eGVXN0l2V1RTVWZvNA?oc=5",
+            "source": "google",
+            "published": "Sat, 31 Jan 2026 17:51:00 GMT"
+          }
+        ],
+        "exported_file": "output/moltbot_news_report_20260204_122127.json"
+      },
+      "errors": [],
+      "success": true
+    }
+  },
+  {
+    "timestamp": "2026-02-04T12:22:06.096239",
+    "result": {
+      "intent": "Fetch and export recent car accident news",
+      "domain": "car accident",
+      "tools_executed": [
+        {
+          "tool": "news_fetcher",
+          "success": true
+        },
+        {
+          "tool": "exporter",
+          "success": true
+        }
+      ],
+      "data": {
+        "news": [],
+        "exported_file": "output/car_accident_news_report_20260204_122206.json"
+      },
+      "errors": [],
+      "success": true
+    }
+  },
+  {
+    "timestamp": "2026-02-04T12:23:44.625053",
+    "result": {
+      "intent": "Fetch and export the latest stock market news",
+      "domain": "stock market",
+      "tools_executed": [
+        {
+          "tool": "news_fetcher",
+          "success": true
+        },
+        {
+          "tool": "exporter",
+          "success": true
+        }
+      ],
+      "data": {
+        "news": [],
+        "exported_file": "output/stock_market_news_20260204_122344.json"
+      },
+      "errors": [],
+      "success": true
+    }
+  },
+  {
+    "timestamp": "2026-02-04T12:26:42.571633",
+    "result": {
+      "intent": "Fetch and export the latest news about the stock market",
+      "domain": "stock market",
+      "tools_executed": [
+        {
+          "tool": "news_fetcher",
+          "success": true
+        },
+        {
+          "tool": "exporter",
+          "success": true
+        }
+      ],
+      "data": {
+        "news": [
+          {
+            "title": "Stock market today: Dow, Nasdaq, S&P 500 sink as tech falters amid flood of earnings - Yahoo Finance",
+            "link": "https://news.google.com/rss/articles/CBMiywFBVV95cUxPMVpXWnhuTzExUlZHQ3JyYlhlMndZVVREMHZqcy1lWGJwUU9kSi1oMlVqS1p6ZGNXRWdzRHlGSVRVTXp1dGt4QTZmb29acWU2YXBJM0xnOUhaOVloekRteWMtaXc3MmE3RGN3SGlXeExFZHNFTXgzUlZFM3VNN1Z0Umc2UzNnTW44Uk1seWZ4LU9xdDNHQURVWkJmRUl6bEhvZ0lzQXZiNjlhV2t0aENYYUxlYjBqczdnSlc3TFRaQm42LUZiQ1JLNE9fNA?oc=5",
+            "source": "google",
+            "published": "Tue, 03 Feb 2026 21:10:58 GMT"
+          },
+          {
+            "title": "Stock Market News From Feb. 3, 2026: Dow, S&P 500, Nasdaq Fall; Palantir, AMD, Tesla, Pfizer, Nvidia, More Movers - Barron's",
+            "link": "https://news.google.com/rss/articles/CBMi-wJBVV95cUxNOWd1M3F2YW1BYlRrem5mcDdsWVJ1cjIxRnRpQ2YwSGI2T1h2b1hhV0lvOVNwVVNVdklQdHhFR2hkWUFQM3h1cVpfTDc5dVBPNTF2MzJoSWwzeUpib3lYSVZtUUs3akZhcnJPZ2pPUGFGWmlpalE5b2ZRUmtlSVZqQUt2c3hvakhsWVQ0OXByNldkaVVnY3phV19ZRXVmV2E4Zzl4dGRkM2JpYVdGOUJuZVZSckpyZHpGdWlUV0NvLXdqdS1MeXlfVFlYeGVQRjB0YzFNMy12QzJxVVc2dU1nVzRLMTJfV0xwd3lDY3dZTi1ldnpaSjhONHlqTWJKcmQzb1pkWWFfZVlkY2N2ZllwcDBBTXp0eFIzaTN1NUdWOHRXOElzRzBmNnVhdGFCRFBVb0hJaHB3VGJtdTU0OFdFODB4dG9DY2FxMUMzLTF5azY2YWQ1cVRURC1reVN3aG1QRDFZdFZ4TVlZbFQ4RWxZa0Z5RFNjcjZjc1hn?oc=5",
+            "source": "google",
+            "published": "Wed, 04 Feb 2026 00:55:00 GMT"
+          },
+          {
+            "title": "S&P 500 futures are little changed after tech sell-off drags down major averages: Live updates - CNBC",
+            "link": "https://news.google.com/rss/articles/CBMid0FVX3lxTE9oU1ZUcmdBanZKQ1BTR2NMSVFUcDZiaEJFUGVDNjdkX2lXbGJsRjJEMXZMU2V1MVUwZ2Jzc0VFbTBsSWVoNzFLSEdhMEVOU1Rad2tmU0x6M0VyYkU2Qm1vLXVYNUpCd3QzU3lqTnprczNtTjdULTFR0gF8QVVfeXFMTXVpVDVfZVN2UHRUNm90X0x0eTZ0Y1VRX1JLWDhLR3M3YzYxWkhVaHgyaTZwUl9ReVpuSzZfZ0g4LXMwMVNJMFY1X1M4TEdYemFvWEhQWkxoMk9KWkdwS0ZHM2l3aHA2YVM1Vy1HczJnSk1vc2pOdDMySHd3ZA?oc=5",
+            "source": "google",
+            "published": "Wed, 04 Feb 2026 01:18:00 GMT"
+          },
+          {
+            "title": "Market concentration is nothing to worry about - Financial Times",
+            "link": "https://news.google.com/rss/articles/CBMicEFVX3lxTFBhU0RZbmpjaGllb3A5VVVhMzdyMEZPTzJUQ2xwbHFiZ25vcmlldks3NlNoTHFaZ3VPV1czYXRaQ2NUa0JRMmZqb1lHWVNKc3k3aUozdldsWmtYbkNNamY5dktOLV9UT3hvVGVsR1BfSW4?oc=5",
+            "source": "google",
+            "published": "Wed, 04 Feb 2026 06:30:25 GMT"
+          },
+          {
+            "title": "Stocks Fall From Near-Record Levels as Oil Jumps: Markets Wrap - Bloomberg.com",
+            "link": "https://news.google.com/rss/articles/CBMitAFBVV95cUxNcEU0Um12emF6Y1pSLTJmcG02el9hdkpVOEZwMlF5VTRtc25BeFBZbTJUSVFhWHpNbUIta29ZMFl2Qm1UZTJWN0ZvM3R3REZidms5S1NCOW5nekdwcUJIWG5qcUJoc0tWc2tkWVlhaGdnanppd3lVd29YX0g0MkxzWjZWUVJySGYwd3RaNUk3bkFfQkhIRXdNUDNEdnRYaXhhcHpoSTRFcllmYUFvNXIxaFpnNG8?oc=5",
+            "source": "google",
+            "published": "Tue, 03 Feb 2026 22:08:31 GMT"
+          }
+        ],
+        "exported_file": "output/stock_market_news_20260204_122642.json"
+      },
+      "errors": [],
+      "success": true
+    }
+  },
+  {
+    "timestamp": "2026-02-04T12:27:02.050152",
+    "result": {
+      "intent": "Fetch and export news on India US trade deal",
+      "domain": "India US trade deal",
+      "tools_executed": [
+        {
+          "tool": "news_fetcher",
+          "success": true
+        },
+        {
+          "tool": "exporter",
+          "success": true
+        }
+      ],
+      "data": {
+        "news": [
+          {
+            "title": "Trump refuses to be outdone by Europe, signing his own U.S.-India trade deal - CNBC",
+            "link": "https://news.google.com/rss/articles/CBMikwFBVV95cUxNRk5nTHcyZGk1VXBMZGZ1eGtlSFdUeXl5d3NTLXFUR1lBb005aGdzblludFdYcVFEZVJfR1JhVElnX01NM3VLVU4xd0F1eHJ4Zi1sTnZnUlJlWi10Y0ZkV1BMQ0NDYXJxU1E0QUMtUUs3RUxMS2pfRWNGdWIwdG5ac284QjJiTFFFMjlvUWp6cjQxc3fSAZgBQVVfeXFMTVNnQW1tZFNyQ3NqdEI1MURkUnBrUzJ6UFVjN3ZJN3FTRVh4WnNFY1pNSmRBMzlwY2NURG04Z0JLVWc2M2Z1ZWFORlhLUHYzRkhxT1c5ejlJaWVEa2FrUVhmVXQyUFNfc0I0M041VWFqZThzTUhvVEM2dFpPU0VYMk9oSXFzdTdYUXdSWVFUczR0WVZ1a0JhUW0?oc=5",
+            "source": "google",
+            "published": "Tue, 03 Feb 2026 10:36:45 GMT"
+          },
+          {
+            "title": "Hope and uncertainty as India and US strike long-delayed trade deal - BBC",
+            "link": "https://news.google.com/rss/articles/CBMiWkFVX3lxTFBoRHZ3eDU2UERBbkZfcHFSSFdicTdPTFdCM2pMQjJORmV6TGFhT3poR2hzamVwN1V1QlF4UDIwMTFDT0gwZUJwb2EyX05Kd1VINnhEdU9fVDIyZw?oc=5",
+            "source": "google",
+            "published": "Tue, 03 Feb 2026 06:29:43 GMT"
+          },
+          {
+            "title": "The Trump-Modi Trade Deal Won\u2019t Magically Restore U.S.-India Trust - Carnegie Endowment for International Peace",
+            "link": "https://news.google.com/rss/articles/CBMinwFBVV95cUxQOXNLeDh5cmFqWjlfSUNmTEVwOTA5THBMSjRmcmc3TEoxN2lnaWk3Vk13WEFsWGZDTmlXLVB6OXZiMjVxYm90YVlNSnBNbGFUMm05V3l1VXJkeHlkTkdWNlh3bXA5bzVDZXNndEpqRmM0VkRVLWZUenVlN0dwVzFaQVlTcVRmUzJtUXItR2VhM0xKdG5yT0RUelJBeDNfd2c?oc=5",
+            "source": "google",
+            "published": "Tue, 03 Feb 2026 21:24:07 GMT"
+          },
+          {
+            "title": "Indian shares pause after US trade-deal rally; IT stocks weigh - Reuters",
+            "link": "https://news.google.com/rss/articles/CBMivgFBVV95cUxPV3NudC0xbm5TcDhCaS1vUTFsalB0ZTZmbXRSSC1XWDE1MU5IQ2dubUFaTTdGbE9La3pPdDFJZ3V1NVJ2WG9MY3Y4R1NlTXVtUVFDa3NpeW5VNHNxb1ZiUldWMzI1Rlh1MTM5YmMtNkhYUUZsdm9GN1dqUzJ3ZGtRSWw5elQycHhMWnRYQ3lueUFDZlFBUWxKTEdlWTAyek1FdExtLS1Lb2x1eVlvd0RZVDdRLXVBUGdQeElJY0N3?oc=5",
+            "source": "google",
+            "published": "Wed, 04 Feb 2026 02:34:00 GMT"
+          },
+          {
+            "title": "Nukes To Minerals: What Jaishankar, Rubio Discussed After India-US Deal - NDTV",
+            "link": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxNUkI3ak5WZFlja3R3Q1ZHQnVzTGZnaTc5V242UkJ1ZnNUSk5mVUdrSmJSRjYwZ2RLSWZlc0trbXhfLVBpMlhyUGUyTTg5X0pNVWotc2w4UE5BdkJOdld2d09nTkdpV1VaN3lTQ0w2Y2tzdThGcHVDUjNGeGJqcllmbVpkTGRjMjJoaGJ2bXdKcy1TWEZUU2pjY3lQa3hqcWpxS2Fham5waFBGbDA2aHBQVTZ0OXZmYUdLampycXNWXzbSAcgBQVVfeXFMUDQtSzQzTWRXQjczMDk3cXRObXpoWkt4aG9tV3R3TkFhZjlYazRwLXBaZkVwYU9PSVBndEhlYmtKZ0pDQzdKXzVvN0piTFc3T01VS0VrR0pQTkk3TnpLMHZOdnE5RlI0c0VYdjZrWU4tblFtbkNRTlFQd244by0xTG5hSVBTVWxiQWJWLXVBV2ZHMmlVbjNlYWNVTzNzNW1vWUNzandDVmgzalBCTldWS2ZKbVowODVKQnVJZVNSN1oyaGpJUm5nbXE?oc=5",
+            "source": "google",
+            "published": "Wed, 04 Feb 2026 00:24:00 GMT"
+          }
+        ],
+        "exported_file": "output/India_US_trade_deal_report_20260204_122702.json"
+      },
+      "errors": [],
+      "success": true
+    }
+  }
+]
