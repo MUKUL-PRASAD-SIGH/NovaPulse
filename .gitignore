@@ -11,6 +11,9 @@ venv/
 # Output files
 output/
 
+# Demo videos / recordings
+Demo Videos/
+
 # Memory (optional - keep if you want history)
 # app/memory/*.json
 

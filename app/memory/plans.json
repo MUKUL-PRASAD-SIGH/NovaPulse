@@ -1,115 +1,5 @@
 [
   {
-    "timestamp": "2026-02-04T12:04:21.019786",
-    "user_input": "Get AI  news about moltbot",
-    "plan": {
-      "intent": "Get ai news intelligence",
-      "domain": "ai",
-      "steps": [
-        {
-          "tool": "news_fetcher",
-          "params": {
-            "topic": "ai",
-            "sources": [
-              "google"
-            ],
-            "limit": 5
-          }
-        },
-        {
-          "tool": "exporter",
-          "params": {
-            "filename": "ai_intelligence",
-            "format": "json"
-          }
-        }
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-02-04T12:16:22.168864",
-    "user_input": "latest news about moltbot",
-    "plan": {
-      "intent": "Get ai news intelligence",
-      "domain": "ai",
-      "steps": [
-        {
-          "tool": "news_fetcher",
-          "params": {
-            "topic": "ai",
-            "sources": [
-              "google"
-            ],
-            "limit": 5
-          }
-        },
-        {
-          "tool": "exporter",
-          "params": {
-            "filename": "ai_intelligence",
-            "format": "json"
-          }
-        }
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-02-04T12:18:24.533661",
-    "user_input": "latest news about moltbot",
-    "plan": {
-      "intent": "Fetch and export the latest news about Moltbot",
-      "domain": "technology",
-      "steps": [
-        {
-          "tool": "news_fetcher",
-          "params": {
-            "topic": "moltbot",
-            "sources": [
-              "google"
-            ],
-            "limit": 5
-          }
-        },
-        {
-          "tool": "exporter",
-          "params": {
-            "data": "",
-            "filename": "moltbot_news_report",
-            "format": "json"
-          }
-        }
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-02-04T12:19:44.377046",
-    "user_input": "News about Moltbot",
-    "plan": {
-      "intent": "Fetch and export news about Moltbot",
-      "domain": "Moltbot",
-      "steps": [
-        {
-          "tool": "news_fetcher",
-          "params": {
-            "topic": "Moltbot",
-            "sources": [
-              "google"
-            ],
-            "limit": 5
-          }
-        },
-        {
-          "tool": "exporter",
-          "params": {
-            "data": "",
-            "filename": "moltbot_news_report",
-            "format": "json"
-          }
-        }
-      ]
-    }
-  },
-  {
     "timestamp": "2026-02-04T12:20:28.288259",
     "user_input": "News about Moltbot from 3rd and 4th feb",
     "plan": {
@@ -1530,6 +1420,165 @@
           "tool": "exporter",
           "params": {
             "filename": "India-US_trade_deal_report",
+            "format": "json"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T23:10:33.887112",
+    "user_input": "India US trade deal with summarize and sentiment analysis and trends",
+    "plan": {
+      "intent": "Fetch news on India-US trade deal, summarize, perform sentiment analysis, extract trends, and export the results",
+      "domain": "India-US trade deal",
+      "steps": [
+        {
+          "tool": "news_fetcher",
+          "params": {
+            "topic": "India-US trade deal",
+            "limit": 5
+          }
+        },
+        {
+          "tool": "summarizer",
+          "params": {
+            "news_items": "news_fetcher_output"
+          }
+        },
+        {
+          "tool": "sentiment",
+          "params": {
+            "news_items": "news_fetcher_output"
+          }
+        },
+        {
+          "tool": "trends",
+          "params": {
+            "news_items": "news_fetcher_output"
+          }
+        },
+        {
+          "tool": "exporter",
+          "params": {
+            "filename": "India-US_trade_deal_report",
+            "format": "json"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T23:12:12.525027",
+    "user_input": "India US trade deal",
+    "plan": {
+      "intent": "Fetch and summarize news on India-US trade deal",
+      "domain": "India-US trade deal",
+      "steps": [
+        {
+          "tool": "news_fetcher",
+          "params": {
+            "topic": "India US trade deal",
+            "sources": [
+              "google"
+            ],
+            "limit": 5
+          }
+        },
+        {
+          "tool": "summarizer",
+          "params": {
+            "news_items": "news_fetcher output"
+          }
+        },
+        {
+          "tool": "exporter",
+          "params": {
+            "filename": "India_US_trade_deal_report",
+            "format": "json"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T23:12:25.128437",
+    "user_input": "India US trade deal with summarize and sentiment analysis and trends",
+    "plan": {
+      "intent": "Fetch, summarize, perform sentiment analysis, extract trends, and export the results for the India-US trade deal",
+      "domain": "India US trade deal",
+      "steps": [
+        {
+          "tool": "news_fetcher",
+          "params": {
+            "topic": "India US trade deal",
+            "limit": 5
+          }
+        },
+        {
+          "tool": "summarizer",
+          "params": {
+            "news_items": "news_fetcher output"
+          }
+        },
+        {
+          "tool": "sentiment",
+          "params": {
+            "news_items": "news_fetcher output"
+          }
+        },
+        {
+          "tool": "trends",
+          "params": {
+            "news_items": "news_fetcher output"
+          }
+        },
+        {
+          "tool": "exporter",
+          "params": {
+            "filename": "India_US_trade_deal_report",
+            "format": "json"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T23:16:00.968530",
+    "user_input": "India US trade deal with summarize and sentiment analysis and trends",
+    "plan": {
+      "intent": "Fetch news on India US trade deal, summarize, perform sentiment analysis, extract trends, and export the results",
+      "domain": "India US trade deal",
+      "steps": [
+        {
+          "tool": "news_fetcher",
+          "params": {
+            "topic": "India US trade deal",
+            "limit": 5
+          }
+        },
+        {
+          "tool": "summarizer",
+          "params": {
+            "news_items": "news_fetcher output"
+          }
+        },
+        {
+          "tool": "sentiment",
+          "params": {
+            "news_items": "news_fetcher output"
+          }
+        },
+        {
+          "tool": "trends",
+          "params": {
+            "news_items": "news_fetcher output"
+          }
+        },
+        {
+          "tool": "exporter",
+          "params": {
+            "filename": "India_US_trade_deal_report",
             "format": "json"
           }
         }

@@ -1,223 +1,5 @@
 [
   {
-    "timestamp": "2026-02-04T12:04:22.111094",
-    "result": {
-      "intent": "Get ai news intelligence",
-      "domain": "ai",
-      "tools_executed": [
-        {
-          "tool": "news_fetcher",
-          "success": true
-        },
-        {
-          "tool": "exporter",
-          "success": true
-        }
-      ],
-      "data": {
-        "news": [
-          {
-            "title": "\u2018Deepfakes spreading and more AI companions\u2019: seven takeaways from the latest artificial intelligence safety report - The Guardian",
-            "link": "https://news.google.com/rss/articles/CBMisgFBVV95cUxNQWlOVl9Db2UtMkJkWFhsYnZYeHBqQUZoY2tVMWZyWDFtVk5mUFZLMU80WDZidFZqMUpLR2hGZGVzQUtpakQzT3AxOWNEcEcwdDJZWHFWdGplUTFrcjNmY2pHM3FpQVhhT2Z3YjQ3aXlYS2txcVNyc3J5dWZwS1ZEU3cxRU1aYmxlQWk0WjVCTGxoRkYwT2RjSGpQczQwZldpODhDX0dFU3dKN25sb2lxaUVR?oc=5",
-            "source": "google",
-            "published": "Tue, 03 Feb 2026 05:00:00 GMT"
-          },
-          {
-            "title": "My Top Artificial Intelligence (AI) Stocks to Buy in 2026 - The Motley Fool",
-            "link": "https://news.google.com/rss/articles/CBMimAFBVV95cUxNdENqVnpqall6MnVFN1hSMkFWRlFtNmhKcHVGX3NlVkRqRmYzMW5pSmNITzJadmhxRkhZRXBtdzJXcjI0ZWhXNG1zOHNWcHZSQ1lGR0pqTWxDN1RyZkRuVXZrTjRDUk11dW1FOEY2YTMwVzJOSGhBNjlfdC1BaGRJcU5DVTlPYUpabXdkMVg5emh2Yzg4MFc4Tw?oc=5",
-            "source": "google",
-            "published": "Mon, 02 Feb 2026 07:00:00 GMT"
-          },
-          {
-            "title": "Is Nvidia the Best Artificial Intelligence (AI) Stock to Buy Right Now? - Nasdaq",
-            "link": "https://news.google.com/rss/articles/CBMilAFBVV95cUxPT3VNcVpNZUlvUnVuT2puOHFySWJuakxEVWg3MTFSZktZQTloRFFuTGhId1JHRmR6em0wYXUxZHRReFM3MFM5LU52TFlod1J6dGx3VGlLZjdrM2tXUXBfdFRlZ09sOEYtMWJvSERjaVh5VjB4X3M0QkdZeTFGM1I5QlZGRm92ZEF5TUNjcklKQUdNRDU1?oc=5",
-            "source": "google",
-            "published": "Tue, 03 Feb 2026 15:20:00 GMT"
-          },
-          {
-            "title": "The Top 3 Artificial Intelligence (AI) Chip Stocks to Buy With $50,000 in 2026 - The Motley Fool",
-            "link": "https://news.google.com/rss/articles/CBMimAFBVV95cUxQMHh0VFZzX0JNN0dRNXVkQWJXTXJQTUpnOEwzeVpzeUR6RjFRNEZScGlMd2p3VjdhQjhNWkdhNENaUXJZejhZZ1NNRk5vWE43SWs3SzhseWtQNUxRbE9vbWJrak9GZ0lMektkSDBtMTlTTnVOWDdYemtMNDZJLXEwbHpXUmZaaU9OLTFGRmpJMi0wRTRCWHI0QQ?oc=5",
-            "source": "google",
-            "published": "Wed, 28 Jan 2026 05:00:00 GMT"
-          },
-          {
-            "title": "Artificial intelligence researchers hit by flood of \u2018slop\u2019 - Financial Times",
-            "link": "https://news.google.com/rss/articles/CBMicEFVX3lxTE9tMWJreG4tdTVFYzlCUEJCb0VfdDBVUHNISTlnVjdOMHFSQmZfOFhHQW5TZzE3TVg5MmhseVlhUy1NXzNyajlYQ2lRUU02S0NRV3BmcG8wcUE2OFZlWm5keXdkSWFnLTl1aTdfOGJKYTM?oc=5",
-            "source": "google",
-            "published": "Sun, 01 Feb 2026 05:01:37 GMT"
-          }
-        ],
-        "exported_file": "output/ai_intelligence_20260204_120422.json"
-      },
-      "errors": [],
-      "success": true
-    }
-  },
-  {
-    "timestamp": "2026-02-04T12:16:23.527548",
-    "result": {
-      "intent": "Get ai news intelligence",
-      "domain": "ai",
-      "tools_executed": [
-        {
-          "tool": "news_fetcher",
-          "success": true
-        },
-        {
-          "tool": "exporter",
-          "success": true
-        }
-      ],
-      "data": {
-        "news": [
-          {
-            "title": "\u2018Deepfakes spreading and more AI companions\u2019: seven takeaways from the latest artificial intelligence safety report - The Guardian",
-            "link": "https://news.google.com/rss/articles/CBMisgFBVV95cUxNQWlOVl9Db2UtMkJkWFhsYnZYeHBqQUZoY2tVMWZyWDFtVk5mUFZLMU80WDZidFZqMUpLR2hGZGVzQUtpakQzT3AxOWNEcEcwdDJZWHFWdGplUTFrcjNmY2pHM3FpQVhhT2Z3YjQ3aXlYS2txcVNyc3J5dWZwS1ZEU3cxRU1aYmxlQWk0WjVCTGxoRkYwT2RjSGpQczQwZldpODhDX0dFU3dKN25sb2lxaUVR?oc=5",
-            "source": "google",
-            "published": "Tue, 03 Feb 2026 05:00:00 GMT"
-          },
-          {
-            "title": "My Top Artificial Intelligence (AI) Stocks to Buy in 2026 - The Motley Fool",
-            "link": "https://news.google.com/rss/articles/CBMimAFBVV95cUxNdENqVnpqall6MnVFN1hSMkFWRlFtNmhKcHVGX3NlVkRqRmYzMW5pSmNITzJadmhxRkhZRXBtdzJXcjI0ZWhXNG1zOHNWcHZSQ1lGR0pqTWxDN1RyZkRuVXZrTjRDUk11dW1FOEY2YTMwVzJOSGhBNjlfdC1BaGRJcU5DVTlPYUpabXdkMVg5emh2Yzg4MFc4Tw?oc=5",
-            "source": "google",
-            "published": "Mon, 02 Feb 2026 07:00:00 GMT"
-          },
-          {
-            "title": "Is Nvidia the Best Artificial Intelligence (AI) Stock to Buy Right Now? - Nasdaq",
-            "link": "https://news.google.com/rss/articles/CBMilAFBVV95cUxPT3VNcVpNZUlvUnVuT2puOHFySWJuakxEVWg3MTFSZktZQTloRFFuTGhId1JHRmR6em0wYXUxZHRReFM3MFM5LU52TFlod1J6dGx3VGlLZjdrM2tXUXBfdFRlZ09sOEYtMWJvSERjaVh5VjB4X3M0QkdZeTFGM1I5QlZGRm92ZEF5TUNjcklKQUdNRDU1?oc=5",
-            "source": "google",
-            "published": "Tue, 03 Feb 2026 15:20:00 GMT"
-          },
-          {
-            "title": "The Top 3 Artificial Intelligence (AI) Chip Stocks to Buy With $50,000 in 2026 - The Motley Fool",
-            "link": "https://news.google.com/rss/articles/CBMimAFBVV95cUxQMHh0VFZzX0JNN0dRNXVkQWJXTXJQTUpnOEwzeVpzeUR6RjFRNEZScGlMd2p3VjdhQjhNWkdhNENaUXJZejhZZ1NNRk5vWE43SWs3SzhseWtQNUxRbE9vbWJrak9GZ0lMektkSDBtMTlTTnVOWDdYemtMNDZJLXEwbHpXUmZaaU9OLTFGRmpJMi0wRTRCWHI0QQ?oc=5",
-            "source": "google",
-            "published": "Wed, 28 Jan 2026 05:00:00 GMT"
-          },
-          {
-            "title": "CNBC's The China Connection newsletter: For Chinese businesses, it's not about which AI is the smartest - CNBC",
-            "link": "https://news.google.com/rss/articles/CBMi0gFBVV95cUxNbmFXVS1UcHNHVk44NzltRkt3cF9KS3labHBoZEF2TDdsUVV0LXU5MFd4RGlLMHpkWTZrQndheEZDWnM4R045X21DOFoyemljSHFJN3pyN01iNTFWbDVmeG9NUWVaWmhWU0pFOVdTQi1LaVF5ZjF6MG56NlM1STNJMVplX2w4ektFSXdTdjdrZW9rMTZXeDBWc0hmT2MzMHpYam40alpsLVdGTFJEdkItQkZ6UVdfaDNlSHNhdTFvOGk5YnlkOFV3c2xVOHdQd1BjY3fSAdcBQVVfeXFMT0NLYUtlX1Brb3RfWUxsSFBkbjltUnFhcUkzQ0xxRFoyTmFjMHcyY01iMVVjUzB3MGE1UUV0YWpFTlBVazczcG5uckNUVlVLamtub3k1QjFwUW8wT0lGOFZXT21UUkw2Z0xUZXo3bmtRZi02NnNpNm80WjB5WThWd1VVbWFoMHpfVnNmdVRUazRRck5PYXg0bUx4R2FIaGFFMUJWRzVqV2U0SFNKMVQ5TFZ3OUxWOVVEVWdlRjFNT0tMRi1McWFZNG5jS3FnZUtnbXhSZ0JPdW8?oc=5",
-            "source": "google",
-            "published": "Wed, 04 Feb 2026 06:21:54 GMT"
-          }
-        ],
-        "exported_file": "output/ai_intelligence_20260204_121623.json"
-      },
-      "errors": [],
-      "success": true
-    }
-  },
-  {
-    "timestamp": "2026-02-04T12:18:25.857503",
-    "result": {
-      "intent": "Fetch and export the latest news about Moltbot",
-      "domain": "technology",
-      "tools_executed": [
-        {
-          "tool": "news_fetcher",
-          "success": true
-        },
-        {
-          "tool": "exporter",
-          "success": false,
-          "error": "exporter: 'str' object is not a mapping"
-        }
-      ],
-      "data": {
-        "news": [
-          {
-            "title": "From Clawdbot to Moltbot to OpenClaw: Meet the AI agent generating buzz and fear globally - CNBC",
-            "link": "https://news.google.com/rss/articles/CBMirgFBVV95cUxNVzdTelA1NnJuQVF4ZWhRZXdQSWlKVl9fRUZrelNlOWFsSWQ1QkNnVVpGam5mcmdpcXpwOFBrN0pFZHJITE9ERW8yb2xPNnVpWUZLZUd0Sm5GcTFRRmNxZjNTWGVSWWxxTk1paFNSSDZuNkw3bUNQNkZUOGMxT3c1VWpscW1acUVlTE0tQ2I5TXU3cTRNWjR2TWo3YUJ5dnBEY1ZfREdKN05faC1DZlHSAbMBQVVfeXFMT1BCQ1NUQkRwOXhtYnhmakw5OHZtMjJIRDlwR1V3UkJPZFB6REt1ZXE3ODhEQmhvMURQbzdPQ24wdkpkb1A4UTYyMEFwRVdFUU1MRjNkdlNlMENlMHI1aWdWRmVLLTN2T1RoTEVaZjFCM01tcU9CNEp0ejlobUVkdTFFWkdyVVZiM3d5VWFGbHI1T2tVYWkzS3ZnVlR0SU02c0dwX0VVMGt5QnoxSGZIeGVPWTA?oc=5",
-            "source": "google",
-            "published": "Mon, 02 Feb 2026 09:40:35 GMT"
-          },
-          {
-            "title": "\u201cA sci-fi horror movie\u201d: Moltbot AI goes rogue and won\u2019t stop calling - Cybernews",
-            "link": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE4tNjZELTNseDA2dG9qSzMwM2xPanhwMVY3U3F0U2Y3YmJpYkpjMFcwNEFFZ3NRV2dRdkNFMVVjYVY3WjVBNWR3ZjJxSS01Z21Lc3p0b0JGX3hPdXpabWc?oc=5",
-            "source": "google",
-            "published": "Mon, 02 Feb 2026 08:54:31 GMT"
-          },
-          {
-            "title": "From Clawdbot to Moltbot to OpenClaw: Security Experts Detail Critical Vulnerabilities and 6 Immediate Hardening Steps for the Viral AI Agent - Security Boulevard",
-            "link": "https://news.google.com/rss/articles/CBMiiwJBVV95cUxQRG1VLVlEUVdUV1UwXzYtclhnalZlWFBjV09QMV8tZmZtWUdSV01rdWE3Sl9CZTdBdVlXZ1NWdlJGR0htNXFiUGt4ZUMtQUdEWHFCajJmZjRzaVktX1JsOWp6LUpweEdqeldETU9Uek5PQ25Rc2Z6TktFcTFQSXZRRW9pWkRzMHE2ZjFqMkN2V2ZXOXZyMzBBOXlpbUxtVTQ4Wm01ZUlVRDJ0OVZjTU9hc1NzbGhlTEhYeGlIWEhGQ2JCVkRpS3hnWDU1QVQ2dTYxQ3E1OC1tbERtQV9HTlZrRTMteTJqakI2MnVHZ3JtWmZYNEhxSDRoTlRyT1A3MVdOTDlCYkZxckg4aDg?oc=5",
-            "source": "google",
-            "published": "Wed, 04 Feb 2026 04:51:30 GMT"
-          },
-          {
-            "title": "Clawdbot is now Moltbot for reasons that should be obvious (updated) - Mashable",
-            "link": "https://news.google.com/rss/articles/CBMiekFVX3lxTFA2cnprU1I4Y1ZIWndOMTBqZ0JVYUhHbUtQN210YXZzTTZSRkZEY29UOVBxMTV3WjNwNk1ka080aVNVVE01WG9kUWJwOUNlcW9xZ2lKUzVGUmZITFdGVy04dGVnaUFiRnRTcko4M3Z4Q3FBeTRiS1QwTXdB?oc=5",
-            "source": "google",
-            "published": "Fri, 30 Jan 2026 20:40:00 GMT"
-          },
-          {
-            "title": "Moltbook, a social network where AI agents hang together, may be 'the most interesting place on the internet right now' - Fortune",
-            "link": "https://news.google.com/rss/articles/CBMivwFBVV95cUxQWlhLZDF6eVhQd2RmSFFsVmxqUkV4dHNZcGIybjdDWEpPSnRqNUc1N1NIMXBiNmdLU3JaTndwcS01ZnhLNXFtOEthV0dSRnMtVkdVb2NfbHNJNktzN3BMY1VhQWN2X0xzZzFRRWNrSUo5YjlkYU9ad3ZBT0M4bWJseUo5SWROQTdkdEpqcG1sc2VCcXpyalVYN1hfektkeG8tMFJySVM5X01FcFFweC00MDZ1eGVXN0l2V1RTVWZvNA?oc=5",
-            "source": "google",
-            "published": "Sat, 31 Jan 2026 17:51:00 GMT"
-          }
-        ]
-      },
-      "errors": [
-        "exporter: 'str' object is not a mapping"
-      ],
-      "success": false
-    }
-  },
-  {
-    "timestamp": "2026-02-04T12:19:45.647703",
-    "result": {
-      "intent": "Fetch and export news about Moltbot",
-      "domain": "Moltbot",
-      "tools_executed": [
-        {
-          "tool": "news_fetcher",
-          "success": true
-        },
-        {
-          "tool": "exporter",
-          "success": true
-        }
-      ],
-      "data": {
-        "news": [
-          {
-            "title": "From Clawdbot to Moltbot to OpenClaw: Meet the AI agent generating buzz and fear globally - CNBC",
-            "link": "https://news.google.com/rss/articles/CBMirgFBVV95cUxNVzdTelA1NnJuQVF4ZWhRZXdQSWlKVl9fRUZrelNlOWFsSWQ1QkNnVVpGam5mcmdpcXpwOFBrN0pFZHJITE9ERW8yb2xPNnVpWUZLZUd0Sm5GcTFRRmNxZjNTWGVSWWxxTk1paFNSSDZuNkw3bUNQNkZUOGMxT3c1VWpscW1acUVlTE0tQ2I5TXU3cTRNWjR2TWo3YUJ5dnBEY1ZfREdKN05faC1DZlHSAbMBQVVfeXFMT1BCQ1NUQkRwOXhtYnhmakw5OHZtMjJIRDlwR1V3UkJPZFB6REt1ZXE3ODhEQmhvMURQbzdPQ24wdkpkb1A4UTYyMEFwRVdFUU1MRjNkdlNlMENlMHI1aWdWRmVLLTN2T1RoTEVaZjFCM01tcU9CNEp0ejlobUVkdTFFWkdyVVZiM3d5VWFGbHI1T2tVYWkzS3ZnVlR0SU02c0dwX0VVMGt5QnoxSGZIeGVPWTA?oc=5",
-            "source": "google",
-            "published": "Mon, 02 Feb 2026 09:40:35 GMT"
-          },
-          {
-            "title": "\u201cA sci-fi horror movie\u201d: Moltbot AI goes rogue and won\u2019t stop calling - Cybernews",
-            "link": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE4tNjZELTNseDA2dG9qSzMwM2xPanhwMVY3U3F0U2Y3YmJpYkpjMFcwNEFFZ3NRV2dRdkNFMVVjYVY3WjVBNWR3ZjJxSS01Z21Lc3p0b0JGX3hPdXpabWc?oc=5",
-            "source": "google",
-            "published": "Mon, 02 Feb 2026 08:54:31 GMT"
-          },
-          {
-            "title": "From Clawdbot to Moltbot to OpenClaw: Security Experts Detail Critical Vulnerabilities and 6 Immediate Hardening Steps for the Viral AI Agent - Security Boulevard",
-            "link": "https://news.google.com/rss/articles/CBMiiwJBVV95cUxQRG1VLVlEUVdUV1UwXzYtclhnalZlWFBjV09QMV8tZmZtWUdSV01rdWE3Sl9CZTdBdVlXZ1NWdlJGR0htNXFiUGt4ZUMtQUdEWHFCajJmZjRzaVktX1JsOWp6LUpweEdqeldETU9Uek5PQ25Rc2Z6TktFcTFQSXZRRW9pWkRzMHE2ZjFqMkN2V2ZXOXZyMzBBOXlpbUxtVTQ4Wm01ZUlVRDJ0OVZjTU9hc1NzbGhlTEhYeGlIWEhGQ2JCVkRpS3hnWDU1QVQ2dTYxQ3E1OC1tbERtQV9HTlZrRTMteTJqakI2MnVHZ3JtWmZYNEhxSDRoTlRyT1A3MVdOTDlCYkZxckg4aDg?oc=5",
-            "source": "google",
-            "published": "Wed, 04 Feb 2026 04:51:30 GMT"
-          },
-          {
-            "title": "Clawdbot is now Moltbot for reasons that should be obvious (updated) - Mashable",
-            "link": "https://news.google.com/rss/articles/CBMiekFVX3lxTFA2cnprU1I4Y1ZIWndOMTBqZ0JVYUhHbUtQN210YXZzTTZSRkZEY29UOVBxMTV3WjNwNk1ka080aVNVVE01WG9kUWJwOUNlcW9xZ2lKUzVGUmZITFdGVy04dGVnaUFiRnRTcko4M3Z4Q3FBeTRiS1QwTXdB?oc=5",
-            "source": "google",
-            "published": "Fri, 30 Jan 2026 20:40:00 GMT"
-          },
-          {
-            "title": "Moltbook, a social network where AI agents hang together, may be 'the most interesting place on the internet right now' - Fortune",
-            "link": "https://news.google.com/rss/articles/CBMivwFBVV95cUxQWlhLZDF6eVhQd2RmSFFsVmxqUkV4dHNZcGIybjdDWEpPSnRqNUc1N1NIMXBiNmdLU3JaTndwcS01ZnhLNXFtOEthV0dSRnMtVkdVb2NfbHNJNktzN3BMY1VhQWN2X0xzZzFRRWNrSUo5YjlkYU9ad3ZBT0M4bWJseUo5SWROQTdkdEpqcG1sc2VCcXpyalVYN1hfektkeG8tMFJySVM5X01FcFFweC00MDZ1eGVXN0l2V1RTVWZvNA?oc=5",
-            "source": "google",
-            "published": "Sat, 31 Jan 2026 17:51:00 GMT"
-          }
-        ],
-        "exported_file": "output/moltbot_news_report_20260204_121945.json"
-      },
-      "errors": [],
-      "success": true
-    }
-  },
-  {
     "timestamp": "2026-02-04T12:20:28.660021",
     "result": {
       "intent": "Fetch and export news about Moltbot from 3rd and 4th February",
@@ -6627,6 +6409,1867 @@
           "market_narrative": "Active story movement around India, Modi"
         },
         "exported_file": "output/India-US_trade_deal_report_20260204_213855.json"
+      },
+      "errors": [],
+      "skipped": [],
+      "fallbacks_used": [],
+      "regenerated": [],
+      "success": true
+    }
+  },
+  {
+    "timestamp": "2026-02-04T23:10:47.454129",
+    "result": {
+      "intent": "Fetch news on India-US trade deal, summarize, perform sentiment analysis, extract trends, and export the results",
+      "domain": "India-US trade deal",
+      "tools_executed": [
+        {
+          "tool": "news_fetcher",
+          "success": true,
+          "retries": 0,
+          "used_fallback": false,
+          "regenerated": false
+        },
+        {
+          "tool": "summarizer",
+          "success": true,
+          "retries": 0,
+          "used_fallback": false,
+          "regenerated": false
+        },
+        {
+          "tool": "sentiment",
+          "success": true,
+          "retries": 0,
+          "used_fallback": false,
+          "regenerated": false
+        },
+        {
+          "tool": "trends",
+          "success": true,
+          "retries": 0,
+          "used_fallback": false,
+          "regenerated": false
+        },
+        {
+          "tool": "exporter",
+          "success": true,
+          "retries": 0,
+          "used_fallback": false,
+          "regenerated": false
+        }
+      ],
+      "data": {
+        "news": [
+          {
+            "title": "Here's who analysts expect to gain from India\u2019s U.S. and EU trade deals - CNBC",
+            "link": "https://news.google.com/rss/articles/CBMimwFBVV95cUxNWmJMcE51QzZjSlJHLWNmVV9hb0loRUk0clJMdGZ1VnkwX3FjQVhyekNuX0pjTC02Tng3MWVabExwYnVCcUxNbDFfcmNoa2NFdW9Yd0laNjdiSTU0RGpqY3Y0bllUbDlIWnJ3eW5mVGlyc1puR3FadVZjTGFQMFBIc3dVTjlNV1JMdUpKOHB0ZE9POFFSWGU2UTloY9IBoAFBVV95cUxNVTJCZGw3Qk1sQ0xPbmFaMlVIZHZLazc2cjY0ZkVwSW52cnBTd0E5S2pLaFAxYXBwS2NQN1ZBTGtjRXQ4WkF4T2hsVEhTYzBBWXpxUE4zaVhSaUtycUlkMUFhdlpaZWtRM3dMaDZJMkRUZUlqa21PZmdQMlRhd3VhMnBxYnl6YnNmajN2T3F3UnR1Y2c0TV9MdXhDeWJybnkz?oc=5",
+            "source": "rss",
+            "published": "Tue, 03 Feb 2026 23:18:15 GMT"
+          },
+          {
+            "title": "Hope and uncertainty as India and US strike long-delayed trade deal - BBC",
+            "link": "https://news.google.com/rss/articles/CBMiWkFVX3lxTFBoRHZ3eDU2UERBbkZfcHFSSFdicTdPTFdCM2pMQjJORmV6TGFhT3poR2hzamVwN1V1QlF4UDIwMTFDT0gwZUJwb2EyX05Kd1VINnhEdU9fVDIyZw?oc=5",
+            "source": "rss",
+            "published": "Tue, 03 Feb 2026 06:29:43 GMT"
+          },
+          {
+            "title": "India-US deal: How Delhi's behind-the-scenes push cracked Trump tariff wall - Times of India",
+            "link": "https://news.google.com/rss/articles/CBMi8AFBVV95cUxPY3NBWEtYMkczYVFhVlNnamlhT0VSNUlyeG5FbjNPXzNSdmtpcUFkQl9POWttV3p4d2ZEZElFRWp4NHVza0lfa25CNXBKaURiUWFiTTduN1NETjNnOU42aWw1LWlBSHRmM2lvNkFyUHlncFp2dmc1WmlLczlaT0ZYS25UNVpnaDgwOVRyT1hWZXBtNFBIUWZtelBvTmVJZmx1al81LTRJLW1YN1FSZ2tCemdaNF94cnRBem5qSklHZTRpY3JRRTRuMEozekowV0l5VzFLZ2RyTU9oUXEzbnBvZGNGSERydTg2dXNsWE9iaFDSAfYBQVVfeXFMTTR4U1o0dDdNSjV3a01DRTZPNHZRb3RtdWw2dks2SUlxSFpsNmtnRmlPcWlBQVNJa09QNjZ1cVdrdlpBYkxIcE5ocmNBT25RaHIyVEFTTHYtdXlxYllSZFI0bmRVVXB5aHVyOERVZmppLU9JOHozZnNuS216N3p3bUIyVnk0a3VOZFBhT0h4RXFjUGlmLXZldlkyaFR1aHdzM1VVOUV6Qnlkc3ZvM2p1dkViRWpXMU50QzFIMFB2YlhaMkl3QktxZjREamFET21zUktMWm1kWFhSTnlEOEQxSkdCTWJmNGFvRUtWUXhLcFVmbFcwWFJ3?oc=5",
+            "source": "rss",
+            "published": "Wed, 04 Feb 2026 16:00:00 GMT"
+          },
+          {
+            "title": "India to keep some farm protections in US trade deal, will buy US aircraft, arms, energy - Reuters",
+            "link": "https://news.google.com/rss/articles/CBMixgFBVV95cUxNcng4MEdUWDFQNFBmckpxbVNzTmh5bWpTN0IyZ3NRYUNWTjZ1WFhlZDNYRkVLZGk5SXBXSVowTlRKNU5OZEwzdGpWNGRXSjhwVUV2TU1wT1FXVXZFamFfR2tfOTQ5WXV6TXRzUTdPSTc4RFp0bVVPRTRzMzltUDVPVjBjZVd0aC10NVkwZmF5U0NFcElCeHhSVXQ3bWpicU5Pd1oxdnRCSUR5cHJTbm1uNnU1SXRPWE05d1lYd3p0VTlqNTFGbnc?oc=5",
+            "source": "rss",
+            "published": "Tue, 03 Feb 2026 14:55:33 GMT"
+          },
+          {
+            "title": "India\u2019s Modi praised for US trade deal as opposition questions impact on agriculture - AP News",
+            "link": "https://news.google.com/rss/articles/CBMilAFBVV95cUxNWDNCak5lSDZTblVncEU5am1tRkRFNjYyZllqb2xhWmotbzBSeVhmUU82UWlJS3hJbGdYWjFGbVpPVlV6SGRxWC0zRnQwVUZOb1Z1ZDFacnprRjBBM1A4dFdyUEpONXhqOThQcGhkcjQwdTVxemZSdGU0MzRPelFRbS1vcHF1c190QUluR3p2YUNKcl9W?oc=5",
+            "source": "rss",
+            "published": "Wed, 04 Feb 2026 06:50:00 GMT"
+          },
+          {
+            "title": "'Devil in the details': India-U.S. deal raises hopes for a reset",
+            "link": "https://www.cnbc.com/2026/02/03/us-india-trade-framework-tariffs-reset-modi-trump-new-delhi-russian-oil-venezuela.html",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "India-US trade deal: Hope and uncertainty as Trump cuts ...",
+            "link": "https://www.bbc.com/news/articles/cpwnlwj80p8o",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "India's U.S. and EU trade deals: Who will gain",
+            "link": "https://www.cnbc.com/2026/02/04/trump-india-us-eu-trade-war-deals-tariffs-delhi-washington.html",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "Trump responds to Europe with U.S.-India trade deal",
+            "link": "https://www.cnbc.com/2026/02/03/trump-us-india-trade-deal-europe-india-deal-compared.html",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "Russia says India hasn't said it's going to stop buying its oil",
+            "link": "https://www.cnbc.com/2026/02/04/trump-india-deal-russia-oil-purchases-kremlin-reaction.html",
+            "source": "tavily",
+            "published": ""
+          }
+        ],
+        "summary": {
+          "summary": "India has recently concluded significant trade deals with the U.S. and the EU, sparking a mix of optimism and apprehension. The deals are expected to benefit various sectors, including agriculture, defense, and energy, though concerns about the impact on domestic industries, particularly farming, have been raised. The negotiations highlight India's strategic efforts to balance trade benefits with protecting its economic interests.",
+          "key_points": [
+            "India has finalized trade deals with the U.S. and the EU, leading to mixed reactions.",
+            "The agreements are anticipated to provide benefits across multiple sectors such as defense, energy, and agriculture.",
+            "There are concerns about the potential negative impact on domestic industries, particularly agriculture, amidst the trade deal's benefits."
+          ]
+        },
+        "sentiment": {
+          "overall": "neutral",
+          "mood_label": "cautious optimism",
+          "confidence": "medium",
+          "direction": "stable",
+          "momentum_strength": "moderate",
+          "risk_level": "moderate",
+          "market_bias": "balanced",
+          "reasoning": "The headlines reflect a mix of optimism about potential economic gains from trade deals with the U.S. and EU, tempered by uncertainty over specific impacts, particularly on agriculture. The praise for Modi's efforts contrasts with concerns about the trade deal's effects on domestic sectors.",
+          "positive_signals": [
+            "Expected gains from trade deals",
+            "Praise for Modi's efforts",
+            "Potential for economic reset"
+          ],
+          "negative_signals": [
+            "Uncertainty over trade deal impacts",
+            "Questions about agriculture sector",
+            "Potential tariff barriers"
+          ],
+          "emerging_themes": [
+            "Economic gains from trade",
+            "Impact on agriculture",
+            "Geopolitical considerations"
+          ],
+          "score": 0.45,
+          "breakdown": {
+            "positive": 5,
+            "neutral": 4,
+            "negative": 3
+          }
+        },
+        "trends": {
+          "trending_topics": [
+            {
+              "topic": "India",
+              "score": 41.25,
+              "mentions": 41,
+              "velocity": "stable",
+              "velocity_icon": "\u27a1\ufe0f",
+              "story_direction": "Stable Coverage",
+              "story_icon": "\u26aa",
+              "coverage_growth": "Steady",
+              "tone_of_coverage": "Neutral/Mixed",
+              "news_cycle_stage": "Major Story",
+              "news_cycle_icon": "\ud83d\udcf0",
+              "why_trending": [
+                "India has recently signed significant trade deals with the U.S. and EU, impacting various sectors.",
+                "'India' mentioned across 10+ articles",
+                "Factual coverage without strong stance"
+              ],
+              "narrative": "Stable Coverage",
+              "narrative_icon": "\u26aa",
+              "fusion_score": 0.5
+            },
+            {
+              "topic": "Trump",
+              "score": 12.5,
+              "mentions": 12,
+              "velocity": "rising_fast",
+              "velocity_icon": "\ud83d\udd25",
+              "story_direction": "Strong Coverage",
+              "story_icon": "\ud83d\udfe2",
+              "coverage_growth": "Rising Fast",
+              "tone_of_coverage": "Neutral/Mixed",
+              "news_cycle_stage": "Peak Focus",
+              "news_cycle_icon": "\ud83d\udd25",
+              "why_trending": [
+                "Former President Trump was actively involved in negotiating and announcing the trade deals, influencing market dynamics.",
+                "Multiple outlets picking up this story",
+                "Dominant narrative in current news cycle"
+              ],
+              "narrative": "Strong Coverage",
+              "narrative_icon": "\ud83d\udfe2",
+              "fusion_score": 1.0
+            },
+            {
+              "topic": "Hope",
+              "score": 6.25,
+              "mentions": 6,
+              "velocity": "rising_fast",
+              "velocity_icon": "\ud83d\udd25",
+              "story_direction": "Strong Coverage",
+              "story_icon": "\ud83d\udfe2",
+              "coverage_growth": "Rising Fast",
+              "tone_of_coverage": "Neutral/Mixed",
+              "news_cycle_stage": "Breaking Story",
+              "news_cycle_icon": "\ud83c\udd95",
+              "why_trending": [
+                "The trade deals have generated optimism about economic growth and bilateral relations.",
+                "Cross-platform media attention detected",
+                "Rapid acceleration in coverage"
+              ],
+              "narrative": "Strong Coverage",
+              "narrative_icon": "\ud83d\udfe2",
+              "fusion_score": 1.0
+            },
+            {
+              "topic": "India US",
+              "score": 5.85,
+              "mentions": 5,
+              "velocity": "rising",
+              "velocity_icon": "\ud83d\udcc8",
+              "story_direction": "Strong Coverage",
+              "story_icon": "\ud83d\udfe2",
+              "coverage_growth": "Rising",
+              "tone_of_coverage": "Neutral/Mixed",
+              "news_cycle_stage": "Active Coverage",
+              "news_cycle_icon": "\ud83d\uddde\ufe0f",
+              "why_trending": [
+                "The trade deal between India and the U.S. is a significant development in bilateral relations.",
+                "Breaking into mainstream coverage",
+                "Balanced reporting across outlets"
+              ],
+              "narrative": "Strong Coverage",
+              "narrative_icon": "\ud83d\udfe2",
+              "fusion_score": 0.75
+            },
+            {
+              "topic": "India EU",
+              "score": 3.9,
+              "mentions": 3,
+              "velocity": "rising_fast",
+              "velocity_icon": "\ud83d\udd25",
+              "story_direction": "Strong Coverage",
+              "story_icon": "\ud83d\udfe2",
+              "coverage_growth": "Rising Fast",
+              "tone_of_coverage": "Neutral/Mixed",
+              "news_cycle_stage": "Breaking Story",
+              "news_cycle_icon": "\ud83c\udd95",
+              "why_trending": [
+                "India's trade deal with the EU is another major development impacting global trade dynamics.",
+                "'India EU' gaining traction in news cycle",
+                "Rapid acceleration in coverage"
+              ],
+              "narrative": "Strong Coverage",
+              "narrative_icon": "\ud83d\udfe2",
+              "fusion_score": 1.0
+            },
+            {
+              "topic": "Modi",
+              "score": 3.75,
+              "mentions": 3,
+              "velocity": "fading",
+              "velocity_icon": "\u2198\ufe0f",
+              "story_direction": "Stable Coverage",
+              "story_icon": "\u26aa",
+              "coverage_growth": "Declining",
+              "tone_of_coverage": "Neutral/Mixed",
+              "news_cycle_stage": "Losing Attention",
+              "news_cycle_icon": "\ud83d\udcc9",
+              "why_trending": [
+                "Neutral journalistic framing"
+              ],
+              "narrative": "Stable Coverage",
+              "narrative_icon": "\u26aa",
+              "fusion_score": 0.25
+            },
+            {
+              "topic": "Devil",
+              "score": 3.75,
+              "mentions": 3,
+              "velocity": "stable",
+              "velocity_icon": "\u27a1\ufe0f",
+              "story_direction": "Stable Coverage",
+              "story_icon": "\u26aa",
+              "coverage_growth": "Steady",
+              "tone_of_coverage": "Neutral/Mixed",
+              "news_cycle_stage": "Background",
+              "news_cycle_icon": "\ud83d\udcda",
+              "why_trending": [
+                "Factual coverage without strong stance"
+              ],
+              "narrative": "Stable Coverage",
+              "narrative_icon": "\u26aa",
+              "fusion_score": 0.5
+            },
+            {
+              "topic": "Russia",
+              "score": 3.75,
+              "mentions": 3,
+              "velocity": "rising_fast",
+              "velocity_icon": "\ud83d\udd25",
+              "story_direction": "Strong Coverage",
+              "story_icon": "\ud83d\udfe2",
+              "coverage_growth": "Rising Fast",
+              "tone_of_coverage": "Neutral/Mixed",
+              "news_cycle_stage": "Breaking Story",
+              "news_cycle_icon": "\ud83c\udd95",
+              "why_trending": [
+                "Breaking into mainstream coverage",
+                "Breaking story dynamics detected",
+                "Factual coverage without strong stance"
+              ],
+              "narrative": "Strong Coverage",
+              "narrative_icon": "\ud83d\udfe2",
+              "fusion_score": 1.0
+            },
+            {
+              "topic": "Hope uncertainty",
+              "score": 3.25,
+              "mentions": 3,
+              "velocity": "rising_fast",
+              "velocity_icon": "\ud83d\udd25",
+              "story_direction": "Strong Coverage",
+              "story_icon": "\ud83d\udfe2",
+              "coverage_growth": "Rising Fast",
+              "tone_of_coverage": "Neutral/Mixed",
+              "news_cycle_stage": "Breaking Story",
+              "news_cycle_icon": "\ud83c\udd95",
+              "why_trending": [
+                "Story momentum building rapidly",
+                "Real-time news momentum",
+                "Neutral journalistic framing"
+              ],
+              "narrative": "Strong Coverage",
+              "narrative_icon": "\ud83d\udfe2",
+              "fusion_score": 1.0
+            },
+            {
+              "topic": "gain",
+              "score": 3.0,
+              "mentions": 3,
+              "velocity": "rising_fast",
+              "velocity_icon": "\ud83d\udd25",
+              "story_direction": "Strong Coverage",
+              "story_icon": "\ud83d\udfe2",
+              "coverage_growth": "Rising Fast",
+              "tone_of_coverage": "Neutral/Mixed",
+              "news_cycle_stage": "Breaking Story",
+              "news_cycle_icon": "\ud83c\udd95",
+              "why_trending": [
+                "Cross-platform media attention detected",
+                "Rapid acceleration in coverage",
+                "Neutral journalistic framing"
+              ],
+              "narrative": "Strong Coverage",
+              "narrative_icon": "\ud83d\udfe2",
+              "fusion_score": 1.0
+            }
+          ],
+          "rising_topics": [
+            {
+              "topic": "Trump",
+              "score": 12.5,
+              "mentions": 12,
+              "velocity": "rising_fast",
+              "velocity_value": 0.6666666666666666
+            },
+            {
+              "topic": "Hope",
+              "score": 6.25,
+              "mentions": 6,
+              "velocity": "rising_fast",
+              "velocity_value": 1.0
+            },
+            {
+              "topic": "India US",
+              "score": 5.85,
+              "mentions": 5,
+              "velocity": "rising",
+              "velocity_value": 0.5
+            },
+            {
+              "topic": "India EU",
+              "score": 3.9,
+              "mentions": 3,
+              "velocity": "rising_fast",
+              "velocity_value": 1.0
+            },
+            {
+              "topic": "Russia",
+              "score": 3.75,
+              "mentions": 3,
+              "velocity": "rising_fast",
+              "velocity_value": 1.0
+            }
+          ],
+          "fading_topics": [
+            {
+              "topic": "Modi",
+              "score": 3.75,
+              "mentions": 3,
+              "velocity": "fading",
+              "velocity_value": -0.5
+            }
+          ],
+          "total_articles": 10,
+          "analysis_timestamp": "2026-02-04T23:10:47.418378",
+          "topic_insights": {
+            "India": {
+              "insight": "India has recently signed significant trade deals with the U.S. and EU, impacting various sectors.",
+              "emotion": "Optimism",
+              "angle": "Positive"
+            },
+            "Trump": {
+              "insight": "Former President Trump was actively involved in negotiating and announcing the trade deals, influencing market dynamics.",
+              "emotion": "Neutral",
+              "angle": "Neutral"
+            },
+            "Hope": {
+              "insight": "The trade deals have generated optimism about economic growth and bilateral relations.",
+              "emotion": "Hopeful",
+              "angle": "Positive"
+            },
+            "India US": {
+              "insight": "The trade deal between India and the U.S. is a significant development in bilateral relations.",
+              "emotion": "Cautious Optimism",
+              "angle": "Neutral to Positive"
+            },
+            "India EU": {
+              "insight": "India's trade deal with the EU is another major development impacting global trade dynamics.",
+              "emotion": "Interest",
+              "angle": "Neutral"
+            }
+          },
+          "topic_insights_meta": {
+            "enabled": true,
+            "reason": "ok",
+            "model": "amazon.nova-lite-v1:0",
+            "region": "us-east-1"
+          },
+          "active_narratives": [
+            {
+              "topic": "India",
+              "story_direction": "Stable Coverage",
+              "story_icon": "\u26aa",
+              "coverage": "Steady",
+              "tone": "Neutral/Mixed",
+              "news_cycle": "Major Story",
+              "why_trending": [
+                "India has recently signed significant trade deals with the U.S. and EU, impacting various sectors.",
+                "'India' mentioned across 10+ articles",
+                "Factual coverage without strong stance"
+              ]
+            },
+            {
+              "topic": "Trump",
+              "story_direction": "Strong Coverage",
+              "story_icon": "\ud83d\udfe2",
+              "coverage": "Rising Fast",
+              "tone": "Neutral/Mixed",
+              "news_cycle": "Peak Focus",
+              "why_trending": [
+                "Former President Trump was actively involved in negotiating and announcing the trade deals, influencing market dynamics.",
+                "Multiple outlets picking up this story",
+                "Dominant narrative in current news cycle"
+              ]
+            },
+            {
+              "topic": "Hope",
+              "story_direction": "Strong Coverage",
+              "story_icon": "\ud83d\udfe2",
+              "coverage": "Rising Fast",
+              "tone": "Neutral/Mixed",
+              "news_cycle": "Breaking Story",
+              "why_trending": [
+                "The trade deals have generated optimism about economic growth and bilateral relations.",
+                "Cross-platform media attention detected",
+                "Rapid acceleration in coverage"
+              ]
+            },
+            {
+              "topic": "India US",
+              "story_direction": "Strong Coverage",
+              "story_icon": "\ud83d\udfe2",
+              "coverage": "Rising",
+              "tone": "Neutral/Mixed",
+              "news_cycle": "Active Coverage",
+              "why_trending": [
+                "The trade deal between India and the U.S. is a significant development in bilateral relations.",
+                "Breaking into mainstream coverage",
+                "Balanced reporting across outlets"
+              ]
+            },
+            {
+              "topic": "India EU",
+              "story_direction": "Strong Coverage",
+              "story_icon": "\ud83d\udfe2",
+              "coverage": "Rising Fast",
+              "tone": "Neutral/Mixed",
+              "news_cycle": "Breaking Story",
+              "why_trending": [
+                "India's trade deal with the EU is another major development impacting global trade dynamics.",
+                "'India EU' gaining traction in news cycle",
+                "Rapid acceleration in coverage"
+              ]
+            }
+          ],
+          "news_narrative_summary": "Active story movement around India, Trump",
+          "narrative_signals": [
+            {
+              "topic": "India",
+              "story_direction": "Stable Coverage",
+              "story_icon": "\u26aa",
+              "coverage": "Steady",
+              "tone": "Neutral/Mixed",
+              "news_cycle": "Major Story",
+              "why_trending": [
+                "India has recently signed significant trade deals with the U.S. and EU, impacting various sectors.",
+                "'India' mentioned across 10+ articles",
+                "Factual coverage without strong stance"
+              ]
+            },
+            {
+              "topic": "Trump",
+              "story_direction": "Strong Coverage",
+              "story_icon": "\ud83d\udfe2",
+              "coverage": "Rising Fast",
+              "tone": "Neutral/Mixed",
+              "news_cycle": "Peak Focus",
+              "why_trending": [
+                "Former President Trump was actively involved in negotiating and announcing the trade deals, influencing market dynamics.",
+                "Multiple outlets picking up this story",
+                "Dominant narrative in current news cycle"
+              ]
+            },
+            {
+              "topic": "Hope",
+              "story_direction": "Strong Coverage",
+              "story_icon": "\ud83d\udfe2",
+              "coverage": "Rising Fast",
+              "tone": "Neutral/Mixed",
+              "news_cycle": "Breaking Story",
+              "why_trending": [
+                "The trade deals have generated optimism about economic growth and bilateral relations.",
+                "Cross-platform media attention detected",
+                "Rapid acceleration in coverage"
+              ]
+            },
+            {
+              "topic": "India US",
+              "story_direction": "Strong Coverage",
+              "story_icon": "\ud83d\udfe2",
+              "coverage": "Rising",
+              "tone": "Neutral/Mixed",
+              "news_cycle": "Active Coverage",
+              "why_trending": [
+                "The trade deal between India and the U.S. is a significant development in bilateral relations.",
+                "Breaking into mainstream coverage",
+                "Balanced reporting across outlets"
+              ]
+            },
+            {
+              "topic": "India EU",
+              "story_direction": "Strong Coverage",
+              "story_icon": "\ud83d\udfe2",
+              "coverage": "Rising Fast",
+              "tone": "Neutral/Mixed",
+              "news_cycle": "Breaking Story",
+              "why_trending": [
+                "India's trade deal with the EU is another major development impacting global trade dynamics.",
+                "'India EU' gaining traction in news cycle",
+                "Rapid acceleration in coverage"
+              ]
+            }
+          ],
+          "market_narrative": "Active story movement around India, Trump"
+        },
+        "exported_file": "output/India-US_trade_deal_report_20260204_231047.json"
+      },
+      "errors": [],
+      "skipped": [],
+      "fallbacks_used": [],
+      "regenerated": [],
+      "success": true
+    }
+  },
+  {
+    "timestamp": "2026-02-04T23:12:21.981014",
+    "result": {
+      "intent": "Fetch and summarize news on India-US trade deal",
+      "domain": "India-US trade deal",
+      "tools_executed": [
+        {
+          "tool": "news_fetcher",
+          "success": true,
+          "retries": 0,
+          "used_fallback": false,
+          "regenerated": false
+        },
+        {
+          "tool": "summarizer",
+          "success": true,
+          "retries": 0,
+          "used_fallback": false,
+          "regenerated": false
+        },
+        {
+          "tool": "exporter",
+          "success": true,
+          "retries": 0,
+          "used_fallback": false,
+          "regenerated": false
+        }
+      ],
+      "data": {
+        "news": [
+          {
+            "title": "Here's who analysts expect to gain from India\u2019s U.S. and EU trade deals - CNBC",
+            "link": "https://news.google.com/rss/articles/CBMimwFBVV95cUxNWmJMcE51QzZjSlJHLWNmVV9hb0loRUk0clJMdGZ1VnkwX3FjQVhyekNuX0pjTC02Tng3MWVabExwYnVCcUxNbDFfcmNoa2NFdW9Yd0laNjdiSTU0RGpqY3Y0bllUbDlIWnJ3eW5mVGlyc1puR3FadVZjTGFQMFBIc3dVTjlNV1JMdUpKOHB0ZE9POFFSWGU2UTloY9IBoAFBVV95cUxNVTJCZGw3Qk1sQ0xPbmFaMlVIZHZLazc2cjY0ZkVwSW52cnBTd0E5S2pLaFAxYXBwS2NQN1ZBTGtjRXQ4WkF4T2hsVEhTYzBBWXpxUE4zaVhSaUtycUlkMUFhdlpaZWtRM3dMaDZJMkRUZUlqa21PZmdQMlRhd3VhMnBxYnl6YnNmajN2T3F3UnR1Y2c0TV9MdXhDeWJybnkz?oc=5",
+            "source": "rss",
+            "published": "Tue, 03 Feb 2026 23:18:15 GMT"
+          },
+          {
+            "title": "Hope and uncertainty as India and US strike long-delayed trade deal - BBC",
+            "link": "https://news.google.com/rss/articles/CBMiWkFVX3lxTFBoRHZ3eDU2UERBbkZfcHFSSFdicTdPTFdCM2pMQjJORmV6TGFhT3poR2hzamVwN1V1QlF4UDIwMTFDT0gwZUJwb2EyX05Kd1VINnhEdU9fVDIyZw?oc=5",
+            "source": "rss",
+            "published": "Tue, 03 Feb 2026 06:29:43 GMT"
+          },
+          {
+            "title": "India to keep some farm protections in US trade deal, will buy US aircraft, arms, energy - Reuters",
+            "link": "https://news.google.com/rss/articles/CBMixgFBVV95cUxNcng4MEdUWDFQNFBmckpxbVNzTmh5bWpTN0IyZ3NRYUNWTjZ1WFhlZDNYRkVLZGk5SXBXSVowTlRKNU5OZEwzdGpWNGRXSjhwVUV2TU1wT1FXVXZFamFfR2tfOTQ5WXV6TXRzUTdPSTc4RFp0bVVPRTRzMzltUDVPVjBjZVd0aC10NVkwZmF5U0NFcElCeHhSVXQ3bWpicU5Pd1oxdnRCSUR5cHJTbm1uNnU1SXRPWE05d1lYd3p0VTlqNTFGbnc?oc=5",
+            "source": "rss",
+            "published": "Tue, 03 Feb 2026 14:55:33 GMT"
+          },
+          {
+            "title": "U.S. and India seal trade deal after months of diplomatic tensions - The Washington Post",
+            "link": "https://news.google.com/rss/articles/CBMif0FVX3lxTE9WUnVyOXh0UHUtZjJVNmUxdEJmUW9vXzhMSVc3bnh2aTRnWVZxQU12dHZpbGl6bEVvM1BFWmJlMmlmZ3ZvNVhkWkQ2RFQtNnNhVVRJYjlHZ2RURGRMVDhNNFB1UWhIZU5fQV8tck5IVUxUVjRRMFl1RFdhN1NyYWM?oc=5",
+            "source": "rss",
+            "published": "Tue, 03 Feb 2026 04:13:04 GMT"
+          },
+          {
+            "title": "The Trump-Modi Trade Deal Won\u2019t Magically Restore U.S.-India Trust - Carnegie Endowment for International Peace",
+            "link": "https://news.google.com/rss/articles/CBMinwFBVV95cUxQOXNLeDh5cmFqWjlfSUNmTEVwOTA5THBMSjRmcmc3TEoxN2lnaWk3Vk13WEFsWGZDTmlXLVB6OXZiMjVxYm90YVlNSnBNbGFUMm05V3l1VXJkeHlkTkdWNlh3bXA5bzVDZXNndEpqRmM0VkRVLWZUenVlN0dwVzFaQVlTcVRmUzJtUXItR2VhM0xKdG5yT0RUelJBeDNfd2c?oc=5",
+            "source": "rss",
+            "published": "Tue, 03 Feb 2026 21:24:07 GMT"
+          },
+          {
+            "title": "Gokaldas Exports shares surge over 40% in two days after India-US trade deal",
+            "link": "https://economictimes.indiatimes.com/markets/stocks/news/gokaldas-exports-shares-surge-over-40-in-two-days-after-india-us-trade-deal/articleshow/127900783.cms",
+            "source": "gnews",
+            "published": "2026-02-04T05:38:00Z"
+          },
+          {
+            "title": "Why India will wait before revealing US trade deal details: FM Nirmala Sitharaman on trust, tariffs and politics",
+            "link": "https://economictimes.indiatimes.com/markets/expert-view/why-india-will-wait-before-revealing-us-trade-deal-details-fm-nirmala-sitharaman-on-trust-tariffs-and-politics/articleshow/127900680.cms",
+            "source": "gnews",
+            "published": "2026-02-04T05:36:00Z"
+          },
+          {
+            "title": "US ties in focus as Jaishankar meets Rubio ahead of key minerals talks",
+            "link": "https://www.mid-day.com/news/world-news/photo/in-pics-jaishankar-meets-us-secretary-rubio-in-washington-ahead-of-minerals-meet-109508",
+            "source": "gnews",
+            "published": "2026-02-04T05:36:00Z"
+          },
+          {
+            "title": "a 'threat' to Indian farmers, warns Sharad Pawar",
+            "link": "https://www.lokmattimes.com/national/india-us-trade-deal-a-threat-to-indian-farmers-warns-sharad-pawar/",
+            "source": "gnews",
+            "published": "2026-02-04T05:35:39Z"
+          },
+          {
+            "title": "US-India Trade Deal: Will Wine And Nuts Really See Zero Duty?",
+            "link": "https://www.timesnownews.com/business-economy/economy/usindia-trade-deal-will-wine-and-nuts-really-see-zero-duty-article-153557379",
+            "source": "gnews",
+            "published": "2026-02-04T05:33:05Z"
+          },
+          {
+            "title": "India to keep some farm protections in US trade deal, will ...",
+            "link": "https://www.reuters.com/world/india/us-trade-chief-says-india-maintain-some-agriculture-protections-deal-with-trump-2026-02-03/",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "India-US trade deal: Hope and uncertainty as Trump cuts ...",
+            "link": "https://www.bbc.com/news/articles/cpwnlwj80p8o",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "'Devil in the details': India-U.S. deal raises hopes for a reset",
+            "link": "https://www.cnbc.com/2026/02/03/us-india-trade-framework-tariffs-reset-modi-trump-new-delhi-russian-oil-venezuela.html",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "India's U.S. and EU trade deals: Who will gain",
+            "link": "https://www.cnbc.com/2026/02/04/trump-india-us-eu-trade-war-deals-tariffs-delhi-washington.html",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "Trump responds to Europe with U.S.-India trade deal",
+            "link": "https://www.cnbc.com/2026/02/03/trump-us-india-trade-deal-europe-india-deal-compared.html",
+            "source": "tavily",
+            "published": ""
+          }
+        ],
+        "summary": {
+          "summary": "India and the US have finalized a trade deal after months of diplomatic tensions, with various sectors expected to benefit. The deal includes agricultural protections for India and increased purchases of US aircraft, arms, and energy. While some sectors, like Gokaldas Exports, have seen significant stock surges, there remains a cautious optimism about the impact on trade relations and trust.",
+          "key_points": [
+            "India and the US have finalized a trade deal after months of diplomatic tensions.",
+            "The deal includes agricultural protections for India and increased purchases of US aircraft, arms, and energy.",
+            "While some sectors have seen significant stock surges, there remains a cautious optimism about the impact on trade relations and trust."
+          ]
+        },
+        "exported_file": "output/India_US_trade_deal_report_20260204_231221.json"
+      },
+      "errors": [],
+      "skipped": [],
+      "fallbacks_used": [],
+      "regenerated": [],
+      "success": true
+    }
+  },
+  {
+    "timestamp": "2026-02-04T23:12:38.867668",
+    "result": {
+      "intent": "Fetch, summarize, perform sentiment analysis, extract trends, and export the results for the India-US trade deal",
+      "domain": "India US trade deal",
+      "tools_executed": [
+        {
+          "tool": "news_fetcher",
+          "success": true,
+          "retries": 0,
+          "used_fallback": false,
+          "regenerated": false
+        },
+        {
+          "tool": "summarizer",
+          "success": true,
+          "retries": 0,
+          "used_fallback": false,
+          "regenerated": false
+        },
+        {
+          "tool": "sentiment",
+          "success": true,
+          "retries": 0,
+          "used_fallback": false,
+          "regenerated": false
+        },
+        {
+          "tool": "trends",
+          "success": true,
+          "retries": 0,
+          "used_fallback": false,
+          "regenerated": false
+        },
+        {
+          "tool": "exporter",
+          "success": true,
+          "retries": 0,
+          "used_fallback": false,
+          "regenerated": false
+        }
+      ],
+      "data": {
+        "news": [
+          {
+            "title": "Here's who analysts expect to gain from India\u2019s U.S. and EU trade deals - CNBC",
+            "link": "https://news.google.com/rss/articles/CBMimwFBVV95cUxNWmJMcE51QzZjSlJHLWNmVV9hb0loRUk0clJMdGZ1VnkwX3FjQVhyekNuX0pjTC02Tng3MWVabExwYnVCcUxNbDFfcmNoa2NFdW9Yd0laNjdiSTU0RGpqY3Y0bllUbDlIWnJ3eW5mVGlyc1puR3FadVZjTGFQMFBIc3dVTjlNV1JMdUpKOHB0ZE9POFFSWGU2UTloY9IBoAFBVV95cUxNVTJCZGw3Qk1sQ0xPbmFaMlVIZHZLazc2cjY0ZkVwSW52cnBTd0E5S2pLaFAxYXBwS2NQN1ZBTGtjRXQ4WkF4T2hsVEhTYzBBWXpxUE4zaVhSaUtycUlkMUFhdlpaZWtRM3dMaDZJMkRUZUlqa21PZmdQMlRhd3VhMnBxYnl6YnNmajN2T3F3UnR1Y2c0TV9MdXhDeWJybnkz?oc=5",
+            "source": "rss",
+            "published": "Tue, 03 Feb 2026 23:18:15 GMT"
+          },
+          {
+            "title": "Hope and uncertainty as India and US strike long-delayed trade deal - BBC",
+            "link": "https://news.google.com/rss/articles/CBMiWkFVX3lxTFBoRHZ3eDU2UERBbkZfcHFSSFdicTdPTFdCM2pMQjJORmV6TGFhT3poR2hzamVwN1V1QlF4UDIwMTFDT0gwZUJwb2EyX05Kd1VINnhEdU9fVDIyZw?oc=5",
+            "source": "rss",
+            "published": "Tue, 03 Feb 2026 06:29:43 GMT"
+          },
+          {
+            "title": "India to keep some farm protections in US trade deal, will buy US aircraft, arms, energy - Reuters",
+            "link": "https://news.google.com/rss/articles/CBMixgFBVV95cUxNcng4MEdUWDFQNFBmckpxbVNzTmh5bWpTN0IyZ3NRYUNWTjZ1WFhlZDNYRkVLZGk5SXBXSVowTlRKNU5OZEwzdGpWNGRXSjhwVUV2TU1wT1FXVXZFamFfR2tfOTQ5WXV6TXRzUTdPSTc4RFp0bVVPRTRzMzltUDVPVjBjZVd0aC10NVkwZmF5U0NFcElCeHhSVXQ3bWpicU5Pd1oxdnRCSUR5cHJTbm1uNnU1SXRPWE05d1lYd3p0VTlqNTFGbnc?oc=5",
+            "source": "rss",
+            "published": "Tue, 03 Feb 2026 14:55:33 GMT"
+          },
+          {
+            "title": "U.S. and India seal trade deal after months of diplomatic tensions - The Washington Post",
+            "link": "https://news.google.com/rss/articles/CBMif0FVX3lxTE9WUnVyOXh0UHUtZjJVNmUxdEJmUW9vXzhMSVc3bnh2aTRnWVZxQU12dHZpbGl6bEVvM1BFWmJlMmlmZ3ZvNVhkWkQ2RFQtNnNhVVRJYjlHZ2RURGRMVDhNNFB1UWhIZU5fQV8tck5IVUxUVjRRMFl1RFdhN1NyYWM?oc=5",
+            "source": "rss",
+            "published": "Tue, 03 Feb 2026 04:13:04 GMT"
+          },
+          {
+            "title": "The Trump-Modi Trade Deal Won\u2019t Magically Restore U.S.-India Trust - Carnegie Endowment for International Peace",
+            "link": "https://news.google.com/rss/articles/CBMinwFBVV95cUxQOXNLeDh5cmFqWjlfSUNmTEVwOTA5THBMSjRmcmc3TEoxN2lnaWk3Vk13WEFsWGZDTmlXLVB6OXZiMjVxYm90YVlNSnBNbGFUMm05V3l1VXJkeHlkTkdWNlh3bXA5bzVDZXNndEpqRmM0VkRVLWZUenVlN0dwVzFaQVlTcVRmUzJtUXItR2VhM0xKdG5yT0RUelJBeDNfd2c?oc=5",
+            "source": "rss",
+            "published": "Tue, 03 Feb 2026 21:24:07 GMT"
+          },
+          {
+            "title": "Gokaldas Exports shares surge over 40% in two days after India-US trade deal",
+            "link": "https://economictimes.indiatimes.com/markets/stocks/news/gokaldas-exports-shares-surge-over-40-in-two-days-after-india-us-trade-deal/articleshow/127900783.cms",
+            "source": "gnews",
+            "published": "2026-02-04T05:38:00Z"
+          },
+          {
+            "title": "Why India will wait before revealing US trade deal details: FM Nirmala Sitharaman on trust, tariffs and politics",
+            "link": "https://economictimes.indiatimes.com/markets/expert-view/why-india-will-wait-before-revealing-us-trade-deal-details-fm-nirmala-sitharaman-on-trust-tariffs-and-politics/articleshow/127900680.cms",
+            "source": "gnews",
+            "published": "2026-02-04T05:36:00Z"
+          },
+          {
+            "title": "US ties in focus as Jaishankar meets Rubio ahead of key minerals talks",
+            "link": "https://www.mid-day.com/news/world-news/photo/in-pics-jaishankar-meets-us-secretary-rubio-in-washington-ahead-of-minerals-meet-109508",
+            "source": "gnews",
+            "published": "2026-02-04T05:36:00Z"
+          },
+          {
+            "title": "a 'threat' to Indian farmers, warns Sharad Pawar",
+            "link": "https://www.lokmattimes.com/national/india-us-trade-deal-a-threat-to-indian-farmers-warns-sharad-pawar/",
+            "source": "gnews",
+            "published": "2026-02-04T05:35:39Z"
+          },
+          {
+            "title": "US-India Trade Deal: Will Wine And Nuts Really See Zero Duty?",
+            "link": "https://www.timesnownews.com/business-economy/economy/usindia-trade-deal-will-wine-and-nuts-really-see-zero-duty-article-153557379",
+            "source": "gnews",
+            "published": "2026-02-04T05:33:05Z"
+          },
+          {
+            "title": "India's Modi praised for US trade deal as opposition ...",
+            "link": "https://apnews.com/article/india-us-trade-deal-trump-modi-3ce866a869dae9fd10449a6f70c2a4ed",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "'Devil in the details': India-U.S. deal raises hopes for a reset",
+            "link": "https://www.cnbc.com/2026/02/03/us-india-trade-framework-tariffs-reset-modi-trump-new-delhi-russian-oil-venezuela.html",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "Why the India-U.S. trade deal remains elusive",
+            "link": "https://www.cnbc.com/2025/12/18/cnbcs-inside-india-newsletter-why-the-india-us-trade-deal-remains-elusive.html",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "India-US trade deal: Hope and uncertainty as Trump cuts ...",
+            "link": "https://www.bbc.com/news/articles/cpwnlwj80p8o",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "India's U.S. and EU trade deals: Who will gain",
+            "link": "https://www.cnbc.com/2026/02/04/trump-india-us-eu-trade-war-deals-tariffs-delhi-washington.html",
+            "source": "tavily",
+            "published": ""
+          }
+        ],
+        "summary": {
+          "summary": "India and the U.S. have finally struck a long-delayed trade deal after months of diplomatic tensions, with analysts predicting significant gains for certain sectors. However, the deal includes provisions to protect Indian farmers, which has caused some concern and political tension. The deal also involves the purchase of U.S. aircraft, arms, and energy by India, alongside potential zero-duty access for certain agricultural products.",
+          "key_points": [
+            "India and the U.S. have finalized a trade deal after diplomatic tensions.",
+            "The deal includes protections for Indian farmers, sparking political and social debate.",
+            "The agreement involves purchases of U.S. aircraft, arms, and energy by India, as well as potential zero-duty access for certain products."
+          ]
+        },
+        "sentiment": {
+          "overall": "neutral",
+          "mood_label": "cautious optimism",
+          "confidence": "medium",
+          "direction": "stable",
+          "momentum_strength": "moderate",
+          "risk_level": "moderate",
+          "market_bias": "balanced",
+          "reasoning": "The headlines reflect a mix of optimism regarding the trade deal's potential benefits and caution due to uncertainties and concerns, particularly from the opposition and farmers. The positive sentiment is driven by the anticipation of economic gains and improved diplomatic relations, while the negative sentiment arises from skepticism about the deal's details and its impact on certain sectors.",
+          "positive_signals": [
+            "Potential economic gains from trade deal",
+            "Improved diplomatic relations between US and India"
+          ],
+          "negative_signals": [
+            "Concerns from opposition and farmers",
+            "Skepticism about the deal's details"
+          ],
+          "emerging_themes": [
+            "Economic benefits",
+            "Diplomatic relations",
+            "Sector-specific concerns"
+          ],
+          "score": 0.5,
+          "breakdown": {
+            "positive": 6,
+            "neutral": 4,
+            "negative": 3
+          }
+        },
+        "trends": {
+          "trending_topics": [
+            {
+              "topic": "India",
+              "score": 39.77,
+              "mentions": 39,
+              "velocity": "stable",
+              "velocity_icon": "\u27a1\ufe0f",
+              "story_direction": "Stable Coverage",
+              "story_icon": "\u26aa",
+              "coverage_growth": "Steady",
+              "tone_of_coverage": "Neutral/Mixed",
+              "news_cycle_stage": "Major Story",
+              "news_cycle_icon": "\ud83d\udcf0",
+              "why_trending": [
+                "India has recently signed significant trade deals with the U.S. and EU, sparking widespread interest and speculation."
+              ],
+              "narrative": "Stable Coverage",
+              "narrative_icon": "\u26aa",
+              "fusion_score": 0.5
+            },
+            {
+              "topic": "Hope",
+              "score": 6.25,
+              "mentions": 6,
+              "velocity": "stable",
+              "velocity_icon": "\u27a1\ufe0f",
+              "story_direction": "Stable Coverage",
+              "story_icon": "\u26aa",
+              "coverage_growth": "Steady",
+              "tone_of_coverage": "Neutral/Mixed",
+              "news_cycle_stage": "Active Coverage",
+              "news_cycle_icon": "\ud83d\uddde\ufe0f",
+              "why_trending": [
+                "Many stakeholders are hopeful that the trade deals will boost economic growth and bilateral relations."
+              ],
+              "narrative": "Stable Coverage",
+              "narrative_icon": "\u26aa",
+              "fusion_score": 0.5
+            },
+            {
+              "topic": "India US",
+              "score": 5.79,
+              "mentions": 5,
+              "velocity": "stable",
+              "velocity_icon": "\u27a1\ufe0f",
+              "story_direction": "Stable Coverage",
+              "story_icon": "\u26aa",
+              "coverage_growth": "Steady",
+              "tone_of_coverage": "Neutral/Mixed",
+              "news_cycle_stage": "Active Coverage",
+              "news_cycle_icon": "\ud83d\uddde\ufe0f",
+              "why_trending": [
+                "The long-awaited trade deal between India and the U.S. has been finalized, leading to extensive coverage."
+              ],
+              "narrative": "Stable Coverage",
+              "narrative_icon": "\u26aa",
+              "fusion_score": 0.5
+            },
+            {
+              "topic": "Sharad Pawar",
+              "score": 5.46,
+              "mentions": 5,
+              "velocity": "rising_fast",
+              "velocity_icon": "\ud83d\udd25",
+              "story_direction": "Strong Coverage",
+              "story_icon": "\ud83d\udfe2",
+              "coverage_growth": "Rising Fast",
+              "tone_of_coverage": "Neutral/Mixed",
+              "news_cycle_stage": "Breaking Story",
+              "news_cycle_icon": "\ud83c\udd95",
+              "why_trending": [
+                "As a prominent political figure, Pawar's concerns about the trade deal's impact on Indian farmers are drawing attention."
+              ],
+              "narrative": "Strong Coverage",
+              "narrative_icon": "\ud83d\udfe2",
+              "fusion_score": 1.0
+            },
+            {
+              "topic": "Gokaldas Exports",
+              "score": 5.46,
+              "mentions": 5,
+              "velocity": "rising_fast",
+              "velocity_icon": "\ud83d\udd25",
+              "story_direction": "Strong Coverage",
+              "story_icon": "\ud83d\udfe2",
+              "coverage_growth": "Rising Fast",
+              "tone_of_coverage": "Neutral/Mixed",
+              "news_cycle_stage": "Breaking Story",
+              "news_cycle_icon": "\ud83c\udd95",
+              "why_trending": [
+                "The company's shares have surged due to positive expectations from the India-U.S. trade deal, making it a focal point."
+              ],
+              "narrative": "Strong Coverage",
+              "narrative_icon": "\ud83d\udfe2",
+              "fusion_score": 1.0
+            },
+            {
+              "topic": "Nirmala Sitharaman",
+              "score": 5.46,
+              "mentions": 5,
+              "velocity": "rising_fast",
+              "velocity_icon": "\ud83d\udd25",
+              "story_direction": "Strong Coverage",
+              "story_icon": "\ud83d\udfe2",
+              "coverage_growth": "Rising Fast",
+              "tone_of_coverage": "Neutral/Mixed",
+              "news_cycle_stage": "Breaking Story",
+              "news_cycle_icon": "\ud83c\udd95",
+              "why_trending": [
+                "Breaking into mainstream coverage",
+                "Rapid acceleration in coverage",
+                "Factual coverage without strong stance"
+              ],
+              "narrative": "Strong Coverage",
+              "narrative_icon": "\ud83d\udfe2",
+              "fusion_score": 1.0
+            },
+            {
+              "topic": "Rubio",
+              "score": 4.88,
+              "mentions": 4,
+              "velocity": "rising_fast",
+              "velocity_icon": "\ud83d\udd25",
+              "story_direction": "Strong Coverage",
+              "story_icon": "\ud83d\udfe2",
+              "coverage_growth": "Rising Fast",
+              "tone_of_coverage": "Neutral/Mixed",
+              "news_cycle_stage": "Breaking Story",
+              "news_cycle_icon": "\ud83c\udd95",
+              "why_trending": [
+                "Multiple outlets picking up this story",
+                "Sudden surge in last 6 hours",
+                "Neutral journalistic framing"
+              ],
+              "narrative": "Strong Coverage",
+              "narrative_icon": "\ud83d\udfe2",
+              "fusion_score": 1.0
+            },
+            {
+              "topic": "Indian",
+              "score": 4.88,
+              "mentions": 4,
+              "velocity": "rising_fast",
+              "velocity_icon": "\ud83d\udd25",
+              "story_direction": "Strong Coverage",
+              "story_icon": "\ud83d\udfe2",
+              "coverage_growth": "Rising Fast",
+              "tone_of_coverage": "Neutral/Mixed",
+              "news_cycle_stage": "Breaking Story",
+              "news_cycle_icon": "\ud83c\udd95",
+              "why_trending": [
+                "Multiple outlets picking up this story",
+                "Breaking story dynamics detected",
+                "Neutral journalistic framing"
+              ],
+              "narrative": "Strong Coverage",
+              "narrative_icon": "\ud83d\udfe2",
+              "fusion_score": 1.0
+            },
+            {
+              "topic": "Jaishankar",
+              "score": 4.88,
+              "mentions": 4,
+              "velocity": "rising_fast",
+              "velocity_icon": "\ud83d\udd25",
+              "story_direction": "Strong Coverage",
+              "story_icon": "\ud83d\udfe2",
+              "coverage_growth": "Rising Fast",
+              "tone_of_coverage": "Neutral/Mixed",
+              "news_cycle_stage": "Breaking Story",
+              "news_cycle_icon": "\ud83c\udd95",
+              "why_trending": [
+                "Cross-platform media attention detected",
+                "Rapid acceleration in coverage",
+                "Balanced reporting across outlets"
+              ],
+              "narrative": "Strong Coverage",
+              "narrative_icon": "\ud83d\udfe2",
+              "fusion_score": 1.0
+            },
+            {
+              "topic": "Modi",
+              "score": 4.75,
+              "mentions": 4,
+              "velocity": "rising",
+              "velocity_icon": "\ud83d\udcc8",
+              "story_direction": "Strong Coverage",
+              "story_icon": "\ud83d\udfe2",
+              "coverage_growth": "Rising",
+              "tone_of_coverage": "Neutral/Mixed",
+              "news_cycle_stage": "Background",
+              "news_cycle_icon": "\ud83d\udcda",
+              "why_trending": [
+                "Cross-platform media attention detected",
+                "Balanced reporting across outlets"
+              ],
+              "narrative": "Strong Coverage",
+              "narrative_icon": "\ud83d\udfe2",
+              "fusion_score": 0.75
+            }
+          ],
+          "rising_topics": [
+            {
+              "topic": "Sharad Pawar",
+              "score": 5.46,
+              "mentions": 5,
+              "velocity": "rising_fast",
+              "velocity_value": 1.0
+            },
+            {
+              "topic": "Gokaldas Exports",
+              "score": 5.46,
+              "mentions": 5,
+              "velocity": "rising_fast",
+              "velocity_value": 1.0
+            },
+            {
+              "topic": "Nirmala Sitharaman",
+              "score": 5.46,
+              "mentions": 5,
+              "velocity": "rising_fast",
+              "velocity_value": 1.0
+            },
+            {
+              "topic": "Rubio",
+              "score": 4.88,
+              "mentions": 4,
+              "velocity": "rising_fast",
+              "velocity_value": 1.0
+            },
+            {
+              "topic": "Indian",
+              "score": 4.88,
+              "mentions": 4,
+              "velocity": "rising_fast",
+              "velocity_value": 1.0
+            }
+          ],
+          "fading_topics": [],
+          "total_articles": 15,
+          "analysis_timestamp": "2026-02-04T23:12:38.810607",
+          "topic_insights": {
+            "India": {
+              "insight": "India has recently signed significant trade deals with the U.S. and EU, sparking widespread interest and speculation.",
+              "emotion": "Optimism",
+              "angle": "Positive"
+            },
+            "Hope": {
+              "insight": "Many stakeholders are hopeful that the trade deals will boost economic growth and bilateral relations.",
+              "emotion": "Hopefulness",
+              "angle": "Positive"
+            },
+            "India US": {
+              "insight": "The long-awaited trade deal between India and the U.S. has been finalized, leading to extensive coverage.",
+              "emotion": "Anticipation",
+              "angle": "Neutral"
+            },
+            "Sharad Pawar": {
+              "insight": "As a prominent political figure, Pawar's concerns about the trade deal's impact on Indian farmers are drawing attention.",
+              "emotion": "Concern",
+              "angle": "Neutral"
+            },
+            "Gokaldas Exports": {
+              "insight": "The company's shares have surged due to positive expectations from the India-U.S. trade deal, making it a focal point.",
+              "emotion": "Excitement",
+              "angle": "Positive"
+            }
+          },
+          "topic_insights_meta": {
+            "enabled": true,
+            "reason": "ok",
+            "model": "amazon.nova-lite-v1:0",
+            "region": "us-east-1"
+          },
+          "active_narratives": [
+            {
+              "topic": "India",
+              "story_direction": "Stable Coverage",
+              "story_icon": "\u26aa",
+              "coverage": "Steady",
+              "tone": "Neutral/Mixed",
+              "news_cycle": "Major Story",
+              "why_trending": [
+                "India has recently signed significant trade deals with the U.S. and EU, sparking widespread interest and speculation."
+              ]
+            },
+            {
+              "topic": "Hope",
+              "story_direction": "Stable Coverage",
+              "story_icon": "\u26aa",
+              "coverage": "Steady",
+              "tone": "Neutral/Mixed",
+              "news_cycle": "Active Coverage",
+              "why_trending": [
+                "Many stakeholders are hopeful that the trade deals will boost economic growth and bilateral relations."
+              ]
+            },
+            {
+              "topic": "India US",
+              "story_direction": "Stable Coverage",
+              "story_icon": "\u26aa",
+              "coverage": "Steady",
+              "tone": "Neutral/Mixed",
+              "news_cycle": "Active Coverage",
+              "why_trending": [
+                "The long-awaited trade deal between India and the U.S. has been finalized, leading to extensive coverage."
+              ]
+            },
+            {
+              "topic": "Sharad Pawar",
+              "story_direction": "Strong Coverage",
+              "story_icon": "\ud83d\udfe2",
+              "coverage": "Rising Fast",
+              "tone": "Neutral/Mixed",
+              "news_cycle": "Breaking Story",
+              "why_trending": [
+                "As a prominent political figure, Pawar's concerns about the trade deal's impact on Indian farmers are drawing attention."
+              ]
+            },
+            {
+              "topic": "Gokaldas Exports",
+              "story_direction": "Strong Coverage",
+              "story_icon": "\ud83d\udfe2",
+              "coverage": "Rising Fast",
+              "tone": "Neutral/Mixed",
+              "news_cycle": "Breaking Story",
+              "why_trending": [
+                "The company's shares have surged due to positive expectations from the India-U.S. trade deal, making it a focal point."
+              ]
+            }
+          ],
+          "news_narrative_summary": "Active story movement around India, Hope",
+          "narrative_signals": [
+            {
+              "topic": "India",
+              "story_direction": "Stable Coverage",
+              "story_icon": "\u26aa",
+              "coverage": "Steady",
+              "tone": "Neutral/Mixed",
+              "news_cycle": "Major Story",
+              "why_trending": [
+                "India has recently signed significant trade deals with the U.S. and EU, sparking widespread interest and speculation."
+              ]
+            },
+            {
+              "topic": "Hope",
+              "story_direction": "Stable Coverage",
+              "story_icon": "\u26aa",
+              "coverage": "Steady",
+              "tone": "Neutral/Mixed",
+              "news_cycle": "Active Coverage",
+              "why_trending": [
+                "Many stakeholders are hopeful that the trade deals will boost economic growth and bilateral relations."
+              ]
+            },
+            {
+              "topic": "India US",
+              "story_direction": "Stable Coverage",
+              "story_icon": "\u26aa",
+              "coverage": "Steady",
+              "tone": "Neutral/Mixed",
+              "news_cycle": "Active Coverage",
+              "why_trending": [
+                "The long-awaited trade deal between India and the U.S. has been finalized, leading to extensive coverage."
+              ]
+            },
+            {
+              "topic": "Sharad Pawar",
+              "story_direction": "Strong Coverage",
+              "story_icon": "\ud83d\udfe2",
+              "coverage": "Rising Fast",
+              "tone": "Neutral/Mixed",
+              "news_cycle": "Breaking Story",
+              "why_trending": [
+                "As a prominent political figure, Pawar's concerns about the trade deal's impact on Indian farmers are drawing attention."
+              ]
+            },
+            {
+              "topic": "Gokaldas Exports",
+              "story_direction": "Strong Coverage",
+              "story_icon": "\ud83d\udfe2",
+              "coverage": "Rising Fast",
+              "tone": "Neutral/Mixed",
+              "news_cycle": "Breaking Story",
+              "why_trending": [
+                "The company's shares have surged due to positive expectations from the India-U.S. trade deal, making it a focal point."
+              ]
+            }
+          ],
+          "market_narrative": "Active story movement around India, Hope"
+        },
+        "exported_file": "output/India_US_trade_deal_report_20260204_231238.json"
+      },
+      "errors": [],
+      "skipped": [],
+      "fallbacks_used": [],
+      "regenerated": [],
+      "success": true
+    }
+  },
+  {
+    "timestamp": "2026-02-04T23:16:23.642168",
+    "result": {
+      "intent": "Fetch news on India US trade deal, summarize, perform sentiment analysis, extract trends, and export the results",
+      "domain": "India US trade deal",
+      "tools_executed": [
+        {
+          "tool": "news_fetcher",
+          "success": true,
+          "retries": 0,
+          "used_fallback": false,
+          "regenerated": false
+        },
+        {
+          "tool": "summarizer",
+          "success": true,
+          "retries": 0,
+          "used_fallback": false,
+          "regenerated": false
+        },
+        {
+          "tool": "sentiment",
+          "success": true,
+          "retries": 0,
+          "used_fallback": false,
+          "regenerated": false
+        },
+        {
+          "tool": "trends",
+          "success": true,
+          "retries": 0,
+          "used_fallback": false,
+          "regenerated": false
+        },
+        {
+          "tool": "exporter",
+          "success": true,
+          "retries": 0,
+          "used_fallback": false,
+          "regenerated": false
+        }
+      ],
+      "data": {
+        "news": [
+          {
+            "title": "Here's who analysts expect to gain from India\u2019s U.S. and EU trade deals - CNBC",
+            "link": "https://news.google.com/rss/articles/CBMimwFBVV95cUxNWmJMcE51QzZjSlJHLWNmVV9hb0loRUk0clJMdGZ1VnkwX3FjQVhyekNuX0pjTC02Tng3MWVabExwYnVCcUxNbDFfcmNoa2NFdW9Yd0laNjdiSTU0RGpqY3Y0bllUbDlIWnJ3eW5mVGlyc1puR3FadVZjTGFQMFBIc3dVTjlNV1JMdUpKOHB0ZE9POFFSWGU2UTloY9IBoAFBVV95cUxNVTJCZGw3Qk1sQ0xPbmFaMlVIZHZLazc2cjY0ZkVwSW52cnBTd0E5S2pLaFAxYXBwS2NQN1ZBTGtjRXQ4WkF4T2hsVEhTYzBBWXpxUE4zaVhSaUtycUlkMUFhdlpaZWtRM3dMaDZJMkRUZUlqa21PZmdQMlRhd3VhMnBxYnl6YnNmajN2T3F3UnR1Y2c0TV9MdXhDeWJybnkz?oc=5",
+            "source": "rss",
+            "published": "Tue, 03 Feb 2026 23:18:15 GMT"
+          },
+          {
+            "title": "Hope and uncertainty as India and US strike long-delayed trade deal - BBC",
+            "link": "https://news.google.com/rss/articles/CBMiWkFVX3lxTFBoRHZ3eDU2UERBbkZfcHFSSFdicTdPTFdCM2pMQjJORmV6TGFhT3poR2hzamVwN1V1QlF4UDIwMTFDT0gwZUJwb2EyX05Kd1VINnhEdU9fVDIyZw?oc=5",
+            "source": "rss",
+            "published": "Tue, 03 Feb 2026 06:29:43 GMT"
+          },
+          {
+            "title": "India to keep some farm protections in US trade deal, will buy US aircraft, arms, energy - Reuters",
+            "link": "https://news.google.com/rss/articles/CBMixgFBVV95cUxNcng4MEdUWDFQNFBmckpxbVNzTmh5bWpTN0IyZ3NRYUNWTjZ1WFhlZDNYRkVLZGk5SXBXSVowTlRKNU5OZEwzdGpWNGRXSjhwVUV2TU1wT1FXVXZFamFfR2tfOTQ5WXV6TXRzUTdPSTc4RFp0bVVPRTRzMzltUDVPVjBjZVd0aC10NVkwZmF5U0NFcElCeHhSVXQ3bWpicU5Pd1oxdnRCSUR5cHJTbm1uNnU1SXRPWE05d1lYd3p0VTlqNTFGbnc?oc=5",
+            "source": "rss",
+            "published": "Tue, 03 Feb 2026 14:55:33 GMT"
+          },
+          {
+            "title": "India\u2019s Modi praised for US trade deal as opposition questions impact on agriculture - AP News",
+            "link": "https://news.google.com/rss/articles/CBMilAFBVV95cUxNWDNCak5lSDZTblVncEU5am1tRkRFNjYyZllqb2xhWmotbzBSeVhmUU82UWlJS3hJbGdYWjFGbVpPVlV6SGRxWC0zRnQwVUZOb1Z1ZDFacnprRjBBM1A4dFdyUEpONXhqOThQcGhkcjQwdTVxemZSdGU0MzRPelFRbS1vcHF1c190QUluR3p2YUNKcl9W?oc=5",
+            "source": "rss",
+            "published": "Wed, 04 Feb 2026 06:50:00 GMT"
+          },
+          {
+            "title": "U.S. and India seal trade deal after months of diplomatic tensions - The Washington Post",
+            "link": "https://news.google.com/rss/articles/CBMif0FVX3lxTE9WUnVyOXh0UHUtZjJVNmUxdEJmUW9vXzhMSVc3bnh2aTRnWVZxQU12dHZpbGl6bEVvM1BFWmJlMmlmZ3ZvNVhkWkQ2RFQtNnNhVVRJYjlHZ2RURGRMVDhNNFB1UWhIZU5fQV8tck5IVUxUVjRRMFl1RFdhN1NyYWM?oc=5",
+            "source": "rss",
+            "published": "Tue, 03 Feb 2026 04:13:04 GMT"
+          },
+          {
+            "title": "Congress Seeks Clarity on India-US Trade Deal, Raises Transparency Concerns",
+            "link": "https://www.deccanchronicle.com/nation/current-affairs/congress-seeks-clarity-on-indiaus-trade-deal-raises-transparency-concerns-1934847",
+            "source": "gnews",
+            "published": "2026-02-04T05:45:58Z"
+          },
+          {
+            "title": "Spin doctors at work but still no details on India-US deal: Congress",
+            "link": "https://www.newindianexpress.com/nation/2026/Feb/04/spin-doctors-at-work-but-still-no-details-on-india-us-deal-congress",
+            "source": "gnews",
+            "published": "2026-02-04T05:44:33Z"
+          },
+          {
+            "title": "Gokaldas Exports shares surge over 40% in two days after India-US trade deal",
+            "link": "https://economictimes.indiatimes.com/markets/stocks/news/gokaldas-exports-shares-surge-over-40-in-two-days-after-india-us-trade-deal/articleshow/127900783.cms",
+            "source": "gnews",
+            "published": "2026-02-04T05:38:00Z"
+          },
+          {
+            "title": "Why India will wait before revealing US trade deal details: FM Nirmala Sitharaman on trust, tariffs and politics",
+            "link": "https://economictimes.indiatimes.com/markets/expert-view/why-india-will-wait-before-revealing-us-trade-deal-details-fm-nirmala-sitharaman-on-trust-tariffs-and-politics/articleshow/127900680.cms",
+            "source": "gnews",
+            "published": "2026-02-04T05:36:00Z"
+          },
+          {
+            "title": "US ties in focus as Jaishankar meets Rubio ahead of key minerals talks",
+            "link": "https://www.mid-day.com/news/world-news/photo/in-pics-jaishankar-meets-us-secretary-rubio-in-washington-ahead-of-minerals-meet-109508",
+            "source": "gnews",
+            "published": "2026-02-04T05:36:00Z"
+          },
+          {
+            "title": "India to keep some farm protections in US trade deal, will ...",
+            "link": "https://www.reuters.com/world/india/us-trade-chief-says-india-maintain-some-agriculture-protections-deal-with-trump-2026-02-03/",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "US and India reach trade deal, Trump says after Modi call",
+            "link": "https://www.bbc.com/news/articles/c5yve1x9zv0o",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "India-US trade deal: Hope and uncertainty as Trump cuts ...",
+            "link": "https://www.bbc.com/news/articles/cpwnlwj80p8o",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "'Devil in the details': India-U.S. deal raises hopes for a reset",
+            "link": "https://www.cnbc.com/2026/02/03/us-india-trade-framework-tariffs-reset-modi-trump-new-delhi-russian-oil-venezuela.html",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "U.S.-India trade talks revamp as Trump sees other deals ...",
+            "link": "https://www.cnbc.com/2026/01/28/us-india-trade-talks-trump-tariffs.html",
+            "source": "tavily",
+            "published": ""
+          }
+        ],
+        "summary": {
+          "summary": "India and the US have recently concluded a long-awaited trade deal, which has been met with both praise and concerns, particularly regarding its impact on agriculture. The deal is expected to benefit various sectors, including energy and defense. However, there are uncertainties and calls for transparency from Congress.",
+          "key_points": [
+            "The trade deal has generated optimism but also raised concerns about its agricultural impact.",
+            "The deal is expected to benefit sectors like energy and defense.",
+            "There are calls for transparency and clarity from Congress regarding the deal's details and implications."
+          ]
+        },
+        "sentiment": {
+          "overall": "neutral",
+          "mood_label": "cautious optimism",
+          "confidence": "medium",
+          "direction": "stable",
+          "momentum_strength": "moderate",
+          "risk_level": "moderate",
+          "market_bias": "balanced",
+          "reasoning": "The headlines reflect a mix of optimism regarding potential economic gains from the trade deal, particularly in sectors like defense and energy, alongside concerns about the impact on agriculture and transparency issues. The praise for Prime Minister Modi contrasts with opposition questions and congressional concerns, indicating a balanced narrative.",
+          "positive_signals": [
+            "Expected gains from trade deals",
+            "Surge in Gokaldas Exports shares",
+            "Praise for Modi's efforts"
+          ],
+          "negative_signals": [
+            "Uncertainty and opposition concerns",
+            "Transparency concerns raised by Congress",
+            "Questions about impact on agriculture"
+          ],
+          "emerging_themes": [
+            "Trade deal specifics",
+            "Agricultural impact",
+            "Transparency and clarity"
+          ],
+          "score": 0.5,
+          "breakdown": {
+            "positive": 5,
+            "neutral": 5,
+            "negative": 3
+          }
+        },
+        "trends": {
+          "trending_topics": [
+            {
+              "topic": "India",
+              "score": 50.33,
+              "mentions": 50,
+              "velocity": "rising",
+              "velocity_icon": "\ud83d\udcc8",
+              "story_direction": "Strong Coverage",
+              "story_icon": "\ud83d\udfe2",
+              "coverage_growth": "Rising",
+              "tone_of_coverage": "Neutral/Mixed",
+              "news_cycle_stage": "Peak Focus",
+              "news_cycle_icon": "\ud83d\udd25",
+              "why_trending": [
+                "India is signing significant trade deals with the U.S. and EU, impacting various sectors."
+              ],
+              "narrative": "Strong Coverage",
+              "narrative_icon": "\ud83d\udfe2",
+              "fusion_score": 0.75
+            },
+            {
+              "topic": "Trump",
+              "score": 11.25,
+              "mentions": 11,
+              "velocity": "rising_fast",
+              "velocity_icon": "\ud83d\udd25",
+              "story_direction": "Strong Coverage",
+              "story_icon": "\ud83d\udfe2",
+              "coverage_growth": "Rising Fast",
+              "tone_of_coverage": "Neutral/Mixed",
+              "news_cycle_stage": "Peak Focus",
+              "news_cycle_icon": "\ud83d\udd25",
+              "why_trending": [
+                "Trump's administration is actively involved in negotiating and finalizing trade deals."
+              ],
+              "narrative": "Strong Coverage",
+              "narrative_icon": "\ud83d\udfe2",
+              "fusion_score": 1.0
+            },
+            {
+              "topic": "India US",
+              "score": 10.86,
+              "mentions": 10,
+              "velocity": "rising_fast",
+              "velocity_icon": "\ud83d\udd25",
+              "story_direction": "Strong Coverage",
+              "story_icon": "\ud83d\udfe2",
+              "coverage_growth": "Rising Fast",
+              "tone_of_coverage": "Neutral/Mixed",
+              "news_cycle_stage": "Peak Focus",
+              "news_cycle_icon": "\ud83d\udd25",
+              "why_trending": [
+                "A new trade deal between India and the U.S. is being finalized, affecting both economies."
+              ],
+              "narrative": "Strong Coverage",
+              "narrative_icon": "\ud83d\udfe2",
+              "fusion_score": 1.0
+            },
+            {
+              "topic": "Modi",
+              "score": 7.5,
+              "mentions": 7,
+              "velocity": "rising_fast",
+              "velocity_icon": "\ud83d\udd25",
+              "story_direction": "Strong Coverage",
+              "story_icon": "\ud83d\udfe2",
+              "coverage_growth": "Rising Fast",
+              "tone_of_coverage": "Neutral/Mixed",
+              "news_cycle_stage": "Breaking Story",
+              "news_cycle_icon": "\ud83c\udd95",
+              "why_trending": [
+                "Prime Minister Modi's role in negotiating and promoting the trade deal garners attention."
+              ],
+              "narrative": "Strong Coverage",
+              "narrative_icon": "\ud83d\udfe2",
+              "fusion_score": 1.0
+            },
+            {
+              "topic": "Congress",
+              "score": 6.83,
+              "mentions": 6,
+              "velocity": "rising_fast",
+              "velocity_icon": "\ud83d\udd25",
+              "story_direction": "Strong Coverage",
+              "story_icon": "\ud83d\udfe2",
+              "coverage_growth": "Rising Fast",
+              "tone_of_coverage": "Neutral/Mixed",
+              "news_cycle_stage": "Breaking Story",
+              "news_cycle_icon": "\ud83c\udd95",
+              "why_trending": [
+                "U.S. Congress is seeking clarity and transparency on the trade deal's specifics."
+              ],
+              "narrative": "Strong Coverage",
+              "narrative_icon": "\ud83d\udfe2",
+              "fusion_score": 1.0
+            },
+            {
+              "topic": "Hope",
+              "score": 6.25,
+              "mentions": 6,
+              "velocity": "stable",
+              "velocity_icon": "\u27a1\ufe0f",
+              "story_direction": "Stable Coverage",
+              "story_icon": "\u26aa",
+              "coverage_growth": "Steady",
+              "tone_of_coverage": "Neutral/Mixed",
+              "news_cycle_stage": "Active Coverage",
+              "news_cycle_icon": "\ud83d\uddde\ufe0f",
+              "why_trending": [
+                "Balanced reporting across outlets"
+              ],
+              "narrative": "Stable Coverage",
+              "narrative_icon": "\u26aa",
+              "fusion_score": 0.5
+            },
+            {
+              "topic": "Gokaldas Exports",
+              "score": 5.46,
+              "mentions": 5,
+              "velocity": "stable",
+              "velocity_icon": "\u27a1\ufe0f",
+              "story_direction": "Stable Coverage",
+              "story_icon": "\u26aa",
+              "coverage_growth": "Steady",
+              "tone_of_coverage": "Neutral/Mixed",
+              "news_cycle_stage": "Active Coverage",
+              "news_cycle_icon": "\ud83d\uddde\ufe0f",
+              "why_trending": [
+                "Factual coverage without strong stance"
+              ],
+              "narrative": "Stable Coverage",
+              "narrative_icon": "\u26aa",
+              "fusion_score": 0.5
+            },
+            {
+              "topic": "Nirmala Sitharaman",
+              "score": 5.46,
+              "mentions": 5,
+              "velocity": "stable",
+              "velocity_icon": "\u27a1\ufe0f",
+              "story_direction": "Stable Coverage",
+              "story_icon": "\u26aa",
+              "coverage_growth": "Steady",
+              "tone_of_coverage": "Neutral/Mixed",
+              "news_cycle_stage": "Active Coverage",
+              "news_cycle_icon": "\ud83d\uddde\ufe0f",
+              "why_trending": [
+                "Balanced reporting across outlets"
+              ],
+              "narrative": "Stable Coverage",
+              "narrative_icon": "\u26aa",
+              "fusion_score": 0.5
+            },
+            {
+              "topic": "Congress Seeks Clarity",
+              "score": 5.27,
+              "mentions": 5,
+              "velocity": "rising_fast",
+              "velocity_icon": "\ud83d\udd25",
+              "story_direction": "Strong Coverage",
+              "story_icon": "\ud83d\udfe2",
+              "coverage_growth": "Rising Fast",
+              "tone_of_coverage": "Neutral/Mixed",
+              "news_cycle_stage": "Breaking Story",
+              "news_cycle_icon": "\ud83c\udd95",
+              "why_trending": [
+                "Multiple outlets picking up this story",
+                "Sudden surge in last 6 hours",
+                "Factual coverage without strong stance"
+              ],
+              "narrative": "Strong Coverage",
+              "narrative_icon": "\ud83d\udfe2",
+              "fusion_score": 1.0
+            },
+            {
+              "topic": "Raises Transparency Concerns",
+              "score": 5.27,
+              "mentions": 5,
+              "velocity": "rising_fast",
+              "velocity_icon": "\ud83d\udd25",
+              "story_direction": "Strong Coverage",
+              "story_icon": "\ud83d\udfe2",
+              "coverage_growth": "Rising Fast",
+              "tone_of_coverage": "Neutral/Mixed",
+              "news_cycle_stage": "Breaking Story",
+              "news_cycle_icon": "\ud83c\udd95",
+              "why_trending": [
+                "Cross-platform media attention detected",
+                "Real-time news momentum",
+                "Factual coverage without strong stance"
+              ],
+              "narrative": "Strong Coverage",
+              "narrative_icon": "\ud83d\udfe2",
+              "fusion_score": 1.0
+            }
+          ],
+          "rising_topics": [
+            {
+              "topic": "Trump",
+              "score": 11.25,
+              "mentions": 11,
+              "velocity": "rising_fast",
+              "velocity_value": 1.0
+            },
+            {
+              "topic": "India US",
+              "score": 10.86,
+              "mentions": 10,
+              "velocity": "rising_fast",
+              "velocity_value": 0.8764044943820225
+            },
+            {
+              "topic": "Modi",
+              "score": 7.5,
+              "mentions": 7,
+              "velocity": "rising_fast",
+              "velocity_value": 0.5789473684210527
+            },
+            {
+              "topic": "Congress",
+              "score": 6.83,
+              "mentions": 6,
+              "velocity": "rising_fast",
+              "velocity_value": 1.0
+            },
+            {
+              "topic": "Congress Seeks Clarity",
+              "score": 5.27,
+              "mentions": 5,
+              "velocity": "rising_fast",
+              "velocity_value": 1.0
+            }
+          ],
+          "fading_topics": [],
+          "total_articles": 15,
+          "analysis_timestamp": "2026-02-04T23:16:23.590787",
+          "topic_insights": {
+            "India": {
+              "insight": "India is signing significant trade deals with the U.S. and EU, impacting various sectors.",
+              "emotion": "Optimism",
+              "angle": "Positive"
+            },
+            "Trump": {
+              "insight": "Trump's administration is actively involved in negotiating and finalizing trade deals.",
+              "emotion": "Neutral",
+              "angle": "Neutral"
+            },
+            "India US": {
+              "insight": "A new trade deal between India and the U.S. is being finalized, affecting both economies.",
+              "emotion": "Hope",
+              "angle": "Positive"
+            },
+            "Modi": {
+              "insight": "Prime Minister Modi's role in negotiating and promoting the trade deal garners attention.",
+              "emotion": "Praise",
+              "angle": "Positive"
+            },
+            "Congress": {
+              "insight": "U.S. Congress is seeking clarity and transparency on the trade deal's specifics.",
+              "emotion": "Concern",
+              "angle": "Neutral"
+            }
+          },
+          "topic_insights_meta": {
+            "enabled": true,
+            "reason": "ok",
+            "model": "amazon.nova-lite-v1:0",
+            "region": "us-east-1"
+          },
+          "active_narratives": [
+            {
+              "topic": "India",
+              "story_direction": "Strong Coverage",
+              "story_icon": "\ud83d\udfe2",
+              "coverage": "Rising",
+              "tone": "Neutral/Mixed",
+              "news_cycle": "Peak Focus",
+              "why_trending": [
+                "India is signing significant trade deals with the U.S. and EU, impacting various sectors."
+              ]
+            },
+            {
+              "topic": "Trump",
+              "story_direction": "Strong Coverage",
+              "story_icon": "\ud83d\udfe2",
+              "coverage": "Rising Fast",
+              "tone": "Neutral/Mixed",
+              "news_cycle": "Peak Focus",
+              "why_trending": [
+                "Trump's administration is actively involved in negotiating and finalizing trade deals."
+              ]
+            },
+            {
+              "topic": "India US",
+              "story_direction": "Strong Coverage",
+              "story_icon": "\ud83d\udfe2",
+              "coverage": "Rising Fast",
+              "tone": "Neutral/Mixed",
+              "news_cycle": "Peak Focus",
+              "why_trending": [
+                "A new trade deal between India and the U.S. is being finalized, affecting both economies."
+              ]
+            },
+            {
+              "topic": "Modi",
+              "story_direction": "Strong Coverage",
+              "story_icon": "\ud83d\udfe2",
+              "coverage": "Rising Fast",
+              "tone": "Neutral/Mixed",
+              "news_cycle": "Breaking Story",
+              "why_trending": [
+                "Prime Minister Modi's role in negotiating and promoting the trade deal garners attention."
+              ]
+            },
+            {
+              "topic": "Congress",
+              "story_direction": "Strong Coverage",
+              "story_icon": "\ud83d\udfe2",
+              "coverage": "Rising Fast",
+              "tone": "Neutral/Mixed",
+              "news_cycle": "Breaking Story",
+              "why_trending": [
+                "U.S. Congress is seeking clarity and transparency on the trade deal's specifics."
+              ]
+            }
+          ],
+          "news_narrative_summary": "Active story movement around India, Trump",
+          "narrative_signals": [
+            {
+              "topic": "India",
+              "story_direction": "Strong Coverage",
+              "story_icon": "\ud83d\udfe2",
+              "coverage": "Rising",
+              "tone": "Neutral/Mixed",
+              "news_cycle": "Peak Focus",
+              "why_trending": [
+                "India is signing significant trade deals with the U.S. and EU, impacting various sectors."
+              ]
+            },
+            {
+              "topic": "Trump",
+              "story_direction": "Strong Coverage",
+              "story_icon": "\ud83d\udfe2",
+              "coverage": "Rising Fast",
+              "tone": "Neutral/Mixed",
+              "news_cycle": "Peak Focus",
+              "why_trending": [
+                "Trump's administration is actively involved in negotiating and finalizing trade deals."
+              ]
+            },
+            {
+              "topic": "India US",
+              "story_direction": "Strong Coverage",
+              "story_icon": "\ud83d\udfe2",
+              "coverage": "Rising Fast",
+              "tone": "Neutral/Mixed",
+              "news_cycle": "Peak Focus",
+              "why_trending": [
+                "A new trade deal between India and the U.S. is being finalized, affecting both economies."
+              ]
+            },
+            {
+              "topic": "Modi",
+              "story_direction": "Strong Coverage",
+              "story_icon": "\ud83d\udfe2",
+              "coverage": "Rising Fast",
+              "tone": "Neutral/Mixed",
+              "news_cycle": "Breaking Story",
+              "why_trending": [
+                "Prime Minister Modi's role in negotiating and promoting the trade deal garners attention."
+              ]
+            },
+            {
+              "topic": "Congress",
+              "story_direction": "Strong Coverage",
+              "story_icon": "\ud83d\udfe2",
+              "coverage": "Rising Fast",
+              "tone": "Neutral/Mixed",
+              "news_cycle": "Breaking Story",
+              "why_trending": [
+                "U.S. Congress is seeking clarity and transparency on the trade deal's specifics."
+              ]
+            }
+          ],
+          "market_narrative": "Active story movement around India, Trump"
+        },
+        "exported_file": "output/India_US_trade_deal_report_20260204_231623.json"
       },
       "errors": [],
       "skipped": [],

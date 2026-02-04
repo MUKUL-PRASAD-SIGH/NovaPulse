@@ -106,7 +106,9 @@ def extract_trends(news_items: List[Dict]) -> Dict:
         })
     
     # Generate LLM-powered insights for top topics
-    topic_insights = _generate_llm_topic_insights(news_items, [t["topic"] for t in all_topics[:5]])
+    topic_insights, topic_insights_meta = _generate_llm_topic_insights(
+        news_items, [t["topic"] for t in all_topics[:5]]
+    )
     
     return {
         "trending_topics": all_topics,
@@ -114,30 +116,35 @@ def extract_trends(news_items: List[Dict]) -> Dict:
         "fading_topics": fading[:3],
         "total_articles": len(news_items),
         "analysis_timestamp": datetime.now().isoformat(),
-        "topic_insights": topic_insights
+        "topic_insights": topic_insights,
+        # Debug/status info so the UI (and you) can tell whether Nova actually ran
+        "topic_insights_meta": topic_insights_meta,
     }
 
 
-def _generate_llm_topic_insights(news_items: List[Dict], top_topics: List[str]) -> Dict[str, Dict]:
+def _generate_llm_topic_insights(news_items: List[Dict], top_topics: List[str]) -> Tuple[Dict[str, Dict], Dict]:
     """
     Use Nova LLM to analyze headlines and generate contextual insights for each trending topic.
     Returns a dict mapping topic -> {insight, emotion, angle}
     """
     import os
     import json
+    import logging
     import boto3
     from dotenv import load_dotenv
     load_dotenv()
     
     if not news_items or not top_topics:
-        return {}
+        return {}, {"enabled": False, "reason": "no_news_or_topics"}
     
-    # Skip if using mock mode
-    if os.getenv("USE_MOCK_PLANNER", "true").lower() == "true":
-        return {}
+    # NOTE: Trends insights should not be coupled to planner mock mode.
+    # Default is enabled so Nova can power the "why trending" insights out of the box.
+    if os.getenv("USE_MOCK_TRENDS_INSIGHTS", "false").lower() == "true":
+        return {}, {"enabled": False, "reason": "mock_trends_insights"}
     
     try:
-        client = boto3.client('bedrock-runtime', region_name=os.getenv("AWS_REGION", "us-east-1"))
+        region = os.getenv("AWS_REGION", "us-east-1")
+        client = boto3.client("bedrock-runtime", region_name=region)
         
         # Build headlines string for context
         headlines = [item.get("title", "") for item in news_items[:15]]
@@ -154,12 +161,15 @@ Top Topics: {topics_text}
 
 For each topic, provide a brief insight (1 sentence max) explaining WHY it's getting coverage right now.
 
-Return ONLY valid JSON:
-{{"topic_name": {{"insight": "brief why explanation", "emotion": "one word", "angle": "positive/negative/neutral"}}, ...}}"""
+Return ONLY valid JSON mapping topics to insights:
+{{
+  "India": {{"insight": "Trade deal signed...", "emotion": "Optimism", "angle": "Positive"}},
+  "Trump": {{"insight": "announced tariffs...", "emotion": "Neutral", "angle": "Neutral"}}
+}}"""
 
         body = {
             "messages": [{"role": "user", "content": [{"text": prompt}]}],
-            "inferenceConfig": {"maxTokens": 500, "temperature": 0.7}
+            "inferenceConfig": {"maxTokens": 500, "temperature": 0.5}
         }
         
         response = client.invoke_model(
@@ -176,12 +186,23 @@ Return ONLY valid JSON:
             json_start = output_text.find("{")
             json_end = output_text.rfind("}") + 1
             json_str = output_text[json_start:json_end]
-            return json.loads(json_str)
+            data = json.loads(json_str)
+            
+            # Handle potential wrapper keys
+            if len(data) == 1 and isinstance(list(data.values())[0], dict):
+                # If wrapped like {"topics": {...}} or {"topic_name": {...}}
+                first_key = list(data.keys())[0]
+                if first_key in ["topics", "topic_name", "insights"]:
+                     return data[first_key], {"enabled": True, "reason": "ok", "model": "amazon.nova-lite-v1:0", "region": region}
+                # If wrapped like {"India": {...}} but inside another dict (less likely with new prompt)
+                
+            return data, {"enabled": True, "reason": "ok", "model": "amazon.nova-lite-v1:0", "region": region}
         
-        return {}
+        return {}, {"enabled": True, "reason": "no_json_in_response", "model": "amazon.nova-lite-v1:0", "region": region}
     except Exception as e:
-        # Fallback to empty if LLM fails
-        return {}
+        # Fallback to empty if LLM fails (but expose the reason)
+        logging.getLogger(__name__).warning("Nova trends insights failed: %s", str(e))
+        return {}, {"enabled": True, "reason": "exception", "error": str(e), "model": "amazon.nova-lite-v1:0"}
 
 
 def fuse_trends_with_sentiment(trends_data: Dict, sentiment_data: Dict) -> Dict:
@@ -235,12 +256,19 @@ def fuse_trends_with_sentiment(trends_data: Dict, sentiment_data: Dict) -> Dict:
         topic_insights = trends_data.get("topic_insights", {})
         llm_insight = topic_insights.get(topic_name, {})
         
-        # Generate "Why Trending" - HYBRID of LLM insights + score-based
-        why_trending = _generate_why_trending(velocity, score, sentiment_score, source_spread, topic_name)
+        # Generate "Why Trending" - Prioritize Nova LLM insights, fallback to templates only if Nova unavailable
+        llm_meta = trends_data.get("topic_insights_meta", {})
+        nova_available = llm_meta.get("enabled") and llm_meta.get("reason") == "ok"
         
-        # Prepend LLM insight if available (more contextual/specific)
-        if llm_insight.get("insight"):
-            why_trending = [llm_insight["insight"]] + why_trending[:2]
+        if llm_insight.get("insight") and nova_available:
+            # Use ONLY Nova LLM insight when available (no generic templates)
+            why_trending = [llm_insight["insight"]]
+        else:
+            # Fallback to template-based reasons only if Nova didn't generate insights
+            # (_generate_why_trending will add a note if Nova failed)
+            why_trending = _generate_why_trending(
+                velocity, score, sentiment_score, source_spread, topic_name, llm_meta
+            )
         
         enhanced_topic = {
             **topic,
@@ -392,12 +420,30 @@ def _get_coverage_growth(velocity: str) -> str:
     return mapping.get(velocity, "Steady")
 
 
-def _generate_why_trending(velocity: str, score: float, sentiment: float, source_spread: Dict, topic: str = "") -> List[str]:
+def _generate_why_trending(
+    velocity: str,
+    score: float,
+    sentiment: float,
+    source_spread: Dict,
+    topic: str = "",
+    llm_meta: Dict | None = None,
+) -> List[str]:
     """Generate dynamic, topic-aware explanations for why topic is trending."""
     import random
+    import hashlib
     reasons = []
+
+    # If Nova insights are enabled but failing, surface a clear, non-generic reason first.
+    # This prevents "default-y" explanations from masking configuration issues.
+    if llm_meta and llm_meta.get("enabled") and llm_meta.get("reason") not in (None, "ok"):
+        reasons.append(f"Nova insights unavailable ({llm_meta.get('reason')})")
     
-    # Dynamic coverage templates (randomly picked)
+    # Make output stable per topic/run by seeding with topic+velocity+score bucket
+    seed_src = f"{topic}|{velocity}|{int(score)}"
+    seed = int(hashlib.md5(seed_src.encode("utf-8")).hexdigest()[:8], 16)
+    random.seed(seed)
+
+    # Dynamic coverage templates (picked deterministically after seeding)
     rising_templates = [
         f"'{topic}' gaining traction in news cycle",
         "Breaking into mainstream coverage",

@@ -1,514 +1,5 @@
 [
   {
-    "timestamp": "2026-02-04T16:16:22.224690",
-    "level": "DEBUG",
-    "message": "Running tool: exporter",
-    "data": {
-      "params": [
-        "filename",
-        "format",
-        "data"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-02-04T16:16:22.256555",
-    "level": "INFO",
-    "message": "Execution complete: 3 tools run"
-  },
-  {
-    "timestamp": "2026-02-04T16:24:18.170403",
-    "level": "INFO",
-    "message": "Planning task for: India eu trade deal vs india us trade deal"
-  },
-  {
-    "timestamp": "2026-02-04T16:24:20.450790",
-    "level": "INFO",
-    "message": "Nova plan generated",
-    "data": {
-      "plan": {
-        "intent": "Compare the trade deals between India and the EU versus India and the US",
-        "domain": "trade deals",
-        "steps": [
-          {
-            "tool": "news_fetcher",
-            "params": {
-              "topic": "India EU trade deal vs India US trade deal",
-              "sources": [
-                "google"
-              ],
-              "limit": 5
-            }
-          },
-          {
-            "tool": "summarizer",
-            "params": {
-              "news_items": "fetched news"
-            }
-          },
-          {
-            "tool": "sentiment",
-            "params": {
-              "news_items": "fetched news"
-            }
-          },
-          {
-            "tool": "trends",
-            "params": {
-              "news_items": "fetched news"
-            }
-          },
-          {
-            "tool": "exporter",
-            "params": {
-              "filename": "trade_deal_comparison_report",
-              "format": "json"
-            }
-          }
-        ]
-      }
-    }
-  },
-  {
-    "timestamp": "2026-02-04T16:24:20.478597",
-    "level": "INFO",
-    "message": "Executing plan: Compare the trade deals between India and the EU versus India and the US",
-    "data": {
-      "steps": 5
-    }
-  },
-  {
-    "timestamp": "2026-02-04T16:24:20.504059",
-    "level": "DEBUG",
-    "message": "Running tool: news_fetcher",
-    "data": {
-      "params": [
-        "topic",
-        "sources",
-        "limit"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-02-04T16:24:20.523576",
-    "level": "INFO",
-    "message": "Multi-source fetch for: India EU trade deal vs India US trade deal"
-  },
-  {
-    "timestamp": "2026-02-04T16:24:27.421857",
-    "level": "INFO",
-    "message": "Multi-source complete: 10 articles from 3 sources"
-  },
-  {
-    "timestamp": "2026-02-04T16:24:27.446297",
-    "level": "DEBUG",
-    "message": "Running tool: summarizer",
-    "data": {
-      "params": [
-        "news_items"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-02-04T16:24:29.707090",
-    "level": "DEBUG",
-    "message": "Running tool: sentiment",
-    "data": {
-      "params": [
-        "news_items"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-02-04T16:24:32.163530",
-    "level": "DEBUG",
-    "message": "Running tool: trends",
-    "data": {
-      "params": [
-        "news_items"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-02-04T16:24:32.187027",
-    "level": "DEBUG",
-    "message": "Running tool: exporter",
-    "data": {
-      "params": [
-        "filename",
-        "format",
-        "data"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-02-04T16:24:32.217761",
-    "level": "INFO",
-    "message": "Execution complete: 5 tools run"
-  },
-  {
-    "timestamp": "2026-02-04T16:24:52.155677",
-    "level": "INFO",
-    "message": "Planning task for: India eu trade deal vs india us trade deal with sentiment analysis"
-  },
-  {
-    "timestamp": "2026-02-04T16:24:54.480030",
-    "level": "INFO",
-    "message": "Nova plan generated",
-    "data": {
-      "plan": {
-        "intent": "Fetch and analyze news on India-EU trade deal vs India-US trade deal with sentiment analysis",
-        "domain": "trade deals",
-        "steps": [
-          {
-            "tool": "news_fetcher",
-            "params": {
-              "topic": "India-EU trade deal vs India-US trade deal",
-              "sources": [
-                "google"
-              ],
-              "limit": 5
-            }
-          },
-          {
-            "tool": "summarizer",
-            "params": {
-              "news_items": "fetched news"
-            }
-          },
-          {
-            "tool": "sentiment",
-            "params": {
-              "news_items": "fetched news"
-            }
-          },
-          {
-            "tool": "exporter",
-            "params": {
-              "filename": "trade_deal_report",
-              "format": "json"
-            }
-          }
-        ]
-      }
-    }
-  },
-  {
-    "timestamp": "2026-02-04T16:24:54.507070",
-    "level": "INFO",
-    "message": "Executing plan: Fetch and analyze news on India-EU trade deal vs India-US trade deal with sentiment analysis",
-    "data": {
-      "steps": 4
-    }
-  },
-  {
-    "timestamp": "2026-02-04T16:24:54.527315",
-    "level": "DEBUG",
-    "message": "Running tool: news_fetcher",
-    "data": {
-      "params": [
-        "topic",
-        "sources",
-        "limit"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-02-04T16:24:54.546356",
-    "level": "INFO",
-    "message": "Multi-source fetch for: India-EU trade deal vs India-US trade deal"
-  },
-  {
-    "timestamp": "2026-02-04T16:24:58.096602",
-    "level": "ERROR",
-    "message": "GNews failed: Client error '400 Bad Request' for url 'https://gnews.io/api/v4/search?apikey=a7519075e5f8447070cc6f0047260ca2&q=India-EU+trade+deal+vs+India-US+trade+deal&lang=en&max=5'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400"
-  },
-  {
-    "timestamp": "2026-02-04T16:25:03.289110",
-    "level": "INFO",
-    "message": "Multi-source complete: 10 articles from 3 sources"
-  },
-  {
-    "timestamp": "2026-02-04T16:25:03.314416",
-    "level": "DEBUG",
-    "message": "Running tool: summarizer",
-    "data": {
-      "params": [
-        "news_items"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-02-04T16:25:05.940372",
-    "level": "DEBUG",
-    "message": "Running tool: sentiment",
-    "data": {
-      "params": [
-        "news_items"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-02-04T16:25:08.486499",
-    "level": "DEBUG",
-    "message": "Running tool: exporter",
-    "data": {
-      "params": [
-        "filename",
-        "format",
-        "data"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-02-04T16:25:08.530414",
-    "level": "INFO",
-    "message": "Execution complete: 4 tools run"
-  },
-  {
-    "timestamp": "2026-02-04T16:26:51.231696",
-    "level": "INFO",
-    "message": "Planning task for: india us trade deal with sentiment analysis"
-  },
-  {
-    "timestamp": "2026-02-04T16:26:53.497031",
-    "level": "INFO",
-    "message": "Nova plan generated",
-    "data": {
-      "plan": {
-        "intent": "Fetch news on India-US trade deal, perform sentiment analysis, and export the results.",
-        "domain": "India-US trade deal",
-        "steps": [
-          {
-            "tool": "news_fetcher",
-            "params": {
-              "topic": "India-US trade deal",
-              "limit": 5
-            }
-          },
-          {
-            "tool": "sentiment",
-            "params": {
-              "news_items": "{{news_fetcher.output}}"
-            }
-          },
-          {
-            "tool": "exporter",
-            "params": {
-              "filename": "India-US_trade_deal_sentiment_analysis",
-              "format": "json"
-            }
-          }
-        ]
-      }
-    }
-  },
-  {
-    "timestamp": "2026-02-04T16:26:53.528180",
-    "level": "INFO",
-    "message": "Executing plan: Fetch news on India-US trade deal, perform sentiment analysis, and export the results.",
-    "data": {
-      "steps": 3
-    }
-  },
-  {
-    "timestamp": "2026-02-04T16:26:53.550713",
-    "level": "DEBUG",
-    "message": "Running tool: news_fetcher",
-    "data": {
-      "params": [
-        "topic",
-        "limit"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-02-04T16:26:53.579481",
-    "level": "INFO",
-    "message": "Multi-source fetch for: India-US trade deal"
-  },
-  {
-    "timestamp": "2026-02-04T16:26:56.094904",
-    "level": "ERROR",
-    "message": "GNews failed: Client error '400 Bad Request' for url 'https://gnews.io/api/v4/search?apikey=a7519075e5f8447070cc6f0047260ca2&q=India-US+trade+deal&lang=en&max=5'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400"
-  },
-  {
-    "timestamp": "2026-02-04T16:27:00.735247",
-    "level": "INFO",
-    "message": "Multi-source complete: 10 articles from 3 sources"
-  },
-  {
-    "timestamp": "2026-02-04T16:27:00.765742",
-    "level": "DEBUG",
-    "message": "Running tool: sentiment",
-    "data": {
-      "params": [
-        "news_items"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-02-04T16:27:03.390519",
-    "level": "DEBUG",
-    "message": "Running tool: exporter",
-    "data": {
-      "params": [
-        "filename",
-        "format",
-        "data"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-02-04T16:27:03.421997",
-    "level": "INFO",
-    "message": "Execution complete: 3 tools run"
-  },
-  {
-    "timestamp": "2026-02-04T16:35:00.564579",
-    "level": "INFO",
-    "message": "Planning task for: india us trade deal"
-  },
-  {
-    "timestamp": "2026-02-04T16:35:02.393585",
-    "level": "INFO",
-    "message": "Nova plan generated",
-    "data": {
-      "plan": {
-        "intent": "Fetch and summarize news about India-US trade deal",
-        "domain": "India-US trade deal",
-        "steps": [
-          {
-            "tool": "news_fetcher",
-            "params": {
-              "topic": "india us trade deal",
-              "sources": [
-                "google"
-              ],
-              "limit": 5
-            }
-          },
-          {
-            "tool": "summarizer",
-            "params": {
-              "news_items": "news_fetcher output"
-            }
-          },
-          {
-            "tool": "exporter",
-            "params": {
-              "filename": "india_us_trade_deal_report",
-              "format": "json"
-            }
-          }
-        ]
-      }
-    }
-  },
-  {
-    "timestamp": "2026-02-04T16:35:02.416789",
-    "level": "INFO",
-    "message": "Executing plan: Fetch and summarize news about India-US trade deal",
-    "data": {
-      "steps": 3
-    }
-  },
-  {
-    "timestamp": "2026-02-04T16:35:02.437453",
-    "level": "DEBUG",
-    "message": "Running tool: news_fetcher",
-    "data": {
-      "params": [
-        "topic",
-        "sources",
-        "limit"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-02-04T16:35:02.460746",
-    "level": "INFO",
-    "message": "Multi-source fetch for: india us trade deal"
-  },
-  {
-    "timestamp": "2026-02-04T16:35:09.217073",
-    "level": "INFO",
-    "message": "Multi-source complete: 15 articles from 3 sources"
-  },
-  {
-    "timestamp": "2026-02-04T16:35:09.242097",
-    "level": "DEBUG",
-    "message": "Running tool: summarizer",
-    "data": {
-      "params": [
-        "news_items"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-02-04T16:35:11.074432",
-    "level": "DEBUG",
-    "message": "Running tool: exporter",
-    "data": {
-      "params": [
-        "filename",
-        "format",
-        "data"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-02-04T16:35:11.106918",
-    "level": "INFO",
-    "message": "Execution complete: 3 tools run"
-  },
-  {
-    "timestamp": "2026-02-04T16:35:11.135198",
-    "level": "INFO",
-    "message": "Planning task for: india us trade deal with sentiment analysis"
-  },
-  {
-    "timestamp": "2026-02-04T16:35:12.899841",
-    "level": "INFO",
-    "message": "Nova plan generated",
-    "data": {
-      "plan": {
-        "intent": "Fetch news on India-US trade deal, perform sentiment analysis, and export the results.",
-        "domain": "India-US trade deal",
-        "steps": [
-          {
-            "tool": "news_fetcher",
-            "params": {
-              "topic": "India-US trade deal",
-              "limit": 5
-            }
-          },
-          {
-            "tool": "sentiment",
-            "params": {
-              "news_items": "from news_fetcher"
-            }
-          },
-          {
-            "tool": "exporter",
-            "params": {
-              "filename": "India-US_trade_deal_analysis",
-              "format": "json"
-            }
-          }
-        ]
-      }
-    }
-  },
-  {
-    "timestamp": "2026-02-04T16:35:12.928576",
-    "level": "INFO",
-    "message": "Executing plan: Fetch news on India-US trade deal, perform sentiment analysis, and export the results.",
-    "data": {
-      "steps": 3
-    }
-  },
-  {
     "timestamp": "2026-02-04T16:35:12.949899",
     "level": "DEBUG",
     "message": "Running tool: news_fetcher",
@@ -2100,6 +1591,502 @@
   },
   {
     "timestamp": "2026-02-04T21:38:55.794532",
+    "level": "INFO",
+    "message": "Execution complete: 5 tools run, 0 skipped, 0 fallbacks used"
+  },
+  {
+    "timestamp": "2026-02-04T23:10:30.573323",
+    "level": "INFO",
+    "message": "Planning task for: India US trade deal with summarize and sentiment analysis and trends"
+  },
+  {
+    "timestamp": "2026-02-04T23:10:33.872984",
+    "level": "INFO",
+    "message": "Nova plan generated",
+    "data": {
+      "plan": {
+        "intent": "Fetch news on India-US trade deal, summarize, perform sentiment analysis, extract trends, and export the results",
+        "domain": "India-US trade deal",
+        "steps": [
+          {
+            "tool": "news_fetcher",
+            "params": {
+              "topic": "India-US trade deal",
+              "limit": 5
+            }
+          },
+          {
+            "tool": "summarizer",
+            "params": {
+              "news_items": "news_fetcher_output"
+            }
+          },
+          {
+            "tool": "sentiment",
+            "params": {
+              "news_items": "news_fetcher_output"
+            }
+          },
+          {
+            "tool": "trends",
+            "params": {
+              "news_items": "news_fetcher_output"
+            }
+          },
+          {
+            "tool": "exporter",
+            "params": {
+              "filename": "India-US_trade_deal_report",
+              "format": "json"
+            }
+          }
+        ]
+      }
+    }
+  },
+  {
+    "timestamp": "2026-02-04T23:10:33.922137",
+    "level": "INFO",
+    "message": "Executing plan: Fetch news on India-US trade deal, summarize, perform sentiment analysis, extract trends, and export the results",
+    "data": {
+      "steps": 5
+    }
+  },
+  {
+    "timestamp": "2026-02-04T23:10:33.958249",
+    "level": "DEBUG",
+    "message": "Running tool: news_fetcher",
+    "data": {
+      "params": [
+        "topic",
+        "limit"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T23:10:34.005673",
+    "level": "INFO",
+    "message": "Multi-source fetch for: India-US trade deal"
+  },
+  {
+    "timestamp": "2026-02-04T23:10:36.438445",
+    "level": "ERROR",
+    "message": "GNews failed: Client error '400 Bad Request' for url 'https://gnews.io/api/v4/search?apikey=a7519075e5f8447070cc6f0047260ca2&q=India-US+trade+deal&lang=en&max=5'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400"
+  },
+  {
+    "timestamp": "2026-02-04T23:10:40.571915",
+    "level": "INFO",
+    "message": "Multi-source complete: 10 articles from 3 sources"
+  },
+  {
+    "timestamp": "2026-02-04T23:10:40.604684",
+    "level": "DEBUG",
+    "message": "Running tool: summarizer",
+    "data": {
+      "params": [
+        "news_items"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T23:10:42.953914",
+    "level": "DEBUG",
+    "message": "Running tool: sentiment",
+    "data": {
+      "params": [
+        "news_items"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T23:10:45.280828",
+    "level": "DEBUG",
+    "message": "Running tool: trends",
+    "data": {
+      "params": [
+        "news_items"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T23:10:47.419378",
+    "level": "DEBUG",
+    "message": "Running tool: exporter",
+    "data": {
+      "params": [
+        "filename",
+        "format",
+        "data"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T23:10:47.446135",
+    "level": "INFO",
+    "message": "Sentiment-Trend fusion applied"
+  },
+  {
+    "timestamp": "2026-02-04T23:10:47.489487",
+    "level": "INFO",
+    "message": "Execution complete: 5 tools run, 0 skipped, 0 fallbacks used"
+  },
+  {
+    "timestamp": "2026-02-04T23:12:07.923196",
+    "level": "INFO",
+    "message": "Planning task for: India US trade deal"
+  },
+  {
+    "timestamp": "2026-02-04T23:12:12.517818",
+    "level": "INFO",
+    "message": "Nova plan generated",
+    "data": {
+      "plan": {
+        "intent": "Fetch and summarize news on India-US trade deal",
+        "domain": "India-US trade deal",
+        "steps": [
+          {
+            "tool": "news_fetcher",
+            "params": {
+              "topic": "India US trade deal",
+              "sources": [
+                "google"
+              ],
+              "limit": 5
+            }
+          },
+          {
+            "tool": "summarizer",
+            "params": {
+              "news_items": "news_fetcher output"
+            }
+          },
+          {
+            "tool": "exporter",
+            "params": {
+              "filename": "India_US_trade_deal_report",
+              "format": "json"
+            }
+          }
+        ]
+      }
+    }
+  },
+  {
+    "timestamp": "2026-02-04T23:12:12.551927",
+    "level": "INFO",
+    "message": "Executing plan: Fetch and summarize news on India-US trade deal",
+    "data": {
+      "steps": 3
+    }
+  },
+  {
+    "timestamp": "2026-02-04T23:12:12.573477",
+    "level": "DEBUG",
+    "message": "Running tool: news_fetcher",
+    "data": {
+      "params": [
+        "topic",
+        "sources",
+        "limit"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T23:12:12.594388",
+    "level": "INFO",
+    "message": "Multi-source fetch for: India US trade deal"
+  },
+  {
+    "timestamp": "2026-02-04T23:12:19.619379",
+    "level": "INFO",
+    "message": "Multi-source complete: 15 articles from 3 sources"
+  },
+  {
+    "timestamp": "2026-02-04T23:12:19.654576",
+    "level": "DEBUG",
+    "message": "Running tool: summarizer",
+    "data": {
+      "params": [
+        "news_items"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T23:12:21.969308",
+    "level": "DEBUG",
+    "message": "Running tool: exporter",
+    "data": {
+      "params": [
+        "filename",
+        "format",
+        "data"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T23:12:22.026867",
+    "level": "INFO",
+    "message": "Execution complete: 3 tools run, 0 skipped, 0 fallbacks used"
+  },
+  {
+    "timestamp": "2026-02-04T23:12:22.055291",
+    "level": "INFO",
+    "message": "Planning task for: India US trade deal with summarize and sentiment analysis and trends"
+  },
+  {
+    "timestamp": "2026-02-04T23:12:25.119917",
+    "level": "INFO",
+    "message": "Nova plan generated",
+    "data": {
+      "plan": {
+        "intent": "Fetch, summarize, perform sentiment analysis, extract trends, and export the results for the India-US trade deal",
+        "domain": "India US trade deal",
+        "steps": [
+          {
+            "tool": "news_fetcher",
+            "params": {
+              "topic": "India US trade deal",
+              "limit": 5
+            }
+          },
+          {
+            "tool": "summarizer",
+            "params": {
+              "news_items": "news_fetcher output"
+            }
+          },
+          {
+            "tool": "sentiment",
+            "params": {
+              "news_items": "news_fetcher output"
+            }
+          },
+          {
+            "tool": "trends",
+            "params": {
+              "news_items": "news_fetcher output"
+            }
+          },
+          {
+            "tool": "exporter",
+            "params": {
+              "filename": "India_US_trade_deal_report",
+              "format": "json"
+            }
+          }
+        ]
+      }
+    }
+  },
+  {
+    "timestamp": "2026-02-04T23:12:25.162794",
+    "level": "INFO",
+    "message": "Executing plan: Fetch, summarize, perform sentiment analysis, extract trends, and export the results for the India-US trade deal",
+    "data": {
+      "steps": 5
+    }
+  },
+  {
+    "timestamp": "2026-02-04T23:12:25.191869",
+    "level": "DEBUG",
+    "message": "Running tool: news_fetcher",
+    "data": {
+      "params": [
+        "topic",
+        "limit"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T23:12:25.216882",
+    "level": "INFO",
+    "message": "Multi-source fetch for: India US trade deal"
+  },
+  {
+    "timestamp": "2026-02-04T23:12:31.942055",
+    "level": "INFO",
+    "message": "Multi-source complete: 15 articles from 3 sources"
+  },
+  {
+    "timestamp": "2026-02-04T23:12:31.974436",
+    "level": "DEBUG",
+    "message": "Running tool: summarizer",
+    "data": {
+      "params": [
+        "news_items"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T23:12:34.026116",
+    "level": "DEBUG",
+    "message": "Running tool: sentiment",
+    "data": {
+      "params": [
+        "news_items"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T23:12:36.489464",
+    "level": "DEBUG",
+    "message": "Running tool: trends",
+    "data": {
+      "params": [
+        "news_items"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T23:12:38.811617",
+    "level": "DEBUG",
+    "message": "Running tool: exporter",
+    "data": {
+      "params": [
+        "filename",
+        "format",
+        "data"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T23:12:38.850101",
+    "level": "INFO",
+    "message": "Sentiment-Trend fusion applied"
+  },
+  {
+    "timestamp": "2026-02-04T23:12:38.922026",
+    "level": "INFO",
+    "message": "Execution complete: 5 tools run, 0 skipped, 0 fallbacks used"
+  },
+  {
+    "timestamp": "2026-02-04T23:15:57.311616",
+    "level": "INFO",
+    "message": "Planning task for: India US trade deal with summarize and sentiment analysis and trends"
+  },
+  {
+    "timestamp": "2026-02-04T23:16:00.953816",
+    "level": "INFO",
+    "message": "Nova plan generated",
+    "data": {
+      "plan": {
+        "intent": "Fetch news on India US trade deal, summarize, perform sentiment analysis, extract trends, and export the results",
+        "domain": "India US trade deal",
+        "steps": [
+          {
+            "tool": "news_fetcher",
+            "params": {
+              "topic": "India US trade deal",
+              "limit": 5
+            }
+          },
+          {
+            "tool": "summarizer",
+            "params": {
+              "news_items": "news_fetcher output"
+            }
+          },
+          {
+            "tool": "sentiment",
+            "params": {
+              "news_items": "news_fetcher output"
+            }
+          },
+          {
+            "tool": "trends",
+            "params": {
+              "news_items": "news_fetcher output"
+            }
+          },
+          {
+            "tool": "exporter",
+            "params": {
+              "filename": "India_US_trade_deal_report",
+              "format": "json"
+            }
+          }
+        ]
+      }
+    }
+  },
+  {
+    "timestamp": "2026-02-04T23:16:00.996589",
+    "level": "INFO",
+    "message": "Executing plan: Fetch news on India US trade deal, summarize, perform sentiment analysis, extract trends, and export the results",
+    "data": {
+      "steps": 5
+    }
+  },
+  {
+    "timestamp": "2026-02-04T23:16:01.029759",
+    "level": "DEBUG",
+    "message": "Running tool: news_fetcher",
+    "data": {
+      "params": [
+        "topic",
+        "limit"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T23:16:01.059807",
+    "level": "INFO",
+    "message": "Multi-source fetch for: India US trade deal"
+  },
+  {
+    "timestamp": "2026-02-04T23:16:09.310947",
+    "level": "INFO",
+    "message": "Multi-source complete: 15 articles from 3 sources"
+  },
+  {
+    "timestamp": "2026-02-04T23:16:09.347446",
+    "level": "DEBUG",
+    "message": "Running tool: summarizer",
+    "data": {
+      "params": [
+        "news_items"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T23:16:11.324887",
+    "level": "DEBUG",
+    "message": "Running tool: sentiment",
+    "data": {
+      "params": [
+        "news_items"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T23:16:13.997785",
+    "level": "DEBUG",
+    "message": "Running tool: trends",
+    "data": {
+      "params": [
+        "news_items"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T23:16:23.593316",
+    "level": "DEBUG",
+    "message": "Running tool: exporter",
+    "data": {
+      "params": [
+        "filename",
+        "format",
+        "data"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T23:16:23.627130",
+    "level": "INFO",
+    "message": "Sentiment-Trend fusion applied"
+  },
+  {
+    "timestamp": "2026-02-04T23:16:23.693957",
     "level": "INFO",
     "message": "Execution complete: 5 tools run, 0 skipped, 0 fallbacks used"
   }
