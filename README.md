@@ -25,6 +25,9 @@ A voice-powered multi-agent news intelligence system using **Amazon Nova AI**. F
 | 📖 **Dictionary Lookup** | Instant word definitions | Merriam-Webster API |
 | 🌐 **Translation** | Translate reports to 18+ languages | MyMemory API |
 | ⚙️ **Settings Panel** | Customize language & dictionary prefs | LocalStorage persistence |
+| 🎛️ **Dynamic Panels** | Toggle-responsive layout with smooth animations | CSS Grid + auto-fit |
+| 💊 **Summary Chip** | Collapsed execution summary, expandable trace view | JS state management |
+| 📦 **Package Builder** | Intelligence packaging with preview, multi-format export | Quality badges + smart recommendations |
 
 ---
 
@@ -270,13 +273,35 @@ Headlines → Tokenization → Proper Noun NER → Frequency Count → Top-K Tre
 
 ---
 
-### 💾 Export Engine
+### 📦 Intelligence Package Builder — *"Not Save. Deliver."*
 
-| Format | Use Case | Backend |
-|--------|----------|---------|
-| **JSON** | API integration | Native serialization |
-| **Markdown** | Human-readable reports | Template rendering |
-| **CSV** | Spreadsheet analysis | Pandas-style export |
+> 📁 **OLD:** Basic file export → *"Download JSON"*  
+> 📦 **NEW:** Intelligence Packaging Center → *Preview → Quality Badge → Smart Format → Multi-Export*
+
+```
+┌─────────────────────────────────────────────────────────────────────────┐
+│  📦 INTELLIGENCE PACKAGE BUILDER                                        │
+├─────────────────────────────────────────────────────────────────────────┤
+│  Quality     │  🟢 Full Report │ 🟡 Partial │ 🔴 Raw Data              │
+│  Preview     │  ✔ News  ✔ Summary  ✔ Sentiment  ✗ Trends              │
+│  Stats       │  📰 15 Articles │ 📁 3 Sections │ ~45 KB                │
+│  Recommend   │  💡 Markdown for rich formatting                        │
+├─────────────────────────────────────────────────────────────────────────┤
+│  [{ } JSON]  [📄 Markdown]  [📊 CSV]                                   │
+│  [⬇️ Download All Formats]                                              │
+│  [📋 Copy JSON to Clipboard]                                            │
+└─────────────────────────────────────────────────────────────────────────┘
+```
+
+**🔧 Under the Hood:**
+
+| Feature | What It Does |
+|---------|--------------|
+| **Quality Badges** | 🟢 Full (3+ sections) → 🟡 Partial (2) → 🔴 Raw (1) |
+| **Smart Recommend** | Markdown for rich, CSV for data, JSON for API |
+| **Toggle-Aware** | Exports only enabled features |
+| **Multi-Export** | One-click download all 3 formats |
+| **Copy Clipboard** | Instant JSON copy for dev use |
 
 ---
 

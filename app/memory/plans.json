@@ -1100,5 +1100,194 @@
         }
       ]
     }
+  },
+  {
+    "timestamp": "2026-02-04T17:30:24.381758",
+    "user_input": "INDIAN STOCK MARKET TODAY",
+    "plan": {
+      "intent": "Fetch and export news about the Indian stock market for today",
+      "domain": "Indian stock market",
+      "steps": [
+        {
+          "tool": "news_fetcher",
+          "params": {
+            "topic": "Indian stock market today",
+            "sources": [
+              "google"
+            ],
+            "limit": 5
+          }
+        },
+        {
+          "tool": "exporter",
+          "params": {
+            "filename": "indian_stock_market_today",
+            "format": "json"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T17:30:53.070875",
+    "user_input": "INDIAN STOCK MARKET TODAY with sentiment analysis",
+    "plan": {
+      "intent": "Fetch news about the Indian stock market today and perform sentiment analysis",
+      "domain": "Indian stock market",
+      "steps": [
+        {
+          "tool": "news_fetcher",
+          "params": {
+            "topic": "Indian stock market today",
+            "sources": [
+              "google"
+            ],
+            "limit": 5
+          }
+        },
+        {
+          "tool": "sentiment",
+          "params": {
+            "news_items": "news_fetcher_output"
+          }
+        },
+        {
+          "tool": "exporter",
+          "params": {
+            "filename": "indian_stock_market_sentiment_report",
+            "format": "json"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T17:31:43.960648",
+    "user_input": "INDIAN STOCK MARKET TODAY with summarize and sentiment analysis and trends",
+    "plan": {
+      "intent": "Fetch, summarize, analyze sentiment, and extract trends for the Indian stock market today",
+      "domain": "Indian stock market",
+      "steps": [
+        {
+          "tool": "news_fetcher",
+          "params": {
+            "topic": "INDIAN STOCK MARKET TODAY",
+            "limit": 5
+          }
+        },
+        {
+          "tool": "summarizer",
+          "params": {
+            "news_items": "news_fetcher output"
+          }
+        },
+        {
+          "tool": "sentiment",
+          "params": {
+            "news_items": "news_fetcher output"
+          }
+        },
+        {
+          "tool": "trends",
+          "params": {
+            "news_items": "news_fetcher output"
+          }
+        },
+        {
+          "tool": "exporter",
+          "params": {
+            "filename": "indian_stock_market_report",
+            "format": "json"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T17:40:02.067817",
+    "user_input": "INDIAN STOCK MARKET TODAY",
+    "plan": {
+      "intent": "Fetch and summarize the latest news about the Indian stock market today",
+      "domain": "Indian stock market",
+      "steps": [
+        {
+          "tool": "news_fetcher",
+          "params": {
+            "topic": "Indian stock market today",
+            "sources": [
+              "google"
+            ],
+            "limit": 5
+          }
+        },
+        {
+          "tool": "summarizer",
+          "params": {
+            "news_items": "news_items_from_previous_step"
+          }
+        },
+        {
+          "tool": "exporter",
+          "params": {
+            "filename": "indian_stock_market_today",
+            "format": "json"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T19:12:16.388098",
+    "user_input": "INDIAN STOCK MARKET TODAY",
+    "plan": {
+      "intent": "Fetch and export the latest news about the Indian stock market today",
+      "domain": "Indian stock market",
+      "steps": [
+        {
+          "tool": "news_fetcher",
+          "params": {
+            "topic": "Indian stock market today",
+            "sources": [
+              "google"
+            ],
+            "limit": 5
+          }
+        },
+        {
+          "tool": "exporter",
+          "params": {
+            "filename": "Indian_stock_market_today",
+            "format": "json"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T19:26:14.671434",
+    "user_input": "INDIAN STOCK MARKET TODAY",
+    "plan": {
+      "intent": "Fetch and export the latest news about the Indian stock market today",
+      "domain": "Indian stock market",
+      "steps": [
+        {
+          "tool": "news_fetcher",
+          "params": {
+            "topic": "Indian stock market today",
+            "sources": [
+              "google"
+            ],
+            "limit": 5
+          }
+        },
+        {
+          "tool": "exporter",
+          "params": {
+            "filename": "indian_stock_market_today",
+            "format": "json"
+          }
+        }
+      ]
+    }
   }
 ]

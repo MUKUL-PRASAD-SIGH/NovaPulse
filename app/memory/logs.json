@@ -1,518 +1,5 @@
 [
   {
-    "timestamp": "2026-02-04T13:13:39.327249",
-    "level": "INFO",
-    "message": "Executing plan: Fetch and summarize AI news",
-    "data": {
-      "steps": 3
-    }
-  },
-  {
-    "timestamp": "2026-02-04T13:13:39.339758",
-    "level": "DEBUG",
-    "message": "Running tool: news_fetcher",
-    "data": {
-      "params": [
-        "topic",
-        "limit"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-02-04T13:13:39.353695",
-    "level": "INFO",
-    "message": "Multi-source fetch for: AI"
-  },
-  {
-    "timestamp": "2026-02-04T13:13:43.018567",
-    "level": "INFO",
-    "message": "Multi-source complete: 15 articles from 3 sources"
-  },
-  {
-    "timestamp": "2026-02-04T13:13:43.033092",
-    "level": "DEBUG",
-    "message": "Running tool: summarizer",
-    "data": {
-      "params": [
-        "news_items"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-02-04T13:13:43.053198",
-    "level": "ERROR",
-    "message": "Tool summarizer failed: 'str' object has no attribute 'get'"
-  },
-  {
-    "timestamp": "2026-02-04T13:13:43.071695",
-    "level": "DEBUG",
-    "message": "Running tool: exporter",
-    "data": {
-      "params": [
-        "filename",
-        "format",
-        "data"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-02-04T13:13:43.094315",
-    "level": "INFO",
-    "message": "Execution complete: 3 tools run"
-  },
-  {
-    "timestamp": "2026-02-04T13:13:43.114509",
-    "level": "INFO",
-    "message": "Planning task for: car accident"
-  },
-  {
-    "timestamp": "2026-02-04T13:13:44.873224",
-    "level": "INFO",
-    "message": "Nova plan generated",
-    "data": {
-      "plan": {
-        "intent": "Fetch and export news about a car accident",
-        "domain": "car accident",
-        "steps": [
-          {
-            "tool": "news_fetcher",
-            "params": {
-              "topic": "car accident",
-              "limit": 5
-            }
-          },
-          {
-            "tool": "exporter",
-            "params": {
-              "filename": "car_accident_report",
-              "format": "json"
-            }
-          }
-        ]
-      }
-    }
-  },
-  {
-    "timestamp": "2026-02-04T13:13:44.889000",
-    "level": "INFO",
-    "message": "Executing plan: Fetch and export news about a car accident",
-    "data": {
-      "steps": 2
-    }
-  },
-  {
-    "timestamp": "2026-02-04T13:13:44.902634",
-    "level": "DEBUG",
-    "message": "Running tool: news_fetcher",
-    "data": {
-      "params": [
-        "topic",
-        "limit"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-02-04T13:13:44.916077",
-    "level": "INFO",
-    "message": "Multi-source fetch for: car accident"
-  },
-  {
-    "timestamp": "2026-02-04T13:13:48.516594",
-    "level": "INFO",
-    "message": "Multi-source complete: 15 articles from 3 sources"
-  },
-  {
-    "timestamp": "2026-02-04T13:13:48.535208",
-    "level": "DEBUG",
-    "message": "Running tool: exporter",
-    "data": {
-      "params": [
-        "filename",
-        "format",
-        "data"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-02-04T13:13:48.561020",
-    "level": "INFO",
-    "message": "Execution complete: 2 tools run"
-  },
-  {
-    "timestamp": "2026-02-04T13:20:30.755448",
-    "level": "INFO",
-    "message": "Planning task for: tesla news"
-  },
-  {
-    "timestamp": "2026-02-04T13:20:32.218268",
-    "level": "INFO",
-    "message": "Nova plan generated",
-    "data": {
-      "plan": {
-        "intent": "Fetch and export Tesla news",
-        "domain": "Tesla",
-        "steps": [
-          {
-            "tool": "news_fetcher",
-            "params": {
-              "topic": "tesla",
-              "limit": 5
-            }
-          },
-          {
-            "tool": "exporter",
-            "params": {
-              "filename": "tesla_news_report",
-              "format": "json"
-            }
-          }
-        ]
-      }
-    }
-  },
-  {
-    "timestamp": "2026-02-04T13:20:32.246911",
-    "level": "INFO",
-    "message": "Executing plan: Fetch and export Tesla news",
-    "data": {
-      "steps": 2
-    }
-  },
-  {
-    "timestamp": "2026-02-04T13:20:32.263909",
-    "level": "DEBUG",
-    "message": "Running tool: news_fetcher",
-    "data": {
-      "params": [
-        "topic",
-        "limit"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-02-04T13:20:32.280650",
-    "level": "INFO",
-    "message": "Multi-source fetch for: tesla"
-  },
-  {
-    "timestamp": "2026-02-04T13:20:35.937116",
-    "level": "INFO",
-    "message": "Multi-source complete: 15 articles from 3 sources"
-  },
-  {
-    "timestamp": "2026-02-04T13:20:35.956527",
-    "level": "DEBUG",
-    "message": "Running tool: exporter",
-    "data": {
-      "params": [
-        "filename",
-        "format",
-        "data"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-02-04T13:20:35.980293",
-    "level": "INFO",
-    "message": "Execution complete: 2 tools run"
-  },
-  {
-    "timestamp": "2026-02-04T13:20:51.551969",
-    "level": "INFO",
-    "message": "Planning task for: elon musk news"
-  },
-  {
-    "timestamp": "2026-02-04T13:20:53.023767",
-    "level": "INFO",
-    "message": "Nova plan generated",
-    "data": {
-      "plan": {
-        "intent": "Fetch and export Elon Musk news articles",
-        "domain": "Elon Musk",
-        "steps": [
-          {
-            "tool": "news_fetcher",
-            "params": {
-              "topic": "elon musk",
-              "limit": 5
-            }
-          },
-          {
-            "tool": "exporter",
-            "params": {
-              "filename": "elon_musk_news",
-              "format": "json"
-            }
-          }
-        ]
-      }
-    }
-  },
-  {
-    "timestamp": "2026-02-04T13:20:53.048734",
-    "level": "INFO",
-    "message": "Executing plan: Fetch and export Elon Musk news articles",
-    "data": {
-      "steps": 2
-    }
-  },
-  {
-    "timestamp": "2026-02-04T13:20:53.066236",
-    "level": "DEBUG",
-    "message": "Running tool: news_fetcher",
-    "data": {
-      "params": [
-        "topic",
-        "limit"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-02-04T13:20:53.085584",
-    "level": "INFO",
-    "message": "Multi-source fetch for: elon musk"
-  },
-  {
-    "timestamp": "2026-02-04T13:20:56.744342",
-    "level": "INFO",
-    "message": "Multi-source complete: 13 articles from 3 sources"
-  },
-  {
-    "timestamp": "2026-02-04T13:20:56.763581",
-    "level": "DEBUG",
-    "message": "Running tool: exporter",
-    "data": {
-      "params": [
-        "filename",
-        "format",
-        "data"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-02-04T13:20:56.786465",
-    "level": "INFO",
-    "message": "Execution complete: 2 tools run"
-  },
-  {
-    "timestamp": "2026-02-04T13:23:57.746151",
-    "level": "INFO",
-    "message": "Planning task for: elon muysk"
-  },
-  {
-    "timestamp": "2026-02-04T13:23:59.491994",
-    "level": "INFO",
-    "message": "Nova plan generated",
-    "data": {
-      "plan": {
-        "intent": "Fetch and summarize news about Elon Musk",
-        "domain": "elon musk",
-        "steps": [
-          {
-            "tool": "news_fetcher",
-            "params": {
-              "topic": "elon musk",
-              "limit": 5
-            }
-          },
-          {
-            "tool": "summarizer",
-            "params": {
-              "news_items": "news_fetcher_output"
-            }
-          },
-          {
-            "tool": "exporter",
-            "params": {
-              "filename": "elon_musk_news_summary",
-              "format": "json"
-            }
-          }
-        ]
-      }
-    }
-  },
-  {
-    "timestamp": "2026-02-04T13:23:59.519779",
-    "level": "INFO",
-    "message": "Executing plan: Fetch and summarize news about Elon Musk",
-    "data": {
-      "steps": 3
-    }
-  },
-  {
-    "timestamp": "2026-02-04T13:23:59.541148",
-    "level": "DEBUG",
-    "message": "Running tool: news_fetcher",
-    "data": {
-      "params": [
-        "topic",
-        "limit"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-02-04T13:23:59.559936",
-    "level": "INFO",
-    "message": "Multi-source fetch for: elon musk"
-  },
-  {
-    "timestamp": "2026-02-04T13:24:05.734803",
-    "level": "INFO",
-    "message": "Multi-source complete: 13 articles from 3 sources"
-  },
-  {
-    "timestamp": "2026-02-04T13:24:05.754369",
-    "level": "DEBUG",
-    "message": "Running tool: summarizer",
-    "data": {
-      "params": [
-        "news_items"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-02-04T13:24:05.778840",
-    "level": "ERROR",
-    "message": "Tool summarizer failed: 'str' object has no attribute 'get'"
-  },
-  {
-    "timestamp": "2026-02-04T13:24:05.798572",
-    "level": "DEBUG",
-    "message": "Running tool: exporter",
-    "data": {
-      "params": [
-        "filename",
-        "format",
-        "data"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-02-04T13:24:05.822759",
-    "level": "INFO",
-    "message": "Execution complete: 3 tools run"
-  },
-  {
-    "timestamp": "2026-02-04T13:24:46.534258",
-    "level": "INFO",
-    "message": "Planning task for: india u8s trade deal"
-  },
-  {
-    "timestamp": "2026-02-04T13:24:48.246414",
-    "level": "INFO",
-    "message": "Nova plan generated",
-    "data": {
-      "plan": {
-        "intent": "Fetch and summarize recent news about the India-U.S. trade deal",
-        "domain": "India-U.S. trade deal",
-        "steps": [
-          {
-            "tool": "news_fetcher",
-            "params": {
-              "topic": "India U.S trade deal",
-              "sources": [
-                "google"
-              ],
-              "limit": 5
-            }
-          },
-          {
-            "tool": "summarizer",
-            "params": {
-              "news_items": ""
-            }
-          },
-          {
-            "tool": "sentiment",
-            "params": {
-              "news_items": ""
-            }
-          },
-          {
-            "tool": "exporter",
-            "params": {
-              "filename": "trade_deal_report",
-              "format": "json"
-            }
-          }
-        ]
-      }
-    }
-  },
-  {
-    "timestamp": "2026-02-04T13:24:48.269598",
-    "level": "INFO",
-    "message": "Executing plan: Fetch and summarize recent news about the India-U.S. trade deal",
-    "data": {
-      "steps": 4
-    }
-  },
-  {
-    "timestamp": "2026-02-04T13:24:48.287369",
-    "level": "DEBUG",
-    "message": "Running tool: news_fetcher",
-    "data": {
-      "params": [
-        "topic",
-        "sources",
-        "limit"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-02-04T13:24:48.306450",
-    "level": "INFO",
-    "message": "Multi-source fetch for: India U.S trade deal"
-  },
-  {
-    "timestamp": "2026-02-04T13:24:50.248102",
-    "level": "ERROR",
-    "message": "GNews failed: Client error '400 Bad Request' for url 'https://gnews.io/api/v4/search?apikey=a7519075e5f8447070cc6f0047260ca2&q=India+U.S+trade+deal&lang=en&max=5'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400"
-  },
-  {
-    "timestamp": "2026-02-04T13:24:54.330469",
-    "level": "INFO",
-    "message": "Multi-source complete: 10 articles from 3 sources"
-  },
-  {
-    "timestamp": "2026-02-04T13:24:54.357532",
-    "level": "DEBUG",
-    "message": "Running tool: summarizer",
-    "data": {
-      "params": [
-        "news_items"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-02-04T13:24:54.375282",
-    "level": "DEBUG",
-    "message": "Running tool: sentiment",
-    "data": {
-      "params": [
-        "news_items"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-02-04T13:24:54.394631",
-    "level": "DEBUG",
-    "message": "Running tool: exporter",
-    "data": {
-      "params": [
-        "filename",
-        "format",
-        "data"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-02-04T13:24:54.418274",
-    "level": "INFO",
-    "message": "Execution complete: 4 tools run"
-  },
-  {
     "timestamp": "2026-02-04T13:26:32.593688",
     "level": "INFO",
     "message": "Planning task for: india us trade deal"
@@ -2056,5 +1543,573 @@
     "timestamp": "2026-02-04T16:41:11.848630",
     "level": "INFO",
     "message": "Execution complete: 3 tools run"
+  },
+  {
+    "timestamp": "2026-02-04T17:30:22.255453",
+    "level": "INFO",
+    "message": "Planning task for: INDIAN STOCK MARKET TODAY"
+  },
+  {
+    "timestamp": "2026-02-04T17:30:24.373757",
+    "level": "INFO",
+    "message": "Nova plan generated",
+    "data": {
+      "plan": {
+        "intent": "Fetch and export news about the Indian stock market for today",
+        "domain": "Indian stock market",
+        "steps": [
+          {
+            "tool": "news_fetcher",
+            "params": {
+              "topic": "Indian stock market today",
+              "sources": [
+                "google"
+              ],
+              "limit": 5
+            }
+          },
+          {
+            "tool": "exporter",
+            "params": {
+              "filename": "indian_stock_market_today",
+              "format": "json"
+            }
+          }
+        ]
+      }
+    }
+  },
+  {
+    "timestamp": "2026-02-04T17:30:24.406560",
+    "level": "INFO",
+    "message": "Executing plan: Fetch and export news about the Indian stock market for today",
+    "data": {
+      "steps": 2
+    }
+  },
+  {
+    "timestamp": "2026-02-04T17:30:24.427310",
+    "level": "DEBUG",
+    "message": "Running tool: news_fetcher",
+    "data": {
+      "params": [
+        "topic",
+        "sources",
+        "limit"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T17:30:24.446328",
+    "level": "INFO",
+    "message": "Multi-source fetch for: Indian stock market today"
+  },
+  {
+    "timestamp": "2026-02-04T17:30:32.585015",
+    "level": "INFO",
+    "message": "Multi-source complete: 13 articles from 3 sources"
+  },
+  {
+    "timestamp": "2026-02-04T17:30:32.609327",
+    "level": "DEBUG",
+    "message": "Running tool: exporter",
+    "data": {
+      "params": [
+        "filename",
+        "format",
+        "data"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T17:30:32.646128",
+    "level": "INFO",
+    "message": "Execution complete: 2 tools run, 0 skipped, 0 fallbacks used"
+  },
+  {
+    "timestamp": "2026-02-04T17:30:51.434429",
+    "level": "INFO",
+    "message": "Planning task for: INDIAN STOCK MARKET TODAY with sentiment analysis"
+  },
+  {
+    "timestamp": "2026-02-04T17:30:53.064863",
+    "level": "INFO",
+    "message": "Nova plan generated",
+    "data": {
+      "plan": {
+        "intent": "Fetch news about the Indian stock market today and perform sentiment analysis",
+        "domain": "Indian stock market",
+        "steps": [
+          {
+            "tool": "news_fetcher",
+            "params": {
+              "topic": "Indian stock market today",
+              "sources": [
+                "google"
+              ],
+              "limit": 5
+            }
+          },
+          {
+            "tool": "sentiment",
+            "params": {
+              "news_items": "news_fetcher_output"
+            }
+          },
+          {
+            "tool": "exporter",
+            "params": {
+              "filename": "indian_stock_market_sentiment_report",
+              "format": "json"
+            }
+          }
+        ]
+      }
+    }
+  },
+  {
+    "timestamp": "2026-02-04T17:30:53.089985",
+    "level": "INFO",
+    "message": "Executing plan: Fetch news about the Indian stock market today and perform sentiment analysis",
+    "data": {
+      "steps": 3
+    }
+  },
+  {
+    "timestamp": "2026-02-04T17:30:53.119046",
+    "level": "DEBUG",
+    "message": "Running tool: news_fetcher",
+    "data": {
+      "params": [
+        "topic",
+        "sources",
+        "limit"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T17:30:53.142200",
+    "level": "INFO",
+    "message": "Multi-source fetch for: Indian stock market today"
+  },
+  {
+    "timestamp": "2026-02-04T17:30:58.563445",
+    "level": "INFO",
+    "message": "Multi-source complete: 15 articles from 3 sources"
+  },
+  {
+    "timestamp": "2026-02-04T17:30:58.590205",
+    "level": "DEBUG",
+    "message": "Running tool: sentiment",
+    "data": {
+      "params": [
+        "news_items"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T17:31:01.285105",
+    "level": "DEBUG",
+    "message": "Running tool: exporter",
+    "data": {
+      "params": [
+        "filename",
+        "format",
+        "data"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T17:31:01.320933",
+    "level": "INFO",
+    "message": "Execution complete: 3 tools run, 0 skipped, 0 fallbacks used"
+  },
+  {
+    "timestamp": "2026-02-04T17:31:42.065620",
+    "level": "INFO",
+    "message": "Planning task for: INDIAN STOCK MARKET TODAY with summarize and sentiment analysis and trends"
+  },
+  {
+    "timestamp": "2026-02-04T17:31:43.954646",
+    "level": "INFO",
+    "message": "Nova plan generated",
+    "data": {
+      "plan": {
+        "intent": "Fetch, summarize, analyze sentiment, and extract trends for the Indian stock market today",
+        "domain": "Indian stock market",
+        "steps": [
+          {
+            "tool": "news_fetcher",
+            "params": {
+              "topic": "INDIAN STOCK MARKET TODAY",
+              "limit": 5
+            }
+          },
+          {
+            "tool": "summarizer",
+            "params": {
+              "news_items": "news_fetcher output"
+            }
+          },
+          {
+            "tool": "sentiment",
+            "params": {
+              "news_items": "news_fetcher output"
+            }
+          },
+          {
+            "tool": "trends",
+            "params": {
+              "news_items": "news_fetcher output"
+            }
+          },
+          {
+            "tool": "exporter",
+            "params": {
+              "filename": "indian_stock_market_report",
+              "format": "json"
+            }
+          }
+        ]
+      }
+    }
+  },
+  {
+    "timestamp": "2026-02-04T17:31:43.978053",
+    "level": "INFO",
+    "message": "Executing plan: Fetch, summarize, analyze sentiment, and extract trends for the Indian stock market today",
+    "data": {
+      "steps": 5
+    }
+  },
+  {
+    "timestamp": "2026-02-04T17:31:43.998276",
+    "level": "DEBUG",
+    "message": "Running tool: news_fetcher",
+    "data": {
+      "params": [
+        "topic",
+        "limit"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T17:31:44.019886",
+    "level": "INFO",
+    "message": "Multi-source fetch for: INDIAN STOCK MARKET TODAY"
+  },
+  {
+    "timestamp": "2026-02-04T17:31:51.393000",
+    "level": "INFO",
+    "message": "Multi-source complete: 15 articles from 3 sources"
+  },
+  {
+    "timestamp": "2026-02-04T17:31:51.417897",
+    "level": "DEBUG",
+    "message": "Running tool: summarizer",
+    "data": {
+      "params": [
+        "news_items"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T17:31:53.244177",
+    "level": "DEBUG",
+    "message": "Running tool: sentiment",
+    "data": {
+      "params": [
+        "news_items"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T17:31:55.402496",
+    "level": "DEBUG",
+    "message": "Running tool: trends",
+    "data": {
+      "params": [
+        "news_items"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T17:31:55.426729",
+    "level": "DEBUG",
+    "message": "Running tool: exporter",
+    "data": {
+      "params": [
+        "filename",
+        "format",
+        "data"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T17:31:55.460521",
+    "level": "INFO",
+    "message": "Execution complete: 5 tools run, 0 skipped, 0 fallbacks used"
+  },
+  {
+    "timestamp": "2026-02-04T17:39:59.838308",
+    "level": "INFO",
+    "message": "Planning task for: INDIAN STOCK MARKET TODAY"
+  },
+  {
+    "timestamp": "2026-02-04T17:40:02.058768",
+    "level": "INFO",
+    "message": "Nova plan generated",
+    "data": {
+      "plan": {
+        "intent": "Fetch and summarize the latest news about the Indian stock market today",
+        "domain": "Indian stock market",
+        "steps": [
+          {
+            "tool": "news_fetcher",
+            "params": {
+              "topic": "Indian stock market today",
+              "sources": [
+                "google"
+              ],
+              "limit": 5
+            }
+          },
+          {
+            "tool": "summarizer",
+            "params": {
+              "news_items": "news_items_from_previous_step"
+            }
+          },
+          {
+            "tool": "exporter",
+            "params": {
+              "filename": "indian_stock_market_today",
+              "format": "json"
+            }
+          }
+        ]
+      }
+    }
+  },
+  {
+    "timestamp": "2026-02-04T17:40:02.088340",
+    "level": "INFO",
+    "message": "Executing plan: Fetch and summarize the latest news about the Indian stock market today",
+    "data": {
+      "steps": 3
+    }
+  },
+  {
+    "timestamp": "2026-02-04T17:40:02.108680",
+    "level": "DEBUG",
+    "message": "Running tool: news_fetcher",
+    "data": {
+      "params": [
+        "topic",
+        "sources",
+        "limit"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T17:40:02.129560",
+    "level": "INFO",
+    "message": "Multi-source fetch for: Indian stock market today"
+  },
+  {
+    "timestamp": "2026-02-04T17:40:08.904718",
+    "level": "INFO",
+    "message": "Multi-source complete: 15 articles from 3 sources"
+  },
+  {
+    "timestamp": "2026-02-04T17:40:08.936628",
+    "level": "DEBUG",
+    "message": "Running tool: summarizer",
+    "data": {
+      "params": [
+        "news_items"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T17:40:10.734157",
+    "level": "DEBUG",
+    "message": "Running tool: exporter",
+    "data": {
+      "params": [
+        "filename",
+        "format",
+        "data"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T17:40:10.774848",
+    "level": "INFO",
+    "message": "Execution complete: 3 tools run, 0 skipped, 0 fallbacks used"
+  },
+  {
+    "timestamp": "2026-02-04T19:12:13.282356",
+    "level": "INFO",
+    "message": "Planning task for: INDIAN STOCK MARKET TODAY"
+  },
+  {
+    "timestamp": "2026-02-04T19:12:16.379594",
+    "level": "INFO",
+    "message": "Nova plan generated",
+    "data": {
+      "plan": {
+        "intent": "Fetch and export the latest news about the Indian stock market today",
+        "domain": "Indian stock market",
+        "steps": [
+          {
+            "tool": "news_fetcher",
+            "params": {
+              "topic": "Indian stock market today",
+              "sources": [
+                "google"
+              ],
+              "limit": 5
+            }
+          },
+          {
+            "tool": "exporter",
+            "params": {
+              "filename": "Indian_stock_market_today",
+              "format": "json"
+            }
+          }
+        ]
+      }
+    }
+  },
+  {
+    "timestamp": "2026-02-04T19:12:16.420119",
+    "level": "INFO",
+    "message": "Executing plan: Fetch and export the latest news about the Indian stock market today",
+    "data": {
+      "steps": 2
+    }
+  },
+  {
+    "timestamp": "2026-02-04T19:12:16.444409",
+    "level": "DEBUG",
+    "message": "Running tool: news_fetcher",
+    "data": {
+      "params": [
+        "topic",
+        "sources",
+        "limit"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T19:12:16.473295",
+    "level": "INFO",
+    "message": "Multi-source fetch for: Indian stock market today"
+  },
+  {
+    "timestamp": "2026-02-04T19:12:23.894873",
+    "level": "INFO",
+    "message": "Multi-source complete: 15 articles from 3 sources"
+  },
+  {
+    "timestamp": "2026-02-04T19:12:23.923019",
+    "level": "DEBUG",
+    "message": "Running tool: exporter",
+    "data": {
+      "params": [
+        "filename",
+        "format",
+        "data"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T19:12:23.988107",
+    "level": "INFO",
+    "message": "Execution complete: 2 tools run, 0 skipped, 0 fallbacks used"
+  },
+  {
+    "timestamp": "2026-02-04T19:26:11.840247",
+    "level": "INFO",
+    "message": "Planning task for: INDIAN STOCK MARKET TODAY"
+  },
+  {
+    "timestamp": "2026-02-04T19:26:14.662521",
+    "level": "INFO",
+    "message": "Nova plan generated",
+    "data": {
+      "plan": {
+        "intent": "Fetch and export the latest news about the Indian stock market today",
+        "domain": "Indian stock market",
+        "steps": [
+          {
+            "tool": "news_fetcher",
+            "params": {
+              "topic": "Indian stock market today",
+              "sources": [
+                "google"
+              ],
+              "limit": 5
+            }
+          },
+          {
+            "tool": "exporter",
+            "params": {
+              "filename": "indian_stock_market_today",
+              "format": "json"
+            }
+          }
+        ]
+      }
+    }
+  },
+  {
+    "timestamp": "2026-02-04T19:26:14.701563",
+    "level": "INFO",
+    "message": "Executing plan: Fetch and export the latest news about the Indian stock market today",
+    "data": {
+      "steps": 2
+    }
+  },
+  {
+    "timestamp": "2026-02-04T19:26:14.727879",
+    "level": "DEBUG",
+    "message": "Running tool: news_fetcher",
+    "data": {
+      "params": [
+        "topic",
+        "sources",
+        "limit"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T19:26:14.761392",
+    "level": "INFO",
+    "message": "Multi-source fetch for: Indian stock market today"
+  },
+  {
+    "timestamp": "2026-02-04T19:26:21.545708",
+    "level": "INFO",
+    "message": "Multi-source complete: 15 articles from 3 sources"
+  },
+  {
+    "timestamp": "2026-02-04T19:26:21.574170",
+    "level": "DEBUG",
+    "message": "Running tool: exporter",
+    "data": {
+      "params": [
+        "filename",
+        "format",
+        "data"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T19:26:21.628617",
+    "level": "INFO",
+    "message": "Execution complete: 2 tools run, 0 skipped, 0 fallbacks used"
   }
 ]

@@ -1,8 +1,10 @@
 """FastAPI routes for Nova Intelligence Agent."""
 from fastapi import APIRouter, HTTPException
+from fastapi.responses import StreamingResponse
 from typing import Dict, Any
 import httpx
 import os
+import io
 from dotenv import load_dotenv
 
 from app.models.schemas import CommandRequest, TaskPlan
@@ -10,6 +12,7 @@ from app.agents.planner_agent import plan_task
 from app.agents.executor_agent import execute_plan
 from app.memory.store import save_plan, get_recent_plans, get_recent_results
 from app.core.tool_registry import list_tools
+from app.tools.exporter import export_data
 
 load_dotenv()
 
@@ -75,6 +78,56 @@ async def get_history() -> Dict[str, Any]:
 async def health_check() -> Dict[str, str]:
     """Health check endpoint."""
     return {"status": "ok", "agent": "Nova Intelligence Agent"}
+
+
+# ============ EXPORT API ============
+
+@router.post("/export")
+async def export_report(request: Dict[str, Any]):
+    """
+    Export filtered report data in specified format.
+    
+    Body: {"data": {...}, "format": "json|markdown|csv", "filename": "report"}
+    Returns: Downloadable file
+    """
+    data = request.get("data", {})
+    format_type = request.get("format", "json")
+    filename = request.get("filename", "nova_report")
+    
+    if not data:
+        raise HTTPException(status_code=400, detail="No data to export")
+    
+    try:
+        # Generate the export file
+        filepath = export_data(data, filename, format_type)
+        
+        # Determine content type
+        content_types = {
+            "json": "application/json",
+            "markdown": "text/markdown",
+            "csv": "text/csv"
+        }
+        content_type = content_types.get(format_type, "application/octet-stream")
+        
+        # Read file and return as streaming response
+        with open(filepath, 'rb') as f:
+            content = f.read()
+        
+        # Determine file extension
+        extensions = {"json": "json", "markdown": "md", "csv": "csv"}
+        ext = extensions.get(format_type, "txt")
+        
+        return StreamingResponse(
+            io.BytesIO(content),
+            media_type=content_type,
+            headers={
+                "Content-Disposition": f'attachment; filename="{filename}.{ext}"',
+                "Content-Length": str(len(content))
+            }
+        )
+        
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Export failed: {str(e)}")
 
 
 # ============ TRANSLATION API (MyMemory - Free) ============

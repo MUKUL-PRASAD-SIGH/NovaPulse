@@ -43,9 +43,9 @@ if os.path.exists(frontend_dir):
 @app.on_event("startup")
 async def startup_event():
     """Initialize on startup."""
-    print("🧠 Nova Intelligence Agent starting...")
-    print("📡 API available at: http://localhost:8000/api")
-    print("🌐 Frontend at: http://localhost:8000")
+    print("[Nova] Intelligence Agent starting...")
+    print("[API] Available at: http://localhost:8000/api")
+    print("[Web] Frontend at: http://localhost:8000")
 
 
 if __name__ == "__main__":

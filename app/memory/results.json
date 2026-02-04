@@ -3452,5 +3452,888 @@
       "errors": [],
       "success": true
     }
+  },
+  {
+    "timestamp": "2026-02-04T17:30:32.619356",
+    "result": {
+      "intent": "Fetch and export news about the Indian stock market for today",
+      "domain": "Indian stock market",
+      "tools_executed": [
+        {
+          "tool": "news_fetcher",
+          "success": true,
+          "retries": 0,
+          "used_fallback": false,
+          "regenerated": false
+        },
+        {
+          "tool": "exporter",
+          "success": true,
+          "retries": 0,
+          "used_fallback": false,
+          "regenerated": false
+        }
+      ],
+      "data": {
+        "news": [
+          {
+            "title": "S&P 500 tumbles nearly 1% as investors rotate out of tech, Dow slides more than 160 points: Live updates - CNBC",
+            "link": "https://news.google.com/rss/articles/CBMid0FVX3lxTE82S1M0OFFxSjNTQnRWT21VRGRUbzUxemRyYXNZdGZqdnF0dTE1bTJZMHZWOWFEZnNfN0VmWEZ0TlhwS09SVGVDRVRzTGhoS3ZfdlF2SnNTVUFxcFFJa1E2QmZERnBkMkg2WTA5SGZoLTMyQ2RJTTQ00gF8QVVfeXFMTm1SS1FGeVk1YmtNNkF2TUxCYk45XzJiYzFYSnN3S1dIZ0Fud3M2OG9uVjlpZzFuVnZrc05pMG9waXJmS1NCQ3VaaHJUSnY1MTFTLTJmNDhkRzV2cXVsQVFsOGR2WjluMHd2UkJ3bTFTdGExY2xNaERIVE1ZZw?oc=5",
+            "source": "rss",
+            "published": "Tue, 03 Feb 2026 21:14:24 GMT"
+          },
+          {
+            "title": "Stock market today: Nifty50 opens in red; BSE Sensex down over 250 points - Times of India",
+            "link": "https://news.google.com/rss/articles/CBMijAJBVV95cUxQd3piX2hRTmlCYkU0UzFCLTNqSWJjUHFYV192TEtEYWl4ZG14QmlMUDBJWVJLRG1XLTdXMzVqOHV1VDRRaV9TakZOMzF3cldHSV9oY0ZST1NsQjdfODh2Q3ZaaHdrUnBCLW1VSTFtQmFtb1UyU3NSaWxITS16RThTd3NEbHR3NnpiNkVMRDhBa3RiLThiNnQ0b1dDVE05OUZIZG9PdFJLMUJ2ZTlUbVhXX050YjQxUDJ4ejRUOUNGSFlSXzMwT2ZvcEx1aVJKY3h6WVJhZ05VZ3VXZWdGcjBOTjdVRzZhTDNGS3AtX0w0ZFNkR05EV09kRlVPVzl4MVZVd0gxX1hKZ3BTZF9h0gGSAkFVX3lxTFB2V1BOZEVoRVpqTlNuMHdLRUNTQ25Qa1lZb09XUENaZjBoZmQzYklzTDBtSHdST1hJMlJMY2FiN3FLbnN5ZlNnLUItQk44VVB5a1ZCcExSaE1GTHZhbE9URVBnMFhaaUxJX0xUa2pKdnJXd3dNNWE2VkVjaUFqeGJVSENJcDAwYzc3cWVyeTFRUlJ4YzY2YkJpeDIxV0pPQ1VtUWJRcXY0ZFhrbXNWUUNlZjZZaEp6b0RzSlNWNEc0UEdVUUJ6RTh3czVmdTI5Wi0yazJjSExBeUl3OVhMT0x3ZVozTEN0Q01BZmV0TmRRT3VqSEhMV3c2SGRPWkVIb1MyTW9vbkw3by1oMWV3TER1VlE?oc=5",
+            "source": "rss",
+            "published": "Wed, 04 Feb 2026 03:48:00 GMT"
+          },
+          {
+            "title": "Market Highlights: Sensex settles 78 pts higher, Nifty above 25,750; Trent, Eternal rise 5% each - The Economic Times",
+            "link": "https://news.google.com/rss/articles/CBMisAJBVV95cUxPamhnS0U5dmg0bGxCdzdHWGZ2a1loYWlxS0wtcnB4aENTRENzNEtIdUZJWi1uNlYtSWZiTW9ab3JuRVNrd1M1VmxDUFVxbm9PZjJ0WElPamZHY0o4Vkw5WEw5S0laM3Q1QTlndkF6M0NpakhyU1FBOE5HcENBLVhxVDdUUnN0OGtkRG82dXJkOURWZHJnRFN3Wk5acjhIUkpMUnY4SjVRSjc3Z1dUek5nRFVYY3gwdmlHTHNQVFVCS2lmdzVkUXF2U29hUFlFMW5hUEhFLU5UMldSdTNIeWVOYk9XNHA2ZEx4cUxNUXg5Qm9lWGdjaUpKM0RaMXRFSGNrNnAxN0F5QUVTNnp2X1BpLW5HQzVjei1KMllSNThrMGlybzhybUxzRG1KTnRpbkNT0gG2AkFVX3lxTE02c0VFUUFVdURGZFVaS1BLWllobndScGNTTVJ5WE0xM3FFSnlkTVZueVV2NEVRRjBsMUs1WHJSajNJWGw4NGR1SG1RVzRxRjVPN1pRUzJjaGxRUFpTYVJHeHJfb3RPaXJvZkkxWXVVMTZFMFItUEZDakNSNVdWNFFrSXByZk10ZmVPWm94eTRubUJ3Z0twa0xTZEcteVZUZG5rVWVIbUZvMmRoNlNFakpwSzdfYnAtN05UTkRFaWtzZ2tpdW1PWjNvQXZsUmVIMEdjMHYxcUJTandWSm8wXzlia09UMWRGU0tmR1NlWE9oSFhwVzZNUDFmTVZuM3Jfakp5NHo4YjM5TXZBYUFpUWpDMkJQOEYzcVQ1XzRQczVYY3p3bUJoV19LYjM2MnljS1FIaERPNmc?oc=5",
+            "source": "rss",
+            "published": "Wed, 04 Feb 2026 11:55:00 GMT"
+          },
+          {
+            "title": "Stock Market Today: Sensex, Nifty Clock Best One-Day Gains In Nine Months - NDTV Profit",
+            "link": "https://news.google.com/rss/articles/CBMikgJBVV95cUxNTHlmc0FhMk9qcmZwQnR2TjU4QkdoZThpV080bzFHMUJNZXBUWVFyNFpPeXF6eGtuV2pTcU1EZFRwbWxJd3RQNmhNV2R5ck1YbHkySjVVeGZtSmtvSkJXN1huOWpZWVNVTUZKUjQ5REZlZE14RnloelZwaWh6QWVFVmUtaWNod1o3QjlVZkdMM2lmOFhveE53Z2I2NHUxemM5VHE3NUs1UWpTa3JrWWVXTnJPNWxzRk5CNHYxSEFwME9TZDVreU9hTEZqUGpwRXVHcmFJWmNFWmZSWWx3ZXVqT2h4aU9SRWc5WnlKRFV1X3VSOTZRT3MxU1ptaVRBc0RaaW9tUy1wQk1UYndpaldaVkxR0gGaAkFVX3lxTFBrZnVNbnRIcDBMZmp0LUFDemVxZlE1YWRuTV9wa2dFRDRMbGFuTkZad3Q1UlE4c2F5MjFwUGRnMDg0a3J0bTQxU3l5aS1CX291ZWdCOVNIV2xxSWs4MnpLLV9hWUVxTjRTZmlkM0FaRjAtVWZpX2lsLU5wNm1fLWdHektzY0RqX0RyeUppUUpTWWZCSnJndXVBa3lINHRsNVBCS3pDdWFGZFdiMExlZmN2SHNxbEVaUFVTMmJ1dWJlMmZubUd1N2xValVpUWlYVTBHZkdEUk1vS2dDZVdQRUVWd2ZhNy1Hai1xQ1pKMVlFOXplWlNOamw3WWt0THQ2c042cng0ejlSdmtZTkd0QWt6aWt5TU9JaUFIUQ?oc=5",
+            "source": "rss",
+            "published": "Wed, 04 Feb 2026 08:58:37 GMT"
+          },
+          {
+            "title": "Stock market today: Dow, S&P 500, Nasdaq jump to kick off February as gold, silver, bitcoin remain volatile - Yahoo Finance",
+            "link": "https://news.google.com/rss/articles/CBMi5wFBVV95cUxQc0F4TE9UblcyRVIyTkVPQnJWZWtyTUgteHBtb2NGeDZPR1o4dE9FOFA4dUVlOEdmbW9VUTE3c0NJMUFFcW83d0N5LVQwVHYyODU2bXR3YzQ1NlZVVHJPQkhwcHUzcndOc0xrVFVqX0FubEd3NzBEWHJDY1hRUDBqcWF2azhFbnNWNFZWd2lvS3cwN0lnYlkzWmlVdmR6TTdRM1hNTEVwcVM1ZmZab29yUHk5ZHZ0NWdFR2FGNlZCeHdXSmg0UU9uRUk3d1BhbzVpcEZrOWExaVM3VjBzN0V2SFRkVFY3Rk0?oc=5",
+            "source": "rss",
+            "published": "Mon, 02 Feb 2026 21:06:10 GMT"
+          },
+          {
+            "title": "Investors' Wealth Swells By Rs 7 Lakh Crore As Bulls Grip Nifty, Sensex On India-US Trade Deal Announcement",
+            "link": "https://www.ndtvprofit.com/markets/stock-market-today-investors-wealth-swells-nearly-rs-7-lakh-crore-as-bulls-grip-nifty-sensex-on-india-us-trade-deal-announcement-10937766",
+            "source": "gnews",
+            "published": "2026-02-03T10:12:07Z"
+          },
+          {
+            "title": "Sensex jumps over 2,000 points, investors earn over \u20b912 lakh crore- 10 key highlights from Indian stock market today",
+            "link": "https://www.livemint.com/market/sensex-jumps-over-2-000-points-investors-earn-over-rs-12-lakh-crore-10-key-highlights-from-indian-stock-market-today-11770112329110.html",
+            "source": "gnews",
+            "published": "2026-02-03T10:06:14Z"
+          },
+          {
+            "title": "Here's Why Stock Market Is Up Today India-US Trade Deal",
+            "link": "https://www.ndtvprofit.com/markets/heres-why-stock-market-is-up-today-india-us-trade-deal-10935641",
+            "source": "gnews",
+            "published": "2026-02-03T04:17:26Z"
+          },
+          {
+            "title": "Stock Market Expected To Jump Big Today After India-US Trade Deal",
+            "link": "https://www.ndtv.com/india-news/markets-sensex-nifty-rupee-live-updates-stock-market-expected-to-jump-big-today-after-india-us-trade-deal-10935446",
+            "source": "gnews",
+            "published": "2026-02-03T03:28:27Z"
+          },
+          {
+            "title": "Stock Market in Focus: Trump\u2019s Tariff Slashed to 18%, India-US Trade Deal Sparks Dalal Street Rally; Sensex, Nifty Set for Gap-Up, Export Sectors and FPI Inflows in Focus",
+            "link": "https://www.newsx.com/business/stock-market-in-focus-trumps-tariff-slashed-to-18-indiaus-trade-deal-sparks-dalal-street-rally-sensex-nifty-set-for-gap-up-export-sectors-and-fpi-inflows-in-focus-158173/",
+            "source": "gnews",
+            "published": "2026-02-03T03:22:00Z"
+          },
+          {
+            "title": "Asia stock markets today: live updates",
+            "link": "https://www.cnbc.com/2025/08/08/asia-stock-markets-today-live-updates-nikkei-225-asx-200-kospi-hang-seng-csi-300-sensex-nifty-50.html",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "India's Nifty 50 closes 2.5% higher as long-awaited U.S. ...",
+            "link": "https://www.cnbc.com/2026/02/03/india-nifty-50-soars-india-us-trade-deal-trum-modi.html",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "India's markets get tariff relief but not a buy yet",
+            "link": "https://www.reuters.com/world/india/indias-markets-get-tariff-relief-not-buy-yet-2026-02-04/",
+            "source": "tavily",
+            "published": ""
+          }
+        ],
+        "exported_file": "output/indian_stock_market_today_20260204_173032.json"
+      },
+      "errors": [],
+      "skipped": [],
+      "fallbacks_used": [],
+      "regenerated": [],
+      "success": true
+    }
+  },
+  {
+    "timestamp": "2026-02-04T17:31:01.292225",
+    "result": {
+      "intent": "Fetch news about the Indian stock market today and perform sentiment analysis",
+      "domain": "Indian stock market",
+      "tools_executed": [
+        {
+          "tool": "news_fetcher",
+          "success": true,
+          "retries": 0,
+          "used_fallback": false,
+          "regenerated": false
+        },
+        {
+          "tool": "sentiment",
+          "success": true,
+          "retries": 0,
+          "used_fallback": false,
+          "regenerated": false
+        },
+        {
+          "tool": "exporter",
+          "success": true,
+          "retries": 0,
+          "used_fallback": false,
+          "regenerated": false
+        }
+      ],
+      "data": {
+        "news": [
+          {
+            "title": "S&P 500 tumbles nearly 1% as investors rotate out of tech, Dow slides more than 160 points: Live updates - CNBC",
+            "link": "https://news.google.com/rss/articles/CBMid0FVX3lxTE82S1M0OFFxSjNTQnRWT21VRGRUbzUxemRyYXNZdGZqdnF0dTE1bTJZMHZWOWFEZnNfN0VmWEZ0TlhwS09SVGVDRVRzTGhoS3ZfdlF2SnNTVUFxcFFJa1E2QmZERnBkMkg2WTA5SGZoLTMyQ2RJTTQ00gF8QVVfeXFMTm1SS1FGeVk1YmtNNkF2TUxCYk45XzJiYzFYSnN3S1dIZ0Fud3M2OG9uVjlpZzFuVnZrc05pMG9waXJmS1NCQ3VaaHJUSnY1MTFTLTJmNDhkRzV2cXVsQVFsOGR2WjluMHd2UkJ3bTFTdGExY2xNaERIVE1ZZw?oc=5",
+            "source": "rss",
+            "published": "Tue, 03 Feb 2026 21:14:24 GMT"
+          },
+          {
+            "title": "Stock market today: Nifty50 opens in red; BSE Sensex down over 250 points - Times of India",
+            "link": "https://news.google.com/rss/articles/CBMijAJBVV95cUxQd3piX2hRTmlCYkU0UzFCLTNqSWJjUHFYV192TEtEYWl4ZG14QmlMUDBJWVJLRG1XLTdXMzVqOHV1VDRRaV9TakZOMzF3cldHSV9oY0ZST1NsQjdfODh2Q3ZaaHdrUnBCLW1VSTFtQmFtb1UyU3NSaWxITS16RThTd3NEbHR3NnpiNkVMRDhBa3RiLThiNnQ0b1dDVE05OUZIZG9PdFJLMUJ2ZTlUbVhXX050YjQxUDJ4ejRUOUNGSFlSXzMwT2ZvcEx1aVJKY3h6WVJhZ05VZ3VXZWdGcjBOTjdVRzZhTDNGS3AtX0w0ZFNkR05EV09kRlVPVzl4MVZVd0gxX1hKZ3BTZF9h0gGSAkFVX3lxTFB2V1BOZEVoRVpqTlNuMHdLRUNTQ25Qa1lZb09XUENaZjBoZmQzYklzTDBtSHdST1hJMlJMY2FiN3FLbnN5ZlNnLUItQk44VVB5a1ZCcExSaE1GTHZhbE9URVBnMFhaaUxJX0xUa2pKdnJXd3dNNWE2VkVjaUFqeGJVSENJcDAwYzc3cWVyeTFRUlJ4YzY2YkJpeDIxV0pPQ1VtUWJRcXY0ZFhrbXNWUUNlZjZZaEp6b0RzSlNWNEc0UEdVUUJ6RTh3czVmdTI5Wi0yazJjSExBeUl3OVhMT0x3ZVozTEN0Q01BZmV0TmRRT3VqSEhMV3c2SGRPWkVIb1MyTW9vbkw3by1oMWV3TER1VlE?oc=5",
+            "source": "rss",
+            "published": "Wed, 04 Feb 2026 03:48:00 GMT"
+          },
+          {
+            "title": "Market Highlights: Sensex settles 78 pts higher, Nifty above 25,750; Trent, Eternal rise 5% each - The Economic Times",
+            "link": "https://news.google.com/rss/articles/CBMisAJBVV95cUxPamhnS0U5dmg0bGxCdzdHWGZ2a1loYWlxS0wtcnB4aENTRENzNEtIdUZJWi1uNlYtSWZiTW9ab3JuRVNrd1M1VmxDUFVxbm9PZjJ0WElPamZHY0o4Vkw5WEw5S0laM3Q1QTlndkF6M0NpakhyU1FBOE5HcENBLVhxVDdUUnN0OGtkRG82dXJkOURWZHJnRFN3Wk5acjhIUkpMUnY4SjVRSjc3Z1dUek5nRFVYY3gwdmlHTHNQVFVCS2lmdzVkUXF2U29hUFlFMW5hUEhFLU5UMldSdTNIeWVOYk9XNHA2ZEx4cUxNUXg5Qm9lWGdjaUpKM0RaMXRFSGNrNnAxN0F5QUVTNnp2X1BpLW5HQzVjei1KMllSNThrMGlybzhybUxzRG1KTnRpbkNT0gG2AkFVX3lxTE02c0VFUUFVdURGZFVaS1BLWllobndScGNTTVJ5WE0xM3FFSnlkTVZueVV2NEVRRjBsMUs1WHJSajNJWGw4NGR1SG1RVzRxRjVPN1pRUzJjaGxRUFpTYVJHeHJfb3RPaXJvZkkxWXVVMTZFMFItUEZDakNSNVdWNFFrSXByZk10ZmVPWm94eTRubUJ3Z0twa0xTZEcteVZUZG5rVWVIbUZvMmRoNlNFakpwSzdfYnAtN05UTkRFaWtzZ2tpdW1PWjNvQXZsUmVIMEdjMHYxcUJTandWSm8wXzlia09UMWRGU0tmR1NlWE9oSFhwVzZNUDFmTVZuM3Jfakp5NHo4YjM5TXZBYUFpUWpDMkJQOEYzcVQ1XzRQczVYY3p3bUJoV19LYjM2MnljS1FIaERPNmc?oc=5",
+            "source": "rss",
+            "published": "Wed, 04 Feb 2026 11:55:00 GMT"
+          },
+          {
+            "title": "Stock Market Today: Sensex, Nifty Clock Best One-Day Gains In Nine Months - NDTV Profit",
+            "link": "https://news.google.com/rss/articles/CBMikgJBVV95cUxNTHlmc0FhMk9qcmZwQnR2TjU4QkdoZThpV080bzFHMUJNZXBUWVFyNFpPeXF6eGtuV2pTcU1EZFRwbWxJd3RQNmhNV2R5ck1YbHkySjVVeGZtSmtvSkJXN1huOWpZWVNVTUZKUjQ5REZlZE14RnloelZwaWh6QWVFVmUtaWNod1o3QjlVZkdMM2lmOFhveE53Z2I2NHUxemM5VHE3NUs1UWpTa3JrWWVXTnJPNWxzRk5CNHYxSEFwME9TZDVreU9hTEZqUGpwRXVHcmFJWmNFWmZSWWx3ZXVqT2h4aU9SRWc5WnlKRFV1X3VSOTZRT3MxU1ptaVRBc0RaaW9tUy1wQk1UYndpaldaVkxR0gGaAkFVX3lxTFBrZnVNbnRIcDBMZmp0LUFDemVxZlE1YWRuTV9wa2dFRDRMbGFuTkZad3Q1UlE4c2F5MjFwUGRnMDg0a3J0bTQxU3l5aS1CX291ZWdCOVNIV2xxSWs4MnpLLV9hWUVxTjRTZmlkM0FaRjAtVWZpX2lsLU5wNm1fLWdHektzY0RqX0RyeUppUUpTWWZCSnJndXVBa3lINHRsNVBCS3pDdWFGZFdiMExlZmN2SHNxbEVaUFVTMmJ1dWJlMmZubUd1N2xValVpUWlYVTBHZkdEUk1vS2dDZVdQRUVWd2ZhNy1Hai1xQ1pKMVlFOXplWlNOamw3WWt0THQ2c042cng0ejlSdmtZTkd0QWt6aWt5TU9JaUFIUQ?oc=5",
+            "source": "rss",
+            "published": "Wed, 04 Feb 2026 08:58:37 GMT"
+          },
+          {
+            "title": "Stock market today: Dow, S&P 500, Nasdaq jump to kick off February as gold, silver, bitcoin remain volatile - Yahoo Finance",
+            "link": "https://news.google.com/rss/articles/CBMi5wFBVV95cUxQc0F4TE9UblcyRVIyTkVPQnJWZWtyTUgteHBtb2NGeDZPR1o4dE9FOFA4dUVlOEdmbW9VUTE3c0NJMUFFcW83d0N5LVQwVHYyODU2bXR3YzQ1NlZVVHJPQkhwcHUzcndOc0xrVFVqX0FubEd3NzBEWHJDY1hRUDBqcWF2azhFbnNWNFZWd2lvS3cwN0lnYlkzWmlVdmR6TTdRM1hNTEVwcVM1ZmZab29yUHk5ZHZ0NWdFR2FGNlZCeHdXSmg0UU9uRUk3d1BhbzVpcEZrOWExaVM3VjBzN0V2SFRkVFY3Rk0?oc=5",
+            "source": "rss",
+            "published": "Mon, 02 Feb 2026 21:06:10 GMT"
+          },
+          {
+            "title": "Investors' Wealth Swells By Rs 7 Lakh Crore As Bulls Grip Nifty, Sensex On India-US Trade Deal Announcement",
+            "link": "https://www.ndtvprofit.com/markets/stock-market-today-investors-wealth-swells-nearly-rs-7-lakh-crore-as-bulls-grip-nifty-sensex-on-india-us-trade-deal-announcement-10937766",
+            "source": "gnews",
+            "published": "2026-02-03T10:12:07Z"
+          },
+          {
+            "title": "Sensex jumps over 2,000 points, investors earn over \u20b912 lakh crore- 10 key highlights from Indian stock market today",
+            "link": "https://www.livemint.com/market/sensex-jumps-over-2-000-points-investors-earn-over-rs-12-lakh-crore-10-key-highlights-from-indian-stock-market-today-11770112329110.html",
+            "source": "gnews",
+            "published": "2026-02-03T10:06:14Z"
+          },
+          {
+            "title": "Here's Why Stock Market Is Up Today India-US Trade Deal",
+            "link": "https://www.ndtvprofit.com/markets/heres-why-stock-market-is-up-today-india-us-trade-deal-10935641",
+            "source": "gnews",
+            "published": "2026-02-03T04:17:26Z"
+          },
+          {
+            "title": "Stock Market Expected To Jump Big Today After India-US Trade Deal",
+            "link": "https://www.ndtv.com/india-news/markets-sensex-nifty-rupee-live-updates-stock-market-expected-to-jump-big-today-after-india-us-trade-deal-10935446",
+            "source": "gnews",
+            "published": "2026-02-03T03:28:27Z"
+          },
+          {
+            "title": "Stock Market in Focus: Trump\u2019s Tariff Slashed to 18%, India-US Trade Deal Sparks Dalal Street Rally; Sensex, Nifty Set for Gap-Up, Export Sectors and FPI Inflows in Focus",
+            "link": "https://www.newsx.com/business/stock-market-in-focus-trumps-tariff-slashed-to-18-indiaus-trade-deal-sparks-dalal-street-rally-sensex-nifty-set-for-gap-up-export-sectors-and-fpi-inflows-in-focus-158173/",
+            "source": "gnews",
+            "published": "2026-02-03T03:22:00Z"
+          },
+          {
+            "title": "India Stock Traders Eagerly Await Budget; Banks Grapple ...",
+            "link": "https://www.bloomberg.com/news/newsletters/2026-01-28/india-stock-traders-eagerly-await-budget-banks-grapple-with-high-funding-costs",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "Indian benchmark shares log biggest monthly loss in 11 ...",
+            "link": "https://www.reuters.com/world/india/indian-equity-benchmarks-set-muted-start-weak-rupee-rising-oil-prices-weigh-2026-01-30/",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "National Stock Exchange Of India Ltd",
+            "link": "https://www.reuters.com/company/national-stock-exchange-of-india-ltd/",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "Stock Price, Quote and News",
+            "link": "https://www.cnbc.com/quotes/.NSEI",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "India budget seeks manufacturing pivot, but falls short of ...",
+            "link": "https://www.reuters.com/sustainability/boards-policy-regulation/india-budget-promote-reforms-room-spending-shrinks-2026-02-01/",
+            "source": "tavily",
+            "published": ""
+          }
+        ],
+        "sentiment": {
+          "overall": "neutral",
+          "mood_label": "mixed market sentiment",
+          "confidence": "medium",
+          "direction": "volatile",
+          "momentum_strength": "moderate",
+          "risk_level": "moderate",
+          "market_bias": "balanced",
+          "reasoning": "The headlines reflect a mix of positive and negative market signals. While some headlines indicate gains and positive investor sentiment due to trade deals and market rallies, others highlight declines and investor rotation out of tech stocks. This suggests a balanced market with both opportunities and risks.",
+          "positive_signals": [
+            "India-US Trade Deal driving market rally",
+            "Sensex, Nifty clocking significant gains",
+            "Investors' wealth swelling"
+          ],
+          "negative_signals": [
+            "S&P 500 tumbles nearly 1%",
+            "Dow slides more than 160 points",
+            "Indian benchmark shares log biggest monthly loss in 11 years"
+          ],
+          "emerging_themes": [
+            "Trade deal impact",
+            "Sector rotation",
+            "Market volatility"
+          ],
+          "score": 0.45,
+          "breakdown": {
+            "positive": 6,
+            "neutral": 2,
+            "negative": 4
+          }
+        },
+        "exported_file": "output/indian_stock_market_sentiment_report_20260204_173101.json"
+      },
+      "errors": [],
+      "skipped": [],
+      "fallbacks_used": [],
+      "regenerated": [],
+      "success": true
+    }
+  },
+  {
+    "timestamp": "2026-02-04T17:31:55.434369",
+    "result": {
+      "intent": "Fetch, summarize, analyze sentiment, and extract trends for the Indian stock market today",
+      "domain": "Indian stock market",
+      "tools_executed": [
+        {
+          "tool": "news_fetcher",
+          "success": true,
+          "retries": 0,
+          "used_fallback": false,
+          "regenerated": false
+        },
+        {
+          "tool": "summarizer",
+          "success": true,
+          "retries": 0,
+          "used_fallback": false,
+          "regenerated": false
+        },
+        {
+          "tool": "sentiment",
+          "success": true,
+          "retries": 0,
+          "used_fallback": false,
+          "regenerated": false
+        },
+        {
+          "tool": "trends",
+          "success": true,
+          "retries": 0,
+          "used_fallback": false,
+          "regenerated": false
+        },
+        {
+          "tool": "exporter",
+          "success": true,
+          "retries": 0,
+          "used_fallback": false,
+          "regenerated": false
+        }
+      ],
+      "data": {
+        "news": [
+          {
+            "title": "S&P 500 tumbles nearly 1% as investors rotate out of tech, Dow slides more than 160 points: Live updates - CNBC",
+            "link": "https://news.google.com/rss/articles/CBMid0FVX3lxTE82S1M0OFFxSjNTQnRWT21VRGRUbzUxemRyYXNZdGZqdnF0dTE1bTJZMHZWOWFEZnNfN0VmWEZ0TlhwS09SVGVDRVRzTGhoS3ZfdlF2SnNTVUFxcFFJa1E2QmZERnBkMkg2WTA5SGZoLTMyQ2RJTTQ00gF8QVVfeXFMTm1SS1FGeVk1YmtNNkF2TUxCYk45XzJiYzFYSnN3S1dIZ0Fud3M2OG9uVjlpZzFuVnZrc05pMG9waXJmS1NCQ3VaaHJUSnY1MTFTLTJmNDhkRzV2cXVsQVFsOGR2WjluMHd2UkJ3bTFTdGExY2xNaERIVE1ZZw?oc=5",
+            "source": "rss",
+            "published": "Tue, 03 Feb 2026 21:14:24 GMT"
+          },
+          {
+            "title": "Stock market today: Nifty50 opens in red; BSE Sensex down over 250 points - Times of India",
+            "link": "https://news.google.com/rss/articles/CBMijAJBVV95cUxQd3piX2hRTmlCYkU0UzFCLTNqSWJjUHFYV192TEtEYWl4ZG14QmlMUDBJWVJLRG1XLTdXMzVqOHV1VDRRaV9TakZOMzF3cldHSV9oY0ZST1NsQjdfODh2Q3ZaaHdrUnBCLW1VSTFtQmFtb1UyU3NSaWxITS16RThTd3NEbHR3NnpiNkVMRDhBa3RiLThiNnQ0b1dDVE05OUZIZG9PdFJLMUJ2ZTlUbVhXX050YjQxUDJ4ejRUOUNGSFlSXzMwT2ZvcEx1aVJKY3h6WVJhZ05VZ3VXZWdGcjBOTjdVRzZhTDNGS3AtX0w0ZFNkR05EV09kRlVPVzl4MVZVd0gxX1hKZ3BTZF9h0gGSAkFVX3lxTFB2V1BOZEVoRVpqTlNuMHdLRUNTQ25Qa1lZb09XUENaZjBoZmQzYklzTDBtSHdST1hJMlJMY2FiN3FLbnN5ZlNnLUItQk44VVB5a1ZCcExSaE1GTHZhbE9URVBnMFhaaUxJX0xUa2pKdnJXd3dNNWE2VkVjaUFqeGJVSENJcDAwYzc3cWVyeTFRUlJ4YzY2YkJpeDIxV0pPQ1VtUWJRcXY0ZFhrbXNWUUNlZjZZaEp6b0RzSlNWNEc0UEdVUUJ6RTh3czVmdTI5Wi0yazJjSExBeUl3OVhMT0x3ZVozTEN0Q01BZmV0TmRRT3VqSEhMV3c2SGRPWkVIb1MyTW9vbkw3by1oMWV3TER1VlE?oc=5",
+            "source": "rss",
+            "published": "Wed, 04 Feb 2026 03:48:00 GMT"
+          },
+          {
+            "title": "Market Highlights: Sensex settles 78 pts higher, Nifty above 25,750; Trent, Eternal rise 5% each - The Economic Times",
+            "link": "https://news.google.com/rss/articles/CBMisAJBVV95cUxPamhnS0U5dmg0bGxCdzdHWGZ2a1loYWlxS0wtcnB4aENTRENzNEtIdUZJWi1uNlYtSWZiTW9ab3JuRVNrd1M1VmxDUFVxbm9PZjJ0WElPamZHY0o4Vkw5WEw5S0laM3Q1QTlndkF6M0NpakhyU1FBOE5HcENBLVhxVDdUUnN0OGtkRG82dXJkOURWZHJnRFN3Wk5acjhIUkpMUnY4SjVRSjc3Z1dUek5nRFVYY3gwdmlHTHNQVFVCS2lmdzVkUXF2U29hUFlFMW5hUEhFLU5UMldSdTNIeWVOYk9XNHA2ZEx4cUxNUXg5Qm9lWGdjaUpKM0RaMXRFSGNrNnAxN0F5QUVTNnp2X1BpLW5HQzVjei1KMllSNThrMGlybzhybUxzRG1KTnRpbkNT0gG2AkFVX3lxTE02c0VFUUFVdURGZFVaS1BLWllobndScGNTTVJ5WE0xM3FFSnlkTVZueVV2NEVRRjBsMUs1WHJSajNJWGw4NGR1SG1RVzRxRjVPN1pRUzJjaGxRUFpTYVJHeHJfb3RPaXJvZkkxWXVVMTZFMFItUEZDakNSNVdWNFFrSXByZk10ZmVPWm94eTRubUJ3Z0twa0xTZEcteVZUZG5rVWVIbUZvMmRoNlNFakpwSzdfYnAtN05UTkRFaWtzZ2tpdW1PWjNvQXZsUmVIMEdjMHYxcUJTandWSm8wXzlia09UMWRGU0tmR1NlWE9oSFhwVzZNUDFmTVZuM3Jfakp5NHo4YjM5TXZBYUFpUWpDMkJQOEYzcVQ1XzRQczVYY3p3bUJoV19LYjM2MnljS1FIaERPNmc?oc=5",
+            "source": "rss",
+            "published": "Wed, 04 Feb 2026 11:55:00 GMT"
+          },
+          {
+            "title": "Stock Market Today: Sensex, Nifty Clock Best One-Day Gains In Nine Months - NDTV Profit",
+            "link": "https://news.google.com/rss/articles/CBMikgJBVV95cUxNTHlmc0FhMk9qcmZwQnR2TjU4QkdoZThpV080bzFHMUJNZXBUWVFyNFpPeXF6eGtuV2pTcU1EZFRwbWxJd3RQNmhNV2R5ck1YbHkySjVVeGZtSmtvSkJXN1huOWpZWVNVTUZKUjQ5REZlZE14RnloelZwaWh6QWVFVmUtaWNod1o3QjlVZkdMM2lmOFhveE53Z2I2NHUxemM5VHE3NUs1UWpTa3JrWWVXTnJPNWxzRk5CNHYxSEFwME9TZDVreU9hTEZqUGpwRXVHcmFJWmNFWmZSWWx3ZXVqT2h4aU9SRWc5WnlKRFV1X3VSOTZRT3MxU1ptaVRBc0RaaW9tUy1wQk1UYndpaldaVkxR0gGaAkFVX3lxTFBrZnVNbnRIcDBMZmp0LUFDemVxZlE1YWRuTV9wa2dFRDRMbGFuTkZad3Q1UlE4c2F5MjFwUGRnMDg0a3J0bTQxU3l5aS1CX291ZWdCOVNIV2xxSWs4MnpLLV9hWUVxTjRTZmlkM0FaRjAtVWZpX2lsLU5wNm1fLWdHektzY0RqX0RyeUppUUpTWWZCSnJndXVBa3lINHRsNVBCS3pDdWFGZFdiMExlZmN2SHNxbEVaUFVTMmJ1dWJlMmZubUd1N2xValVpUWlYVTBHZkdEUk1vS2dDZVdQRUVWd2ZhNy1Hai1xQ1pKMVlFOXplWlNOamw3WWt0THQ2c042cng0ejlSdmtZTkd0QWt6aWt5TU9JaUFIUQ?oc=5",
+            "source": "rss",
+            "published": "Wed, 04 Feb 2026 08:58:37 GMT"
+          },
+          {
+            "title": "Stock market today: Dow, S&P 500, Nasdaq jump to kick off February as gold, silver, bitcoin remain volatile - Yahoo Finance",
+            "link": "https://news.google.com/rss/articles/CBMi5wFBVV95cUxQc0F4TE9UblcyRVIyTkVPQnJWZWtyTUgteHBtb2NGeDZPR1o4dE9FOFA4dUVlOEdmbW9VUTE3c0NJMUFFcW83d0N5LVQwVHYyODU2bXR3YzQ1NlZVVHJPQkhwcHUzcndOc0xrVFVqX0FubEd3NzBEWHJDY1hRUDBqcWF2azhFbnNWNFZWd2lvS3cwN0lnYlkzWmlVdmR6TTdRM1hNTEVwcVM1ZmZab29yUHk5ZHZ0NWdFR2FGNlZCeHdXSmg0UU9uRUk3d1BhbzVpcEZrOWExaVM3VjBzN0V2SFRkVFY3Rk0?oc=5",
+            "source": "rss",
+            "published": "Mon, 02 Feb 2026 21:06:10 GMT"
+          },
+          {
+            "title": "Investors' Wealth Swells By Rs 7 Lakh Crore As Bulls Grip Nifty, Sensex On India-US Trade Deal Announcement",
+            "link": "https://www.ndtvprofit.com/markets/stock-market-today-investors-wealth-swells-nearly-rs-7-lakh-crore-as-bulls-grip-nifty-sensex-on-india-us-trade-deal-announcement-10937766",
+            "source": "gnews",
+            "published": "2026-02-03T10:12:07Z"
+          },
+          {
+            "title": "Sensex jumps over 2,000 points, investors earn over \u20b912 lakh crore- 10 key highlights from Indian stock market today",
+            "link": "https://www.livemint.com/market/sensex-jumps-over-2-000-points-investors-earn-over-rs-12-lakh-crore-10-key-highlights-from-indian-stock-market-today-11770112329110.html",
+            "source": "gnews",
+            "published": "2026-02-03T10:06:14Z"
+          },
+          {
+            "title": "Here's Why Stock Market Is Up Today India-US Trade Deal",
+            "link": "https://www.ndtvprofit.com/markets/heres-why-stock-market-is-up-today-india-us-trade-deal-10935641",
+            "source": "gnews",
+            "published": "2026-02-03T04:17:26Z"
+          },
+          {
+            "title": "Stock Market Expected To Jump Big Today After India-US Trade Deal",
+            "link": "https://www.ndtv.com/india-news/markets-sensex-nifty-rupee-live-updates-stock-market-expected-to-jump-big-today-after-india-us-trade-deal-10935446",
+            "source": "gnews",
+            "published": "2026-02-03T03:28:27Z"
+          },
+          {
+            "title": "Stock Market in Focus: Trump\u2019s Tariff Slashed to 18%, India-US Trade Deal Sparks Dalal Street Rally; Sensex, Nifty Set for Gap-Up, Export Sectors and FPI Inflows in Focus",
+            "link": "https://www.newsx.com/business/stock-market-in-focus-trumps-tariff-slashed-to-18-indiaus-trade-deal-sparks-dalal-street-rally-sensex-nifty-set-for-gap-up-export-sectors-and-fpi-inflows-in-focus-158173/",
+            "source": "gnews",
+            "published": "2026-02-03T03:22:00Z"
+          },
+          {
+            "title": "India's Nifty 50 closes 2.5% higher as long-awaited U.S. ...",
+            "link": "https://www.cnbc.com/2026/02/03/india-nifty-50-soars-india-us-trade-deal-trum-modi.html",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "Stock Price, Quote and News",
+            "link": "https://www.cnbc.com/quotes/.NSEI",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "Indian shares pause after US trade-deal rally; IT stocks weigh",
+            "link": "https://www.reuters.com/world/india/indian-stocks-set-extend-gains-us-trade-deal-tech-sell-off-may-cap-upside-2026-02-04/",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "New AI Tool Turns the Heat on Top Indian IT Firms",
+            "link": "https://www.bloomberg.com/news/newsletters/2026-02-04/infosys-tcs-wipro-may-tumble-rupee-continues-to-rally-refiners-await-clarity",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "India markets regulator taking measured approach on ...",
+            "link": "https://www.reuters.com/sustainability/boards-policy-regulation/india-markets-regulator-taking-measured-approach-equity-derivatives-rules-chair-2026-02-04/",
+            "source": "tavily",
+            "published": ""
+          }
+        ],
+        "summary": {
+          "summary": "Recent stock market news highlights significant volatility, with the S&P 500 and Dow experiencing declines while the Indian stock market shows gains following the India-US trade deal. The Indian markets, particularly the Nifty and Sensex, saw substantial increases and record highs. Key factors include investor rotation out of tech stocks and the positive impact of the trade deal on market sentiment.",
+          "key_points": [
+            "Significant volatility in global stock markets with declines in the S&P 500 and Dow",
+            "Substantial increases and record highs in Indian markets following the India-US trade deal",
+            "Investor sentiment positively influenced by the trade deal and rotation out of tech stocks"
+          ]
+        },
+        "sentiment": {
+          "overall": "neutral",
+          "mood_label": "cautious optimism",
+          "confidence": "medium",
+          "direction": "stable",
+          "momentum_strength": "moderate",
+          "risk_level": "moderate",
+          "market_bias": "balanced",
+          "reasoning": "The market sentiment appears to be cautiously optimistic due to positive developments like the India-US trade deal, which has led to gains in the Indian stock market. However, the rotation out of tech stocks and the volatility in commodities suggest underlying uncertainties.",
+          "positive_signals": [
+            "India-US trade deal announcement",
+            "Nifty 50 and Sensex gains",
+            "Best one-day gains in nine months"
+          ],
+          "negative_signals": [
+            "S&P 500 tumbles nearly 1%",
+            "Dow slides more than 160 points",
+            "Volatility in gold, silver, and bitcoin"
+          ],
+          "emerging_themes": [
+            "trade deal impact",
+            "sector rotation"
+          ],
+          "score": 0.45,
+          "breakdown": {
+            "positive": 6,
+            "neutral": 2,
+            "negative": 4
+          }
+        },
+        "trends": {
+          "trending_topics": [
+            {
+              "topic": "Sensex",
+              "mentions": 11
+            },
+            {
+              "topic": "India",
+              "mentions": 11
+            },
+            {
+              "topic": "Stock",
+              "mentions": 9
+            },
+            {
+              "topic": "Nifty",
+              "mentions": 7
+            },
+            {
+              "topic": "Market",
+              "mentions": 5
+            },
+            {
+              "topic": "Indian",
+              "mentions": 5
+            },
+            {
+              "topic": "Dow",
+              "mentions": 4
+            },
+            {
+              "topic": "Trade",
+              "mentions": 4
+            },
+            {
+              "topic": "Deal",
+              "mentions": 4
+            },
+            {
+              "topic": "Focus",
+              "mentions": 4
+            }
+          ],
+          "total_articles": 15
+        },
+        "exported_file": "output/indian_stock_market_report_20260204_173155.json"
+      },
+      "errors": [],
+      "skipped": [],
+      "fallbacks_used": [],
+      "regenerated": [],
+      "success": true
+    }
+  },
+  {
+    "timestamp": "2026-02-04T17:40:10.744477",
+    "result": {
+      "intent": "Fetch and summarize the latest news about the Indian stock market today",
+      "domain": "Indian stock market",
+      "tools_executed": [
+        {
+          "tool": "news_fetcher",
+          "success": true,
+          "retries": 0,
+          "used_fallback": false,
+          "regenerated": false
+        },
+        {
+          "tool": "summarizer",
+          "success": true,
+          "retries": 0,
+          "used_fallback": false,
+          "regenerated": false
+        },
+        {
+          "tool": "exporter",
+          "success": true,
+          "retries": 0,
+          "used_fallback": false,
+          "regenerated": false
+        }
+      ],
+      "data": {
+        "news": [
+          {
+            "title": "S&P 500 tumbles nearly 1% as investors rotate out of tech, Dow slides more than 160 points: Live updates - CNBC",
+            "link": "https://news.google.com/rss/articles/CBMid0FVX3lxTE82S1M0OFFxSjNTQnRWT21VRGRUbzUxemRyYXNZdGZqdnF0dTE1bTJZMHZWOWFEZnNfN0VmWEZ0TlhwS09SVGVDRVRzTGhoS3ZfdlF2SnNTVUFxcFFJa1E2QmZERnBkMkg2WTA5SGZoLTMyQ2RJTTQ00gF8QVVfeXFMTm1SS1FGeVk1YmtNNkF2TUxCYk45XzJiYzFYSnN3S1dIZ0Fud3M2OG9uVjlpZzFuVnZrc05pMG9waXJmS1NCQ3VaaHJUSnY1MTFTLTJmNDhkRzV2cXVsQVFsOGR2WjluMHd2UkJ3bTFTdGExY2xNaERIVE1ZZw?oc=5",
+            "source": "rss",
+            "published": "Tue, 03 Feb 2026 21:14:24 GMT"
+          },
+          {
+            "title": "Stock market today: Nifty50 opens in red; BSE Sensex down over 250 points - Times of India",
+            "link": "https://news.google.com/rss/articles/CBMijAJBVV95cUxQd3piX2hRTmlCYkU0UzFCLTNqSWJjUHFYV192TEtEYWl4ZG14QmlMUDBJWVJLRG1XLTdXMzVqOHV1VDRRaV9TakZOMzF3cldHSV9oY0ZST1NsQjdfODh2Q3ZaaHdrUnBCLW1VSTFtQmFtb1UyU3NSaWxITS16RThTd3NEbHR3NnpiNkVMRDhBa3RiLThiNnQ0b1dDVE05OUZIZG9PdFJLMUJ2ZTlUbVhXX050YjQxUDJ4ejRUOUNGSFlSXzMwT2ZvcEx1aVJKY3h6WVJhZ05VZ3VXZWdGcjBOTjdVRzZhTDNGS3AtX0w0ZFNkR05EV09kRlVPVzl4MVZVd0gxX1hKZ3BTZF9h0gGSAkFVX3lxTFB2V1BOZEVoRVpqTlNuMHdLRUNTQ25Qa1lZb09XUENaZjBoZmQzYklzTDBtSHdST1hJMlJMY2FiN3FLbnN5ZlNnLUItQk44VVB5a1ZCcExSaE1GTHZhbE9URVBnMFhaaUxJX0xUa2pKdnJXd3dNNWE2VkVjaUFqeGJVSENJcDAwYzc3cWVyeTFRUlJ4YzY2YkJpeDIxV0pPQ1VtUWJRcXY0ZFhrbXNWUUNlZjZZaEp6b0RzSlNWNEc0UEdVUUJ6RTh3czVmdTI5Wi0yazJjSExBeUl3OVhMT0x3ZVozTEN0Q01BZmV0TmRRT3VqSEhMV3c2SGRPWkVIb1MyTW9vbkw3by1oMWV3TER1VlE?oc=5",
+            "source": "rss",
+            "published": "Wed, 04 Feb 2026 03:48:00 GMT"
+          },
+          {
+            "title": "Market Highlights: Sensex settles 78 pts higher, Nifty above 25,750; Trent, Eternal rise 5% each - The Economic Times",
+            "link": "https://news.google.com/rss/articles/CBMisAJBVV95cUxPamhnS0U5dmg0bGxCdzdHWGZ2a1loYWlxS0wtcnB4aENTRENzNEtIdUZJWi1uNlYtSWZiTW9ab3JuRVNrd1M1VmxDUFVxbm9PZjJ0WElPamZHY0o4Vkw5WEw5S0laM3Q1QTlndkF6M0NpakhyU1FBOE5HcENBLVhxVDdUUnN0OGtkRG82dXJkOURWZHJnRFN3Wk5acjhIUkpMUnY4SjVRSjc3Z1dUek5nRFVYY3gwdmlHTHNQVFVCS2lmdzVkUXF2U29hUFlFMW5hUEhFLU5UMldSdTNIeWVOYk9XNHA2ZEx4cUxNUXg5Qm9lWGdjaUpKM0RaMXRFSGNrNnAxN0F5QUVTNnp2X1BpLW5HQzVjei1KMllSNThrMGlybzhybUxzRG1KTnRpbkNT0gG2AkFVX3lxTE02c0VFUUFVdURGZFVaS1BLWllobndScGNTTVJ5WE0xM3FFSnlkTVZueVV2NEVRRjBsMUs1WHJSajNJWGw4NGR1SG1RVzRxRjVPN1pRUzJjaGxRUFpTYVJHeHJfb3RPaXJvZkkxWXVVMTZFMFItUEZDakNSNVdWNFFrSXByZk10ZmVPWm94eTRubUJ3Z0twa0xTZEcteVZUZG5rVWVIbUZvMmRoNlNFakpwSzdfYnAtN05UTkRFaWtzZ2tpdW1PWjNvQXZsUmVIMEdjMHYxcUJTandWSm8wXzlia09UMWRGU0tmR1NlWE9oSFhwVzZNUDFmTVZuM3Jfakp5NHo4YjM5TXZBYUFpUWpDMkJQOEYzcVQ1XzRQczVYY3p3bUJoV19LYjM2MnljS1FIaERPNmc?oc=5",
+            "source": "rss",
+            "published": "Wed, 04 Feb 2026 12:07:00 GMT"
+          },
+          {
+            "title": "Stock Market Today: Sensex, Nifty Clock Best One-Day Gains In Nine Months - NDTV Profit",
+            "link": "https://news.google.com/rss/articles/CBMikgJBVV95cUxNTHlmc0FhMk9qcmZwQnR2TjU4QkdoZThpV080bzFHMUJNZXBUWVFyNFpPeXF6eGtuV2pTcU1EZFRwbWxJd3RQNmhNV2R5ck1YbHkySjVVeGZtSmtvSkJXN1huOWpZWVNVTUZKUjQ5REZlZE14RnloelZwaWh6QWVFVmUtaWNod1o3QjlVZkdMM2lmOFhveE53Z2I2NHUxemM5VHE3NUs1UWpTa3JrWWVXTnJPNWxzRk5CNHYxSEFwME9TZDVreU9hTEZqUGpwRXVHcmFJWmNFWmZSWWx3ZXVqT2h4aU9SRWc5WnlKRFV1X3VSOTZRT3MxU1ptaVRBc0RaaW9tUy1wQk1UYndpaldaVkxR0gGaAkFVX3lxTFBrZnVNbnRIcDBMZmp0LUFDemVxZlE1YWRuTV9wa2dFRDRMbGFuTkZad3Q1UlE4c2F5MjFwUGRnMDg0a3J0bTQxU3l5aS1CX291ZWdCOVNIV2xxSWs4MnpLLV9hWUVxTjRTZmlkM0FaRjAtVWZpX2lsLU5wNm1fLWdHektzY0RqX0RyeUppUUpTWWZCSnJndXVBa3lINHRsNVBCS3pDdWFGZFdiMExlZmN2SHNxbEVaUFVTMmJ1dWJlMmZubUd1N2xValVpUWlYVTBHZkdEUk1vS2dDZVdQRUVWd2ZhNy1Hai1xQ1pKMVlFOXplWlNOamw3WWt0THQ2c042cng0ejlSdmtZTkd0QWt6aWt5TU9JaUFIUQ?oc=5",
+            "source": "rss",
+            "published": "Wed, 04 Feb 2026 08:58:37 GMT"
+          },
+          {
+            "title": "Stock market today: Dow, S&P 500, Nasdaq jump to kick off February as gold, silver, bitcoin remain volatile - Yahoo Finance",
+            "link": "https://news.google.com/rss/articles/CBMi5wFBVV95cUxQc0F4TE9UblcyRVIyTkVPQnJWZWtyTUgteHBtb2NGeDZPR1o4dE9FOFA4dUVlOEdmbW9VUTE3c0NJMUFFcW83d0N5LVQwVHYyODU2bXR3YzQ1NlZVVHJPQkhwcHUzcndOc0xrVFVqX0FubEd3NzBEWHJDY1hRUDBqcWF2azhFbnNWNFZWd2lvS3cwN0lnYlkzWmlVdmR6TTdRM1hNTEVwcVM1ZmZab29yUHk5ZHZ0NWdFR2FGNlZCeHdXSmg0UU9uRUk3d1BhbzVpcEZrOWExaVM3VjBzN0V2SFRkVFY3Rk0?oc=5",
+            "source": "rss",
+            "published": "Mon, 02 Feb 2026 21:06:10 GMT"
+          },
+          {
+            "title": "Investors' Wealth Swells By Rs 7 Lakh Crore As Bulls Grip Nifty, Sensex On India-US Trade Deal Announcement",
+            "link": "https://www.ndtvprofit.com/markets/stock-market-today-investors-wealth-swells-nearly-rs-7-lakh-crore-as-bulls-grip-nifty-sensex-on-india-us-trade-deal-announcement-10937766",
+            "source": "gnews",
+            "published": "2026-02-03T10:12:07Z"
+          },
+          {
+            "title": "Sensex jumps over 2,000 points, investors earn over \u20b912 lakh crore- 10 key highlights from Indian stock market today",
+            "link": "https://www.livemint.com/market/sensex-jumps-over-2-000-points-investors-earn-over-rs-12-lakh-crore-10-key-highlights-from-indian-stock-market-today-11770112329110.html",
+            "source": "gnews",
+            "published": "2026-02-03T10:06:14Z"
+          },
+          {
+            "title": "Here's Why Stock Market Is Up Today India-US Trade Deal",
+            "link": "https://www.ndtvprofit.com/markets/heres-why-stock-market-is-up-today-india-us-trade-deal-10935641",
+            "source": "gnews",
+            "published": "2026-02-03T04:17:26Z"
+          },
+          {
+            "title": "Stock Market Expected To Jump Big Today After India-US Trade Deal",
+            "link": "https://www.ndtv.com/india-news/markets-sensex-nifty-rupee-live-updates-stock-market-expected-to-jump-big-today-after-india-us-trade-deal-10935446",
+            "source": "gnews",
+            "published": "2026-02-03T03:28:27Z"
+          },
+          {
+            "title": "Stock Market in Focus: Trump\u2019s Tariff Slashed to 18%, India-US Trade Deal Sparks Dalal Street Rally; Sensex, Nifty Set for Gap-Up, Export Sectors and FPI Inflows in Focus",
+            "link": "https://www.newsx.com/business/stock-market-in-focus-trumps-tariff-slashed-to-18-indiaus-trade-deal-sparks-dalal-street-rally-sensex-nifty-set-for-gap-up-export-sectors-and-fpi-inflows-in-focus-158173/",
+            "source": "gnews",
+            "published": "2026-02-03T03:22:00Z"
+          },
+          {
+            "title": "Indian rupee and stocks soar in relief rally after US trade deal",
+            "link": "https://www.reuters.com/world/india/indian-rupee-stocks-soar-after-trade-deal-with-us-2026-02-03/",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "India's markets get tariff relief but not a buy yet",
+            "link": "https://www.reuters.com/world/india/indias-markets-get-tariff-relief-not-buy-yet-2026-02-04/",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "Indian shares pause after US trade-deal rally; IT stocks weigh",
+            "link": "https://www.reuters.com/world/india/indian-stocks-set-extend-gains-us-trade-deal-tech-sell-off-may-cap-upside-2026-02-04/",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "Stock Price, Quote and News",
+            "link": "https://www.cnbc.com/quotes/.NSEI",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "India's Nifty 50 closes 2.5% higher as long-awaited U.S. ...",
+            "link": "https://www.cnbc.com/2026/02/03/india-nifty-50-soars-india-us-trade-deal-trum-modi.html",
+            "source": "tavily",
+            "published": ""
+          }
+        ],
+        "summary": {
+          "summary": "The S&P 500 and Dow experienced declines due to investor rotation away from tech stocks, while Indian markets saw significant gains following the India-US trade deal announcement. Indian stock markets, particularly the Nifty50 and Sensex, saw substantial increases and volatility, with major gains reported. Investor wealth increased significantly in India due to positive market reactions to the trade deal.",
+          "key_points": [
+            "Market volatility and shifts in investor sentiment in global markets.",
+            "Significant gains and positive reactions in Indian markets following the India-US trade deal.",
+            "Volatility in precious metals and cryptocurrencies alongside stock market movements."
+          ]
+        },
+        "exported_file": "output/indian_stock_market_today_20260204_174010.json"
+      },
+      "errors": [],
+      "skipped": [],
+      "fallbacks_used": [],
+      "regenerated": [],
+      "success": true
+    }
+  },
+  {
+    "timestamp": "2026-02-04T19:12:23.958999",
+    "result": {
+      "intent": "Fetch and export the latest news about the Indian stock market today",
+      "domain": "Indian stock market",
+      "tools_executed": [
+        {
+          "tool": "news_fetcher",
+          "success": true,
+          "retries": 0,
+          "used_fallback": false,
+          "regenerated": false
+        },
+        {
+          "tool": "exporter",
+          "success": true,
+          "retries": 0,
+          "used_fallback": false,
+          "regenerated": false
+        }
+      ],
+      "data": {
+        "news": [
+          {
+            "title": "S&P 500 tumbles nearly 1% as investors rotate out of tech, Dow slides more than 160 points: Live updates - CNBC",
+            "link": "https://news.google.com/rss/articles/CBMid0FVX3lxTE82S1M0OFFxSjNTQnRWT21VRGRUbzUxemRyYXNZdGZqdnF0dTE1bTJZMHZWOWFEZnNfN0VmWEZ0TlhwS09SVGVDRVRzTGhoS3ZfdlF2SnNTVUFxcFFJa1E2QmZERnBkMkg2WTA5SGZoLTMyQ2RJTTQ00gF8QVVfeXFMTm1SS1FGeVk1YmtNNkF2TUxCYk45XzJiYzFYSnN3S1dIZ0Fud3M2OG9uVjlpZzFuVnZrc05pMG9waXJmS1NCQ3VaaHJUSnY1MTFTLTJmNDhkRzV2cXVsQVFsOGR2WjluMHd2UkJ3bTFTdGExY2xNaERIVE1ZZw?oc=5",
+            "source": "rss",
+            "published": "Tue, 03 Feb 2026 21:15:41 GMT"
+          },
+          {
+            "title": "Stock market today: Nifty50 opens in red; BSE Sensex down over 250 points - Times of India",
+            "link": "https://news.google.com/rss/articles/CBMijAJBVV95cUxQd3piX2hRTmlCYkU0UzFCLTNqSWJjUHFYV192TEtEYWl4ZG14QmlMUDBJWVJLRG1XLTdXMzVqOHV1VDRRaV9TakZOMzF3cldHSV9oY0ZST1NsQjdfODh2Q3ZaaHdrUnBCLW1VSTFtQmFtb1UyU3NSaWxITS16RThTd3NEbHR3NnpiNkVMRDhBa3RiLThiNnQ0b1dDVE05OUZIZG9PdFJLMUJ2ZTlUbVhXX050YjQxUDJ4ejRUOUNGSFlSXzMwT2ZvcEx1aVJKY3h6WVJhZ05VZ3VXZWdGcjBOTjdVRzZhTDNGS3AtX0w0ZFNkR05EV09kRlVPVzl4MVZVd0gxX1hKZ3BTZF9h0gGSAkFVX3lxTFB2V1BOZEVoRVpqTlNuMHdLRUNTQ25Qa1lZb09XUENaZjBoZmQzYklzTDBtSHdST1hJMlJMY2FiN3FLbnN5ZlNnLUItQk44VVB5a1ZCcExSaE1GTHZhbE9URVBnMFhaaUxJX0xUa2pKdnJXd3dNNWE2VkVjaUFqeGJVSENJcDAwYzc3cWVyeTFRUlJ4YzY2YkJpeDIxV0pPQ1VtUWJRcXY0ZFhrbXNWUUNlZjZZaEp6b0RzSlNWNEc0UEdVUUJ6RTh3czVmdTI5Wi0yazJjSExBeUl3OVhMT0x3ZVozTEN0Q01BZmV0TmRRT3VqSEhMV3c2SGRPWkVIb1MyTW9vbkw3by1oMWV3TER1VlE?oc=5",
+            "source": "rss",
+            "published": "Wed, 04 Feb 2026 03:48:00 GMT"
+          },
+          {
+            "title": "Market Highlights: Sensex settles 78 pts higher, Nifty above 25,750; Trent, Eternal rise 5% each - The Economic Times",
+            "link": "https://news.google.com/rss/articles/CBMisAJBVV95cUxPamhnS0U5dmg0bGxCdzdHWGZ2a1loYWlxS0wtcnB4aENTRENzNEtIdUZJWi1uNlYtSWZiTW9ab3JuRVNrd1M1VmxDUFVxbm9PZjJ0WElPamZHY0o4Vkw5WEw5S0laM3Q1QTlndkF6M0NpakhyU1FBOE5HcENBLVhxVDdUUnN0OGtkRG82dXJkOURWZHJnRFN3Wk5acjhIUkpMUnY4SjVRSjc3Z1dUek5nRFVYY3gwdmlHTHNQVFVCS2lmdzVkUXF2U29hUFlFMW5hUEhFLU5UMldSdTNIeWVOYk9XNHA2ZEx4cUxNUXg5Qm9lWGdjaUpKM0RaMXRFSGNrNnAxN0F5QUVTNnp2X1BpLW5HQzVjei1KMllSNThrMGlybzhybUxzRG1KTnRpbkNT0gG2AkFVX3lxTE02c0VFUUFVdURGZFVaS1BLWllobndScGNTTVJ5WE0xM3FFSnlkTVZueVV2NEVRRjBsMUs1WHJSajNJWGw4NGR1SG1RVzRxRjVPN1pRUzJjaGxRUFpTYVJHeHJfb3RPaXJvZkkxWXVVMTZFMFItUEZDakNSNVdWNFFrSXByZk10ZmVPWm94eTRubUJ3Z0twa0xTZEcteVZUZG5rVWVIbUZvMmRoNlNFakpwSzdfYnAtN05UTkRFaWtzZ2tpdW1PWjNvQXZsUmVIMEdjMHYxcUJTandWSm8wXzlia09UMWRGU0tmR1NlWE9oSFhwVzZNUDFmTVZuM3Jfakp5NHo4YjM5TXZBYUFpUWpDMkJQOEYzcVQ1XzRQczVYY3p3bUJoV19LYjM2MnljS1FIaERPNmc?oc=5",
+            "source": "rss",
+            "published": "Wed, 04 Feb 2026 13:13:00 GMT"
+          },
+          {
+            "title": "Stock market today: Dow, S&P 500, Nasdaq jump to kick off February as gold, silver, bitcoin remain volatile - Yahoo Finance",
+            "link": "https://news.google.com/rss/articles/CBMi5wFBVV95cUxQc0F4TE9UblcyRVIyTkVPQnJWZWtyTUgteHBtb2NGeDZPR1o4dE9FOFA4dUVlOEdmbW9VUTE3c0NJMUFFcW83d0N5LVQwVHYyODU2bXR3YzQ1NlZVVHJPQkhwcHUzcndOc0xrVFVqX0FubEd3NzBEWHJDY1hRUDBqcWF2azhFbnNWNFZWd2lvS3cwN0lnYlkzWmlVdmR6TTdRM1hNTEVwcVM1ZmZab29yUHk5ZHZ0NWdFR2FGNlZCeHdXSmg0UU9uRUk3d1BhbzVpcEZrOWExaVM3VjBzN0V2SFRkVFY3Rk0?oc=5",
+            "source": "rss",
+            "published": "Mon, 02 Feb 2026 21:06:10 GMT"
+          },
+          {
+            "title": "Stock Market Today: Sensex, Nifty Clock Best One-Day Gains In Nine Months - NDTV Profit",
+            "link": "https://news.google.com/rss/articles/CBMikgJBVV95cUxNTHlmc0FhMk9qcmZwQnR2TjU4QkdoZThpV080bzFHMUJNZXBUWVFyNFpPeXF6eGtuV2pTcU1EZFRwbWxJd3RQNmhNV2R5ck1YbHkySjVVeGZtSmtvSkJXN1huOWpZWVNVTUZKUjQ5REZlZE14RnloelZwaWh6QWVFVmUtaWNod1o3QjlVZkdMM2lmOFhveE53Z2I2NHUxemM5VHE3NUs1UWpTa3JrWWVXTnJPNWxzRk5CNHYxSEFwME9TZDVreU9hTEZqUGpwRXVHcmFJWmNFWmZSWWx3ZXVqT2h4aU9SRWc5WnlKRFV1X3VSOTZRT3MxU1ptaVRBc0RaaW9tUy1wQk1UYndpaldaVkxR0gGaAkFVX3lxTFBrZnVNbnRIcDBMZmp0LUFDemVxZlE1YWRuTV9wa2dFRDRMbGFuTkZad3Q1UlE4c2F5MjFwUGRnMDg0a3J0bTQxU3l5aS1CX291ZWdCOVNIV2xxSWs4MnpLLV9hWUVxTjRTZmlkM0FaRjAtVWZpX2lsLU5wNm1fLWdHektzY0RqX0RyeUppUUpTWWZCSnJndXVBa3lINHRsNVBCS3pDdWFGZFdiMExlZmN2SHNxbEVaUFVTMmJ1dWJlMmZubUd1N2xValVpUWlYVTBHZkdEUk1vS2dDZVdQRUVWd2ZhNy1Hai1xQ1pKMVlFOXplWlNOamw3WWt0THQ2c042cng0ejlSdmtZTkd0QWt6aWt5TU9JaUFIUQ?oc=5",
+            "source": "rss",
+            "published": "Wed, 04 Feb 2026 08:58:37 GMT"
+          },
+          {
+            "title": "Investors' Wealth Swells By Rs 7 Lakh Crore As Bulls Grip Nifty, Sensex On India-US Trade Deal Announcement",
+            "link": "https://www.ndtvprofit.com/markets/stock-market-today-investors-wealth-swells-nearly-rs-7-lakh-crore-as-bulls-grip-nifty-sensex-on-india-us-trade-deal-announcement-10937766",
+            "source": "gnews",
+            "published": "2026-02-03T10:12:07Z"
+          },
+          {
+            "title": "Sensex jumps over 2,000 points, investors earn over \u20b912 lakh crore- 10 key highlights from Indian stock market today",
+            "link": "https://www.livemint.com/market/sensex-jumps-over-2-000-points-investors-earn-over-rs-12-lakh-crore-10-key-highlights-from-indian-stock-market-today-11770112329110.html",
+            "source": "gnews",
+            "published": "2026-02-03T10:06:14Z"
+          },
+          {
+            "title": "Here's Why Stock Market Is Up Today India-US Trade Deal",
+            "link": "https://www.ndtvprofit.com/markets/heres-why-stock-market-is-up-today-india-us-trade-deal-10935641",
+            "source": "gnews",
+            "published": "2026-02-03T04:17:26Z"
+          },
+          {
+            "title": "Stock Market Expected To Jump Big Today After India-US Trade Deal",
+            "link": "https://www.ndtv.com/india-news/markets-sensex-nifty-rupee-live-updates-stock-market-expected-to-jump-big-today-after-india-us-trade-deal-10935446",
+            "source": "gnews",
+            "published": "2026-02-03T03:28:27Z"
+          },
+          {
+            "title": "Stock Market in Focus: Trump\u2019s Tariff Slashed to 18%, India-US Trade Deal Sparks Dalal Street Rally; Sensex, Nifty Set for Gap-Up, Export Sectors and FPI Inflows in Focus",
+            "link": "https://www.newsx.com/business/stock-market-in-focus-trumps-tariff-slashed-to-18-indiaus-trade-deal-sparks-dalal-street-rally-sensex-nifty-set-for-gap-up-export-sectors-and-fpi-inflows-in-focus-158173/",
+            "source": "gnews",
+            "published": "2026-02-03T03:22:00Z"
+          },
+          {
+            "title": "India's Nifty 50 closes 2.5% higher as long-awaited U.S. ...",
+            "link": "https://www.cnbc.com/2026/02/03/india-nifty-50-soars-india-us-trade-deal-trum-modi.html",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "Asia markets live: Stocks mostly rise",
+            "link": "https://www.cnbc.com/2025/04/15/asia-markets-live-updates.html",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "Japan stocks jump over 3% to record high as Asia markets ...",
+            "link": "https://www.cnbc.com/2026/02/03/asia-pacific-markets-nifty-50-kospi-nikkei-225-india-trade-deal.html",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "Asia stock markets today: live updates",
+            "link": "https://www.cnbc.com/2025/08/08/asia-stock-markets-today-live-updates-nikkei-225-asx-200-kospi-hang-seng-csi-300-sensex-nifty-50.html",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "India's markets get tariff relief but not a buy yet",
+            "link": "https://www.reuters.com/world/india/indias-markets-get-tariff-relief-not-buy-yet-2026-02-04/",
+            "source": "tavily",
+            "published": ""
+          }
+        ],
+        "exported_file": "output/Indian_stock_market_today_20260204_191223.json"
+      },
+      "errors": [],
+      "skipped": [],
+      "fallbacks_used": [],
+      "regenerated": [],
+      "success": true
+    }
+  },
+  {
+    "timestamp": "2026-02-04T19:26:21.584179",
+    "result": {
+      "intent": "Fetch and export the latest news about the Indian stock market today",
+      "domain": "Indian stock market",
+      "tools_executed": [
+        {
+          "tool": "news_fetcher",
+          "success": true,
+          "retries": 0,
+          "used_fallback": false,
+          "regenerated": false
+        },
+        {
+          "tool": "exporter",
+          "success": true,
+          "retries": 0,
+          "used_fallback": false,
+          "regenerated": false
+        }
+      ],
+      "data": {
+        "news": [
+          {
+            "title": "S&P 500 tumbles nearly 1% as investors rotate out of tech, Dow slides more than 160 points: Live updates - CNBC",
+            "link": "https://news.google.com/rss/articles/CBMid0FVX3lxTE82S1M0OFFxSjNTQnRWT21VRGRUbzUxemRyYXNZdGZqdnF0dTE1bTJZMHZWOWFEZnNfN0VmWEZ0TlhwS09SVGVDRVRzTGhoS3ZfdlF2SnNTVUFxcFFJa1E2QmZERnBkMkg2WTA5SGZoLTMyQ2RJTTQ00gF8QVVfeXFMTm1SS1FGeVk1YmtNNkF2TUxCYk45XzJiYzFYSnN3S1dIZ0Fud3M2OG9uVjlpZzFuVnZrc05pMG9waXJmS1NCQ3VaaHJUSnY1MTFTLTJmNDhkRzV2cXVsQVFsOGR2WjluMHd2UkJ3bTFTdGExY2xNaERIVE1ZZw?oc=5",
+            "source": "rss",
+            "published": "Tue, 03 Feb 2026 21:15:41 GMT"
+          },
+          {
+            "title": "Stock market today: Nifty50 opens in red; BSE Sensex down over 250 points - Times of India",
+            "link": "https://news.google.com/rss/articles/CBMijAJBVV95cUxQd3piX2hRTmlCYkU0UzFCLTNqSWJjUHFYV192TEtEYWl4ZG14QmlMUDBJWVJLRG1XLTdXMzVqOHV1VDRRaV9TakZOMzF3cldHSV9oY0ZST1NsQjdfODh2Q3ZaaHdrUnBCLW1VSTFtQmFtb1UyU3NSaWxITS16RThTd3NEbHR3NnpiNkVMRDhBa3RiLThiNnQ0b1dDVE05OUZIZG9PdFJLMUJ2ZTlUbVhXX050YjQxUDJ4ejRUOUNGSFlSXzMwT2ZvcEx1aVJKY3h6WVJhZ05VZ3VXZWdGcjBOTjdVRzZhTDNGS3AtX0w0ZFNkR05EV09kRlVPVzl4MVZVd0gxX1hKZ3BTZF9h0gGSAkFVX3lxTFB2V1BOZEVoRVpqTlNuMHdLRUNTQ25Qa1lZb09XUENaZjBoZmQzYklzTDBtSHdST1hJMlJMY2FiN3FLbnN5ZlNnLUItQk44VVB5a1ZCcExSaE1GTHZhbE9URVBnMFhaaUxJX0xUa2pKdnJXd3dNNWE2VkVjaUFqeGJVSENJcDAwYzc3cWVyeTFRUlJ4YzY2YkJpeDIxV0pPQ1VtUWJRcXY0ZFhrbXNWUUNlZjZZaEp6b0RzSlNWNEc0UEdVUUJ6RTh3czVmdTI5Wi0yazJjSExBeUl3OVhMT0x3ZVozTEN0Q01BZmV0TmRRT3VqSEhMV3c2SGRPWkVIb1MyTW9vbkw3by1oMWV3TER1VlE?oc=5",
+            "source": "rss",
+            "published": "Wed, 04 Feb 2026 03:48:00 GMT"
+          },
+          {
+            "title": "Market Highlights: Sensex settles 78 pts higher, Nifty above 25,750; Trent, Eternal rise 5% each - The Economic Times",
+            "link": "https://news.google.com/rss/articles/CBMisAJBVV95cUxPamhnS0U5dmg0bGxCdzdHWGZ2a1loYWlxS0wtcnB4aENTRENzNEtIdUZJWi1uNlYtSWZiTW9ab3JuRVNrd1M1VmxDUFVxbm9PZjJ0WElPamZHY0o4Vkw5WEw5S0laM3Q1QTlndkF6M0NpakhyU1FBOE5HcENBLVhxVDdUUnN0OGtkRG82dXJkOURWZHJnRFN3Wk5acjhIUkpMUnY4SjVRSjc3Z1dUek5nRFVYY3gwdmlHTHNQVFVCS2lmdzVkUXF2U29hUFlFMW5hUEhFLU5UMldSdTNIeWVOYk9XNHA2ZEx4cUxNUXg5Qm9lWGdjaUpKM0RaMXRFSGNrNnAxN0F5QUVTNnp2X1BpLW5HQzVjei1KMllSNThrMGlybzhybUxzRG1KTnRpbkNT0gG2AkFVX3lxTE02c0VFUUFVdURGZFVaS1BLWllobndScGNTTVJ5WE0xM3FFSnlkTVZueVV2NEVRRjBsMUs1WHJSajNJWGw4NGR1SG1RVzRxRjVPN1pRUzJjaGxRUFpTYVJHeHJfb3RPaXJvZkkxWXVVMTZFMFItUEZDakNSNVdWNFFrSXByZk10ZmVPWm94eTRubUJ3Z0twa0xTZEcteVZUZG5rVWVIbUZvMmRoNlNFakpwSzdfYnAtN05UTkRFaWtzZ2tpdW1PWjNvQXZsUmVIMEdjMHYxcUJTandWSm8wXzlia09UMWRGU0tmR1NlWE9oSFhwVzZNUDFmTVZuM3Jfakp5NHo4YjM5TXZBYUFpUWpDMkJQOEYzcVQ1XzRQczVYY3p3bUJoV19LYjM2MnljS1FIaERPNmc?oc=5",
+            "source": "rss",
+            "published": "Wed, 04 Feb 2026 13:45:24 GMT"
+          },
+          {
+            "title": "Stock market today: Dow, S&P 500, Nasdaq jump to kick off February as gold, silver, bitcoin remain volatile - Yahoo Finance",
+            "link": "https://news.google.com/rss/articles/CBMi5wFBVV95cUxQc0F4TE9UblcyRVIyTkVPQnJWZWtyTUgteHBtb2NGeDZPR1o4dE9FOFA4dUVlOEdmbW9VUTE3c0NJMUFFcW83d0N5LVQwVHYyODU2bXR3YzQ1NlZVVHJPQkhwcHUzcndOc0xrVFVqX0FubEd3NzBEWHJDY1hRUDBqcWF2azhFbnNWNFZWd2lvS3cwN0lnYlkzWmlVdmR6TTdRM1hNTEVwcVM1ZmZab29yUHk5ZHZ0NWdFR2FGNlZCeHdXSmg0UU9uRUk3d1BhbzVpcEZrOWExaVM3VjBzN0V2SFRkVFY3Rk0?oc=5",
+            "source": "rss",
+            "published": "Mon, 02 Feb 2026 21:06:10 GMT"
+          },
+          {
+            "title": "Stock Market Today: Sensex, Nifty Clock Best One-Day Gains In Nine Months - NDTV Profit",
+            "link": "https://news.google.com/rss/articles/CBMikgJBVV95cUxNTHlmc0FhMk9qcmZwQnR2TjU4QkdoZThpV080bzFHMUJNZXBUWVFyNFpPeXF6eGtuV2pTcU1EZFRwbWxJd3RQNmhNV2R5ck1YbHkySjVVeGZtSmtvSkJXN1huOWpZWVNVTUZKUjQ5REZlZE14RnloelZwaWh6QWVFVmUtaWNod1o3QjlVZkdMM2lmOFhveE53Z2I2NHUxemM5VHE3NUs1UWpTa3JrWWVXTnJPNWxzRk5CNHYxSEFwME9TZDVreU9hTEZqUGpwRXVHcmFJWmNFWmZSWWx3ZXVqT2h4aU9SRWc5WnlKRFV1X3VSOTZRT3MxU1ptaVRBc0RaaW9tUy1wQk1UYndpaldaVkxR0gGaAkFVX3lxTFBrZnVNbnRIcDBMZmp0LUFDemVxZlE1YWRuTV9wa2dFRDRMbGFuTkZad3Q1UlE4c2F5MjFwUGRnMDg0a3J0bTQxU3l5aS1CX291ZWdCOVNIV2xxSWs4MnpLLV9hWUVxTjRTZmlkM0FaRjAtVWZpX2lsLU5wNm1fLWdHektzY0RqX0RyeUppUUpTWWZCSnJndXVBa3lINHRsNVBCS3pDdWFGZFdiMExlZmN2SHNxbEVaUFVTMmJ1dWJlMmZubUd1N2xValVpUWlYVTBHZkdEUk1vS2dDZVdQRUVWd2ZhNy1Hai1xQ1pKMVlFOXplWlNOamw3WWt0THQ2c042cng0ejlSdmtZTkd0QWt6aWt5TU9JaUFIUQ?oc=5",
+            "source": "rss",
+            "published": "Wed, 04 Feb 2026 08:58:37 GMT"
+          },
+          {
+            "title": "Nifty 50, Sensex today: What to expect from Indian stock market in trade on February 4",
+            "link": "https://www.livemint.com/market/stock-market-news/nifty-50-sensex-today-what-to-expect-from-indian-stock-market-in-trade-on-february-4-11770137046970.html",
+            "source": "gnews",
+            "published": "2026-02-04T01:50:54Z"
+          },
+          {
+            "title": "Investors' Wealth Swells By Rs 7 Lakh Crore As Bulls Grip Nifty, Sensex On India-US Trade Deal Announcement",
+            "link": "https://www.ndtvprofit.com/markets/stock-market-today-investors-wealth-swells-nearly-rs-7-lakh-crore-as-bulls-grip-nifty-sensex-on-india-us-trade-deal-announcement-10937766",
+            "source": "gnews",
+            "published": "2026-02-03T10:12:07Z"
+          },
+          {
+            "title": "Sensex jumps over 2,000 points, investors earn over \u20b912 lakh crore- 10 key highlights from Indian stock market today",
+            "link": "https://www.livemint.com/market/sensex-jumps-over-2-000-points-investors-earn-over-rs-12-lakh-crore-10-key-highlights-from-indian-stock-market-today-11770112329110.html",
+            "source": "gnews",
+            "published": "2026-02-03T10:06:14Z"
+          },
+          {
+            "title": "Here's Why Stock Market Is Up Today India-US Trade Deal",
+            "link": "https://www.ndtvprofit.com/markets/heres-why-stock-market-is-up-today-india-us-trade-deal-10935641",
+            "source": "gnews",
+            "published": "2026-02-03T04:17:26Z"
+          },
+          {
+            "title": "Stock Market Expected To Jump Big Today After India-US Trade Deal",
+            "link": "https://www.ndtv.com/india-news/markets-sensex-nifty-rupee-live-updates-stock-market-expected-to-jump-big-today-after-india-us-trade-deal-10935446",
+            "source": "gnews",
+            "published": "2026-02-03T03:28:27Z"
+          },
+          {
+            "title": "Indian shares post modest gains as IT selloff tempers US ...",
+            "link": "https://www.reuters.com/world/india/indian-stocks-set-extend-gains-us-trade-deal-tech-sell-off-may-cap-upside-2026-02-04/",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "Indian shares notch best day in 9 months as Reliance ...",
+            "link": "https://www.reuters.com/world/india/indian-shares-set-gap-up-open-after-us-trade-deal-2026-02-03/",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "India's markets get tariff relief but not a buy yet",
+            "link": "https://www.reuters.com/world/india/indias-markets-get-tariff-relief-not-buy-yet-2026-02-04/",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "Stock Price, Quote and News",
+            "link": "https://www.cnbc.com/quotes/.NSEI",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "Breaking Stock Market News",
+            "link": "https://www.reuters.com/markets/stocks/",
+            "source": "tavily",
+            "published": ""
+          }
+        ],
+        "exported_file": "output/indian_stock_market_today_20260204_192621.json"
+      },
+      "errors": [],
+      "skipped": [],
+      "fallbacks_used": [],
+      "regenerated": [],
+      "success": true
+    }
   }
 ]

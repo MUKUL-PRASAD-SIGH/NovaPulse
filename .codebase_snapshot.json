@@ -1,11 +1,11 @@
 {
   ".\\.codebase_snapshot.json": {
     "lines": 130,
-    "hash": "cd1a74e598990997e23cb65c74c799aa"
+    "hash": "52c5ce9d1973a364b2b5bec1b8446389"
   },
   ".\\app\\main.py": {
     "lines": 54,
-    "hash": "37c5936b4dc92992c8d91adb9b936a34"
+    "hash": "facb7fcf3251a400df650dcb0d628fe8"
   },
   ".\\app\\__init__.py": {
     "lines": 6,
@@ -24,8 +24,8 @@
     "hash": "76ac74c499c0c71b6ef72828b91ce243"
   },
   ".\\app\\api\\routes.py": {
-    "lines": 241,
-    "hash": "018eb4e404ca302d6b742f8b9a7ad612"
+    "lines": 294,
+    "hash": "ec351cc73958433fbb8e821ba51f3bdc"
   },
   ".\\app\\api\\__init__.py": {
     "lines": 4,
@@ -44,16 +44,16 @@
     "hash": "742c36db885a99ae9418435b34b3ec9b"
   },
   ".\\app\\memory\\logs.json": {
-    "lines": 2060,
-    "hash": "73d02e81bfcb23f348810fbb48766932"
+    "lines": 2115,
+    "hash": "86370e50d78fdf292489971b6c141003"
   },
   ".\\app\\memory\\plans.json": {
-    "lines": 1104,
-    "hash": "ecbd2c348e1defb881f19df59a566841"
+    "lines": 1293,
+    "hash": "93cfc524c3e566a6d56f61f9280ff036"
   },
   ".\\app\\memory\\results.json": {
-    "lines": 3456,
-    "hash": "537b6eac23f95f3b814864f18196cd58"
+    "lines": 4339,
+    "hash": "911477d37cec8ebce9aa42266587495d"
   },
   ".\\app\\memory\\store.py": {
     "lines": 50,
@@ -72,8 +72,8 @@
     "hash": "299420ef5dcb6404a23441b4ba98b3fb"
   },
   ".\\app\\tools\\exporter.py": {
-    "lines": 158,
-    "hash": "b918e6de155ec978e104914de558754a"
+    "lines": 388,
+    "hash": "7b6dcd3300bfb205eca0b09e9b37fe3d"
   },
   ".\\app\\tools\\gnews_fetcher.py": {
     "lines": 81,
@@ -112,16 +112,16 @@
     "hash": "70a1f8f216345bdd5a65a265581bad79"
   },
   ".\\frontend\\app.js": {
-    "lines": 703,
-    "hash": "8491dce19fbc1950b41c2c4e0c4b3139"
+    "lines": 1329,
+    "hash": "170fce79fc6f7b343180037acb37c878"
   },
   ".\\frontend\\index.html": {
-    "lines": 147,
-    "hash": "9faab9d221d0f95ede455356d1cc140b"
+    "lines": 286,
+    "hash": "cf7e175785322d0176f03b00816020f4"
   },
   ".\\frontend\\style.css": {
-    "lines": 1226,
-    "hash": "1d5d6ca81940844064c1d1b391f9dbb4"
+    "lines": 2207,
+    "hash": "e091a34ca83605e1b1040bc946ce077b"
   },
   ".\\scripts\\export_code_to_md.py": {
     "lines": 153,

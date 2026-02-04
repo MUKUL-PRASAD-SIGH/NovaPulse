@@ -8,19 +8,19 @@
 {
   ".\\.codebase_snapshot.json": {
     "lines": 130,
-    "hash": "6755c845a0d7751d0c8ed07ff40f9ce8"
+    "hash": "6c2be1d6058c8b30d5dc01fd89101515"
   },
   ".\\app\\main.py": {
     "lines": 54,
-    "hash": "37c5936b4dc92992c8d91adb9b936a34"
+    "hash": "facb7fcf3251a400df650dcb0d628fe8"
   },
   ".\\app\\__init__.py": {
     "lines": 6,
     "hash": "7c9b6221ca583d1aaea94a721698e460"
   },
   ".\\app\\agents\\executor_agent.py": {
-    "lines": 138,
-    "hash": "f05948c2ed07ffad5e6e8819997ec585"
+    "lines": 381,
+    "hash": "83c585050b0a70e717626bcf06e911d8"
   },
   ".\\app\\agents\\planner_agent.py": {
     "lines": 143,
@@ -51,16 +51,16 @@
     "hash": "742c36db885a99ae9418435b34b3ec9b"
   },
   ".\\app\\memory\\logs.json": {
-    "lines": 2060,
-    "hash": "73d02e81bfcb23f348810fbb48766932"
+    "lines": 2107,
+    "hash": "a1b1de6c5d0728f79f2c26528e588fdb"
   },
   ".\\app\\memory\\plans.json": {
-    "lines": 1104,
-    "hash": "ecbd2c348e1defb881f19df59a566841"
+    "lines": 1239,
+    "hash": "5741fbe970f1b7f6f85f0613897cc456"
   },
   ".\\app\\memory\\results.json": {
-    "lines": 3456,
-    "hash": "537b6eac23f95f3b814864f18196cd58"
+    "lines": 4093,
+    "hash": "ba272064447600db9fbfadd8c04f0992"
   },
   ".\\app\\memory\\store.py": {
     "lines": 50,
@@ -119,16 +119,16 @@
     "hash": "70a1f8f216345bdd5a65a265581bad79"
   },
   ".\\frontend\\app.js": {
-    "lines": 703,
-    "hash": "8491dce19fbc1950b41c2c4e0c4b3139"
+    "lines": 1055,
+    "hash": "8f4658c2c3e9ce441feaa1b89e5b68d0"
   },
   ".\\frontend\\index.html": {
-    "lines": 147,
-    "hash": "9faab9d221d0f95ede455356d1cc140b"
+    "lines": 169,
+    "hash": "3eec8d0c3cc242e561c85aec11357c88"
   },
   ".\\frontend\\style.css": {
-    "lines": 1226,
-    "hash": "1d5d6ca81940844064c1d1b391f9dbb4"
+    "lines": 1721,
+    "hash": "dbe7ce9c8f6e8dd47de7d8af6a332806"
   },
   ".\\scripts\\export_code_to_md.py": {
     "lines": 153,
@@ -186,9 +186,9 @@ if os.path.exists(frontend_dir):
 @app.on_event("startup")
 async def startup_event():
     """Initialize on startup."""
-    print("🧠 Nova Intelligence Agent starting...")
-    print("📡 API available at: http://localhost:8000/api")
-    print("🌐 Frontend at: http://localhost:8000")
+    print("[Nova] Intelligence Agent starting...")
+    print("[API] Available at: http://localhost:8000/api")
+    print("[Web] Frontend at: http://localhost:8000")
 
 
 if __name__ == "__main__":
@@ -759,9 +759,11 @@ def _clean_plan(plan: Dict) -> Dict:
 ```py
 """FastAPI routes for Nova Intelligence Agent."""
 from fastapi import APIRouter, HTTPException
+from fastapi.responses import StreamingResponse
 from typing import Dict, Any
 import httpx
 import os
+import io
 from dotenv import load_dotenv
 
 from app.models.schemas import CommandRequest, TaskPlan
@@ -769,6 +771,7 @@ from app.agents.planner_agent import plan_task
 from app.agents.executor_agent import execute_plan
 from app.memory.store import save_plan, get_recent_plans, get_recent_results
 from app.core.tool_registry import list_tools
+from app.tools.exporter import export_data
 
 load_dotenv()
 
@@ -834,6 +837,56 @@ async def get_history() -> Dict[str, Any]:
 async def health_check() -> Dict[str, str]:
     """Health check endpoint."""
     return {"status": "ok", "agent": "Nova Intelligence Agent"}
+
+
+# ============ EXPORT API ============
+
+@router.post("/export")
+async def export_report(request: Dict[str, Any]):
+    """
+    Export filtered report data in specified format.
+    
+    Body: {"data": {...}, "format": "json|markdown|csv", "filename": "report"}
+    Returns: Downloadable file
+    """
+    data = request.get("data", {})
+    format_type = request.get("format", "json")
+    filename = request.get("filename", "nova_report")
+    
+    if not data:
+        raise HTTPException(status_code=400, detail="No data to export")
+    
+    try:
+        # Generate the export file
+        filepath = export_data(data, filename, format_type)
+        
+        # Determine content type
+        content_types = {
+            "json": "application/json",
+            "markdown": "text/markdown",
+            "csv": "text/csv"
+        }
+        content_type = content_types.get(format_type, "application/octet-stream")
+        
+        # Read file and return as streaming response
+        with open(filepath, 'rb') as f:
+            content = f.read()
+        
+        # Determine file extension
+        extensions = {"json": "json", "markdown": "md", "csv": "csv"}
+        ext = extensions.get(format_type, "txt")
+        
+        return StreamingResponse(
+            io.BytesIO(content),
+            media_type=content_type,
+            headers={
+                "Content-Disposition": f'attachment; filename="{filename}.{ext}"',
+                "Content-Length": str(len(content))
+            }
+        )
+        
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Export failed: {str(e)}")
 
 
 # ============ TRANSLATION API (MyMemory - Free) ============
@@ -1092,519 +1145,6 @@ Core module - Nova AI client and base configurations
 
 ```json
 [
-  {
-    "timestamp": "2026-02-04T13:13:39.327249",
-    "level": "INFO",
-    "message": "Executing plan: Fetch and summarize AI news",
-    "data": {
-      "steps": 3
-    }
-  },
-  {
-    "timestamp": "2026-02-04T13:13:39.339758",
-    "level": "DEBUG",
-    "message": "Running tool: news_fetcher",
-    "data": {
-      "params": [
-        "topic",
-        "limit"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-02-04T13:13:39.353695",
-    "level": "INFO",
-    "message": "Multi-source fetch for: AI"
-  },
-  {
-    "timestamp": "2026-02-04T13:13:43.018567",
-    "level": "INFO",
-    "message": "Multi-source complete: 15 articles from 3 sources"
-  },
-  {
-    "timestamp": "2026-02-04T13:13:43.033092",
-    "level": "DEBUG",
-    "message": "Running tool: summarizer",
-    "data": {
-      "params": [
-        "news_items"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-02-04T13:13:43.053198",
-    "level": "ERROR",
-    "message": "Tool summarizer failed: 'str' object has no attribute 'get'"
-  },
-  {
-    "timestamp": "2026-02-04T13:13:43.071695",
-    "level": "DEBUG",
-    "message": "Running tool: exporter",
-    "data": {
-      "params": [
-        "filename",
-        "format",
-        "data"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-02-04T13:13:43.094315",
-    "level": "INFO",
-    "message": "Execution complete: 3 tools run"
-  },
-  {
-    "timestamp": "2026-02-04T13:13:43.114509",
-    "level": "INFO",
-    "message": "Planning task for: car accident"
-  },
-  {
-    "timestamp": "2026-02-04T13:13:44.873224",
-    "level": "INFO",
-    "message": "Nova plan generated",
-    "data": {
-      "plan": {
-        "intent": "Fetch and export news about a car accident",
-        "domain": "car accident",
-        "steps": [
-          {
-            "tool": "news_fetcher",
-            "params": {
-              "topic": "car accident",
-              "limit": 5
-            }
-          },
-          {
-            "tool": "exporter",
-            "params": {
-              "filename": "car_accident_report",
-              "format": "json"
-            }
-          }
-        ]
-      }
-    }
-  },
-  {
-    "timestamp": "2026-02-04T13:13:44.889000",
-    "level": "INFO",
-    "message": "Executing plan: Fetch and export news about a car accident",
-    "data": {
-      "steps": 2
-    }
-  },
-  {
-    "timestamp": "2026-02-04T13:13:44.902634",
-    "level": "DEBUG",
-    "message": "Running tool: news_fetcher",
-    "data": {
-      "params": [
-        "topic",
-        "limit"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-02-04T13:13:44.916077",
-    "level": "INFO",
-    "message": "Multi-source fetch for: car accident"
-  },
-  {
-    "timestamp": "2026-02-04T13:13:48.516594",
-    "level": "INFO",
-    "message": "Multi-source complete: 15 articles from 3 sources"
-  },
-  {
-    "timestamp": "2026-02-04T13:13:48.535208",
-    "level": "DEBUG",
-    "message": "Running tool: exporter",
-    "data": {
-      "params": [
-        "filename",
-        "format",
-        "data"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-02-04T13:13:48.561020",
-    "level": "INFO",
-    "message": "Execution complete: 2 tools run"
-  },
-  {
-    "timestamp": "2026-02-04T13:20:30.755448",
-    "level": "INFO",
-    "message": "Planning task for: tesla news"
-  },
-  {
-    "timestamp": "2026-02-04T13:20:32.218268",
-    "level": "INFO",
-    "message": "Nova plan generated",
-    "data": {
-      "plan": {
-        "intent": "Fetch and export Tesla news",
-        "domain": "Tesla",
-        "steps": [
-          {
-            "tool": "news_fetcher",
-            "params": {
-              "topic": "tesla",
-              "limit": 5
-            }
-          },
-          {
-            "tool": "exporter",
-            "params": {
-              "filename": "tesla_news_report",
-              "format": "json"
-            }
-          }
-        ]
-      }
-    }
-  },
-  {
-    "timestamp": "2026-02-04T13:20:32.246911",
-    "level": "INFO",
-    "message": "Executing plan: Fetch and export Tesla news",
-    "data": {
-      "steps": 2
-    }
-  },
-  {
-    "timestamp": "2026-02-04T13:20:32.263909",
-    "level": "DEBUG",
-    "message": "Running tool: news_fetcher",
-    "data": {
-      "params": [
-        "topic",
-        "limit"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-02-04T13:20:32.280650",
-    "level": "INFO",
-    "message": "Multi-source fetch for: tesla"
-  },
-  {
-    "timestamp": "2026-02-04T13:20:35.937116",
-    "level": "INFO",
-    "message": "Multi-source complete: 15 articles from 3 sources"
-  },
-  {
-    "timestamp": "2026-02-04T13:20:35.956527",
-    "level": "DEBUG",
-    "message": "Running tool: exporter",
-    "data": {
-      "params": [
-        "filename",
-        "format",
-        "data"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-02-04T13:20:35.980293",
-    "level": "INFO",
-    "message": "Execution complete: 2 tools run"
-  },
-  {
-    "timestamp": "2026-02-04T13:20:51.551969",
-    "level": "INFO",
-    "message": "Planning task for: elon musk news"
-  },
-  {
-    "timestamp": "2026-02-04T13:20:53.023767",
-    "level": "INFO",
-    "message": "Nova plan generated",
-    "data": {
-      "plan": {
-        "intent": "Fetch and export Elon Musk news articles",
-        "domain": "Elon Musk",
-        "steps": [
-          {
-            "tool": "news_fetcher",
-            "params": {
-              "topic": "elon musk",
-              "limit": 5
-            }
-          },
-          {
-            "tool": "exporter",
-            "params": {
-              "filename": "elon_musk_news",
-              "format": "json"
-            }
-          }
-        ]
-      }
-    }
-  },
-  {
-    "timestamp": "2026-02-04T13:20:53.048734",
-    "level": "INFO",
-    "message": "Executing plan: Fetch and export Elon Musk news articles",
-    "data": {
-      "steps": 2
-    }
-  },
-  {
-    "timestamp": "2026-02-04T13:20:53.066236",
-    "level": "DEBUG",
-    "message": "Running tool: news_fetcher",
-    "data": {
-      "params": [
-        "topic",
-        "limit"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-02-04T13:20:53.085584",
-    "level": "INFO",
-    "message": "Multi-source fetch for: elon musk"
-  },
-  {
-    "timestamp": "2026-02-04T13:20:56.744342",
-    "level": "INFO",
-    "message": "Multi-source complete: 13 articles from 3 sources"
-  },
-  {
-    "timestamp": "2026-02-04T13:20:56.763581",
-    "level": "DEBUG",
-    "message": "Running tool: exporter",
-    "data": {
-      "params": [
-        "filename",
-        "format",
-        "data"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-02-04T13:20:56.786465",
-    "level": "INFO",
-    "message": "Execution complete: 2 tools run"
-  },
-  {
-    "timestamp": "2026-02-04T13:23:57.746151",
-    "level": "INFO",
-    "message": "Planning task for: elon muysk"
-  },
-  {
-    "timestamp": "2026-02-04T13:23:59.491994",
-    "level": "INFO",
-    "message": "Nova plan generated",
-    "data": {
-      "plan": {
-        "intent": "Fetch and summarize news about Elon Musk",
-        "domain": "elon musk",
-        "steps": [
-          {
-            "tool": "news_fetcher",
-            "params": {
-              "topic": "elon musk",
-              "limit": 5
-            }
-          },
-          {
-            "tool": "summarizer",
-            "params": {
-              "news_items": "news_fetcher_output"
-            }
-          },
-          {
-            "tool": "exporter",
-            "params": {
-              "filename": "elon_musk_news_summary",
-              "format": "json"
-            }
-          }
-        ]
-      }
-    }
-  },
-  {
-    "timestamp": "2026-02-04T13:23:59.519779",
-    "level": "INFO",
-    "message": "Executing plan: Fetch and summarize news about Elon Musk",
-    "data": {
-      "steps": 3
-    }
-  },
-  {
-    "timestamp": "2026-02-04T13:23:59.541148",
-    "level": "DEBUG",
-    "message": "Running tool: news_fetcher",
-    "data": {
-      "params": [
-        "topic",
-        "limit"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-02-04T13:23:59.559936",
-    "level": "INFO",
-    "message": "Multi-source fetch for: elon musk"
-  },
-  {
-    "timestamp": "2026-02-04T13:24:05.734803",
-    "level": "INFO",
-    "message": "Multi-source complete: 13 articles from 3 sources"
-  },
-  {
-    "timestamp": "2026-02-04T13:24:05.754369",
-    "level": "DEBUG",
-    "message": "Running tool: summarizer",
-    "data": {
-      "params": [
-        "news_items"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-02-04T13:24:05.778840",
-    "level": "ERROR",
-    "message": "Tool summarizer failed: 'str' object has no attribute 'get'"
-  },
-  {
-    "timestamp": "2026-02-04T13:24:05.798572",
-    "level": "DEBUG",
-    "message": "Running tool: exporter",
-    "data": {
-      "params": [
-        "filename",
-        "format",
-        "data"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-02-04T13:24:05.822759",
-    "level": "INFO",
-    "message": "Execution complete: 3 tools run"
-  },
-  {
-    "timestamp": "2026-02-04T13:24:46.534258",
-    "level": "INFO",
-    "message": "Planning task for: india u8s trade deal"
-  },
-  {
-    "timestamp": "2026-02-04T13:24:48.246414",
-    "level": "INFO",
-    "message": "Nova plan generated",
-    "data": {
-      "plan": {
-        "intent": "Fetch and summarize recent news about the India-U.S. trade deal",
-        "domain": "India-U.S. trade deal",
-        "steps": [
-          {
-            "tool": "news_fetcher",
-            "params": {
-              "topic": "India U.S trade deal",
-              "sources": [
-                "google"
-              ],
-              "limit": 5
-            }
-          },
-          {
-            "tool": "summarizer",
-            "params": {
-              "news_items": ""
-            }
-          },
-          {
-            "tool": "sentiment",
-            "params": {
-              "news_items": ""
-            }
-          },
-          {
-            "tool": "exporter",
-            "params": {
-              "filename": "trade_deal_report",
-              "format": "json"
-            }
-          }
-        ]
-      }
-    }
-  },
-  {
-    "timestamp": "2026-02-04T13:24:48.269598",
-    "level": "INFO",
-    "message": "Executing plan: Fetch and summarize recent news about the India-U.S. trade deal",
-    "data": {
-      "steps": 4
-    }
-  },
-  {
-    "timestamp": "2026-02-04T13:24:48.287369",
-    "level": "DEBUG",
-    "message": "Running tool: news_fetcher",
-    "data": {
-      "params": [
-        "topic",
-        "sources",
-        "limit"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-02-04T13:24:48.306450",
-    "level": "INFO",
-    "message": "Multi-source fetch for: India U.S trade deal"
-  },
-  {
-    "timestamp": "2026-02-04T13:24:50.248102",
-    "level": "ERROR",
-    "message": "GNews failed: Client error '400 Bad Request' for url 'https://gnews.io/api/v4/search?apikey=a7519075e5f8447070cc6f0047260ca2&q=India+U.S+trade+deal&lang=en&max=5'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400"
-  },
-  {
-    "timestamp": "2026-02-04T13:24:54.330469",
-    "level": "INFO",
-    "message": "Multi-source complete: 10 articles from 3 sources"
-  },
-  {
-    "timestamp": "2026-02-04T13:24:54.357532",
-    "level": "DEBUG",
-    "message": "Running tool: summarizer",
-    "data": {
-      "params": [
-        "news_items"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-02-04T13:24:54.375282",
-    "level": "DEBUG",
-    "message": "Running tool: sentiment",
-    "data": {
-      "params": [
-        "news_items"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-02-04T13:24:54.394631",
-    "level": "DEBUG",
-    "message": "Running tool: exporter",
-    "data": {
-      "params": [
-        "filename",
-        "format",
-        "data"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-02-04T13:24:54.418274",
-    "level": "INFO",
-    "message": "Execution complete: 4 tools run"
-  },
   {
     "timestamp": "2026-02-04T13:26:32.593688",
     "level": "INFO",
@@ -3149,6 +2689,574 @@ Core module - Nova AI client and base configurations
     "timestamp": "2026-02-04T16:41:11.848630",
     "level": "INFO",
     "message": "Execution complete: 3 tools run"
+  },
+  {
+    "timestamp": "2026-02-04T17:30:22.255453",
+    "level": "INFO",
+    "message": "Planning task for: INDIAN STOCK MARKET TODAY"
+  },
+  {
+    "timestamp": "2026-02-04T17:30:24.373757",
+    "level": "INFO",
+    "message": "Nova plan generated",
+    "data": {
+      "plan": {
+        "intent": "Fetch and export news about the Indian stock market for today",
+        "domain": "Indian stock market",
+        "steps": [
+          {
+            "tool": "news_fetcher",
+            "params": {
+              "topic": "Indian stock market today",
+              "sources": [
+                "google"
+              ],
+              "limit": 5
+            }
+          },
+          {
+            "tool": "exporter",
+            "params": {
+              "filename": "indian_stock_market_today",
+              "format": "json"
+            }
+          }
+        ]
+      }
+    }
+  },
+  {
+    "timestamp": "2026-02-04T17:30:24.406560",
+    "level": "INFO",
+    "message": "Executing plan: Fetch and export news about the Indian stock market for today",
+    "data": {
+      "steps": 2
+    }
+  },
+  {
+    "timestamp": "2026-02-04T17:30:24.427310",
+    "level": "DEBUG",
+    "message": "Running tool: news_fetcher",
+    "data": {
+      "params": [
+        "topic",
+        "sources",
+        "limit"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T17:30:24.446328",
+    "level": "INFO",
+    "message": "Multi-source fetch for: Indian stock market today"
+  },
+  {
+    "timestamp": "2026-02-04T17:30:32.585015",
+    "level": "INFO",
+    "message": "Multi-source complete: 13 articles from 3 sources"
+  },
+  {
+    "timestamp": "2026-02-04T17:30:32.609327",
+    "level": "DEBUG",
+    "message": "Running tool: exporter",
+    "data": {
+      "params": [
+        "filename",
+        "format",
+        "data"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T17:30:32.646128",
+    "level": "INFO",
+    "message": "Execution complete: 2 tools run, 0 skipped, 0 fallbacks used"
+  },
+  {
+    "timestamp": "2026-02-04T17:30:51.434429",
+    "level": "INFO",
+    "message": "Planning task for: INDIAN STOCK MARKET TODAY with sentiment analysis"
+  },
+  {
+    "timestamp": "2026-02-04T17:30:53.064863",
+    "level": "INFO",
+    "message": "Nova plan generated",
+    "data": {
+      "plan": {
+        "intent": "Fetch news about the Indian stock market today and perform sentiment analysis",
+        "domain": "Indian stock market",
+        "steps": [
+          {
+            "tool": "news_fetcher",
+            "params": {
+              "topic": "Indian stock market today",
+              "sources": [
+                "google"
+              ],
+              "limit": 5
+            }
+          },
+          {
+            "tool": "sentiment",
+            "params": {
+              "news_items": "news_fetcher_output"
+            }
+          },
+          {
+            "tool": "exporter",
+            "params": {
+              "filename": "indian_stock_market_sentiment_report",
+              "format": "json"
+            }
+          }
+        ]
+      }
+    }
+  },
+  {
+    "timestamp": "2026-02-04T17:30:53.089985",
+    "level": "INFO",
+    "message": "Executing plan: Fetch news about the Indian stock market today and perform sentiment analysis",
+    "data": {
+      "steps": 3
+    }
+  },
+  {
+    "timestamp": "2026-02-04T17:30:53.119046",
+    "level": "DEBUG",
+    "message": "Running tool: news_fetcher",
+    "data": {
+      "params": [
+        "topic",
+        "sources",
+        "limit"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T17:30:53.142200",
+    "level": "INFO",
+    "message": "Multi-source fetch for: Indian stock market today"
+  },
+  {
+    "timestamp": "2026-02-04T17:30:58.563445",
+    "level": "INFO",
+    "message": "Multi-source complete: 15 articles from 3 sources"
+  },
+  {
+    "timestamp": "2026-02-04T17:30:58.590205",
+    "level": "DEBUG",
+    "message": "Running tool: sentiment",
+    "data": {
+      "params": [
+        "news_items"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T17:31:01.285105",
+    "level": "DEBUG",
+    "message": "Running tool: exporter",
+    "data": {
+      "params": [
+        "filename",
+        "format",
+        "data"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T17:31:01.320933",
+    "level": "INFO",
+    "message": "Execution complete: 3 tools run, 0 skipped, 0 fallbacks used"
+  },
+  {
+    "timestamp": "2026-02-04T17:31:42.065620",
+    "level": "INFO",
+    "message": "Planning task for: INDIAN STOCK MARKET TODAY with summarize and sentiment analysis and trends"
+  },
+  {
+    "timestamp": "2026-02-04T17:31:43.954646",
+    "level": "INFO",
+    "message": "Nova plan generated",
+    "data": {
+      "plan": {
+        "intent": "Fetch, summarize, analyze sentiment, and extract trends for the Indian stock market today",
+        "domain": "Indian stock market",
+        "steps": [
+          {
+            "tool": "news_fetcher",
+            "params": {
+              "topic": "INDIAN STOCK MARKET TODAY",
+              "limit": 5
+            }
+          },
+          {
+            "tool": "summarizer",
+            "params": {
+              "news_items": "news_fetcher output"
+            }
+          },
+          {
+            "tool": "sentiment",
+            "params": {
+              "news_items": "news_fetcher output"
+            }
+          },
+          {
+            "tool": "trends",
+            "params": {
+              "news_items": "news_fetcher output"
+            }
+          },
+          {
+            "tool": "exporter",
+            "params": {
+              "filename": "indian_stock_market_report",
+              "format": "json"
+            }
+          }
+        ]
+      }
+    }
+  },
+  {
+    "timestamp": "2026-02-04T17:31:43.978053",
+    "level": "INFO",
+    "message": "Executing plan: Fetch, summarize, analyze sentiment, and extract trends for the Indian stock market today",
+    "data": {
+      "steps": 5
+    }
+  },
+  {
+    "timestamp": "2026-02-04T17:31:43.998276",
+    "level": "DEBUG",
+    "message": "Running tool: news_fetcher",
+    "data": {
+      "params": [
+        "topic",
+        "limit"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T17:31:44.019886",
+    "level": "INFO",
+    "message": "Multi-source fetch for: INDIAN STOCK MARKET TODAY"
+  },
+  {
+    "timestamp": "2026-02-04T17:31:51.393000",
+    "level": "INFO",
+    "message": "Multi-source complete: 15 articles from 3 sources"
+  },
+  {
+    "timestamp": "2026-02-04T17:31:51.417897",
+    "level": "DEBUG",
+    "message": "Running tool: summarizer",
+    "data": {
+      "params": [
+        "news_items"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T17:31:53.244177",
+    "level": "DEBUG",
+    "message": "Running tool: sentiment",
+    "data": {
+      "params": [
+        "news_items"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T17:31:55.402496",
+    "level": "DEBUG",
+    "message": "Running tool: trends",
+    "data": {
+      "params": [
+        "news_items"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T17:31:55.426729",
+    "level": "DEBUG",
+    "message": "Running tool: exporter",
+    "data": {
+      "params": [
+        "filename",
+        "format",
+        "data"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T17:31:55.460521",
+    "level": "INFO",
+    "message": "Execution complete: 5 tools run, 0 skipped, 0 fallbacks used"
+  },
+  {
+    "timestamp": "2026-02-04T17:39:59.838308",
+    "level": "INFO",
+    "message": "Planning task for: INDIAN STOCK MARKET TODAY"
+  },
+  {
+    "timestamp": "2026-02-04T17:40:02.058768",
+    "level": "INFO",
+    "message": "Nova plan generated",
+    "data": {
+      "plan": {
+        "intent": "Fetch and summarize the latest news about the Indian stock market today",
+        "domain": "Indian stock market",
+        "steps": [
+          {
+            "tool": "news_fetcher",
+            "params": {
+              "topic": "Indian stock market today",
+              "sources": [
+                "google"
+              ],
+              "limit": 5
+            }
+          },
+          {
+            "tool": "summarizer",
+            "params": {
+              "news_items": "news_items_from_previous_step"
+            }
+          },
+          {
+            "tool": "exporter",
+            "params": {
+              "filename": "indian_stock_market_today",
+              "format": "json"
+            }
+          }
+        ]
+      }
+    }
+  },
+  {
+    "timestamp": "2026-02-04T17:40:02.088340",
+    "level": "INFO",
+    "message": "Executing plan: Fetch and summarize the latest news about the Indian stock market today",
+    "data": {
+      "steps": 3
+    }
+  },
+  {
+    "timestamp": "2026-02-04T17:40:02.108680",
+    "level": "DEBUG",
+    "message": "Running tool: news_fetcher",
+    "data": {
+      "params": [
+        "topic",
+        "sources",
+        "limit"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T17:40:02.129560",
+    "level": "INFO",
+    "message": "Multi-source fetch for: Indian stock market today"
+  },
+  {
+    "timestamp": "2026-02-04T17:40:08.904718",
+    "level": "INFO",
+    "message": "Multi-source complete: 15 articles from 3 sources"
+  },
+  {
+    "timestamp": "2026-02-04T17:40:08.936628",
+    "level": "DEBUG",
+    "message": "Running tool: summarizer",
+    "data": {
+      "params": [
+        "news_items"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T17:40:10.734157",
+    "level": "DEBUG",
+    "message": "Running tool: exporter",
+    "data": {
+      "params": [
+        "filename",
+        "format",
+        "data"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T17:40:10.774848",
+    "level": "INFO",
+    "message": "Execution complete: 3 tools run, 0 skipped, 0 fallbacks used"
+  },
+  {
+    "timestamp": "2026-02-04T19:12:13.282356",
+    "level": "INFO",
+    "message": "Planning task for: INDIAN STOCK MARKET TODAY"
+  },
+  {
+    "timestamp": "2026-02-04T19:12:16.379594",
+    "level": "INFO",
+    "message": "Nova plan generated",
+    "data": {
+      "plan": {
+        "intent": "Fetch and export the latest news about the Indian stock market today",
+        "domain": "Indian stock market",
+        "steps": [
+          {
+            "tool": "news_fetcher",
+            "params": {
+              "topic": "Indian stock market today",
+              "sources": [
+                "google"
+              ],
+              "limit": 5
+            }
+          },
+          {
+            "tool": "exporter",
+            "params": {
+              "filename": "Indian_stock_market_today",
+              "format": "json"
+            }
+          }
+        ]
+      }
+    }
+  },
+  {
+    "timestamp": "2026-02-04T19:12:16.420119",
+    "level": "INFO",
+    "message": "Executing plan: Fetch and export the latest news about the Indian stock market today",
+    "data": {
+      "steps": 2
+    }
+  },
+  {
+    "timestamp": "2026-02-04T19:12:16.444409",
+    "level": "DEBUG",
+    "message": "Running tool: news_fetcher",
+    "data": {
+      "params": [
+        "topic",
+        "sources",
+        "limit"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T19:12:16.473295",
+    "level": "INFO",
+    "message": "Multi-source fetch for: Indian stock market today"
+  },
+  {
+    "timestamp": "2026-02-04T19:12:23.894873",
+    "level": "INFO",
+    "message": "Multi-source complete: 15 articles from 3 sources"
+  },
+  {
+    "timestamp": "2026-02-04T19:12:23.923019",
+    "level": "DEBUG",
+    "message": "Running tool: exporter",
+    "data": {
+      "params": [
+        "filename",
+        "format",
+        "data"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T19:12:23.988107",
+    "level": "INFO",
+    "message": "Execution complete: 2 tools run, 0 skipped, 0 fallbacks used"
+  },
+  {
+    "timestamp": "2026-02-04T19:26:11.840247",
+    "level": "INFO",
+    "message": "Planning task for: INDIAN STOCK MARKET TODAY"
+  },
+  {
+    "timestamp": "2026-02-04T19:26:14.662521",
+    "level": "INFO",
+    "message": "Nova plan generated",
+    "data": {
+      "plan": {
+        "intent": "Fetch and export the latest news about the Indian stock market today",
+        "domain": "Indian stock market",
+        "steps": [
+          {
+            "tool": "news_fetcher",
+            "params": {
+              "topic": "Indian stock market today",
+              "sources": [
+                "google"
+              ],
+              "limit": 5
+            }
+          },
+          {
+            "tool": "exporter",
+            "params": {
+              "filename": "indian_stock_market_today",
+              "format": "json"
+            }
+          }
+        ]
+      }
+    }
+  },
+  {
+    "timestamp": "2026-02-04T19:26:14.701563",
+    "level": "INFO",
+    "message": "Executing plan: Fetch and export the latest news about the Indian stock market today",
+    "data": {
+      "steps": 2
+    }
+  },
+  {
+    "timestamp": "2026-02-04T19:26:14.727879",
+    "level": "DEBUG",
+    "message": "Running tool: news_fetcher",
+    "data": {
+      "params": [
+        "topic",
+        "sources",
+        "limit"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T19:26:14.761392",
+    "level": "INFO",
+    "message": "Multi-source fetch for: Indian stock market today"
+  },
+  {
+    "timestamp": "2026-02-04T19:26:21.545708",
+    "level": "INFO",
+    "message": "Multi-source complete: 15 articles from 3 sources"
+  },
+  {
+    "timestamp": "2026-02-04T19:26:21.574170",
+    "level": "DEBUG",
+    "message": "Running tool: exporter",
+    "data": {
+      "params": [
+        "filename",
+        "format",
+        "data"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T19:26:21.628617",
+    "level": "INFO",
+    "message": "Execution complete: 2 tools run, 0 skipped, 0 fallbacks used"
   }
 ]
 ```
@@ -4254,6 +4362,195 @@ Core module - Nova AI client and base configurations
           "tool": "exporter",
           "params": {
             "filename": "india_us_trade_deal_sentiment",
+            "format": "json"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T17:30:24.381758",
+    "user_input": "INDIAN STOCK MARKET TODAY",
+    "plan": {
+      "intent": "Fetch and export news about the Indian stock market for today",
+      "domain": "Indian stock market",
+      "steps": [
+        {
+          "tool": "news_fetcher",
+          "params": {
+            "topic": "Indian stock market today",
+            "sources": [
+              "google"
+            ],
+            "limit": 5
+          }
+        },
+        {
+          "tool": "exporter",
+          "params": {
+            "filename": "indian_stock_market_today",
+            "format": "json"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T17:30:53.070875",
+    "user_input": "INDIAN STOCK MARKET TODAY with sentiment analysis",
+    "plan": {
+      "intent": "Fetch news about the Indian stock market today and perform sentiment analysis",
+      "domain": "Indian stock market",
+      "steps": [
+        {
+          "tool": "news_fetcher",
+          "params": {
+            "topic": "Indian stock market today",
+            "sources": [
+              "google"
+            ],
+            "limit": 5
+          }
+        },
+        {
+          "tool": "sentiment",
+          "params": {
+            "news_items": "news_fetcher_output"
+          }
+        },
+        {
+          "tool": "exporter",
+          "params": {
+            "filename": "indian_stock_market_sentiment_report",
+            "format": "json"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T17:31:43.960648",
+    "user_input": "INDIAN STOCK MARKET TODAY with summarize and sentiment analysis and trends",
+    "plan": {
+      "intent": "Fetch, summarize, analyze sentiment, and extract trends for the Indian stock market today",
+      "domain": "Indian stock market",
+      "steps": [
+        {
+          "tool": "news_fetcher",
+          "params": {
+            "topic": "INDIAN STOCK MARKET TODAY",
+            "limit": 5
+          }
+        },
+        {
+          "tool": "summarizer",
+          "params": {
+            "news_items": "news_fetcher output"
+          }
+        },
+        {
+          "tool": "sentiment",
+          "params": {
+            "news_items": "news_fetcher output"
+          }
+        },
+        {
+          "tool": "trends",
+          "params": {
+            "news_items": "news_fetcher output"
+          }
+        },
+        {
+          "tool": "exporter",
+          "params": {
+            "filename": "indian_stock_market_report",
+            "format": "json"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T17:40:02.067817",
+    "user_input": "INDIAN STOCK MARKET TODAY",
+    "plan": {
+      "intent": "Fetch and summarize the latest news about the Indian stock market today",
+      "domain": "Indian stock market",
+      "steps": [
+        {
+          "tool": "news_fetcher",
+          "params": {
+            "topic": "Indian stock market today",
+            "sources": [
+              "google"
+            ],
+            "limit": 5
+          }
+        },
+        {
+          "tool": "summarizer",
+          "params": {
+            "news_items": "news_items_from_previous_step"
+          }
+        },
+        {
+          "tool": "exporter",
+          "params": {
+            "filename": "indian_stock_market_today",
+            "format": "json"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T19:12:16.388098",
+    "user_input": "INDIAN STOCK MARKET TODAY",
+    "plan": {
+      "intent": "Fetch and export the latest news about the Indian stock market today",
+      "domain": "Indian stock market",
+      "steps": [
+        {
+          "tool": "news_fetcher",
+          "params": {
+            "topic": "Indian stock market today",
+            "sources": [
+              "google"
+            ],
+            "limit": 5
+          }
+        },
+        {
+          "tool": "exporter",
+          "params": {
+            "filename": "Indian_stock_market_today",
+            "format": "json"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T19:26:14.671434",
+    "user_input": "INDIAN STOCK MARKET TODAY",
+    "plan": {
+      "intent": "Fetch and export the latest news about the Indian stock market today",
+      "domain": "Indian stock market",
+      "steps": [
+        {
+          "tool": "news_fetcher",
+          "params": {
+            "topic": "Indian stock market today",
+            "sources": [
+              "google"
+            ],
+            "limit": 5
+          }
+        },
+        {
+          "tool": "exporter",
+          "params": {
+            "filename": "indian_stock_market_today",
             "format": "json"
           }
         }
@@ -7721,6 +8018,889 @@ Core module - Nova AI client and base configurations
       "errors": [],
       "success": true
     }
+  },
+  {
+    "timestamp": "2026-02-04T17:30:32.619356",
+    "result": {
+      "intent": "Fetch and export news about the Indian stock market for today",
+      "domain": "Indian stock market",
+      "tools_executed": [
+        {
+          "tool": "news_fetcher",
+          "success": true,
+          "retries": 0,
+          "used_fallback": false,
+          "regenerated": false
+        },
+        {
+          "tool": "exporter",
+          "success": true,
+          "retries": 0,
+          "used_fallback": false,
+          "regenerated": false
+        }
+      ],
+      "data": {
+        "news": [
+          {
+            "title": "S&P 500 tumbles nearly 1% as investors rotate out of tech, Dow slides more than 160 points: Live updates - CNBC",
+            "link": "https://news.google.com/rss/articles/CBMid0FVX3lxTE82S1M0OFFxSjNTQnRWT21VRGRUbzUxemRyYXNZdGZqdnF0dTE1bTJZMHZWOWFEZnNfN0VmWEZ0TlhwS09SVGVDRVRzTGhoS3ZfdlF2SnNTVUFxcFFJa1E2QmZERnBkMkg2WTA5SGZoLTMyQ2RJTTQ00gF8QVVfeXFMTm1SS1FGeVk1YmtNNkF2TUxCYk45XzJiYzFYSnN3S1dIZ0Fud3M2OG9uVjlpZzFuVnZrc05pMG9waXJmS1NCQ3VaaHJUSnY1MTFTLTJmNDhkRzV2cXVsQVFsOGR2WjluMHd2UkJ3bTFTdGExY2xNaERIVE1ZZw?oc=5",
+            "source": "rss",
+            "published": "Tue, 03 Feb 2026 21:14:24 GMT"
+          },
+          {
+            "title": "Stock market today: Nifty50 opens in red; BSE Sensex down over 250 points - Times of India",
+            "link": "https://news.google.com/rss/articles/CBMijAJBVV95cUxQd3piX2hRTmlCYkU0UzFCLTNqSWJjUHFYV192TEtEYWl4ZG14QmlMUDBJWVJLRG1XLTdXMzVqOHV1VDRRaV9TakZOMzF3cldHSV9oY0ZST1NsQjdfODh2Q3ZaaHdrUnBCLW1VSTFtQmFtb1UyU3NSaWxITS16RThTd3NEbHR3NnpiNkVMRDhBa3RiLThiNnQ0b1dDVE05OUZIZG9PdFJLMUJ2ZTlUbVhXX050YjQxUDJ4ejRUOUNGSFlSXzMwT2ZvcEx1aVJKY3h6WVJhZ05VZ3VXZWdGcjBOTjdVRzZhTDNGS3AtX0w0ZFNkR05EV09kRlVPVzl4MVZVd0gxX1hKZ3BTZF9h0gGSAkFVX3lxTFB2V1BOZEVoRVpqTlNuMHdLRUNTQ25Qa1lZb09XUENaZjBoZmQzYklzTDBtSHdST1hJMlJMY2FiN3FLbnN5ZlNnLUItQk44VVB5a1ZCcExSaE1GTHZhbE9URVBnMFhaaUxJX0xUa2pKdnJXd3dNNWE2VkVjaUFqeGJVSENJcDAwYzc3cWVyeTFRUlJ4YzY2YkJpeDIxV0pPQ1VtUWJRcXY0ZFhrbXNWUUNlZjZZaEp6b0RzSlNWNEc0UEdVUUJ6RTh3czVmdTI5Wi0yazJjSExBeUl3OVhMT0x3ZVozTEN0Q01BZmV0TmRRT3VqSEhMV3c2SGRPWkVIb1MyTW9vbkw3by1oMWV3TER1VlE?oc=5",
+            "source": "rss",
+            "published": "Wed, 04 Feb 2026 03:48:00 GMT"
+          },
+          {
+            "title": "Market Highlights: Sensex settles 78 pts higher, Nifty above 25,750; Trent, Eternal rise 5% each - The Economic Times",
+            "link": "https://news.google.com/rss/articles/CBMisAJBVV95cUxPamhnS0U5dmg0bGxCdzdHWGZ2a1loYWlxS0wtcnB4aENTRENzNEtIdUZJWi1uNlYtSWZiTW9ab3JuRVNrd1M1VmxDUFVxbm9PZjJ0WElPamZHY0o4Vkw5WEw5S0laM3Q1QTlndkF6M0NpakhyU1FBOE5HcENBLVhxVDdUUnN0OGtkRG82dXJkOURWZHJnRFN3Wk5acjhIUkpMUnY4SjVRSjc3Z1dUek5nRFVYY3gwdmlHTHNQVFVCS2lmdzVkUXF2U29hUFlFMW5hUEhFLU5UMldSdTNIeWVOYk9XNHA2ZEx4cUxNUXg5Qm9lWGdjaUpKM0RaMXRFSGNrNnAxN0F5QUVTNnp2X1BpLW5HQzVjei1KMllSNThrMGlybzhybUxzRG1KTnRpbkNT0gG2AkFVX3lxTE02c0VFUUFVdURGZFVaS1BLWllobndScGNTTVJ5WE0xM3FFSnlkTVZueVV2NEVRRjBsMUs1WHJSajNJWGw4NGR1SG1RVzRxRjVPN1pRUzJjaGxRUFpTYVJHeHJfb3RPaXJvZkkxWXVVMTZFMFItUEZDakNSNVdWNFFrSXByZk10ZmVPWm94eTRubUJ3Z0twa0xTZEcteVZUZG5rVWVIbUZvMmRoNlNFakpwSzdfYnAtN05UTkRFaWtzZ2tpdW1PWjNvQXZsUmVIMEdjMHYxcUJTandWSm8wXzlia09UMWRGU0tmR1NlWE9oSFhwVzZNUDFmTVZuM3Jfakp5NHo4YjM5TXZBYUFpUWpDMkJQOEYzcVQ1XzRQczVYY3p3bUJoV19LYjM2MnljS1FIaERPNmc?oc=5",
+            "source": "rss",
+            "published": "Wed, 04 Feb 2026 11:55:00 GMT"
+          },
+          {
+            "title": "Stock Market Today: Sensex, Nifty Clock Best One-Day Gains In Nine Months - NDTV Profit",
+            "link": "https://news.google.com/rss/articles/CBMikgJBVV95cUxNTHlmc0FhMk9qcmZwQnR2TjU4QkdoZThpV080bzFHMUJNZXBUWVFyNFpPeXF6eGtuV2pTcU1EZFRwbWxJd3RQNmhNV2R5ck1YbHkySjVVeGZtSmtvSkJXN1huOWpZWVNVTUZKUjQ5REZlZE14RnloelZwaWh6QWVFVmUtaWNod1o3QjlVZkdMM2lmOFhveE53Z2I2NHUxemM5VHE3NUs1UWpTa3JrWWVXTnJPNWxzRk5CNHYxSEFwME9TZDVreU9hTEZqUGpwRXVHcmFJWmNFWmZSWWx3ZXVqT2h4aU9SRWc5WnlKRFV1X3VSOTZRT3MxU1ptaVRBc0RaaW9tUy1wQk1UYndpaldaVkxR0gGaAkFVX3lxTFBrZnVNbnRIcDBMZmp0LUFDemVxZlE1YWRuTV9wa2dFRDRMbGFuTkZad3Q1UlE4c2F5MjFwUGRnMDg0a3J0bTQxU3l5aS1CX291ZWdCOVNIV2xxSWs4MnpLLV9hWUVxTjRTZmlkM0FaRjAtVWZpX2lsLU5wNm1fLWdHektzY0RqX0RyeUppUUpTWWZCSnJndXVBa3lINHRsNVBCS3pDdWFGZFdiMExlZmN2SHNxbEVaUFVTMmJ1dWJlMmZubUd1N2xValVpUWlYVTBHZkdEUk1vS2dDZVdQRUVWd2ZhNy1Hai1xQ1pKMVlFOXplWlNOamw3WWt0THQ2c042cng0ejlSdmtZTkd0QWt6aWt5TU9JaUFIUQ?oc=5",
+            "source": "rss",
+            "published": "Wed, 04 Feb 2026 08:58:37 GMT"
+          },
+          {
+            "title": "Stock market today: Dow, S&P 500, Nasdaq jump to kick off February as gold, silver, bitcoin remain volatile - Yahoo Finance",
+            "link": "https://news.google.com/rss/articles/CBMi5wFBVV95cUxQc0F4TE9UblcyRVIyTkVPQnJWZWtyTUgteHBtb2NGeDZPR1o4dE9FOFA4dUVlOEdmbW9VUTE3c0NJMUFFcW83d0N5LVQwVHYyODU2bXR3YzQ1NlZVVHJPQkhwcHUzcndOc0xrVFVqX0FubEd3NzBEWHJDY1hRUDBqcWF2azhFbnNWNFZWd2lvS3cwN0lnYlkzWmlVdmR6TTdRM1hNTEVwcVM1ZmZab29yUHk5ZHZ0NWdFR2FGNlZCeHdXSmg0UU9uRUk3d1BhbzVpcEZrOWExaVM3VjBzN0V2SFRkVFY3Rk0?oc=5",
+            "source": "rss",
+            "published": "Mon, 02 Feb 2026 21:06:10 GMT"
+          },
+          {
+            "title": "Investors' Wealth Swells By Rs 7 Lakh Crore As Bulls Grip Nifty, Sensex On India-US Trade Deal Announcement",
+            "link": "https://www.ndtvprofit.com/markets/stock-market-today-investors-wealth-swells-nearly-rs-7-lakh-crore-as-bulls-grip-nifty-sensex-on-india-us-trade-deal-announcement-10937766",
+            "source": "gnews",
+            "published": "2026-02-03T10:12:07Z"
+          },
+          {
+            "title": "Sensex jumps over 2,000 points, investors earn over \u20b912 lakh crore- 10 key highlights from Indian stock market today",
+            "link": "https://www.livemint.com/market/sensex-jumps-over-2-000-points-investors-earn-over-rs-12-lakh-crore-10-key-highlights-from-indian-stock-market-today-11770112329110.html",
+            "source": "gnews",
+            "published": "2026-02-03T10:06:14Z"
+          },
+          {
+            "title": "Here's Why Stock Market Is Up Today India-US Trade Deal",
+            "link": "https://www.ndtvprofit.com/markets/heres-why-stock-market-is-up-today-india-us-trade-deal-10935641",
+            "source": "gnews",
+            "published": "2026-02-03T04:17:26Z"
+          },
+          {
+            "title": "Stock Market Expected To Jump Big Today After India-US Trade Deal",
+            "link": "https://www.ndtv.com/india-news/markets-sensex-nifty-rupee-live-updates-stock-market-expected-to-jump-big-today-after-india-us-trade-deal-10935446",
+            "source": "gnews",
+            "published": "2026-02-03T03:28:27Z"
+          },
+          {
+            "title": "Stock Market in Focus: Trump\u2019s Tariff Slashed to 18%, India-US Trade Deal Sparks Dalal Street Rally; Sensex, Nifty Set for Gap-Up, Export Sectors and FPI Inflows in Focus",
+            "link": "https://www.newsx.com/business/stock-market-in-focus-trumps-tariff-slashed-to-18-indiaus-trade-deal-sparks-dalal-street-rally-sensex-nifty-set-for-gap-up-export-sectors-and-fpi-inflows-in-focus-158173/",
+            "source": "gnews",
+            "published": "2026-02-03T03:22:00Z"
+          },
+          {
+            "title": "Asia stock markets today: live updates",
+            "link": "https://www.cnbc.com/2025/08/08/asia-stock-markets-today-live-updates-nikkei-225-asx-200-kospi-hang-seng-csi-300-sensex-nifty-50.html",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "India's Nifty 50 closes 2.5% higher as long-awaited U.S. ...",
+            "link": "https://www.cnbc.com/2026/02/03/india-nifty-50-soars-india-us-trade-deal-trum-modi.html",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "India's markets get tariff relief but not a buy yet",
+            "link": "https://www.reuters.com/world/india/indias-markets-get-tariff-relief-not-buy-yet-2026-02-04/",
+            "source": "tavily",
+            "published": ""
+          }
+        ],
+        "exported_file": "output/indian_stock_market_today_20260204_173032.json"
+      },
+      "errors": [],
+      "skipped": [],
+      "fallbacks_used": [],
+      "regenerated": [],
+      "success": true
+    }
+  },
+  {
+    "timestamp": "2026-02-04T17:31:01.292225",
+    "result": {
+      "intent": "Fetch news about the Indian stock market today and perform sentiment analysis",
+      "domain": "Indian stock market",
+      "tools_executed": [
+        {
+          "tool": "news_fetcher",
+          "success": true,
+          "retries": 0,
+          "used_fallback": false,
+          "regenerated": false
+        },
+        {
+          "tool": "sentiment",
+          "success": true,
+          "retries": 0,
+          "used_fallback": false,
+          "regenerated": false
+        },
+        {
+          "tool": "exporter",
+          "success": true,
+          "retries": 0,
+          "used_fallback": false,
+          "regenerated": false
+        }
+      ],
+      "data": {
+        "news": [
+          {
+            "title": "S&P 500 tumbles nearly 1% as investors rotate out of tech, Dow slides more than 160 points: Live updates - CNBC",
+            "link": "https://news.google.com/rss/articles/CBMid0FVX3lxTE82S1M0OFFxSjNTQnRWT21VRGRUbzUxemRyYXNZdGZqdnF0dTE1bTJZMHZWOWFEZnNfN0VmWEZ0TlhwS09SVGVDRVRzTGhoS3ZfdlF2SnNTVUFxcFFJa1E2QmZERnBkMkg2WTA5SGZoLTMyQ2RJTTQ00gF8QVVfeXFMTm1SS1FGeVk1YmtNNkF2TUxCYk45XzJiYzFYSnN3S1dIZ0Fud3M2OG9uVjlpZzFuVnZrc05pMG9waXJmS1NCQ3VaaHJUSnY1MTFTLTJmNDhkRzV2cXVsQVFsOGR2WjluMHd2UkJ3bTFTdGExY2xNaERIVE1ZZw?oc=5",
+            "source": "rss",
+            "published": "Tue, 03 Feb 2026 21:14:24 GMT"
+          },
+          {
+            "title": "Stock market today: Nifty50 opens in red; BSE Sensex down over 250 points - Times of India",
+            "link": "https://news.google.com/rss/articles/CBMijAJBVV95cUxQd3piX2hRTmlCYkU0UzFCLTNqSWJjUHFYV192TEtEYWl4ZG14QmlMUDBJWVJLRG1XLTdXMzVqOHV1VDRRaV9TakZOMzF3cldHSV9oY0ZST1NsQjdfODh2Q3ZaaHdrUnBCLW1VSTFtQmFtb1UyU3NSaWxITS16RThTd3NEbHR3NnpiNkVMRDhBa3RiLThiNnQ0b1dDVE05OUZIZG9PdFJLMUJ2ZTlUbVhXX050YjQxUDJ4ejRUOUNGSFlSXzMwT2ZvcEx1aVJKY3h6WVJhZ05VZ3VXZWdGcjBOTjdVRzZhTDNGS3AtX0w0ZFNkR05EV09kRlVPVzl4MVZVd0gxX1hKZ3BTZF9h0gGSAkFVX3lxTFB2V1BOZEVoRVpqTlNuMHdLRUNTQ25Qa1lZb09XUENaZjBoZmQzYklzTDBtSHdST1hJMlJMY2FiN3FLbnN5ZlNnLUItQk44VVB5a1ZCcExSaE1GTHZhbE9URVBnMFhaaUxJX0xUa2pKdnJXd3dNNWE2VkVjaUFqeGJVSENJcDAwYzc3cWVyeTFRUlJ4YzY2YkJpeDIxV0pPQ1VtUWJRcXY0ZFhrbXNWUUNlZjZZaEp6b0RzSlNWNEc0UEdVUUJ6RTh3czVmdTI5Wi0yazJjSExBeUl3OVhMT0x3ZVozTEN0Q01BZmV0TmRRT3VqSEhMV3c2SGRPWkVIb1MyTW9vbkw3by1oMWV3TER1VlE?oc=5",
+            "source": "rss",
+            "published": "Wed, 04 Feb 2026 03:48:00 GMT"
+          },
+          {
+            "title": "Market Highlights: Sensex settles 78 pts higher, Nifty above 25,750; Trent, Eternal rise 5% each - The Economic Times",
+            "link": "https://news.google.com/rss/articles/CBMisAJBVV95cUxPamhnS0U5dmg0bGxCdzdHWGZ2a1loYWlxS0wtcnB4aENTRENzNEtIdUZJWi1uNlYtSWZiTW9ab3JuRVNrd1M1VmxDUFVxbm9PZjJ0WElPamZHY0o4Vkw5WEw5S0laM3Q1QTlndkF6M0NpakhyU1FBOE5HcENBLVhxVDdUUnN0OGtkRG82dXJkOURWZHJnRFN3Wk5acjhIUkpMUnY4SjVRSjc3Z1dUek5nRFVYY3gwdmlHTHNQVFVCS2lmdzVkUXF2U29hUFlFMW5hUEhFLU5UMldSdTNIeWVOYk9XNHA2ZEx4cUxNUXg5Qm9lWGdjaUpKM0RaMXRFSGNrNnAxN0F5QUVTNnp2X1BpLW5HQzVjei1KMllSNThrMGlybzhybUxzRG1KTnRpbkNT0gG2AkFVX3lxTE02c0VFUUFVdURGZFVaS1BLWllobndScGNTTVJ5WE0xM3FFSnlkTVZueVV2NEVRRjBsMUs1WHJSajNJWGw4NGR1SG1RVzRxRjVPN1pRUzJjaGxRUFpTYVJHeHJfb3RPaXJvZkkxWXVVMTZFMFItUEZDakNSNVdWNFFrSXByZk10ZmVPWm94eTRubUJ3Z0twa0xTZEcteVZUZG5rVWVIbUZvMmRoNlNFakpwSzdfYnAtN05UTkRFaWtzZ2tpdW1PWjNvQXZsUmVIMEdjMHYxcUJTandWSm8wXzlia09UMWRGU0tmR1NlWE9oSFhwVzZNUDFmTVZuM3Jfakp5NHo4YjM5TXZBYUFpUWpDMkJQOEYzcVQ1XzRQczVYY3p3bUJoV19LYjM2MnljS1FIaERPNmc?oc=5",
+            "source": "rss",
+            "published": "Wed, 04 Feb 2026 11:55:00 GMT"
+          },
+          {
+            "title": "Stock Market Today: Sensex, Nifty Clock Best One-Day Gains In Nine Months - NDTV Profit",
+            "link": "https://news.google.com/rss/articles/CBMikgJBVV95cUxNTHlmc0FhMk9qcmZwQnR2TjU4QkdoZThpV080bzFHMUJNZXBUWVFyNFpPeXF6eGtuV2pTcU1EZFRwbWxJd3RQNmhNV2R5ck1YbHkySjVVeGZtSmtvSkJXN1huOWpZWVNVTUZKUjQ5REZlZE14RnloelZwaWh6QWVFVmUtaWNod1o3QjlVZkdMM2lmOFhveE53Z2I2NHUxemM5VHE3NUs1UWpTa3JrWWVXTnJPNWxzRk5CNHYxSEFwME9TZDVreU9hTEZqUGpwRXVHcmFJWmNFWmZSWWx3ZXVqT2h4aU9SRWc5WnlKRFV1X3VSOTZRT3MxU1ptaVRBc0RaaW9tUy1wQk1UYndpaldaVkxR0gGaAkFVX3lxTFBrZnVNbnRIcDBMZmp0LUFDemVxZlE1YWRuTV9wa2dFRDRMbGFuTkZad3Q1UlE4c2F5MjFwUGRnMDg0a3J0bTQxU3l5aS1CX291ZWdCOVNIV2xxSWs4MnpLLV9hWUVxTjRTZmlkM0FaRjAtVWZpX2lsLU5wNm1fLWdHektzY0RqX0RyeUppUUpTWWZCSnJndXVBa3lINHRsNVBCS3pDdWFGZFdiMExlZmN2SHNxbEVaUFVTMmJ1dWJlMmZubUd1N2xValVpUWlYVTBHZkdEUk1vS2dDZVdQRUVWd2ZhNy1Hai1xQ1pKMVlFOXplWlNOamw3WWt0THQ2c042cng0ejlSdmtZTkd0QWt6aWt5TU9JaUFIUQ?oc=5",
+            "source": "rss",
+            "published": "Wed, 04 Feb 2026 08:58:37 GMT"
+          },
+          {
+            "title": "Stock market today: Dow, S&P 500, Nasdaq jump to kick off February as gold, silver, bitcoin remain volatile - Yahoo Finance",
+            "link": "https://news.google.com/rss/articles/CBMi5wFBVV95cUxQc0F4TE9UblcyRVIyTkVPQnJWZWtyTUgteHBtb2NGeDZPR1o4dE9FOFA4dUVlOEdmbW9VUTE3c0NJMUFFcW83d0N5LVQwVHYyODU2bXR3YzQ1NlZVVHJPQkhwcHUzcndOc0xrVFVqX0FubEd3NzBEWHJDY1hRUDBqcWF2azhFbnNWNFZWd2lvS3cwN0lnYlkzWmlVdmR6TTdRM1hNTEVwcVM1ZmZab29yUHk5ZHZ0NWdFR2FGNlZCeHdXSmg0UU9uRUk3d1BhbzVpcEZrOWExaVM3VjBzN0V2SFRkVFY3Rk0?oc=5",
+            "source": "rss",
+            "published": "Mon, 02 Feb 2026 21:06:10 GMT"
+          },
+          {
+            "title": "Investors' Wealth Swells By Rs 7 Lakh Crore As Bulls Grip Nifty, Sensex On India-US Trade Deal Announcement",
+            "link": "https://www.ndtvprofit.com/markets/stock-market-today-investors-wealth-swells-nearly-rs-7-lakh-crore-as-bulls-grip-nifty-sensex-on-india-us-trade-deal-announcement-10937766",
+            "source": "gnews",
+            "published": "2026-02-03T10:12:07Z"
+          },
+          {
+            "title": "Sensex jumps over 2,000 points, investors earn over \u20b912 lakh crore- 10 key highlights from Indian stock market today",
+            "link": "https://www.livemint.com/market/sensex-jumps-over-2-000-points-investors-earn-over-rs-12-lakh-crore-10-key-highlights-from-indian-stock-market-today-11770112329110.html",
+            "source": "gnews",
+            "published": "2026-02-03T10:06:14Z"
+          },
+          {
+            "title": "Here's Why Stock Market Is Up Today India-US Trade Deal",
+            "link": "https://www.ndtvprofit.com/markets/heres-why-stock-market-is-up-today-india-us-trade-deal-10935641",
+            "source": "gnews",
+            "published": "2026-02-03T04:17:26Z"
+          },
+          {
+            "title": "Stock Market Expected To Jump Big Today After India-US Trade Deal",
+            "link": "https://www.ndtv.com/india-news/markets-sensex-nifty-rupee-live-updates-stock-market-expected-to-jump-big-today-after-india-us-trade-deal-10935446",
+            "source": "gnews",
+            "published": "2026-02-03T03:28:27Z"
+          },
+          {
+            "title": "Stock Market in Focus: Trump\u2019s Tariff Slashed to 18%, India-US Trade Deal Sparks Dalal Street Rally; Sensex, Nifty Set for Gap-Up, Export Sectors and FPI Inflows in Focus",
+            "link": "https://www.newsx.com/business/stock-market-in-focus-trumps-tariff-slashed-to-18-indiaus-trade-deal-sparks-dalal-street-rally-sensex-nifty-set-for-gap-up-export-sectors-and-fpi-inflows-in-focus-158173/",
+            "source": "gnews",
+            "published": "2026-02-03T03:22:00Z"
+          },
+          {
+            "title": "India Stock Traders Eagerly Await Budget; Banks Grapple ...",
+            "link": "https://www.bloomberg.com/news/newsletters/2026-01-28/india-stock-traders-eagerly-await-budget-banks-grapple-with-high-funding-costs",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "Indian benchmark shares log biggest monthly loss in 11 ...",
+            "link": "https://www.reuters.com/world/india/indian-equity-benchmarks-set-muted-start-weak-rupee-rising-oil-prices-weigh-2026-01-30/",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "National Stock Exchange Of India Ltd",
+            "link": "https://www.reuters.com/company/national-stock-exchange-of-india-ltd/",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "Stock Price, Quote and News",
+            "link": "https://www.cnbc.com/quotes/.NSEI",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "India budget seeks manufacturing pivot, but falls short of ...",
+            "link": "https://www.reuters.com/sustainability/boards-policy-regulation/india-budget-promote-reforms-room-spending-shrinks-2026-02-01/",
+            "source": "tavily",
+            "published": ""
+          }
+        ],
+        "sentiment": {
+          "overall": "neutral",
+          "mood_label": "mixed market sentiment",
+          "confidence": "medium",
+          "direction": "volatile",
+          "momentum_strength": "moderate",
+          "risk_level": "moderate",
+          "market_bias": "balanced",
+          "reasoning": "The headlines reflect a mix of positive and negative market signals. While some headlines indicate gains and positive investor sentiment due to trade deals and market rallies, others highlight declines and investor rotation out of tech stocks. This suggests a balanced market with both opportunities and risks.",
+          "positive_signals": [
+            "India-US Trade Deal driving market rally",
+            "Sensex, Nifty clocking significant gains",
+            "Investors' wealth swelling"
+          ],
+          "negative_signals": [
+            "S&P 500 tumbles nearly 1%",
+            "Dow slides more than 160 points",
+            "Indian benchmark shares log biggest monthly loss in 11 years"
+          ],
+          "emerging_themes": [
+            "Trade deal impact",
+            "Sector rotation",
+            "Market volatility"
+          ],
+          "score": 0.45,
+          "breakdown": {
+            "positive": 6,
+            "neutral": 2,
+            "negative": 4
+          }
+        },
+        "exported_file": "output/indian_stock_market_sentiment_report_20260204_173101.json"
+      },
+      "errors": [],
+      "skipped": [],
+      "fallbacks_used": [],
+      "regenerated": [],
+      "success": true
+    }
+  },
+  {
+    "timestamp": "2026-02-04T17:31:55.434369",
+    "result": {
+      "intent": "Fetch, summarize, analyze sentiment, and extract trends for the Indian stock market today",
+      "domain": "Indian stock market",
+      "tools_executed": [
+        {
+          "tool": "news_fetcher",
+          "success": true,
+          "retries": 0,
+          "used_fallback": false,
+          "regenerated": false
+        },
+        {
+          "tool": "summarizer",
+          "success": true,
+          "retries": 0,
+          "used_fallback": false,
+          "regenerated": false
+        },
+        {
+          "tool": "sentiment",
+          "success": true,
+          "retries": 0,
+          "used_fallback": false,
+          "regenerated": false
+        },
+        {
+          "tool": "trends",
+          "success": true,
+          "retries": 0,
+          "used_fallback": false,
+          "regenerated": false
+        },
+        {
+          "tool": "exporter",
+          "success": true,
+          "retries": 0,
+          "used_fallback": false,
+          "regenerated": false
+        }
+      ],
+      "data": {
+        "news": [
+          {
+            "title": "S&P 500 tumbles nearly 1% as investors rotate out of tech, Dow slides more than 160 points: Live updates - CNBC",
+            "link": "https://news.google.com/rss/articles/CBMid0FVX3lxTE82S1M0OFFxSjNTQnRWT21VRGRUbzUxemRyYXNZdGZqdnF0dTE1bTJZMHZWOWFEZnNfN0VmWEZ0TlhwS09SVGVDRVRzTGhoS3ZfdlF2SnNTVUFxcFFJa1E2QmZERnBkMkg2WTA5SGZoLTMyQ2RJTTQ00gF8QVVfeXFMTm1SS1FGeVk1YmtNNkF2TUxCYk45XzJiYzFYSnN3S1dIZ0Fud3M2OG9uVjlpZzFuVnZrc05pMG9waXJmS1NCQ3VaaHJUSnY1MTFTLTJmNDhkRzV2cXVsQVFsOGR2WjluMHd2UkJ3bTFTdGExY2xNaERIVE1ZZw?oc=5",
+            "source": "rss",
+            "published": "Tue, 03 Feb 2026 21:14:24 GMT"
+          },
+          {
+            "title": "Stock market today: Nifty50 opens in red; BSE Sensex down over 250 points - Times of India",
+            "link": "https://news.google.com/rss/articles/CBMijAJBVV95cUxQd3piX2hRTmlCYkU0UzFCLTNqSWJjUHFYV192TEtEYWl4ZG14QmlMUDBJWVJLRG1XLTdXMzVqOHV1VDRRaV9TakZOMzF3cldHSV9oY0ZST1NsQjdfODh2Q3ZaaHdrUnBCLW1VSTFtQmFtb1UyU3NSaWxITS16RThTd3NEbHR3NnpiNkVMRDhBa3RiLThiNnQ0b1dDVE05OUZIZG9PdFJLMUJ2ZTlUbVhXX050YjQxUDJ4ejRUOUNGSFlSXzMwT2ZvcEx1aVJKY3h6WVJhZ05VZ3VXZWdGcjBOTjdVRzZhTDNGS3AtX0w0ZFNkR05EV09kRlVPVzl4MVZVd0gxX1hKZ3BTZF9h0gGSAkFVX3lxTFB2V1BOZEVoRVpqTlNuMHdLRUNTQ25Qa1lZb09XUENaZjBoZmQzYklzTDBtSHdST1hJMlJMY2FiN3FLbnN5ZlNnLUItQk44VVB5a1ZCcExSaE1GTHZhbE9URVBnMFhaaUxJX0xUa2pKdnJXd3dNNWE2VkVjaUFqeGJVSENJcDAwYzc3cWVyeTFRUlJ4YzY2YkJpeDIxV0pPQ1VtUWJRcXY0ZFhrbXNWUUNlZjZZaEp6b0RzSlNWNEc0UEdVUUJ6RTh3czVmdTI5Wi0yazJjSExBeUl3OVhMT0x3ZVozTEN0Q01BZmV0TmRRT3VqSEhMV3c2SGRPWkVIb1MyTW9vbkw3by1oMWV3TER1VlE?oc=5",
+            "source": "rss",
+            "published": "Wed, 04 Feb 2026 03:48:00 GMT"
+          },
+          {
+            "title": "Market Highlights: Sensex settles 78 pts higher, Nifty above 25,750; Trent, Eternal rise 5% each - The Economic Times",
+            "link": "https://news.google.com/rss/articles/CBMisAJBVV95cUxPamhnS0U5dmg0bGxCdzdHWGZ2a1loYWlxS0wtcnB4aENTRENzNEtIdUZJWi1uNlYtSWZiTW9ab3JuRVNrd1M1VmxDUFVxbm9PZjJ0WElPamZHY0o4Vkw5WEw5S0laM3Q1QTlndkF6M0NpakhyU1FBOE5HcENBLVhxVDdUUnN0OGtkRG82dXJkOURWZHJnRFN3Wk5acjhIUkpMUnY4SjVRSjc3Z1dUek5nRFVYY3gwdmlHTHNQVFVCS2lmdzVkUXF2U29hUFlFMW5hUEhFLU5UMldSdTNIeWVOYk9XNHA2ZEx4cUxNUXg5Qm9lWGdjaUpKM0RaMXRFSGNrNnAxN0F5QUVTNnp2X1BpLW5HQzVjei1KMllSNThrMGlybzhybUxzRG1KTnRpbkNT0gG2AkFVX3lxTE02c0VFUUFVdURGZFVaS1BLWllobndScGNTTVJ5WE0xM3FFSnlkTVZueVV2NEVRRjBsMUs1WHJSajNJWGw4NGR1SG1RVzRxRjVPN1pRUzJjaGxRUFpTYVJHeHJfb3RPaXJvZkkxWXVVMTZFMFItUEZDakNSNVdWNFFrSXByZk10ZmVPWm94eTRubUJ3Z0twa0xTZEcteVZUZG5rVWVIbUZvMmRoNlNFakpwSzdfYnAtN05UTkRFaWtzZ2tpdW1PWjNvQXZsUmVIMEdjMHYxcUJTandWSm8wXzlia09UMWRGU0tmR1NlWE9oSFhwVzZNUDFmTVZuM3Jfakp5NHo4YjM5TXZBYUFpUWpDMkJQOEYzcVQ1XzRQczVYY3p3bUJoV19LYjM2MnljS1FIaERPNmc?oc=5",
+            "source": "rss",
+            "published": "Wed, 04 Feb 2026 11:55:00 GMT"
+          },
+          {
+            "title": "Stock Market Today: Sensex, Nifty Clock Best One-Day Gains In Nine Months - NDTV Profit",
+            "link": "https://news.google.com/rss/articles/CBMikgJBVV95cUxNTHlmc0FhMk9qcmZwQnR2TjU4QkdoZThpV080bzFHMUJNZXBUWVFyNFpPeXF6eGtuV2pTcU1EZFRwbWxJd3RQNmhNV2R5ck1YbHkySjVVeGZtSmtvSkJXN1huOWpZWVNVTUZKUjQ5REZlZE14RnloelZwaWh6QWVFVmUtaWNod1o3QjlVZkdMM2lmOFhveE53Z2I2NHUxemM5VHE3NUs1UWpTa3JrWWVXTnJPNWxzRk5CNHYxSEFwME9TZDVreU9hTEZqUGpwRXVHcmFJWmNFWmZSWWx3ZXVqT2h4aU9SRWc5WnlKRFV1X3VSOTZRT3MxU1ptaVRBc0RaaW9tUy1wQk1UYndpaldaVkxR0gGaAkFVX3lxTFBrZnVNbnRIcDBMZmp0LUFDemVxZlE1YWRuTV9wa2dFRDRMbGFuTkZad3Q1UlE4c2F5MjFwUGRnMDg0a3J0bTQxU3l5aS1CX291ZWdCOVNIV2xxSWs4MnpLLV9hWUVxTjRTZmlkM0FaRjAtVWZpX2lsLU5wNm1fLWdHektzY0RqX0RyeUppUUpTWWZCSnJndXVBa3lINHRsNVBCS3pDdWFGZFdiMExlZmN2SHNxbEVaUFVTMmJ1dWJlMmZubUd1N2xValVpUWlYVTBHZkdEUk1vS2dDZVdQRUVWd2ZhNy1Hai1xQ1pKMVlFOXplWlNOamw3WWt0THQ2c042cng0ejlSdmtZTkd0QWt6aWt5TU9JaUFIUQ?oc=5",
+            "source": "rss",
+            "published": "Wed, 04 Feb 2026 08:58:37 GMT"
+          },
+          {
+            "title": "Stock market today: Dow, S&P 500, Nasdaq jump to kick off February as gold, silver, bitcoin remain volatile - Yahoo Finance",
+            "link": "https://news.google.com/rss/articles/CBMi5wFBVV95cUxQc0F4TE9UblcyRVIyTkVPQnJWZWtyTUgteHBtb2NGeDZPR1o4dE9FOFA4dUVlOEdmbW9VUTE3c0NJMUFFcW83d0N5LVQwVHYyODU2bXR3YzQ1NlZVVHJPQkhwcHUzcndOc0xrVFVqX0FubEd3NzBEWHJDY1hRUDBqcWF2azhFbnNWNFZWd2lvS3cwN0lnYlkzWmlVdmR6TTdRM1hNTEVwcVM1ZmZab29yUHk5ZHZ0NWdFR2FGNlZCeHdXSmg0UU9uRUk3d1BhbzVpcEZrOWExaVM3VjBzN0V2SFRkVFY3Rk0?oc=5",
+            "source": "rss",
+            "published": "Mon, 02 Feb 2026 21:06:10 GMT"
+          },
+          {
+            "title": "Investors' Wealth Swells By Rs 7 Lakh Crore As Bulls Grip Nifty, Sensex On India-US Trade Deal Announcement",
+            "link": "https://www.ndtvprofit.com/markets/stock-market-today-investors-wealth-swells-nearly-rs-7-lakh-crore-as-bulls-grip-nifty-sensex-on-india-us-trade-deal-announcement-10937766",
+            "source": "gnews",
+            "published": "2026-02-03T10:12:07Z"
+          },
+          {
+            "title": "Sensex jumps over 2,000 points, investors earn over \u20b912 lakh crore- 10 key highlights from Indian stock market today",
+            "link": "https://www.livemint.com/market/sensex-jumps-over-2-000-points-investors-earn-over-rs-12-lakh-crore-10-key-highlights-from-indian-stock-market-today-11770112329110.html",
+            "source": "gnews",
+            "published": "2026-02-03T10:06:14Z"
+          },
+          {
+            "title": "Here's Why Stock Market Is Up Today India-US Trade Deal",
+            "link": "https://www.ndtvprofit.com/markets/heres-why-stock-market-is-up-today-india-us-trade-deal-10935641",
+            "source": "gnews",
+            "published": "2026-02-03T04:17:26Z"
+          },
+          {
+            "title": "Stock Market Expected To Jump Big Today After India-US Trade Deal",
+            "link": "https://www.ndtv.com/india-news/markets-sensex-nifty-rupee-live-updates-stock-market-expected-to-jump-big-today-after-india-us-trade-deal-10935446",
+            "source": "gnews",
+            "published": "2026-02-03T03:28:27Z"
+          },
+          {
+            "title": "Stock Market in Focus: Trump\u2019s Tariff Slashed to 18%, India-US Trade Deal Sparks Dalal Street Rally; Sensex, Nifty Set for Gap-Up, Export Sectors and FPI Inflows in Focus",
+            "link": "https://www.newsx.com/business/stock-market-in-focus-trumps-tariff-slashed-to-18-indiaus-trade-deal-sparks-dalal-street-rally-sensex-nifty-set-for-gap-up-export-sectors-and-fpi-inflows-in-focus-158173/",
+            "source": "gnews",
+            "published": "2026-02-03T03:22:00Z"
+          },
+          {
+            "title": "India's Nifty 50 closes 2.5% higher as long-awaited U.S. ...",
+            "link": "https://www.cnbc.com/2026/02/03/india-nifty-50-soars-india-us-trade-deal-trum-modi.html",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "Stock Price, Quote and News",
+            "link": "https://www.cnbc.com/quotes/.NSEI",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "Indian shares pause after US trade-deal rally; IT stocks weigh",
+            "link": "https://www.reuters.com/world/india/indian-stocks-set-extend-gains-us-trade-deal-tech-sell-off-may-cap-upside-2026-02-04/",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "New AI Tool Turns the Heat on Top Indian IT Firms",
+            "link": "https://www.bloomberg.com/news/newsletters/2026-02-04/infosys-tcs-wipro-may-tumble-rupee-continues-to-rally-refiners-await-clarity",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "India markets regulator taking measured approach on ...",
+            "link": "https://www.reuters.com/sustainability/boards-policy-regulation/india-markets-regulator-taking-measured-approach-equity-derivatives-rules-chair-2026-02-04/",
+            "source": "tavily",
+            "published": ""
+          }
+        ],
+        "summary": {
+          "summary": "Recent stock market news highlights significant volatility, with the S&P 500 and Dow experiencing declines while the Indian stock market shows gains following the India-US trade deal. The Indian markets, particularly the Nifty and Sensex, saw substantial increases and record highs. Key factors include investor rotation out of tech stocks and the positive impact of the trade deal on market sentiment.",
+          "key_points": [
+            "Significant volatility in global stock markets with declines in the S&P 500 and Dow",
+            "Substantial increases and record highs in Indian markets following the India-US trade deal",
+            "Investor sentiment positively influenced by the trade deal and rotation out of tech stocks"
+          ]
+        },
+        "sentiment": {
+          "overall": "neutral",
+          "mood_label": "cautious optimism",
+          "confidence": "medium",
+          "direction": "stable",
+          "momentum_strength": "moderate",
+          "risk_level": "moderate",
+          "market_bias": "balanced",
+          "reasoning": "The market sentiment appears to be cautiously optimistic due to positive developments like the India-US trade deal, which has led to gains in the Indian stock market. However, the rotation out of tech stocks and the volatility in commodities suggest underlying uncertainties.",
+          "positive_signals": [
+            "India-US trade deal announcement",
+            "Nifty 50 and Sensex gains",
+            "Best one-day gains in nine months"
+          ],
+          "negative_signals": [
+            "S&P 500 tumbles nearly 1%",
+            "Dow slides more than 160 points",
+            "Volatility in gold, silver, and bitcoin"
+          ],
+          "emerging_themes": [
+            "trade deal impact",
+            "sector rotation"
+          ],
+          "score": 0.45,
+          "breakdown": {
+            "positive": 6,
+            "neutral": 2,
+            "negative": 4
+          }
+        },
+        "trends": {
+          "trending_topics": [
+            {
+              "topic": "Sensex",
+              "mentions": 11
+            },
+            {
+              "topic": "India",
+              "mentions": 11
+            },
+            {
+              "topic": "Stock",
+              "mentions": 9
+            },
+            {
+              "topic": "Nifty",
+              "mentions": 7
+            },
+            {
+              "topic": "Market",
+              "mentions": 5
+            },
+            {
+              "topic": "Indian",
+              "mentions": 5
+            },
+            {
+              "topic": "Dow",
+              "mentions": 4
+            },
+            {
+              "topic": "Trade",
+              "mentions": 4
+            },
+            {
+              "topic": "Deal",
+              "mentions": 4
+            },
+            {
+              "topic": "Focus",
+              "mentions": 4
+            }
+          ],
+          "total_articles": 15
+        },
+        "exported_file": "output/indian_stock_market_report_20260204_173155.json"
+      },
+      "errors": [],
+      "skipped": [],
+      "fallbacks_used": [],
+      "regenerated": [],
+      "success": true
+    }
+  },
+  {
+    "timestamp": "2026-02-04T17:40:10.744477",
+    "result": {
+      "intent": "Fetch and summarize the latest news about the Indian stock market today",
+      "domain": "Indian stock market",
+      "tools_executed": [
+        {
+          "tool": "news_fetcher",
+          "success": true,
+          "retries": 0,
+          "used_fallback": false,
+          "regenerated": false
+        },
+        {
+          "tool": "summarizer",
+          "success": true,
+          "retries": 0,
+          "used_fallback": false,
+          "regenerated": false
+        },
+        {
+          "tool": "exporter",
+          "success": true,
+          "retries": 0,
+          "used_fallback": false,
+          "regenerated": false
+        }
+      ],
+      "data": {
+        "news": [
+          {
+            "title": "S&P 500 tumbles nearly 1% as investors rotate out of tech, Dow slides more than 160 points: Live updates - CNBC",
+            "link": "https://news.google.com/rss/articles/CBMid0FVX3lxTE82S1M0OFFxSjNTQnRWT21VRGRUbzUxemRyYXNZdGZqdnF0dTE1bTJZMHZWOWFEZnNfN0VmWEZ0TlhwS09SVGVDRVRzTGhoS3ZfdlF2SnNTVUFxcFFJa1E2QmZERnBkMkg2WTA5SGZoLTMyQ2RJTTQ00gF8QVVfeXFMTm1SS1FGeVk1YmtNNkF2TUxCYk45XzJiYzFYSnN3S1dIZ0Fud3M2OG9uVjlpZzFuVnZrc05pMG9waXJmS1NCQ3VaaHJUSnY1MTFTLTJmNDhkRzV2cXVsQVFsOGR2WjluMHd2UkJ3bTFTdGExY2xNaERIVE1ZZw?oc=5",
+            "source": "rss",
+            "published": "Tue, 03 Feb 2026 21:14:24 GMT"
+          },
+          {
+            "title": "Stock market today: Nifty50 opens in red; BSE Sensex down over 250 points - Times of India",
+            "link": "https://news.google.com/rss/articles/CBMijAJBVV95cUxQd3piX2hRTmlCYkU0UzFCLTNqSWJjUHFYV192TEtEYWl4ZG14QmlMUDBJWVJLRG1XLTdXMzVqOHV1VDRRaV9TakZOMzF3cldHSV9oY0ZST1NsQjdfODh2Q3ZaaHdrUnBCLW1VSTFtQmFtb1UyU3NSaWxITS16RThTd3NEbHR3NnpiNkVMRDhBa3RiLThiNnQ0b1dDVE05OUZIZG9PdFJLMUJ2ZTlUbVhXX050YjQxUDJ4ejRUOUNGSFlSXzMwT2ZvcEx1aVJKY3h6WVJhZ05VZ3VXZWdGcjBOTjdVRzZhTDNGS3AtX0w0ZFNkR05EV09kRlVPVzl4MVZVd0gxX1hKZ3BTZF9h0gGSAkFVX3lxTFB2V1BOZEVoRVpqTlNuMHdLRUNTQ25Qa1lZb09XUENaZjBoZmQzYklzTDBtSHdST1hJMlJMY2FiN3FLbnN5ZlNnLUItQk44VVB5a1ZCcExSaE1GTHZhbE9URVBnMFhaaUxJX0xUa2pKdnJXd3dNNWE2VkVjaUFqeGJVSENJcDAwYzc3cWVyeTFRUlJ4YzY2YkJpeDIxV0pPQ1VtUWJRcXY0ZFhrbXNWUUNlZjZZaEp6b0RzSlNWNEc0UEdVUUJ6RTh3czVmdTI5Wi0yazJjSExBeUl3OVhMT0x3ZVozTEN0Q01BZmV0TmRRT3VqSEhMV3c2SGRPWkVIb1MyTW9vbkw3by1oMWV3TER1VlE?oc=5",
+            "source": "rss",
+            "published": "Wed, 04 Feb 2026 03:48:00 GMT"
+          },
+          {
+            "title": "Market Highlights: Sensex settles 78 pts higher, Nifty above 25,750; Trent, Eternal rise 5% each - The Economic Times",
+            "link": "https://news.google.com/rss/articles/CBMisAJBVV95cUxPamhnS0U5dmg0bGxCdzdHWGZ2a1loYWlxS0wtcnB4aENTRENzNEtIdUZJWi1uNlYtSWZiTW9ab3JuRVNrd1M1VmxDUFVxbm9PZjJ0WElPamZHY0o4Vkw5WEw5S0laM3Q1QTlndkF6M0NpakhyU1FBOE5HcENBLVhxVDdUUnN0OGtkRG82dXJkOURWZHJnRFN3Wk5acjhIUkpMUnY4SjVRSjc3Z1dUek5nRFVYY3gwdmlHTHNQVFVCS2lmdzVkUXF2U29hUFlFMW5hUEhFLU5UMldSdTNIeWVOYk9XNHA2ZEx4cUxNUXg5Qm9lWGdjaUpKM0RaMXRFSGNrNnAxN0F5QUVTNnp2X1BpLW5HQzVjei1KMllSNThrMGlybzhybUxzRG1KTnRpbkNT0gG2AkFVX3lxTE02c0VFUUFVdURGZFVaS1BLWllobndScGNTTVJ5WE0xM3FFSnlkTVZueVV2NEVRRjBsMUs1WHJSajNJWGw4NGR1SG1RVzRxRjVPN1pRUzJjaGxRUFpTYVJHeHJfb3RPaXJvZkkxWXVVMTZFMFItUEZDakNSNVdWNFFrSXByZk10ZmVPWm94eTRubUJ3Z0twa0xTZEcteVZUZG5rVWVIbUZvMmRoNlNFakpwSzdfYnAtN05UTkRFaWtzZ2tpdW1PWjNvQXZsUmVIMEdjMHYxcUJTandWSm8wXzlia09UMWRGU0tmR1NlWE9oSFhwVzZNUDFmTVZuM3Jfakp5NHo4YjM5TXZBYUFpUWpDMkJQOEYzcVQ1XzRQczVYY3p3bUJoV19LYjM2MnljS1FIaERPNmc?oc=5",
+            "source": "rss",
+            "published": "Wed, 04 Feb 2026 12:07:00 GMT"
+          },
+          {
+            "title": "Stock Market Today: Sensex, Nifty Clock Best One-Day Gains In Nine Months - NDTV Profit",
+            "link": "https://news.google.com/rss/articles/CBMikgJBVV95cUxNTHlmc0FhMk9qcmZwQnR2TjU4QkdoZThpV080bzFHMUJNZXBUWVFyNFpPeXF6eGtuV2pTcU1EZFRwbWxJd3RQNmhNV2R5ck1YbHkySjVVeGZtSmtvSkJXN1huOWpZWVNVTUZKUjQ5REZlZE14RnloelZwaWh6QWVFVmUtaWNod1o3QjlVZkdMM2lmOFhveE53Z2I2NHUxemM5VHE3NUs1UWpTa3JrWWVXTnJPNWxzRk5CNHYxSEFwME9TZDVreU9hTEZqUGpwRXVHcmFJWmNFWmZSWWx3ZXVqT2h4aU9SRWc5WnlKRFV1X3VSOTZRT3MxU1ptaVRBc0RaaW9tUy1wQk1UYndpaldaVkxR0gGaAkFVX3lxTFBrZnVNbnRIcDBMZmp0LUFDemVxZlE1YWRuTV9wa2dFRDRMbGFuTkZad3Q1UlE4c2F5MjFwUGRnMDg0a3J0bTQxU3l5aS1CX291ZWdCOVNIV2xxSWs4MnpLLV9hWUVxTjRTZmlkM0FaRjAtVWZpX2lsLU5wNm1fLWdHektzY0RqX0RyeUppUUpTWWZCSnJndXVBa3lINHRsNVBCS3pDdWFGZFdiMExlZmN2SHNxbEVaUFVTMmJ1dWJlMmZubUd1N2xValVpUWlYVTBHZkdEUk1vS2dDZVdQRUVWd2ZhNy1Hai1xQ1pKMVlFOXplWlNOamw3WWt0THQ2c042cng0ejlSdmtZTkd0QWt6aWt5TU9JaUFIUQ?oc=5",
+            "source": "rss",
+            "published": "Wed, 04 Feb 2026 08:58:37 GMT"
+          },
+          {
+            "title": "Stock market today: Dow, S&P 500, Nasdaq jump to kick off February as gold, silver, bitcoin remain volatile - Yahoo Finance",
+            "link": "https://news.google.com/rss/articles/CBMi5wFBVV95cUxQc0F4TE9UblcyRVIyTkVPQnJWZWtyTUgteHBtb2NGeDZPR1o4dE9FOFA4dUVlOEdmbW9VUTE3c0NJMUFFcW83d0N5LVQwVHYyODU2bXR3YzQ1NlZVVHJPQkhwcHUzcndOc0xrVFVqX0FubEd3NzBEWHJDY1hRUDBqcWF2azhFbnNWNFZWd2lvS3cwN0lnYlkzWmlVdmR6TTdRM1hNTEVwcVM1ZmZab29yUHk5ZHZ0NWdFR2FGNlZCeHdXSmg0UU9uRUk3d1BhbzVpcEZrOWExaVM3VjBzN0V2SFRkVFY3Rk0?oc=5",
+            "source": "rss",
+            "published": "Mon, 02 Feb 2026 21:06:10 GMT"
+          },
+          {
+            "title": "Investors' Wealth Swells By Rs 7 Lakh Crore As Bulls Grip Nifty, Sensex On India-US Trade Deal Announcement",
+            "link": "https://www.ndtvprofit.com/markets/stock-market-today-investors-wealth-swells-nearly-rs-7-lakh-crore-as-bulls-grip-nifty-sensex-on-india-us-trade-deal-announcement-10937766",
+            "source": "gnews",
+            "published": "2026-02-03T10:12:07Z"
+          },
+          {
+            "title": "Sensex jumps over 2,000 points, investors earn over \u20b912 lakh crore- 10 key highlights from Indian stock market today",
+            "link": "https://www.livemint.com/market/sensex-jumps-over-2-000-points-investors-earn-over-rs-12-lakh-crore-10-key-highlights-from-indian-stock-market-today-11770112329110.html",
+            "source": "gnews",
+            "published": "2026-02-03T10:06:14Z"
+          },
+          {
+            "title": "Here's Why Stock Market Is Up Today India-US Trade Deal",
+            "link": "https://www.ndtvprofit.com/markets/heres-why-stock-market-is-up-today-india-us-trade-deal-10935641",
+            "source": "gnews",
+            "published": "2026-02-03T04:17:26Z"
+          },
+          {
+            "title": "Stock Market Expected To Jump Big Today After India-US Trade Deal",
+            "link": "https://www.ndtv.com/india-news/markets-sensex-nifty-rupee-live-updates-stock-market-expected-to-jump-big-today-after-india-us-trade-deal-10935446",
+            "source": "gnews",
+            "published": "2026-02-03T03:28:27Z"
+          },
+          {
+            "title": "Stock Market in Focus: Trump\u2019s Tariff Slashed to 18%, India-US Trade Deal Sparks Dalal Street Rally; Sensex, Nifty Set for Gap-Up, Export Sectors and FPI Inflows in Focus",
+            "link": "https://www.newsx.com/business/stock-market-in-focus-trumps-tariff-slashed-to-18-indiaus-trade-deal-sparks-dalal-street-rally-sensex-nifty-set-for-gap-up-export-sectors-and-fpi-inflows-in-focus-158173/",
+            "source": "gnews",
+            "published": "2026-02-03T03:22:00Z"
+          },
+          {
+            "title": "Indian rupee and stocks soar in relief rally after US trade deal",
+            "link": "https://www.reuters.com/world/india/indian-rupee-stocks-soar-after-trade-deal-with-us-2026-02-03/",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "India's markets get tariff relief but not a buy yet",
+            "link": "https://www.reuters.com/world/india/indias-markets-get-tariff-relief-not-buy-yet-2026-02-04/",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "Indian shares pause after US trade-deal rally; IT stocks weigh",
+            "link": "https://www.reuters.com/world/india/indian-stocks-set-extend-gains-us-trade-deal-tech-sell-off-may-cap-upside-2026-02-04/",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "Stock Price, Quote and News",
+            "link": "https://www.cnbc.com/quotes/.NSEI",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "India's Nifty 50 closes 2.5% higher as long-awaited U.S. ...",
+            "link": "https://www.cnbc.com/2026/02/03/india-nifty-50-soars-india-us-trade-deal-trum-modi.html",
+            "source": "tavily",
+            "published": ""
+          }
+        ],
+        "summary": {
+          "summary": "The S&P 500 and Dow experienced declines due to investor rotation away from tech stocks, while Indian markets saw significant gains following the India-US trade deal announcement. Indian stock markets, particularly the Nifty50 and Sensex, saw substantial increases and volatility, with major gains reported. Investor wealth increased significantly in India due to positive market reactions to the trade deal.",
+          "key_points": [
+            "Market volatility and shifts in investor sentiment in global markets.",
+            "Significant gains and positive reactions in Indian markets following the India-US trade deal.",
+            "Volatility in precious metals and cryptocurrencies alongside stock market movements."
+          ]
+        },
+        "exported_file": "output/indian_stock_market_today_20260204_174010.json"
+      },
+      "errors": [],
+      "skipped": [],
+      "fallbacks_used": [],
+      "regenerated": [],
+      "success": true
+    }
+  },
+  {
+    "timestamp": "2026-02-04T19:12:23.958999",
+    "result": {
+      "intent": "Fetch and export the latest news about the Indian stock market today",
+      "domain": "Indian stock market",
+      "tools_executed": [
+        {
+          "tool": "news_fetcher",
+          "success": true,
+          "retries": 0,
+          "used_fallback": false,
+          "regenerated": false
+        },
+        {
+          "tool": "exporter",
+          "success": true,
+          "retries": 0,
+          "used_fallback": false,
+          "regenerated": false
+        }
+      ],
+      "data": {
+        "news": [
+          {
+            "title": "S&P 500 tumbles nearly 1% as investors rotate out of tech, Dow slides more than 160 points: Live updates - CNBC",
+            "link": "https://news.google.com/rss/articles/CBMid0FVX3lxTE82S1M0OFFxSjNTQnRWT21VRGRUbzUxemRyYXNZdGZqdnF0dTE1bTJZMHZWOWFEZnNfN0VmWEZ0TlhwS09SVGVDRVRzTGhoS3ZfdlF2SnNTVUFxcFFJa1E2QmZERnBkMkg2WTA5SGZoLTMyQ2RJTTQ00gF8QVVfeXFMTm1SS1FGeVk1YmtNNkF2TUxCYk45XzJiYzFYSnN3S1dIZ0Fud3M2OG9uVjlpZzFuVnZrc05pMG9waXJmS1NCQ3VaaHJUSnY1MTFTLTJmNDhkRzV2cXVsQVFsOGR2WjluMHd2UkJ3bTFTdGExY2xNaERIVE1ZZw?oc=5",
+            "source": "rss",
+            "published": "Tue, 03 Feb 2026 21:15:41 GMT"
+          },
+          {
+            "title": "Stock market today: Nifty50 opens in red; BSE Sensex down over 250 points - Times of India",
+            "link": "https://news.google.com/rss/articles/CBMijAJBVV95cUxQd3piX2hRTmlCYkU0UzFCLTNqSWJjUHFYV192TEtEYWl4ZG14QmlMUDBJWVJLRG1XLTdXMzVqOHV1VDRRaV9TakZOMzF3cldHSV9oY0ZST1NsQjdfODh2Q3ZaaHdrUnBCLW1VSTFtQmFtb1UyU3NSaWxITS16RThTd3NEbHR3NnpiNkVMRDhBa3RiLThiNnQ0b1dDVE05OUZIZG9PdFJLMUJ2ZTlUbVhXX050YjQxUDJ4ejRUOUNGSFlSXzMwT2ZvcEx1aVJKY3h6WVJhZ05VZ3VXZWdGcjBOTjdVRzZhTDNGS3AtX0w0ZFNkR05EV09kRlVPVzl4MVZVd0gxX1hKZ3BTZF9h0gGSAkFVX3lxTFB2V1BOZEVoRVpqTlNuMHdLRUNTQ25Qa1lZb09XUENaZjBoZmQzYklzTDBtSHdST1hJMlJMY2FiN3FLbnN5ZlNnLUItQk44VVB5a1ZCcExSaE1GTHZhbE9URVBnMFhaaUxJX0xUa2pKdnJXd3dNNWE2VkVjaUFqeGJVSENJcDAwYzc3cWVyeTFRUlJ4YzY2YkJpeDIxV0pPQ1VtUWJRcXY0ZFhrbXNWUUNlZjZZaEp6b0RzSlNWNEc0UEdVUUJ6RTh3czVmdTI5Wi0yazJjSExBeUl3OVhMT0x3ZVozTEN0Q01BZmV0TmRRT3VqSEhMV3c2SGRPWkVIb1MyTW9vbkw3by1oMWV3TER1VlE?oc=5",
+            "source": "rss",
+            "published": "Wed, 04 Feb 2026 03:48:00 GMT"
+          },
+          {
+            "title": "Market Highlights: Sensex settles 78 pts higher, Nifty above 25,750; Trent, Eternal rise 5% each - The Economic Times",
+            "link": "https://news.google.com/rss/articles/CBMisAJBVV95cUxPamhnS0U5dmg0bGxCdzdHWGZ2a1loYWlxS0wtcnB4aENTRENzNEtIdUZJWi1uNlYtSWZiTW9ab3JuRVNrd1M1VmxDUFVxbm9PZjJ0WElPamZHY0o4Vkw5WEw5S0laM3Q1QTlndkF6M0NpakhyU1FBOE5HcENBLVhxVDdUUnN0OGtkRG82dXJkOURWZHJnRFN3Wk5acjhIUkpMUnY4SjVRSjc3Z1dUek5nRFVYY3gwdmlHTHNQVFVCS2lmdzVkUXF2U29hUFlFMW5hUEhFLU5UMldSdTNIeWVOYk9XNHA2ZEx4cUxNUXg5Qm9lWGdjaUpKM0RaMXRFSGNrNnAxN0F5QUVTNnp2X1BpLW5HQzVjei1KMllSNThrMGlybzhybUxzRG1KTnRpbkNT0gG2AkFVX3lxTE02c0VFUUFVdURGZFVaS1BLWllobndScGNTTVJ5WE0xM3FFSnlkTVZueVV2NEVRRjBsMUs1WHJSajNJWGw4NGR1SG1RVzRxRjVPN1pRUzJjaGxRUFpTYVJHeHJfb3RPaXJvZkkxWXVVMTZFMFItUEZDakNSNVdWNFFrSXByZk10ZmVPWm94eTRubUJ3Z0twa0xTZEcteVZUZG5rVWVIbUZvMmRoNlNFakpwSzdfYnAtN05UTkRFaWtzZ2tpdW1PWjNvQXZsUmVIMEdjMHYxcUJTandWSm8wXzlia09UMWRGU0tmR1NlWE9oSFhwVzZNUDFmTVZuM3Jfakp5NHo4YjM5TXZBYUFpUWpDMkJQOEYzcVQ1XzRQczVYY3p3bUJoV19LYjM2MnljS1FIaERPNmc?oc=5",
+            "source": "rss",
+            "published": "Wed, 04 Feb 2026 13:13:00 GMT"
+          },
+          {
+            "title": "Stock market today: Dow, S&P 500, Nasdaq jump to kick off February as gold, silver, bitcoin remain volatile - Yahoo Finance",
+            "link": "https://news.google.com/rss/articles/CBMi5wFBVV95cUxQc0F4TE9UblcyRVIyTkVPQnJWZWtyTUgteHBtb2NGeDZPR1o4dE9FOFA4dUVlOEdmbW9VUTE3c0NJMUFFcW83d0N5LVQwVHYyODU2bXR3YzQ1NlZVVHJPQkhwcHUzcndOc0xrVFVqX0FubEd3NzBEWHJDY1hRUDBqcWF2azhFbnNWNFZWd2lvS3cwN0lnYlkzWmlVdmR6TTdRM1hNTEVwcVM1ZmZab29yUHk5ZHZ0NWdFR2FGNlZCeHdXSmg0UU9uRUk3d1BhbzVpcEZrOWExaVM3VjBzN0V2SFRkVFY3Rk0?oc=5",
+            "source": "rss",
+            "published": "Mon, 02 Feb 2026 21:06:10 GMT"
+          },
+          {
+            "title": "Stock Market Today: Sensex, Nifty Clock Best One-Day Gains In Nine Months - NDTV Profit",
+            "link": "https://news.google.com/rss/articles/CBMikgJBVV95cUxNTHlmc0FhMk9qcmZwQnR2TjU4QkdoZThpV080bzFHMUJNZXBUWVFyNFpPeXF6eGtuV2pTcU1EZFRwbWxJd3RQNmhNV2R5ck1YbHkySjVVeGZtSmtvSkJXN1huOWpZWVNVTUZKUjQ5REZlZE14RnloelZwaWh6QWVFVmUtaWNod1o3QjlVZkdMM2lmOFhveE53Z2I2NHUxemM5VHE3NUs1UWpTa3JrWWVXTnJPNWxzRk5CNHYxSEFwME9TZDVreU9hTEZqUGpwRXVHcmFJWmNFWmZSWWx3ZXVqT2h4aU9SRWc5WnlKRFV1X3VSOTZRT3MxU1ptaVRBc0RaaW9tUy1wQk1UYndpaldaVkxR0gGaAkFVX3lxTFBrZnVNbnRIcDBMZmp0LUFDemVxZlE1YWRuTV9wa2dFRDRMbGFuTkZad3Q1UlE4c2F5MjFwUGRnMDg0a3J0bTQxU3l5aS1CX291ZWdCOVNIV2xxSWs4MnpLLV9hWUVxTjRTZmlkM0FaRjAtVWZpX2lsLU5wNm1fLWdHektzY0RqX0RyeUppUUpTWWZCSnJndXVBa3lINHRsNVBCS3pDdWFGZFdiMExlZmN2SHNxbEVaUFVTMmJ1dWJlMmZubUd1N2xValVpUWlYVTBHZkdEUk1vS2dDZVdQRUVWd2ZhNy1Hai1xQ1pKMVlFOXplWlNOamw3WWt0THQ2c042cng0ejlSdmtZTkd0QWt6aWt5TU9JaUFIUQ?oc=5",
+            "source": "rss",
+            "published": "Wed, 04 Feb 2026 08:58:37 GMT"
+          },
+          {
+            "title": "Investors' Wealth Swells By Rs 7 Lakh Crore As Bulls Grip Nifty, Sensex On India-US Trade Deal Announcement",
+            "link": "https://www.ndtvprofit.com/markets/stock-market-today-investors-wealth-swells-nearly-rs-7-lakh-crore-as-bulls-grip-nifty-sensex-on-india-us-trade-deal-announcement-10937766",
+            "source": "gnews",
+            "published": "2026-02-03T10:12:07Z"
+          },
+          {
+            "title": "Sensex jumps over 2,000 points, investors earn over \u20b912 lakh crore- 10 key highlights from Indian stock market today",
+            "link": "https://www.livemint.com/market/sensex-jumps-over-2-000-points-investors-earn-over-rs-12-lakh-crore-10-key-highlights-from-indian-stock-market-today-11770112329110.html",
+            "source": "gnews",
+            "published": "2026-02-03T10:06:14Z"
+          },
+          {
+            "title": "Here's Why Stock Market Is Up Today India-US Trade Deal",
+            "link": "https://www.ndtvprofit.com/markets/heres-why-stock-market-is-up-today-india-us-trade-deal-10935641",
+            "source": "gnews",
+            "published": "2026-02-03T04:17:26Z"
+          },
+          {
+            "title": "Stock Market Expected To Jump Big Today After India-US Trade Deal",
+            "link": "https://www.ndtv.com/india-news/markets-sensex-nifty-rupee-live-updates-stock-market-expected-to-jump-big-today-after-india-us-trade-deal-10935446",
+            "source": "gnews",
+            "published": "2026-02-03T03:28:27Z"
+          },
+          {
+            "title": "Stock Market in Focus: Trump\u2019s Tariff Slashed to 18%, India-US Trade Deal Sparks Dalal Street Rally; Sensex, Nifty Set for Gap-Up, Export Sectors and FPI Inflows in Focus",
+            "link": "https://www.newsx.com/business/stock-market-in-focus-trumps-tariff-slashed-to-18-indiaus-trade-deal-sparks-dalal-street-rally-sensex-nifty-set-for-gap-up-export-sectors-and-fpi-inflows-in-focus-158173/",
+            "source": "gnews",
+            "published": "2026-02-03T03:22:00Z"
+          },
+          {
+            "title": "India's Nifty 50 closes 2.5% higher as long-awaited U.S. ...",
+            "link": "https://www.cnbc.com/2026/02/03/india-nifty-50-soars-india-us-trade-deal-trum-modi.html",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "Asia markets live: Stocks mostly rise",
+            "link": "https://www.cnbc.com/2025/04/15/asia-markets-live-updates.html",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "Japan stocks jump over 3% to record high as Asia markets ...",
+            "link": "https://www.cnbc.com/2026/02/03/asia-pacific-markets-nifty-50-kospi-nikkei-225-india-trade-deal.html",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "Asia stock markets today: live updates",
+            "link": "https://www.cnbc.com/2025/08/08/asia-stock-markets-today-live-updates-nikkei-225-asx-200-kospi-hang-seng-csi-300-sensex-nifty-50.html",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "India's markets get tariff relief but not a buy yet",
+            "link": "https://www.reuters.com/world/india/indias-markets-get-tariff-relief-not-buy-yet-2026-02-04/",
+            "source": "tavily",
+            "published": ""
+          }
+        ],
+        "exported_file": "output/Indian_stock_market_today_20260204_191223.json"
+      },
+      "errors": [],
+      "skipped": [],
+      "fallbacks_used": [],
+      "regenerated": [],
+      "success": true
+    }
+  },
+  {
+    "timestamp": "2026-02-04T19:26:21.584179",
+    "result": {
+      "intent": "Fetch and export the latest news about the Indian stock market today",
+      "domain": "Indian stock market",
+      "tools_executed": [
+        {
+          "tool": "news_fetcher",
+          "success": true,
+          "retries": 0,
+          "used_fallback": false,
+          "regenerated": false
+        },
+        {
+          "tool": "exporter",
+          "success": true,
+          "retries": 0,
+          "used_fallback": false,
+          "regenerated": false
+        }
+      ],
+      "data": {
+        "news": [
+          {
+            "title": "S&P 500 tumbles nearly 1% as investors rotate out of tech, Dow slides more than 160 points: Live updates - CNBC",
+            "link": "https://news.google.com/rss/articles/CBMid0FVX3lxTE82S1M0OFFxSjNTQnRWT21VRGRUbzUxemRyYXNZdGZqdnF0dTE1bTJZMHZWOWFEZnNfN0VmWEZ0TlhwS09SVGVDRVRzTGhoS3ZfdlF2SnNTVUFxcFFJa1E2QmZERnBkMkg2WTA5SGZoLTMyQ2RJTTQ00gF8QVVfeXFMTm1SS1FGeVk1YmtNNkF2TUxCYk45XzJiYzFYSnN3S1dIZ0Fud3M2OG9uVjlpZzFuVnZrc05pMG9waXJmS1NCQ3VaaHJUSnY1MTFTLTJmNDhkRzV2cXVsQVFsOGR2WjluMHd2UkJ3bTFTdGExY2xNaERIVE1ZZw?oc=5",
+            "source": "rss",
+            "published": "Tue, 03 Feb 2026 21:15:41 GMT"
+          },
+          {
+            "title": "Stock market today: Nifty50 opens in red; BSE Sensex down over 250 points - Times of India",
+            "link": "https://news.google.com/rss/articles/CBMijAJBVV95cUxQd3piX2hRTmlCYkU0UzFCLTNqSWJjUHFYV192TEtEYWl4ZG14QmlMUDBJWVJLRG1XLTdXMzVqOHV1VDRRaV9TakZOMzF3cldHSV9oY0ZST1NsQjdfODh2Q3ZaaHdrUnBCLW1VSTFtQmFtb1UyU3NSaWxITS16RThTd3NEbHR3NnpiNkVMRDhBa3RiLThiNnQ0b1dDVE05OUZIZG9PdFJLMUJ2ZTlUbVhXX050YjQxUDJ4ejRUOUNGSFlSXzMwT2ZvcEx1aVJKY3h6WVJhZ05VZ3VXZWdGcjBOTjdVRzZhTDNGS3AtX0w0ZFNkR05EV09kRlVPVzl4MVZVd0gxX1hKZ3BTZF9h0gGSAkFVX3lxTFB2V1BOZEVoRVpqTlNuMHdLRUNTQ25Qa1lZb09XUENaZjBoZmQzYklzTDBtSHdST1hJMlJMY2FiN3FLbnN5ZlNnLUItQk44VVB5a1ZCcExSaE1GTHZhbE9URVBnMFhaaUxJX0xUa2pKdnJXd3dNNWE2VkVjaUFqeGJVSENJcDAwYzc3cWVyeTFRUlJ4YzY2YkJpeDIxV0pPQ1VtUWJRcXY0ZFhrbXNWUUNlZjZZaEp6b0RzSlNWNEc0UEdVUUJ6RTh3czVmdTI5Wi0yazJjSExBeUl3OVhMT0x3ZVozTEN0Q01BZmV0TmRRT3VqSEhMV3c2SGRPWkVIb1MyTW9vbkw3by1oMWV3TER1VlE?oc=5",
+            "source": "rss",
+            "published": "Wed, 04 Feb 2026 03:48:00 GMT"
+          },
+          {
+            "title": "Market Highlights: Sensex settles 78 pts higher, Nifty above 25,750; Trent, Eternal rise 5% each - The Economic Times",
+            "link": "https://news.google.com/rss/articles/CBMisAJBVV95cUxPamhnS0U5dmg0bGxCdzdHWGZ2a1loYWlxS0wtcnB4aENTRENzNEtIdUZJWi1uNlYtSWZiTW9ab3JuRVNrd1M1VmxDUFVxbm9PZjJ0WElPamZHY0o4Vkw5WEw5S0laM3Q1QTlndkF6M0NpakhyU1FBOE5HcENBLVhxVDdUUnN0OGtkRG82dXJkOURWZHJnRFN3Wk5acjhIUkpMUnY4SjVRSjc3Z1dUek5nRFVYY3gwdmlHTHNQVFVCS2lmdzVkUXF2U29hUFlFMW5hUEhFLU5UMldSdTNIeWVOYk9XNHA2ZEx4cUxNUXg5Qm9lWGdjaUpKM0RaMXRFSGNrNnAxN0F5QUVTNnp2X1BpLW5HQzVjei1KMllSNThrMGlybzhybUxzRG1KTnRpbkNT0gG2AkFVX3lxTE02c0VFUUFVdURGZFVaS1BLWllobndScGNTTVJ5WE0xM3FFSnlkTVZueVV2NEVRRjBsMUs1WHJSajNJWGw4NGR1SG1RVzRxRjVPN1pRUzJjaGxRUFpTYVJHeHJfb3RPaXJvZkkxWXVVMTZFMFItUEZDakNSNVdWNFFrSXByZk10ZmVPWm94eTRubUJ3Z0twa0xTZEcteVZUZG5rVWVIbUZvMmRoNlNFakpwSzdfYnAtN05UTkRFaWtzZ2tpdW1PWjNvQXZsUmVIMEdjMHYxcUJTandWSm8wXzlia09UMWRGU0tmR1NlWE9oSFhwVzZNUDFmTVZuM3Jfakp5NHo4YjM5TXZBYUFpUWpDMkJQOEYzcVQ1XzRQczVYY3p3bUJoV19LYjM2MnljS1FIaERPNmc?oc=5",
+            "source": "rss",
+            "published": "Wed, 04 Feb 2026 13:45:24 GMT"
+          },
+          {
+            "title": "Stock market today: Dow, S&P 500, Nasdaq jump to kick off February as gold, silver, bitcoin remain volatile - Yahoo Finance",
+            "link": "https://news.google.com/rss/articles/CBMi5wFBVV95cUxQc0F4TE9UblcyRVIyTkVPQnJWZWtyTUgteHBtb2NGeDZPR1o4dE9FOFA4dUVlOEdmbW9VUTE3c0NJMUFFcW83d0N5LVQwVHYyODU2bXR3YzQ1NlZVVHJPQkhwcHUzcndOc0xrVFVqX0FubEd3NzBEWHJDY1hRUDBqcWF2azhFbnNWNFZWd2lvS3cwN0lnYlkzWmlVdmR6TTdRM1hNTEVwcVM1ZmZab29yUHk5ZHZ0NWdFR2FGNlZCeHdXSmg0UU9uRUk3d1BhbzVpcEZrOWExaVM3VjBzN0V2SFRkVFY3Rk0?oc=5",
+            "source": "rss",
+            "published": "Mon, 02 Feb 2026 21:06:10 GMT"
+          },
+          {
+            "title": "Stock Market Today: Sensex, Nifty Clock Best One-Day Gains In Nine Months - NDTV Profit",
+            "link": "https://news.google.com/rss/articles/CBMikgJBVV95cUxNTHlmc0FhMk9qcmZwQnR2TjU4QkdoZThpV080bzFHMUJNZXBUWVFyNFpPeXF6eGtuV2pTcU1EZFRwbWxJd3RQNmhNV2R5ck1YbHkySjVVeGZtSmtvSkJXN1huOWpZWVNVTUZKUjQ5REZlZE14RnloelZwaWh6QWVFVmUtaWNod1o3QjlVZkdMM2lmOFhveE53Z2I2NHUxemM5VHE3NUs1UWpTa3JrWWVXTnJPNWxzRk5CNHYxSEFwME9TZDVreU9hTEZqUGpwRXVHcmFJWmNFWmZSWWx3ZXVqT2h4aU9SRWc5WnlKRFV1X3VSOTZRT3MxU1ptaVRBc0RaaW9tUy1wQk1UYndpaldaVkxR0gGaAkFVX3lxTFBrZnVNbnRIcDBMZmp0LUFDemVxZlE1YWRuTV9wa2dFRDRMbGFuTkZad3Q1UlE4c2F5MjFwUGRnMDg0a3J0bTQxU3l5aS1CX291ZWdCOVNIV2xxSWs4MnpLLV9hWUVxTjRTZmlkM0FaRjAtVWZpX2lsLU5wNm1fLWdHektzY0RqX0RyeUppUUpTWWZCSnJndXVBa3lINHRsNVBCS3pDdWFGZFdiMExlZmN2SHNxbEVaUFVTMmJ1dWJlMmZubUd1N2xValVpUWlYVTBHZkdEUk1vS2dDZVdQRUVWd2ZhNy1Hai1xQ1pKMVlFOXplWlNOamw3WWt0THQ2c042cng0ejlSdmtZTkd0QWt6aWt5TU9JaUFIUQ?oc=5",
+            "source": "rss",
+            "published": "Wed, 04 Feb 2026 08:58:37 GMT"
+          },
+          {
+            "title": "Nifty 50, Sensex today: What to expect from Indian stock market in trade on February 4",
+            "link": "https://www.livemint.com/market/stock-market-news/nifty-50-sensex-today-what-to-expect-from-indian-stock-market-in-trade-on-february-4-11770137046970.html",
+            "source": "gnews",
+            "published": "2026-02-04T01:50:54Z"
+          },
+          {
+            "title": "Investors' Wealth Swells By Rs 7 Lakh Crore As Bulls Grip Nifty, Sensex On India-US Trade Deal Announcement",
+            "link": "https://www.ndtvprofit.com/markets/stock-market-today-investors-wealth-swells-nearly-rs-7-lakh-crore-as-bulls-grip-nifty-sensex-on-india-us-trade-deal-announcement-10937766",
+            "source": "gnews",
+            "published": "2026-02-03T10:12:07Z"
+          },
+          {
+            "title": "Sensex jumps over 2,000 points, investors earn over \u20b912 lakh crore- 10 key highlights from Indian stock market today",
+            "link": "https://www.livemint.com/market/sensex-jumps-over-2-000-points-investors-earn-over-rs-12-lakh-crore-10-key-highlights-from-indian-stock-market-today-11770112329110.html",
+            "source": "gnews",
+            "published": "2026-02-03T10:06:14Z"
+          },
+          {
+            "title": "Here's Why Stock Market Is Up Today India-US Trade Deal",
+            "link": "https://www.ndtvprofit.com/markets/heres-why-stock-market-is-up-today-india-us-trade-deal-10935641",
+            "source": "gnews",
+            "published": "2026-02-03T04:17:26Z"
+          },
+          {
+            "title": "Stock Market Expected To Jump Big Today After India-US Trade Deal",
+            "link": "https://www.ndtv.com/india-news/markets-sensex-nifty-rupee-live-updates-stock-market-expected-to-jump-big-today-after-india-us-trade-deal-10935446",
+            "source": "gnews",
+            "published": "2026-02-03T03:28:27Z"
+          },
+          {
+            "title": "Indian shares post modest gains as IT selloff tempers US ...",
+            "link": "https://www.reuters.com/world/india/indian-stocks-set-extend-gains-us-trade-deal-tech-sell-off-may-cap-upside-2026-02-04/",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "Indian shares notch best day in 9 months as Reliance ...",
+            "link": "https://www.reuters.com/world/india/indian-shares-set-gap-up-open-after-us-trade-deal-2026-02-03/",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "India's markets get tariff relief but not a buy yet",
+            "link": "https://www.reuters.com/world/india/indias-markets-get-tariff-relief-not-buy-yet-2026-02-04/",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "Stock Price, Quote and News",
+            "link": "https://www.cnbc.com/quotes/.NSEI",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "Breaking Stock Market News",
+            "link": "https://www.reuters.com/markets/stocks/",
+            "source": "tavily",
+            "published": ""
+          }
+        ],
+        "exported_file": "output/indian_stock_market_today_20260204_192621.json"
+      },
+      "errors": [],
+      "skipped": [],
+      "fallbacks_used": [],
+      "regenerated": [],
+      "success": true
+    }
   }
 ]
 ```
@@ -7835,12 +9015,31 @@ class CommandResponse(BaseModel):
 ## 📄 .\app\tools\exporter.py
 
 ```py
-"""Multi-format data exporter V2 - JSON, Markdown, CSV with Intelligence format."""
+"""Multi-format data exporter V3 - JSON, Markdown, CSV, Word, PDF with Intelligence format."""
 import json
 import os
 import csv
 from datetime import datetime
 from typing import Dict, Any
+
+# Optional imports for Word and PDF
+try:
+    from docx import Document
+    from docx.shared import Inches, Pt, RGBColor
+    from docx.enum.text import WD_PARAGRAPH_ALIGNMENT
+    HAS_DOCX = True
+except ImportError:
+    HAS_DOCX = False
+
+try:
+    from reportlab.lib import colors
+    from reportlab.lib.pagesizes import A4
+    from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
+    from reportlab.lib.units import inch
+    from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, Table, TableStyle
+    HAS_PDF = True
+except ImportError:
+    HAS_PDF = False
 
 
 OUTPUT_DIR = "output"
@@ -7857,7 +9056,7 @@ def export_data(
     Args:
         data: Dict with news, summary, sentiment, trends
         filename: Base filename (without extension)
-        format: 'json', 'markdown', or 'csv'
+        format: 'json', 'markdown', 'csv', 'docx', or 'pdf'
     
     Returns:
         Path to saved file
@@ -7869,6 +9068,10 @@ def export_data(
         return _export_markdown(data, filename, timestamp)
     elif format == "csv":
         return _export_csv(data, filename, timestamp)
+    elif format == "docx":
+        return _export_docx(data, filename, timestamp)
+    elif format == "pdf":
+        return _export_pdf(data, filename, timestamp)
     else:
         return _export_json(data, filename, timestamp)
 
@@ -7992,6 +9195,213 @@ def _export_csv(data: Dict, filename: str, timestamp: str) -> str:
         writer.writeheader()
         writer.writerows(news)
     return path
+
+
+def _export_docx(data: Dict, filename: str, timestamp: str) -> str:
+    """Export as formatted Word document."""
+    path = f"{OUTPUT_DIR}/{filename}_{timestamp}.docx"
+    
+    if not HAS_DOCX:
+        # Fallback to markdown if docx not installed
+        return _export_markdown(data, filename, timestamp)
+    
+    doc = Document()
+    
+    # Title
+    title = doc.add_heading('Nova Intelligence Report', 0)
+    title.alignment = WD_PARAGRAPH_ALIGNMENT.CENTER
+    
+    doc.add_paragraph(f"Generated: {timestamp}")
+    doc.add_paragraph("─" * 50)
+    
+    # Executive Summary
+    if "summary" in data and data["summary"]:
+        s = data["summary"]
+        doc.add_heading('Executive Summary', level=1)
+        summary_text = s.get("summary", str(s)) if isinstance(s, dict) else str(s)
+        doc.add_paragraph(summary_text)
+        
+        if isinstance(s, dict) and s.get("key_points"):
+            doc.add_paragraph("Key Takeaways:", style='Intense Quote')
+            for point in s.get("key_points", []):
+                doc.add_paragraph(f"• {point}", style='List Bullet')
+    
+    # Sentiment Intelligence
+    if "sentiment" in data and data["sentiment"]:
+        s = data["sentiment"]
+        doc.add_heading('Sentiment Intelligence', level=1)
+        
+        mood = s.get("mood_label", s.get("overall", "N/A"))
+        direction = s.get("direction", "stable")
+        
+        p = doc.add_paragraph()
+        p.add_run("Mood: ").bold = True
+        p.add_run(str(mood))
+        
+        p = doc.add_paragraph()
+        p.add_run("Direction: ").bold = True
+        p.add_run(direction.capitalize())
+        
+        # Market table
+        table = doc.add_table(rows=5, cols=2)
+        table.style = 'Table Grid'
+        cells = [
+            ("Indicator", "Value"),
+            ("Momentum", s.get("momentum_strength", "moderate").capitalize()),
+            ("Market Bias", s.get("market_bias", "balanced").capitalize()),
+            ("Confidence", s.get("confidence", "medium").capitalize()),
+            ("Risk Level", s.get("risk_level", "low").capitalize()),
+        ]
+        for i, (col1, col2) in enumerate(cells):
+            table.rows[i].cells[0].text = col1
+            table.rows[i].cells[1].text = col2
+        
+        if s.get("reasoning"):
+            doc.add_paragraph()
+            p = doc.add_paragraph()
+            p.add_run("Analyst View: ").bold = True
+            p.add_run(s.get("reasoning"))
+        
+        if s.get("positive_signals"):
+            doc.add_paragraph("Bullish Signals:", style='Intense Quote')
+            for sig in s.get("positive_signals", []):
+                doc.add_paragraph(f"✓ {sig}", style='List Bullet')
+        
+        if s.get("negative_signals"):
+            doc.add_paragraph("Risk Signals:", style='Intense Quote')
+            for sig in s.get("negative_signals", []):
+                doc.add_paragraph(f"⚠ {sig}", style='List Bullet')
+    
+    # Trends
+    if "trends" in data and data["trends"]:
+        t = data["trends"]
+        if t.get("trending_topics"):
+            doc.add_heading('Trending Topics', level=1)
+            table = doc.add_table(rows=len(t["trending_topics"][:8]) + 1, cols=2)
+            table.style = 'Table Grid'
+            table.rows[0].cells[0].text = "Topic"
+            table.rows[0].cells[1].text = "Mentions"
+            for i, topic in enumerate(t["trending_topics"][:8], 1):
+                table.rows[i].cells[0].text = topic.get("topic", "")
+                table.rows[i].cells[1].text = str(topic.get("mentions", 0))
+    
+    # News Articles
+    if "news" in data and data["news"]:
+        doc.add_heading('Source Articles', level=1)
+        for i, item in enumerate(data["news"][:10], 1):
+            p = doc.add_paragraph()
+            p.add_run(f"{i}. {item.get('title', 'No title')}").bold = True
+            doc.add_paragraph(f"   Source: {item.get('source', 'unknown').upper()}")
+            doc.add_paragraph(f"   Link: {item.get('link', '#')}")
+    
+    # Footer
+    doc.add_paragraph("─" * 50)
+    doc.add_paragraph("Report generated by Nova Intelligence Agent")
+    
+    doc.save(path)
+    return path
+
+
+def _export_pdf(data: Dict, filename: str, timestamp: str) -> str:
+    """Export as formatted PDF document."""
+    path = f"{OUTPUT_DIR}/{filename}_{timestamp}.pdf"
+    
+    if not HAS_PDF:
+        # Fallback to markdown if reportlab not installed
+        return _export_markdown(data, filename, timestamp)
+    
+    doc = SimpleDocTemplate(path, pagesize=A4, rightMargin=72, leftMargin=72, topMargin=72, bottomMargin=18)
+    styles = getSampleStyleSheet()
+    story = []
+    
+    # Custom styles
+    title_style = ParagraphStyle('Title', parent=styles['Heading1'], fontSize=24, spaceAfter=20, alignment=1)
+    heading_style = ParagraphStyle('H2', parent=styles['Heading2'], fontSize=16, spaceAfter=12, textColor=colors.HexColor('#6366f1'))
+    body_style = ParagraphStyle('Body', parent=styles['Normal'], fontSize=11, spaceAfter=8)
+    
+    # Title
+    story.append(Paragraph("Nova Intelligence Report", title_style))
+    story.append(Paragraph(f"Generated: {timestamp}", styles['Normal']))
+    story.append(Spacer(1, 20))
+    
+    # Executive Summary
+    if "summary" in data and data["summary"]:
+        s = data["summary"]
+        story.append(Paragraph("Executive Summary", heading_style))
+        summary_text = s.get("summary", str(s)) if isinstance(s, dict) else str(s)
+        story.append(Paragraph(summary_text, body_style))
+        story.append(Spacer(1, 12))
+    
+    # Sentiment Intelligence
+    if "sentiment" in data and data["sentiment"]:
+        s = data["sentiment"]
+        story.append(Paragraph("Sentiment Intelligence", heading_style))
+        
+        mood = s.get("mood_label", s.get("overall", "N/A"))
+        direction = s.get("direction", "stable")
+        
+        story.append(Paragraph(f"<b>Mood:</b> {mood}", body_style))
+        story.append(Paragraph(f"<b>Direction:</b> {direction.capitalize()}", body_style))
+        
+        # Market table
+        table_data = [
+            ["Indicator", "Value"],
+            ["Momentum", s.get("momentum_strength", "moderate").capitalize()],
+            ["Market Bias", s.get("market_bias", "balanced").capitalize()],
+            ["Confidence", s.get("confidence", "medium").capitalize()],
+            ["Risk Level", s.get("risk_level", "low").capitalize()],
+        ]
+        t = Table(table_data, colWidths=[2*inch, 2*inch])
+        t.setStyle(TableStyle([
+            ('BACKGROUND', (0, 0), (-1, 0), colors.HexColor('#6366f1')),
+            ('TEXTCOLOR', (0, 0), (-1, 0), colors.white),
+            ('ALIGN', (0, 0), (-1, -1), 'LEFT'),
+            ('FONTNAME', (0, 0), (-1, 0), 'Helvetica-Bold'),
+            ('FONTSIZE', (0, 0), (-1, -1), 10),
+            ('BOTTOMPADDING', (0, 0), (-1, 0), 8),
+            ('BACKGROUND', (0, 1), (-1, -1), colors.HexColor('#f3f4f6')),
+            ('GRID', (0, 0), (-1, -1), 1, colors.HexColor('#e5e7eb')),
+        ]))
+        story.append(t)
+        story.append(Spacer(1, 12))
+        
+        if s.get("reasoning"):
+            story.append(Paragraph(f"<b>Analyst View:</b> {s.get('reasoning')}", body_style))
+    
+    # Trends
+    if "trends" in data and data["trends"]:
+        t = data["trends"]
+        if t.get("trending_topics"):
+            story.append(Paragraph("Trending Topics", heading_style))
+            table_data = [["Topic", "Mentions"]]
+            for topic in t["trending_topics"][:8]:
+                table_data.append([topic.get("topic", ""), str(topic.get("mentions", 0))])
+            
+            trend_table = Table(table_data, colWidths=[3*inch, 1*inch])
+            trend_table.setStyle(TableStyle([
+                ('BACKGROUND', (0, 0), (-1, 0), colors.HexColor('#10b981')),
+                ('TEXTCOLOR', (0, 0), (-1, 0), colors.white),
+                ('ALIGN', (0, 0), (-1, -1), 'LEFT'),
+                ('FONTNAME', (0, 0), (-1, 0), 'Helvetica-Bold'),
+                ('GRID', (0, 0), (-1, -1), 1, colors.HexColor('#e5e7eb')),
+            ]))
+            story.append(trend_table)
+            story.append(Spacer(1, 12))
+    
+    # News Articles
+    if "news" in data and data["news"]:
+        story.append(Paragraph("Source Articles", heading_style))
+        for i, item in enumerate(data["news"][:10], 1):
+            story.append(Paragraph(f"<b>{i}. {item.get('title', 'No title')}</b>", body_style))
+            story.append(Paragraph(f"Source: {item.get('source', 'unknown').upper()}", styles['Normal']))
+    
+    # Footer
+    story.append(Spacer(1, 30))
+    story.append(Paragraph("Report generated by Nova Intelligence Agent", styles['Normal']))
+    
+    doc.build(story)
+    return path
+
 
 ```
 
@@ -8941,9 +10351,12 @@ const features = {
     news: true,
     summary: false,
     sentiment: false,
-    trends: false,
-    export: true
+    trends: false
 };
+
+// Last result data for download
+let lastResultData = null;
+let lastExecutionMeta = null;
 
 // Search history (persisted to localStorage)
 const MAX_HISTORY = 10;
@@ -9130,14 +10543,24 @@ function buildCommand(topic) {
 
 async function sendCommand(topic) {
     const fullCommand = buildCommand(topic);
-    setStatus('⏳ Processing with Nova...', 'loading');
     sendBtn.disabled = true;
     clearResults();
 
     // Save to history
     saveToHistory(topic);
 
+    // Build expected steps based on toggles
+    const steps = buildExpectedSteps();
+
+    // Show execution pipeline overlay
+    showExecutionPipeline(steps, topic);
+
+    const startTime = Date.now();
+
     try {
+        // Simulate step progression (news_fetcher always first)
+        await simulateStepProgress(steps, 0, 'news_fetcher');
+
         const response = await fetch(`${API_BASE}/command`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -9149,29 +10572,380 @@ async function sendCommand(topic) {
         }
 
         const data = await response.json();
+
+        // Mark all steps complete based on actual result
+        await markStepsFromResult(steps, data.result);
+
+        // Show summary
+        const elapsed = ((Date.now() - startTime) / 1000).toFixed(1);
+        showExecutionSummary(steps, elapsed, data.result?.errors?.length || 0);
+
+        // Wait a bit then hide overlay and show results
+        await delay(1500);
+        hideExecutionPipeline();
+
         displayResults(data);
         setStatus('✅ Intelligence report ready!', 'success');
 
     } catch (error) {
         console.error('API error:', error);
+        markStepFailed(steps, 0);
+        await delay(1000);
+        hideExecutionPipeline();
         setStatus(`❌ Error: ${error.message}`, 'error');
     } finally {
         sendBtn.disabled = false;
     }
 }
 
+// Build expected steps based on current feature toggles
+function buildExpectedSteps() {
+    const steps = [
+        { id: 'news_fetcher', name: 'Fetching News', icon: '📰', status: 'pending' }
+    ];
+
+    if (features.summary) {
+        steps.push({ id: 'summarizer', name: 'Generating Summary', icon: '🧠', status: 'pending' });
+    }
+    if (features.sentiment) {
+        steps.push({ id: 'sentiment', name: 'Sentiment Analysis', icon: '💭', status: 'pending' });
+    }
+    if (features.trends) {
+        steps.push({ id: 'trends', name: 'Trend Extraction', icon: '📊', status: 'pending' });
+    }
+    if (features.export) {
+        steps.push({ id: 'exporter', name: 'Export Report', icon: '💾', status: 'pending' });
+    }
+
+    return steps;
+}
+
+// Show the execution pipeline overlay
+function showExecutionPipeline(steps, topic) {
+    const overlay = document.getElementById('executionOverlay');
+    const pipelineSteps = document.getElementById('pipelineSteps');
+    const strategy = document.getElementById('executionStrategy');
+    const summary = document.getElementById('executionSummary');
+
+    // Set strategy text
+    const toolNames = steps.map(s => s.name.toLowerCase()).join(' → ');
+    strategy.textContent = `Agent Strategy: ${toolNames}`;
+
+    // Hide summary
+    summary.classList.add('hidden');
+
+    // Render steps
+    pipelineSteps.innerHTML = steps.map((step, i) => `
+        <div class="pipeline-step pending" data-step-id="${step.id}">
+            <div class="step-icon pending">⏳</div>
+            <div class="step-info">
+                <div class="step-name">${step.icon} ${step.name}</div>
+                <div class="step-status">Waiting...</div>
+            </div>
+            <div class="step-time"></div>
+        </div>
+    `).join('');
+
+    // Show overlay
+    overlay.classList.remove('hidden');
+    overlay.classList.remove('fade-out');
+
+    // Start first step immediately
+    updateStepStatus(steps[0].id, 'active', 'Running...');
+}
+
+// Update a step's visual status
+function updateStepStatus(stepId, status, statusText, time = null) {
+    const stepEl = document.querySelector(`[data-step-id="${stepId}"]`);
+    if (!stepEl) return;
+
+    // Update class
+    stepEl.className = `pipeline-step ${status}`;
+
+    // Update icon
+    const iconEl = stepEl.querySelector('.step-icon');
+    iconEl.className = `step-icon ${status}`;
+
+    const icons = {
+        pending: '⏳',
+        active: '⚡',
+        completed: '✓',
+        failed: '✗',
+        skipped: '⊘'
+    };
+    iconEl.textContent = icons[status] || '⏳';
+
+    // Update status text
+    stepEl.querySelector('.step-status').textContent = statusText;
+
+    // Update time if provided
+    if (time) {
+        stepEl.querySelector('.step-time').textContent = time;
+    }
+}
+
+// Simulate step progression with delays
+async function simulateStepProgress(steps, startIdx, currentTool) {
+    const stepDelay = 800; // ms between visual updates
+
+    for (let i = startIdx; i < steps.length; i++) {
+        const step = steps[i];
+
+        // Mark current as active
+        updateStepStatus(step.id, 'active', 'Processing...');
+
+        // Wait a bit to show activity
+        await delay(stepDelay);
+    }
+}
+
+// Mark steps based on actual API result
+async function markStepsFromResult(steps, result) {
+    if (!result) return;
+
+    const toolResults = result.tools_executed || [];
+    const skipped = result.skipped || [];
+
+    for (const step of steps) {
+        const executed = toolResults.find(t => t.tool === step.id);
+        const wasSkipped = skipped.find(s => s.tool === step.id);
+
+        if (executed) {
+            if (executed.success) {
+                updateStepStatus(step.id, 'completed', 'Done!', executed.retries > 0 ? `+${executed.retries} retries` : '');
+            } else {
+                updateStepStatus(step.id, 'failed', executed.error || 'Failed');
+            }
+        } else if (wasSkipped) {
+            updateStepStatus(step.id, 'skipped', wasSkipped.reason || 'Skipped');
+        } else {
+            updateStepStatus(step.id, 'completed', 'Done!');
+        }
+
+        await delay(200); // Stagger the visual updates
+    }
+}
+
+// Mark a specific step as failed
+function markStepFailed(steps, idx) {
+    if (steps[idx]) {
+        updateStepStatus(steps[idx].id, 'failed', 'Error occurred');
+    }
+}
+
+// Show the execution summary
+function showExecutionSummary(steps, elapsed, errorCount) {
+    const summary = document.getElementById('executionSummary');
+    const summaryText = document.getElementById('summaryText');
+    const summaryIcon = summary.querySelector('.summary-icon');
+
+    const completedCount = steps.filter(s =>
+        document.querySelector(`[data-step-id="${s.id}"]`)?.classList.contains('completed')
+    ).length;
+
+    if (errorCount === 0) {
+        summaryIcon.textContent = '✅';
+        summaryText.textContent = `${completedCount} tools • ${elapsed}s • No errors`;
+        summary.style.borderColor = 'var(--success)';
+        summary.style.background = 'rgba(34, 197, 94, 0.1)';
+    } else {
+        summaryIcon.textContent = '⚠️';
+        summaryText.textContent = `${completedCount} tools • ${elapsed}s • ${errorCount} error(s)`;
+        summary.style.borderColor = 'var(--warning)';
+        summary.style.background = 'rgba(234, 179, 8, 0.1)';
+    }
+
+    // Save state for summary chip
+    lastExecutionState = { steps, elapsed, errorCount };
+
+    summary.classList.remove('hidden');
+}
+
+// Last execution state for chip expansion
+let lastExecutionState = { steps: [], elapsed: 0, errorCount: 0 };
+
+// Hide the execution pipeline overlay and show summary chip
+function hideExecutionPipeline() {
+    const overlay = document.getElementById('executionOverlay');
+    overlay.classList.add('fade-out');
+
+    setTimeout(() => {
+        overlay.classList.add('hidden');
+        overlay.classList.remove('fade-out');
+        // Show the collapsed summary chip
+        showSummaryChip();
+    }, 500);
+}
+
+// Show the summary chip at bottom of screen
+function showSummaryChip() {
+    const chip = document.getElementById('summaryChip');
+    const chipText = document.getElementById('chipText');
+    const chipIcon = document.getElementById('chipIcon');
+
+    if (!chip || !chipText) return;
+
+    const { steps, elapsed, errorCount } = lastExecutionState;
+    const completedCount = steps.filter(s =>
+        document.querySelector(`[data-step-id="${s.id}"]`)?.classList.contains('completed')
+    ).length;
+
+    // Set chip content
+    if (errorCount === 0) {
+        chipIcon.textContent = '✅';
+        chipText.textContent = `${completedCount} tools • ${elapsed}s • Success`;
+        chip.classList.remove('has-errors');
+    } else {
+        chipIcon.textContent = '⚠️';
+        chipText.textContent = `${completedCount} tools • ${elapsed}s • ${errorCount} error(s)`;
+        chip.classList.add('has-errors');
+    }
+
+    // Show with animation
+    chip.classList.remove('hidden');
+    chip.classList.add('visible');
+}
+
+// Hide the summary chip
+function hideSummaryChip() {
+    const chip = document.getElementById('summaryChip');
+    if (chip) {
+        chip.classList.remove('visible');
+        chip.classList.add('hidden');
+    }
+}
+
+// Expand from chip back to full overlay
+function expandFromChip() {
+    hideSummaryChip();
+    const overlay = document.getElementById('executionOverlay');
+    overlay.classList.remove('hidden');
+    overlay.classList.remove('fade-out');
+}
+
+// Summary chip event handlers
+document.getElementById('chipExpandBtn')?.addEventListener('click', expandFromChip);
+document.getElementById('chipDismissBtn')?.addEventListener('click', hideSummaryChip);
+
+// Utility delay function
+function delay(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+// View trace button handler
+document.getElementById('viewTraceBtn')?.addEventListener('click', () => {
+    // Keep overlay visible longer for inspection
+    document.getElementById('executionSummary').classList.add('hidden');
+});
+
+// ===== DYNAMIC PANEL VISIBILITY =====
+
+// Panel configuration - maps toggle IDs to panel selectors
+const PANEL_CONFIG = {
+    'toggleSummary': { panel: '.intel-panel', name: 'Intelligence' },
+    'toggleSentiment': { panel: '.intel-panel', name: 'Sentiment' },
+    'toggleNews': { panel: '.news-panel', name: 'News' },
+    'toggleTrends': { panel: '.intel-panel', name: 'Trends' }
+};
+
+// Update panel visibility based on active toggles
+function updatePanelVisibility() {
+    const resultsGrid = document.querySelector('.results-grid');
+    const intelPanel = document.querySelector('.intel-panel');
+    const newsPanel = document.querySelector('.news-panel');
+
+    if (!resultsGrid) return;
+
+    // Check which toggles are active
+    const summaryActive = document.getElementById('toggleSummary')?.checked ?? true;
+    const sentimentActive = document.getElementById('toggleSentiment')?.checked ?? true;
+    const newsActive = document.getElementById('toggleNews')?.checked ?? true;
+    const trendsActive = document.getElementById('toggleTrends')?.checked ?? true;
+
+    // Intel panel shows if summary, sentiment, or trends are active
+    const showIntel = summaryActive || sentimentActive || trendsActive;
+
+    // Animate intel panel
+    if (intelPanel) {
+        if (showIntel && intelPanel.classList.contains('panel-hidden')) {
+            intelPanel.classList.remove('panel-hidden');
+            intelPanel.classList.add('panel-entering');
+            setTimeout(() => intelPanel.classList.remove('panel-entering'), 500);
+        } else if (!showIntel && !intelPanel.classList.contains('panel-hidden')) {
+            intelPanel.classList.add('panel-exiting');
+            setTimeout(() => {
+                intelPanel.classList.add('panel-hidden');
+                intelPanel.classList.remove('panel-exiting');
+            }, 300);
+        }
+    }
+
+    // Animate news panel
+    if (newsPanel) {
+        if (newsActive && newsPanel.classList.contains('panel-hidden')) {
+            newsPanel.classList.remove('panel-hidden');
+            newsPanel.classList.add('panel-entering');
+            setTimeout(() => newsPanel.classList.remove('panel-entering'), 500);
+        } else if (!newsActive && !newsPanel.classList.contains('panel-hidden')) {
+            newsPanel.classList.add('panel-exiting');
+            setTimeout(() => {
+                newsPanel.classList.add('panel-hidden');
+                newsPanel.classList.remove('panel-exiting');
+            }, 300);
+        }
+    }
+
+    // Check if any panels are visible
+    const anyVisible = showIntel || newsActive;
+
+    // Show/hide empty state message
+    let emptyState = resultsGrid.querySelector('.empty-state');
+    if (!anyVisible) {
+        if (!emptyState) {
+            emptyState = document.createElement('div');
+            emptyState.className = 'empty-state';
+            emptyState.innerHTML = `
+                <div class="empty-icon">🎛️</div>
+                <p>Enable features to see results</p>
+            `;
+            resultsGrid.appendChild(emptyState);
+        }
+        emptyState.classList.add('visible');
+    } else if (emptyState) {
+        emptyState.classList.remove('visible');
+        setTimeout(() => emptyState.remove(), 300);
+    }
+}
+
+// Attach toggle listeners for dynamic panel updates
+function initPanelToggles() {
+    const toggleIds = ['toggleSummary', 'toggleSentiment', 'toggleNews', 'toggleTrends'];
+    toggleIds.forEach(id => {
+        const toggle = document.getElementById(id);
+        if (toggle) {
+            toggle.addEventListener('change', updatePanelVisibility);
+        }
+    });
+}
+
 function clearResults() {
-    planOutput.textContent = '';
     intelOutput.innerHTML = '';
     newsOutput.innerHTML = '';
 }
 
 function displayResults(data) {
-    if (data.plan) {
-        planOutput.textContent = JSON.stringify(data.plan, null, 2);
-    }
-
     if (data.result && data.result.data) {
+        // Save for download
+        lastResultData = data.result.data;
+        // Save execution metadata for Package Builder
+        lastExecutionMeta = {
+            tools_executed: data.result.tools_executed || [],
+            errors: data.result.errors || [],
+            fallbacks_used: data.result.fallbacks_used || [],
+            regenerated: data.result.regenerated || [],
+            skipped: data.result.skipped || [],
+            success: data.result.success ?? true
+        };
         displayIntelligence(data.result.data);
     }
 }
@@ -9622,6 +11396,268 @@ document.addEventListener('click', (e) => {
 // Make showOriginal global
 window.showOriginal = showOriginal;
 
+// ===== INTELLIGENCE PACKAGE BUILDER =====
+
+const packageModal = document.getElementById('packageModal');
+const openPackageBtn = document.getElementById('openPackageBuilder');
+const closePackageBtn = document.getElementById('closePackageModal');
+
+// Open Package Builder
+openPackageBtn?.addEventListener('click', () => {
+    if (!lastResultData) {
+        setStatus('⚠️ No data to package. Run a search first.', 'warning');
+        return;
+    }
+    updatePackagePreview();
+    packageModal?.classList.remove('hidden');
+});
+
+// Close Package Builder
+closePackageBtn?.addEventListener('click', () => {
+    packageModal?.classList.add('hidden');
+});
+
+// Close on backdrop click
+packageModal?.addEventListener('click', (e) => {
+    if (e.target === packageModal) {
+        packageModal.classList.add('hidden');
+    }
+});
+
+// Update Package Preview
+function updatePackagePreview() {
+    if (!lastResultData) return;
+
+    const contentsGrid = document.getElementById('packageContents');
+    const qualityBadge = document.getElementById('qualityBadge');
+    const articleCount = document.getElementById('articleCount');
+    const sectionCount = document.getElementById('sectionCount');
+    const estimatedSize = document.getElementById('estimatedSize');
+    const formatRec = document.getElementById('formatRecommendation');
+
+    // Build contents preview
+    const contentItems = [
+        { key: 'news', icon: '📰', label: 'News Articles', toggle: features.news },
+        { key: 'summary', icon: '🧠', label: 'AI Summary', toggle: features.summary },
+        { key: 'sentiment', icon: '💭', label: 'Sentiment Analysis', toggle: features.sentiment },
+        { key: 'trends', icon: '📊', label: 'Trend Extraction', toggle: features.trends }
+    ];
+
+    contentsGrid.innerHTML = contentItems.map(item => {
+        const hasData = lastResultData[item.key];
+        const included = item.toggle && hasData;
+        return `
+            <div class="content-item ${included ? 'included' : 'excluded'}">
+                <span class="item-check">${included ? '✔' : '✗'}</span>
+                <span>${item.icon} ${item.label}</span>
+            </div>
+        `;
+    }).join('');
+
+    // Calculate stats
+    const articles = lastResultData.news?.length || 0;
+    const sections = contentItems.filter(i => i.toggle && lastResultData[i.key]).length;
+    const dataSize = JSON.stringify(getFilteredData()).length;
+    const sizeKB = (dataSize / 1024).toFixed(1);
+
+    articleCount.textContent = articles;
+    sectionCount.textContent = sections;
+    estimatedSize.textContent = `~${sizeKB} KB`;
+
+    // Quality badge logic
+    qualityBadge.className = 'quality-badge';
+    if (sections >= 3) {
+        qualityBadge.classList.add('quality-full');
+        qualityBadge.innerHTML = '<span class="badge-icon">🟢</span><span class="badge-text">Full Intelligence Report</span>';
+    } else if (sections >= 2) {
+        qualityBadge.classList.add('quality-partial');
+        qualityBadge.innerHTML = '<span class="badge-icon">🟡</span><span class="badge-text">Partial Report</span>';
+    } else {
+        qualityBadge.classList.add('quality-raw');
+        qualityBadge.innerHTML = '<span class="badge-icon">🔴</span><span class="badge-text">Raw Data Export</span>';
+    }
+
+    // Smart format recommendation
+    let recFormat = 'JSON';
+    let recReason = 'for API integration';
+
+    if (features.summary || features.sentiment || features.trends) {
+        recFormat = 'Markdown';
+        recReason = 'for rich formatting';
+    } else if (features.news && !features.summary && !features.sentiment) {
+        recFormat = 'CSV';
+        recReason = 'for spreadsheet analysis';
+    }
+
+    formatRec.querySelector('.rec-text').innerHTML =
+        `Recommended: <strong>${recFormat}</strong> ${recReason}`;
+
+    // Execution Quality stats
+    const toolsRan = document.getElementById('toolsRanCount');
+    const retriesEl = document.getElementById('retriesCount');
+    const fallbacksEl = document.getElementById('fallbacksCount');
+    const execConfidence = document.getElementById('execConfidence');
+
+    if (lastExecutionMeta && toolsRan) {
+        const toolCount = lastExecutionMeta.tools_executed?.length || 0;
+        const totalRetries = lastExecutionMeta.tools_executed?.reduce((sum, t) => sum + (t.retries || 0), 0) || 0;
+        const fallbackCount = lastExecutionMeta.fallbacks_used?.length || 0;
+        const errorCount = lastExecutionMeta.errors?.length || 0;
+
+        toolsRan.textContent = toolCount;
+        retriesEl.textContent = totalRetries;
+        fallbacksEl.textContent = fallbackCount;
+
+        // Confidence badge based on execution health
+        let confidence = 'high';
+        let confidenceText = '🟢 High Confidence';
+
+        if (errorCount > 0) {
+            confidence = 'low';
+            confidenceText = '🔴 Low Confidence';
+        } else if (fallbackCount > 0 || totalRetries > 2) {
+            confidence = 'medium';
+            confidenceText = '🟡 Recovered';
+        }
+
+        execConfidence.innerHTML = `<span class="confidence-badge ${confidence}">${confidenceText}</span>`;
+    }
+}
+
+// Get filtered data based on active toggles
+function getFilteredData() {
+    const filtered = {};
+    if (features.news && lastResultData?.news) filtered.news = lastResultData.news;
+    if (features.summary && lastResultData?.summary) filtered.summary = lastResultData.summary;
+    if (features.sentiment && lastResultData?.sentiment) filtered.sentiment = lastResultData.sentiment;
+    if (features.trends && lastResultData?.trends) filtered.trends = lastResultData.trends;
+    return filtered;
+}
+
+// Export function
+async function exportToFormat(format) {
+    const filteredData = getFilteredData();
+
+    if (Object.keys(filteredData).length === 0) {
+        setStatus('⚠️ No features selected. Enable at least one toggle.', 'warning');
+        return false;
+    }
+
+    try {
+        const response = await fetch(`${API_BASE}/export`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                data: filteredData,
+                format: format,
+                filename: 'nova_intelligence_report'
+            })
+        });
+
+        if (!response.ok) throw new Error('Export failed');
+
+        const blob = await response.blob();
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        const ext = format === 'markdown' ? 'md' : format;
+        a.download = `nova_intelligence_report.${ext}`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        window.URL.revokeObjectURL(url);
+
+        return true;
+    } catch (error) {
+        console.error('Export error:', error);
+        setStatus(`❌ Export failed: ${error.message}`, 'error');
+        return false;
+    }
+}
+
+// Individual format buttons
+document.getElementById('exportJson')?.addEventListener('click', async () => {
+    if (await exportToFormat('json')) {
+        setStatus('✅ JSON report downloaded!', 'success');
+    }
+});
+
+document.getElementById('exportMd')?.addEventListener('click', async () => {
+    if (await exportToFormat('markdown')) {
+        setStatus('✅ Markdown report downloaded!', 'success');
+    }
+});
+
+document.getElementById('exportCsv')?.addEventListener('click', async () => {
+    if (await exportToFormat('csv')) {
+        setStatus('✅ CSV report downloaded!', 'success');
+    }
+});
+
+document.getElementById('exportDocx')?.addEventListener('click', async () => {
+    if (await exportToFormat('docx')) {
+        setStatus('✅ Word document downloaded!', 'success');
+    }
+});
+
+document.getElementById('exportPdf')?.addEventListener('click', async () => {
+    if (await exportToFormat('pdf')) {
+        setStatus('✅ PDF report downloaded!', 'success');
+    }
+});
+
+// Export All Formats
+document.getElementById('exportAll')?.addEventListener('click', async () => {
+    setStatus('📦 Downloading all 5 formats...', 'loading');
+
+    const formats = ['json', 'markdown', 'csv', 'docx', 'pdf'];
+    let successCount = 0;
+
+    for (const format of formats) {
+        if (await exportToFormat(format)) {
+            successCount++;
+            await delay(300);
+        }
+    }
+
+    if (successCount === formats.length) {
+        setStatus(`✅ All ${successCount} formats downloaded!`, 'success');
+    } else {
+        setStatus(`⚠️ ${successCount}/${formats.length} formats downloaded`, 'warning');
+    }
+});
+
+// Copy JSON to Clipboard
+document.getElementById('copyJson')?.addEventListener('click', async () => {
+    const copyBtn = document.getElementById('copyJson');
+    const filteredData = getFilteredData();
+
+    if (Object.keys(filteredData).length === 0) {
+        setStatus('⚠️ No data to copy', 'warning');
+        return;
+    }
+
+    try {
+        const jsonStr = JSON.stringify(filteredData, null, 2);
+        await navigator.clipboard.writeText(jsonStr);
+
+        copyBtn.classList.add('copied');
+        copyBtn.textContent = '✅ Copied!';
+
+        setTimeout(() => {
+            copyBtn.classList.remove('copied');
+            copyBtn.textContent = '📋 Copy JSON to Clipboard';
+        }, 2000);
+
+        setStatus('✅ JSON copied to clipboard!', 'success');
+    } catch (error) {
+        setStatus('❌ Failed to copy', 'error');
+    }
+});
+
+// Initialize dynamic panel toggles
+initPanelToggles();
+
 
 ```
 
@@ -9683,9 +11719,126 @@ window.showOriginal = showOriginal;
             <button class="badge toggle-badge" data-feature="summary">🧠 Summary</button>
             <button class="badge toggle-badge" data-feature="sentiment">💭 Sentiment</button>
             <button class="badge toggle-badge" data-feature="trends">📊 Trends</button>
-            <button class="badge toggle-badge active" data-feature="export">💾 Export</button>
+
+            <!-- Package Builder Button (replaces export toggle) -->
+            <button id="openPackageBuilder" class="package-builder-btn" title="Intelligence Package Builder">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                    <polyline points="7 10 12 15 17 10" />
+                    <line x1="12" y1="15" x2="12" y2="3" />
+                </svg>
+                Export
+            </button>
         </div>
-        <p class="toggle-hint">Click badges to toggle features</p>
+        <p class="toggle-hint">Click badges to toggle features • Click Export to download intelligence reports</p>
+
+        <!-- Intelligence Package Builder Modal -->
+        <div id="packageModal" class="package-modal hidden">
+            <div class="package-modal-content">
+                <div class="package-header">
+                    <h2>📦 Intelligence Package Builder</h2>
+                    <button id="closePackageModal" class="close-btn">×</button>
+                </div>
+
+                <!-- Quality Badge -->
+                <div id="qualityBadge" class="quality-badge quality-full">
+                    <span class="badge-icon">🟢</span>
+                    <span class="badge-text">Full Intelligence Report</span>
+                </div>
+
+                <!-- Package Preview -->
+                <div class="package-preview">
+                    <h3>📋 Package Contents</h3>
+                    <div id="packageContents" class="contents-grid">
+                        <!-- Dynamically populated -->
+                    </div>
+                </div>
+
+                <!-- Intelligence Summary -->
+                <div class="intel-summary-box">
+                    <div class="summary-row">
+                        <span>📰 Articles</span>
+                        <span id="articleCount">0</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>📁 Sections</span>
+                        <span id="sectionCount">0</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>📊 Estimated Size</span>
+                        <span id="estimatedSize">~0 KB</span>
+                    </div>
+                </div>
+
+                <!-- Execution Quality -->
+                <div id="execQualityBox" class="exec-quality-box">
+                    <h4>⚡ Execution Quality</h4>
+                    <div class="exec-stats">
+                        <div class="exec-stat">
+                            <span class="stat-value" id="toolsRanCount">0</span>
+                            <span class="stat-label">Tools</span>
+                        </div>
+                        <div class="exec-stat">
+                            <span class="stat-value" id="retriesCount">0</span>
+                            <span class="stat-label">Retries</span>
+                        </div>
+                        <div class="exec-stat">
+                            <span class="stat-value" id="fallbacksCount">0</span>
+                            <span class="stat-label">Fallbacks</span>
+                        </div>
+                    </div>
+                    <div id="execConfidence" class="exec-confidence">
+                        <span class="confidence-badge high">🟢 High Confidence</span>
+                    </div>
+                </div>
+
+                <!-- Smart Recommendation -->
+                <div id="formatRecommendation" class="format-recommendation">
+                    <span class="rec-icon">💡</span>
+                    <span class="rec-text">Recommended: <strong>Markdown</strong> for rich formatting</span>
+                </div>
+
+                <!-- Export Strategy -->
+                <div class="export-strategy">
+                    <p>📝 <em>Structured intelligence packaging for offline analysis, sharing, and reporting.</em></p>
+                </div>
+
+                <!-- Export Buttons -->
+                <div class="export-buttons five-col">
+                    <button id="exportJson" class="export-btn export-json">
+                        <span class="btn-icon">{ }</span>
+                        <span>JSON</span>
+                    </button>
+                    <button id="exportMd" class="export-btn export-md">
+                        <span class="btn-icon">📄</span>
+                        <span>Markdown</span>
+                    </button>
+                    <button id="exportCsv" class="export-btn export-csv">
+                        <span class="btn-icon">📊</span>
+                        <span>CSV</span>
+                    </button>
+                    <button id="exportDocx" class="export-btn export-docx">
+                        <span class="btn-icon">📝</span>
+                        <span>Word</span>
+                    </button>
+                    <button id="exportPdf" class="export-btn export-pdf">
+                        <span class="btn-icon">📕</span>
+                        <span>PDF</span>
+                    </button>
+                </div>
+
+                <!-- Export All -->
+                <button id="exportAll" class="export-all-btn">
+                    ⬇️ Download All Formats
+                </button>
+
+                <!-- Copy to Clipboard -->
+                <button id="copyJson" class="copy-btn">
+                    📋 Copy JSON to Clipboard
+                </button>
+            </div>
+        </div>
 
         <!-- Input Section -->
         <div class="input-section">
@@ -9708,15 +11861,37 @@ window.showOriginal = showOriginal;
             <div id="historyList" class="history-list"></div>
         </div>
 
+        <!-- Live Execution Pipeline Overlay -->
+        <div id="executionOverlay" class="execution-overlay hidden">
+            <div class="execution-container">
+                <div class="execution-header">
+                    <div class="agent-thinking">
+                        <span class="thinking-icon">🧠</span>
+                        <span id="agentStatus">Agent Thinking...</span>
+                    </div>
+                    <div class="execution-strategy" id="executionStrategy"></div>
+                </div>
+                <div class="pipeline-steps" id="pipelineSteps">
+                    <!-- Steps will be injected here -->
+                </div>
+                <div class="execution-summary hidden" id="executionSummary">
+                    <span class="summary-icon">✅</span>
+                    <span id="summaryText">Plan executed</span>
+                    <button class="view-trace-btn" id="viewTraceBtn">View trace</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Collapsed Summary Chip (stays visible after execution) -->
+        <div id="summaryChip" class="summary-chip hidden">
+            <span class="chip-icon">✅</span>
+            <span class="chip-text" id="chipText">5 tools • 3.2s • No errors</span>
+            <button class="chip-expand-btn" id="chipExpandBtn" title="View execution trace">↗</button>
+            <button class="chip-dismiss-btn" id="chipDismissBtn" title="Dismiss">×</button>
+        </div>
+
         <!-- Results Grid -->
         <div class="results-grid">
-            <!-- Plan Panel -->
-            <div class="panel plan-panel">
-                <div class="panel-header">
-                    <h3>📋 Execution Plan</h3>
-                </div>
-                <pre id="planOutput"></pre>
-            </div>
 
             <!-- Intelligence Panel -->
             <div class="panel intel-panel">
@@ -11007,6 +13182,987 @@ code {
 
 .dict-search-box button:hover {
     background: #6366f1;
+}
+
+/* ============ LIVE EXECUTION PIPELINE ============ */
+
+.execution-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(26, 29, 41, 0.95);
+    backdrop-filter: blur(8px);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: fadeIn 0.3s ease;
+}
+
+.execution-overlay.hidden {
+    display: none;
+}
+
+.execution-overlay.fade-out {
+    animation: fadeOut 0.5s ease forwards;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+    }
+}
+
+.execution-container {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 2rem;
+    min-width: 450px;
+    max-width: 550px;
+    box-shadow: var(--shadow-lg);
+}
+
+.execution-header {
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.agent-thinking {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.thinking-icon {
+    font-size: 1.5rem;
+    animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    50% {
+        transform: scale(1.1);
+        opacity: 0.8;
+    }
+}
+
+.execution-strategy {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    margin-top: 0.5rem;
+    font-style: italic;
+}
+
+/* Pipeline Steps */
+.pipeline-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.pipeline-step {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.75rem 1rem;
+    background: var(--bg-elevated);
+    border-radius: 8px;
+    border: 1px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.pipeline-step.pending {
+    opacity: 0.5;
+}
+
+.pipeline-step.active {
+    border-color: var(--accent);
+    background: rgba(79, 140, 255, 0.1);
+    animation: stepPulse 1s ease-in-out infinite;
+}
+
+@keyframes stepPulse {
+
+    0%,
+    100% {
+        box-shadow: 0 0 0 0 rgba(79, 140, 255, 0);
+    }
+
+    50% {
+        box-shadow: 0 0 0 4px rgba(79, 140, 255, 0.2);
+    }
+}
+
+.pipeline-step.completed {
+    opacity: 1;
+    border-color: var(--success);
+    background: rgba(34, 197, 94, 0.1);
+}
+
+.pipeline-step.failed {
+    border-color: var(--error);
+    background: rgba(239, 68, 68, 0.1);
+    animation: stepFail 0.3s ease;
+}
+
+@keyframes stepFail {
+
+    0%,
+    100% {
+        transform: translateX(0);
+    }
+
+    25% {
+        transform: translateX(-5px);
+    }
+
+    75% {
+        transform: translateX(5px);
+    }
+}
+
+.pipeline-step.skipped {
+    opacity: 0.4;
+    text-decoration: line-through;
+}
+
+.step-icon {
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    border-radius: 50%;
+    background: var(--bg-dark);
+    flex-shrink: 0;
+}
+
+.step-icon.pending {
+    color: var(--text-muted);
+}
+
+.step-icon.active {
+    color: var(--accent);
+    animation: spin 1s linear infinite;
+}
+
+.step-icon.completed {
+    color: var(--success);
+    background: rgba(34, 197, 94, 0.2);
+}
+
+.step-icon.failed {
+    color: var(--error);
+    background: rgba(239, 68, 68, 0.2);
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.step-info {
+    flex: 1;
+}
+
+.step-name {
+    font-weight: 500;
+    color: var(--text-primary);
+    font-size: 0.9rem;
+}
+
+.step-status {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    margin-top: 2px;
+}
+
+.step-time {
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    font-family: monospace;
+}
+
+/* Execution Summary */
+.execution-summary {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-top: 1.5rem;
+    padding: 1rem;
+    background: rgba(34, 197, 94, 0.1);
+    border: 1px solid var(--success);
+    border-radius: 8px;
+    animation: slideUp 0.3s ease;
+}
+
+.execution-summary.hidden {
+    display: none;
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.summary-icon {
+    font-size: 1.25rem;
+}
+
+#summaryText {
+    flex: 1;
+    font-size: 0.9rem;
+    color: var(--text-primary);
+}
+
+.view-trace-btn {
+    background: transparent;
+    border: 1px solid var(--success);
+    color: var(--success);
+    padding: 0.35rem 0.75rem;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.view-trace-btn:hover {
+    background: var(--success);
+    color: white;
+}
+
+/* Progress Line */
+.step-progress-line {
+    position: absolute;
+    left: 14px;
+    top: 28px;
+    bottom: -12px;
+    width: 2px;
+    background: var(--border);
+}
+
+.step-progress-line.completed {
+    background: var(--success);
+}
+
+/* ============ COLLAPSED SUMMARY CHIP ============ */
+
+.summary-chip {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--bg-card);
+    border: 1px solid var(--success);
+    border-radius: 50px;
+    padding: 0.6rem 1.25rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    box-shadow: var(--shadow-lg);
+    z-index: 100;
+    animation: chipSlideUp 0.4s ease;
+}
+
+.summary-chip.hidden {
+    display: none;
+}
+
+.summary-chip.has-errors {
+    border-color: var(--warning);
+}
+
+@keyframes chipSlideUp {
+    from {
+        opacity: 0;
+        transform: translateX(-50%) translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+    }
+}
+
+.chip-icon {
+    font-size: 1rem;
+}
+
+.chip-text {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+}
+
+.chip-expand-btn,
+.chip-dismiss-btn {
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    cursor: pointer;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.9rem;
+    transition: all 0.2s ease;
+    border-radius: 4px;
+}
+
+.chip-expand-btn:hover {
+    background: var(--accent);
+    color: white;
+}
+
+.chip-dismiss-btn:hover {
+    background: var(--error);
+    color: white;
+}
+
+/* ============ DYNAMIC PANEL GRID ============ */
+
+.results-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.results-grid .panel {
+    animation: panelEnter 0.5s ease backwards;
+}
+
+.results-grid .panel:nth-child(1) {
+    animation-delay: 0.1s;
+}
+
+.results-grid .panel:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.results-grid .panel:nth-child(3) {
+    animation-delay: 0.3s;
+}
+
+.results-grid .panel:nth-child(4) {
+    animation-delay: 0.4s;
+}
+
+@keyframes panelEnter {
+    from {
+        opacity: 0;
+        transform: translateY(20px) scale(0.95);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* Panel exit animation */
+.panel.panel-exit {
+    animation: panelExit 0.3s ease forwards;
+}
+
+@keyframes panelExit {
+    from {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    to {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+}
+
+/* Empty state when no panels */
+.results-grid:empty::after {
+    content: "Enable features to see results";
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    text-align: center;
+    padding: 2rem;
+    grid-column: 1 / -1;
+}
+
+/* Panel hover lift effect */
+.panel {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.panel:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+}
+
+/* ===== DYNAMIC PANEL VISIBILITY ===== */
+
+/* Hidden panel state */
+.panel.panel-hidden {
+    display: none !important;
+}
+
+/* Panel entering animation */
+.panel.panel-entering {
+    animation: panelEnter 0.5s ease-out forwards;
+}
+
+/* Panel exiting animation */
+.panel.panel-exiting {
+    animation: panelExit 0.3s ease-in forwards;
+    pointer-events: none;
+}
+
+/* Empty state when all panels hidden */
+.empty-state {
+    grid-column: 1 / -1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 4rem 2rem;
+    color: var(--text-muted);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.empty-state.visible {
+    opacity: 1;
+}
+
+.empty-state .empty-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    opacity: 0.5;
+}
+
+.empty-state p {
+    font-size: 1rem;
+    margin: 0;
+}
+
+/* ===== EXPORT CONTROLS ===== */
+.export-controls {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-left: 1rem;
+    padding-left: 1rem;
+    border-left: 1px solid var(--border);
+}
+
+.export-format-select {
+    background: var(--bg-dark);
+    color: var(--text-primary);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 0.4rem 0.8rem;
+    font-size: 0.75rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.export-format-select:hover {
+    border-color: var(--accent);
+    background: rgba(99, 102, 241, 0.1);
+}
+
+.export-format-select:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
+}
+
+.download-btn {
+    background: linear-gradient(135deg, var(--accent), #818cf8);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 0.4rem 0.8rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+}
+
+.download-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+}
+
+.download-btn:active {
+    transform: translateY(0);
+}
+
+.download-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* ===== INTELLIGENCE PACKAGE BUILDER ===== */
+
+/* Package Builder Button */
+.package-builder-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    background: linear-gradient(135deg, #10b981, #059669);
+    color: white;
+    border: none;
+    border-radius: 20px;
+    padding: 0.5rem 1rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-left: 1rem;
+    box-shadow: 0 2px 10px rgba(16, 185, 129, 0.3);
+}
+
+.package-builder-btn:hover {
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
+}
+
+/* Package Modal */
+.package-modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(8px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+}
+
+.package-modal.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.package-modal-content {
+    background: linear-gradient(145deg, rgba(30, 30, 40, 0.95), rgba(20, 20, 30, 0.98));
+    border: 1px solid rgba(99, 102, 241, 0.3);
+    border-radius: 20px;
+    padding: 2rem;
+    width: 90%;
+    max-width: 500px;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 25px 80px rgba(0, 0, 0, 0.5), 0 0 40px rgba(99, 102, 241, 0.1);
+    animation: modalSlideIn 0.4s ease;
+}
+
+@keyframes modalSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-30px) scale(0.95);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.package-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border);
+}
+
+.package-header h2 {
+    font-size: 1.3rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, var(--accent), #10b981);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.package-header .close-btn {
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.package-header .close-btn:hover {
+    color: var(--text-primary);
+}
+
+/* Quality Badge */
+.quality-badge {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1rem;
+    border-radius: 12px;
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.quality-badge.quality-full {
+    background: rgba(34, 197, 94, 0.15);
+    border: 1px solid rgba(34, 197, 94, 0.3);
+    color: #22c55e;
+}
+
+.quality-badge.quality-partial {
+    background: rgba(234, 179, 8, 0.15);
+    border: 1px solid rgba(234, 179, 8, 0.3);
+    color: #eab308;
+}
+
+.quality-badge.quality-raw {
+    background: rgba(239, 68, 68, 0.15);
+    border: 1px solid rgba(239, 68, 68, 0.3);
+    color: #ef4444;
+}
+
+.quality-badge .badge-icon {
+    font-size: 1.1rem;
+}
+
+/* Package Preview */
+.package-preview {
+    margin-bottom: 1.5rem;
+}
+
+.package-preview h3 {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-bottom: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.contents-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.5rem;
+}
+
+.content-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.6rem 0.8rem;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 8px;
+    font-size: 0.85rem;
+    transition: all 0.2s;
+}
+
+.content-item.included {
+    background: rgba(34, 197, 94, 0.1);
+    border: 1px solid rgba(34, 197, 94, 0.2);
+}
+
+.content-item.excluded {
+    opacity: 0.4;
+    text-decoration: line-through;
+}
+
+.content-item .item-check {
+    font-size: 0.9rem;
+}
+
+/* Intelligence Summary Box */
+.intel-summary-box {
+    background: rgba(99, 102, 241, 0.08);
+    border: 1px solid rgba(99, 102, 241, 0.2);
+    border-radius: 12px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+}
+
+.summary-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.4rem 0;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+}
+
+.summary-row:not(:last-child) {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.summary-row span:last-child {
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+/* Format Recommendation */
+.format-recommendation {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1rem;
+    background: rgba(234, 179, 8, 0.1);
+    border: 1px solid rgba(234, 179, 8, 0.2);
+    border-radius: 10px;
+    margin-bottom: 1rem;
+    font-size: 0.85rem;
+}
+
+.format-recommendation .rec-icon {
+    font-size: 1rem;
+}
+
+.format-recommendation strong {
+    color: #eab308;
+}
+
+/* Export Strategy */
+.export-strategy {
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.export-strategy p {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    font-style: italic;
+}
+
+/* Export Buttons Grid */
+.export-buttons {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+}
+
+.export-buttons.five-col {
+    grid-template-columns: repeat(5, 1fr);
+    gap: 0.5rem;
+}
+
+.export-buttons.five-col .export-btn {
+    padding: 0.7rem 0.5rem;
+    font-size: 0.7rem;
+}
+
+.export-buttons.five-col .btn-icon {
+    font-size: 1.1rem;
+}
+
+.export-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 1rem;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.03);
+    color: var(--text-primary);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+.export-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+.export-btn .btn-icon {
+    font-size: 1.3rem;
+}
+
+.export-btn.export-json:hover {
+    background: rgba(99, 102, 241, 0.15);
+    border-color: rgba(99, 102, 241, 0.4);
+}
+
+.export-btn.export-md:hover {
+    background: rgba(16, 185, 129, 0.15);
+    border-color: rgba(16, 185, 129, 0.4);
+}
+
+.export-btn.export-csv:hover {
+    background: rgba(234, 179, 8, 0.15);
+    border-color: rgba(234, 179, 8, 0.4);
+}
+
+.export-btn.export-docx:hover {
+    background: rgba(59, 130, 246, 0.15);
+    border-color: rgba(59, 130, 246, 0.4);
+}
+
+.export-btn.export-pdf:hover {
+    background: rgba(239, 68, 68, 0.15);
+    border-color: rgba(239, 68, 68, 0.4);
+}
+
+/* Export All Button */
+.export-all-btn {
+    width: 100%;
+    padding: 1rem;
+    background: linear-gradient(135deg, var(--accent), #10b981);
+    border: none;
+    border-radius: 12px;
+    color: white;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-bottom: 0.75rem;
+}
+
+.export-all-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(99, 102, 241, 0.4);
+}
+
+/* Copy Button */
+.copy-btn {
+    width: 100%;
+    padding: 0.75rem;
+    background: transparent;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.copy-btn:hover {
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--text-primary);
+    border-color: var(--accent);
+}
+
+.copy-btn.copied {
+    background: rgba(34, 197, 94, 0.15);
+    border-color: rgba(34, 197, 94, 0.4);
+    color: #22c55e;
+}
+
+/* ===== EXECUTION QUALITY ===== */
+.exec-quality-box {
+    background: rgba(147, 51, 234, 0.08);
+    border: 1px solid rgba(147, 51, 234, 0.2);
+    border-radius: 12px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+}
+
+.exec-quality-box h4 {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin-bottom: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.exec-stats {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 0.75rem;
+}
+
+.exec-stat {
+    text-align: center;
+}
+
+.exec-stat .stat-value {
+    display: block;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.exec-stat .stat-label {
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+}
+
+.exec-confidence {
+    text-align: center;
+    padding-top: 0.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.confidence-badge {
+    display: inline-block;
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.confidence-badge.high {
+    background: rgba(34, 197, 94, 0.15);
+    color: #22c55e;
+}
+
+.confidence-badge.medium {
+    background: rgba(234, 179, 8, 0.15);
+    color: #eab308;
+}
+
+.confidence-badge.low {
+    background: rgba(239, 68, 68, 0.15);
+    color: #ef4444;
 }
 ```
 

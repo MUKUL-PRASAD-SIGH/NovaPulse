@@ -52,9 +52,126 @@
             <button class="badge toggle-badge" data-feature="summary">🧠 Summary</button>
             <button class="badge toggle-badge" data-feature="sentiment">💭 Sentiment</button>
             <button class="badge toggle-badge" data-feature="trends">📊 Trends</button>
-            <button class="badge toggle-badge active" data-feature="export">💾 Export</button>
+
+            <!-- Package Builder Button (replaces export toggle) -->
+            <button id="openPackageBuilder" class="package-builder-btn" title="Intelligence Package Builder">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                    <polyline points="7 10 12 15 17 10" />
+                    <line x1="12" y1="15" x2="12" y2="3" />
+                </svg>
+                Export
+            </button>
         </div>
-        <p class="toggle-hint">Click badges to toggle features</p>
+        <p class="toggle-hint">Click badges to toggle features • Click Export to download intelligence reports</p>
+
+        <!-- Intelligence Package Builder Modal -->
+        <div id="packageModal" class="package-modal hidden">
+            <div class="package-modal-content">
+                <div class="package-header">
+                    <h2>📦 Intelligence Package Builder</h2>
+                    <button id="closePackageModal" class="close-btn">×</button>
+                </div>
+
+                <!-- Quality Badge -->
+                <div id="qualityBadge" class="quality-badge quality-full">
+                    <span class="badge-icon">🟢</span>
+                    <span class="badge-text">Full Intelligence Report</span>
+                </div>
+
+                <!-- Package Preview -->
+                <div class="package-preview">
+                    <h3>📋 Package Contents</h3>
+                    <div id="packageContents" class="contents-grid">
+                        <!-- Dynamically populated -->
+                    </div>
+                </div>
+
+                <!-- Intelligence Summary -->
+                <div class="intel-summary-box">
+                    <div class="summary-row">
+                        <span>📰 Articles</span>
+                        <span id="articleCount">0</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>📁 Sections</span>
+                        <span id="sectionCount">0</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>📊 Estimated Size</span>
+                        <span id="estimatedSize">~0 KB</span>
+                    </div>
+                </div>
+
+                <!-- Execution Quality -->
+                <div id="execQualityBox" class="exec-quality-box">
+                    <h4>⚡ Execution Quality</h4>
+                    <div class="exec-stats">
+                        <div class="exec-stat">
+                            <span class="stat-value" id="toolsRanCount">0</span>
+                            <span class="stat-label">Tools</span>
+                        </div>
+                        <div class="exec-stat">
+                            <span class="stat-value" id="retriesCount">0</span>
+                            <span class="stat-label">Retries</span>
+                        </div>
+                        <div class="exec-stat">
+                            <span class="stat-value" id="fallbacksCount">0</span>
+                            <span class="stat-label">Fallbacks</span>
+                        </div>
+                    </div>
+                    <div id="execConfidence" class="exec-confidence">
+                        <span class="confidence-badge high">🟢 High Confidence</span>
+                    </div>
+                </div>
+
+                <!-- Smart Recommendation -->
+                <div id="formatRecommendation" class="format-recommendation">
+                    <span class="rec-icon">💡</span>
+                    <span class="rec-text">Recommended: <strong>Markdown</strong> for rich formatting</span>
+                </div>
+
+                <!-- Export Strategy -->
+                <div class="export-strategy">
+                    <p>📝 <em>Structured intelligence packaging for offline analysis, sharing, and reporting.</em></p>
+                </div>
+
+                <!-- Export Buttons -->
+                <div class="export-buttons five-col">
+                    <button id="exportJson" class="export-btn export-json">
+                        <span class="btn-icon">{ }</span>
+                        <span>JSON</span>
+                    </button>
+                    <button id="exportMd" class="export-btn export-md">
+                        <span class="btn-icon">📄</span>
+                        <span>Markdown</span>
+                    </button>
+                    <button id="exportCsv" class="export-btn export-csv">
+                        <span class="btn-icon">📊</span>
+                        <span>CSV</span>
+                    </button>
+                    <button id="exportDocx" class="export-btn export-docx">
+                        <span class="btn-icon">📝</span>
+                        <span>Word</span>
+                    </button>
+                    <button id="exportPdf" class="export-btn export-pdf">
+                        <span class="btn-icon">📕</span>
+                        <span>PDF</span>
+                    </button>
+                </div>
+
+                <!-- Export All -->
+                <button id="exportAll" class="export-all-btn">
+                    ⬇️ Download All Formats
+                </button>
+
+                <!-- Copy to Clipboard -->
+                <button id="copyJson" class="copy-btn">
+                    📋 Copy JSON to Clipboard
+                </button>
+            </div>
+        </div>
 
         <!-- Input Section -->
         <div class="input-section">
@@ -77,15 +194,37 @@
             <div id="historyList" class="history-list"></div>
         </div>
 
+        <!-- Live Execution Pipeline Overlay -->
+        <div id="executionOverlay" class="execution-overlay hidden">
+            <div class="execution-container">
+                <div class="execution-header">
+                    <div class="agent-thinking">
+                        <span class="thinking-icon">🧠</span>
+                        <span id="agentStatus">Agent Thinking...</span>
+                    </div>
+                    <div class="execution-strategy" id="executionStrategy"></div>
+                </div>
+                <div class="pipeline-steps" id="pipelineSteps">
+                    <!-- Steps will be injected here -->
+                </div>
+                <div class="execution-summary hidden" id="executionSummary">
+                    <span class="summary-icon">✅</span>
+                    <span id="summaryText">Plan executed</span>
+                    <button class="view-trace-btn" id="viewTraceBtn">View trace</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Collapsed Summary Chip (stays visible after execution) -->
+        <div id="summaryChip" class="summary-chip hidden">
+            <span class="chip-icon">✅</span>
+            <span class="chip-text" id="chipText">5 tools • 3.2s • No errors</span>
+            <button class="chip-expand-btn" id="chipExpandBtn" title="View execution trace">↗</button>
+            <button class="chip-dismiss-btn" id="chipDismissBtn" title="Dismiss">×</button>
+        </div>
+
         <!-- Results Grid -->
         <div class="results-grid">
-            <!-- Plan Panel -->
-            <div class="panel plan-panel">
-                <div class="panel-header">
-                    <h3>📋 Execution Plan</h3>
-                </div>
-                <pre id="planOutput"></pre>
-            </div>
 
             <!-- Intelligence Panel -->
             <div class="panel intel-panel">

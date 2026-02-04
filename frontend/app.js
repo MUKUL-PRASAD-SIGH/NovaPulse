@@ -19,9 +19,12 @@ const features = {
     news: true,
     summary: false,
     sentiment: false,
-    trends: false,
-    export: true
+    trends: false
 };
+
+// Last result data for download
+let lastResultData = null;
+let lastExecutionMeta = null;
 
 // Search history (persisted to localStorage)
 const MAX_HISTORY = 10;
@@ -208,14 +211,24 @@ function buildCommand(topic) {
 
 async function sendCommand(topic) {
     const fullCommand = buildCommand(topic);
-    setStatus('⏳ Processing with Nova...', 'loading');
     sendBtn.disabled = true;
     clearResults();
 
     // Save to history
     saveToHistory(topic);
 
+    // Build expected steps based on toggles
+    const steps = buildExpectedSteps();
+
+    // Show execution pipeline overlay
+    showExecutionPipeline(steps, topic);
+
+    const startTime = Date.now();
+
     try {
+        // Simulate step progression (news_fetcher always first)
+        await simulateStepProgress(steps, 0, 'news_fetcher');
+
         const response = await fetch(`${API_BASE}/command`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -227,29 +240,380 @@ async function sendCommand(topic) {
         }
 
         const data = await response.json();
+
+        // Mark all steps complete based on actual result
+        await markStepsFromResult(steps, data.result);
+
+        // Show summary
+        const elapsed = ((Date.now() - startTime) / 1000).toFixed(1);
+        showExecutionSummary(steps, elapsed, data.result?.errors?.length || 0);
+
+        // Wait a bit then hide overlay and show results
+        await delay(1500);
+        hideExecutionPipeline();
+
         displayResults(data);
         setStatus('✅ Intelligence report ready!', 'success');
 
     } catch (error) {
         console.error('API error:', error);
+        markStepFailed(steps, 0);
+        await delay(1000);
+        hideExecutionPipeline();
         setStatus(`❌ Error: ${error.message}`, 'error');
     } finally {
         sendBtn.disabled = false;
     }
 }
 
+// Build expected steps based on current feature toggles
+function buildExpectedSteps() {
+    const steps = [
+        { id: 'news_fetcher', name: 'Fetching News', icon: '📰', status: 'pending' }
+    ];
+
+    if (features.summary) {
+        steps.push({ id: 'summarizer', name: 'Generating Summary', icon: '🧠', status: 'pending' });
+    }
+    if (features.sentiment) {
+        steps.push({ id: 'sentiment', name: 'Sentiment Analysis', icon: '💭', status: 'pending' });
+    }
+    if (features.trends) {
+        steps.push({ id: 'trends', name: 'Trend Extraction', icon: '📊', status: 'pending' });
+    }
+    if (features.export) {
+        steps.push({ id: 'exporter', name: 'Export Report', icon: '💾', status: 'pending' });
+    }
+
+    return steps;
+}
+
+// Show the execution pipeline overlay
+function showExecutionPipeline(steps, topic) {
+    const overlay = document.getElementById('executionOverlay');
+    const pipelineSteps = document.getElementById('pipelineSteps');
+    const strategy = document.getElementById('executionStrategy');
+    const summary = document.getElementById('executionSummary');
+
+    // Set strategy text
+    const toolNames = steps.map(s => s.name.toLowerCase()).join(' → ');
+    strategy.textContent = `Agent Strategy: ${toolNames}`;
+
+    // Hide summary
+    summary.classList.add('hidden');
+
+    // Render steps
+    pipelineSteps.innerHTML = steps.map((step, i) => `
+        <div class="pipeline-step pending" data-step-id="${step.id}">
+            <div class="step-icon pending">⏳</div>
+            <div class="step-info">
+                <div class="step-name">${step.icon} ${step.name}</div>
+                <div class="step-status">Waiting...</div>
+            </div>
+            <div class="step-time"></div>
+        </div>
+    `).join('');
+
+    // Show overlay
+    overlay.classList.remove('hidden');
+    overlay.classList.remove('fade-out');
+
+    // Start first step immediately
+    updateStepStatus(steps[0].id, 'active', 'Running...');
+}
+
+// Update a step's visual status
+function updateStepStatus(stepId, status, statusText, time = null) {
+    const stepEl = document.querySelector(`[data-step-id="${stepId}"]`);
+    if (!stepEl) return;
+
+    // Update class
+    stepEl.className = `pipeline-step ${status}`;
+
+    // Update icon
+    const iconEl = stepEl.querySelector('.step-icon');
+    iconEl.className = `step-icon ${status}`;
+
+    const icons = {
+        pending: '⏳',
+        active: '⚡',
+        completed: '✓',
+        failed: '✗',
+        skipped: '⊘'
+    };
+    iconEl.textContent = icons[status] || '⏳';
+
+    // Update status text
+    stepEl.querySelector('.step-status').textContent = statusText;
+
+    // Update time if provided
+    if (time) {
+        stepEl.querySelector('.step-time').textContent = time;
+    }
+}
+
+// Simulate step progression with delays
+async function simulateStepProgress(steps, startIdx, currentTool) {
+    const stepDelay = 800; // ms between visual updates
+
+    for (let i = startIdx; i < steps.length; i++) {
+        const step = steps[i];
+
+        // Mark current as active
+        updateStepStatus(step.id, 'active', 'Processing...');
+
+        // Wait a bit to show activity
+        await delay(stepDelay);
+    }
+}
+
+// Mark steps based on actual API result
+async function markStepsFromResult(steps, result) {
+    if (!result) return;
+
+    const toolResults = result.tools_executed || [];
+    const skipped = result.skipped || [];
+
+    for (const step of steps) {
+        const executed = toolResults.find(t => t.tool === step.id);
+        const wasSkipped = skipped.find(s => s.tool === step.id);
+
+        if (executed) {
+            if (executed.success) {
+                updateStepStatus(step.id, 'completed', 'Done!', executed.retries > 0 ? `+${executed.retries} retries` : '');
+            } else {
+                updateStepStatus(step.id, 'failed', executed.error || 'Failed');
+            }
+        } else if (wasSkipped) {
+            updateStepStatus(step.id, 'skipped', wasSkipped.reason || 'Skipped');
+        } else {
+            updateStepStatus(step.id, 'completed', 'Done!');
+        }
+
+        await delay(200); // Stagger the visual updates
+    }
+}
+
+// Mark a specific step as failed
+function markStepFailed(steps, idx) {
+    if (steps[idx]) {
+        updateStepStatus(steps[idx].id, 'failed', 'Error occurred');
+    }
+}
+
+// Show the execution summary
+function showExecutionSummary(steps, elapsed, errorCount) {
+    const summary = document.getElementById('executionSummary');
+    const summaryText = document.getElementById('summaryText');
+    const summaryIcon = summary.querySelector('.summary-icon');
+
+    const completedCount = steps.filter(s =>
+        document.querySelector(`[data-step-id="${s.id}"]`)?.classList.contains('completed')
+    ).length;
+
+    if (errorCount === 0) {
+        summaryIcon.textContent = '✅';
+        summaryText.textContent = `${completedCount} tools • ${elapsed}s • No errors`;
+        summary.style.borderColor = 'var(--success)';
+        summary.style.background = 'rgba(34, 197, 94, 0.1)';
+    } else {
+        summaryIcon.textContent = '⚠️';
+        summaryText.textContent = `${completedCount} tools • ${elapsed}s • ${errorCount} error(s)`;
+        summary.style.borderColor = 'var(--warning)';
+        summary.style.background = 'rgba(234, 179, 8, 0.1)';
+    }
+
+    // Save state for summary chip
+    lastExecutionState = { steps, elapsed, errorCount };
+
+    summary.classList.remove('hidden');
+}
+
+// Last execution state for chip expansion
+let lastExecutionState = { steps: [], elapsed: 0, errorCount: 0 };
+
+// Hide the execution pipeline overlay and show summary chip
+function hideExecutionPipeline() {
+    const overlay = document.getElementById('executionOverlay');
+    overlay.classList.add('fade-out');
+
+    setTimeout(() => {
+        overlay.classList.add('hidden');
+        overlay.classList.remove('fade-out');
+        // Show the collapsed summary chip
+        showSummaryChip();
+    }, 500);
+}
+
+// Show the summary chip at bottom of screen
+function showSummaryChip() {
+    const chip = document.getElementById('summaryChip');
+    const chipText = document.getElementById('chipText');
+    const chipIcon = document.getElementById('chipIcon');
+
+    if (!chip || !chipText) return;
+
+    const { steps, elapsed, errorCount } = lastExecutionState;
+    const completedCount = steps.filter(s =>
+        document.querySelector(`[data-step-id="${s.id}"]`)?.classList.contains('completed')
+    ).length;
+
+    // Set chip content
+    if (errorCount === 0) {
+        chipIcon.textContent = '✅';
+        chipText.textContent = `${completedCount} tools • ${elapsed}s • Success`;
+        chip.classList.remove('has-errors');
+    } else {
+        chipIcon.textContent = '⚠️';
+        chipText.textContent = `${completedCount} tools • ${elapsed}s • ${errorCount} error(s)`;
+        chip.classList.add('has-errors');
+    }
+
+    // Show with animation
+    chip.classList.remove('hidden');
+    chip.classList.add('visible');
+}
+
+// Hide the summary chip
+function hideSummaryChip() {
+    const chip = document.getElementById('summaryChip');
+    if (chip) {
+        chip.classList.remove('visible');
+        chip.classList.add('hidden');
+    }
+}
+
+// Expand from chip back to full overlay
+function expandFromChip() {
+    hideSummaryChip();
+    const overlay = document.getElementById('executionOverlay');
+    overlay.classList.remove('hidden');
+    overlay.classList.remove('fade-out');
+}
+
+// Summary chip event handlers
+document.getElementById('chipExpandBtn')?.addEventListener('click', expandFromChip);
+document.getElementById('chipDismissBtn')?.addEventListener('click', hideSummaryChip);
+
+// Utility delay function
+function delay(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+// View trace button handler
+document.getElementById('viewTraceBtn')?.addEventListener('click', () => {
+    // Keep overlay visible longer for inspection
+    document.getElementById('executionSummary').classList.add('hidden');
+});
+
+// ===== DYNAMIC PANEL VISIBILITY =====
+
+// Panel configuration - maps toggle IDs to panel selectors
+const PANEL_CONFIG = {
+    'toggleSummary': { panel: '.intel-panel', name: 'Intelligence' },
+    'toggleSentiment': { panel: '.intel-panel', name: 'Sentiment' },
+    'toggleNews': { panel: '.news-panel', name: 'News' },
+    'toggleTrends': { panel: '.intel-panel', name: 'Trends' }
+};
+
+// Update panel visibility based on active toggles
+function updatePanelVisibility() {
+    const resultsGrid = document.querySelector('.results-grid');
+    const intelPanel = document.querySelector('.intel-panel');
+    const newsPanel = document.querySelector('.news-panel');
+
+    if (!resultsGrid) return;
+
+    // Check which toggles are active
+    const summaryActive = document.getElementById('toggleSummary')?.checked ?? true;
+    const sentimentActive = document.getElementById('toggleSentiment')?.checked ?? true;
+    const newsActive = document.getElementById('toggleNews')?.checked ?? true;
+    const trendsActive = document.getElementById('toggleTrends')?.checked ?? true;
+
+    // Intel panel shows if summary, sentiment, or trends are active
+    const showIntel = summaryActive || sentimentActive || trendsActive;
+
+    // Animate intel panel
+    if (intelPanel) {
+        if (showIntel && intelPanel.classList.contains('panel-hidden')) {
+            intelPanel.classList.remove('panel-hidden');
+            intelPanel.classList.add('panel-entering');
+            setTimeout(() => intelPanel.classList.remove('panel-entering'), 500);
+        } else if (!showIntel && !intelPanel.classList.contains('panel-hidden')) {
+            intelPanel.classList.add('panel-exiting');
+            setTimeout(() => {
+                intelPanel.classList.add('panel-hidden');
+                intelPanel.classList.remove('panel-exiting');
+            }, 300);
+        }
+    }
+
+    // Animate news panel
+    if (newsPanel) {
+        if (newsActive && newsPanel.classList.contains('panel-hidden')) {
+            newsPanel.classList.remove('panel-hidden');
+            newsPanel.classList.add('panel-entering');
+            setTimeout(() => newsPanel.classList.remove('panel-entering'), 500);
+        } else if (!newsActive && !newsPanel.classList.contains('panel-hidden')) {
+            newsPanel.classList.add('panel-exiting');
+            setTimeout(() => {
+                newsPanel.classList.add('panel-hidden');
+                newsPanel.classList.remove('panel-exiting');
+            }, 300);
+        }
+    }
+
+    // Check if any panels are visible
+    const anyVisible = showIntel || newsActive;
+
+    // Show/hide empty state message
+    let emptyState = resultsGrid.querySelector('.empty-state');
+    if (!anyVisible) {
+        if (!emptyState) {
+            emptyState = document.createElement('div');
+            emptyState.className = 'empty-state';
+            emptyState.innerHTML = `
+                <div class="empty-icon">🎛️</div>
+                <p>Enable features to see results</p>
+            `;
+            resultsGrid.appendChild(emptyState);
+        }
+        emptyState.classList.add('visible');
+    } else if (emptyState) {
+        emptyState.classList.remove('visible');
+        setTimeout(() => emptyState.remove(), 300);
+    }
+}
+
+// Attach toggle listeners for dynamic panel updates
+function initPanelToggles() {
+    const toggleIds = ['toggleSummary', 'toggleSentiment', 'toggleNews', 'toggleTrends'];
+    toggleIds.forEach(id => {
+        const toggle = document.getElementById(id);
+        if (toggle) {
+            toggle.addEventListener('change', updatePanelVisibility);
+        }
+    });
+}
+
 function clearResults() {
-    planOutput.textContent = '';
     intelOutput.innerHTML = '';
     newsOutput.innerHTML = '';
 }
 
 function displayResults(data) {
-    if (data.plan) {
-        planOutput.textContent = JSON.stringify(data.plan, null, 2);
-    }
-
     if (data.result && data.result.data) {
+        // Save for download
+        lastResultData = data.result.data;
+        // Save execution metadata for Package Builder
+        lastExecutionMeta = {
+            tools_executed: data.result.tools_executed || [],
+            errors: data.result.errors || [],
+            fallbacks_used: data.result.fallbacks_used || [],
+            regenerated: data.result.regenerated || [],
+            skipped: data.result.skipped || [],
+            success: data.result.success ?? true
+        };
         displayIntelligence(data.result.data);
     }
 }
@@ -699,4 +1063,266 @@ document.addEventListener('click', (e) => {
 
 // Make showOriginal global
 window.showOriginal = showOriginal;
+
+// ===== INTELLIGENCE PACKAGE BUILDER =====
+
+const packageModal = document.getElementById('packageModal');
+const openPackageBtn = document.getElementById('openPackageBuilder');
+const closePackageBtn = document.getElementById('closePackageModal');
+
+// Open Package Builder
+openPackageBtn?.addEventListener('click', () => {
+    if (!lastResultData) {
+        setStatus('⚠️ No data to package. Run a search first.', 'warning');
+        return;
+    }
+    updatePackagePreview();
+    packageModal?.classList.remove('hidden');
+});
+
+// Close Package Builder
+closePackageBtn?.addEventListener('click', () => {
+    packageModal?.classList.add('hidden');
+});
+
+// Close on backdrop click
+packageModal?.addEventListener('click', (e) => {
+    if (e.target === packageModal) {
+        packageModal.classList.add('hidden');
+    }
+});
+
+// Update Package Preview
+function updatePackagePreview() {
+    if (!lastResultData) return;
+
+    const contentsGrid = document.getElementById('packageContents');
+    const qualityBadge = document.getElementById('qualityBadge');
+    const articleCount = document.getElementById('articleCount');
+    const sectionCount = document.getElementById('sectionCount');
+    const estimatedSize = document.getElementById('estimatedSize');
+    const formatRec = document.getElementById('formatRecommendation');
+
+    // Build contents preview
+    const contentItems = [
+        { key: 'news', icon: '📰', label: 'News Articles', toggle: features.news },
+        { key: 'summary', icon: '🧠', label: 'AI Summary', toggle: features.summary },
+        { key: 'sentiment', icon: '💭', label: 'Sentiment Analysis', toggle: features.sentiment },
+        { key: 'trends', icon: '📊', label: 'Trend Extraction', toggle: features.trends }
+    ];
+
+    contentsGrid.innerHTML = contentItems.map(item => {
+        const hasData = lastResultData[item.key];
+        const included = item.toggle && hasData;
+        return `
+            <div class="content-item ${included ? 'included' : 'excluded'}">
+                <span class="item-check">${included ? '✔' : '✗'}</span>
+                <span>${item.icon} ${item.label}</span>
+            </div>
+        `;
+    }).join('');
+
+    // Calculate stats
+    const articles = lastResultData.news?.length || 0;
+    const sections = contentItems.filter(i => i.toggle && lastResultData[i.key]).length;
+    const dataSize = JSON.stringify(getFilteredData()).length;
+    const sizeKB = (dataSize / 1024).toFixed(1);
+
+    articleCount.textContent = articles;
+    sectionCount.textContent = sections;
+    estimatedSize.textContent = `~${sizeKB} KB`;
+
+    // Quality badge logic
+    qualityBadge.className = 'quality-badge';
+    if (sections >= 3) {
+        qualityBadge.classList.add('quality-full');
+        qualityBadge.innerHTML = '<span class="badge-icon">🟢</span><span class="badge-text">Full Intelligence Report</span>';
+    } else if (sections >= 2) {
+        qualityBadge.classList.add('quality-partial');
+        qualityBadge.innerHTML = '<span class="badge-icon">🟡</span><span class="badge-text">Partial Report</span>';
+    } else {
+        qualityBadge.classList.add('quality-raw');
+        qualityBadge.innerHTML = '<span class="badge-icon">🔴</span><span class="badge-text">Raw Data Export</span>';
+    }
+
+    // Smart format recommendation
+    let recFormat = 'JSON';
+    let recReason = 'for API integration';
+
+    if (features.summary || features.sentiment || features.trends) {
+        recFormat = 'Markdown';
+        recReason = 'for rich formatting';
+    } else if (features.news && !features.summary && !features.sentiment) {
+        recFormat = 'CSV';
+        recReason = 'for spreadsheet analysis';
+    }
+
+    formatRec.querySelector('.rec-text').innerHTML =
+        `Recommended: <strong>${recFormat}</strong> ${recReason}`;
+
+    // Execution Quality stats
+    const toolsRan = document.getElementById('toolsRanCount');
+    const retriesEl = document.getElementById('retriesCount');
+    const fallbacksEl = document.getElementById('fallbacksCount');
+    const execConfidence = document.getElementById('execConfidence');
+
+    if (lastExecutionMeta && toolsRan) {
+        const toolCount = lastExecutionMeta.tools_executed?.length || 0;
+        const totalRetries = lastExecutionMeta.tools_executed?.reduce((sum, t) => sum + (t.retries || 0), 0) || 0;
+        const fallbackCount = lastExecutionMeta.fallbacks_used?.length || 0;
+        const errorCount = lastExecutionMeta.errors?.length || 0;
+
+        toolsRan.textContent = toolCount;
+        retriesEl.textContent = totalRetries;
+        fallbacksEl.textContent = fallbackCount;
+
+        // Confidence badge based on execution health
+        let confidence = 'high';
+        let confidenceText = '🟢 High Confidence';
+
+        if (errorCount > 0) {
+            confidence = 'low';
+            confidenceText = '🔴 Low Confidence';
+        } else if (fallbackCount > 0 || totalRetries > 2) {
+            confidence = 'medium';
+            confidenceText = '🟡 Recovered';
+        }
+
+        execConfidence.innerHTML = `<span class="confidence-badge ${confidence}">${confidenceText}</span>`;
+    }
+}
+
+// Get filtered data based on active toggles
+function getFilteredData() {
+    const filtered = {};
+    if (features.news && lastResultData?.news) filtered.news = lastResultData.news;
+    if (features.summary && lastResultData?.summary) filtered.summary = lastResultData.summary;
+    if (features.sentiment && lastResultData?.sentiment) filtered.sentiment = lastResultData.sentiment;
+    if (features.trends && lastResultData?.trends) filtered.trends = lastResultData.trends;
+    return filtered;
+}
+
+// Export function
+async function exportToFormat(format) {
+    const filteredData = getFilteredData();
+
+    if (Object.keys(filteredData).length === 0) {
+        setStatus('⚠️ No features selected. Enable at least one toggle.', 'warning');
+        return false;
+    }
+
+    try {
+        const response = await fetch(`${API_BASE}/export`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                data: filteredData,
+                format: format,
+                filename: 'nova_intelligence_report'
+            })
+        });
+
+        if (!response.ok) throw new Error('Export failed');
+
+        const blob = await response.blob();
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        const ext = format === 'markdown' ? 'md' : format;
+        a.download = `nova_intelligence_report.${ext}`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        window.URL.revokeObjectURL(url);
+
+        return true;
+    } catch (error) {
+        console.error('Export error:', error);
+        setStatus(`❌ Export failed: ${error.message}`, 'error');
+        return false;
+    }
+}
+
+// Individual format buttons
+document.getElementById('exportJson')?.addEventListener('click', async () => {
+    if (await exportToFormat('json')) {
+        setStatus('✅ JSON report downloaded!', 'success');
+    }
+});
+
+document.getElementById('exportMd')?.addEventListener('click', async () => {
+    if (await exportToFormat('markdown')) {
+        setStatus('✅ Markdown report downloaded!', 'success');
+    }
+});
+
+document.getElementById('exportCsv')?.addEventListener('click', async () => {
+    if (await exportToFormat('csv')) {
+        setStatus('✅ CSV report downloaded!', 'success');
+    }
+});
+
+document.getElementById('exportDocx')?.addEventListener('click', async () => {
+    if (await exportToFormat('docx')) {
+        setStatus('✅ Word document downloaded!', 'success');
+    }
+});
+
+document.getElementById('exportPdf')?.addEventListener('click', async () => {
+    if (await exportToFormat('pdf')) {
+        setStatus('✅ PDF report downloaded!', 'success');
+    }
+});
+
+// Export All Formats
+document.getElementById('exportAll')?.addEventListener('click', async () => {
+    setStatus('📦 Downloading all 5 formats...', 'loading');
+
+    const formats = ['json', 'markdown', 'csv', 'docx', 'pdf'];
+    let successCount = 0;
+
+    for (const format of formats) {
+        if (await exportToFormat(format)) {
+            successCount++;
+            await delay(300);
+        }
+    }
+
+    if (successCount === formats.length) {
+        setStatus(`✅ All ${successCount} formats downloaded!`, 'success');
+    } else {
+        setStatus(`⚠️ ${successCount}/${formats.length} formats downloaded`, 'warning');
+    }
+});
+
+// Copy JSON to Clipboard
+document.getElementById('copyJson')?.addEventListener('click', async () => {
+    const copyBtn = document.getElementById('copyJson');
+    const filteredData = getFilteredData();
+
+    if (Object.keys(filteredData).length === 0) {
+        setStatus('⚠️ No data to copy', 'warning');
+        return;
+    }
+
+    try {
+        const jsonStr = JSON.stringify(filteredData, null, 2);
+        await navigator.clipboard.writeText(jsonStr);
+
+        copyBtn.classList.add('copied');
+        copyBtn.textContent = '✅ Copied!';
+
+        setTimeout(() => {
+            copyBtn.classList.remove('copied');
+            copyBtn.textContent = '📋 Copy JSON to Clipboard';
+        }, 2000);
+
+        setStatus('✅ JSON copied to clipboard!', 'success');
+    } catch (error) {
+        setStatus('❌ Failed to copy', 'error');
+    }
+});
+
+// Initialize dynamic panel toggles
+initPanelToggles();
 
