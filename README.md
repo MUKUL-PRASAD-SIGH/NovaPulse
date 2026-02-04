@@ -4,6 +4,8 @@
 
 A voice-powered multi-agent news intelligence system using **Amazon Nova AI**. Fetches news from multiple sources in parallel, analyzes sentiment, extracts trends, and generates AI summaries.
 
+- 🎥 **Demo video**: [Watch on Google Drive](https://drive.google.com/file/d/15bnaJ1pJXA6-g7a7fXPHIwDAJdgh08pL/view?usp=sharing)
+
 ![Python](https://img.shields.io/badge/Python-3.9+-blue)
 ![FastAPI](https://img.shields.io/badge/FastAPI-0.109+-green)
 ![Nova AI](https://img.shields.io/badge/Amazon_Nova-AI-orange)
