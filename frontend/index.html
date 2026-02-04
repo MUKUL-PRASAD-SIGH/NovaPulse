@@ -11,11 +11,40 @@
 
 <body>
     <div class="container">
-        <!-- Header -->
+        <!-- Header with Settings -->
         <header class="header">
             <h1>🧠 Nova Intelligence Agent</h1>
             <p class="tagline">Not just news. Intelligence.</p>
+            <button id="settingsBtn" class="settings-btn" title="Settings">⚙️</button>
         </header>
+
+        <!-- Settings Modal -->
+        <div id="settingsModal" class="modal hidden">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>⚙️ Settings</h3>
+                    <button id="closeSettings" class="close-btn">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="setting-group">
+                        <label>🌐 Translation Languages (select up to 3)</label>
+                        <p class="setting-hint">Choose languages for quick translation</p>
+                        <div id="languageSelector" class="language-grid"></div>
+                    </div>
+                    <div class="setting-group">
+                        <label>📖 Dictionary</label>
+                        <p class="setting-hint">Hover over any word for 6+ seconds to see its definition</p>
+                        <div class="toggle-row">
+                            <span>Auto-Dictionary on Hover</span>
+                            <input type="checkbox" id="dictToggle" checked>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button id="saveSettings" class="save-btn">💾 Save Settings</button>
+                </div>
+            </div>
+        </div>
 
         <!-- Feature Toggles (Clickable) -->
         <div class="features">
@@ -62,6 +91,22 @@
             <div class="panel intel-panel">
                 <div class="panel-header">
                     <h3>🧠 Intelligence Report</h3>
+                    <div class="header-controls">
+                        <!-- Dictionary Toggle & Search -->
+                        <div class="dict-controls">
+                            <button id="dictToggleBtn" class="dict-toggle-btn" title="Dictionary Lookup">Dict</button>
+                            <div id="dictSearchBox" class="dict-search-box hidden">
+                                <input type="text" id="dictWordInput" placeholder="Enter word..." autocomplete="off">
+                                <button id="dictSearchBtn" class="dict-go-btn">Go</button>
+                            </div>
+                        </div>
+                        <!-- Translate -->
+                        <div class="translate-controls">
+                            <select id="translateLang" class="translate-select">
+                                <option value="">Translate</option>
+                            </select>
+                        </div>
+                    </div>
                 </div>
                 <div id="intelOutput" class="intel-content"></div>
             </div>
@@ -86,6 +131,14 @@
                 <button class="chip" data-cmd="climate change">Climate</button>
             </div>
         </div>
+    </div>
+
+    <!-- Dictionary Popup (floating) -->
+    <div id="dictPopup" class="dict-popup hidden">
+        <div class="dict-word"></div>
+        <div class="dict-pos"></div>
+        <div class="dict-defs"></div>
+        <div class="dict-source"></div>
     </div>
 
     <script src="/static/app.js"></script>

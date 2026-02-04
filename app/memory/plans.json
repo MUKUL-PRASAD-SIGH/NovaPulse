@@ -746,5 +746,359 @@
         }
       ]
     }
+  },
+  {
+    "timestamp": "2026-02-04T15:32:49.314052",
+    "user_input": "iNDIA  US TRADE DEAL",
+    "plan": {
+      "intent": "Fetch and summarize news about India-US trade deal",
+      "domain": "India-US trade deal",
+      "steps": [
+        {
+          "tool": "news_fetcher",
+          "params": {
+            "topic": "India-US trade deal",
+            "sources": [
+              "google"
+            ],
+            "limit": 5
+          }
+        },
+        {
+          "tool": "summarizer",
+          "params": {
+            "news_items": "news from news_fetcher"
+          }
+        },
+        {
+          "tool": "exporter",
+          "params": {
+            "filename": "India-US_trade_deal_report",
+            "format": "json"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T15:33:03.112467",
+    "user_input": "iNDIA  US TRADE DEAL with sentiment analysis",
+    "plan": {
+      "intent": "Fetch news on India-US trade deal and perform sentiment analysis",
+      "domain": "India-US Trade Deal",
+      "steps": [
+        {
+          "tool": "news_fetcher",
+          "params": {
+            "topic": "India-US Trade Deal",
+            "limit": 5
+          }
+        },
+        {
+          "tool": "sentiment",
+          "params": {
+            "news_items": "news_fetcher_output"
+          }
+        },
+        {
+          "tool": "exporter",
+          "params": {
+            "filename": "India-US_Trade_Deal_Sentiment_Analysis",
+            "format": "json"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T16:15:50.312163",
+    "user_input": "India EU trade deal",
+    "plan": {
+      "intent": "Fetch and export news on India EU trade deal",
+      "domain": "India EU trade deal",
+      "steps": [
+        {
+          "tool": "news_fetcher",
+          "params": {
+            "topic": "India EU trade deal",
+            "limit": 5
+          }
+        },
+        {
+          "tool": "exporter",
+          "params": {
+            "filename": "India_EU_trade_deal_report",
+            "format": "json"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T16:16:13.348095",
+    "user_input": "India EU trade deal with sentiment analysis",
+    "plan": {
+      "intent": "Fetch news on India EU trade deal and perform sentiment analysis",
+      "domain": "India EU trade deal",
+      "steps": [
+        {
+          "tool": "news_fetcher",
+          "params": {
+            "topic": "India EU trade deal",
+            "limit": 5
+          }
+        },
+        {
+          "tool": "sentiment",
+          "params": {
+            "news_items": "news_fetcher_output"
+          }
+        },
+        {
+          "tool": "exporter",
+          "params": {
+            "filename": "India_EU_trade_deal_sentiment_analysis_report",
+            "format": "json"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T16:24:20.458558",
+    "user_input": "India eu trade deal vs india us trade deal",
+    "plan": {
+      "intent": "Compare the trade deals between India and the EU versus India and the US",
+      "domain": "trade deals",
+      "steps": [
+        {
+          "tool": "news_fetcher",
+          "params": {
+            "topic": "India EU trade deal vs India US trade deal",
+            "sources": [
+              "google"
+            ],
+            "limit": 5
+          }
+        },
+        {
+          "tool": "summarizer",
+          "params": {
+            "news_items": "fetched news"
+          }
+        },
+        {
+          "tool": "sentiment",
+          "params": {
+            "news_items": "fetched news"
+          }
+        },
+        {
+          "tool": "trends",
+          "params": {
+            "news_items": "fetched news"
+          }
+        },
+        {
+          "tool": "exporter",
+          "params": {
+            "filename": "trade_deal_comparison_report",
+            "format": "json"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T16:24:54.487030",
+    "user_input": "India eu trade deal vs india us trade deal with sentiment analysis",
+    "plan": {
+      "intent": "Fetch and analyze news on India-EU trade deal vs India-US trade deal with sentiment analysis",
+      "domain": "trade deals",
+      "steps": [
+        {
+          "tool": "news_fetcher",
+          "params": {
+            "topic": "India-EU trade deal vs India-US trade deal",
+            "sources": [
+              "google"
+            ],
+            "limit": 5
+          }
+        },
+        {
+          "tool": "summarizer",
+          "params": {
+            "news_items": "fetched news"
+          }
+        },
+        {
+          "tool": "sentiment",
+          "params": {
+            "news_items": "fetched news"
+          }
+        },
+        {
+          "tool": "exporter",
+          "params": {
+            "filename": "trade_deal_report",
+            "format": "json"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T16:26:53.504552",
+    "user_input": "india us trade deal with sentiment analysis",
+    "plan": {
+      "intent": "Fetch news on India-US trade deal, perform sentiment analysis, and export the results.",
+      "domain": "India-US trade deal",
+      "steps": [
+        {
+          "tool": "news_fetcher",
+          "params": {
+            "topic": "India-US trade deal",
+            "limit": 5
+          }
+        },
+        {
+          "tool": "sentiment",
+          "params": {
+            "news_items": "{{news_fetcher.output}}"
+          }
+        },
+        {
+          "tool": "exporter",
+          "params": {
+            "filename": "India-US_trade_deal_sentiment_analysis",
+            "format": "json"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T16:35:02.399317",
+    "user_input": "india us trade deal",
+    "plan": {
+      "intent": "Fetch and summarize news about India-US trade deal",
+      "domain": "India-US trade deal",
+      "steps": [
+        {
+          "tool": "news_fetcher",
+          "params": {
+            "topic": "india us trade deal",
+            "sources": [
+              "google"
+            ],
+            "limit": 5
+          }
+        },
+        {
+          "tool": "summarizer",
+          "params": {
+            "news_items": "news_fetcher output"
+          }
+        },
+        {
+          "tool": "exporter",
+          "params": {
+            "filename": "india_us_trade_deal_report",
+            "format": "json"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T16:35:12.906618",
+    "user_input": "india us trade deal with sentiment analysis",
+    "plan": {
+      "intent": "Fetch news on India-US trade deal, perform sentiment analysis, and export the results.",
+      "domain": "India-US trade deal",
+      "steps": [
+        {
+          "tool": "news_fetcher",
+          "params": {
+            "topic": "India-US trade deal",
+            "limit": 5
+          }
+        },
+        {
+          "tool": "sentiment",
+          "params": {
+            "news_items": "from news_fetcher"
+          }
+        },
+        {
+          "tool": "exporter",
+          "params": {
+            "filename": "India-US_trade_deal_analysis",
+            "format": "json"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T16:35:23.258017",
+    "user_input": "india us trade deal with sentiment analysis",
+    "plan": {
+      "intent": "fetch news on India-US trade deal with sentiment analysis",
+      "domain": "India-US trade deal",
+      "steps": [
+        {
+          "tool": "news_fetcher",
+          "params": {
+            "topic": "India-US trade deal",
+            "limit": 5
+          }
+        },
+        {
+          "tool": "sentiment",
+          "params": {
+            "news_items": "news_fetcher_output"
+          }
+        },
+        {
+          "tool": "exporter",
+          "params": {
+            "filename": "India-US_trade_deal_sentiment_report",
+            "format": "json"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T16:41:03.748767",
+    "user_input": "india us trade deal with sentiment analysis",
+    "plan": {
+      "intent": "Fetch news on India-US trade deal, perform sentiment analysis, and export the results.",
+      "domain": "India-US trade deal",
+      "steps": [
+        {
+          "tool": "news_fetcher",
+          "params": {
+            "topic": "india us trade deal",
+            "limit": 5
+          }
+        },
+        {
+          "tool": "sentiment",
+          "params": {
+            "news_items": "news_fetcher output"
+          }
+        },
+        {
+          "tool": "exporter",
+          "params": {
+            "filename": "india_us_trade_deal_sentiment",
+            "format": "json"
+          }
+        }
+      ]
+    }
   }
 ]

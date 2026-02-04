@@ -2051,5 +2051,1406 @@
       "errors": [],
       "success": true
     }
+  },
+  {
+    "timestamp": "2026-02-04T15:32:58.279397",
+    "result": {
+      "intent": "Fetch and summarize news about India-US trade deal",
+      "domain": "India-US trade deal",
+      "tools_executed": [
+        {
+          "tool": "news_fetcher",
+          "success": true
+        },
+        {
+          "tool": "summarizer",
+          "success": true
+        },
+        {
+          "tool": "exporter",
+          "success": true
+        }
+      ],
+      "data": {
+        "news": [
+          {
+            "title": "Trump refuses to be outdone by Europe, signing his own U.S.-India trade deal - CNBC",
+            "link": "https://news.google.com/rss/articles/CBMikwFBVV95cUxNRk5nTHcyZGk1VXBMZGZ1eGtlSFdUeXl5d3NTLXFUR1lBb005aGdzblludFdYcVFEZVJfR1JhVElnX01NM3VLVU4xd0F1eHJ4Zi1sTnZnUlJlWi10Y0ZkV1BMQ0NDYXJxU1E0QUMtUUs3RUxMS2pfRWNGdWIwdG5ac284QjJiTFFFMjlvUWp6cjQxc3fSAZgBQVVfeXFMTVNnQW1tZFNyQ3NqdEI1MURkUnBrUzJ6UFVjN3ZJN3FTRVh4WnNFY1pNSmRBMzlwY2NURG04Z0JLVWc2M2Z1ZWFORlhLUHYzRkhxT1c5ejlJaWVEa2FrUVhmVXQyUFNfc0I0M041VWFqZThzTUhvVEM2dFpPU0VYMk9oSXFzdTdYUXdSWVFUczR0WVZ1a0JhUW0?oc=5",
+            "source": "rss",
+            "published": "Tue, 03 Feb 2026 10:36:45 GMT"
+          },
+          {
+            "title": "Hope and uncertainty as India and US strike long-delayed trade deal - BBC",
+            "link": "https://news.google.com/rss/articles/CBMiWkFVX3lxTFBoRHZ3eDU2UERBbkZfcHFSSFdicTdPTFdCM2pMQjJORmV6TGFhT3poR2hzamVwN1V1QlF4UDIwMTFDT0gwZUJwb2EyX05Kd1VINnhEdU9fVDIyZw?oc=5",
+            "source": "rss",
+            "published": "Tue, 03 Feb 2026 06:29:43 GMT"
+          },
+          {
+            "title": "India to keep some farm protections in US trade deal, will buy US aircraft, arms, energy - Reuters",
+            "link": "https://news.google.com/rss/articles/CBMixgFBVV95cUxNcng4MEdUWDFQNFBmckpxbVNzTmh5bWpTN0IyZ3NRYUNWTjZ1WFhlZDNYRkVLZGk5SXBXSVowTlRKNU5OZEwzdGpWNGRXSjhwVUV2TU1wT1FXVXZFamFfR2tfOTQ5WXV6TXRzUTdPSTc4RFp0bVVPRTRzMzltUDVPVjBjZVd0aC10NVkwZmF5U0NFcElCeHhSVXQ3bWpicU5Pd1oxdnRCSUR5cHJTbm1uNnU1SXRPWE05d1lYd3p0VTlqNTFGbnc?oc=5",
+            "source": "rss",
+            "published": "Tue, 03 Feb 2026 14:55:33 GMT"
+          },
+          {
+            "title": "The Trump-Modi Trade Deal Won\u2019t Magically Restore U.S.-India Trust - Carnegie Endowment for International Peace",
+            "link": "https://news.google.com/rss/articles/CBMinwFBVV95cUxQOXNLeDh5cmFqWjlfSUNmTEVwOTA5THBMSjRmcmc3TEoxN2lnaWk3Vk13WEFsWGZDTmlXLVB6OXZiMjVxYm90YVlNSnBNbGFUMm05V3l1VXJkeHlkTkdWNlh3bXA5bzVDZXNndEpqRmM0VkRVLWZUenVlN0dwVzFaQVlTcVRmUzJtUXItR2VhM0xKdG5yT0RUelJBeDNfd2c?oc=5",
+            "source": "rss",
+            "published": "Tue, 03 Feb 2026 21:24:07 GMT"
+          },
+          {
+            "title": "Nukes To Minerals: What Jaishankar, Rubio Discussed After India-US Deal - NDTV",
+            "link": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxNUkI3ak5WZFlja3R3Q1ZHQnVzTGZnaTc5V242UkJ1ZnNUSk5mVUdrSmJSRjYwZ2RLSWZlc0trbXhfLVBpMlhyUGUyTTg5X0pNVWotc2w4UE5BdkJOdld2d09nTkdpV1VaN3lTQ0w2Y2tzdThGcHVDUjNGeGJqcllmbVpkTGRjMjJoaGJ2bXdKcy1TWEZUU2pjY3lQa3hqcWpxS2Fham5waFBGbDA2aHBQVTZ0OXZmYUdLampycXNWXzbSAcgBQVVfeXFMUDQtSzQzTWRXQjczMDk3cXRObXpoWkt4aG9tV3R3TkFhZjlYazRwLXBaZkVwYU9PSVBndEhlYmtKZ0pDQzdKXzVvN0piTFc3T01VS0VrR0pQTkk3TnpLMHZOdnE5RlI0c0VYdjZrWU4tblFtbkNRTlFQd244by0xTG5hSVBTVWxiQWJWLXVBV2ZHMmlVbjNlYWNVTzNzNW1vWUNzandDVmgzalBCTldWS2ZKbVowODVKQnVJZVNSN1oyaGpJUm5nbXE?oc=5",
+            "source": "rss",
+            "published": "Wed, 04 Feb 2026 00:24:00 GMT"
+          },
+          {
+            "title": "India's Modi praised for US trade deal as opposition ...",
+            "link": "https://apnews.com/article/india-us-trade-deal-trump-modi-3ce866a869dae9fd10449a6f70c2a4ed",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "US and India reach trade deal, Trump says after Modi call",
+            "link": "https://www.bbc.com/news/articles/c5yve1x9zv0o",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "Trump says U.S. and India reached trade deal, will lower ...",
+            "link": "https://www.cnbc.com/2026/02/02/trump-india-trade-deal-tariffs.html",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "'Devil in the details': India-U.S. deal raises hopes for a reset",
+            "link": "https://www.cnbc.com/2026/02/03/us-india-trade-framework-tariffs-reset-modi-trump-new-delhi-russian-oil-venezuela.html",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "Trump responds to Europe with U.S.-India trade deal",
+            "link": "https://www.cnbc.com/2026/02/03/trump-us-india-trade-deal-europe-india-deal-compared.html",
+            "source": "tavily",
+            "published": ""
+          }
+        ],
+        "summary": {
+          "summary": "The U.S. and India have finalized a trade deal amidst a backdrop of both anticipation and skepticism, with President Trump signing the agreement in response to Europe's recent trade moves. The deal includes provisions for agricultural protections for India, alongside increased U.S. exports in aircraft, arms, and energy. While the agreement is praised for its potential to reset relations, there are concerns about its long-term impact on trust and economic benefits.",
+          "key_points": [
+            "Competitive response to European trade moves.",
+            "Provisions for agricultural protections and increased U.S. exports.",
+            "Mixed reactions regarding the deal's potential and challenges."
+          ]
+        },
+        "exported_file": "output/India-US_trade_deal_report_20260204_153258.json"
+      },
+      "errors": [],
+      "success": true
+    }
+  },
+  {
+    "timestamp": "2026-02-04T15:33:12.892947",
+    "result": {
+      "intent": "Fetch news on India-US trade deal and perform sentiment analysis",
+      "domain": "India-US Trade Deal",
+      "tools_executed": [
+        {
+          "tool": "news_fetcher",
+          "success": true
+        },
+        {
+          "tool": "sentiment",
+          "success": true
+        },
+        {
+          "tool": "exporter",
+          "success": true
+        }
+      ],
+      "data": {
+        "news": [
+          {
+            "title": "Trump refuses to be outdone by Europe, signing his own U.S.-India trade deal - CNBC",
+            "link": "https://news.google.com/rss/articles/CBMikwFBVV95cUxNRk5nTHcyZGk1VXBMZGZ1eGtlSFdUeXl5d3NTLXFUR1lBb005aGdzblludFdYcVFEZVJfR1JhVElnX01NM3VLVU4xd0F1eHJ4Zi1sTnZnUlJlWi10Y0ZkV1BMQ0NDYXJxU1E0QUMtUUs3RUxMS2pfRWNGdWIwdG5ac284QjJiTFFFMjlvUWp6cjQxc3fSAZgBQVVfeXFMTVNnQW1tZFNyQ3NqdEI1MURkUnBrUzJ6UFVjN3ZJN3FTRVh4WnNFY1pNSmRBMzlwY2NURG04Z0JLVWc2M2Z1ZWFORlhLUHYzRkhxT1c5ejlJaWVEa2FrUVhmVXQyUFNfc0I0M041VWFqZThzTUhvVEM2dFpPU0VYMk9oSXFzdTdYUXdSWVFUczR0WVZ1a0JhUW0?oc=5",
+            "source": "rss",
+            "published": "Tue, 03 Feb 2026 10:36:45 GMT"
+          },
+          {
+            "title": "Hope and uncertainty as India and US strike long-delayed trade deal - BBC",
+            "link": "https://news.google.com/rss/articles/CBMiWkFVX3lxTFBoRHZ3eDU2UERBbkZfcHFSSFdicTdPTFdCM2pMQjJORmV6TGFhT3poR2hzamVwN1V1QlF4UDIwMTFDT0gwZUJwb2EyX05Kd1VINnhEdU9fVDIyZw?oc=5",
+            "source": "rss",
+            "published": "Tue, 03 Feb 2026 06:29:43 GMT"
+          },
+          {
+            "title": "India to keep some farm protections in US trade deal, will buy US aircraft, arms, energy - Reuters",
+            "link": "https://news.google.com/rss/articles/CBMixgFBVV95cUxNcng4MEdUWDFQNFBmckpxbVNzTmh5bWpTN0IyZ3NRYUNWTjZ1WFhlZDNYRkVLZGk5SXBXSVowTlRKNU5OZEwzdGpWNGRXSjhwVUV2TU1wT1FXVXZFamFfR2tfOTQ5WXV6TXRzUTdPSTc4RFp0bVVPRTRzMzltUDVPVjBjZVd0aC10NVkwZmF5U0NFcElCeHhSVXQ3bWpicU5Pd1oxdnRCSUR5cHJTbm1uNnU1SXRPWE05d1lYd3p0VTlqNTFGbnc?oc=5",
+            "source": "rss",
+            "published": "Tue, 03 Feb 2026 14:55:33 GMT"
+          },
+          {
+            "title": "The Trump-Modi Trade Deal Won\u2019t Magically Restore U.S.-India Trust - Carnegie Endowment for International Peace",
+            "link": "https://news.google.com/rss/articles/CBMinwFBVV95cUxQOXNLeDh5cmFqWjlfSUNmTEVwOTA5THBMSjRmcmc3TEoxN2lnaWk3Vk13WEFsWGZDTmlXLVB6OXZiMjVxYm90YVlNSnBNbGFUMm05V3l1VXJkeHlkTkdWNlh3bXA5bzVDZXNndEpqRmM0VkRVLWZUenVlN0dwVzFaQVlTcVRmUzJtUXItR2VhM0xKdG5yT0RUelJBeDNfd2c?oc=5",
+            "source": "rss",
+            "published": "Tue, 03 Feb 2026 21:24:07 GMT"
+          },
+          {
+            "title": "Nukes To Minerals: What Jaishankar, Rubio Discussed After India-US Deal - NDTV",
+            "link": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxNUkI3ak5WZFlja3R3Q1ZHQnVzTGZnaTc5V242UkJ1ZnNUSk5mVUdrSmJSRjYwZ2RLSWZlc0trbXhfLVBpMlhyUGUyTTg5X0pNVWotc2w4UE5BdkJOdld2d09nTkdpV1VaN3lTQ0w2Y2tzdThGcHVDUjNGeGJqcllmbVpkTGRjMjJoaGJ2bXdKcy1TWEZUU2pjY3lQa3hqcWpxS2Fham5waFBGbDA2aHBQVTZ0OXZmYUdLampycXNWXzbSAcgBQVVfeXFMUDQtSzQzTWRXQjczMDk3cXRObXpoWkt4aG9tV3R3TkFhZjlYazRwLXBaZkVwYU9PSVBndEhlYmtKZ0pDQzdKXzVvN0piTFc3T01VS0VrR0pQTkk3TnpLMHZOdnE5RlI0c0VYdjZrWU4tblFtbkNRTlFQd244by0xTG5hSVBTVWxiQWJWLXVBV2ZHMmlVbjNlYWNVTzNzNW1vWUNzandDVmgzalBCTldWS2ZKbVowODVKQnVJZVNSN1oyaGpJUm5nbXE?oc=5",
+            "source": "rss",
+            "published": "Wed, 04 Feb 2026 00:24:00 GMT"
+          },
+          {
+            "title": "US and India reach trade deal, Trump says after Modi call",
+            "link": "https://www.bbc.com/news/articles/c5yve1x9zv0o",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "Trump says U.S. and India reached trade deal, will lower ...",
+            "link": "https://www.cnbc.com/2026/02/02/trump-india-trade-deal-tariffs.html",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "U.S.-India trade talks revamp as Trump sees other deals ...",
+            "link": "https://www.cnbc.com/2026/01/28/us-india-trade-talks-trump-tariffs.html",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "Trade deal: India and EU announce FTA amid Trump tariff ...",
+            "link": "https://www.bbc.com/news/articles/crrnee01r9jo",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "Trump slashes tariffs on India after Modi agrees to stop ...",
+            "link": "https://www.cnn.com/2026/02/02/business/india-russian-oil-trump-tariffs",
+            "source": "tavily",
+            "published": ""
+          }
+        ],
+        "sentiment": {
+          "overall": "neutral",
+          "mood_label": "cautious optimism",
+          "confidence": "medium",
+          "direction": "stable",
+          "momentum_strength": "moderate",
+          "risk_level": "moderate",
+          "market_bias": "balanced",
+          "reasoning": "The headlines reflect a mix of optimism about the trade deal and caution regarding its potential impact. The deal is seen as a significant step but also as one that won't immediately restore trust or solve all issues.",
+          "positive_signals": [
+            "Bilateral trade deal signed",
+            "India to buy US aircraft, arms, energy"
+          ],
+          "negative_signals": [
+            "Trade deal won't magically restore U.S.-India trust",
+            "Hope and uncertainty"
+          ],
+          "emerging_themes": [
+            "Trade deal specifics",
+            "Long-term trust and relationship"
+          ],
+          "score": 0.45,
+          "breakdown": {
+            "positive": 5,
+            "neutral": 4,
+            "negative": 2
+          }
+        },
+        "exported_file": "output/India-US_Trade_Deal_Sentiment_Analysis_20260204_153312.json"
+      },
+      "errors": [],
+      "success": true
+    }
+  },
+  {
+    "timestamp": "2026-02-04T16:15:58.028517",
+    "result": {
+      "intent": "Fetch and export news on India EU trade deal",
+      "domain": "India EU trade deal",
+      "tools_executed": [
+        {
+          "tool": "news_fetcher",
+          "success": true
+        },
+        {
+          "tool": "exporter",
+          "success": true
+        }
+      ],
+      "data": {
+        "news": [
+          {
+            "title": "Here's who analysts expect to gain from India\u2019s U.S. and EU trade deals - CNBC",
+            "link": "https://news.google.com/rss/articles/CBMimwFBVV95cUxNWmJMcE51QzZjSlJHLWNmVV9hb0loRUk0clJMdGZ1VnkwX3FjQVhyekNuX0pjTC02Tng3MWVabExwYnVCcUxNbDFfcmNoa2NFdW9Yd0laNjdiSTU0RGpqY3Y0bllUbDlIWnJ3eW5mVGlyc1puR3FadVZjTGFQMFBIc3dVTjlNV1JMdUpKOHB0ZE9POFFSWGU2UTloY9IBoAFBVV95cUxNVTJCZGw3Qk1sQ0xPbmFaMlVIZHZLazc2cjY0ZkVwSW52cnBTd0E5S2pLaFAxYXBwS2NQN1ZBTGtjRXQ4WkF4T2hsVEhTYzBBWXpxUE4zaVhSaUtycUlkMUFhdlpaZWtRM3dMaDZJMkRUZUlqa21PZmdQMlRhd3VhMnBxYnl6YnNmajN2T3F3UnR1Y2c0TV9MdXhDeWJybnkz?oc=5",
+            "source": "rss",
+            "published": "Tue, 03 Feb 2026 23:18:15 GMT"
+          },
+          {
+            "title": "Opinion: Opinion | US Trade Deal: Is This Trump's 'FOMO' After The India-EU Pact? - NDTV",
+            "link": "https://news.google.com/rss/articles/CBMiowFBVV95cUxORlUzdEh1ZE00VXE2QlZlckNSTzZxZ1R1VldqcWtpNkk0Wk5fWFpBTkJja1NtR18yU1RrQ3RkUmtvSjdfMGtuZDYxaDd3UWtOVnBNXzFFR0xjSkotdjhWcUhIR2xQOXhkVEk4VU1JcUp6aUJyNEQwbHNOY1hVb2F4ang3QnV3ZHltSmpNVDljcXpZVng5dWYtWWpWdldydFRVOXA0?oc=5",
+            "source": "rss",
+            "published": "Tue, 03 Feb 2026 09:15:41 GMT"
+          },
+          {
+            "title": "US agrees to drop tariffs after India stops Russian oil purchases - BBC",
+            "link": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE5UMGpiTUZDMS1YcDU0SDQwWEZyVWl5bHlKdVBLeWRWaUx4TTZrZEg2dGZobVVadlFibmZDa3JfR2J2N19pbzMyMlNQZWhPNjNVaDBfcjhwWDlqUQ?oc=5",
+            "source": "rss",
+            "published": "Mon, 02 Feb 2026 20:53:09 GMT"
+          },
+          {
+            "title": "Indian trade deal provides opportunity for German carmakers - DW.com",
+            "link": "https://news.google.com/rss/articles/CBMilwFBVV95cUxQVnpCYUlRc0d2b09wSUJLNWxlLV9UY3BRYjFtOVhtTGwwZURWcVZQSG9ObzczRUd1b2k3QzdwRTkxYi1DYmNCRmlPSWhhSUU0OFEwVmFVV2FOSzBteDFOWllxMmZrMTNtQ1hZUHFMcjB1OWRVRHZ3ZHZXcEs2Y25SalBwd3hSUDdrUEZDN0Ewd1MtcEp6M3JV0gGXAUFVX3lxTE1admktMUhYRU43eEp2MGhYN3U3Slp0TVdOR1pQQUN5SmIybGxoT1poaUFoZ2xURU5mWTZOTFN4Z1hLM2I0elBNRXZFakZEQXZiSW80RnlUS0RMdlRLbThBaEp1UTlfSk1mSHpvaVR5T2R1ZFpYZTVOSkhUTmFQTmVwb29IWDVxZ08xMl9CU3BNeWlHMkpHM0E?oc=5",
+            "source": "rss",
+            "published": "Tue, 03 Feb 2026 11:04:15 GMT"
+          },
+          {
+            "title": "What to know about the US-India trade deal - Atlantic Council",
+            "link": "https://news.google.com/rss/articles/CBMijwFBVV95cUxNTkFXeF95SE00TV9ZcVg3ZWE0MElDaVRvTm1rQWRZN3FsMzI2SGZsLW1XMHhhcUtmdGxOdWFISnJYVUVDc1ZOakRPS1JQTTQ0T0dSS0xaYVBlSWlpNWh2b2JUcWVJV0VrSklpVjkwY19Cb0VrZ090c0dqTHhKWEdmNWRpZVVuQVQxUjZoMG5iOA?oc=5",
+            "source": "rss",
+            "published": "Mon, 02 Feb 2026 23:19:13 GMT"
+          },
+          {
+            "title": "Adani arm ties up with Italian firm to build copters in India",
+            "link": "https://timesofindia.indiatimes.com/india/adani-arm-ties-up-with-italian-firm-to-build-copters-in-india/articleshow/127894826.cms",
+            "source": "gnews",
+            "published": "2026-02-03T22:06:00Z"
+          },
+          {
+            "title": "Trade deal with EU may have spurred US announcement",
+            "link": "https://timesofindia.indiatimes.com/business/india-business/trade-deal-with-eu-may-have-spurred-us-announcement/articleshow/127894269.cms",
+            "source": "gnews",
+            "published": "2026-02-03T20:23:00Z"
+          },
+          {
+            "title": "MP wary of India-EU deal\u2019s impact on wine & auto industries in Nashik",
+            "link": "https://timesofindia.indiatimes.com/city/nashik/mp-wary-of-india-eu-deals-impact-on-wine-auto-industries-in-nashik/articleshow/127892253.cms",
+            "source": "gnews",
+            "published": "2026-02-03T20:19:00Z"
+          },
+          {
+            "title": "US trade deal: \u2018Joint statement to be ready in a few days,\u2019 says Piyush Goyal",
+            "link": "https://timesofindia.indiatimes.com/business/india-business/india-us-trade-deal-joint-statement-to-be-ready-in-a-few-days-says-piyush-goyal/articleshow/127894030.cms",
+            "source": "gnews",
+            "published": "2026-02-03T19:39:00Z"
+          },
+          {
+            "title": "Trade deal: India and EU announce FTA amid Trump tariff ...",
+            "link": "https://www.bbc.com/news/articles/crrnee01r9jo",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "India and the European Union reach a free trade agreement",
+            "link": "https://apnews.com/article/india-eu-modi-trade-wine-auto-74b8744b2ef562d2e820b238e6ce8d38",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "Trump's shadow looms over India-EU trade deal",
+            "link": "https://www.bbc.com/news/articles/c75x9wqwz40o",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "India-EU trade deal: What does it do to tariffs and who ...",
+            "link": "https://www.cnbc.com/2026/01/27/india-eu-trade-deal-tariffs-exports.html",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "India and European Union have closed a 'landmark' free ...",
+            "link": "https://www.cnbc.com/2026/01/27/india-eu-trade-deal-trump-tariffs.html",
+            "source": "tavily",
+            "published": ""
+          }
+        ],
+        "exported_file": "output/India_EU_trade_deal_report_20260204_161558.json"
+      },
+      "errors": [],
+      "success": true
+    }
+  },
+  {
+    "timestamp": "2026-02-04T16:16:22.230687",
+    "result": {
+      "intent": "Fetch news on India EU trade deal and perform sentiment analysis",
+      "domain": "India EU trade deal",
+      "tools_executed": [
+        {
+          "tool": "news_fetcher",
+          "success": true
+        },
+        {
+          "tool": "sentiment",
+          "success": true
+        },
+        {
+          "tool": "exporter",
+          "success": true
+        }
+      ],
+      "data": {
+        "news": [
+          {
+            "title": "Here's who analysts expect to gain from India\u2019s U.S. and EU trade deals - CNBC",
+            "link": "https://news.google.com/rss/articles/CBMimwFBVV95cUxNWmJMcE51QzZjSlJHLWNmVV9hb0loRUk0clJMdGZ1VnkwX3FjQVhyekNuX0pjTC02Tng3MWVabExwYnVCcUxNbDFfcmNoa2NFdW9Yd0laNjdiSTU0RGpqY3Y0bllUbDlIWnJ3eW5mVGlyc1puR3FadVZjTGFQMFBIc3dVTjlNV1JMdUpKOHB0ZE9POFFSWGU2UTloY9IBoAFBVV95cUxNVTJCZGw3Qk1sQ0xPbmFaMlVIZHZLazc2cjY0ZkVwSW52cnBTd0E5S2pLaFAxYXBwS2NQN1ZBTGtjRXQ4WkF4T2hsVEhTYzBBWXpxUE4zaVhSaUtycUlkMUFhdlpaZWtRM3dMaDZJMkRUZUlqa21PZmdQMlRhd3VhMnBxYnl6YnNmajN2T3F3UnR1Y2c0TV9MdXhDeWJybnkz?oc=5",
+            "source": "rss",
+            "published": "Tue, 03 Feb 2026 23:18:15 GMT"
+          },
+          {
+            "title": "Opinion: Opinion | US Trade Deal: Is This Trump's 'FOMO' After The India-EU Pact? - NDTV",
+            "link": "https://news.google.com/rss/articles/CBMiowFBVV95cUxORlUzdEh1ZE00VXE2QlZlckNSTzZxZ1R1VldqcWtpNkk0Wk5fWFpBTkJja1NtR18yU1RrQ3RkUmtvSjdfMGtuZDYxaDd3UWtOVnBNXzFFR0xjSkotdjhWcUhIR2xQOXhkVEk4VU1JcUp6aUJyNEQwbHNOY1hVb2F4ang3QnV3ZHltSmpNVDljcXpZVng5dWYtWWpWdldydFRVOXA0?oc=5",
+            "source": "rss",
+            "published": "Tue, 03 Feb 2026 09:15:41 GMT"
+          },
+          {
+            "title": "US agrees to drop tariffs after India stops Russian oil purchases - BBC",
+            "link": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE5UMGpiTUZDMS1YcDU0SDQwWEZyVWl5bHlKdVBLeWRWaUx4TTZrZEg2dGZobVVadlFibmZDa3JfR2J2N19pbzMyMlNQZWhPNjNVaDBfcjhwWDlqUQ?oc=5",
+            "source": "rss",
+            "published": "Mon, 02 Feb 2026 20:53:09 GMT"
+          },
+          {
+            "title": "Indian trade deal provides opportunity for German carmakers - DW.com",
+            "link": "https://news.google.com/rss/articles/CBMilwFBVV95cUxQVnpCYUlRc0d2b09wSUJLNWxlLV9UY3BRYjFtOVhtTGwwZURWcVZQSG9ObzczRUd1b2k3QzdwRTkxYi1DYmNCRmlPSWhhSUU0OFEwVmFVV2FOSzBteDFOWllxMmZrMTNtQ1hZUHFMcjB1OWRVRHZ3ZHZXcEs2Y25SalBwd3hSUDdrUEZDN0Ewd1MtcEp6M3JV0gGXAUFVX3lxTE1admktMUhYRU43eEp2MGhYN3U3Slp0TVdOR1pQQUN5SmIybGxoT1poaUFoZ2xURU5mWTZOTFN4Z1hLM2I0elBNRXZFakZEQXZiSW80RnlUS0RMdlRLbThBaEp1UTlfSk1mSHpvaVR5T2R1ZFpYZTVOSkhUTmFQTmVwb29IWDVxZ08xMl9CU3BNeWlHMkpHM0E?oc=5",
+            "source": "rss",
+            "published": "Tue, 03 Feb 2026 11:04:15 GMT"
+          },
+          {
+            "title": "What to know about the US-India trade deal - Atlantic Council",
+            "link": "https://news.google.com/rss/articles/CBMijwFBVV95cUxNTkFXeF95SE00TV9ZcVg3ZWE0MElDaVRvTm1rQWRZN3FsMzI2SGZsLW1XMHhhcUtmdGxOdWFISnJYVUVDc1ZOakRPS1JQTTQ0T0dSS0xaYVBlSWlpNWh2b2JUcWVJV0VrSklpVjkwY19Cb0VrZ090c0dqTHhKWEdmNWRpZVVuQVQxUjZoMG5iOA?oc=5",
+            "source": "rss",
+            "published": "Mon, 02 Feb 2026 23:19:13 GMT"
+          },
+          {
+            "title": "Adani arm ties up with Italian firm to build copters in India",
+            "link": "https://timesofindia.indiatimes.com/india/adani-arm-ties-up-with-italian-firm-to-build-copters-in-india/articleshow/127894826.cms",
+            "source": "gnews",
+            "published": "2026-02-03T22:06:00Z"
+          },
+          {
+            "title": "Trade deal with EU may have spurred US announcement",
+            "link": "https://timesofindia.indiatimes.com/business/india-business/trade-deal-with-eu-may-have-spurred-us-announcement/articleshow/127894269.cms",
+            "source": "gnews",
+            "published": "2026-02-03T20:23:00Z"
+          },
+          {
+            "title": "MP wary of India-EU deal\u2019s impact on wine & auto industries in Nashik",
+            "link": "https://timesofindia.indiatimes.com/city/nashik/mp-wary-of-india-eu-deals-impact-on-wine-auto-industries-in-nashik/articleshow/127892253.cms",
+            "source": "gnews",
+            "published": "2026-02-03T20:19:00Z"
+          },
+          {
+            "title": "US trade deal: \u2018Joint statement to be ready in a few days,\u2019 says Piyush Goyal",
+            "link": "https://timesofindia.indiatimes.com/business/india-business/india-us-trade-deal-joint-statement-to-be-ready-in-a-few-days-says-piyush-goyal/articleshow/127894030.cms",
+            "source": "gnews",
+            "published": "2026-02-03T19:39:00Z"
+          },
+          {
+            "title": "India-EU trade deal: What does it do to tariffs and who ...",
+            "link": "https://www.cnbc.com/2026/01/27/india-eu-trade-deal-tariffs-exports.html",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "Trade deal: India and EU announce FTA amid Trump tariff ...",
+            "link": "https://www.bbc.com/news/articles/crrnee01r9jo",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "Trump's shadow looms over India-EU trade deal",
+            "link": "https://www.bbc.com/news/articles/c75x9wqwz40o",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "CNBC's Inside India newsletter: EU-India deal won't be a ...",
+            "link": "https://www.cnbc.com/2026/01/22/cnbcs-inside-india-newsletter-eu-india-deal-wont-be-a-substitute-to-a-us-india-pact.html",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "Trump's reaction to the EU-India free trade agreement",
+            "link": "https://www.cnbc.com/2026/01/27/trump-reaction-eu-india-trade-deal-fta.html",
+            "source": "tavily",
+            "published": ""
+          }
+        ],
+        "sentiment": {
+          "overall": "neutral",
+          "mood_label": "cautious optimism",
+          "confidence": "medium",
+          "direction": "stable",
+          "momentum_strength": "moderate",
+          "risk_level": "moderate",
+          "market_bias": "balanced",
+          "reasoning": "The headlines reflect a mix of optimism regarding the potential economic benefits of trade deals, particularly for specific sectors like automotive and manufacturing. However, there are also concerns about the impact on certain industries and the political context influencing these agreements.",
+          "positive_signals": [
+            "Expected gains for analysts from trade deals",
+            "Opportunities for German carmakers",
+            "Joint statement readiness indicating progress"
+          ],
+          "negative_signals": [
+            "Concerns about impact on wine and auto industries",
+            "Trump's shadow over the deal",
+            "Tariffs and their potential removal"
+          ],
+          "emerging_themes": [
+            "Sectoral impact",
+            "Political influence",
+            "Trade balance"
+          ],
+          "score": 0.5,
+          "breakdown": {
+            "positive": 5,
+            "neutral": 5,
+            "negative": 2
+          }
+        },
+        "exported_file": "output/India_EU_trade_deal_sentiment_analysis_report_20260204_161622.json"
+      },
+      "errors": [],
+      "success": true
+    }
+  },
+  {
+    "timestamp": "2026-02-04T16:24:32.197734",
+    "result": {
+      "intent": "Compare the trade deals between India and the EU versus India and the US",
+      "domain": "trade deals",
+      "tools_executed": [
+        {
+          "tool": "news_fetcher",
+          "success": true
+        },
+        {
+          "tool": "summarizer",
+          "success": true
+        },
+        {
+          "tool": "sentiment",
+          "success": true
+        },
+        {
+          "tool": "trends",
+          "success": true
+        },
+        {
+          "tool": "exporter",
+          "success": true
+        }
+      ],
+      "data": {
+        "news": [
+          {
+            "title": "Trump refuses to be outdone by Europe, signing his own U.S.-India trade deal - CNBC",
+            "link": "https://news.google.com/rss/articles/CBMikwFBVV95cUxNRk5nTHcyZGk1VXBMZGZ1eGtlSFdUeXl5d3NTLXFUR1lBb005aGdzblludFdYcVFEZVJfR1JhVElnX01NM3VLVU4xd0F1eHJ4Zi1sTnZnUlJlWi10Y0ZkV1BMQ0NDYXJxU1E0QUMtUUs3RUxMS2pfRWNGdWIwdG5ac284QjJiTFFFMjlvUWp6cjQxc3fSAZgBQVVfeXFMTVNnQW1tZFNyQ3NqdEI1MURkUnBrUzJ6UFVjN3ZJN3FTRVh4WnNFY1pNSmRBMzlwY2NURG04Z0JLVWc2M2Z1ZWFORlhLUHYzRkhxT1c5ejlJaWVEa2FrUVhmVXQyUFNfc0I0M041VWFqZThzTUhvVEM2dFpPU0VYMk9oSXFzdTdYUXdSWVFUczR0WVZ1a0JhUW0?oc=5",
+            "source": "rss",
+            "published": "Tue, 03 Feb 2026 10:36:45 GMT"
+          },
+          {
+            "title": "Here's who analysts expect to gain from India\u2019s U.S. and EU trade deals - CNBC",
+            "link": "https://news.google.com/rss/articles/CBMimwFBVV95cUxNWmJMcE51QzZjSlJHLWNmVV9hb0loRUk0clJMdGZ1VnkwX3FjQVhyekNuX0pjTC02Tng3MWVabExwYnVCcUxNbDFfcmNoa2NFdW9Yd0laNjdiSTU0RGpqY3Y0bllUbDlIWnJ3eW5mVGlyc1puR3FadVZjTGFQMFBIc3dVTjlNV1JMdUpKOHB0ZE9POFFSWGU2UTloY9IBoAFBVV95cUxNVTJCZGw3Qk1sQ0xPbmFaMlVIZHZLazc2cjY0ZkVwSW52cnBTd0E5S2pLaFAxYXBwS2NQN1ZBTGtjRXQ4WkF4T2hsVEhTYzBBWXpxUE4zaVhSaUtycUlkMUFhdlpaZWtRM3dMaDZJMkRUZUlqa21PZmdQMlRhd3VhMnBxYnl6YnNmajN2T3F3UnR1Y2c0TV9MdXhDeWJybnkz?oc=5",
+            "source": "rss",
+            "published": "Tue, 03 Feb 2026 23:18:15 GMT"
+          },
+          {
+            "title": "Hope and uncertainty as India and US strike long-delayed trade deal - BBC",
+            "link": "https://news.google.com/rss/articles/CBMiWkFVX3lxTFBoRHZ3eDU2UERBbkZfcHFSSFdicTdPTFdCM2pMQjJORmV6TGFhT3poR2hzamVwN1V1QlF4UDIwMTFDT0gwZUJwb2EyX05Kd1VINnhEdU9fVDIyZw?oc=5",
+            "source": "rss",
+            "published": "Tue, 03 Feb 2026 06:29:43 GMT"
+          },
+          {
+            "title": "The Trump-Modi Trade Deal Won\u2019t Magically Restore U.S.-India Trust - Carnegie Endowment for International Peace",
+            "link": "https://news.google.com/rss/articles/CBMinwFBVV95cUxQOXNLeDh5cmFqWjlfSUNmTEVwOTA5THBMSjRmcmc3TEoxN2lnaWk3Vk13WEFsWGZDTmlXLVB6OXZiMjVxYm90YVlNSnBNbGFUMm05V3l1VXJkeHlkTkdWNlh3bXA5bzVDZXNndEpqRmM0VkRVLWZUenVlN0dwVzFaQVlTcVRmUzJtUXItR2VhM0xKdG5yT0RUelJBeDNfd2c?oc=5",
+            "source": "rss",
+            "published": "Tue, 03 Feb 2026 21:24:07 GMT"
+          },
+          {
+            "title": "India-US trade deal slashes tariffs; seen lifting exports, market sentiment - Reuters",
+            "link": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxOaHd5Z28tSjlmTnJPSzE4dmM0cDFYOEppeFJPdXFuNHI1Yk1FMmM5dGdOR0sydXI1YWNYUThTeGlfRmJRa2EydmV2dm15Qi16bzhjUHNtRU9OTDB1aW5kVXlSdjBIUmhpR3lIeHdMVnd2NFVlVVlJVUxOVUFYdE03NEkyNUhnM3lMdGJpVHRRVHAtaUJpY2luR1Z4bm8tZG1GRldCVUhtS0k?oc=5",
+            "source": "rss",
+            "published": "Tue, 03 Feb 2026 07:27:00 GMT"
+          },
+          {
+            "title": "US and India reach trade deal, Trump says after Modi call",
+            "link": "https://www.bbc.com/news/articles/c5yve1x9zv0o",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "CNBC's Inside India newsletter: E.U. edges out U.S. as ...",
+            "link": "https://www.cnbc.com/2026/01/29/cnbcs-inside-india-newsletter-eu-edges-out-us-as-new-delhi-readies-to-slash-duties-on-imported-cars.html",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "India and European Union have closed a 'landmark' free ...",
+            "link": "https://www.cnbc.com/2026/01/27/india-eu-trade-deal-trump-tariffs.html",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "Trump responds to Europe with U.S.-India trade deal",
+            "link": "https://www.cnbc.com/2026/02/03/trump-us-india-trade-deal-europe-india-deal-compared.html",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "Trade deal: India and EU announce FTA amid Trump tariff ...",
+            "link": "https://www.bbc.com/news/articles/crrnee01r9jo",
+            "source": "tavily",
+            "published": ""
+          }
+        ],
+        "summary": {
+          "summary": "The U.S. and India have reached a significant trade deal, marking a new chapter in their economic relations. This development comes in the wake of India finalizing a trade agreement with the European Union, creating a competitive environment. Analysts are assessing the potential benefits and challenges arising from these agreements for both sides.",
+          "key_points": [
+            "U.S.-India trade deal as a significant economic development",
+            "Competitive trade environment with the EU's involvement",
+            "Analysis of potential benefits and challenges for both nations"
+          ]
+        },
+        "sentiment": {
+          "overall": "neutral",
+          "mood_label": "cautious optimism",
+          "confidence": "medium",
+          "direction": "stable",
+          "momentum_strength": "moderate",
+          "risk_level": "moderate",
+          "market_bias": "balanced",
+          "reasoning": "The headlines reflect a mix of optimism about the trade deal's potential to boost exports and market sentiment, but also caution due to the complex geopolitical dynamics and the need for trust restoration. The coverage volume and consistency suggest a moderate level of attention and interest.",
+          "positive_signals": [
+            "Trade deal expected to lift exports",
+            "Market sentiment seen improving"
+          ],
+          "negative_signals": [
+            "Need for trust restoration",
+            "Complex geopolitical dynamics"
+          ],
+          "emerging_themes": [
+            "Geopolitical competition",
+            "Trade deal benefits"
+          ],
+          "score": 0.5,
+          "breakdown": {
+            "positive": 5,
+            "neutral": 3,
+            "negative": 2
+          }
+        },
+        "trends": {
+          "trending_topics": [
+            {
+              "topic": "India",
+              "mentions": 18
+            },
+            {
+              "topic": "Trump",
+              "mentions": 9
+            },
+            {
+              "topic": "trade",
+              "mentions": 6
+            },
+            {
+              "topic": "deal",
+              "mentions": 6
+            },
+            {
+              "topic": "Europe",
+              "mentions": 4
+            },
+            {
+              "topic": "CNBC",
+              "mentions": 3
+            },
+            {
+              "topic": "Modi",
+              "mentions": 3
+            },
+            {
+              "topic": "Trade",
+              "mentions": 3
+            },
+            {
+              "topic": "Here",
+              "mentions": 2
+            },
+            {
+              "topic": "Hope",
+              "mentions": 2
+            }
+          ],
+          "total_articles": 10
+        },
+        "exported_file": "output/trade_deal_comparison_report_20260204_162432.json"
+      },
+      "errors": [],
+      "success": true
+    }
+  },
+  {
+    "timestamp": "2026-02-04T16:25:08.494933",
+    "result": {
+      "intent": "Fetch and analyze news on India-EU trade deal vs India-US trade deal with sentiment analysis",
+      "domain": "trade deals",
+      "tools_executed": [
+        {
+          "tool": "news_fetcher",
+          "success": true
+        },
+        {
+          "tool": "summarizer",
+          "success": true
+        },
+        {
+          "tool": "sentiment",
+          "success": true
+        },
+        {
+          "tool": "exporter",
+          "success": true
+        }
+      ],
+      "data": {
+        "news": [
+          {
+            "title": "Trump refuses to be outdone by Europe, signing his own U.S.-India trade deal - CNBC",
+            "link": "https://news.google.com/rss/articles/CBMikwFBVV95cUxNRk5nTHcyZGk1VXBMZGZ1eGtlSFdUeXl5d3NTLXFUR1lBb005aGdzblludFdYcVFEZVJfR1JhVElnX01NM3VLVU4xd0F1eHJ4Zi1sTnZnUlJlWi10Y0ZkV1BMQ0NDYXJxU1E0QUMtUUs3RUxMS2pfRWNGdWIwdG5ac284QjJiTFFFMjlvUWp6cjQxc3fSAZgBQVVfeXFMTVNnQW1tZFNyQ3NqdEI1MURkUnBrUzJ6UFVjN3ZJN3FTRVh4WnNFY1pNSmRBMzlwY2NURG04Z0JLVWc2M2Z1ZWFORlhLUHYzRkhxT1c5ejlJaWVEa2FrUVhmVXQyUFNfc0I0M041VWFqZThzTUhvVEM2dFpPU0VYMk9oSXFzdTdYUXdSWVFUczR0WVZ1a0JhUW0?oc=5",
+            "source": "rss",
+            "published": "Tue, 03 Feb 2026 10:36:45 GMT"
+          },
+          {
+            "title": "Here's who analysts expect to gain from India\u2019s U.S. and EU trade deals - CNBC",
+            "link": "https://news.google.com/rss/articles/CBMimwFBVV95cUxNWmJMcE51QzZjSlJHLWNmVV9hb0loRUk0clJMdGZ1VnkwX3FjQVhyekNuX0pjTC02Tng3MWVabExwYnVCcUxNbDFfcmNoa2NFdW9Yd0laNjdiSTU0RGpqY3Y0bllUbDlIWnJ3eW5mVGlyc1puR3FadVZjTGFQMFBIc3dVTjlNV1JMdUpKOHB0ZE9POFFSWGU2UTloY9IBoAFBVV95cUxNVTJCZGw3Qk1sQ0xPbmFaMlVIZHZLazc2cjY0ZkVwSW52cnBTd0E5S2pLaFAxYXBwS2NQN1ZBTGtjRXQ4WkF4T2hsVEhTYzBBWXpxUE4zaVhSaUtycUlkMUFhdlpaZWtRM3dMaDZJMkRUZUlqa21PZmdQMlRhd3VhMnBxYnl6YnNmajN2T3F3UnR1Y2c0TV9MdXhDeWJybnkz?oc=5",
+            "source": "rss",
+            "published": "Tue, 03 Feb 2026 23:18:15 GMT"
+          },
+          {
+            "title": "Hope and uncertainty as India and US strike long-delayed trade deal - BBC",
+            "link": "https://news.google.com/rss/articles/CBMiWkFVX3lxTFBoRHZ3eDU2UERBbkZfcHFSSFdicTdPTFdCM2pMQjJORmV6TGFhT3poR2hzamVwN1V1QlF4UDIwMTFDT0gwZUJwb2EyX05Kd1VINnhEdU9fVDIyZw?oc=5",
+            "source": "rss",
+            "published": "Tue, 03 Feb 2026 06:29:43 GMT"
+          },
+          {
+            "title": "The Trump-Modi Trade Deal Won\u2019t Magically Restore U.S.-India Trust - Carnegie Endowment for International Peace",
+            "link": "https://news.google.com/rss/articles/CBMinwFBVV95cUxQOXNLeDh5cmFqWjlfSUNmTEVwOTA5THBMSjRmcmc3TEoxN2lnaWk3Vk13WEFsWGZDTmlXLVB6OXZiMjVxYm90YVlNSnBNbGFUMm05V3l1VXJkeHlkTkdWNlh3bXA5bzVDZXNndEpqRmM0VkRVLWZUenVlN0dwVzFaQVlTcVRmUzJtUXItR2VhM0xKdG5yT0RUelJBeDNfd2c?oc=5",
+            "source": "rss",
+            "published": "Tue, 03 Feb 2026 21:24:07 GMT"
+          },
+          {
+            "title": "India-US trade deal slashes tariffs; seen lifting exports, market sentiment - Reuters",
+            "link": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxOaHd5Z28tSjlmTnJPSzE4dmM0cDFYOEppeFJPdXFuNHI1Yk1FMmM5dGdOR0sydXI1YWNYUThTeGlfRmJRa2EydmV2dm15Qi16bzhjUHNtRU9OTDB1aW5kVXlSdjBIUmhpR3lIeHdMVnd2NFVlVVlJVUxOVUFYdE03NEkyNUhnM3lMdGJpVHRRVHAtaUJpY2luR1Z4bm8tZG1GRldCVUhtS0k?oc=5",
+            "source": "rss",
+            "published": "Tue, 03 Feb 2026 07:27:00 GMT"
+          },
+          {
+            "title": "India and European Union have closed a 'landmark' free ...",
+            "link": "https://www.cnbc.com/2026/01/27/india-eu-trade-deal-trump-tariffs.html",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "US and India reach trade deal, Trump says after Modi call",
+            "link": "https://www.bbc.com/news/articles/c5yve1x9zv0o",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "Trump responds to Europe with U.S.-India trade deal",
+            "link": "https://www.cnbc.com/2026/02/03/trump-us-india-trade-deal-europe-india-deal-compared.html",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "Trade deal: India and EU announce FTA amid Trump tariff ...",
+            "link": "https://www.bbc.com/news/articles/crrnee01r9jo",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "India-US trade deal: Hope and uncertainty as Trump cuts ...",
+            "link": "https://www.bbc.com/news/articles/cpwnlwj80p8o",
+            "source": "tavily",
+            "published": ""
+          }
+        ],
+        "summary": {
+          "summary": "The U.S. and India have finalized a trade deal, with President Trump emphasizing the importance of this agreement amidst European trade developments. Analysts suggest various stakeholders may benefit from this deal, while there is a mix of optimism and caution regarding its impact. The deal aims to reduce tariffs and boost exports, though it is not expected to immediately restore trust between the U.S. and India.",
+          "key_points": [
+            "The U.S. and India have signed a trade deal, competing with European trade agreements.",
+            "There is a mix of optimism and caution about the economic benefits and trust restoration between the U.S. and India.",
+            "The trade deal is expected to reduce tariffs and boost exports, though immediate trust restoration is not anticipated."
+          ]
+        },
+        "sentiment": {
+          "overall": "neutral",
+          "mood_label": "cautious optimism",
+          "confidence": "medium",
+          "direction": "stable",
+          "momentum_strength": "moderate",
+          "risk_level": "moderate",
+          "market_bias": "balanced",
+          "reasoning": "The headlines reflect a mix of optimism regarding the trade deal's potential to boost exports and market sentiment, but also caution about the challenges in restoring trust and the uncertain long-term impacts.",
+          "positive_signals": [
+            "Trade deal expected to lift exports",
+            "Market sentiment improvement"
+          ],
+          "negative_signals": [
+            "Uncertainty in restoring U.S.-India trust",
+            "Potential for ongoing trade tensions"
+          ],
+          "emerging_themes": [
+            "trade deal benefits",
+            "trust and relationship challenges"
+          ],
+          "score": 0.5,
+          "breakdown": {
+            "positive": 4,
+            "neutral": 4,
+            "negative": 2
+          }
+        },
+        "exported_file": "output/trade_deal_report_20260204_162508.json"
+      },
+      "errors": [],
+      "success": true
+    }
+  },
+  {
+    "timestamp": "2026-02-04T16:27:03.396039",
+    "result": {
+      "intent": "Fetch news on India-US trade deal, perform sentiment analysis, and export the results.",
+      "domain": "India-US trade deal",
+      "tools_executed": [
+        {
+          "tool": "news_fetcher",
+          "success": true
+        },
+        {
+          "tool": "sentiment",
+          "success": true
+        },
+        {
+          "tool": "exporter",
+          "success": true
+        }
+      ],
+      "data": {
+        "news": [
+          {
+            "title": "Here's who analysts expect to gain from India\u2019s U.S. and EU trade deals - CNBC",
+            "link": "https://news.google.com/rss/articles/CBMimwFBVV95cUxNWmJMcE51QzZjSlJHLWNmVV9hb0loRUk0clJMdGZ1VnkwX3FjQVhyekNuX0pjTC02Tng3MWVabExwYnVCcUxNbDFfcmNoa2NFdW9Yd0laNjdiSTU0RGpqY3Y0bllUbDlIWnJ3eW5mVGlyc1puR3FadVZjTGFQMFBIc3dVTjlNV1JMdUpKOHB0ZE9POFFSWGU2UTloY9IBoAFBVV95cUxNVTJCZGw3Qk1sQ0xPbmFaMlVIZHZLazc2cjY0ZkVwSW52cnBTd0E5S2pLaFAxYXBwS2NQN1ZBTGtjRXQ4WkF4T2hsVEhTYzBBWXpxUE4zaVhSaUtycUlkMUFhdlpaZWtRM3dMaDZJMkRUZUlqa21PZmdQMlRhd3VhMnBxYnl6YnNmajN2T3F3UnR1Y2c0TV9MdXhDeWJybnkz?oc=5",
+            "source": "rss",
+            "published": "Tue, 03 Feb 2026 23:18:15 GMT"
+          },
+          {
+            "title": "US to cut tariffs on India to 18%, India agrees to end Russian oil purchases - Reuters",
+            "link": "https://news.google.com/rss/articles/CBMikAFBVV95cUxOR1pwTXBuWGxmYXg3Vl9zbHpkT0NUaFk3VmEyZjNWNXctNVBMdXk0Nno5a1ZRcV8xSk4xcGtiR0dpN2N1NTdKamo2TzhyX2xOQkM1OXZ3bU5SUU1GNi1XdXFsT0txSGkyMG4wMkVodlhHUjE0RmViNmtEUGZLemNMRGV5WFZxb2xBeHM2ekdWcVA?oc=5",
+            "source": "rss",
+            "published": "Mon, 02 Feb 2026 17:06:56 GMT"
+          },
+          {
+            "title": "India Made Long Push With Trump Behind Scenes to Clinch US Deal - Bloomberg.com",
+            "link": "https://news.google.com/rss/articles/CBMitAFBVV95cUxQdllMZzZDaldzZzkxMFl3a3Y4REFBRG84MThiYUNNN2YxaElHMV9BUVdLYS1Dc1dKQjhNSWo2dlZLVDB2X1N4dlkwWHp0aWVFNkxlSDUyQWJRLXo3NGQ0NHN4enVLaXFzRTVYX1NoaFl2OFptNW5hdk0wV3Z2WEt3ZDdXVmE2TkpvUlpyVmJORnlfV1RTbm50MW93eDd5M0Nxby1ybkZ4aEl4N0F2WWJoa0NDOTE?oc=5",
+            "source": "rss",
+            "published": "Wed, 04 Feb 2026 05:05:00 GMT"
+          },
+          {
+            "title": "Hope and uncertainty as India and US strike long-delayed trade deal - BBC",
+            "link": "https://news.google.com/rss/articles/CBMiWkFVX3lxTFBoRHZ3eDU2UERBbkZfcHFSSFdicTdPTFdCM2pMQjJORmV6TGFhT3poR2hzamVwN1V1QlF4UDIwMTFDT0gwZUJwb2EyX05Kd1VINnhEdU9fVDIyZw?oc=5",
+            "source": "rss",
+            "published": "Tue, 03 Feb 2026 06:29:43 GMT"
+          },
+          {
+            "title": "The Trump-Modi Trade Deal Won\u2019t Magically Restore U.S.-India Trust - Carnegie Endowment for International Peace",
+            "link": "https://news.google.com/rss/articles/CBMinwFBVV95cUxQOXNLeDh5cmFqWjlfSUNmTEVwOTA5THBMSjRmcmc3TEoxN2lnaWk3Vk13WEFsWGZDTmlXLVB6OXZiMjVxYm90YVlNSnBNbGFUMm05V3l1VXJkeHlkTkdWNlh3bXA5bzVDZXNndEpqRmM0VkRVLWZUenVlN0dwVzFaQVlTcVRmUzJtUXItR2VhM0xKdG5yT0RUelJBeDNfd2c?oc=5",
+            "source": "rss",
+            "published": "Tue, 03 Feb 2026 21:24:07 GMT"
+          },
+          {
+            "title": "US and India reach trade deal, Trump says after Modi call",
+            "link": "https://www.bbc.com/news/articles/c5yve1x9zv0o",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "India's Nifty 50 closes 2.5% higher as long-awaited U.S. ...",
+            "link": "https://www.cnbc.com/2026/02/03/india-nifty-50-soars-india-us-trade-deal-trum-modi.html",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "'Devil in the details': India-U.S. deal raises hopes for a reset",
+            "link": "https://www.cnbc.com/2026/02/03/us-india-trade-framework-tariffs-reset-modi-trump-new-delhi-russian-oil-venezuela.html",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "India-US trade deal: Hope and uncertainty as Trump cuts ...",
+            "link": "https://www.bbc.com/news/articles/cpwnlwj80p8o",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "Trump responds to Europe with U.S.-India trade deal",
+            "link": "https://www.cnbc.com/2026/02/03/trump-us-india-trade-deal-europe-india-deal-compared.html",
+            "source": "tavily",
+            "published": ""
+          }
+        ],
+        "sentiment": {
+          "overall": "neutral",
+          "mood_label": "cautious optimism",
+          "confidence": "medium",
+          "direction": "stable",
+          "momentum_strength": "moderate",
+          "risk_level": "moderate",
+          "market_bias": "balanced",
+          "reasoning": "The headlines reflect a mix of optimism regarding the potential benefits of the trade deal, particularly for U.S. and Indian companies, but also caution about the complexities and uncertainties involved. The market reaction is positive, but the narrative acknowledges the need for careful scrutiny.",
+          "positive_signals": [
+            "Analysts expect gains from trade deals",
+            "India's Nifty 50 closes higher",
+            "Hope and optimism in market reaction"
+          ],
+          "negative_signals": [
+            "Uncertainty about the deal's impact",
+            "Need for careful scrutiny ('devil in the details')",
+            "Lingering trust issues between U.S. and India"
+          ],
+          "emerging_themes": [
+            "Potential economic benefits",
+            "Complexities and uncertainties",
+            "Long-term trust and relationship dynamics"
+          ],
+          "score": 0.45,
+          "breakdown": {
+            "positive": 5,
+            "neutral": 4,
+            "negative": 2
+          }
+        },
+        "exported_file": "output/India-US_trade_deal_sentiment_analysis_20260204_162703.json"
+      },
+      "errors": [],
+      "success": true
+    }
+  },
+  {
+    "timestamp": "2026-02-04T16:35:11.082151",
+    "result": {
+      "intent": "Fetch and summarize news about India-US trade deal",
+      "domain": "India-US trade deal",
+      "tools_executed": [
+        {
+          "tool": "news_fetcher",
+          "success": true
+        },
+        {
+          "tool": "summarizer",
+          "success": true
+        },
+        {
+          "tool": "exporter",
+          "success": true
+        }
+      ],
+      "data": {
+        "news": [
+          {
+            "title": "Here's who analysts expect to gain from India\u2019s U.S. and EU trade deals - CNBC",
+            "link": "https://news.google.com/rss/articles/CBMimwFBVV95cUxNWmJMcE51QzZjSlJHLWNmVV9hb0loRUk0clJMdGZ1VnkwX3FjQVhyekNuX0pjTC02Tng3MWVabExwYnVCcUxNbDFfcmNoa2NFdW9Yd0laNjdiSTU0RGpqY3Y0bllUbDlIWnJ3eW5mVGlyc1puR3FadVZjTGFQMFBIc3dVTjlNV1JMdUpKOHB0ZE9POFFSWGU2UTloY9IBoAFBVV95cUxNVTJCZGw3Qk1sQ0xPbmFaMlVIZHZLazc2cjY0ZkVwSW52cnBTd0E5S2pLaFAxYXBwS2NQN1ZBTGtjRXQ4WkF4T2hsVEhTYzBBWXpxUE4zaVhSaUtycUlkMUFhdlpaZWtRM3dMaDZJMkRUZUlqa21PZmdQMlRhd3VhMnBxYnl6YnNmajN2T3F3UnR1Y2c0TV9MdXhDeWJybnkz?oc=5",
+            "source": "rss",
+            "published": "Tue, 03 Feb 2026 23:18:15 GMT"
+          },
+          {
+            "title": "US to cut tariffs on India to 18%, India agrees to end Russian oil purchases - Reuters",
+            "link": "https://news.google.com/rss/articles/CBMikAFBVV95cUxOR1pwTXBuWGxmYXg3Vl9zbHpkT0NUaFk3VmEyZjNWNXctNVBMdXk0Nno5a1ZRcV8xSk4xcGtiR0dpN2N1NTdKamo2TzhyX2xOQkM1OXZ3bU5SUU1GNi1XdXFsT0txSGkyMG4wMkVodlhHUjE0RmViNmtEUGZLemNMRGV5WFZxb2xBeHM2ekdWcVA?oc=5",
+            "source": "rss",
+            "published": "Mon, 02 Feb 2026 17:06:56 GMT"
+          },
+          {
+            "title": "India Made Long Push With Trump Behind Scenes to Clinch US Deal - Bloomberg.com",
+            "link": "https://news.google.com/rss/articles/CBMitAFBVV95cUxQdllMZzZDaldzZzkxMFl3a3Y4REFBRG84MThiYUNNN2YxaElHMV9BUVdLYS1Dc1dKQjhNSWo2dlZLVDB2X1N4dlkwWHp0aWVFNkxlSDUyQWJRLXo3NGQ0NHN4enVLaXFzRTVYX1NoaFl2OFptNW5hdk0wV3Z2WEt3ZDdXVmE2TkpvUlpyVmJORnlfV1RTbm50MW93eDd5M0Nxby1ybkZ4aEl4N0F2WWJoa0NDOTE?oc=5",
+            "source": "rss",
+            "published": "Wed, 04 Feb 2026 05:05:00 GMT"
+          },
+          {
+            "title": "Hope and uncertainty as India and US strike long-delayed trade deal - BBC",
+            "link": "https://news.google.com/rss/articles/CBMiWkFVX3lxTFBoRHZ3eDU2UERBbkZfcHFSSFdicTdPTFdCM2pMQjJORmV6TGFhT3poR2hzamVwN1V1QlF4UDIwMTFDT0gwZUJwb2EyX05Kd1VINnhEdU9fVDIyZw?oc=5",
+            "source": "rss",
+            "published": "Tue, 03 Feb 2026 06:29:43 GMT"
+          },
+          {
+            "title": "The Trump-Modi Trade Deal Won\u2019t Magically Restore U.S.-India Trust - Carnegie Endowment for International Peace",
+            "link": "https://news.google.com/rss/articles/CBMinwFBVV95cUxQOXNLeDh5cmFqWjlfSUNmTEVwOTA5THBMSjRmcmc3TEoxN2lnaWk3Vk13WEFsWGZDTmlXLVB6OXZiMjVxYm90YVlNSnBNbGFUMm05V3l1VXJkeHlkTkdWNlh3bXA5bzVDZXNndEpqRmM0VkRVLWZUenVlN0dwVzFaQVlTcVRmUzJtUXItR2VhM0xKdG5yT0RUelJBeDNfd2c?oc=5",
+            "source": "rss",
+            "published": "Tue, 03 Feb 2026 21:24:07 GMT"
+          },
+          {
+            "title": "Is India-US Partnership Entering New Phase? EAM Jaishankar Meets US State Secretary Marco Rubio In Washington Ahead Of Critical Minerals Ministerial",
+            "link": "https://www.newsx.com/india/is-india-us-partnership-entering-new-phase-eam-jaishankar-meets-us-state-secretary-marco-rubio-in-washington-ahead-of-critical-minerals-ministerial-161451/",
+            "source": "gnews",
+            "published": "2026-02-03T23:05:00Z"
+          },
+          {
+            "title": "EAM S Jaishankar to meet Secretary of State Rubio in Washington ahead of critical minerals ministerial",
+            "link": "https://www.dailyexcelsior.com/eam-s-jaishankar-to-meet-secretary-of-state-rubio-in-washington-ahead-of-critical-minerals-ministerial/",
+            "source": "gnews",
+            "published": "2026-02-03T23:00:19Z"
+          },
+          {
+            "title": "Decisive leap forward for India-US economic ties: Rajnath on trade deal",
+            "link": "https://www.dailyexcelsior.com/decisive-leap-forward-for-india-us-economic-ties-rajnath-on-trade-deal/",
+            "source": "gnews",
+            "published": "2026-02-03T22:59:30Z"
+          },
+          {
+            "title": "India-US pact 'father of all deals', bilateral trade to reach USD 500 bn in a few years: Shringla",
+            "link": "https://www.dailyexcelsior.com/india-us-pact-father-of-all-deals-bilateral-trade-to-reach-usd-500-bn-in-a-few-years-shringla/",
+            "source": "gnews",
+            "published": "2026-02-03T22:57:09Z"
+          },
+          {
+            "title": "Deal with India will export more American farm products, help counter Russian aggression: US leaders",
+            "link": "https://www.dailyexcelsior.com/deal-with-india-will-export-more-american-farm-products-help-counter-russian-aggression-us-leaders/",
+            "source": "gnews",
+            "published": "2026-02-03T22:57:05Z"
+          },
+          {
+            "title": "US and India reach trade deal, Trump says after Modi call",
+            "link": "https://www.bbc.com/news/articles/c5yve1x9zv0o",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "India to keep some farm protections in US trade deal, will ...",
+            "link": "https://www.reuters.com/world/india/us-trade-chief-says-india-maintain-some-agriculture-protections-deal-with-trump-2026-02-03/",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "'Devil in the details': India-U.S. deal raises hopes for a reset",
+            "link": "https://www.cnbc.com/2026/02/03/us-india-trade-framework-tariffs-reset-modi-trump-new-delhi-russian-oil-venezuela.html",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "India's Nifty 50 closes 2.5% higher as long-awaited U.S. ...",
+            "link": "https://www.cnbc.com/2026/02/03/india-nifty-50-soars-india-us-trade-deal-trum-modi.html",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "Trump's tariff cut sparks relief in India despite scant details",
+            "link": "https://www.reuters.com/world/india/trumps-tariff-cut-spells-relief-india-despite-scant-details-2026-02-03/",
+            "source": "tavily",
+            "published": ""
+          }
+        ],
+        "summary": {
+          "summary": "Recent headlines highlight the significance of India's new trade deals with the U.S. and EU, focusing on potential economic benefits, the role of political figures, and strategic implications for both nations. The trade deal is seen as a pivotal moment in India-U.S. relations, with expectations of increased trade and economic cooperation. However, there are also concerns about the broader implications for trust and strategic partnerships.",
+          "key_points": [
+            "Economic benefits and increased trade between India and the U.S./EU.",
+            "The role of political figures and behind-the-scenes efforts in finalizing the deal.",
+            "Strategic implications for U.S.-India relations and counterbalancing Russian influence."
+          ]
+        },
+        "exported_file": "output/india_us_trade_deal_report_20260204_163511.json"
+      },
+      "errors": [],
+      "success": true
+    }
+  },
+  {
+    "timestamp": "2026-02-04T16:35:21.635975",
+    "result": {
+      "intent": "Fetch news on India-US trade deal, perform sentiment analysis, and export the results.",
+      "domain": "India-US trade deal",
+      "tools_executed": [
+        {
+          "tool": "news_fetcher",
+          "success": true
+        },
+        {
+          "tool": "sentiment",
+          "success": true
+        },
+        {
+          "tool": "exporter",
+          "success": true
+        }
+      ],
+      "data": {
+        "news": [
+          {
+            "title": "Here's who analysts expect to gain from India\u2019s U.S. and EU trade deals - CNBC",
+            "link": "https://news.google.com/rss/articles/CBMimwFBVV95cUxNWmJMcE51QzZjSlJHLWNmVV9hb0loRUk0clJMdGZ1VnkwX3FjQVhyekNuX0pjTC02Tng3MWVabExwYnVCcUxNbDFfcmNoa2NFdW9Yd0laNjdiSTU0RGpqY3Y0bllUbDlIWnJ3eW5mVGlyc1puR3FadVZjTGFQMFBIc3dVTjlNV1JMdUpKOHB0ZE9POFFSWGU2UTloY9IBoAFBVV95cUxNVTJCZGw3Qk1sQ0xPbmFaMlVIZHZLazc2cjY0ZkVwSW52cnBTd0E5S2pLaFAxYXBwS2NQN1ZBTGtjRXQ4WkF4T2hsVEhTYzBBWXpxUE4zaVhSaUtycUlkMUFhdlpaZWtRM3dMaDZJMkRUZUlqa21PZmdQMlRhd3VhMnBxYnl6YnNmajN2T3F3UnR1Y2c0TV9MdXhDeWJybnkz?oc=5",
+            "source": "rss",
+            "published": "Tue, 03 Feb 2026 23:18:15 GMT"
+          },
+          {
+            "title": "US to cut tariffs on India to 18%, India agrees to end Russian oil purchases - Reuters",
+            "link": "https://news.google.com/rss/articles/CBMikAFBVV95cUxOR1pwTXBuWGxmYXg3Vl9zbHpkT0NUaFk3VmEyZjNWNXctNVBMdXk0Nno5a1ZRcV8xSk4xcGtiR0dpN2N1NTdKamo2TzhyX2xOQkM1OXZ3bU5SUU1GNi1XdXFsT0txSGkyMG4wMkVodlhHUjE0RmViNmtEUGZLemNMRGV5WFZxb2xBeHM2ekdWcVA?oc=5",
+            "source": "rss",
+            "published": "Mon, 02 Feb 2026 17:06:56 GMT"
+          },
+          {
+            "title": "India Made Long Push With Trump Behind Scenes to Clinch US Deal - Bloomberg.com",
+            "link": "https://news.google.com/rss/articles/CBMitAFBVV95cUxQdllMZzZDaldzZzkxMFl3a3Y4REFBRG84MThiYUNNN2YxaElHMV9BUVdLYS1Dc1dKQjhNSWo2dlZLVDB2X1N4dlkwWHp0aWVFNkxlSDUyQWJRLXo3NGQ0NHN4enVLaXFzRTVYX1NoaFl2OFptNW5hdk0wV3Z2WEt3ZDdXVmE2TkpvUlpyVmJORnlfV1RTbm50MW93eDd5M0Nxby1ybkZ4aEl4N0F2WWJoa0NDOTE?oc=5",
+            "source": "rss",
+            "published": "Wed, 04 Feb 2026 05:05:00 GMT"
+          },
+          {
+            "title": "Hope and uncertainty as India and US strike long-delayed trade deal - BBC",
+            "link": "https://news.google.com/rss/articles/CBMiWkFVX3lxTFBoRHZ3eDU2UERBbkZfcHFSSFdicTdPTFdCM2pMQjJORmV6TGFhT3poR2hzamVwN1V1QlF4UDIwMTFDT0gwZUJwb2EyX05Kd1VINnhEdU9fVDIyZw?oc=5",
+            "source": "rss",
+            "published": "Tue, 03 Feb 2026 06:29:43 GMT"
+          },
+          {
+            "title": "The Trump-Modi Trade Deal Won\u2019t Magically Restore U.S.-India Trust - Carnegie Endowment for International Peace",
+            "link": "https://news.google.com/rss/articles/CBMinwFBVV95cUxQOXNLeDh5cmFqWjlfSUNmTEVwOTA5THBMSjRmcmc3TEoxN2lnaWk3Vk13WEFsWGZDTmlXLVB6OXZiMjVxYm90YVlNSnBNbGFUMm05V3l1VXJkeHlkTkdWNlh3bXA5bzVDZXNndEpqRmM0VkRVLWZUenVlN0dwVzFaQVlTcVRmUzJtUXItR2VhM0xKdG5yT0RUelJBeDNfd2c?oc=5",
+            "source": "rss",
+            "published": "Tue, 03 Feb 2026 21:24:07 GMT"
+          },
+          {
+            "title": "US and India reach trade deal, Trump says after Modi call",
+            "link": "https://www.bbc.com/news/articles/c5yve1x9zv0o",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "India's Modi praised for US trade deal as opposition ...",
+            "link": "https://apnews.com/article/india-us-trade-deal-trump-modi-3ce866a869dae9fd10449a6f70c2a4ed",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "India-US trade deal: Hope and uncertainty as Trump cuts ...",
+            "link": "https://www.bbc.com/news/articles/cpwnlwj80p8o",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "India to keep some farm protections in US trade deal, will ...",
+            "link": "https://www.reuters.com/world/india/us-trade-chief-says-india-maintain-some-agriculture-protections-deal-with-trump-2026-02-03/",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "'Devil in the details': India-U.S. deal raises hopes for a reset",
+            "link": "https://www.cnbc.com/2026/02/03/us-india-trade-framework-tariffs-reset-modi-trump-new-delhi-russian-oil-venezuela.html",
+            "source": "tavily",
+            "published": ""
+          }
+        ],
+        "sentiment": {
+          "overall": "neutral",
+          "mood_label": "cautious optimism",
+          "confidence": "medium",
+          "direction": "stable",
+          "momentum_strength": "moderate",
+          "risk_level": "moderate",
+          "market_bias": "balanced",
+          "reasoning": "The headlines reflect a mix of optimism regarding the potential benefits of the trade deal, particularly for certain sectors, while also highlighting uncertainties and the need for careful scrutiny. The tone is cautiously positive, with a recognition that the deal is a step forward but not a complete solution.",
+          "positive_signals": [
+            "Expected gains from trade deals",
+            "Tariff cuts by the US",
+            "Praise for Modi's efforts"
+          ],
+          "negative_signals": [
+            "Uncertainty and hope",
+            "Need for trust restoration",
+            "'Devil in the details'"
+          ],
+          "emerging_themes": [
+            "Trade deal benefits",
+            "Political diplomacy",
+            "Sector-specific impacts"
+          ],
+          "score": 0.5,
+          "breakdown": {
+            "positive": 5,
+            "neutral": 4,
+            "negative": 2
+          }
+        },
+        "exported_file": "output/India-US_trade_deal_analysis_20260204_163521.json"
+      },
+      "errors": [],
+      "success": true
+    }
+  },
+  {
+    "timestamp": "2026-02-04T16:35:31.146305",
+    "result": {
+      "intent": "fetch news on India-US trade deal with sentiment analysis",
+      "domain": "India-US trade deal",
+      "tools_executed": [
+        {
+          "tool": "news_fetcher",
+          "success": true
+        },
+        {
+          "tool": "sentiment",
+          "success": true
+        },
+        {
+          "tool": "exporter",
+          "success": true
+        }
+      ],
+      "data": {
+        "news": [
+          {
+            "title": "Here's who analysts expect to gain from India\u2019s U.S. and EU trade deals - CNBC",
+            "link": "https://news.google.com/rss/articles/CBMimwFBVV95cUxNWmJMcE51QzZjSlJHLWNmVV9hb0loRUk0clJMdGZ1VnkwX3FjQVhyekNuX0pjTC02Tng3MWVabExwYnVCcUxNbDFfcmNoa2NFdW9Yd0laNjdiSTU0RGpqY3Y0bllUbDlIWnJ3eW5mVGlyc1puR3FadVZjTGFQMFBIc3dVTjlNV1JMdUpKOHB0ZE9POFFSWGU2UTloY9IBoAFBVV95cUxNVTJCZGw3Qk1sQ0xPbmFaMlVIZHZLazc2cjY0ZkVwSW52cnBTd0E5S2pLaFAxYXBwS2NQN1ZBTGtjRXQ4WkF4T2hsVEhTYzBBWXpxUE4zaVhSaUtycUlkMUFhdlpaZWtRM3dMaDZJMkRUZUlqa21PZmdQMlRhd3VhMnBxYnl6YnNmajN2T3F3UnR1Y2c0TV9MdXhDeWJybnkz?oc=5",
+            "source": "rss",
+            "published": "Tue, 03 Feb 2026 23:18:15 GMT"
+          },
+          {
+            "title": "US to cut tariffs on India to 18%, India agrees to end Russian oil purchases - Reuters",
+            "link": "https://news.google.com/rss/articles/CBMikAFBVV95cUxOR1pwTXBuWGxmYXg3Vl9zbHpkT0NUaFk3VmEyZjNWNXctNVBMdXk0Nno5a1ZRcV8xSk4xcGtiR0dpN2N1NTdKamo2TzhyX2xOQkM1OXZ3bU5SUU1GNi1XdXFsT0txSGkyMG4wMkVodlhHUjE0RmViNmtEUGZLemNMRGV5WFZxb2xBeHM2ekdWcVA?oc=5",
+            "source": "rss",
+            "published": "Mon, 02 Feb 2026 17:06:56 GMT"
+          },
+          {
+            "title": "India Made Long Push With Trump Behind Scenes to Clinch US Deal - Bloomberg.com",
+            "link": "https://news.google.com/rss/articles/CBMitAFBVV95cUxQdllMZzZDaldzZzkxMFl3a3Y4REFBRG84MThiYUNNN2YxaElHMV9BUVdLYS1Dc1dKQjhNSWo2dlZLVDB2X1N4dlkwWHp0aWVFNkxlSDUyQWJRLXo3NGQ0NHN4enVLaXFzRTVYX1NoaFl2OFptNW5hdk0wV3Z2WEt3ZDdXVmE2TkpvUlpyVmJORnlfV1RTbm50MW93eDd5M0Nxby1ybkZ4aEl4N0F2WWJoa0NDOTE?oc=5",
+            "source": "rss",
+            "published": "Wed, 04 Feb 2026 05:05:00 GMT"
+          },
+          {
+            "title": "Hope and uncertainty as India and US strike long-delayed trade deal - BBC",
+            "link": "https://news.google.com/rss/articles/CBMiWkFVX3lxTFBoRHZ3eDU2UERBbkZfcHFSSFdicTdPTFdCM2pMQjJORmV6TGFhT3poR2hzamVwN1V1QlF4UDIwMTFDT0gwZUJwb2EyX05Kd1VINnhEdU9fVDIyZw?oc=5",
+            "source": "rss",
+            "published": "Tue, 03 Feb 2026 06:29:43 GMT"
+          },
+          {
+            "title": "The Trump-Modi Trade Deal Won\u2019t Magically Restore U.S.-India Trust - Carnegie Endowment for International Peace",
+            "link": "https://news.google.com/rss/articles/CBMinwFBVV95cUxQOXNLeDh5cmFqWjlfSUNmTEVwOTA5THBMSjRmcmc3TEoxN2lnaWk3Vk13WEFsWGZDTmlXLVB6OXZiMjVxYm90YVlNSnBNbGFUMm05V3l1VXJkeHlkTkdWNlh3bXA5bzVDZXNndEpqRmM0VkRVLWZUenVlN0dwVzFaQVlTcVRmUzJtUXItR2VhM0xKdG5yT0RUelJBeDNfd2c?oc=5",
+            "source": "rss",
+            "published": "Tue, 03 Feb 2026 21:24:07 GMT"
+          },
+          {
+            "title": "US and India reach trade deal, Trump says after Modi call",
+            "link": "https://www.bbc.com/news/articles/c5yve1x9zv0o",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "India's Modi praised for US trade deal as opposition ...",
+            "link": "https://apnews.com/article/india-us-trade-deal-trump-modi-3ce866a869dae9fd10449a6f70c2a4ed",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "India-US trade deal: Hope and uncertainty as Trump cuts ...",
+            "link": "https://www.bbc.com/news/articles/cpwnlwj80p8o",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "'Devil in the details': India-U.S. deal raises hopes for a reset",
+            "link": "https://www.cnbc.com/2026/02/03/us-india-trade-framework-tariffs-reset-modi-trump-new-delhi-russian-oil-venezuela.html",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "Trump says U.S. and India reached trade deal, will lower ...",
+            "link": "https://www.cnbc.com/2026/02/02/trump-india-trade-deal-tariffs.html",
+            "source": "tavily",
+            "published": ""
+          }
+        ],
+        "sentiment": {
+          "overall": "neutral",
+          "mood_label": "cautious optimism",
+          "confidence": "medium",
+          "direction": "stable",
+          "momentum_strength": "moderate",
+          "risk_level": "moderate",
+          "market_bias": "balanced",
+          "reasoning": "The headlines reflect a mix of optimism about the potential economic benefits of the trade deal and uncertainty about its execution and long-term impact. The deal is seen as a positive step, but concerns about implementation and trust remain.",
+          "positive_signals": [
+            "Expected gains from trade deals",
+            "Tariff cuts and trade concessions",
+            "Praise for Modi's efforts"
+          ],
+          "negative_signals": [
+            "Uncertainty and hope",
+            "Devil in the details",
+            "Won't magically restore trust"
+          ],
+          "emerging_themes": [
+            "Trade deal benefits",
+            "Implementation concerns",
+            "Long-term trust issues"
+          ],
+          "score": 0.45,
+          "breakdown": {
+            "positive": 5,
+            "neutral": 4,
+            "negative": 2
+          }
+        },
+        "exported_file": "output/India-US_trade_deal_sentiment_report_20260204_163531.json"
+      },
+      "errors": [],
+      "success": true
+    }
+  },
+  {
+    "timestamp": "2026-02-04T16:41:11.820535",
+    "result": {
+      "intent": "Fetch news on India-US trade deal, perform sentiment analysis, and export the results.",
+      "domain": "India-US trade deal",
+      "tools_executed": [
+        {
+          "tool": "news_fetcher",
+          "success": true
+        },
+        {
+          "tool": "sentiment",
+          "success": true
+        },
+        {
+          "tool": "exporter",
+          "success": true
+        }
+      ],
+      "data": {
+        "news": [
+          {
+            "title": "Here's who analysts expect to gain from India\u2019s U.S. and EU trade deals - CNBC",
+            "link": "https://news.google.com/rss/articles/CBMimwFBVV95cUxNWmJMcE51QzZjSlJHLWNmVV9hb0loRUk0clJMdGZ1VnkwX3FjQVhyekNuX0pjTC02Tng3MWVabExwYnVCcUxNbDFfcmNoa2NFdW9Yd0laNjdiSTU0RGpqY3Y0bllUbDlIWnJ3eW5mVGlyc1puR3FadVZjTGFQMFBIc3dVTjlNV1JMdUpKOHB0ZE9POFFSWGU2UTloY9IBoAFBVV95cUxNVTJCZGw3Qk1sQ0xPbmFaMlVIZHZLazc2cjY0ZkVwSW52cnBTd0E5S2pLaFAxYXBwS2NQN1ZBTGtjRXQ4WkF4T2hsVEhTYzBBWXpxUE4zaVhSaUtycUlkMUFhdlpaZWtRM3dMaDZJMkRUZUlqa21PZmdQMlRhd3VhMnBxYnl6YnNmajN2T3F3UnR1Y2c0TV9MdXhDeWJybnkz?oc=5",
+            "source": "rss",
+            "published": "Tue, 03 Feb 2026 23:18:15 GMT"
+          },
+          {
+            "title": "US to cut tariffs on India to 18%, India agrees to end Russian oil purchases - Reuters",
+            "link": "https://news.google.com/rss/articles/CBMikAFBVV95cUxOR1pwTXBuWGxmYXg3Vl9zbHpkT0NUaFk3VmEyZjNWNXctNVBMdXk0Nno5a1ZRcV8xSk4xcGtiR0dpN2N1NTdKamo2TzhyX2xOQkM1OXZ3bU5SUU1GNi1XdXFsT0txSGkyMG4wMkVodlhHUjE0RmViNmtEUGZLemNMRGV5WFZxb2xBeHM2ekdWcVA?oc=5",
+            "source": "rss",
+            "published": "Mon, 02 Feb 2026 17:06:56 GMT"
+          },
+          {
+            "title": "India Made Long Push With Trump Behind Scenes to Clinch US Deal - Bloomberg",
+            "link": "https://news.google.com/rss/articles/CBMitAFBVV95cUxQdllMZzZDaldzZzkxMFl3a3Y4REFBRG84MThiYUNNN2YxaElHMV9BUVdLYS1Dc1dKQjhNSWo2dlZLVDB2X1N4dlkwWHp0aWVFNkxlSDUyQWJRLXo3NGQ0NHN4enVLaXFzRTVYX1NoaFl2OFptNW5hdk0wV3Z2WEt3ZDdXVmE2TkpvUlpyVmJORnlfV1RTbm50MW93eDd5M0Nxby1ybkZ4aEl4N0F2WWJoa0NDOTE?oc=5",
+            "source": "rss",
+            "published": "Wed, 04 Feb 2026 05:05:00 GMT"
+          },
+          {
+            "title": "Hope and uncertainty as India and US strike long-delayed trade deal - BBC",
+            "link": "https://news.google.com/rss/articles/CBMiWkFVX3lxTFBoRHZ3eDU2UERBbkZfcHFSSFdicTdPTFdCM2pMQjJORmV6TGFhT3poR2hzamVwN1V1QlF4UDIwMTFDT0gwZUJwb2EyX05Kd1VINnhEdU9fVDIyZw?oc=5",
+            "source": "rss",
+            "published": "Tue, 03 Feb 2026 06:29:43 GMT"
+          },
+          {
+            "title": "The Trump-Modi Trade Deal Won\u2019t Magically Restore U.S.-India Trust - Carnegie Endowment for International Peace",
+            "link": "https://news.google.com/rss/articles/CBMinwFBVV95cUxQOXNLeDh5cmFqWjlfSUNmTEVwOTA5THBMSjRmcmc3TEoxN2lnaWk3Vk13WEFsWGZDTmlXLVB6OXZiMjVxYm90YVlNSnBNbGFUMm05V3l1VXJkeHlkTkdWNlh3bXA5bzVDZXNndEpqRmM0VkRVLWZUenVlN0dwVzFaQVlTcVRmUzJtUXItR2VhM0xKdG5yT0RUelJBeDNfd2c?oc=5",
+            "source": "rss",
+            "published": "Tue, 03 Feb 2026 21:24:07 GMT"
+          },
+          {
+            "title": "Is India-US Partnership Entering New Phase? EAM Jaishankar Meets US State Secretary Marco Rubio In Washington Ahead Of Critical Minerals Ministerial",
+            "link": "https://www.newsx.com/india/is-india-us-partnership-entering-new-phase-eam-jaishankar-meets-us-state-secretary-marco-rubio-in-washington-ahead-of-critical-minerals-ministerial-161451/",
+            "source": "gnews",
+            "published": "2026-02-03T23:05:00Z"
+          },
+          {
+            "title": "EAM S Jaishankar to meet Secretary of State Rubio in Washington ahead of critical minerals ministerial",
+            "link": "https://www.dailyexcelsior.com/eam-s-jaishankar-to-meet-secretary-of-state-rubio-in-washington-ahead-of-critical-minerals-ministerial/",
+            "source": "gnews",
+            "published": "2026-02-03T23:00:19Z"
+          },
+          {
+            "title": "Decisive leap forward for India-US economic ties: Rajnath on trade deal",
+            "link": "https://www.dailyexcelsior.com/decisive-leap-forward-for-india-us-economic-ties-rajnath-on-trade-deal/",
+            "source": "gnews",
+            "published": "2026-02-03T22:59:30Z"
+          },
+          {
+            "title": "India-US pact 'father of all deals', bilateral trade to reach USD 500 bn in a few years: Shringla",
+            "link": "https://www.dailyexcelsior.com/india-us-pact-father-of-all-deals-bilateral-trade-to-reach-usd-500-bn-in-a-few-years-shringla/",
+            "source": "gnews",
+            "published": "2026-02-03T22:57:09Z"
+          },
+          {
+            "title": "Deal with India will export more American farm products, help counter Russian aggression: US leaders",
+            "link": "https://www.dailyexcelsior.com/deal-with-india-will-export-more-american-farm-products-help-counter-russian-aggression-us-leaders/",
+            "source": "gnews",
+            "published": "2026-02-03T22:57:05Z"
+          },
+          {
+            "title": "US and India reach trade deal, Trump says after Modi call",
+            "link": "https://www.bbc.com/news/articles/c5yve1x9zv0o",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "'Devil in the details': India-U.S. deal raises hopes for a reset",
+            "link": "https://www.cnbc.com/2026/02/03/us-india-trade-framework-tariffs-reset-modi-trump-new-delhi-russian-oil-venezuela.html",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "Trump responds to Europe with U.S.-India trade deal",
+            "link": "https://www.cnbc.com/2026/02/03/trump-us-india-trade-deal-europe-india-deal-compared.html",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "India's U.S. and EU trade deals: Who will gain",
+            "link": "https://www.cnbc.com/2026/02/04/trump-india-us-eu-trade-war-deals-tariffs-delhi-washington.html",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "Live: Trump announces US-India trade deal, tariffs on ...",
+            "link": "https://www.reuters.com/world/live-trump-announces-us-india-trade-deal-2026-02-02/",
+            "source": "tavily",
+            "published": ""
+          }
+        ],
+        "sentiment": {
+          "overall": "positive",
+          "mood_label": "hopeful yet cautious",
+          "confidence": "high",
+          "direction": "improving",
+          "momentum_strength": "strong",
+          "risk_level": "moderate",
+          "market_bias": "risk_on",
+          "reasoning": "The headlines reflect optimism about the trade deal between India and the U.S., highlighting potential economic benefits and geopolitical alignment. However, there are also cautionary notes about the complexities and uncertainties involved.",
+          "positive_signals": [
+            "Expected gains from trade deals",
+            "Reduction in tariffs",
+            "Potential for increased bilateral trade",
+            "Strategic alignment against Russian influence"
+          ],
+          "negative_signals": [
+            "Uncertainty and devil in the details",
+            "Long-delayed deal",
+            "Need for trust restoration"
+          ],
+          "emerging_themes": [
+            "Economic cooperation",
+            "Geopolitical strategy",
+            "Critical minerals"
+          ],
+          "score": 0.75,
+          "breakdown": {
+            "positive": 9,
+            "neutral": 2,
+            "negative": 2
+          }
+        },
+        "exported_file": "output/india_us_trade_deal_sentiment_20260204_164111.json"
+      },
+      "errors": [],
+      "success": true
+    }
   }
 ]
