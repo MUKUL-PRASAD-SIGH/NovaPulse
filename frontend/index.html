@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +8,7 @@
     <meta name="description" content="AI-powered news intelligence with voice interface">
     <link rel="stylesheet" href="/static/style.css">
 </head>
+
 <body>
     <div class="container">
         <!-- Header -->
@@ -15,31 +17,36 @@
             <p class="tagline">Not just news. Intelligence.</p>
         </header>
 
-        <!-- Feature Badges -->
+        <!-- Feature Toggles (Clickable) -->
         <div class="features">
-            <span class="badge">📰 Multi-Source</span>
-            <span class="badge">🧠 AI Summary</span>
-            <span class="badge">💭 Sentiment</span>
-            <span class="badge">📊 Trends</span>
-            <span class="badge">💾 Export</span>
+            <button class="badge toggle-badge active" data-feature="news">📰 News</button>
+            <button class="badge toggle-badge" data-feature="summary">🧠 Summary</button>
+            <button class="badge toggle-badge" data-feature="sentiment">💭 Sentiment</button>
+            <button class="badge toggle-badge" data-feature="trends">📊 Trends</button>
+            <button class="badge toggle-badge active" data-feature="export">💾 Export</button>
         </div>
+        <p class="toggle-hint">Click badges to toggle features</p>
 
         <!-- Input Section -->
         <div class="input-section">
             <button id="micBtn" class="mic-btn" title="Click to speak">
                 <span class="mic-icon">🎤</span>
             </button>
-            <input 
-                type="text" 
-                id="textInput" 
-                placeholder="Say or type: 'Get AI news with sentiment analysis'" 
-                autocomplete="off"
-            >
+            <input type="text" id="textInput" placeholder="Enter topic: 'Tesla', 'India US trade deal', 'crypto'"
+                autocomplete="off">
             <button id="sendBtn" class="send-btn">Send</button>
         </div>
 
         <!-- Status -->
         <div id="status" class="status"></div>
+
+        <!-- Search History -->
+        <div class="panel history-panel">
+            <div class="panel-header">
+                <h3>🕒 Recent Searches</h3>
+            </div>
+            <div id="historyList" class="history-list"></div>
+        </div>
 
         <!-- Results Grid -->
         <div class="results-grid">
@@ -68,19 +75,20 @@
             <div id="newsOutput" class="news-grid"></div>
         </div>
 
-        <!-- Example Commands -->
+        <!-- Quick Topics -->
         <div class="examples">
-            <p>Try saying:</p>
+            <p>Quick topics:</p>
             <div class="example-chips">
-                <button class="chip" data-cmd="Get top AI news">AI News</button>
-                <button class="chip" data-cmd="Get crypto news with sentiment analysis">Crypto Sentiment</button>
-                <button class="chip" data-cmd="What's trending in tech?">Tech Trends</button>
-                <button class="chip" data-cmd="Get AI news and summarize">AI Summary</button>
-                <button class="chip" data-cmd="Export tech news as markdown">Export MD</button>
+                <button class="chip" data-cmd="AI">AI</button>
+                <button class="chip" data-cmd="crypto">Crypto</button>
+                <button class="chip" data-cmd="Tesla">Tesla</button>
+                <button class="chip" data-cmd="stock market">Stocks</button>
+                <button class="chip" data-cmd="climate change">Climate</button>
             </div>
         </div>
     </div>
 
     <script src="/static/app.js"></script>
 </body>
+
 </html>

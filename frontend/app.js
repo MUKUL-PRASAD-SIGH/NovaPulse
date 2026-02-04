@@ -1,6 +1,6 @@
 /**
  * Nova Intelligence Agent - Frontend JavaScript
- * Handles voice input, API calls, and result display
+ * Handles voice input, API calls, feature toggles, and result display
  */
 
 const API_BASE = '/api';
@@ -13,6 +13,75 @@ const status = document.getElementById('status');
 const planOutput = document.getElementById('planOutput');
 const intelOutput = document.getElementById('intelOutput');
 const newsOutput = document.getElementById('newsOutput');
+
+// Feature toggles state
+const features = {
+    news: true,
+    summary: false,
+    sentiment: false,
+    trends: false,
+    export: true
+};
+
+// Search history (persisted to localStorage)
+const MAX_HISTORY = 10;
+let searchHistory = JSON.parse(localStorage.getItem('novaSearchHistory') || '[]');
+
+function saveToHistory(query) {
+    // Remove if already exists
+    searchHistory = searchHistory.filter(h => h.query !== query);
+    // Add to front
+    searchHistory.unshift({
+        query: query,
+        timestamp: new Date().toISOString(),
+        features: { ...features }
+    });
+    // Keep max
+    if (searchHistory.length > MAX_HISTORY) {
+        searchHistory = searchHistory.slice(0, MAX_HISTORY);
+    }
+    localStorage.setItem('novaSearchHistory', JSON.stringify(searchHistory));
+    renderHistory();
+}
+
+function renderHistory() {
+    const historyContainer = document.getElementById('historyList');
+    if (!historyContainer) return;
+
+    if (searchHistory.length === 0) {
+        historyContainer.innerHTML = '<p class="history-empty">No recent searches</p>';
+        return;
+    }
+
+    historyContainer.innerHTML = searchHistory.map((h, i) => `
+        <div class="history-item" data-index="${i}">
+            <span class="history-query">${h.query}</span>
+            <span class="history-time">${formatTime(h.timestamp)}</span>
+        </div>
+    `).join('');
+
+    // Add click handlers
+    historyContainer.querySelectorAll('.history-item').forEach(item => {
+        item.addEventListener('click', () => {
+            const idx = parseInt(item.dataset.index);
+            const h = searchHistory[idx];
+            textInput.value = h.query;
+            sendCommand(h.query);
+        });
+    });
+}
+
+function formatTime(isoString) {
+    const date = new Date(isoString);
+    const now = new Date();
+    const diffMs = now - date;
+    const diffMins = Math.floor(diffMs / 60000);
+
+    if (diffMins < 1) return 'just now';
+    if (diffMins < 60) return `${diffMins}m ago`;
+    if (diffMins < 1440) return `${Math.floor(diffMins / 60)}h ago`;
+    return date.toLocaleDateString();
+}
 
 // Speech Recognition Setup
 const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
@@ -35,7 +104,6 @@ if (SpeechRecognition) {
         const transcript = event.results[0][0].transcript;
         textInput.value = transcript;
         setStatus(`Heard: "${transcript}"`, 'success');
-        // Auto-send after voice input
         setTimeout(() => sendCommand(transcript), 500);
     };
 
@@ -64,6 +132,19 @@ textInput.addEventListener('keypress', (e) => {
     }
 });
 
+// Feature toggle badges
+document.querySelectorAll('.toggle-badge').forEach(badge => {
+    badge.addEventListener('click', () => {
+        const feature = badge.dataset.feature;
+        if (feature === 'news') return; // News is always on
+
+        features[feature] = !features[feature];
+        badge.classList.toggle('active', features[feature]);
+
+        updateStatusHint();
+    });
+});
+
 // Example chips
 document.querySelectorAll('.chip').forEach(chip => {
     chip.addEventListener('click', () => {
@@ -74,6 +155,13 @@ document.querySelectorAll('.chip').forEach(chip => {
 });
 
 // Functions
+function updateStatusHint() {
+    const active = Object.entries(features)
+        .filter(([k, v]) => v)
+        .map(([k]) => k);
+    setStatus(`Features: ${active.join(', ')}. Enter a topic!`);
+}
+
 function toggleListening() {
     if (!recognition) {
         setStatus('Voice not supported in this browser', 'error');
@@ -102,16 +190,36 @@ function setStatus(message, type = '') {
     if (type) status.classList.add(type);
 }
 
-async function sendCommand(text) {
+function buildCommand(topic) {
+    // Build a natural language command based on toggles
+    let cmd = topic;
+    const extras = [];
+
+    if (features.summary) extras.push('summarize');
+    if (features.sentiment) extras.push('sentiment analysis');
+    if (features.trends) extras.push('trends');
+
+    if (extras.length > 0) {
+        cmd = `${topic} with ${extras.join(' and ')}`;
+    }
+
+    return cmd;
+}
+
+async function sendCommand(topic) {
+    const fullCommand = buildCommand(topic);
     setStatus('⏳ Processing with Nova...', 'loading');
     sendBtn.disabled = true;
     clearResults();
+
+    // Save to history
+    saveToHistory(topic);
 
     try {
         const response = await fetch(`${API_BASE}/command`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ text })
+            body: JSON.stringify({ text: fullCommand })
         });
 
         if (!response.ok) {
@@ -137,12 +245,10 @@ function clearResults() {
 }
 
 function displayResults(data) {
-    // Display plan
     if (data.plan) {
         planOutput.textContent = JSON.stringify(data.plan, null, 2);
     }
 
-    // Display intelligence data
     if (data.result && data.result.data) {
         displayIntelligence(data.result.data);
     }
@@ -153,10 +259,16 @@ function displayIntelligence(data) {
 
     // Summary
     if (data.summary) {
+        const summaryText = data.summary.summary || (typeof data.summary === 'string' ? data.summary : '');
         html += `
             <div class="intel-section">
                 <h4>📝 Summary</h4>
-                <p>${data.summary.summary || data.summary}</p>
+                <p>${summaryText}</p>
+                ${data.summary.key_points ? `
+                    <ul>
+                        ${data.summary.key_points.map(p => `<li>${p}</li>`).join('')}
+                    </ul>
+                ` : ''}
             </div>
         `;
     }
@@ -166,7 +278,7 @@ function displayIntelligence(data) {
         const s = data.sentiment;
         const scorePercent = Math.round((s.score || 0.5) * 100);
         const sentimentClass = s.overall || 'neutral';
-        
+
         html += `
             <div class="intel-section">
                 <h4>💭 Sentiment: ${capitalize(s.overall)} (${scorePercent}%)</h4>
@@ -188,9 +300,9 @@ function displayIntelligence(data) {
             <div class="intel-section">
                 <h4>📊 Trending Topics</h4>
                 <div class="trend-tags">
-                    ${data.trends.trending_topics.slice(0, 8).map(t => 
-                        `<span class="trend-tag">${t.topic} (${t.mentions})</span>`
-                    ).join('')}
+                    ${data.trends.trending_topics.slice(0, 8).map(t =>
+            `<span class="trend-tag">${t.topic} (${t.mentions})</span>`
+        ).join('')}
                 </div>
             </div>
         `;
@@ -230,13 +342,14 @@ function capitalize(str) {
     return str.charAt(0).toUpperCase() + str.slice(1);
 }
 
-// Fetch capabilities on load
+// Initialize
 async function init() {
+    renderHistory(); // Load saved history
     try {
         const resp = await fetch(`${API_BASE}/capabilities`);
         const caps = await resp.json();
         console.log('Nova Intelligence Agent loaded:', caps);
-        setStatus(`Ready! Say "Get AI news with sentiment analysis" to start.`);
+        setStatus(`Ready! Click badges to toggle features, then enter a topic.`);
     } catch (e) {
         console.error('Failed to load capabilities:', e);
         setStatus('⚠️ Backend not connected. Start server with: uvicorn app.main:app --reload');

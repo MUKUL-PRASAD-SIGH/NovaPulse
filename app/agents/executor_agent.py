@@ -101,9 +101,10 @@ def _execute_step(step: ToolStep, context: Dict, step_index: int) -> Dict:
 def _inject_context(tool_name: str, params: Dict, context: Dict) -> Dict:
     """Inject context data into tool parameters."""
     
-    # Tools that need news_items from context
+    # Tools that need news_items from context - ALWAYS override
     if tool_name in ["summarizer", "sentiment", "trends"]:
-        if "news" in context and "news_items" not in params:
+        if "news" in context:
+            # Always use actual news data from context (Nova puts empty/placeholder values)
             params["news_items"] = context["news"]
     
     # Exporter needs all collected data - always override with context

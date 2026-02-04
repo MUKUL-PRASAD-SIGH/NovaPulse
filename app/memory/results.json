@@ -524,5 +524,1532 @@
       "errors": [],
       "success": true
     }
+  },
+  {
+    "timestamp": "2026-02-04T12:59:40.333027",
+    "result": {
+      "intent": "Fetch and export news about a car accident",
+      "domain": "car accident",
+      "tools_executed": [
+        {
+          "tool": "news_fetcher",
+          "success": false,
+          "error": "news_fetcher: This event loop is already running"
+        },
+        {
+          "tool": "exporter",
+          "success": true
+        }
+      ],
+      "data": {
+        "exported_file": "output/car_accident_report_20260204_125940.json"
+      },
+      "errors": [
+        "news_fetcher: This event loop is already running"
+      ],
+      "success": false
+    }
+  },
+  {
+    "timestamp": "2026-02-04T12:59:59.282112",
+    "result": {
+      "intent": "Fetch and export latest Tesla news",
+      "domain": "Tesla",
+      "tools_executed": [
+        {
+          "tool": "news_fetcher",
+          "success": false,
+          "error": "news_fetcher: This event loop is already running"
+        },
+        {
+          "tool": "exporter",
+          "success": true
+        }
+      ],
+      "data": {
+        "exported_file": "output/tesla_news_report_20260204_125959.json"
+      },
+      "errors": [
+        "news_fetcher: This event loop is already running"
+      ],
+      "success": false
+    }
+  },
+  {
+    "timestamp": "2026-02-04T13:13:31.287115",
+    "result": {
+      "intent": "Identify trending topics in the tech industry",
+      "domain": "tech",
+      "tools_executed": [
+        {
+          "tool": "news_fetcher",
+          "success": true
+        },
+        {
+          "tool": "trends",
+          "success": false,
+          "error": "trends: 'str' object has no attribute 'get'"
+        },
+        {
+          "tool": "exporter",
+          "success": true
+        }
+      ],
+      "data": {
+        "news": [
+          {
+            "title": "Women in tech and finance at higher risk from AI job losses, report says - The Guardian",
+            "link": "https://news.google.com/rss/articles/CBMiogFBVV95cUxNakRQMFJ4NFJDWEU1UnRoVG55QzZjWnl0WW1Kd2czUDgyM1hXVzlNYXM1S2ZtRlRmeTFXMUdMWWhad2taWGpCZUF4UER2ZGRpa3R5aTFycUhyNjZKN0ZzenQ4XzA0ZDdpX2xnaUt1d0I4TkV1VjdadFNQa0ZaNlQ3Qm9QN0hKQ1Vnd1Viamc0anA2UGdQLUQ0S0I1Q3pYXzRnOGc?oc=5",
+            "source": "rss",
+            "published": "Wed, 04 Feb 2026 00:03:00 GMT"
+          },
+          {
+            "title": "Anthropic\u2019s release of AI tools for lawyers prompts massive legal-tech sell-off - The Globe and Mail",
+            "link": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxQM21qNW9tT3ZYaXp2MDcxRm9BbGp4ZE15NkJkcFl4T2dJcktPck5qOEtmREtldFE4bFBDVFIzbnJfUHhndUZkaGZaQXpUb0R2VlVIRXVSX3haNlljSnV1eVF5UWFCbGF4UVV1VlpqSGJxYmtlSW1OZlFMRVlrd3ptbmxaUG15eXJKdHczWGlqVFpsZWFuR0tmV0lQRUdnQkFDOVFPMThhekVpYlpZLWJIMVZGMmJheWZN?oc=5",
+            "source": "rss",
+            "published": "Wed, 04 Feb 2026 00:08:39 GMT"
+          },
+          {
+            "title": "Rockhurst University gets million-dollar federal grant to expand tech, AI education - KSHB 41 Kansas City",
+            "link": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxQT3FweGgteG1DdVR5cXhQdW1FLTFHcDg1WmRCWlZyMFZSbjVPbFI0bmZFU2R3bS1pMzZiU1V2Y3dPc1ZLUUZmdlRJTUNpVTBHZWRZNzV0SEhiUXBKaUw5cWNFdkxhMmJOY1VZSVBKYWtWUW5QUzBtcEJNdG5INGtLeHNQNXJhU1dCOWpjMl9paTZBdTZ1d1p2MS1yVDVIaDdSWXQySGJNWU5kQm84WDh1VDZ0dFhRdHNBRUtZ?oc=5",
+            "source": "rss",
+            "published": "Wed, 04 Feb 2026 06:17:47 GMT"
+          },
+          {
+            "title": "The world is trying to log off U.S. tech - Rest of World",
+            "link": "https://news.google.com/rss/articles/CBMie0FVX3lxTE44WWRZdC1uRFo5bXdaSnVLMFltMTduRlk3aWJvcVUzN0FyWEV2ZzU4Z1dxWWtpeUlsWXZubmg4cjZ5Y2ppM0FYTmhWcm80NWhwNEhIX19BQUNvQmMxVFN5ekhDRGpDYlAyeHUyd2g1azMwTFZDN19YeU51Yw?oc=5",
+            "source": "rss",
+            "published": "Mon, 02 Feb 2026 12:04:33 GMT"
+          },
+          {
+            "title": "Walmart Joins Tech Giants With $1 Trillion Market Valuation - The New York Times",
+            "link": "https://news.google.com/rss/articles/CBMihAFBVV95cUxOdWRjQ2lKYWdmODRCdGNidzNMdG5SY2h1dkV4OGJVOHNfSXFyTzNYSXZGRWNqRzY3U0Q5NFJYZUVBa3Z4TXdRRTRrcWFwRVIwMDdsY0xEdFFNMXE2RkUwT2JVMndlNVN2cDFZVWx3VENkbFlTVDlqamhwTmZQYUN6ZmpOUDg?oc=5",
+            "source": "rss",
+            "published": "Tue, 03 Feb 2026 21:36:25 GMT"
+          },
+          {
+            "title": "Social media ban in Canada would need oversight: expert",
+            "link": "https://www.cp24.com/news/canada/2026/02/03/social-media-ban-would-need-oversight-through-online-harms-bill-carol-todd/",
+            "source": "gnews",
+            "published": "2026-02-03T19:40:28Z"
+          },
+          {
+            "title": "Big Tech faces new pressure for allowing ICE ads",
+            "link": "https://www.fastcompany.com/91486019/big-tech-faces-new-pressure-for-allowing-ice-ads",
+            "source": "gnews",
+            "published": "2026-02-03T19:35:30Z"
+          },
+          {
+            "title": "Tech Stocks Sink Wall Street Amid Rising Oil and Precious Metals",
+            "link": "https://www.devdiscourse.com/article/headlines/3792580-tech-stocks-sink-wall-street-amid-rising-oil-and-precious-metals",
+            "source": "gnews",
+            "published": "2026-02-03T19:27:22Z"
+          },
+          {
+            "title": "Social media ban would need oversight through online harms bill: Carol Todd",
+            "link": "https://www.baytoday.ca/national-news/social-media-ban-would-need-oversight-through-online-harms-bill-carol-todd-11831101",
+            "source": "gnews",
+            "published": "2026-02-03T19:26:24Z"
+          },
+          {
+            "title": "r/technews - Reddit",
+            "link": "https://www.reddit.com/r/technews/",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "TechNewsWorld - Technology News and Information",
+            "link": "https://www.technewsworld.com/",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "Tech News | Today's Latest Technology News | Reuters",
+            "link": "https://www.reuters.com/technology/",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "Tech - CNBC",
+            "link": "https://www.cnbc.com/technology/",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "Technology - WSJ.com",
+            "link": "https://www.wsj.com/tech?gaa_at=eafs&gaa_n=AWEtsqcJtly1nSpRWc3K0SFVKzZSLk8eydgLZHNpGMjWK-BjSihFHgqhVlr5&gaa_ts=6982fc26&gaa_sig=nqNO3sv4Bmk3gpq_xYN59LIxd7lv2u8HDAYn0PweqhXHpWVjEGc8IwyDmJgKJ1dXKIex_yQlHRHJKAuLc7_mHQ%3D%3D",
+            "source": "tavily",
+            "published": ""
+          }
+        ],
+        "exported_file": "output/tech_trends_report_20260204_131331.json"
+      },
+      "errors": [
+        "trends: 'str' object has no attribute 'get'"
+      ],
+      "success": false
+    }
+  },
+  {
+    "timestamp": "2026-02-04T13:13:37.594804",
+    "result": {
+      "intent": "Fetch crypto news and perform sentiment analysis",
+      "domain": "crypto",
+      "tools_executed": [
+        {
+          "tool": "news_fetcher",
+          "success": true
+        },
+        {
+          "tool": "sentiment",
+          "success": false,
+          "error": "sentiment: 'str' object has no attribute 'get'"
+        },
+        {
+          "tool": "exporter",
+          "success": true
+        }
+      ],
+      "data": {
+        "news": [
+          {
+            "title": "Epstein invested alongside top Silicon Valley names in crypto firm Coinbase - The Washington Post",
+            "link": "https://news.google.com/rss/articles/CBMilgFBVV95cUxNd0dxRlFJUDA1dVZGUjc0ZmZQYkxRM2Zqa2x0ak1ETGRXQlNWOUtWYmZubGpJcGR1TXh2Rm1Xc3JhM2VJTkNQaXZxVzVYQ1JSRVRLOHQxa2lRRXNzTTZVMlZrU0hyZ2F5alBBaGg2ZXBXVmJmcEJfU0UwY01fQWliVDY0dVNlSUhCeDJScFFLNlR6aW5oU1E?oc=5",
+            "source": "rss",
+            "published": "Wed, 04 Feb 2026 03:25:43 GMT"
+          },
+          {
+            "title": "Jeffrey Epstein Files Reveal Shocking Coinbase Connection \u2013 What the Crypto World Missed - Yahoo Finance",
+            "link": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxPU3lWNHNNYnRXT2ZlNGVXQlpXNndodmFoR0thYXpYRWUteldLSmdxSmRvQ0xVejJJZ0VpMlU4Zzk5dFYtaXQzTlFpaW5wMVduZVQwRTVZbkhBM2RsYldLeVVRcFlfaENtbEFHQUp4alZrWnJxZVcwaFlIV1NwTU9fUi1tZjZaTmJPSU8w?oc=5",
+            "source": "rss",
+            "published": "Tue, 03 Feb 2026 13:32:51 GMT"
+          },
+          {
+            "title": "Epstein Backed Coinbase in Crypto Exchange\u2019s Early Years - Bloomberg.com",
+            "link": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxOVWVEQ1E4V2JGMVlTazlPaEhLd2hfVVFxNFZ1Z3JXbFAtZkxmTzd4T0tCdjJxY1VrUWl0Q25ycmx4d3pQdlRUdDUwOVU5c3FvazIwbHZyaEVBdl9UNktUb1RJSExiaW9lU3ZaMzVqaVNiekRZS2pUSHF4alJaTlUyanhlazM5ZW5HSlFHUjBjM2xYd3NHVFdSUXhYUFNrNXlIZVJKSGdxdkhZck0?oc=5",
+            "source": "rss",
+            "published": "Tue, 03 Feb 2026 20:28:20 GMT"
+          },
+          {
+            "title": "The Crypto-Hoarding Strategy Is Unraveling - The Wall Street Journal",
+            "link": "https://news.google.com/rss/articles/CBMimgNBVV95cUxQa2pmdHpoMmhJSmhxNG9Sd2VwYVhaMTNyRG5MN19yNExKR1JyS3dUZFVYUU1rbG5PR0xtQ3lPbXBrdTVCX3FsX2ZLUGp1WmMzTlhkYUNWY2JkZlBjdEptaks0cEQzZHJZTXF6djJpN0U4Q0tEWGRIWmltNFlzVzViWjV2dC1tMDRxam1GMmYtOThUU1l5VDl1WEpWOHh5bkJmSzRiU0x3OWptUlRiMm9BSkNrWGlJV1VmeXRkRmNyNDNNV0tOZWhxTXZ0Q2l4bW0yTFYzZnRSNzFqX29uTGtXMWROZllFVnpTUFR5ZnFPcFhjTTlVWmdpTzlKODhoRUt2LXI3enlEOG5wck92eDNTN3NNZ2F4NWNIQlVpMnVPdmNiQjRuSFVyZ3ZFT2RUMU01V25zVm5WY2dtS0VNc3FzTTFjRGRpQ0JGYU1wSmdraHhpY0dzQlNLQWVvZEtuTnFxbDJqNzlWbEtoZ2VWZmNuMVBPYjQ3aFJiZHZZWVpmT0hLdnRhVXQxNVg2NFlVaU14OVBaQUNMaVBJdw?oc=5",
+            "source": "rss",
+            "published": "Tue, 03 Feb 2026 02:00:00 GMT"
+          },
+          {
+            "title": "Operator of Crypto-Fueled Dark Web Drug Market Sentenced to 30 Years - Yahoo",
+            "link": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxOZnRhV3cxY0ExcDV5Si1la1JSVVpLbG42bi1MQlBYaXNFQllVRDdYZ1AzVGNXMV96V090ZUhSUm5lZll5cEJlV3hKZHo2dVpVMm9DYXRNMk1FVDZNRnRacG16UWZENzY2V1c3ZnpNN0hpSE5EaVM1Tm9yV2poVFB3T0xDdGhsTGN2M0Zr?oc=5",
+            "source": "rss",
+            "published": "Wed, 04 Feb 2026 06:35:00 GMT"
+          },
+          {
+            "title": "Crypto confidence: Why traders are looking beyond Bitcoin volatility",
+            "link": "https://crypto.news/crypto-confidence-why-traders-are-looking-beyond-bitcoin-volatility/",
+            "source": "gnews",
+            "published": "2026-02-03T19:42:49Z"
+          },
+          {
+            "title": "Moonshot Crypto Alert: APEMARS Presale Rockets 11,700% ROI, Raises $148K as ETH Struggles and HBAR Gains Momentum",
+            "link": "https://techbullion.com/moonshot-crypto-alert-apemars-presale-rockets-11700-roi-raises-148k-as-eth-struggles-and-hbar-gains-momentum/",
+            "source": "gnews",
+            "published": "2026-02-03T19:40:32Z"
+          },
+          {
+            "title": "Month Low as Crypto, Stock Prices Tumble",
+            "link": "https://decrypt.co/356820/bitcoin-plummets-15-month-low-crypto-stock-prices-tumble",
+            "source": "gnews",
+            "published": "2026-02-03T19:33:43Z"
+          },
+          {
+            "title": "year low after House passage of funding bill",
+            "link": "https://www.coindesk.com/markets/2026/02/03/crypto-pulls-out-of-free-fall-as-government-shutdown-ends",
+            "source": "gnews",
+            "published": "2026-02-03T19:28:27Z"
+          },
+          {
+            "title": "XRP plunges 6% as bitcoin briefly drops under $73,000",
+            "link": "https://www.coindesk.com/markets/2026/02/04/xrp-plunges-6-as-bitcoin-drops-under-support-worsening-downtrend",
+            "source": "gnews",
+            "published": "2026-02-03T19:24:59Z"
+          },
+          {
+            "title": "Crypto News - Latest Cryptocurrency News",
+            "link": "https://crypto.news/",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "Crypto News: Latest Cryptocurrency News and Analysis",
+            "link": "https://cryptonews.com/",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "Crypto World: latest crypto news and digital currency updates",
+            "link": "https://www.cnbc.com/cryptoworld/",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "The Block: Bitcoin, Ethereum & Crypto News | Live Prices ...",
+            "link": "https://www.theblock.co/",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "CryptoSlate: Crypto News, Coin Prices & Market Trends",
+            "link": "https://cryptoslate.com/",
+            "source": "tavily",
+            "published": ""
+          }
+        ],
+        "exported_file": "output/crypto_news_sentiment_report_20260204_131337.json"
+      },
+      "errors": [
+        "sentiment: 'str' object has no attribute 'get'"
+      ],
+      "success": false
+    }
+  },
+  {
+    "timestamp": "2026-02-04T13:13:43.077698",
+    "result": {
+      "intent": "Fetch and summarize AI news",
+      "domain": "AI",
+      "tools_executed": [
+        {
+          "tool": "news_fetcher",
+          "success": true
+        },
+        {
+          "tool": "summarizer",
+          "success": false,
+          "error": "summarizer: 'str' object has no attribute 'get'"
+        },
+        {
+          "tool": "exporter",
+          "success": true
+        }
+      ],
+      "data": {
+        "news": [
+          {
+            "title": "\u2018Get me out\u2019: Traders dump software stocks as AI fears erupt - Yahoo Finance",
+            "link": "https://news.google.com/rss/articles/CBMigwFBVV95cUxNLVpvRURaa3J4Tl85a0QxUUpHVVNvTWtFNFlQdmZYdXhTckxuQ1ZzaFF1YmVlb3ZJSkdTd3Ewa2NXdDdzWlhFRW5wdk9KYUJ2dHQ1TE9KdVE4TTVGc2lrZ0IzV0pBenI3RWZQWHczay1PWnJ6UG5tTnM1bnBWVHd4c1VvZw?oc=5",
+            "source": "rss",
+            "published": "Wed, 04 Feb 2026 06:14:00 GMT"
+          },
+          {
+            "title": "Asian software stocks plunge after U.S. peers decline on fears over AI-led disruption - CNBC",
+            "link": "https://news.google.com/rss/articles/CBMiggFBVV95cUxOTHJTQk1WVUlXdDZhdGctVktFalRGdW1XR2x3Q0l5Z3d0VkhRYU1Salh2dUdzVVRCOUpTQ1NaY21FN3k4ZGtuN0lXUC15b2dNU1RIWUxEZ09JTWRtMFZDaDZURVg4QmI2OGNkbUhuQmtMc2xpWWVGcFdmdDFaYkdBTnFR0gGHAUFVX3lxTFBzWlkwOVZNMXhqc1A4TDdReUtPQnJKalFIeDlKVThsNlF1ZWh4NWlHY3JXd0tSdEtCaGF1bUd2Ui1sdmVaUU56R3oySHk1UzFTTWNqT19ZV2Yxa3V4bzMxVEJmNzVMTnRrWGpHSklIa242Sm1TSThpZWt0OHJ2d2FnSTYzQUNsRQ?oc=5",
+            "source": "rss",
+            "published": "Wed, 04 Feb 2026 04:58:00 GMT"
+          },
+          {
+            "title": "Software stock selloff goes global amid fears over AI-led disruption \u2013 business live - The Guardian",
+            "link": "https://news.google.com/rss/articles/CBMi5gFBVV95cUxPWm8zSmVfYUZBZkFGRURrS1lqa1BLQnp1WWc0bElIQTBySmdwcmV1SXJLaFJ4Y1ZlQ09zTjdiS1JVYXZPdnBzSTFSaXo3YVE1X0Z2LUcxVXhGM1IzY3M4U3BGZWE0Z0hFSkwyVm9KVTkydi0yRmVSd18tZ08tWC03ODQxS3Zza0NtODdhTE5vQkdvcHFCN2VfRGRwMmhkbE9KU0JnM0F5SEZmNkJpNmJPd1RBaTJuSmttbWw1ZlNqWVBTQnVmUTIxcC1vY2g4V3U3YUtiWE04cEVFeUhFRHl2Wk5wYWFQZw?oc=5",
+            "source": "rss",
+            "published": "Wed, 04 Feb 2026 07:24:13 GMT"
+          },
+          {
+            "title": "Nvidia's Huang dismisses fears AI will replace software tools as stock selloff deepens - Reuters",
+            "link": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxOZUdRd2FEb1ROQkdGdHhvdjFQX3ZaTktRbXN1ZjFzZDlzMGhTV0Z2S1VxekJoODJvR0xvSG1CcXNPWDRsVTRzdXZlZlZlcVI4OG5wMGtsNEZYTENVdXJTX3pPT3VlNGFfbm1sLUc3cWFoeFhKS2ptLXlkSkd5c0d4clRKSEZZTjhfWld1SDZjbVNUUjdERjQwRUM4MHFxM01URjQ4WUJXMmtwTXBWb213cndFcEh4LVgzTHBN?oc=5",
+            "source": "rss",
+            "published": "Wed, 04 Feb 2026 06:50:00 GMT"
+          },
+          {
+            "title": "Nvidia, OpenAI appear stalled on their mega deal. But the AI giants still need each other - CNBC",
+            "link": "https://news.google.com/rss/articles/CBMipgFBVV95cUxOeTRoVldyWnF4dlZ0eExxOTFDYjJDYVV0U0lRWDg4aXA0aVdZN3g2czkxRy1pT0hOZmEwb1R3MEJ2UDlra3pIMHdtaWMzNkhyc3BuNFdXTFE0NkZEejhDXzlqcEt6dDhZa1dSUDllT3RIRGFwYVVFOTlCdUNjcjJsOXNmSXR6ZlpuZW1XWmpxRnN6TTVQOGxMYlh4aTE4cGVrVDRUUzV30gGrAUFVX3lxTE5EWnpkaTZrMXVQMHI5U2d6RnFzTTc3UlJ3ZW45a01mbHZCSllXYWd5YnlyNFBFWXZOejhuX0RuVGNqdlpEM0VSeGM2SjNSRVF2eE5kX094MDY2aEY0dXdUTHVfTnhaUGpYWHEybHZhSTJfMkNpV05GMmVtM3lpaFJnRm8tQlkyeUd4ZEc5Ti1pVUJLTUlMV21HQlNOeTVRZ21fT3JsVDV5TkNMSQ?oc=5",
+            "source": "rss",
+            "published": "Tue, 03 Feb 2026 22:22:05 GMT"
+          },
+          {
+            "title": "Chris Stapleton Says His New Super Bowl Ad Is \u2018Very Non-AI\u2019",
+            "link": "https://www.rollingstone.com/music/music-features/chris-stapleton-super-bowl-commercial-national-anthem-1235510393/",
+            "source": "gnews",
+            "published": "2026-02-03T19:40:57Z"
+          },
+          {
+            "title": "Elon Musk's SpaceX Is Acquiring xAI With Big Plans for Data Centers in Space",
+            "link": "https://www.cnet.com/tech/services-and-software/elon-musks-spacex-acquiring-xai-space-data-centers/",
+            "source": "gnews",
+            "published": "2026-02-03T19:37:46Z"
+          },
+          {
+            "title": "Bitcoin miners caught between plummeting prices and AI allure",
+            "link": "https://cryptoslate.com/bitcoin-mining-revenue-hits-historic-low-as-infrastructure-is-sold-to-ai-giants-permanently-altering-the-networks-security/",
+            "source": "gnews",
+            "published": "2026-02-03T19:35:47Z"
+          },
+          {
+            "title": "Firefox just made an unexpected move that Chrome would never copy",
+            "link": "https://www.fastcompany.com/91486070/this-new-firefox-setting-lets-you-block-ai-before-you-ever-see-it",
+            "source": "gnews",
+            "published": "2026-02-03T19:30:00Z"
+          },
+          {
+            "title": "Up to Date Technical Dive into State of AI",
+            "link": "https://www.nextbigfuture.com/2026/02/up-to-date-technical-dive-into-state-of-ai.html",
+            "source": "gnews",
+            "published": "2026-02-03T19:28:12Z"
+          },
+          {
+            "title": "AI News: Google's Infinite AI Worlds - YouTube",
+            "link": "https://www.youtube.com/watch?v=cEPTbXuw55Q",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "AI News | Latest Headlines and Developments | Reuters",
+            "link": "https://www.reuters.com/technology/artificial-intelligence/",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "AI News | Latest News | Insights Powering AI-Driven Business Growth",
+            "link": "https://www.artificialintelligence-news.com/",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "AI News & Artificial Intelligence | TechCrunch",
+            "link": "https://techcrunch.com/category/artificial-intelligence/",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "Artificial Intelligence - Latest AI News and Analysis - WSJ.com",
+            "link": "https://www.wsj.com/tech/ai?gaa_at=eafs&gaa_n=AWEtsqdFsnHSlEsgbeDZGH8DfvjRQnCT7uVfZzYG5-ewIfZ78_eGIAI06gNp&gaa_ts=6982fc32&gaa_sig=NvTI4p1pk0EtvffBPnwnbcPeZZVGJEQj6KwpO1Uv01R79hr3l7S7IjDzxQa-0qz7I1_VnLMvz0o5X3TuvkNsmw%3D%3D",
+            "source": "tavily",
+            "published": ""
+          }
+        ],
+        "exported_file": "output/AI_news_summary_20260204_131343.json"
+      },
+      "errors": [
+        "summarizer: 'str' object has no attribute 'get'"
+      ],
+      "success": false
+    }
+  },
+  {
+    "timestamp": "2026-02-04T13:13:48.538549",
+    "result": {
+      "intent": "Fetch and export news about a car accident",
+      "domain": "car accident",
+      "tools_executed": [
+        {
+          "tool": "news_fetcher",
+          "success": true
+        },
+        {
+          "tool": "exporter",
+          "success": true
+        }
+      ],
+      "data": {
+        "news": [
+          {
+            "title": "Teen identified in fatal Grayslake crash; elderly woman also injured - CBS News",
+            "link": "https://news.google.com/rss/articles/CBMimwFBVV95cUxOR2JObGgwS3VxS0YwYWZGcWtITVpHYXFyczJvN2xMVkxTVjNLdFBXQ3ZONzhhaExjb3FtdWpkWVVXMGctLVhPOGZGeFFfUGNuMExvOVlXZkM4RXVtWVB6clNfTHBqSFFHX25aZ01lVm9iZXlLQjVRS0dNeUkzY09BWERuc2k2ZHZRWXNiRk5SOGFkREtoTTFSX0VpYw?oc=5",
+            "source": "rss",
+            "published": "Mon, 02 Feb 2026 23:34:00 GMT"
+          },
+          {
+            "title": "Bensalem Township high-speed crash near I-95 leaves 1 dead, 4 injured - 6abc Philadelphia",
+            "link": "https://news.google.com/rss/articles/CBMipwFBVV95cUxNUXZyTWZiTGdYNU9qTkdKWDBoVDdscW9rbk1FVWVleHlVVktEdzllcUY1VDBZa0dZQ1R5NHBWZWxLMjUwWDN4V3daWFJkSTlGeDhqaWNwTG9hQzJGby1JYVduMllFVU9FTUduSnJNc2c0V2JRZFFXUXV5WVdKYkFFdHVTQVBhRTM1N1l1Y1NZcEtnZU14bVAtQThPdmVFUDh0TFFNcDRGb9IBrAFBVV95cUxNT245MFNEZTFFNlFkWUxCaWZRZFNlR1E0QVZ1TGNiUkRKZW1aR2RUQ1o3R0o3SFlNdVdQdEZPOUw3ejlWZ1A0VHNPUEZuZzFmaHVRR1lMSWxyT0JTTmpLYlhmYWV5SEJWazBWMDJ0a252WXlxdU1BclpDZy1yZjROSDc4TGV4MElEanh4cnJ4YkI3ZUhXUkh2MG1fOVVocnJPRkpjb09ycVZiZFdz?oc=5",
+            "source": "rss",
+            "published": "Tue, 03 Feb 2026 13:18:12 GMT"
+          },
+          {
+            "title": "Car crashes into bar in Kansas City\u2019s Crossroads Arts District, injuring one - Kansas City Star",
+            "link": "https://news.google.com/rss/articles/CBMia0FVX3lxTE9jRkpuamNDUU50TC1Wc1VUY2t0emsxbnBQRkN5VVhBMXBXS2FPYk85aXBWOHJkYnhpOEhGOTNUbDJrRDJtVjMtS1NnZm8wUjRrLXZ3blY0MmR6cWF0djZ0WENkTHVpMDFJcEJJ0gFrQVVfeXFMUHFyNjIwY1BMOXBQQ2I3Y2lwMEZpaThrdmZfT2dLZUhYSEFxZVNtNUNKcnlOaWRHTmdQV3ZvbjNzVTU1VVYxSXFFUUZFdGdvZkhOSkNEQWZ6VkhoQlVXRmpRSFFlZlUtOUt5RFE?oc=5",
+            "source": "rss",
+            "published": "Tue, 03 Feb 2026 01:19:25 GMT"
+          },
+          {
+            "title": "Early-morning hit-and-run in Mission District involved four vehicles - Mission Local",
+            "link": "https://news.google.com/rss/articles/CBMiggFBVV95cUxPR0NHUlZDVE9XOGhaemYzeDk2RlgyeHB1WEk4NjloSXpYYTVMNklNX1hSS01BQjdlLXRycnoxdkNwNWNCdGs1eXo2TC1Fa2h3cmVSZDVJWHllTXpTdU9mQnZnTS1DbTFUbTU0QTdUd3NWX3Rnd2FwMzFJd1ZYdnRkTkxn?oc=5",
+            "source": "rss",
+            "published": "Wed, 04 Feb 2026 01:23:04 GMT"
+          },
+          {
+            "title": "Driver crashes into hydrant in Panorama City, rushing waters lift car into the air - KTLA",
+            "link": "https://news.google.com/rss/articles/CBMitgFBVV95cUxNWEJ6X1M4dlZpWE5kSW9VaENNa3R5R2E0MUhoWmJZSXotTGZfeld4bTFlNVRWSzFESm16OGloUlNybkc1RWhua0dUMXZzSGZhTHhXdzNrMUNFbUJpYm1vSUpUcFVTTlRiNFZSUGJEQ0YwVlNxbVVHYmhEZ21fdnZVMFFGS2g5VFM4RktpNEVQSlFQQjlCdThucThLY2JZdk5rLVpjUDJDYzRTOWdsOVZCVjRkenpHQdIBuwFBVV95cUxQajU5bXR5RVZySGhxYi0tQklNMTR1cThHd3NqaTZzRUl2cFBIQkJObmpnYk9jLUd4RTJkNGFZV3Zla2xRV1pnYVBfd3VvV2o2TkFNUHZMUVdUN01DZG1Nalp0cFE0QWtyeUJucDVmZ3RnUk9mTlprS01vaUt4eGNQSnotUG9vcTJYaXJWNTFpU19YNUsyNEtLWFMyaFQxcExzb2R2OWR1Z1BaYUhVT3Jqam92Qjhvd0pmUUpB?oc=5",
+            "source": "rss",
+            "published": "Wed, 04 Feb 2026 04:51:42 GMT"
+          },
+          {
+            "title": "Woman dies after drunk friend crashes car into divider",
+            "link": "https://timesofindia.indiatimes.com/city/guwahati/woman-dies-after-drunk-friend-crashes-car-into-divider/articleshow/127892555.cms",
+            "source": "gnews",
+            "published": "2026-02-03T18:13:00Z"
+          },
+          {
+            "title": "Shocking moment driver flees crash scene in just his socks baring his bottom 'after running a red light in car chase getting away from lover's furious husband'",
+            "link": "https://www.dailymail.co.uk/news/article-15524031/Shocking-moment-driver-flees-crash-scene-just-socks-baring-bottom-running-red-light-car-chase-getting-away-lovers-furious-husband.html",
+            "source": "gnews",
+            "published": "2026-02-03T17:44:26Z"
+          },
+          {
+            "title": "Driver high on drugs handed police beer bottle moments after killing teen in crash",
+            "link": "https://metro.co.uk/2026/02/03/driver-high-on-drugs-handed-police-beer-bottle-moments-after-killing-teen-in-crash-26688487/",
+            "source": "gnews",
+            "published": "2026-02-03T15:28:17Z"
+          },
+          {
+            "title": "Tragic Accident on Overbridge: Two Dead, Four Injured",
+            "link": "https://www.devdiscourse.com/article/business/3792045-tragic-accident-on-overbridge-two-dead-four-injured",
+            "source": "gnews",
+            "published": "2026-02-03T13:32:37Z"
+          },
+          {
+            "title": "China to ban 'hidden' car door handles from 2027 to address safety fears",
+            "link": "https://www.tribuneindia.com/news/world/china-to-ban-hidden-car-door-handles-from-2027-to-address-safety-fears/",
+            "source": "gnews",
+            "published": "2026-02-03T12:11:34Z"
+          },
+          {
+            "title": "Traffic accident - ABC7 Chicago",
+            "link": "https://abc7chicago.com/tag/traffic-accident/",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "Fatal Crash news - Today's latest updates - CBS Chicago",
+            "link": "https://www.cbsnews.com/chicago/tag/fatal-crash/",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "Car crash - ABC7 Chicago",
+            "link": "https://abc7chicago.com/tag/car-crash/",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "Tag: car crash - NBC 5 Chicago",
+            "link": "https://www.nbcchicago.com/tag/car-crash/",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "Person hit by car on Touhy Avenue in Niles, Illinois - CBS News",
+            "link": "https://www.cbsnews.com/chicago/video/person-hit-by-car-on-touhy-avenue-in-niles-illinois/",
+            "source": "tavily",
+            "published": ""
+          }
+        ],
+        "exported_file": "output/car_accident_report_20260204_131348.json"
+      },
+      "errors": [],
+      "success": true
+    }
+  },
+  {
+    "timestamp": "2026-02-04T13:20:35.962035",
+    "result": {
+      "intent": "Fetch and export Tesla news",
+      "domain": "Tesla",
+      "tools_executed": [
+        {
+          "tool": "news_fetcher",
+          "success": true
+        },
+        {
+          "tool": "exporter",
+          "success": true
+        }
+      ],
+      "data": {
+        "news": [
+          {
+            "title": "China to ban hidden car door handles made popular by Tesla in world first - CNN",
+            "link": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxPRkp5UXRScHNyQTRZVzJocG5vLWZZQ2d6dXZGcV9CbGR4Ym9vZldFMTRrWmFDcDJ3WlphRFdHUGxnb2xuOFNZTGVzdkFYSzFIY2VoYnhlRlJydjdxMnBiRVl3OFpPdnNPTjVKeEkxVWpBcUREbWw4NkI5MzAzUzlhWWRiaEFjRHN0?oc=5",
+            "source": "rss",
+            "published": "Tue, 03 Feb 2026 06:16:00 GMT"
+          },
+          {
+            "title": "China bans Tesla-style hidden car door handles - Financial Times",
+            "link": "https://news.google.com/rss/articles/CBMicEFVX3lxTE82OUF4WXduc1RDWGVlNFdtb3FQY0gyNkVWMmN4QmYtU3p6cFp0NGdvU1E3UlNhNFhGT2NBb2ZxUWhXTlpEZnVlWmdlejBWNGNPbm5JMlp2RWotbWtUUGkwNEZ3aGx4ZjlQcVYxQU5oQWs?oc=5",
+            "source": "rss",
+            "published": "Tue, 03 Feb 2026 10:30:00 GMT"
+          },
+          {
+            "title": "Tesla-inspired door handles prohibited under China\u2019s new safety standard - Teslarati",
+            "link": "https://news.google.com/rss/articles/CBMif0FVX3lxTE5mc3RXSTFicTI5SnhJUUZRN1FaWHNlRWFXNEpDRlBObmFvY09tMVYxdzFqellqOWUwMjJWbEhlN0IyUldNcTZtd0hSQWpacDhqa1N5b0diT0gyUEtMSml1NmFYRTdZQmJtdTIwRm9JUlhiOVZwemR3X0x0UHdXZGs?oc=5",
+            "source": "rss",
+            "published": "Tue, 03 Feb 2026 16:18:08 GMT"
+          },
+          {
+            "title": "Tesla launches new Model Y AWD at $41,990 \u2014 just $2,000 more than base - Electrek",
+            "link": "https://news.google.com/rss/articles/CBMid0FVX3lxTE5ZcXBneS02VTRZdnVnTzVsM2UwOE9LVGh3cUNQdDRGNkFNMUpGRHd1REVESGplR2xrbExsWUR3NEVjSG5iU01zSENPVE1RMmlUaV9KaDJJWGExUWlNdDdWc3F5NGJPb1VNOW5CVWx0ZlFxRlBNQmJJ?oc=5",
+            "source": "rss",
+            "published": "Tue, 03 Feb 2026 14:04:00 GMT"
+          },
+          {
+            "title": "'Muskonomy' shakeup: SpaceX valuation approaches Tesla's after merger with xAI - CNBC",
+            "link": "https://news.google.com/rss/articles/CBMiogFBVV95cUxPeFR0Qm1ZVjN1bk5IRlBUTUZWdlZLN3N2V255M0NKdzRPYlNvRFVLbnpOOWw0TmhlbGQwdW9GdmkzRE5OMmNUaFZPLWJ0NEhwM1puM2ZwVFYxeG9lU2VJQldXNmt3WHRtcGd1dWV2NVhNZ085M1kxeE84SmFPWmd3dDVlZ1dQQjgxaTNtaFJuUlpTMi15ejF6NGsxT214ZTJDT3fSAacBQVVfeXFMT2RDNHhtQ3RaSEJlcUt5OVByV0Z5MkxDWkR6OTk5ZnZXQzZ3ZnpZeUQ2MXp2S2pPRjg5blYta0RxajZMOUNhUFJkNEI1V3NObkhOVk5NWm9mTS1lLW1TT0VfUTFzVFUzeElsdXdlUEdlUkkzMGIyRXdyVHZfNEcxOHVPakZjdWxFdjhiWldHX3JNUElBckwtVnQyb2lXeVlVTVpvc1dGaHM?oc=5",
+            "source": "rss",
+            "published": "Wed, 04 Feb 2026 01:48:00 GMT"
+          },
+          {
+            "title": "EXCLUSIVE | Top 12 Most-Searched Tickers On Benzinga Pro In January: Where Do Tesla, Nvidia, Apple Stocks Rank?",
+            "link": "https://www.benzinga.com/trading-ideas/long-ideas/26/02/50347049/exclusive-top-12-most-searched-tickers-on-benzinga-pro-in-january-where-do-tesla-nvidia-apple-stocks-rank",
+            "source": "gnews",
+            "published": "2026-02-03T18:37:58Z"
+          },
+          {
+            "title": "Why This Analyst Says Any Dip in Tesla Stock Is Worth Buying",
+            "link": "https://www.barchart.com/story/news/1418/why-this-analyst-says-any-dip-in-tesla-stock-is-worth-buying",
+            "source": "gnews",
+            "published": "2026-02-03T18:31:10Z"
+          },
+          {
+            "title": "After Earnings, Tesla Put Options Offer a 2.5% Short-Put Yield for the Next Month",
+            "link": "https://www.barchart.com/story/news/851/after-earnings-tesla-put-options-offer-a-2-5-short-put-yield-for-the-next-month",
+            "source": "gnews",
+            "published": "2026-02-03T18:04:17Z"
+          },
+          {
+            "title": "Tesla Stock (NASDAQ:TSLA) Slips Despite New EV Rebate Plan\u2026In California",
+            "link": "https://markets.businessinsider.com/news/stocks/tesla-stock-nasdaq-tsla-slips-despite-new-ev-rebate-plan-in-california-1035780472",
+            "source": "gnews",
+            "published": "2026-02-03T18:00:27Z"
+          },
+          {
+            "title": "SpaceX\u2019s $1.25 trln deal risks burn-up on re-entry",
+            "link": "https://www.reuters.com/commentary/breakingviews/spacexs-125-trln-deal-risks-burn-up-re-entry-2026-02-03/",
+            "source": "gnews",
+            "published": "2026-02-03T17:39:09Z"
+          },
+          {
+            "title": "Tesla News and Reviews | InsideEVs",
+            "link": "https://insideevs.com/tesla/",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "Tesla News, Tips, Rumors, and Reviews",
+            "link": "https://www.teslarati.com/",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "Tesla news - Today's latest updates",
+            "link": "https://www.cbsnews.com/tag/tesla/",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "Tesla, Inc. (TSLA) Latest Stock News & Headlines - Yahoo Finance",
+            "link": "https://finance.yahoo.com/quote/TSLA/news/",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "News | Tesla",
+            "link": "https://www.tesla.com/blog",
+            "source": "tavily",
+            "published": ""
+          }
+        ],
+        "exported_file": "output/tesla_news_report_20260204_132035.json"
+      },
+      "errors": [],
+      "success": true
+    }
+  },
+  {
+    "timestamp": "2026-02-04T13:20:56.768655",
+    "result": {
+      "intent": "Fetch and export Elon Musk news articles",
+      "domain": "Elon Musk",
+      "tools_executed": [
+        {
+          "tool": "news_fetcher",
+          "success": true
+        },
+        {
+          "tool": "exporter",
+          "success": true
+        }
+      ],
+      "data": {
+        "news": [
+          {
+            "title": "Elon Musk calls Spanish PM a \u2018tyrant\u2019 over plan to ban under-16s from social media and curb hateful content - The Guardian",
+            "link": "https://news.google.com/rss/articles/CBMimwFBVV95cUxOMGhCb1pGMk1qcEJ2ejM1bldVWTBBOTBYNkw5VjFhTHlmOFJ5SXpwTnRZSWdoVkRZaEtibUtfNG96NG9tbEFyTGNLTU9oRlJ5MmdVMkZSN3dnOF9UdGdITUNOR1dUam5XbmtKWnV3LUt6Ni01ODhfU3NxcnE3REppY2lFaTBuSE81WXJPbnpWbmx1WUNyaDM5dVFMaw?oc=5",
+            "source": "rss",
+            "published": "Wed, 04 Feb 2026 01:13:00 GMT"
+          },
+          {
+            "title": "Spain, Greece weigh teen social media bans, drawing fury from Elon Musk - Reuters",
+            "link": "https://news.google.com/rss/articles/CBMisgFBVV95cUxONzZRaXhzbEEwaDVRWDV2N0lZVnJ5TXdFSURhSG5rQ0JteWhFSnhHb1JYaUh2QlFuVkp2VkplYW9HZ1JJVWJyZWhTRHJTc044UUdabjNuV2dRSWRwM0U0R2s2cVZqYVRSQkNDdEMzbTRGTW1IYXBLWmxvV2d3dlBEWTMxRlRPN2s5aW15NkhJeWszRzBTdG51WTNXQVl1RS05SFNpQXA5ZmI2UXQyOW1ZbTlB?oc=5",
+            "source": "rss",
+            "published": "Tue, 03 Feb 2026 09:24:37 GMT"
+          },
+          {
+            "title": "Musk calls Spanish PM a \u2018tyrant\u2019 after Spain announces sweeping social media crackdown - Fox News",
+            "link": "https://news.google.com/rss/articles/CBMisgFBVV95cUxQcUhXWW11cXRjUnlYOC1wWFg4aG40VmJEN2hiYTFocVBhbDN0R3FneVdrZWZLSVY0RThxRzNZSmZaOGduUHlmMXF5bG1WNE9vb3gtcWdLTnBwWG1TMGYyWnNZRXZEZlZfazBvTXpiSmVBNlViSlc3NWRIaFNFSll0dHlFZFd0LWRkY1RSYlNfRGRSWkNSTF9IVUN0OG8wVm1HcHAteFd4UnpDRHpscWRMNFVR0gG3AUFVX3lxTE9fdk85aFZ2MG1WTG50Q01FNE5HUXlYQldockRsdi16TGlKdXdZaFhBTXExMDM1N3p6WU12b0kxbmIzTms5ZWpTUllnMERnaExfa3BkbGFQUkw3M1huaHFsaUd0YWxsblRjQS03RzhpN29Db1hBUHZsR3VLZTJnNTZUdnA4ZFBBQVdzMXdVWGZwVlRvWndyekFhWDNfWTc3ZWVwWVREbkdxdGQtbWJuNzdxVFlDcm96MA?oc=5",
+            "source": "rss",
+            "published": "Tue, 03 Feb 2026 23:48:43 GMT"
+          },
+          {
+            "title": "Elon Musk calls police raid on X offices a 'political attack' amid French criminal probe - Fox Business",
+            "link": "https://news.google.com/rss/articles/CBMitgFBVV95cUxNNlUwWTlhdUNHMi1JRUkyWURtcXllcnR6ZHY4SUZsR3ZwYWF6S05HUWd3dVpzRUpVbGtLZ25qWE5mLWdEdTNTM3lEdUdBWXFSZ3pqOGRMb2lGMnhqMjVFcS1QWC1ndHRKZXVZSlRDLVQ2OTBjb0JWNUVQMlZReFJsWUJTR2ZhbGJfbWhYNGRfRUZXdDZ6d1lVSGZHeVluQktQaG45VU9Dd0pKZ2RGd3ZPbjFReHVQZ9IBuwFBVV95cUxNandLNzF2YXQwNkNMdmV1WURWaHRmb3U0b2pBQTF3dkl6azV1VFN5WXNnbENLTTVBMnQxNEF1RFJJN1NteXpPSzdYRXhEcGdVTkFYbk5LMG9tTTFhMTVRanJyNFVYU25XTHhQS0pEYldxellSNWtUNFgyTWU2ZkJwN1dRdWdkaEoybEJ2djdKN0JadkhPQ3dHRzBXcFEybEhFeDFVdjM3RF9LX2RZdmN0Nm8tVkdOcTRON3Fv?oc=5",
+            "source": "rss",
+            "published": "Wed, 04 Feb 2026 03:07:00 GMT"
+          },
+          {
+            "title": "Elon Musk Merges SpaceX With His A.I. Start-Up xAI - The New York Times",
+            "link": "https://news.google.com/rss/articles/CBMidEFVX3lxTFBCLVF5cEV2OWZSMG5qdmQxc1JFZU9SREh0bUFCRFRJbTNBVk9lMHNSUUlKLVA0QW42MzVEVFN3VXlyMEo1bWtpS1FHczlKZXBfUGdKZlQxal9DRmxBQ2FQbFhxaDZMWmFYRG4tSGJlZHlsMGRT?oc=5",
+            "source": "rss",
+            "published": "Mon, 02 Feb 2026 21:52:06 GMT"
+          },
+          {
+            "title": "X offices raided in France amid investigation into sexual deepfakes and political interference",
+            "link": "https://www.sbs.com.au/news/article/x-offices-raided-in-france-amid-investigation-into-sexual-deepfakes-and-political-interference/hs1damycj",
+            "source": "gnews",
+            "published": "2026-02-03T19:45:16Z"
+          },
+          {
+            "title": "Whoopi Goldberg Slams Elon Musk for Questioning Lupita Nyong'o's 'Odyssey' Role",
+            "link": "https://people.com/whoopi-goldberg-slams-elon-musk-for-questioning-lupita-nyong-o-odyssey-role-11898487",
+            "source": "gnews",
+            "published": "2026-02-03T19:42:15Z"
+          },
+          {
+            "title": "Elon Musk's SpaceX Is Acquiring xAI With Big Plans for Data Centers in Space",
+            "link": "https://www.cnet.com/tech/services-and-software/elon-musks-spacex-acquiring-xai-space-data-centers/",
+            "source": "gnews",
+            "published": "2026-02-03T19:37:46Z"
+          },
+          {
+            "title": "Elon Musk is taking SpaceX\u2019s minority shareholders for a ride",
+            "link": "https://www.theguardian.com/business/nils-pratley-on-finance/2026/feb/03/elon-musk-is-taking-spacexs-minority-shareholders-for-a-ride",
+            "source": "gnews",
+            "published": "2026-02-03T19:07:06Z"
+          },
+          {
+            "title": "Elon Musk News | Today's Latest Stories - Reuters",
+            "link": "https://www.reuters.com/business/elon-musk/",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "Elon Musk - BBC News",
+            "link": "https://www.bbc.com/news/topics/c302m85q53mt",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "Elon Musk's SpaceX and xAI merge | BBC News - YouTube",
+            "link": "https://www.youtube.com/watch?v=-3IHbPNkE3k",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "Elon Musk - Latest on Tesla, SpaceX, Politics & More - NBC News",
+            "link": "https://www.nbcnews.com/tech/elon-musk",
+            "source": "tavily",
+            "published": ""
+          }
+        ],
+        "exported_file": "output/elon_musk_news_20260204_132056.json"
+      },
+      "errors": [],
+      "success": true
+    }
+  },
+  {
+    "timestamp": "2026-02-04T13:24:05.804855",
+    "result": {
+      "intent": "Fetch and summarize news about Elon Musk",
+      "domain": "elon musk",
+      "tools_executed": [
+        {
+          "tool": "news_fetcher",
+          "success": true
+        },
+        {
+          "tool": "summarizer",
+          "success": false,
+          "error": "summarizer: 'str' object has no attribute 'get'"
+        },
+        {
+          "tool": "exporter",
+          "success": true
+        }
+      ],
+      "data": {
+        "news": [
+          {
+            "title": "Elon Musk calls Spanish PM a \u2018tyrant\u2019 over plan to ban under-16s from social media and curb hateful content - The Guardian",
+            "link": "https://news.google.com/rss/articles/CBMimwFBVV95cUxOMGhCb1pGMk1qcEJ2ejM1bldVWTBBOTBYNkw5VjFhTHlmOFJ5SXpwTnRZSWdoVkRZaEtibUtfNG96NG9tbEFyTGNLTU9oRlJ5MmdVMkZSN3dnOF9UdGdITUNOR1dUam5XbmtKWnV3LUt6Ni01ODhfU3NxcnE3REppY2lFaTBuSE81WXJPbnpWbmx1WUNyaDM5dVFMaw?oc=5",
+            "source": "rss",
+            "published": "Wed, 04 Feb 2026 01:06:07 GMT"
+          },
+          {
+            "title": "Spain, Greece weigh teen social media bans, drawing fury from Elon Musk - Reuters",
+            "link": "https://news.google.com/rss/articles/CBMisgFBVV95cUxONzZRaXhzbEEwaDVRWDV2N0lZVnJ5TXdFSURhSG5rQ0JteWhFSnhHb1JYaUh2QlFuVkp2VkplYW9HZ1JJVWJyZWhTRHJTc044UUdabjNuV2dRSWRwM0U0R2s2cVZqYVRSQkNDdEMzbTRGTW1IYXBLWmxvV2d3dlBEWTMxRlRPN2s5aW15NkhJeWszRzBTdG51WTNXQVl1RS05SFNpQXA5ZmI2UXQyOW1ZbTlB?oc=5",
+            "source": "rss",
+            "published": "Tue, 03 Feb 2026 09:24:37 GMT"
+          },
+          {
+            "title": "Musk calls Spanish PM a \u2018tyrant\u2019 after Spain announces sweeping social media crackdown - Fox News",
+            "link": "https://news.google.com/rss/articles/CBMisgFBVV95cUxQcUhXWW11cXRjUnlYOC1wWFg4aG40VmJEN2hiYTFocVBhbDN0R3FneVdrZWZLSVY0RThxRzNZSmZaOGduUHlmMXF5bG1WNE9vb3gtcWdLTnBwWG1TMGYyWnNZRXZEZlZfazBvTXpiSmVBNlViSlc3NWRIaFNFSll0dHlFZFd0LWRkY1RSYlNfRGRSWkNSTF9IVUN0OG8wVm1HcHAteFd4UnpDRHpscWRMNFVR0gG3AUFVX3lxTE9fdk85aFZ2MG1WTG50Q01FNE5HUXlYQldockRsdi16TGlKdXdZaFhBTXExMDM1N3p6WU12b0kxbmIzTms5ZWpTUllnMERnaExfa3BkbGFQUkw3M1huaHFsaUd0YWxsblRjQS03RzhpN29Db1hBUHZsR3VLZTJnNTZUdnA4ZFBBQVdzMXdVWGZwVlRvWndyekFhWDNfWTc3ZWVwWVREbkdxdGQtbWJuNzdxVFlDcm96MA?oc=5",
+            "source": "rss",
+            "published": "Tue, 03 Feb 2026 23:48:43 GMT"
+          },
+          {
+            "title": "Elon Musk calls police raid on X offices a 'political attack' amid French criminal probe - Fox Business",
+            "link": "https://news.google.com/rss/articles/CBMitgFBVV95cUxNNlUwWTlhdUNHMi1JRUkyWURtcXllcnR6ZHY4SUZsR3ZwYWF6S05HUWd3dVpzRUpVbGtLZ25qWE5mLWdEdTNTM3lEdUdBWXFSZ3pqOGRMb2lGMnhqMjVFcS1QWC1ndHRKZXVZSlRDLVQ2OTBjb0JWNUVQMlZReFJsWUJTR2ZhbGJfbWhYNGRfRUZXdDZ6d1lVSGZHeVluQktQaG45VU9Dd0pKZ2RGd3ZPbjFReHVQZ9IBuwFBVV95cUxNandLNzF2YXQwNkNMdmV1WURWaHRmb3U0b2pBQTF3dkl6azV1VFN5WXNnbENLTTVBMnQxNEF1RFJJN1NteXpPSzdYRXhEcGdVTkFYbk5LMG9tTTFhMTVRanJyNFVYU25XTHhQS0pEYldxellSNWtUNFgyTWU2ZkJwN1dRdWdkaEoybEJ2djdKN0JadkhPQ3dHRzBXcFEybEhFeDFVdjM3RF9LX2RZdmN0Nm8tVkdOcTRON3Fv?oc=5",
+            "source": "rss",
+            "published": "Wed, 04 Feb 2026 03:07:00 GMT"
+          },
+          {
+            "title": "Elon Musk Merges SpaceX With His A.I. Start-Up xAI - The New York Times",
+            "link": "https://news.google.com/rss/articles/CBMidEFVX3lxTFBCLVF5cEV2OWZSMG5qdmQxc1JFZU9SREh0bUFCRFRJbTNBVk9lMHNSUUlKLVA0QW42MzVEVFN3VXlyMEo1bWtpS1FHczlKZXBfUGdKZlQxal9DRmxBQ2FQbFhxaDZMWmFYRG4tSGJlZHlsMGRT?oc=5",
+            "source": "rss",
+            "published": "Mon, 02 Feb 2026 21:52:06 GMT"
+          },
+          {
+            "title": "X offices raided in France amid investigation into sexual deepfakes and political interference",
+            "link": "https://www.sbs.com.au/news/article/x-offices-raided-in-france-amid-investigation-into-sexual-deepfakes-and-political-interference/hs1damycj",
+            "source": "gnews",
+            "published": "2026-02-03T19:45:16Z"
+          },
+          {
+            "title": "Whoopi Goldberg Slams Elon Musk for Questioning Lupita Nyong'o's 'Odyssey' Role",
+            "link": "https://people.com/whoopi-goldberg-slams-elon-musk-for-questioning-lupita-nyong-o-odyssey-role-11898487",
+            "source": "gnews",
+            "published": "2026-02-03T19:42:15Z"
+          },
+          {
+            "title": "Elon Musk's SpaceX Is Acquiring xAI With Big Plans for Data Centers in Space",
+            "link": "https://www.cnet.com/tech/services-and-software/elon-musks-spacex-acquiring-xai-space-data-centers/",
+            "source": "gnews",
+            "published": "2026-02-03T19:37:46Z"
+          },
+          {
+            "title": "Elon Musk is taking SpaceX\u2019s minority shareholders for a ride",
+            "link": "https://www.theguardian.com/business/nils-pratley-on-finance/2026/feb/03/elon-musk-is-taking-spacexs-minority-shareholders-for-a-ride",
+            "source": "gnews",
+            "published": "2026-02-03T19:07:06Z"
+          },
+          {
+            "title": "Today's Latest Stories",
+            "link": "https://www.reuters.com/business/elon-musk/",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "Elon Musk's SpaceX acquires xAI, merging his two most ...",
+            "link": "https://www.cnn.com/2026/02/02/tech/spacex-acquires-xai-elon-musk",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "By Ashley Ahn\n\nElon Musk at the White House in May. The bill now before the Senate lies at the cente...",
+            "link": "https://www.nytimes.com/spotlight/elon-musk",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "Tesla Optimus, also known as Tesla Bot general-purpose robotic humanoid on display at the AutoSalon ...",
+            "link": "https://www.bbc.com/news/topics/c302m85q53mt",
+            "source": "tavily",
+            "published": ""
+          }
+        ],
+        "exported_file": "output/elon_musk_news_summary_20260204_132405.json"
+      },
+      "errors": [
+        "summarizer: 'str' object has no attribute 'get'"
+      ],
+      "success": false
+    }
+  },
+  {
+    "timestamp": "2026-02-04T13:24:54.399359",
+    "result": {
+      "intent": "Fetch and summarize recent news about the India-U.S. trade deal",
+      "domain": "India-U.S. trade deal",
+      "tools_executed": [
+        {
+          "tool": "news_fetcher",
+          "success": true
+        },
+        {
+          "tool": "summarizer",
+          "success": true
+        },
+        {
+          "tool": "sentiment",
+          "success": true
+        },
+        {
+          "tool": "exporter",
+          "success": true
+        }
+      ],
+      "data": {
+        "news": [
+          {
+            "title": "Trump refuses to be outdone by Europe, signing his own U.S.-India trade deal - CNBC",
+            "link": "https://news.google.com/rss/articles/CBMikwFBVV95cUxNRk5nTHcyZGk1VXBMZGZ1eGtlSFdUeXl5d3NTLXFUR1lBb005aGdzblludFdYcVFEZVJfR1JhVElnX01NM3VLVU4xd0F1eHJ4Zi1sTnZnUlJlWi10Y0ZkV1BMQ0NDYXJxU1E0QUMtUUs3RUxMS2pfRWNGdWIwdG5ac284QjJiTFFFMjlvUWp6cjQxc3fSAZgBQVVfeXFMTVNnQW1tZFNyQ3NqdEI1MURkUnBrUzJ6UFVjN3ZJN3FTRVh4WnNFY1pNSmRBMzlwY2NURG04Z0JLVWc2M2Z1ZWFORlhLUHYzRkhxT1c5ejlJaWVEa2FrUVhmVXQyUFNfc0I0M041VWFqZThzTUhvVEM2dFpPU0VYMk9oSXFzdTdYUXdSWVFUczR0WVZ1a0JhUW0?oc=5",
+            "source": "rss",
+            "published": "Tue, 03 Feb 2026 10:36:45 GMT"
+          },
+          {
+            "title": "Hope and uncertainty as India and US strike long-delayed trade deal - BBC",
+            "link": "https://news.google.com/rss/articles/CBMiWkFVX3lxTFBoRHZ3eDU2UERBbkZfcHFSSFdicTdPTFdCM2pMQjJORmV6TGFhT3poR2hzamVwN1V1QlF4UDIwMTFDT0gwZUJwb2EyX05Kd1VINnhEdU9fVDIyZw?oc=5",
+            "source": "rss",
+            "published": "Tue, 03 Feb 2026 06:29:43 GMT"
+          },
+          {
+            "title": "The Trump-Modi Trade Deal Won\u2019t Magically Restore U.S.-India Trust - Carnegie Endowment for International Peace",
+            "link": "https://news.google.com/rss/articles/CBMinwFBVV95cUxQOXNLeDh5cmFqWjlfSUNmTEVwOTA5THBMSjRmcmc3TEoxN2lnaWk3Vk13WEFsWGZDTmlXLVB6OXZiMjVxYm90YVlNSnBNbGFUMm05V3l1VXJkeHlkTkdWNlh3bXA5bzVDZXNndEpqRmM0VkRVLWZUenVlN0dwVzFaQVlTcVRmUzJtUXItR2VhM0xKdG5yT0RUelJBeDNfd2c?oc=5",
+            "source": "rss",
+            "published": "Tue, 03 Feb 2026 21:24:07 GMT"
+          },
+          {
+            "title": "India to keep some farm protections in US trade deal, will buy US aircraft, arms, energy - Reuters",
+            "link": "https://news.google.com/rss/articles/CBMixgFBVV95cUxNcng4MEdUWDFQNFBmckpxbVNzTmh5bWpTN0IyZ3NRYUNWTjZ1WFhlZDNYRkVLZGk5SXBXSVowTlRKNU5OZEwzdGpWNGRXSjhwVUV2TU1wT1FXVXZFamFfR2tfOTQ5WXV6TXRzUTdPSTc4RFp0bVVPRTRzMzltUDVPVjBjZVd0aC10NVkwZmF5U0NFcElCeHhSVXQ3bWpicU5Pd1oxdnRCSUR5cHJTbm1uNnU1SXRPWE05d1lYd3p0VTlqNTFGbnc?oc=5",
+            "source": "rss",
+            "published": "Tue, 03 Feb 2026 14:55:33 GMT"
+          },
+          {
+            "title": "Modi, Trump announce India-US \u2018trade deal\u2019: What we know and what we don\u2019t - Al Jazeera",
+            "link": "https://news.google.com/rss/articles/CBMirgFBVV95cUxQWklQTnp2TDBrTk9yZ1gzOUw2OVp4ZW9ONm9KLTdhVlRhUU1XeU90VzNzSFRURDNoMU16QXFzaXZ6WTlhWW5NaTRKaWFiSWlhbTM4OG9wcEhpTWhRbzlOY1Rjckc2Nkd4REp0bG5naDZqdUQ5NGdmTlA0Q0FrbWYwTEt3TmFkVG1CX29UUEVLTmxzS2V5TkYyYWFJVFVjMmwyOV9vOUpCUTRjVzZIYkHSAbMBQVVfeXFMTkFQX1FUNWREZHlOaGpkSUliNms0VFE3OFFRVkpwOVJxQmhvTTJMd0ZfcDBMdTBLa01aTWJOMFhfQnl2VUdGM0FKczQwNmFrdnhoaEphYUtoT3VTT1ROZ0lzUW51dDFEZ2JKY1prTEs0ZjIzaThpVE1VcDMzZjhJaU1Wdkx6T01UTFFFZWRyQUh5NzNiR0xnRXkxU2h2R1l2WFh4b1B5ODI4bUpYdXNLYmdUbkE?oc=5",
+            "source": "rss",
+            "published": "Tue, 03 Feb 2026 13:46:34 GMT"
+          },
+          {
+            "title": "'Devil in the details': India-U.S. deal raises hopes for a reset",
+            "link": "https://www.cnbc.com/2026/02/03/us-india-trade-framework-tariffs-reset-modi-trump-new-delhi-russian-oil-venezuela.html",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "US and India reach trade deal, Trump says after Modi call",
+            "link": "https://www.bbc.com/news/articles/c5yve1x9zv0o",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "India-US trade deal: Hope and uncertainty as Trump cuts ...",
+            "link": "https://www.bbc.com/news/articles/cpwnlwj80p8o",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "Trump says U.S. and India reached trade deal, will lower ...",
+            "link": "https://www.cnbc.com/2026/02/02/trump-india-trade-deal-tariffs.html",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "Trump responds to Europe with U.S.-India trade deal",
+            "link": "https://www.cnbc.com/2026/02/03/trump-us-india-trade-deal-europe-india-deal-compared.html",
+            "source": "tavily",
+            "published": ""
+          }
+        ],
+        "summary": {
+          "summary": "No news to summarize.",
+          "key_points": []
+        },
+        "sentiment": {
+          "overall": "neutral",
+          "score": 0.5,
+          "breakdown": {}
+        },
+        "exported_file": "output/trade_deal_report_20260204_132454.json"
+      },
+      "errors": [],
+      "success": true
+    }
+  },
+  {
+    "timestamp": "2026-02-04T13:26:43.061918",
+    "result": {
+      "intent": "Fetch and summarize news on India-US trade deal, then export the report.",
+      "domain": "India-US trade deal",
+      "tools_executed": [
+        {
+          "tool": "news_fetcher",
+          "success": true
+        },
+        {
+          "tool": "summarizer",
+          "success": true
+        },
+        {
+          "tool": "exporter",
+          "success": true
+        }
+      ],
+      "data": {
+        "news": [
+          {
+            "title": "Trump refuses to be outdone by Europe, signing his own U.S.-India trade deal - CNBC",
+            "link": "https://news.google.com/rss/articles/CBMikwFBVV95cUxNRk5nTHcyZGk1VXBMZGZ1eGtlSFdUeXl5d3NTLXFUR1lBb005aGdzblludFdYcVFEZVJfR1JhVElnX01NM3VLVU4xd0F1eHJ4Zi1sTnZnUlJlWi10Y0ZkV1BMQ0NDYXJxU1E0QUMtUUs3RUxMS2pfRWNGdWIwdG5ac284QjJiTFFFMjlvUWp6cjQxc3fSAZgBQVVfeXFMTVNnQW1tZFNyQ3NqdEI1MURkUnBrUzJ6UFVjN3ZJN3FTRVh4WnNFY1pNSmRBMzlwY2NURG04Z0JLVWc2M2Z1ZWFORlhLUHYzRkhxT1c5ejlJaWVEa2FrUVhmVXQyUFNfc0I0M041VWFqZThzTUhvVEM2dFpPU0VYMk9oSXFzdTdYUXdSWVFUczR0WVZ1a0JhUW0?oc=5",
+            "source": "rss",
+            "published": "Tue, 03 Feb 2026 10:36:45 GMT"
+          },
+          {
+            "title": "Hope and uncertainty as India and US strike long-delayed trade deal - BBC",
+            "link": "https://news.google.com/rss/articles/CBMiWkFVX3lxTFBoRHZ3eDU2UERBbkZfcHFSSFdicTdPTFdCM2pMQjJORmV6TGFhT3poR2hzamVwN1V1QlF4UDIwMTFDT0gwZUJwb2EyX05Kd1VINnhEdU9fVDIyZw?oc=5",
+            "source": "rss",
+            "published": "Tue, 03 Feb 2026 06:29:43 GMT"
+          },
+          {
+            "title": "The Trump-Modi Trade Deal Won\u2019t Magically Restore U.S.-India Trust - Carnegie Endowment for International Peace",
+            "link": "https://news.google.com/rss/articles/CBMinwFBVV95cUxQOXNLeDh5cmFqWjlfSUNmTEVwOTA5THBMSjRmcmc3TEoxN2lnaWk3Vk13WEFsWGZDTmlXLVB6OXZiMjVxYm90YVlNSnBNbGFUMm05V3l1VXJkeHlkTkdWNlh3bXA5bzVDZXNndEpqRmM0VkRVLWZUenVlN0dwVzFaQVlTcVRmUzJtUXItR2VhM0xKdG5yT0RUelJBeDNfd2c?oc=5",
+            "source": "rss",
+            "published": "Tue, 03 Feb 2026 21:24:07 GMT"
+          },
+          {
+            "title": "India to keep some farm protections in US trade deal, will buy US aircraft, arms, energy - Reuters",
+            "link": "https://news.google.com/rss/articles/CBMixgFBVV95cUxNcng4MEdUWDFQNFBmckpxbVNzTmh5bWpTN0IyZ3NRYUNWTjZ1WFhlZDNYRkVLZGk5SXBXSVowTlRKNU5OZEwzdGpWNGRXSjhwVUV2TU1wT1FXVXZFamFfR2tfOTQ5WXV6TXRzUTdPSTc4RFp0bVVPRTRzMzltUDVPVjBjZVd0aC10NVkwZmF5U0NFcElCeHhSVXQ3bWpicU5Pd1oxdnRCSUR5cHJTbm1uNnU1SXRPWE05d1lYd3p0VTlqNTFGbnc?oc=5",
+            "source": "rss",
+            "published": "Tue, 03 Feb 2026 14:55:33 GMT"
+          },
+          {
+            "title": "Modi, Trump announce India-US \u2018trade deal\u2019: What we know and what we don\u2019t - Al Jazeera",
+            "link": "https://news.google.com/rss/articles/CBMirgFBVV95cUxQWklQTnp2TDBrTk9yZ1gzOUw2OVp4ZW9ONm9KLTdhVlRhUU1XeU90VzNzSFRURDNoMU16QXFzaXZ6WTlhWW5NaTRKaWFiSWlhbTM4OG9wcEhpTWhRbzlOY1Rjckc2Nkd4REp0bG5naDZqdUQ5NGdmTlA0Q0FrbWYwTEt3TmFkVG1CX29UUEVLTmxzS2V5TkYyYWFJVFVjMmwyOV9vOUpCUTRjVzZIYkHSAbMBQVVfeXFMTkFQX1FUNWREZHlOaGpkSUliNms0VFE3OFFRVkpwOVJxQmhvTTJMd0ZfcDBMdTBLa01aTWJOMFhfQnl2VUdGM0FKczQwNmFrdnhoaEphYUtoT3VTT1ROZ0lzUW51dDFEZ2JKY1prTEs0ZjIzaThpVE1VcDMzZjhJaU1Wdkx6T01UTFFFZWRyQUh5NzNiR0xnRXkxU2h2R1l2WFh4b1B5ODI4bUpYdXNLYmdUbkE?oc=5",
+            "source": "rss",
+            "published": "Tue, 03 Feb 2026 13:46:34 GMT"
+          },
+          {
+            "title": "WH Press Secretary Leavitt claims India \"committed\" to stop Russian oil purchase, will buy from US under trade deal",
+            "link": "https://www.tribuneindia.com/news/world/wh-press-secretary-leavitt-claims-india-committed-to-stop-russian-oil-purchase-will-buy-from-us-under-trade-deal/",
+            "source": "gnews",
+            "published": "2026-02-03T19:50:12Z"
+          },
+          {
+            "title": "India To Stop Russian Oil Purchase, Will Buy From US Under Trade Deal: Karoline Leavitt",
+            "link": "https://www.ndtv.com/world-news/india-to-stop-russian-oil-purchase-will-buy-from-us-under-trade-deal-karoline-leavitt-10941576",
+            "source": "gnews",
+            "published": "2026-02-03T19:48:14Z"
+          },
+          {
+            "title": "US pact removes uncertainty for businesses",
+            "link": "https://timesofindia.indiatimes.com/business/india-business/govt-officials-india-us-pact-removes-uncertainty-for-businesses/articleshow/127894082.cms",
+            "source": "gnews",
+            "published": "2026-02-03T19:44:00Z"
+          },
+          {
+            "title": "US trade deal: \u2018Joint statement to be ready in a few days,\u2019 says Piyush Goyal",
+            "link": "https://timesofindia.indiatimes.com/business/india-business/india-us-trade-deal-joint-statement-to-be-ready-in-a-few-days-says-piyush-goyal/articleshow/127894030.cms",
+            "source": "gnews",
+            "published": "2026-02-03T19:39:00Z"
+          },
+          {
+            "title": "US trade pact: Exports to US may rise, add to India\u2019s growth momentum",
+            "link": "https://timesofindia.indiatimes.com/business/india-business/india-us-trade-pact-exports-to-us-may-rise-add-to-indias-growth-momentum/articleshow/127894015.cms",
+            "source": "gnews",
+            "published": "2026-02-03T19:37:00Z"
+          },
+          {
+            "title": "India-US trade deal slashes tariffs; seen lifting exports, ...",
+            "link": "https://www.reuters.com/world/india/india-us-trade-deal-slashes-tariffs-lifts-exports-markets-2026-02-03/",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "India's Modi praised for US trade deal as opposition ...",
+            "link": "https://apnews.com/article/india-us-trade-deal-trump-modi-3ce866a869dae9fd10449a6f70c2a4ed",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "India to keep some farm protections in US trade deal, will ...",
+            "link": "https://www.reuters.com/world/india/us-trade-chief-says-india-maintain-some-agriculture-protections-deal-with-trump-2026-02-03/",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "US and India reach trade deal, Trump says after Modi call",
+            "link": "https://www.bbc.com/news/articles/c5yve1x9zv0o",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "India-US trade deal: Hope and uncertainty as Trump cuts ...",
+            "link": "https://www.bbc.com/news/articles/cpwnlwj80p8o",
+            "source": "tavily",
+            "published": ""
+          }
+        ],
+        "summary": {
+          "summary": "The recent trade deal between the United States and India has been signed, addressing long-standing trade barriers and uncertainties. India has agreed to purchase more American goods, including aircraft, arms, and energy, while maintaining some agricultural protections. The deal is expected to boost economic growth in India and reduce uncertainties for businesses.",
+          "key_points": [
+            "The trade deal has been signed, addressing long-standing trade barriers and uncertainties.",
+            "India will purchase more American goods, including aircraft, arms, and energy, while maintaining some agricultural protections.",
+            "The deal is expected to boost economic growth in India and reduce uncertainties for businesses."
+          ]
+        },
+        "exported_file": "output/india_us_trade_deal_report_20260204_132643.json"
+      },
+      "errors": [],
+      "success": true
+    }
+  },
+  {
+    "timestamp": "2026-02-04T13:32:33.130958",
+    "result": {
+      "intent": "Fetch and export latest news about movies",
+      "domain": "movies",
+      "tools_executed": [
+        {
+          "tool": "news_fetcher",
+          "success": true
+        },
+        {
+          "tool": "exporter",
+          "success": true
+        }
+      ],
+      "data": {
+        "news": [
+          {
+            "title": "Apple Unveils 2026 Film Slate: Ryan Reynolds Fights a New War, Jonah Hill Gives Keanu Reeves the \u2018Jay Kelly\u2019 Treatment and \u2018Matchbox\u2019 Revs Up - Variety",
+            "link": "https://news.google.com/rss/articles/CBMipgFBVV95cUxNNjYyam56WmNQVjVLSjktMXBJeEd6WXRoeVM3WVJMOERCWmxpRklPTHFtVElfOV83clR4bnVrcVo1QUhqRmdMNWc5UTJ1STBNaUYtalpxNk83NGlrbXBabXMwNVdUREpYdU5uNDdkd2dmdEFLdjNtSUFfTndtSWpvTGFDckxKd3N1UkQxUHhWV0Y4MzNZZmV6cDkyR0xsYW1CakhDX0pB?oc=5",
+            "source": "rss",
+            "published": "Wed, 04 Feb 2026 01:18:00 GMT"
+          },
+          {
+            "title": "10 Movies to Stream for Black History Month - The New York Times",
+            "link": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxPY0ZoNkZCcko1RkdSaWpyekYyM0FBaENvXzhNd1A3VEtmRHM1cXRMbWJMOG96S3B0M2JSYmJPVWJiNk5pMEVhcjBrZks2SFpZZEQtb054RnBlNnM4Vll2T2pJNS1jT1hOZUFsWC1RQlFZdnVNckN1OEY2cjhmWlI5bUF1S1BWb2h5T21j?oc=5",
+            "source": "rss",
+            "published": "Tue, 03 Feb 2026 16:14:31 GMT"
+          },
+          {
+            "title": "New Nancy Meyers Movie Enlists Pen\u00e9lope Cruz, Kieran Culkin, Jude Law, Emma Mackey and Owen Wilson - The Hollywood Reporter",
+            "link": "https://news.google.com/rss/articles/CBMivwFBVV95cUxPWXFIWi04SmJSeXZyNThDOUVrNjBPQmNGNlN6WVlZQjJ2YkEyTms4ejhTQjZYOERoN0V0NWppWnNfUVZQVnZIOVBBWVZvTHJ1UDlwS0ZCUFVTbGIzVGtNYXpIX3dRcXpSWUhpVWxBVHhoM19SbnB6V3Rjdm11NzE5TFgyZk9RRkIyUlpBclkxMVhYSDBwbnZRVkcwY2ZlM2hTTm1OOFhpS2VUQUY2dE8yV0lQdzFrZzNPYmtveExITQ?oc=5",
+            "source": "rss",
+            "published": "Wed, 04 Feb 2026 00:26:46 GMT"
+          },
+          {
+            "title": "The Best Movies of Sundance 2026, According to IndieWire\u2019s Critics Survey - IndieWire",
+            "link": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxORVN3UVBpSzRaZFNheTFJLUU5TVBuTU1qeGFjaGxEaGk1Njk5QXJ3alZLd2R3Q2g2OW1BQVFrSTNjRkdqLVN0OWR2QzFTXzJGa0JZV3JPMU9jaUgyM3Z4Vmc4aTFQa3VZWXFrNWNqdXBWRjJUS2Y4WEk2V3RKa1k1S09GRTQzWTZydUtRUlVmb1o2SzJiNGpINnFTSVNLRjFoWVBlRENSb3M?oc=5",
+            "source": "rss",
+            "published": "Tue, 03 Feb 2026 22:13:02 GMT"
+          },
+          {
+            "title": "We asked retired astronauts about their favorite space movies, and this is what they shared with us - CNN",
+            "link": "https://news.google.com/rss/articles/CBMigwFBVV95cUxNdWZvdFpFWkxjTVF6THpOaDRZSWhWcS00bml5ODQ1NlhmbnpFZXQwamJhdFd5cDNESWYyME45YnAtRGJvSkotckdPOTltLURhT0l2eGtEV2xfVHJtV2JyTGNoWVVxTWRtUXdsSXQ2QnBVVmxHUGtJMEdDY3YxTmdFbE1hWQ?oc=5",
+            "source": "rss",
+            "published": "Sun, 01 Feb 2026 13:00:55 GMT"
+          },
+          {
+            "title": "The Best Movies and TV Shows Coming to Netflix in February",
+            "link": "https://www.nytimes.com/2026/02/03/arts/television/netflix-new-february.html",
+            "source": "gnews",
+            "published": "2026-02-03T19:56:06Z"
+          },
+          {
+            "title": "New on Netflix, Prime Video, HBO Max, More in February 2026 - Full List of Movies and Shows",
+            "link": "https://www.usmagazine.com/entertainment/news/new-on-netflix-prime-video-hbo-max-more-in-february-2026-full-list-of-movies-and-shows/",
+            "source": "gnews",
+            "published": "2026-02-03T19:20:49Z"
+          },
+          {
+            "title": "Why do people like horror movies? Science explains",
+            "link": "https://www.bolnews.com/lifestyle/why-do-people-like-horror-movies-science-explains/",
+            "source": "gnews",
+            "published": "2026-02-03T18:21:11Z"
+          },
+          {
+            "title": "All the new movies and TV shows streaming in February",
+            "link": "https://www.boston.com/culture/streaming/2026/02/03/new-movies-tv-streaming-february-2026/",
+            "source": "gnews",
+            "published": "2026-02-03T17:40:11Z"
+          },
+          {
+            "title": "3 Popular Hulu Movies and TV Shows to Binge-Watch This Week (February 3-6)",
+            "link": "https://www.usmagazine.com/entertainment/news/3-popular-hulu-movies-and-tv-shows-to-binge-watch-this-week-february-3-6-26/",
+            "source": "gnews",
+            "published": "2026-02-03T17:30:48Z"
+          },
+          {
+            "title": "Latest New Movie News",
+            "link": "https://apnews.com/hub/movies",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "Associated Press News: Breaking News, Latest Headlines ...",
+            "link": "https://apnews.com/",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "Action, romance, thrills and chills coming to theaters in February",
+            "link": "https://www.cnn.com/2026/02/02/entertainment/video/entertainment-showbiz-hollywood-movies-february-preview-action-animation-romance-music-horror",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "'Wuthering Heights' to Scream 7: 10 of the best films to ...",
+            "link": "https://www.bbc.com/culture/article/20260129-10-of-the-best-films-to-watch-this-february",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "Film lookahead: 20 highlights to watch out for in 2026",
+            "link": "https://www.bbc.com/news/articles/cp8z60j7438o",
+            "source": "tavily",
+            "published": ""
+          }
+        ],
+        "exported_file": "output/movies_report_20260204_133233.json"
+      },
+      "errors": [],
+      "success": true
+    }
+  },
+  {
+    "timestamp": "2026-02-04T13:33:13.483577",
+    "result": {
+      "intent": "Fetch and analyze stock market news with summarization, sentiment analysis, and trending topics extraction",
+      "domain": "Stock Market",
+      "tools_executed": [
+        {
+          "tool": "news_fetcher",
+          "success": true
+        },
+        {
+          "tool": "summarizer",
+          "success": true
+        },
+        {
+          "tool": "sentiment",
+          "success": true
+        },
+        {
+          "tool": "trends",
+          "success": true
+        },
+        {
+          "tool": "exporter",
+          "success": true
+        }
+      ],
+      "data": {
+        "news": [
+          {
+            "title": "Stock market today: Dow, Nasdaq, S&P 500 sink as tech falters amid flood of earnings - Yahoo Finance",
+            "link": "https://news.google.com/rss/articles/CBMiywFBVV95cUxPMVpXWnhuTzExUlZHQ3JyYlhlMndZVVREMHZqcy1lWGJwUU9kSi1oMlVqS1p6ZGNXRWdzRHlGSVRVTXp1dGt4QTZmb29acWU2YXBJM0xnOUhaOVloekRteWMtaXc3MmE3RGN3SGlXeExFZHNFTXgzUlZFM3VNN1Z0Umc2UzNnTW44Uk1seWZ4LU9xdDNHQURVWkJmRUl6bEhvZ0lzQXZiNjlhV2t0aENYYUxlYjBqczdnSlc3TFRaQm42LUZiQ1JLNE9fNA?oc=5",
+            "source": "rss",
+            "published": "Tue, 03 Feb 2026 21:10:58 GMT"
+          },
+          {
+            "title": "Novo Nordisk\u2019s shock 2026 guidance points to obesity battle heating up By Reuters - Investing.com",
+            "link": "https://news.google.com/rss/articles/CBMixAFBVV95cUxOMjB3RVNXWktDZ0ZzbDg1b1JJSEgySElvRDl4Y1pMcm8xSzBwem5zQUZhWXdCRzZJT0VrR0JPbHVvVjkwSjJwY2kyUnpOSk40clRHemtyT2dfOE9vT2FwbTIzeDBTY01DTDBvNl9pcFhTSnF0SzZ3V2EwM0lKb2x2cWJEeHpZNFJCc1NSME91MnhYY01EWDlvWlBKbmhKcEdfWS00MDBtYzZTc3BONFNOWGVKbFpBZWEtOENvMWdRMnRNNC15?oc=5",
+            "source": "rss",
+            "published": "Wed, 04 Feb 2026 07:18:45 GMT"
+          },
+          {
+            "title": "UK stock market outlook in 2026: finding fortune on the FTSE 100 - Yahoo Finance UK",
+            "link": "https://news.google.com/rss/articles/CBMigwFBVV95cUxQOGlBeDJLYnFFU1RlOTVIbFFxVjQ3X3ZsUEpjNVhKbkQ3eU9BclNFTmlVTFRVQ2VKYU9rR2ktVVJhOHdHWjRYRF8tczgzcWc2a1FOeXVQbEU1NkxseXk0RkJQbHVENXU2YnI4cmtCOVk5QURaQmh3MW44blVoUzJ4N29MNA?oc=5",
+            "source": "rss",
+            "published": "Wed, 04 Feb 2026 06:52:00 GMT"
+          },
+          {
+            "title": "Anthropic AI Tool Sparks Selloff From Software to Broader Market - Bloomberg.com",
+            "link": "https://news.google.com/rss/articles/CBMiswFBVV95cUxOdkxnVXNSN1hSUUF4T3ZvSUlON0o4b0haSC0wRDZ5SHJQT2JvNWQ2MmVYY0ZaWU1kaF9BOVdycFF1dnRpY29yMFpTMW9WQndjWFk1bzRHeUJKQ2s1ZUltX01aVi10VnZSa3czMEJ5d1FTeldxT29nSVBnVVNfcFpjRmtuQmpjWVQ0VWdEb2dhNDBoNnU3RWtPZHJDa1JrcFJiSTU1RDlkWVhHN0liNVFIcFdZMA?oc=5",
+            "source": "rss",
+            "published": "Wed, 04 Feb 2026 05:18:00 GMT"
+          },
+          {
+            "title": "\u2018Get me out\u2019: Traders dump software stocks as AI fears erupt - Yahoo Finance",
+            "link": "https://news.google.com/rss/articles/CBMigwFBVV95cUxNLVpvRURaa3J4Tl85a0QxUUpHVVNvTWtFNFlQdmZYdXhTckxuQ1ZzaFF1YmVlb3ZJSkdTd3Ewa2NXdDdzWlhFRW5wdk9KYUJ2dHQ1TE9KdVE4TTVGc2lrZ0IzV0pBenI3RWZQWHczay1PWnJ6UG5tTnM1bnBWVHd4c1VvZw?oc=5",
+            "source": "rss",
+            "published": "Wed, 04 Feb 2026 06:14:00 GMT"
+          },
+          {
+            "title": "Walmart hits trillion dollar market cap for the first time",
+            "link": "https://www.aljazeera.com/economy/2026/2/3/walmart-hits-trillion-dollar-market-cap-for-the-first-time",
+            "source": "gnews",
+            "published": "2026-02-03T19:35:37Z"
+          },
+          {
+            "title": "Pfizer's Bold Step in the Obesity Drug Market",
+            "link": "https://www.devdiscourse.com/article/health/3792585-pfizers-bold-step-in-the-obesity-drug-market",
+            "source": "gnews",
+            "published": "2026-02-03T19:32:49Z"
+          },
+          {
+            "title": "Watch these 4 key market backstops for signs stocks could tumble",
+            "link": "https://markets.businessinsider.com/news/stocks/4-key-market-signs-stocks-risk-2026-valuation-inflation-oil",
+            "source": "gnews",
+            "published": "2026-02-03T19:25:45Z"
+          },
+          {
+            "title": "Wall Street pulls back while gold and silver prices bounce higher",
+            "link": "https://www.ajc.com/news/2026/02/wall-street-loses-ground-in-mixed-trading-as-gold-and-silver-prices-bounce-back/",
+            "source": "gnews",
+            "published": "2026-02-03T19:22:08Z"
+          },
+          {
+            "title": "Stock market today: Live updates",
+            "link": "https://www.cnbc.com/2026/02/03/stock-market-today-live-updates.html",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "Stock Market News",
+            "link": "https://www.cnbc.com/stocks/",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "It's been a weird few days on Wall Street",
+            "link": "https://www.cnn.com/2026/02/02/investing/gold-silver-bitcoin-us-stock-market",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "US Markets, World Markets, and Stock Quotes",
+            "link": "https://www.cnn.com/markets",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "Dow surges 500 points as traders look past rout in precious ...",
+            "link": "https://www.cnbc.com/2026/02/01/stock-market-today-live-updates.html",
+            "source": "tavily",
+            "published": ""
+          }
+        ],
+        "summary": {
+          "summary": "The stock market experienced significant declines as tech stocks faltered due to a flood of earnings reports. Novo Nordisk's aggressive guidance for 2026 highlighted the intensifying competition in the obesity drug market. Concerns about AI's impact on software stocks led to widespread selloffs, while Walmart achieved a trillion-dollar market cap milestone.",
+          "key_points": [
+            "Tech stocks and the broader market faced significant declines due to earnings reports.",
+            "The obesity drug market is becoming increasingly competitive, with Novo Nordisk setting aggressive 2026 targets.",
+            "AI-related concerns led to selloffs in software stocks, while Walmart reached a major market cap milestone."
+          ]
+        },
+        "sentiment": {
+          "overall": "neutral",
+          "score": 0.4,
+          "breakdown": {
+            "positive": 3,
+            "neutral": 4,
+            "negative": 3
+          }
+        },
+        "trends": {
+          "trending_topics": [
+            {
+              "topic": "Stock",
+              "mentions": 6
+            },
+            {
+              "topic": "market",
+              "mentions": 5
+            },
+            {
+              "topic": "Dow",
+              "mentions": 4
+            },
+            {
+              "topic": "Yahoo Finance",
+              "mentions": 3
+            },
+            {
+              "topic": "Yahoo",
+              "mentions": 3
+            },
+            {
+              "topic": "Finance",
+              "mentions": 3
+            },
+            {
+              "topic": "Market",
+              "mentions": 3
+            },
+            {
+              "topic": "Markets",
+              "mentions": 3
+            },
+            {
+              "topic": "Nasdaq",
+              "mentions": 2
+            },
+            {
+              "topic": "today",
+              "mentions": 2
+            }
+          ],
+          "total_articles": 14
+        },
+        "exported_file": "output/stock_market_report_20260204_133313.json"
+      },
+      "errors": [],
+      "success": true
+    }
+  },
+  {
+    "timestamp": "2026-02-04T14:38:45.840187",
+    "result": {
+      "intent": "Fetch news on India-US trade deal, summarize, perform sentiment analysis, extract trends, and export the results",
+      "domain": "India-US trade deal",
+      "tools_executed": [
+        {
+          "tool": "news_fetcher",
+          "success": true
+        },
+        {
+          "tool": "summarizer",
+          "success": true
+        },
+        {
+          "tool": "sentiment",
+          "success": true
+        },
+        {
+          "tool": "trends",
+          "success": true
+        },
+        {
+          "tool": "exporter",
+          "success": true
+        }
+      ],
+      "data": {
+        "news": [
+          {
+            "title": "Trump refuses to be outdone by Europe, signing his own U.S.-India trade deal - CNBC",
+            "link": "https://news.google.com/rss/articles/CBMikwFBVV95cUxNRk5nTHcyZGk1VXBMZGZ1eGtlSFdUeXl5d3NTLXFUR1lBb005aGdzblludFdYcVFEZVJfR1JhVElnX01NM3VLVU4xd0F1eHJ4Zi1sTnZnUlJlWi10Y0ZkV1BMQ0NDYXJxU1E0QUMtUUs3RUxMS2pfRWNGdWIwdG5ac284QjJiTFFFMjlvUWp6cjQxc3fSAZgBQVVfeXFMTVNnQW1tZFNyQ3NqdEI1MURkUnBrUzJ6UFVjN3ZJN3FTRVh4WnNFY1pNSmRBMzlwY2NURG04Z0JLVWc2M2Z1ZWFORlhLUHYzRkhxT1c5ejlJaWVEa2FrUVhmVXQyUFNfc0I0M041VWFqZThzTUhvVEM2dFpPU0VYMk9oSXFzdTdYUXdSWVFUczR0WVZ1a0JhUW0?oc=5",
+            "source": "rss",
+            "published": "Tue, 03 Feb 2026 10:36:45 GMT"
+          },
+          {
+            "title": "Hope and uncertainty as India and US strike long-delayed trade deal - BBC",
+            "link": "https://news.google.com/rss/articles/CBMiWkFVX3lxTFBoRHZ3eDU2UERBbkZfcHFSSFdicTdPTFdCM2pMQjJORmV6TGFhT3poR2hzamVwN1V1QlF4UDIwMTFDT0gwZUJwb2EyX05Kd1VINnhEdU9fVDIyZw?oc=5",
+            "source": "rss",
+            "published": "Tue, 03 Feb 2026 06:29:43 GMT"
+          },
+          {
+            "title": "The Trump-Modi Trade Deal Won\u2019t Magically Restore U.S.-India Trust - Carnegie Endowment for International Peace",
+            "link": "https://news.google.com/rss/articles/CBMinwFBVV95cUxQOXNLeDh5cmFqWjlfSUNmTEVwOTA5THBMSjRmcmc3TEoxN2lnaWk3Vk13WEFsWGZDTmlXLVB6OXZiMjVxYm90YVlNSnBNbGFUMm05V3l1VXJkeHlkTkdWNlh3bXA5bzVDZXNndEpqRmM0VkRVLWZUenVlN0dwVzFaQVlTcVRmUzJtUXItR2VhM0xKdG5yT0RUelJBeDNfd2c?oc=5",
+            "source": "rss",
+            "published": "Tue, 03 Feb 2026 21:24:07 GMT"
+          },
+          {
+            "title": "India to keep some farm protections in US trade deal, will buy US aircraft, arms, energy - Reuters",
+            "link": "https://news.google.com/rss/articles/CBMixgFBVV95cUxNcng4MEdUWDFQNFBmckpxbVNzTmh5bWpTN0IyZ3NRYUNWTjZ1WFhlZDNYRkVLZGk5SXBXSVowTlRKNU5OZEwzdGpWNGRXSjhwVUV2TU1wT1FXVXZFamFfR2tfOTQ5WXV6TXRzUTdPSTc4RFp0bVVPRTRzMzltUDVPVjBjZVd0aC10NVkwZmF5U0NFcElCeHhSVXQ3bWpicU5Pd1oxdnRCSUR5cHJTbm1uNnU1SXRPWE05d1lYd3p0VTlqNTFGbnc?oc=5",
+            "source": "rss",
+            "published": "Tue, 03 Feb 2026 14:55:33 GMT"
+          },
+          {
+            "title": "Nukes To Minerals: What Jaishankar, Rubio Discussed After India-US Deal - NDTV",
+            "link": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxNUkI3ak5WZFlja3R3Q1ZHQnVzTGZnaTc5V242UkJ1ZnNUSk5mVUdrSmJSRjYwZ2RLSWZlc0trbXhfLVBpMlhyUGUyTTg5X0pNVWotc2w4UE5BdkJOdld2d09nTkdpV1VaN3lTQ0w2Y2tzdThGcHVDUjNGeGJqcllmbVpkTGRjMjJoaGJ2bXdKcy1TWEZUU2pjY3lQa3hqcWpxS2Fham5waFBGbDA2aHBQVTZ0OXZmYUdLampycXNWXzbSAcgBQVVfeXFMUDQtSzQzTWRXQjczMDk3cXRObXpoWkt4aG9tV3R3TkFhZjlYazRwLXBaZkVwYU9PSVBndEhlYmtKZ0pDQzdKXzVvN0piTFc3T01VS0VrR0pQTkk3TnpLMHZOdnE5RlI0c0VYdjZrWU4tblFtbkNRTlFQd244by0xTG5hSVBTVWxiQWJWLXVBV2ZHMmlVbjNlYWNVTzNzNW1vWUNzandDVmgzalBCTldWS2ZKbVowODVKQnVJZVNSN1oyaGpJUm5nbXE?oc=5",
+            "source": "rss",
+            "published": "Wed, 04 Feb 2026 00:24:00 GMT"
+          },
+          {
+            "title": "US and India reach trade deal, Trump says after Modi call",
+            "link": "https://www.bbc.com/news/articles/c5yve1x9zv0o",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "'Devil in the details': India-U.S. deal raises hopes for a reset",
+            "link": "https://www.cnbc.com/2026/02/03/us-india-trade-framework-tariffs-reset-modi-trump-new-delhi-russian-oil-venezuela.html",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "India's U.S. and EU trade deals: Who will gain",
+            "link": "https://www.cnbc.com/2026/02/04/trump-india-us-eu-trade-war-deals-tariffs-delhi-washington.html",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "Trump responds to Europe with U.S.-India trade deal",
+            "link": "https://www.cnbc.com/2026/02/03/trump-us-india-trade-deal-europe-india-deal-compared.html",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "Trump says U.S. and India agree to trade deal, lowers ...",
+            "link": "https://www.cnbc.com/video/2026/02/02/trump-says-u-s-and-india-agree-to-trade-deal-lowers-reciprocal-tariff-on-india-to-18-percent.html",
+            "source": "tavily",
+            "published": ""
+          }
+        ],
+        "summary": {
+          "summary": "US President Donald Trump announced a new trade deal with India, which has been hailed by some as a significant development and by others as having limited impact. The deal includes provisions for India to maintain some agricultural protections, purchase US aircraft, arms, and energy, and discussions on nuclear and mineral resources. The agreement is seen as a strategic move by the US to counter European influence and foster a closer relationship with India.",
+          "key_points": [
+            "US-India Trade Deal Announced",
+            "Provisions for Agricultural Protections, Purchase of US Goods, and Discussions on Nuclear and Mineral Resources",
+            "Strategic Move to Counter European Influence and Foster Closer Relationship with India"
+          ]
+        },
+        "sentiment": {
+          "overall": "neutral",
+          "score": 0.5,
+          "breakdown": {
+            "positive": 4,
+            "neutral": 4,
+            "negative": 2
+          }
+        },
+        "trends": {
+          "trending_topics": [
+            {
+              "topic": "India",
+              "mentions": 18
+            },
+            {
+              "topic": "Trump",
+              "mentions": 9
+            },
+            {
+              "topic": "trade",
+              "mentions": 7
+            },
+            {
+              "topic": "deal",
+              "mentions": 7
+            },
+            {
+              "topic": "Europe",
+              "mentions": 4
+            },
+            {
+              "topic": "Modi",
+              "mentions": 3
+            },
+            {
+              "topic": "Deal",
+              "mentions": 3
+            },
+            {
+              "topic": "Hope",
+              "mentions": 2
+            },
+            {
+              "topic": "Reuters",
+              "mentions": 2
+            },
+            {
+              "topic": "Devil",
+              "mentions": 2
+            }
+          ],
+          "total_articles": 10
+        },
+        "exported_file": "output/India-US_trade_deal_report_20260204_143845.json"
+      },
+      "errors": [],
+      "success": true
+    }
   }
 ]

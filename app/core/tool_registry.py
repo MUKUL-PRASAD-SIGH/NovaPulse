@@ -1,14 +1,14 @@
 """Tool registry for Nova Intelligence Agent."""
 from typing import Callable, Dict, List, Optional
 
-from app.tools.news_fetcher import fetch_news
+from app.tools.multi_fetcher import fetch_news_multi
 from app.tools.summarizer import summarize_news
 from app.tools.sentiment import analyze_sentiment
 from app.tools.trends import extract_trends
 from app.tools.exporter import export_data
 
 TOOLS: Dict[str, Callable] = {
-    "news_fetcher": fetch_news,
+    "news_fetcher": fetch_news_multi,  # Now uses multi-source!
     "summarizer": summarize_news,
     "sentiment": analyze_sentiment,
     "trends": extract_trends,
@@ -16,7 +16,7 @@ TOOLS: Dict[str, Callable] = {
 }
 
 TOOL_DESCRIPTIONS = {
-    "news_fetcher": "Fetches news from RSS. Params: topic, sources, limit",
+    "news_fetcher": "Fetches news from multiple sources (Tavily, GNews, RSS) in parallel. Params: topic, limit",
     "summarizer": "AI summary of news. Params: news_items",
     "sentiment": "Sentiment analysis. Params: news_items",
     "trends": "Extract trending topics. Params: news_items",

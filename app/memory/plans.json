@@ -326,5 +326,425 @@
         }
       ]
     }
+  },
+  {
+    "timestamp": "2026-02-04T12:59:40.245883",
+    "user_input": "car accident",
+    "plan": {
+      "intent": "Fetch and export news about a car accident",
+      "domain": "car accident",
+      "steps": [
+        {
+          "tool": "news_fetcher",
+          "params": {
+            "topic": "car accident",
+            "limit": 5
+          }
+        },
+        {
+          "tool": "exporter",
+          "params": {
+            "filename": "car_accident_report",
+            "format": "json"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T12:59:59.209162",
+    "user_input": "tesla news",
+    "plan": {
+      "intent": "Fetch and export latest Tesla news",
+      "domain": "Tesla",
+      "steps": [
+        {
+          "tool": "news_fetcher",
+          "params": {
+            "topic": "tesla",
+            "limit": 5
+          }
+        },
+        {
+          "tool": "exporter",
+          "params": {
+            "filename": "tesla_news_report",
+            "format": "json"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T13:13:26.974479",
+    "user_input": "What's trending in tech?",
+    "plan": {
+      "intent": "Identify trending topics in the tech industry",
+      "domain": "tech",
+      "steps": [
+        {
+          "tool": "news_fetcher",
+          "params": {
+            "topic": "tech",
+            "limit": 5
+          }
+        },
+        {
+          "tool": "trends",
+          "params": {
+            "news_items": "news_fetcher output"
+          }
+        },
+        {
+          "tool": "exporter",
+          "params": {
+            "filename": "tech_trends_report",
+            "format": "json"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T13:13:33.223269",
+    "user_input": "Get crypto news with sentiment analysis",
+    "plan": {
+      "intent": "Fetch crypto news and perform sentiment analysis",
+      "domain": "crypto",
+      "steps": [
+        {
+          "tool": "news_fetcher",
+          "params": {
+            "topic": "crypto",
+            "limit": 5
+          }
+        },
+        {
+          "tool": "sentiment",
+          "params": {
+            "news_items": "news_fetcher_output"
+          }
+        },
+        {
+          "tool": "exporter",
+          "params": {
+            "filename": "crypto_news_sentiment_report",
+            "format": "json"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T13:13:39.314358",
+    "user_input": "Get AI news and summarize",
+    "plan": {
+      "intent": "Fetch and summarize AI news",
+      "domain": "AI",
+      "steps": [
+        {
+          "tool": "news_fetcher",
+          "params": {
+            "topic": "AI",
+            "limit": 5
+          }
+        },
+        {
+          "tool": "summarizer",
+          "params": {
+            "news_items": "news_fetcher_output"
+          }
+        },
+        {
+          "tool": "exporter",
+          "params": {
+            "filename": "AI_news_summary",
+            "format": "json"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T13:13:44.877226",
+    "user_input": "car accident",
+    "plan": {
+      "intent": "Fetch and export news about a car accident",
+      "domain": "car accident",
+      "steps": [
+        {
+          "tool": "news_fetcher",
+          "params": {
+            "topic": "car accident",
+            "limit": 5
+          }
+        },
+        {
+          "tool": "exporter",
+          "params": {
+            "filename": "car_accident_report",
+            "format": "json"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T13:20:32.225958",
+    "user_input": "tesla news",
+    "plan": {
+      "intent": "Fetch and export Tesla news",
+      "domain": "Tesla",
+      "steps": [
+        {
+          "tool": "news_fetcher",
+          "params": {
+            "topic": "tesla",
+            "limit": 5
+          }
+        },
+        {
+          "tool": "exporter",
+          "params": {
+            "filename": "tesla_news_report",
+            "format": "json"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T13:20:53.029757",
+    "user_input": "elon musk news",
+    "plan": {
+      "intent": "Fetch and export Elon Musk news articles",
+      "domain": "Elon Musk",
+      "steps": [
+        {
+          "tool": "news_fetcher",
+          "params": {
+            "topic": "elon musk",
+            "limit": 5
+          }
+        },
+        {
+          "tool": "exporter",
+          "params": {
+            "filename": "elon_musk_news",
+            "format": "json"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T13:23:59.498017",
+    "user_input": "elon muysk",
+    "plan": {
+      "intent": "Fetch and summarize news about Elon Musk",
+      "domain": "elon musk",
+      "steps": [
+        {
+          "tool": "news_fetcher",
+          "params": {
+            "topic": "elon musk",
+            "limit": 5
+          }
+        },
+        {
+          "tool": "summarizer",
+          "params": {
+            "news_items": "news_fetcher_output"
+          }
+        },
+        {
+          "tool": "exporter",
+          "params": {
+            "filename": "elon_musk_news_summary",
+            "format": "json"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T13:24:48.251909",
+    "user_input": "india u8s trade deal",
+    "plan": {
+      "intent": "Fetch and summarize recent news about the India-U.S. trade deal",
+      "domain": "India-U.S. trade deal",
+      "steps": [
+        {
+          "tool": "news_fetcher",
+          "params": {
+            "topic": "India U.S trade deal",
+            "sources": [
+              "google"
+            ],
+            "limit": 5
+          }
+        },
+        {
+          "tool": "summarizer",
+          "params": {
+            "news_items": ""
+          }
+        },
+        {
+          "tool": "sentiment",
+          "params": {
+            "news_items": ""
+          }
+        },
+        {
+          "tool": "exporter",
+          "params": {
+            "filename": "trade_deal_report",
+            "format": "json"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T13:26:34.582584",
+    "user_input": "india us trade deal",
+    "plan": {
+      "intent": "Fetch and summarize news on India-US trade deal, then export the report.",
+      "domain": "India-US trade deal",
+      "steps": [
+        {
+          "tool": "news_fetcher",
+          "params": {
+            "topic": "india us trade deal",
+            "sources": [
+              "google"
+            ],
+            "limit": 5
+          }
+        },
+        {
+          "tool": "summarizer",
+          "params": {
+            "news_items": "$.news_fetcher.news_items"
+          }
+        },
+        {
+          "tool": "exporter",
+          "params": {
+            "filename": "india_us_trade_deal_report",
+            "format": "json"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T13:32:26.101800",
+    "user_input": "Movies",
+    "plan": {
+      "intent": "Fetch and export latest news about movies",
+      "domain": "movies",
+      "steps": [
+        {
+          "tool": "news_fetcher",
+          "params": {
+            "topic": "movies",
+            "limit": 5
+          }
+        },
+        {
+          "tool": "exporter",
+          "params": {
+            "filename": "movies_report",
+            "format": "json"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T13:33:03.660366",
+    "user_input": "Stock Market with summarize and sentiment analysis and trends",
+    "plan": {
+      "intent": "Fetch and analyze stock market news with summarization, sentiment analysis, and trending topics extraction",
+      "domain": "Stock Market",
+      "steps": [
+        {
+          "tool": "news_fetcher",
+          "params": {
+            "topic": "Stock Market",
+            "limit": 5
+          }
+        },
+        {
+          "tool": "summarizer",
+          "params": {
+            "news_items": "news_fetcher output"
+          }
+        },
+        {
+          "tool": "sentiment",
+          "params": {
+            "news_items": "news_fetcher output"
+          }
+        },
+        {
+          "tool": "trends",
+          "params": {
+            "news_items": "news_fetcher output"
+          }
+        },
+        {
+          "tool": "exporter",
+          "params": {
+            "filename": "stock_market_report",
+            "format": "json"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T14:38:35.362279",
+    "user_input": "India US trade deal with summarize and sentiment analysis and trends",
+    "plan": {
+      "intent": "Fetch news on India-US trade deal, summarize, perform sentiment analysis, extract trends, and export the results",
+      "domain": "India-US trade deal",
+      "steps": [
+        {
+          "tool": "news_fetcher",
+          "params": {
+            "topic": "India-US trade deal",
+            "limit": 5
+          }
+        },
+        {
+          "tool": "summarizer",
+          "params": {
+            "news_items": "news_fetcher_output"
+          }
+        },
+        {
+          "tool": "sentiment",
+          "params": {
+            "news_items": "news_fetcher_output"
+          }
+        },
+        {
+          "tool": "trends",
+          "params": {
+            "news_items": "news_fetcher_output"
+          }
+        },
+        {
+          "tool": "exporter",
+          "params": {
+            "filename": "India-US_trade_deal_report",
+            "format": "json"
+          }
+        }
+      ]
+    }
   }
 ]

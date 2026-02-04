@@ -1,15 +1,5 @@
 [
   {
-    "timestamp": "2026-02-04T12:04:19.440485",
-    "level": "INFO",
-    "message": "Planning task for: Get AI  news about moltbot"
-  },
-  {
-    "timestamp": "2026-02-04T12:04:21.017778",
-    "level": "ERROR",
-    "message": "Nova planner error: An error occurred (AccessDeniedException) when calling the InvokeModel operation: User: arn:aws:iam::279715468174:user/MukulPrasad is not authorized to perform: bedrock:InvokeModel on resource: arn:aws:bedrock:us-east-1::foundation-model/amazon.nova-lite-v1:0 because no identity-based policy allows the bedrock:InvokeModel action"
-  },
-  {
     "timestamp": "2026-02-04T12:04:21.034587",
     "level": "INFO",
     "message": "Executing plan: Get ai news intelligence",
@@ -821,5 +811,1333 @@
     "timestamp": "2026-02-04T12:27:02.067661",
     "level": "INFO",
     "message": "Execution complete: 2 tools run"
+  },
+  {
+    "timestamp": "2026-02-04T12:59:38.473778",
+    "level": "INFO",
+    "message": "Planning task for: car accident"
+  },
+  {
+    "timestamp": "2026-02-04T12:59:40.239929",
+    "level": "INFO",
+    "message": "Nova plan generated",
+    "data": {
+      "plan": {
+        "intent": "Fetch and export news about a car accident",
+        "domain": "car accident",
+        "steps": [
+          {
+            "tool": "news_fetcher",
+            "params": {
+              "topic": "car accident",
+              "limit": 5
+            }
+          },
+          {
+            "tool": "exporter",
+            "params": {
+              "filename": "car_accident_report",
+              "format": "json"
+            }
+          }
+        ]
+      }
+    }
+  },
+  {
+    "timestamp": "2026-02-04T12:59:40.265118",
+    "level": "INFO",
+    "message": "Executing plan: Fetch and export news about a car accident",
+    "data": {
+      "steps": 2
+    }
+  },
+  {
+    "timestamp": "2026-02-04T12:59:40.283863",
+    "level": "DEBUG",
+    "message": "Running tool: news_fetcher",
+    "data": {
+      "params": [
+        "topic",
+        "limit"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T12:59:40.302429",
+    "level": "ERROR",
+    "message": "Tool news_fetcher failed: This event loop is already running"
+  },
+  {
+    "timestamp": "2026-02-04T12:59:40.327973",
+    "level": "DEBUG",
+    "message": "Running tool: exporter",
+    "data": {
+      "params": [
+        "filename",
+        "format",
+        "data"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T12:59:40.350215",
+    "level": "INFO",
+    "message": "Execution complete: 2 tools run"
+  },
+  {
+    "timestamp": "2026-02-04T12:59:57.923708",
+    "level": "INFO",
+    "message": "Planning task for: tesla news"
+  },
+  {
+    "timestamp": "2026-02-04T12:59:59.201963",
+    "level": "INFO",
+    "message": "Nova plan generated",
+    "data": {
+      "plan": {
+        "intent": "Fetch and export latest Tesla news",
+        "domain": "Tesla",
+        "steps": [
+          {
+            "tool": "news_fetcher",
+            "params": {
+              "topic": "tesla",
+              "limit": 5
+            }
+          },
+          {
+            "tool": "exporter",
+            "params": {
+              "filename": "tesla_news_report",
+              "format": "json"
+            }
+          }
+        ]
+      }
+    }
+  },
+  {
+    "timestamp": "2026-02-04T12:59:59.226452",
+    "level": "INFO",
+    "message": "Executing plan: Fetch and export latest Tesla news",
+    "data": {
+      "steps": 2
+    }
+  },
+  {
+    "timestamp": "2026-02-04T12:59:59.242181",
+    "level": "DEBUG",
+    "message": "Running tool: news_fetcher",
+    "data": {
+      "params": [
+        "topic",
+        "limit"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T12:59:59.260961",
+    "level": "ERROR",
+    "message": "Tool news_fetcher failed: This event loop is already running"
+  },
+  {
+    "timestamp": "2026-02-04T12:59:59.278108",
+    "level": "DEBUG",
+    "message": "Running tool: exporter",
+    "data": {
+      "params": [
+        "filename",
+        "format",
+        "data"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T12:59:59.297821",
+    "level": "INFO",
+    "message": "Execution complete: 2 tools run"
+  },
+  {
+    "timestamp": "2026-02-04T13:13:25.188978",
+    "level": "INFO",
+    "message": "Planning task for: What's trending in tech?"
+  },
+  {
+    "timestamp": "2026-02-04T13:13:26.969474",
+    "level": "INFO",
+    "message": "Nova plan generated",
+    "data": {
+      "plan": {
+        "intent": "Identify trending topics in the tech industry",
+        "domain": "tech",
+        "steps": [
+          {
+            "tool": "news_fetcher",
+            "params": {
+              "topic": "tech",
+              "limit": 5
+            }
+          },
+          {
+            "tool": "trends",
+            "params": {
+              "news_items": "news_fetcher output"
+            }
+          },
+          {
+            "tool": "exporter",
+            "params": {
+              "filename": "tech_trends_report",
+              "format": "json"
+            }
+          }
+        ]
+      }
+    }
+  },
+  {
+    "timestamp": "2026-02-04T13:13:26.986664",
+    "level": "INFO",
+    "message": "Executing plan: Identify trending topics in the tech industry",
+    "data": {
+      "steps": 3
+    }
+  },
+  {
+    "timestamp": "2026-02-04T13:13:26.999365",
+    "level": "DEBUG",
+    "message": "Running tool: news_fetcher",
+    "data": {
+      "params": [
+        "topic",
+        "limit"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T13:13:27.011994",
+    "level": "INFO",
+    "message": "Multi-source fetch for: tech"
+  },
+  {
+    "timestamp": "2026-02-04T13:13:31.244421",
+    "level": "INFO",
+    "message": "Multi-source complete: 14 articles from 3 sources"
+  },
+  {
+    "timestamp": "2026-02-04T13:13:31.256435",
+    "level": "DEBUG",
+    "message": "Running tool: trends",
+    "data": {
+      "params": [
+        "news_items"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T13:13:31.270450",
+    "level": "ERROR",
+    "message": "Tool trends failed: 'str' object has no attribute 'get'"
+  },
+  {
+    "timestamp": "2026-02-04T13:13:31.283115",
+    "level": "DEBUG",
+    "message": "Running tool: exporter",
+    "data": {
+      "params": [
+        "filename",
+        "format",
+        "data"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T13:13:31.299785",
+    "level": "INFO",
+    "message": "Execution complete: 3 tools run"
+  },
+  {
+    "timestamp": "2026-02-04T13:13:31.315891",
+    "level": "INFO",
+    "message": "Planning task for: Get crypto news with sentiment analysis"
+  },
+  {
+    "timestamp": "2026-02-04T13:13:33.221265",
+    "level": "INFO",
+    "message": "Nova plan generated",
+    "data": {
+      "plan": {
+        "intent": "Fetch crypto news and perform sentiment analysis",
+        "domain": "crypto",
+        "steps": [
+          {
+            "tool": "news_fetcher",
+            "params": {
+              "topic": "crypto",
+              "limit": 5
+            }
+          },
+          {
+            "tool": "sentiment",
+            "params": {
+              "news_items": "news_fetcher_output"
+            }
+          },
+          {
+            "tool": "exporter",
+            "params": {
+              "filename": "crypto_news_sentiment_report",
+              "format": "json"
+            }
+          }
+        ]
+      }
+    }
+  },
+  {
+    "timestamp": "2026-02-04T13:13:33.237233",
+    "level": "INFO",
+    "message": "Executing plan: Fetch crypto news and perform sentiment analysis",
+    "data": {
+      "steps": 3
+    }
+  },
+  {
+    "timestamp": "2026-02-04T13:13:33.249933",
+    "level": "DEBUG",
+    "message": "Running tool: news_fetcher",
+    "data": {
+      "params": [
+        "topic",
+        "limit"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T13:13:33.266068",
+    "level": "INFO",
+    "message": "Multi-source fetch for: crypto"
+  },
+  {
+    "timestamp": "2026-02-04T13:13:37.544754",
+    "level": "INFO",
+    "message": "Multi-source complete: 15 articles from 3 sources"
+  },
+  {
+    "timestamp": "2026-02-04T13:13:37.560501",
+    "level": "DEBUG",
+    "message": "Running tool: sentiment",
+    "data": {
+      "params": [
+        "news_items"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T13:13:37.577422",
+    "level": "ERROR",
+    "message": "Tool sentiment failed: 'str' object has no attribute 'get'"
+  },
+  {
+    "timestamp": "2026-02-04T13:13:37.590441",
+    "level": "DEBUG",
+    "message": "Running tool: exporter",
+    "data": {
+      "params": [
+        "filename",
+        "format",
+        "data"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T13:13:37.611997",
+    "level": "INFO",
+    "message": "Execution complete: 3 tools run"
+  },
+  {
+    "timestamp": "2026-02-04T13:13:37.630664",
+    "level": "INFO",
+    "message": "Planning task for: Get AI news and summarize"
+  },
+  {
+    "timestamp": "2026-02-04T13:13:39.311842",
+    "level": "INFO",
+    "message": "Nova plan generated",
+    "data": {
+      "plan": {
+        "intent": "Fetch and summarize AI news",
+        "domain": "AI",
+        "steps": [
+          {
+            "tool": "news_fetcher",
+            "params": {
+              "topic": "AI",
+              "limit": 5
+            }
+          },
+          {
+            "tool": "summarizer",
+            "params": {
+              "news_items": "news_fetcher_output"
+            }
+          },
+          {
+            "tool": "exporter",
+            "params": {
+              "filename": "AI_news_summary",
+              "format": "json"
+            }
+          }
+        ]
+      }
+    }
+  },
+  {
+    "timestamp": "2026-02-04T13:13:39.327249",
+    "level": "INFO",
+    "message": "Executing plan: Fetch and summarize AI news",
+    "data": {
+      "steps": 3
+    }
+  },
+  {
+    "timestamp": "2026-02-04T13:13:39.339758",
+    "level": "DEBUG",
+    "message": "Running tool: news_fetcher",
+    "data": {
+      "params": [
+        "topic",
+        "limit"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T13:13:39.353695",
+    "level": "INFO",
+    "message": "Multi-source fetch for: AI"
+  },
+  {
+    "timestamp": "2026-02-04T13:13:43.018567",
+    "level": "INFO",
+    "message": "Multi-source complete: 15 articles from 3 sources"
+  },
+  {
+    "timestamp": "2026-02-04T13:13:43.033092",
+    "level": "DEBUG",
+    "message": "Running tool: summarizer",
+    "data": {
+      "params": [
+        "news_items"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T13:13:43.053198",
+    "level": "ERROR",
+    "message": "Tool summarizer failed: 'str' object has no attribute 'get'"
+  },
+  {
+    "timestamp": "2026-02-04T13:13:43.071695",
+    "level": "DEBUG",
+    "message": "Running tool: exporter",
+    "data": {
+      "params": [
+        "filename",
+        "format",
+        "data"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T13:13:43.094315",
+    "level": "INFO",
+    "message": "Execution complete: 3 tools run"
+  },
+  {
+    "timestamp": "2026-02-04T13:13:43.114509",
+    "level": "INFO",
+    "message": "Planning task for: car accident"
+  },
+  {
+    "timestamp": "2026-02-04T13:13:44.873224",
+    "level": "INFO",
+    "message": "Nova plan generated",
+    "data": {
+      "plan": {
+        "intent": "Fetch and export news about a car accident",
+        "domain": "car accident",
+        "steps": [
+          {
+            "tool": "news_fetcher",
+            "params": {
+              "topic": "car accident",
+              "limit": 5
+            }
+          },
+          {
+            "tool": "exporter",
+            "params": {
+              "filename": "car_accident_report",
+              "format": "json"
+            }
+          }
+        ]
+      }
+    }
+  },
+  {
+    "timestamp": "2026-02-04T13:13:44.889000",
+    "level": "INFO",
+    "message": "Executing plan: Fetch and export news about a car accident",
+    "data": {
+      "steps": 2
+    }
+  },
+  {
+    "timestamp": "2026-02-04T13:13:44.902634",
+    "level": "DEBUG",
+    "message": "Running tool: news_fetcher",
+    "data": {
+      "params": [
+        "topic",
+        "limit"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T13:13:44.916077",
+    "level": "INFO",
+    "message": "Multi-source fetch for: car accident"
+  },
+  {
+    "timestamp": "2026-02-04T13:13:48.516594",
+    "level": "INFO",
+    "message": "Multi-source complete: 15 articles from 3 sources"
+  },
+  {
+    "timestamp": "2026-02-04T13:13:48.535208",
+    "level": "DEBUG",
+    "message": "Running tool: exporter",
+    "data": {
+      "params": [
+        "filename",
+        "format",
+        "data"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T13:13:48.561020",
+    "level": "INFO",
+    "message": "Execution complete: 2 tools run"
+  },
+  {
+    "timestamp": "2026-02-04T13:20:30.755448",
+    "level": "INFO",
+    "message": "Planning task for: tesla news"
+  },
+  {
+    "timestamp": "2026-02-04T13:20:32.218268",
+    "level": "INFO",
+    "message": "Nova plan generated",
+    "data": {
+      "plan": {
+        "intent": "Fetch and export Tesla news",
+        "domain": "Tesla",
+        "steps": [
+          {
+            "tool": "news_fetcher",
+            "params": {
+              "topic": "tesla",
+              "limit": 5
+            }
+          },
+          {
+            "tool": "exporter",
+            "params": {
+              "filename": "tesla_news_report",
+              "format": "json"
+            }
+          }
+        ]
+      }
+    }
+  },
+  {
+    "timestamp": "2026-02-04T13:20:32.246911",
+    "level": "INFO",
+    "message": "Executing plan: Fetch and export Tesla news",
+    "data": {
+      "steps": 2
+    }
+  },
+  {
+    "timestamp": "2026-02-04T13:20:32.263909",
+    "level": "DEBUG",
+    "message": "Running tool: news_fetcher",
+    "data": {
+      "params": [
+        "topic",
+        "limit"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T13:20:32.280650",
+    "level": "INFO",
+    "message": "Multi-source fetch for: tesla"
+  },
+  {
+    "timestamp": "2026-02-04T13:20:35.937116",
+    "level": "INFO",
+    "message": "Multi-source complete: 15 articles from 3 sources"
+  },
+  {
+    "timestamp": "2026-02-04T13:20:35.956527",
+    "level": "DEBUG",
+    "message": "Running tool: exporter",
+    "data": {
+      "params": [
+        "filename",
+        "format",
+        "data"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T13:20:35.980293",
+    "level": "INFO",
+    "message": "Execution complete: 2 tools run"
+  },
+  {
+    "timestamp": "2026-02-04T13:20:51.551969",
+    "level": "INFO",
+    "message": "Planning task for: elon musk news"
+  },
+  {
+    "timestamp": "2026-02-04T13:20:53.023767",
+    "level": "INFO",
+    "message": "Nova plan generated",
+    "data": {
+      "plan": {
+        "intent": "Fetch and export Elon Musk news articles",
+        "domain": "Elon Musk",
+        "steps": [
+          {
+            "tool": "news_fetcher",
+            "params": {
+              "topic": "elon musk",
+              "limit": 5
+            }
+          },
+          {
+            "tool": "exporter",
+            "params": {
+              "filename": "elon_musk_news",
+              "format": "json"
+            }
+          }
+        ]
+      }
+    }
+  },
+  {
+    "timestamp": "2026-02-04T13:20:53.048734",
+    "level": "INFO",
+    "message": "Executing plan: Fetch and export Elon Musk news articles",
+    "data": {
+      "steps": 2
+    }
+  },
+  {
+    "timestamp": "2026-02-04T13:20:53.066236",
+    "level": "DEBUG",
+    "message": "Running tool: news_fetcher",
+    "data": {
+      "params": [
+        "topic",
+        "limit"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T13:20:53.085584",
+    "level": "INFO",
+    "message": "Multi-source fetch for: elon musk"
+  },
+  {
+    "timestamp": "2026-02-04T13:20:56.744342",
+    "level": "INFO",
+    "message": "Multi-source complete: 13 articles from 3 sources"
+  },
+  {
+    "timestamp": "2026-02-04T13:20:56.763581",
+    "level": "DEBUG",
+    "message": "Running tool: exporter",
+    "data": {
+      "params": [
+        "filename",
+        "format",
+        "data"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T13:20:56.786465",
+    "level": "INFO",
+    "message": "Execution complete: 2 tools run"
+  },
+  {
+    "timestamp": "2026-02-04T13:23:57.746151",
+    "level": "INFO",
+    "message": "Planning task for: elon muysk"
+  },
+  {
+    "timestamp": "2026-02-04T13:23:59.491994",
+    "level": "INFO",
+    "message": "Nova plan generated",
+    "data": {
+      "plan": {
+        "intent": "Fetch and summarize news about Elon Musk",
+        "domain": "elon musk",
+        "steps": [
+          {
+            "tool": "news_fetcher",
+            "params": {
+              "topic": "elon musk",
+              "limit": 5
+            }
+          },
+          {
+            "tool": "summarizer",
+            "params": {
+              "news_items": "news_fetcher_output"
+            }
+          },
+          {
+            "tool": "exporter",
+            "params": {
+              "filename": "elon_musk_news_summary",
+              "format": "json"
+            }
+          }
+        ]
+      }
+    }
+  },
+  {
+    "timestamp": "2026-02-04T13:23:59.519779",
+    "level": "INFO",
+    "message": "Executing plan: Fetch and summarize news about Elon Musk",
+    "data": {
+      "steps": 3
+    }
+  },
+  {
+    "timestamp": "2026-02-04T13:23:59.541148",
+    "level": "DEBUG",
+    "message": "Running tool: news_fetcher",
+    "data": {
+      "params": [
+        "topic",
+        "limit"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T13:23:59.559936",
+    "level": "INFO",
+    "message": "Multi-source fetch for: elon musk"
+  },
+  {
+    "timestamp": "2026-02-04T13:24:05.734803",
+    "level": "INFO",
+    "message": "Multi-source complete: 13 articles from 3 sources"
+  },
+  {
+    "timestamp": "2026-02-04T13:24:05.754369",
+    "level": "DEBUG",
+    "message": "Running tool: summarizer",
+    "data": {
+      "params": [
+        "news_items"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T13:24:05.778840",
+    "level": "ERROR",
+    "message": "Tool summarizer failed: 'str' object has no attribute 'get'"
+  },
+  {
+    "timestamp": "2026-02-04T13:24:05.798572",
+    "level": "DEBUG",
+    "message": "Running tool: exporter",
+    "data": {
+      "params": [
+        "filename",
+        "format",
+        "data"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T13:24:05.822759",
+    "level": "INFO",
+    "message": "Execution complete: 3 tools run"
+  },
+  {
+    "timestamp": "2026-02-04T13:24:46.534258",
+    "level": "INFO",
+    "message": "Planning task for: india u8s trade deal"
+  },
+  {
+    "timestamp": "2026-02-04T13:24:48.246414",
+    "level": "INFO",
+    "message": "Nova plan generated",
+    "data": {
+      "plan": {
+        "intent": "Fetch and summarize recent news about the India-U.S. trade deal",
+        "domain": "India-U.S. trade deal",
+        "steps": [
+          {
+            "tool": "news_fetcher",
+            "params": {
+              "topic": "India U.S trade deal",
+              "sources": [
+                "google"
+              ],
+              "limit": 5
+            }
+          },
+          {
+            "tool": "summarizer",
+            "params": {
+              "news_items": ""
+            }
+          },
+          {
+            "tool": "sentiment",
+            "params": {
+              "news_items": ""
+            }
+          },
+          {
+            "tool": "exporter",
+            "params": {
+              "filename": "trade_deal_report",
+              "format": "json"
+            }
+          }
+        ]
+      }
+    }
+  },
+  {
+    "timestamp": "2026-02-04T13:24:48.269598",
+    "level": "INFO",
+    "message": "Executing plan: Fetch and summarize recent news about the India-U.S. trade deal",
+    "data": {
+      "steps": 4
+    }
+  },
+  {
+    "timestamp": "2026-02-04T13:24:48.287369",
+    "level": "DEBUG",
+    "message": "Running tool: news_fetcher",
+    "data": {
+      "params": [
+        "topic",
+        "sources",
+        "limit"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T13:24:48.306450",
+    "level": "INFO",
+    "message": "Multi-source fetch for: India U.S trade deal"
+  },
+  {
+    "timestamp": "2026-02-04T13:24:50.248102",
+    "level": "ERROR",
+    "message": "GNews failed: Client error '400 Bad Request' for url 'https://gnews.io/api/v4/search?apikey=a7519075e5f8447070cc6f0047260ca2&q=India+U.S+trade+deal&lang=en&max=5'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400"
+  },
+  {
+    "timestamp": "2026-02-04T13:24:54.330469",
+    "level": "INFO",
+    "message": "Multi-source complete: 10 articles from 3 sources"
+  },
+  {
+    "timestamp": "2026-02-04T13:24:54.357532",
+    "level": "DEBUG",
+    "message": "Running tool: summarizer",
+    "data": {
+      "params": [
+        "news_items"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T13:24:54.375282",
+    "level": "DEBUG",
+    "message": "Running tool: sentiment",
+    "data": {
+      "params": [
+        "news_items"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T13:24:54.394631",
+    "level": "DEBUG",
+    "message": "Running tool: exporter",
+    "data": {
+      "params": [
+        "filename",
+        "format",
+        "data"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T13:24:54.418274",
+    "level": "INFO",
+    "message": "Execution complete: 4 tools run"
+  },
+  {
+    "timestamp": "2026-02-04T13:26:32.593688",
+    "level": "INFO",
+    "message": "Planning task for: india us trade deal"
+  },
+  {
+    "timestamp": "2026-02-04T13:26:34.572946",
+    "level": "INFO",
+    "message": "Nova plan generated",
+    "data": {
+      "plan": {
+        "intent": "Fetch and summarize news on India-US trade deal, then export the report.",
+        "domain": "India-US trade deal",
+        "steps": [
+          {
+            "tool": "news_fetcher",
+            "params": {
+              "topic": "india us trade deal",
+              "sources": [
+                "google"
+              ],
+              "limit": 5
+            }
+          },
+          {
+            "tool": "summarizer",
+            "params": {
+              "news_items": "$.news_fetcher.news_items"
+            }
+          },
+          {
+            "tool": "exporter",
+            "params": {
+              "filename": "india_us_trade_deal_report",
+              "format": "json"
+            }
+          }
+        ]
+      }
+    }
+  },
+  {
+    "timestamp": "2026-02-04T13:26:34.598537",
+    "level": "INFO",
+    "message": "Executing plan: Fetch and summarize news on India-US trade deal, then export the report.",
+    "data": {
+      "steps": 3
+    }
+  },
+  {
+    "timestamp": "2026-02-04T13:26:34.616866",
+    "level": "DEBUG",
+    "message": "Running tool: news_fetcher",
+    "data": {
+      "params": [
+        "topic",
+        "sources",
+        "limit"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T13:26:34.635139",
+    "level": "INFO",
+    "message": "Multi-source fetch for: india us trade deal"
+  },
+  {
+    "timestamp": "2026-02-04T13:26:41.220324",
+    "level": "INFO",
+    "message": "Multi-source complete: 15 articles from 3 sources"
+  },
+  {
+    "timestamp": "2026-02-04T13:26:41.244993",
+    "level": "DEBUG",
+    "message": "Running tool: summarizer",
+    "data": {
+      "params": [
+        "news_items"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T13:26:43.055917",
+    "level": "DEBUG",
+    "message": "Running tool: exporter",
+    "data": {
+      "params": [
+        "filename",
+        "format",
+        "data"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T13:26:43.084130",
+    "level": "INFO",
+    "message": "Execution complete: 3 tools run"
+  },
+  {
+    "timestamp": "2026-02-04T13:32:24.480888",
+    "level": "INFO",
+    "message": "Planning task for: Movies"
+  },
+  {
+    "timestamp": "2026-02-04T13:32:26.095595",
+    "level": "INFO",
+    "message": "Nova plan generated",
+    "data": {
+      "plan": {
+        "intent": "Fetch and export latest news about movies",
+        "domain": "movies",
+        "steps": [
+          {
+            "tool": "news_fetcher",
+            "params": {
+              "topic": "movies",
+              "limit": 5
+            }
+          },
+          {
+            "tool": "exporter",
+            "params": {
+              "filename": "movies_report",
+              "format": "json"
+            }
+          }
+        ]
+      }
+    }
+  },
+  {
+    "timestamp": "2026-02-04T13:32:26.119320",
+    "level": "INFO",
+    "message": "Executing plan: Fetch and export latest news about movies",
+    "data": {
+      "steps": 2
+    }
+  },
+  {
+    "timestamp": "2026-02-04T13:32:26.138320",
+    "level": "DEBUG",
+    "message": "Running tool: news_fetcher",
+    "data": {
+      "params": [
+        "topic",
+        "limit"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T13:32:26.155850",
+    "level": "INFO",
+    "message": "Multi-source fetch for: movies"
+  },
+  {
+    "timestamp": "2026-02-04T13:32:33.104449",
+    "level": "INFO",
+    "message": "Multi-source complete: 15 articles from 3 sources"
+  },
+  {
+    "timestamp": "2026-02-04T13:32:33.125342",
+    "level": "DEBUG",
+    "message": "Running tool: exporter",
+    "data": {
+      "params": [
+        "filename",
+        "format",
+        "data"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T13:32:33.153103",
+    "level": "INFO",
+    "message": "Execution complete: 2 tools run"
+  },
+  {
+    "timestamp": "2026-02-04T13:33:01.824219",
+    "level": "INFO",
+    "message": "Planning task for: Stock Market with summarize and sentiment analysis and trends"
+  },
+  {
+    "timestamp": "2026-02-04T13:33:03.654364",
+    "level": "INFO",
+    "message": "Nova plan generated",
+    "data": {
+      "plan": {
+        "intent": "Fetch and analyze stock market news with summarization, sentiment analysis, and trending topics extraction",
+        "domain": "Stock Market",
+        "steps": [
+          {
+            "tool": "news_fetcher",
+            "params": {
+              "topic": "Stock Market",
+              "limit": 5
+            }
+          },
+          {
+            "tool": "summarizer",
+            "params": {
+              "news_items": "news_fetcher output"
+            }
+          },
+          {
+            "tool": "sentiment",
+            "params": {
+              "news_items": "news_fetcher output"
+            }
+          },
+          {
+            "tool": "trends",
+            "params": {
+              "news_items": "news_fetcher output"
+            }
+          },
+          {
+            "tool": "exporter",
+            "params": {
+              "filename": "stock_market_report",
+              "format": "json"
+            }
+          }
+        ]
+      }
+    }
+  },
+  {
+    "timestamp": "2026-02-04T13:33:03.678655",
+    "level": "INFO",
+    "message": "Executing plan: Fetch and analyze stock market news with summarization, sentiment analysis, and trending topics extraction",
+    "data": {
+      "steps": 5
+    }
+  },
+  {
+    "timestamp": "2026-02-04T13:33:03.700075",
+    "level": "DEBUG",
+    "message": "Running tool: news_fetcher",
+    "data": {
+      "params": [
+        "topic",
+        "limit"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T13:33:03.718840",
+    "level": "INFO",
+    "message": "Multi-source fetch for: Stock Market"
+  },
+  {
+    "timestamp": "2026-02-04T13:33:10.355173",
+    "level": "INFO",
+    "message": "Multi-source complete: 14 articles from 3 sources"
+  },
+  {
+    "timestamp": "2026-02-04T13:33:10.370683",
+    "level": "DEBUG",
+    "message": "Running tool: summarizer",
+    "data": {
+      "params": [
+        "news_items"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T13:33:12.172682",
+    "level": "DEBUG",
+    "message": "Running tool: sentiment",
+    "data": {
+      "params": [
+        "news_items"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T13:33:13.458967",
+    "level": "DEBUG",
+    "message": "Running tool: trends",
+    "data": {
+      "params": [
+        "news_items"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T13:33:13.479335",
+    "level": "DEBUG",
+    "message": "Running tool: exporter",
+    "data": {
+      "params": [
+        "filename",
+        "format",
+        "data"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T13:33:13.502712",
+    "level": "INFO",
+    "message": "Execution complete: 5 tools run"
+  },
+  {
+    "timestamp": "2026-02-04T14:38:33.443576",
+    "level": "INFO",
+    "message": "Planning task for: India US trade deal with summarize and sentiment analysis and trends"
+  },
+  {
+    "timestamp": "2026-02-04T14:38:35.353268",
+    "level": "INFO",
+    "message": "Nova plan generated",
+    "data": {
+      "plan": {
+        "intent": "Fetch news on India-US trade deal, summarize, perform sentiment analysis, extract trends, and export the results",
+        "domain": "India-US trade deal",
+        "steps": [
+          {
+            "tool": "news_fetcher",
+            "params": {
+              "topic": "India-US trade deal",
+              "limit": 5
+            }
+          },
+          {
+            "tool": "summarizer",
+            "params": {
+              "news_items": "news_fetcher_output"
+            }
+          },
+          {
+            "tool": "sentiment",
+            "params": {
+              "news_items": "news_fetcher_output"
+            }
+          },
+          {
+            "tool": "trends",
+            "params": {
+              "news_items": "news_fetcher_output"
+            }
+          },
+          {
+            "tool": "exporter",
+            "params": {
+              "filename": "India-US_trade_deal_report",
+              "format": "json"
+            }
+          }
+        ]
+      }
+    }
+  },
+  {
+    "timestamp": "2026-02-04T14:38:35.385480",
+    "level": "INFO",
+    "message": "Executing plan: Fetch news on India-US trade deal, summarize, perform sentiment analysis, extract trends, and export the results",
+    "data": {
+      "steps": 5
+    }
+  },
+  {
+    "timestamp": "2026-02-04T14:38:35.407398",
+    "level": "DEBUG",
+    "message": "Running tool: news_fetcher",
+    "data": {
+      "params": [
+        "topic",
+        "limit"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T14:38:35.429536",
+    "level": "INFO",
+    "message": "Multi-source fetch for: India-US trade deal"
+  },
+  {
+    "timestamp": "2026-02-04T14:38:37.515760",
+    "level": "ERROR",
+    "message": "GNews failed: Client error '400 Bad Request' for url 'https://gnews.io/api/v4/search?apikey=a7519075e5f8447070cc6f0047260ca2&q=India-US+trade+deal&lang=en&max=5'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400"
+  },
+  {
+    "timestamp": "2026-02-04T14:38:42.200091",
+    "level": "INFO",
+    "message": "Multi-source complete: 10 articles from 3 sources"
+  },
+  {
+    "timestamp": "2026-02-04T14:38:42.224043",
+    "level": "DEBUG",
+    "message": "Running tool: summarizer",
+    "data": {
+      "params": [
+        "news_items"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T14:38:44.269089",
+    "level": "DEBUG",
+    "message": "Running tool: sentiment",
+    "data": {
+      "params": [
+        "news_items"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T14:38:45.806287",
+    "level": "DEBUG",
+    "message": "Running tool: trends",
+    "data": {
+      "params": [
+        "news_items"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T14:38:45.830670",
+    "level": "DEBUG",
+    "message": "Running tool: exporter",
+    "data": {
+      "params": [
+        "filename",
+        "format",
+        "data"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-04T14:38:45.860977",
+    "level": "INFO",
+    "message": "Execution complete: 5 tools run"
   }
 ]

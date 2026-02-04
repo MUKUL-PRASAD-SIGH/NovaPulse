@@ -3,11 +3,24 @@ boto3>=1.34.0
 
 # Web Framework
 fastapi>=0.109.0
-uvicorn>=0.27.0
+uvicorn[standard]>=0.27.0
 
-# HTTP/Utils
+# HTTP/Async
+httpx>=0.26.0
+aiohttp>=3.9.0
+
+# Data Validation & Config
 python-dotenv>=1.0.0
 pydantic>=2.5.0
 
-# News RSS Parser (REQUIRED!)
+# News Parsing
 feedparser>=6.0.10
+
+# Async Support
+nest_asyncio>=1.5.8
+
+# Production Server
+gunicorn>=21.0.0
+
+# Logging & Monitoring (optional)
+python-json-logger>=2.0.0
