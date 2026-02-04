@@ -17,3 +17,7 @@ output/
 # IDE
 .vscode/
 .idea/
+
+# Documentation dumps
+PROJECT_CODE_DUMP.md
+future/
