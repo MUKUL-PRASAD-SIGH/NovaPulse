@@ -1,7 +1,7 @@
 {
   ".\\.codebase_snapshot.json": {
     "lines": 130,
-    "hash": "6755c845a0d7751d0c8ed07ff40f9ce8"
+    "hash": "cd1a74e598990997e23cb65c74c799aa"
   },
   ".\\app\\main.py": {
     "lines": 54,
@@ -12,8 +12,8 @@
     "hash": "7c9b6221ca583d1aaea94a721698e460"
   },
   ".\\app\\agents\\executor_agent.py": {
-    "lines": 138,
-    "hash": "f05948c2ed07ffad5e6e8819997ec585"
+    "lines": 381,
+    "hash": "83c585050b0a70e717626bcf06e911d8"
   },
   ".\\app\\agents\\planner_agent.py": {
     "lines": 143,

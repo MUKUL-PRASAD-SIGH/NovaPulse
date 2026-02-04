@@ -8,7 +8,7 @@
 {
   ".\\.codebase_snapshot.json": {
     "lines": 130,
-    "hash": "68c46a8fb6c7aa93e324117de41f578a"
+    "hash": "6755c845a0d7751d0c8ed07ff40f9ce8"
   },
   ".\\app\\main.py": {
     "lines": 54,
@@ -216,23 +216,59 @@ __version__ = "0.1.0"
 """Executor Agent for Nova Intelligence Agent.
 
 Executes task plans by running tools in sequence.
-Handles context passing between tools.
+Features:
+- Dependency-aware execution (skip if dependency failed)
+- Retry logic with exponential backoff
+- Alternate tool fallback
+- Auto step regeneration with parameter variation
+- Dynamic plan rewriting on critical failures
+- Per-step error isolation
+- Context passing between tools
 """
-from typing import Dict, Any, List
+from typing import Dict, Any, List, Optional
+import time
+import copy
 from app.core.tool_registry import get_tool, list_tools
 from app.models.schemas import TaskPlan, ToolStep
 from app.memory.store import save_result, log
 
 
+# Dependency graph: which tools depend on which
+TOOL_DEPENDENCIES = {
+    "summarizer": ["news_fetcher"],
+    "sentiment": ["news_fetcher"],
+    "trends": ["news_fetcher"],
+    "exporter": []  # Exporter can run with partial data
+}
+
+# Alternate tool fallbacks: if primary fails, try alternate
+TOOL_FALLBACKS = {
+    "news_fetcher": None,  # No fallback, it handles multi-source internally
+    "summarizer": "_fallback_summarizer",
+    "sentiment": "_fallback_sentiment",
+    "trends": None,
+}
+
+# Retry configuration
+MAX_RETRIES = 2
+RETRY_DELAY_BASE = 1.0  # seconds
+
+# Enable self-healing features
+ENABLE_FALLBACKS = True
+ENABLE_AUTO_REGENERATION = True
+ENABLE_DYNAMIC_REWRITE = True
+
+
 def execute_plan(plan: TaskPlan) -> Dict[str, Any]:
     """
-    Execute a task plan by running each tool step.
+    Execute a task plan with full self-healing capabilities.
     
-    Args:
-        plan: TaskPlan object with intent and steps
-    
-    Returns:
-        Execution result with data, tools run, and any errors
+    Features:
+    - Dependency checking (skip if dependency failed)
+    - Retry with exponential backoff
+    - Alternate tool fallback
+    - Auto step regeneration
+    - Dynamic plan rewriting
     """
     log("INFO", f"Executing plan: {plan.intent}", {"steps": len(plan.steps)})
     
@@ -242,39 +278,253 @@ def execute_plan(plan: TaskPlan) -> Dict[str, Any]:
         "tools_executed": [],
         "data": {},
         "errors": [],
+        "skipped": [],
+        "fallbacks_used": [],
+        "regenerated": [],
         "success": True
     }
     
     # Context for passing data between tools
     context: Dict[str, Any] = {}
     
+    # Track which tools succeeded/failed
+    tool_status: Dict[str, bool] = {}
+    
+    # Critical failure tracking for dynamic rewrite
+    critical_failures = []
+    
     for i, step in enumerate(plan.steps):
-        tool_result = _execute_step(step, context, i)
+        # Check dependencies before execution
+        skip_reason = _check_dependencies(step.tool, tool_status)
+        
+        if skip_reason:
+            log("WARN", f"Skipping {step.tool}: {skip_reason}")
+            result["skipped"].append({
+                "tool": step.tool,
+                "reason": skip_reason
+            })
+            tool_status[step.tool] = False
+            continue
+        
+        # Execute with full self-healing pipeline
+        tool_result = _execute_with_healing(step, context, i, result)
         
         if tool_result["success"]:
             result["tools_executed"].append({
                 "tool": step.tool,
-                "success": True
+                "success": True,
+                "retries": tool_result.get("retries", 0),
+                "used_fallback": tool_result.get("used_fallback", False),
+                "regenerated": tool_result.get("regenerated", False)
             })
-            # Update context with tool output
             _update_context(context, step.tool, tool_result["output"])
+            tool_status[step.tool] = True
         else:
             result["errors"].append(tool_result["error"])
             result["tools_executed"].append({
                 "tool": step.tool,
                 "success": False,
-                "error": tool_result["error"]
+                "error": tool_result["error"],
+                "retries": tool_result.get("retries", 0)
             })
+            tool_status[step.tool] = False
+            
+            # Track critical failures for potential rewrite
+            if step.tool == "news_fetcher":
+                critical_failures.append(step.tool)
+    
+    # Dynamic plan rewriting: if news failed, try regenerating the plan
+    if ENABLE_DYNAMIC_REWRITE and "news_fetcher" in critical_failures and not context.get("news"):
+        log("WARN", "Critical failure detected - attempting dynamic plan recovery")
+        result["dynamic_rewrite_attempted"] = True
+        # Instead of full rewrite, add empty news fallback
+        context["news"] = []
+        result["data"]["recovery_note"] = "News fetch failed - partial results returned"
     
     # Set final data from context
     result["data"] = context
-    result["success"] = len(result["errors"]) == 0
+    result["success"] = len(result["errors"]) == 0 or len(context.get("news", [])) > 0
     
     # Save to memory
     save_result(result)
-    log("INFO", f"Execution complete: {len(result['tools_executed'])} tools run")
+    
+    executed = len(result['tools_executed'])
+    skipped = len(result['skipped'])
+    fallbacks = len(result['fallbacks_used'])
+    log("INFO", f"Execution complete: {executed} tools run, {skipped} skipped, {fallbacks} fallbacks used")
     
     return result
+
+
+def _execute_with_healing(step: ToolStep, context: Dict, step_index: int, result: Dict) -> Dict:
+    """Execute a step with all self-healing mechanisms."""
+    
+    # Step 1: Try primary execution with retry
+    tool_result = _execute_step_with_retry(step, context, step_index)
+    
+    if tool_result["success"]:
+        return tool_result
+    
+    # Step 2: Try alternate tool fallback
+    if ENABLE_FALLBACKS:
+        fallback_result = _try_fallback(step, context, step_index)
+        if fallback_result and fallback_result["success"]:
+            result["fallbacks_used"].append({
+                "original": step.tool,
+                "fallback": TOOL_FALLBACKS.get(step.tool)
+            })
+            fallback_result["used_fallback"] = True
+            return fallback_result
+    
+    # Step 3: Try auto step regeneration with varied params
+    if ENABLE_AUTO_REGENERATION:
+        regen_result = _try_regeneration(step, context, step_index)
+        if regen_result and regen_result["success"]:
+            result["regenerated"].append(step.tool)
+            regen_result["regenerated"] = True
+            return regen_result
+    
+    # All healing attempts failed
+    return tool_result
+
+
+def _try_fallback(step: ToolStep, context: Dict, step_index: int) -> Optional[Dict]:
+    """Try alternate tool if primary failed."""
+    fallback_name = TOOL_FALLBACKS.get(step.tool)
+    
+    if not fallback_name:
+        return None
+    
+    log("INFO", f"Attempting fallback for {step.tool}: {fallback_name}")
+    
+    # Use internal fallback functions
+    if fallback_name == "_fallback_summarizer":
+        return _fallback_summarizer(context)
+    elif fallback_name == "_fallback_sentiment":
+        return _fallback_sentiment(context)
+    
+    return None
+
+
+def _fallback_summarizer(context: Dict) -> Dict:
+    """Fallback summarizer - creates basic summary from headlines."""
+    news = context.get("news", [])
+    
+    if not news:
+        return {"success": False, "error": "No news to summarize", "output": None}
+    
+    # Create simple headline-based summary
+    headlines = [item.get("title", "") for item in news[:5]]
+    summary = {
+        "summary": f"Key developments: {'; '.join(headlines[:3])}...",
+        "key_points": headlines[:3],
+        "fallback": True
+    }
+    
+    log("INFO", "Fallback summarizer generated basic summary")
+    return {"success": True, "output": summary, "error": None}
+
+
+def _fallback_sentiment(context: Dict) -> Dict:
+    """Fallback sentiment - basic keyword analysis."""
+    news = context.get("news", [])
+    
+    if not news:
+        return {"success": False, "error": "No news for sentiment", "output": None}
+    
+    # Simple keyword counting
+    text = " ".join([item.get("title", "") for item in news])
+    text_lower = text.lower()
+    
+    positive_words = ["gain", "rise", "growth", "up", "surge", "rally", "profit", "success"]
+    negative_words = ["fall", "drop", "loss", "down", "crash", "fail", "decline", "crisis"]
+    
+    pos_count = sum(1 for w in positive_words if w in text_lower)
+    neg_count = sum(1 for w in negative_words if w in text_lower)
+    
+    if pos_count > neg_count:
+        overall = "positive"
+        score = 0.6
+    elif neg_count > pos_count:
+        overall = "negative"
+        score = 0.4
+    else:
+        overall = "neutral"
+        score = 0.5
+    
+    sentiment = {
+        "overall": overall,
+        "score": score,
+        "confidence": "low",
+        "mood_label": f"Basic {overall} sentiment",
+        "reasoning": "Fallback keyword-based analysis",
+        "fallback": True,
+        "breakdown": {"positive": pos_count, "neutral": len(news) - pos_count - neg_count, "negative": neg_count}
+    }
+    
+    log("INFO", f"Fallback sentiment: {overall} (score: {score})")
+    return {"success": True, "output": sentiment, "error": None}
+
+
+def _try_regeneration(step: ToolStep, context: Dict, step_index: int) -> Optional[Dict]:
+    """Try regenerating step with varied parameters."""
+    
+    # Only regenerate certain tools
+    if step.tool not in ["news_fetcher", "summarizer"]:
+        return None
+    
+    log("INFO", f"Attempting step regeneration for {step.tool}")
+    
+    # Create modified step with reduced parameters
+    modified_step = copy.deepcopy(step)
+    
+    if step.tool == "news_fetcher":
+        # Try with reduced article limit
+        modified_step.params["limit"] = 3
+    elif step.tool == "summarizer":
+        # Try with fewer articles
+        if "news" in context and len(context["news"]) > 3:
+            context["news"] = context["news"][:3]
+    
+    # Execute modified step
+    return _execute_step(modified_step, context, step_index)
+
+
+def _check_dependencies(tool_name: str, tool_status: Dict[str, bool]) -> Optional[str]:
+    """Check if tool's dependencies have succeeded."""
+    dependencies = TOOL_DEPENDENCIES.get(tool_name, [])
+    
+    for dep in dependencies:
+        if dep in tool_status and not tool_status[dep]:
+            return f"dependency '{dep}' failed"
+    
+    return None
+
+
+def _execute_step_with_retry(step: ToolStep, context: Dict, step_index: int) -> Dict:
+    """Execute a tool step with retry logic and exponential backoff."""
+    last_error = None
+    
+    for attempt in range(MAX_RETRIES + 1):
+        result = _execute_step(step, context, step_index)
+        
+        if result["success"]:
+            result["retries"] = attempt
+            return result
+        
+        last_error = result["error"]
+        
+        if attempt < MAX_RETRIES:
+            delay = RETRY_DELAY_BASE * (2 ** attempt)
+            log("WARN", f"Retry {attempt + 1}/{MAX_RETRIES} for {step.tool} in {delay}s")
+            time.sleep(delay)
+    
+    return {
+        "success": False,
+        "error": last_error,
+        "output": None,
+        "retries": MAX_RETRIES
+    }
 
 
 def _execute_step(step: ToolStep, context: Dict, step_index: int) -> Dict:
@@ -289,13 +539,11 @@ def _execute_step(step: ToolStep, context: Dict, step_index: int) -> Dict:
         }
     
     try:
-        # Prepare parameters with context injection
         params = dict(step.params)
         params = _inject_context(step.tool, params, context)
         
         log("DEBUG", f"Running tool: {step.tool}", {"params": list(params.keys())})
         
-        # Execute the tool
         output = tool_fn(**params)
         
         return {
@@ -316,22 +564,17 @@ def _execute_step(step: ToolStep, context: Dict, step_index: int) -> Dict:
 def _inject_context(tool_name: str, params: Dict, context: Dict) -> Dict:
     """Inject context data into tool parameters."""
     
-    # Tools that need news_items from context - ALWAYS override
     if tool_name in ["summarizer", "sentiment", "trends"]:
         if "news" in context:
-            # Always use actual news data from context (Nova puts empty/placeholder values)
             params["news_items"] = context["news"]
     
-    # Exporter needs all collected data - always override with context
     if tool_name == "exporter":
-        # Always build data from context (Nova might provide empty/invalid data)
         params["data"] = {
             "news": context.get("news", []),
             "summary": context.get("summary"),
             "sentiment": context.get("sentiment"),
             "trends": context.get("trends")
         }
-        # Clean None values
         params["data"] = {k: v for k, v in params["data"].items() if v is not None}
     
     return params

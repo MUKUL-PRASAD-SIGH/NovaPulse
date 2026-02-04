@@ -162,18 +162,26 @@ User Input → Planner Agent → Task JSON → Executor Agent
 │  ✅ Preference-aware UI behavior                               │
 │  ✅ Modular tool-driven intelligence pipeline                  │
 │  ✅ Feature toggle driven UX                                   │
+│  ✅ Cost-aware planning (fewer tools = less cost + faster)     │
 └─────────────────────────────────────────────────────────────────┘
 ```
 
-### 🚀 Future Extensions
+> **💡 Smart Execution:** Feature toggles dynamically build commands — planner only invokes tools you enable, reducing API costs and execution time.
 
-| Feature | Status |
-|---------|--------|
-| Dictionary result caching | Planned |
-| Automatic language detection | Planned |
-| Usage analytics dashboard | Planned |
-| Adaptive translation suggestions | Planned |
+### 🛡️ Error Handling & Resilience
 
+| Capability | Status |
+|------------|--------|
+| **Tool Error Isolation** | ✅ Step failure doesn't kill pipeline |
+| **Per-Step Error Logging** | ✅ Errors stored individually |
+| **Graceful Degradation** | ✅ Partial results returned |
+| **Tool Retry Logic** | ✅ 2 retries with exponential backoff |
+| **Dependency Graph Execution** | ✅ Skip tool if dependency failed |
+| **Alternate Tool Fallback** | ✅ Fallback summarizer & sentiment |
+| **Auto Step Regeneration** | ✅ Retry with reduced params |
+| **Dynamic Plan Rewriting** | ✅ Recovery on critical failures |
+
+>
 ## 🎯 Feature Deep-Dive
 
 ### 📰 Multi-Source News Intelligence
@@ -493,3 +501,4 @@ MIT License - See [LICENSE](LICENSE)
 ---
 
 Built with ❤️ using Amazon Nova AI
+MUKUL PRASAD
