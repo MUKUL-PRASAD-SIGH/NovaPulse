@@ -1,7 +1,19 @@
 {
   ".\\.codebase_snapshot.json": {
-    "lines": 134,
-    "hash": "2c10a396eaf664a4a7ef069b05a21856"
+    "lines": 146,
+    "hash": "39f56040141d489d756923f5e05d480e"
+  },
+  ".\\mcp_config.json": {
+    "lines": 13,
+    "hash": "c8633f5736f6498e73526e3cd35e9669"
+  },
+  ".\\mcp_server.py": {
+    "lines": 324,
+    "hash": "f5af039ffe36c7f7ddc273e5cac7fdb3"
+  },
+  ".\\test_mcp.py": {
+    "lines": 77,
+    "hash": "6e48c5b886fbcedabb81f984ec21d09e"
   },
   ".\\app\\main.py": {
     "lines": 54,
@@ -45,15 +57,15 @@
   },
   ".\\app\\memory\\logs.json": {
     "lines": 2093,
-    "hash": "9cf74ff6271e51302c1c47c02115d84e"
+    "hash": "2785d92caf8c48803a91a3502ddb4dbe"
   },
   ".\\app\\memory\\plans.json": {
-    "lines": 1497,
-    "hash": "270e7088bfc923053e377997f7126281"
+    "lines": 1588,
+    "hash": "31da0b464b5cdc2d9b2cd2b3a85cb06e"
   },
   ".\\app\\memory\\results.json": {
-    "lines": 6081,
-    "hash": "b89abf7737f1f4b5d886a2c57e046eb9"
+    "lines": 8281,
+    "hash": "2530846268a0e94ff19ba8d2949bedd1"
   },
   ".\\app\\memory\\store.py": {
     "lines": 50,
@@ -61,7 +73,7 @@
   },
   ".\\app\\memory\\trends_history.json": {
     "lines": 1,
-    "hash": "f18b79fc671cce4aa374d31df2a4be37"
+    "hash": "82b9f2b67439778a084199fb23f44958"
   },
   ".\\app\\memory\\__init__.py": {
     "lines": 2,
@@ -108,8 +120,8 @@
     "hash": "eed0d6448ffd21dfd062195529571be6"
   },
   ".\\app\\tools\\trends.py": {
-    "lines": 715,
-    "hash": "d63d138c331549d720af42fd8a6ac65b"
+    "lines": 761,
+    "hash": "7d61482a51e2b5d93c574e918f7eb7bb"
   },
   ".\\app\\tools\\__init__.py": {
     "lines": 4,

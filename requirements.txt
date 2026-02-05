@@ -24,3 +24,6 @@ gunicorn>=21.0.0
 
 # Logging & Monitoring (optional)
 python-json-logger>=2.0.0
+
+# MCP Server
+mcp>=0.9.0

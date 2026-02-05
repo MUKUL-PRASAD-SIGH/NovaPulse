@@ -1,0 +1,13 @@
+{
+    "mcpServers": {
+        "nova-intelligence": {
+            "command": "python",
+            "args": [
+                "c:\\Users\\Mukul Prasad\\Desktop\\PROJECTS\\NovaAI\\mcp_server.py"
+            ],
+            "env": {
+                "PYTHONPATH": "c:\\Users\\Mukul Prasad\\Desktop\\PROJECTS\\NovaAI"
+            }
+        }
+    }
+}

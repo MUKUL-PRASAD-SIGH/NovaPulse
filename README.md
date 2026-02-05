@@ -412,6 +412,53 @@ Navigate to `http://localhost:8000`
 
 ---
 
+## 🔌 MCP Server Integration
+
+**NEW:** NovaAI now supports **Model Context Protocol (MCP)** - connect your intelligence system to AI assistants like Claude!
+
+### What is MCP?
+
+MCP allows AI assistants to use NovaAI as a tool. Instead of using the web interface, you can ask Claude (or other MCP-compatible AIs):
+
+```
+"Use NovaAI to fetch the latest Tesla news and analyze sentiment"
+```
+
+The AI will automatically:
+1. Call NovaAI's intelligence tools
+2. Fetch news from multiple sources
+3. Analyze sentiment using Amazon Nova
+4. Present you with a comprehensive report
+
+### Quick MCP Setup
+
+1. **Install MCP dependency:**
+   ```bash
+   pip install mcp>=0.9.0
+   ```
+
+2. **Test the MCP server:**
+   ```bash
+   python test_mcp.py
+   ```
+
+3. **Configure your AI assistant** (e.g., Claude Desktop):
+   - Use the provided `mcp_config.json`
+   - See [MCP_README.md](MCP_README.md) for detailed instructions
+
+### Available MCP Tools
+
+- `fetch_news` - Multi-source news fetching
+- `analyze_sentiment` - Institutional-grade sentiment analysis
+- `summarize_news` - AI-powered summaries
+- `extract_trends` - Trending topic detection
+- `intelligence_query` - Full pipeline (recommended)
+- `get_history` - Access past queries
+
+📚 **Full MCP Documentation:** See [MCP_README.md](MCP_README.md)
+
+---
+
 ## 🎤 Usage
 
 ### Voice Commands
