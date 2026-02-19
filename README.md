@@ -77,7 +77,7 @@ Most "AI news tools" are glorified API wrappers. Nova is architecturally differe
 |-------|-------------|----------------|
 | 🌐 **Web Scraper** | Full article extraction with og:image, metadata parsing | `httpx` + `BeautifulSoup` |
 | 👤 **Entity Extractor** | NER — people, orgs, locations + relationship mapping | Regex NER + co-occurrence |
-| 🖼️ **Image Analyst** | Article image forensics — EXIF, text extraction, tampering | EXIF + regex + heuristics |
+| 🖼️ **Image Analyst** | AI-powered vision analysis — scene description, object detection, type classification, manipulation forensics | Amazon Nova Vision + PIL + EXIF |
 | 📱 **Social Monitor** | Reddit & Twitter trend tracking with per-platform sentiment | Reddit API + NLP |
 | 📚 **Research Assistant** | arXiv papers, GitHub repos, StackOverflow — academic & dev intel | Multi-API aggregation |
 
@@ -305,7 +305,7 @@ User Input --> Planner Agent --> Task DAG --> Executor Agent
 |                                                                         |
 |  Web Scraper        -->  Full article text + og:image extraction         |
 |  Entity Extractor   -->  NER: people, orgs, locations, relations        |
-|  Image Analyst      -->  EXIF forensics, text detection, tampering      |
+|  Image Analyst      -->  AI vision, type classification, forensics      |
 |  Social Monitor     -->  Reddit threads, sentiment per-post             |
 |  Research Assistant -->  arXiv papers, GitHub repos, SO threads          |
 |                                                                         |
@@ -319,9 +319,52 @@ User Input --> Planner Agent --> Task DAG --> Executor Agent
 |-------|-------|--------|----------|
 | **🌐 Web Scraper** | Article URLs (direct, not redirects) | Title, text, images, metadata | Skipped if URL blocked |
 | **👤 Entity Extractor** | News article list | People, orgs, locations + relationships | Empty entity map |
-| **🖼️ Image Analyst** | Scraper images → og:image fallback | Forensics report per image | Zero images reported |
+| **🖼️ Image Analyst** | Scraper images → og:image fallback | AI description, objects, type, relevance, manipulation flags, EXIF | Zero images reported |
 | **📱 Social Monitor** | Topic query | Reddit posts, scores, sentiment | Empty social section |
 | **📚 Research Assistant** | Topic query | Papers, repos, SO answers | Empty research section |
+
+---
+
+### 🖼️ Image Intelligence — *"See, Don't Just Display"*
+
+> 📷 **OLD:** Basic metadata → *"1200×800 JPEG"*  
+> 🧠 **NEW:** AI Vision intelligence → *"Banner photo (1200×675), mood: neutral, relevance: medium, compression anomaly detected"*
+
+```
++=========================================================================+
+|  IMAGE INTELLIGENCE                                                     |
++=========================================================================+
+|                                                                         |
+|  1. Collect    -->  GNews image URLs + og:image fallback (deduped)      |
+|  2. Validate   -->  Download + PIL check (reject non-image files)       |
+|  3. Classify   -->  Pixel analysis: photo/chart/graphic/screenshot      |
+|  4. Analyze    -->  Nova Vision AI or smart local heuristics            |
+|  5. Forensics  -->  EXIF, compression, borders, editing software        |
+|  6. Aggregate  -->  Cross-image: objects, types, descriptions           |
+|                                                                         |
++-------------------------------------------------------------------------+
+|  Dedup: URL normalization prevents duplicate analysis                   |
+|  Filter: SVGs, favicons, tracking pixels, corrupt files auto-skipped   |
+|  Mode: Nova AI (Bedrock) or Local Analysis (zero API cost)              |
++=========================================================================+
+```
+
+**🔧 Under the Hood:**
+
+| Feature | What It Does |
+|---------|--------------|
+| **URL Deduplication** | Normalizes URLs (strips query params) and deduplicates — prevents the same image from being analyzed twice |
+| **Image Validation** | Downloads image, checks PIL can open it and extract dimensions — rejects SVGs, corrupt files, and non-image URLs |
+| **Image Type Classifier** | Pixel analysis: color complexity + edge density + flat region detection → classifies as photo/chart/graphic/screenshot |
+| **Amazon Nova Vision** | Sends image as base64 to Bedrock → AI describes scene, detects objects, classifies mood, scores article relevance |
+| **Smart Local Fallback** | When `USE_MOCK_PLANNER=true`: brightness-based mood, aspect-based scene type (banner/portrait/general), dominant colors |
+| **Manipulation Forensics** | EXIF software flags (Photoshop/GIMP), compression anomalies (bytes/pixel), uniform border detection, unusual aspect ratios |
+| **EXIF Extraction** | Camera make/model, orientation, software used, creation date — shown per image card |
+| **Dominant Colors** | Top 5 colors extracted via frequency analysis with hover-zoom swatches |
+| **Junk Filtering** | Auto-skips favicons, social icons, tracking pixels, 1×1 GIFs, SVG logos |
+| **Aggregate Insights** | Summary header: total objects detected across images, type breakdown (photo: 5 · chart: 2), AI descriptions |
+
+> 💡 **Two Modes:** `USE_MOCK_PLANNER=false` → Real Nova Vision AI via Bedrock | `USE_MOCK_PLANNER=true` → Smart local pixel analysis
 
 ---
 

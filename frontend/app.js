@@ -1002,34 +1002,112 @@ function displayImages(images) {
             : `No article images were found to analyze.`;
         output.innerHTML = `
             <div class="mas-explanation">
-                <p>🔍 <strong>Image Forensics & Analysis</strong> — Analyzes article images for metadata (dimensions, format), dominant colors, embedded text (OCR), and potential manipulation. ${noImgMsg}</p>
+                <p>🔍 <strong>Image Intelligence</strong> — AI-powered image analysis: scene description, object detection, type classification, manipulation forensics, and article relevance scoring. ${noImgMsg}</p>
             </div>`;
         panel.classList.remove('hidden');
         return;
     }
 
-    const html = imageList.map(img => `
-        <div class="image-card">
-            <img src="${img.url}" alt="Article image" class="image-preview" loading="lazy" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22200%22 height=%22150%22%3E%3Crect fill=%22%232d3346%22 width=%22200%22 height=%22150%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 fill=%22%238e95a5%22 text-anchor=%22middle%22 dy=%22.3em%22%3EImage%3C/text%3E%3C/svg%3E'">
-            <div class="image-meta">
-                <div class="image-status ${img.manipulation_score?.risk_level === 'low' ? 'safe' : 'warning'}">
-                    ${img.manipulation_score?.risk_level === 'low' ? '✓ Authentic' : '⚠ Check Required'}
-                </div>
-                <div class="image-details">
-                    ${img.metadata?.width}×${img.metadata?.height} • ${img.metadata?.format || 'Unknown'}
-                </div>
-                ${img.vision_analysis?.dominant_colors ? `
-                    <div class="image-colors">
-                        ${img.vision_analysis.dominant_colors.slice(0, 5).map(color => `
-                            <div class="color-swatch" style="background-color: ${color}"></div>
-                        `).join('')}
-                    </div>
-                ` : ''}
-            </div>
-        </div>
-    `).join('');
+    // Aggregate insights header
+    const objectsDetected = images.objects_detected || [];
+    const imageTypes = images.image_types || {};
+    const descriptions = images.descriptions || [];
 
-    output.innerHTML = html;
+    let summaryHtml = `<div class="mas-explanation" style="margin-bottom: 14px;">
+        <p>🧠 <strong>Image Intelligence</strong> — Analyzed <strong>${images.successful || imageList.length}</strong> image(s) using AI vision analysis.</p>`;
+
+    if (objectsDetected.length > 0) {
+        summaryHtml += `<p style="margin-top:6px;">🏷️ <strong>Objects detected:</strong> ${objectsDetected.slice(0, 10).map(o => `<span style="background:rgba(99,102,241,0.15);padding:2px 8px;border-radius:10px;font-size:0.85em;margin:2px;display:inline-block;">${o}</span>`).join(' ')}</p>`;
+    }
+
+    if (Object.keys(imageTypes).length > 0) {
+        const typeLabels = Object.entries(imageTypes).map(([t, c]) => `${t}: ${c}`).join(' · ');
+        summaryHtml += `<p style="margin-top:4px;">📊 <strong>Types:</strong> ${typeLabels}</p>`;
+    }
+
+    summaryHtml += `</div>`;
+
+    const cardsHtml = imageList.map(img => {
+        const va = img.vision_analysis || {};
+        const it = img.image_type || {};
+        const ms = img.manipulation_score || {};
+        const meta = img.metadata || {};
+        const exif = meta.exif || {};
+
+        // AI description
+        const description = va.description || '';
+        const newsValue = va.news_value || '';
+        const mood = va.mood || '';
+        const relevance = va.relevance || '';
+        const sceneType = va.scene_type || '';
+        const objects = va.objects || [];
+        const source = va.source === 'nova_vision' ? '🧠 Nova AI' : '📐 Local Analysis';
+
+        // Image type badge
+        const typeBadge = it.type ? `<span class="image-type-badge image-type-${it.type}">${it.type.toUpperCase()}</span>` : '';
+
+        // Relevance badge
+        const relevanceColors = { high: '#22c55e', medium: '#f59e0b', low: '#ef4444' };
+        const relevanceBadge = relevance ? `<span style="background:${relevanceColors[relevance] || '#666'};color:#fff;padding:2px 8px;border-radius:10px;font-size:0.75em;font-weight:600;">Relevance: ${relevance}</span>` : '';
+
+        // Risk badge
+        const riskColors = { low: '#22c55e', medium: '#f59e0b', high: '#ef4444' };
+        const riskLevel = ms.risk_level || 'unknown';
+        const riskLabel = riskLevel === 'low' ? '✓ Authentic' : riskLevel === 'medium' ? '⚠ Review' : riskLevel === 'high' ? '⛔ Suspicious' : '? Unknown';
+
+        // Manipulation flags
+        const flags = ms.flags || [];
+        const flagsHtml = flags.length > 0 ? `<div style="margin-top:4px;">${flags.map(f => `<span style="color:#f59e0b;font-size:0.78em;">⚠ ${f}</span>`).join('<br>')}</div>` : '';
+
+        // Objects as tags
+        const objectTags = objects.length > 0 ? `
+            <div style="margin-top:6px;">
+                ${objects.slice(0, 6).map(o => `<span style="background:rgba(99,102,241,0.12);color:#a5b4fc;padding:2px 7px;border-radius:8px;font-size:0.78em;margin:2px;display:inline-block;">${o}</span>`).join('')}
+            </div>` : '';
+
+        // Dominant colors
+        const colors = va.dominant_colors || [];
+        const colorsHtml = colors.length > 0 ? `
+            <div class="image-colors" style="margin-top:6px;">
+                ${colors.slice(0, 5).map(color => `
+                    <div class="color-swatch" style="background-color: ${color}" title="${color}"></div>
+                `).join('')}
+            </div>` : '';
+
+        // EXIF info
+        const exifHtml = Object.keys(exif).length > 0 ? `
+            <div style="margin-top:5px;font-size:0.78em;color:#8e95a5;">
+                📷 ${exif.camera_make ? exif.camera_make + ' ' : ''}${exif.camera_model || ''}${exif.software ? ' · ' + exif.software : ''}${exif.date_time ? ' · ' + exif.date_time : ''}
+            </div>` : '';
+
+        return `
+        <div class="image-card" style="display:flex;gap:16px;padding:14px;margin-bottom:12px;background:rgba(30,35,50,0.6);border-radius:12px;border:1px solid rgba(99,102,241,0.15);">
+            <div style="flex-shrink:0;position:relative;">
+                <img src="${img.url}" alt="Article image" class="image-preview" loading="lazy" style="width:220px;height:160px;object-fit:cover;border-radius:8px;" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22220%22 height=%22160%22%3E%3Crect fill=%22%232d3346%22 width=%22220%22 height=%22160%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 fill=%22%238e95a5%22 text-anchor=%22middle%22 dy=%22.3em%22%3EImage%3C/text%3E%3C/svg%3E'">
+                <div style="position:absolute;top:6px;left:6px;">${typeBadge}</div>
+            </div>
+            <div style="flex:1;min-width:0;">
+                <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:6px;">
+                    <div class="image-status ${riskLevel === 'low' ? 'safe' : 'warning'}" style="font-size:0.85em;padding:2px 10px;border-radius:10px;">
+                        ${riskLabel}
+                    </div>
+                    ${relevanceBadge}
+                    <span style="color:#64748b;font-size:0.75em;margin-left:auto;">${source}</span>
+                </div>
+                ${description ? `<p style="margin:4px 0;color:#e2e8f0;font-size:0.9em;line-height:1.4;">${description}</p>` : ''}
+                ${newsValue && newsValue !== 'Visual context for the news story' ? `<p style="margin:2px 0;color:#94a3b8;font-size:0.82em;font-style:italic;">📰 ${newsValue}</p>` : ''}
+                <div style="margin-top:4px;color:#8e95a5;font-size:0.82em;">
+                    ${meta.width || '?'}×${meta.height || '?'} · ${meta.format || 'Unknown'} · ${meta.file_size_kb || '?'} KB${mood ? ` · Mood: ${mood}` : ''}${sceneType ? ` · ${sceneType}` : ''}
+                </div>
+                ${objectTags}
+                ${colorsHtml}
+                ${flagsHtml}
+                ${exifHtml}
+            </div>
+        </div>`;
+    }).join('');
+
+    output.innerHTML = summaryHtml + cardsHtml;
     panel.classList.remove('hidden');
 }
 

@@ -450,10 +450,15 @@ def _inject_context(tool_name: str, params: Dict, context: Dict) -> Dict:
                 for item in direct_articles[:5]:
                     link = item.get("link", "")
                     if link:
+                        # Carry over any existing image URL (e.g. from GNews)
+                        img_list = []
+                        if item.get("image"):
+                            img_list.append(item["image"])
                         enriched.append({
                             "title": item.get("title", ""),
                             "link": link,
-                            "images": []  # No direct images — analyzer will extract og:image
+                            "image": item.get("image", ""),
+                            "images": img_list
                         })
                 params["articles"] = enriched
         # Remove wrong param names

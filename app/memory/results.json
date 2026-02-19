@@ -8950,5 +8950,1591 @@
       "regenerated": [],
       "success": true
     }
+  },
+  {
+    "timestamp": "2026-02-20T02:47:09.747837",
+    "result": {
+      "intent": "Get india news",
+      "domain": "india",
+      "tools_executed": [
+        {
+          "tool": "news_fetcher",
+          "success": true,
+          "retries": 0,
+          "used_fallback": false,
+          "regenerated": false
+        },
+        {
+          "tool": "image_analyzer",
+          "success": true,
+          "retries": 0,
+          "used_fallback": false,
+          "regenerated": false
+        },
+        {
+          "tool": "exporter",
+          "success": true,
+          "retries": 0,
+          "used_fallback": false,
+          "regenerated": false
+        }
+      ],
+      "data": {
+        "news": [
+          {
+            "title": "Opinion | An Ancient Power Is Reasserting Itself - The New York Times",
+            "link": "https://news.google.com/rss/articles/CBMihwFBVV95cUxPVkhRT0VMNzNPdWF3TTUxaHdzYWsxQkpreDJ6M21ZdU5wMUtnZ3ZIZURIUl80RWp1WHVxRjJVRjVPZk9rSXZxdkNLc3ZlY2prUDd6TTdLNVZ6dzFSR21tQmE0cHhsb0FoZGxLWEoyVEVhWXJrTFBseHh1RXJvaEdIWU9RZ0h3X28?oc=5",
+            "source": "rss",
+            "published": "Thu, 19 Feb 2026 10:05:25 GMT"
+          },
+          {
+            "title": "Why India joining this U.S.-led tech alliance could help supply chains - CNBC",
+            "link": "https://news.google.com/rss/articles/CBMigwFBVV95cUxNOW8yaFF6YnFmUmtqbTdpeEVjUEpNMmlYdUZmVGxwVGREMVpDa2dGVDdsRVNPalE2aC1qeVhteHFyS1ZzaUtkR2Eyb2t6TV9PU0hTdXBIbXBxOHdZZVFCN3NxSXo5dHJpVkkyOGF5VVlFSWxSMlZ3MjVyLXVjb2ZIeTRMMNIBiAFBVV95cUxNeXJMT1hQUXgydHpLWkFMc3Ztd29WVFpPSFdmSmpGV3BMZEFVME5SSFY1Q19pYW9COFBMVXNvR1VZSkdlMkhkR3VvVU5XenVnRE9HTGxaUTdKT0hIamw0dUUzOVBXYmliVW4yeThyV3Bxd3dGMTM5bVV6NzhUcWFkVTZmWC1RZXVG?oc=5",
+            "source": "rss",
+            "published": "Wed, 18 Feb 2026 23:00:01 GMT"
+          },
+          {
+            "title": "Bill Gates has pulled out of India\u2019s AI summit amid questions over his ties to Jeffrey Epstein - Fortune",
+            "link": "https://news.google.com/rss/articles/CBMifEFVX3lxTE5wRmdxNjBFUERhZ0lIRkp4d0FjaThiamprM3V4MWJRNWpoMDJmNEo0ZUhXRi1jLVFfQTQ4UF9QbVlieGJ0R29iMFd6aEc4cm9mN0xFUDlBdjBYVzIta3ZuYkQtc0t0WE9XaEJvNkxLQWtJS2pLbVl4N0RPV0c?oc=5",
+            "source": "rss",
+            "published": "Thu, 19 Feb 2026 08:51:00 GMT"
+          },
+          {
+            "title": "'India To Be OpenAI's Biggest Market Soon': Sam Altman At AI Impact Summit - NDTV",
+            "link": "https://news.google.com/rss/articles/CBMinAFBVV95cUxNS2NsbW5ob1R0WTZ1UGJxc2lJa1RBUUk2M1gzTWo5VkZ6RElGaTE2dHMzNTZ4b25sOGttR1N6SWhxRlR0VVphdGNVOVBsd2xOZW1jN01Hdkd1OVo0U1RSZmFoSEhmUTFtLUx1eEM3RmxRcmlFTnZfMFNNMjdrYXJJSl9TY2ZHMFcxNHMtNEl0SE1HYUd4V04wdFd1YVnSAaQBQVVfeXFMTWtDZmJoUm5LeGxyVU5BZFlQR2VWUkdlTGZacVJoTHRTV2lHMG5DV0tMMmQ3bXdTTF85S1FBMWoxWlNpTDljSlFNNTkwR2dmejZGNnNoNDd1WXFhT1FwbHFYRHNCOGhFbXVBT052NndXQkdrQno5M3N6OFBxekVxOEo3aEpCdWlIZUdDVTRlTWNKYk81MFdkblljNmUwM3JCVC11azY?oc=5",
+            "source": "rss",
+            "published": "Thu, 19 Feb 2026 19:11:33 GMT"
+          },
+          {
+            "title": "Bill Gates cancels keynote speech in India amid questions over Epstein ties - The Guardian",
+            "link": "https://news.google.com/rss/articles/CBMiugFBVV95cUxNSEc3MkhnQjZQa2FrQTVSVjRvNEREcTFPckdyODRObWZLMV90UkNUZ0tCeXB3YmJFeWZDeG1SQ3BKdENwTnFBMy1vXzhlS0tIUDlOZUo0b2VWVWVYZ2RQZzkxTkdIc2x4a2ttcGlKZGxIY2c3Q1dpWlltZ1hoRl9LRUMyQzQ1SFNVOXhKRGZOMTJWU09FQjM0cDFhNElKQ3BkT2x4Uk5ZX3pJc0UtTjJHMEo4c3Bmc1R6WXc?oc=5",
+            "source": "rss",
+            "published": "Thu, 19 Feb 2026 14:10:00 GMT"
+          },
+          {
+            "title": "AI advantage in the next few years, cannot just be the model: Shantanu Narayen",
+            "link": "https://www.hindustantimes.com/business/ai-advantage-in-the-next-few-years-cannot-just-be-the-model-shantanu-narayen-101771492626366.html",
+            "source": "gnews",
+            "published": "2026-02-19T09:17:05Z",
+            "image": "https://www.hindustantimes.com/ht-img/img/2026/02/19/550x309/Shantanu-Narayen--Chair-and-CEO-said-Adobe-is-expa_1771492620518.jpg"
+          },
+          {
+            "title": "Meta AI already helping solve healthcare, farming and accessibility gaps in India, says Chief AI Officer",
+            "link": "https://economictimes.indiatimes.com/ai/ai-insights/meta-ai-already-helping-solve-healthcare-farming-and-accessibility-gaps-in-india-says-chief-ai-officer/articleshow/128549747.cms",
+            "source": "gnews",
+            "published": "2026-02-19T09:17:00Z",
+            "image": "https://img.etimg.com/thumb/msid-128549769,width-1200,height-630,imgsize-51098,overlay-economictimes/articleshow.jpg"
+          },
+          {
+            "title": "T20 World Cup Super 8 schedule 2026: Check India's match dates. Will Ind play against Pak?",
+            "link": "https://economictimes.indiatimes.com/news/new-updates/t20-world-cup-super-8-schedule-2026-check-indias-match-dates-will-ind-play-against-pak/articleshow/128548651.cms",
+            "source": "gnews",
+            "published": "2026-02-19T09:17:00Z",
+            "image": "https://img.etimg.com/thumb/msid-128549772,width-1200,height-630,imgsize-87734,overlay-economictimes/articleshow.jpg"
+          },
+          {
+            "title": "BAFTA 2026: When And Where To Watch Live In India",
+            "link": "https://www.outlookindia.com/art-entertainment/bafta-awards-2026-when-and-where-to-watch-the-award-show-india",
+            "source": "gnews",
+            "published": "2026-02-19T09:16:38Z",
+            "image": "https://media.assettype.com/outlookindia/2026-01-28/ejhc1a1h/bafta.jpg?w=1200&ar=40%3A21&auto=format%2Ccompress&ogImage=true&mode=crop&enlarge=true&overlay=false&overlay_position=bottom&overlay_width=100"
+          },
+          {
+            "title": "India among Microsoft's largest AI investment destinations: Brad Smith",
+            "link": "https://theprint.in/economy/india-among-microsofts-largest-ai-investment-destinations-brad-smith/2858570/",
+            "source": "gnews",
+            "published": "2026-02-19T09:16:13Z",
+            "image": "https://staticprintenglish.theprint.in/wp-content/uploads/2023/06/theprint_default_image_new.jpg"
+          },
+          {
+            "title": "breaking news, video and headlines ...",
+            "link": "https://www.cnn.com/world/india",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "CNBC's Inside India newsletter: India is throwing its weight behind AI",
+            "link": "https://www.cnbc.com/2026/02/19/cnbcs-inside-india-newsletter-india-is-throwing-its-weight-behind-ai-but-is-there-substance-behind-the-headlines.html",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "Asia news - breaking news, videos, headlines and opinion",
+            "link": "https://www.cnn.com/world/asia",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "Breaking News, World News, US News, Sports ...",
+            "link": "https://www.bbc.com/",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "Sam Altman and Dario Amodei avoid holding hands at India AI summit",
+            "link": "https://www.cnbc.com/2026/02/19/openai-sam-altman-anthropic-dario-amodei-india-ai-summit.html",
+            "source": "tavily",
+            "published": ""
+          }
+        ],
+        "images": {
+          "total_images": 0,
+          "successful": 0,
+          "failed": 0,
+          "manipulation_risks": 0,
+          "image_types": {},
+          "objects_detected": [],
+          "descriptions": [],
+          "detailed_results": []
+        },
+        "exported_file": "output/india_report_20260220_024709.json"
+      },
+      "errors": [],
+      "skipped": [],
+      "fallbacks_used": [],
+      "regenerated": [],
+      "success": true
+    }
+  },
+  {
+    "timestamp": "2026-02-20T02:48:59.057042",
+    "result": {
+      "intent": "Get india news",
+      "domain": "india",
+      "tools_executed": [
+        {
+          "tool": "news_fetcher",
+          "success": true,
+          "retries": 0,
+          "used_fallback": false,
+          "regenerated": false
+        },
+        {
+          "tool": "image_analyzer",
+          "success": true,
+          "retries": 0,
+          "used_fallback": false,
+          "regenerated": false
+        },
+        {
+          "tool": "exporter",
+          "success": true,
+          "retries": 0,
+          "used_fallback": false,
+          "regenerated": false
+        }
+      ],
+      "data": {
+        "news": [
+          {
+            "title": "Opinion | An Ancient Power Is Reasserting Itself - The New York Times",
+            "link": "https://news.google.com/rss/articles/CBMihwFBVV95cUxPVkhRT0VMNzNPdWF3TTUxaHdzYWsxQkpreDJ6M21ZdU5wMUtnZ3ZIZURIUl80RWp1WHVxRjJVRjVPZk9rSXZxdkNLc3ZlY2prUDd6TTdLNVZ6dzFSR21tQmE0cHhsb0FoZGxLWEoyVEVhWXJrTFBseHh1RXJvaEdIWU9RZ0h3X28?oc=5",
+            "source": "rss",
+            "published": "Thu, 19 Feb 2026 10:05:25 GMT"
+          },
+          {
+            "title": "Why India joining this U.S.-led tech alliance could help supply chains - CNBC",
+            "link": "https://news.google.com/rss/articles/CBMigwFBVV95cUxNOW8yaFF6YnFmUmtqbTdpeEVjUEpNMmlYdUZmVGxwVGREMVpDa2dGVDdsRVNPalE2aC1qeVhteHFyS1ZzaUtkR2Eyb2t6TV9PU0hTdXBIbXBxOHdZZVFCN3NxSXo5dHJpVkkyOGF5VVlFSWxSMlZ3MjVyLXVjb2ZIeTRMMNIBiAFBVV95cUxNeXJMT1hQUXgydHpLWkFMc3Ztd29WVFpPSFdmSmpGV3BMZEFVME5SSFY1Q19pYW9COFBMVXNvR1VZSkdlMkhkR3VvVU5XenVnRE9HTGxaUTdKT0hIamw0dUUzOVBXYmliVW4yeThyV3Bxd3dGMTM5bVV6NzhUcWFkVTZmWC1RZXVG?oc=5",
+            "source": "rss",
+            "published": "Wed, 18 Feb 2026 23:00:01 GMT"
+          },
+          {
+            "title": "Bill Gates has pulled out of India\u2019s AI summit amid questions over his ties to Jeffrey Epstein - Fortune",
+            "link": "https://news.google.com/rss/articles/CBMifEFVX3lxTE5wRmdxNjBFUERhZ0lIRkp4d0FjaThiamprM3V4MWJRNWpoMDJmNEo0ZUhXRi1jLVFfQTQ4UF9QbVlieGJ0R29iMFd6aEc4cm9mN0xFUDlBdjBYVzIta3ZuYkQtc0t0WE9XaEJvNkxLQWtJS2pLbVl4N0RPV0c?oc=5",
+            "source": "rss",
+            "published": "Thu, 19 Feb 2026 08:51:00 GMT"
+          },
+          {
+            "title": "'India To Be OpenAI's Biggest Market Soon': Sam Altman At AI Impact Summit - NDTV",
+            "link": "https://news.google.com/rss/articles/CBMinAFBVV95cUxNS2NsbW5ob1R0WTZ1UGJxc2lJa1RBUUk2M1gzTWo5VkZ6RElGaTE2dHMzNTZ4b25sOGttR1N6SWhxRlR0VVphdGNVOVBsd2xOZW1jN01Hdkd1OVo0U1RSZmFoSEhmUTFtLUx1eEM3RmxRcmlFTnZfMFNNMjdrYXJJSl9TY2ZHMFcxNHMtNEl0SE1HYUd4V04wdFd1YVnSAaQBQVVfeXFMTWtDZmJoUm5LeGxyVU5BZFlQR2VWUkdlTGZacVJoTHRTV2lHMG5DV0tMMmQ3bXdTTF85S1FBMWoxWlNpTDljSlFNNTkwR2dmejZGNnNoNDd1WXFhT1FwbHFYRHNCOGhFbXVBT052NndXQkdrQno5M3N6OFBxekVxOEo3aEpCdWlIZUdDVTRlTWNKYk81MFdkblljNmUwM3JCVC11azY?oc=5",
+            "source": "rss",
+            "published": "Thu, 19 Feb 2026 19:11:33 GMT"
+          },
+          {
+            "title": "Bill Gates cancels keynote speech in India amid questions over Epstein ties - The Guardian",
+            "link": "https://news.google.com/rss/articles/CBMiugFBVV95cUxNSEc3MkhnQjZQa2FrQTVSVjRvNEREcTFPckdyODRObWZLMV90UkNUZ0tCeXB3YmJFeWZDeG1SQ3BKdENwTnFBMy1vXzhlS0tIUDlOZUo0b2VWVWVYZ2RQZzkxTkdIc2x4a2ttcGlKZGxIY2c3Q1dpWlltZ1hoRl9LRUMyQzQ1SFNVOXhKRGZOMTJWU09FQjM0cDFhNElKQ3BkT2x4Uk5ZX3pJc0UtTjJHMEo4c3Bmc1R6WXc?oc=5",
+            "source": "rss",
+            "published": "Thu, 19 Feb 2026 14:10:00 GMT"
+          },
+          {
+            "title": "Layoffs, anger and a false narrative: Why an Amazon India Office video became a scapegoat for US job losses | Explained",
+            "link": "https://www.moneycontrol.com/world/layoffs-anger-and-a-false-narrative-why-an-amazon-india-office-video-became-a-scapegoat-for-us-job-losses-explained-article-13835774.html",
+            "source": "gnews",
+            "published": "2026-02-19T09:18:54Z",
+            "image": "https://images.moneycontrol.com/static-mcnews/2026/02/20260219091637_amazon-new.jpg"
+          },
+          {
+            "title": "\"I am still not happy\u2026\" - India batting coach on Tilak Varma's struggles in T20 World Cup 2026",
+            "link": "https://cricketaddictor.com/cricket-news/i-am-still-not-happy-india-batting-coach-on-tilak-varmas-struggles-in-t20-world-cup-2026-399495/",
+            "source": "gnews",
+            "published": "2026-02-19T09:17:51Z",
+            "image": "https://cricketaddictor.com/images/posts/2026/Tilak-Varma.jpg?q=80"
+          },
+          {
+            "title": "Blue Blends (India) Limited Announces Quarterly Results for Q1, Q2, and Q3FY25",
+            "link": "https://scanx.trade/stock-market-news/earnings/blue-blends-india-limited-announces-quarterly-results-for-q1-q2-and-q3fy25/33038268",
+            "source": "gnews",
+            "published": "2026-02-19T09:17:48Z",
+            "image": "http://news-images.dhan.co/blue-blends-india-limited-announces-quarterly-results-for-q1-q2-and-q3fy25.jpg"
+          },
+          {
+            "title": "PM Modi views Sarvam AI demo on HMD feature phones at India AI Impact Summit 2026",
+            "link": "https://www.lokmattimes.com/technology/pm-modi-views-sarvam-ai-demo-on-hmd-feature-phones-at-india-ai-impact-summit-2026-1/",
+            "source": "gnews",
+            "published": "2026-02-19T09:17:31Z",
+            "image": "https://d3pc1xvrcw35tl.cloudfront.net/ln/feedImages/1200x900/202602193679377_202602.jpg"
+          },
+          {
+            "title": "India news - breaking news, video and headlines and opinion",
+            "link": "https://www.cnn.com/world/india",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "CNBC's Inside India newsletter: India is throwing its weight behind AI",
+            "link": "https://www.cnbc.com/2026/02/19/cnbcs-inside-india-newsletter-india-is-throwing-its-weight-behind-ai-but-is-there-substance-behind-the-headlines.html",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "Breaking News, World News, US News, Sports ...",
+            "link": "https://www.bbc.com/",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "India to make Rafale jets with France in boost to defence ties ...",
+            "link": "https://www.reuters.com/world/india/india-make-rafale-jets-with-france-boost-defence-ties-macron-says-2026-02-19/",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "Sam Altman and Dario Amodei avoid holding hands at India AI summit",
+            "link": "https://www.cnbc.com/2026/02/19/openai-sam-altman-anthropic-dario-amodei-india-ai-summit.html",
+            "source": "tavily",
+            "published": ""
+          }
+        ],
+        "images": {
+          "total_images": 0,
+          "successful": 0,
+          "failed": 0,
+          "manipulation_risks": 0,
+          "image_types": {},
+          "objects_detected": [],
+          "descriptions": [],
+          "detailed_results": []
+        },
+        "exported_file": "output/india_report_20260220_024859.json"
+      },
+      "errors": [],
+      "skipped": [],
+      "fallbacks_used": [],
+      "regenerated": [],
+      "success": true
+    }
+  },
+  {
+    "timestamp": "2026-02-20T02:49:23.310188",
+    "result": {
+      "intent": "Get india news",
+      "domain": "india",
+      "tools_executed": [
+        {
+          "tool": "news_fetcher",
+          "success": true,
+          "retries": 0,
+          "used_fallback": false,
+          "regenerated": false
+        },
+        {
+          "tool": "image_analyzer",
+          "success": true,
+          "retries": 0,
+          "used_fallback": false,
+          "regenerated": false
+        },
+        {
+          "tool": "exporter",
+          "success": true,
+          "retries": 0,
+          "used_fallback": false,
+          "regenerated": false
+        }
+      ],
+      "data": {
+        "news": [
+          {
+            "title": "Opinion | An Ancient Power Is Reasserting Itself - The New York Times",
+            "link": "https://news.google.com/rss/articles/CBMihwFBVV95cUxPVkhRT0VMNzNPdWF3TTUxaHdzYWsxQkpreDJ6M21ZdU5wMUtnZ3ZIZURIUl80RWp1WHVxRjJVRjVPZk9rSXZxdkNLc3ZlY2prUDd6TTdLNVZ6dzFSR21tQmE0cHhsb0FoZGxLWEoyVEVhWXJrTFBseHh1RXJvaEdIWU9RZ0h3X28?oc=5",
+            "source": "rss",
+            "published": "Thu, 19 Feb 2026 10:05:25 GMT"
+          },
+          {
+            "title": "Why India joining this U.S.-led tech alliance could help supply chains - CNBC",
+            "link": "https://news.google.com/rss/articles/CBMigwFBVV95cUxNOW8yaFF6YnFmUmtqbTdpeEVjUEpNMmlYdUZmVGxwVGREMVpDa2dGVDdsRVNPalE2aC1qeVhteHFyS1ZzaUtkR2Eyb2t6TV9PU0hTdXBIbXBxOHdZZVFCN3NxSXo5dHJpVkkyOGF5VVlFSWxSMlZ3MjVyLXVjb2ZIeTRMMNIBiAFBVV95cUxNeXJMT1hQUXgydHpLWkFMc3Ztd29WVFpPSFdmSmpGV3BMZEFVME5SSFY1Q19pYW9COFBMVXNvR1VZSkdlMkhkR3VvVU5XenVnRE9HTGxaUTdKT0hIamw0dUUzOVBXYmliVW4yeThyV3Bxd3dGMTM5bVV6NzhUcWFkVTZmWC1RZXVG?oc=5",
+            "source": "rss",
+            "published": "Wed, 18 Feb 2026 23:00:01 GMT"
+          },
+          {
+            "title": "Bill Gates has pulled out of India\u2019s AI summit amid questions over his ties to Jeffrey Epstein - Fortune",
+            "link": "https://news.google.com/rss/articles/CBMifEFVX3lxTE5wRmdxNjBFUERhZ0lIRkp4d0FjaThiamprM3V4MWJRNWpoMDJmNEo0ZUhXRi1jLVFfQTQ4UF9QbVlieGJ0R29iMFd6aEc4cm9mN0xFUDlBdjBYVzIta3ZuYkQtc0t0WE9XaEJvNkxLQWtJS2pLbVl4N0RPV0c?oc=5",
+            "source": "rss",
+            "published": "Thu, 19 Feb 2026 08:51:00 GMT"
+          },
+          {
+            "title": "'India To Be OpenAI's Biggest Market Soon': Sam Altman At AI Impact Summit - NDTV",
+            "link": "https://news.google.com/rss/articles/CBMinAFBVV95cUxNS2NsbW5ob1R0WTZ1UGJxc2lJa1RBUUk2M1gzTWo5VkZ6RElGaTE2dHMzNTZ4b25sOGttR1N6SWhxRlR0VVphdGNVOVBsd2xOZW1jN01Hdkd1OVo0U1RSZmFoSEhmUTFtLUx1eEM3RmxRcmlFTnZfMFNNMjdrYXJJSl9TY2ZHMFcxNHMtNEl0SE1HYUd4V04wdFd1YVnSAaQBQVVfeXFMTWtDZmJoUm5LeGxyVU5BZFlQR2VWUkdlTGZacVJoTHRTV2lHMG5DV0tMMmQ3bXdTTF85S1FBMWoxWlNpTDljSlFNNTkwR2dmejZGNnNoNDd1WXFhT1FwbHFYRHNCOGhFbXVBT052NndXQkdrQno5M3N6OFBxekVxOEo3aEpCdWlIZUdDVTRlTWNKYk81MFdkblljNmUwM3JCVC11azY?oc=5",
+            "source": "rss",
+            "published": "Thu, 19 Feb 2026 19:11:33 GMT"
+          },
+          {
+            "title": "Bill Gates cancels keynote speech in India amid questions over Epstein ties - The Guardian",
+            "link": "https://news.google.com/rss/articles/CBMiugFBVV95cUxNSEc3MkhnQjZQa2FrQTVSVjRvNEREcTFPckdyODRObWZLMV90UkNUZ0tCeXB3YmJFeWZDeG1SQ3BKdENwTnFBMy1vXzhlS0tIUDlOZUo0b2VWVWVYZ2RQZzkxTkdIc2x4a2ttcGlKZGxIY2c3Q1dpWlltZ1hoRl9LRUMyQzQ1SFNVOXhKRGZOMTJWU09FQjM0cDFhNElKQ3BkT2x4Uk5ZX3pJc0UtTjJHMEo4c3Bmc1R6WXc?oc=5",
+            "source": "rss",
+            "published": "Thu, 19 Feb 2026 14:10:00 GMT"
+          },
+          {
+            "title": "Shodh AI Launches India\u2019s First Generative AI Model for Material Science in Collaboration with NVIDIA",
+            "link": "https://www.tribuneindia.com/news/business/shodh-ai-launches-indias-first-generative-ai-model-for-material-science-in-collaboration-with-nvidia-2-2/",
+            "source": "gnews",
+            "published": "2026-02-19T09:18:56Z",
+            "image": "https://www.tribuneindia.com/sortd-service/imaginary/v22-01/jpg/large/high?url=dGhldHJpYnVuZS1zb3J0ZC1wcm8tcHJvZC1zb3J0ZC9tZWRpYWI2NmE0MDIwLTBkNzQtMTFmMS1hN2NkLWExNzYyOTNmNDNjZS5qcGc="
+          },
+          {
+            "title": "Layoffs, anger and a false narrative: Why an Amazon India Office video became a scapegoat for US job losses | Explained",
+            "link": "https://www.moneycontrol.com/world/layoffs-anger-and-a-false-narrative-why-an-amazon-india-office-video-became-a-scapegoat-for-us-job-losses-explained-article-13835774.html",
+            "source": "gnews",
+            "published": "2026-02-19T09:18:54Z",
+            "image": "https://images.moneycontrol.com/static-mcnews/2026/02/20260219091637_amazon-new.jpg"
+          },
+          {
+            "title": "\"I am still not happy\u2026\" - India batting coach on Tilak Varma's struggles in T20 World Cup 2026",
+            "link": "https://cricketaddictor.com/cricket-news/i-am-still-not-happy-india-batting-coach-on-tilak-varmas-struggles-in-t20-world-cup-2026-399495/",
+            "source": "gnews",
+            "published": "2026-02-19T09:17:51Z",
+            "image": "https://cricketaddictor.com/images/posts/2026/Tilak-Varma.jpg?q=80"
+          },
+          {
+            "title": "Blue Blends (India) Limited Announces Quarterly Results for Q1, Q2, and Q3FY25",
+            "link": "https://scanx.trade/stock-market-news/earnings/blue-blends-india-limited-announces-quarterly-results-for-q1-q2-and-q3fy25/33038268",
+            "source": "gnews",
+            "published": "2026-02-19T09:17:48Z",
+            "image": "http://news-images.dhan.co/blue-blends-india-limited-announces-quarterly-results-for-q1-q2-and-q3fy25.jpg"
+          },
+          {
+            "title": "PM Modi views Sarvam AI demo on HMD feature phones at India AI Impact Summit 2026",
+            "link": "https://www.lokmattimes.com/technology/pm-modi-views-sarvam-ai-demo-on-hmd-feature-phones-at-india-ai-impact-summit-2026-1/",
+            "source": "gnews",
+            "published": "2026-02-19T09:17:31Z",
+            "image": "https://d3pc1xvrcw35tl.cloudfront.net/ln/feedImages/1200x900/202602193679377_202602.jpg"
+          },
+          {
+            "title": "India news - breaking news, video and headlines and opinion",
+            "link": "https://www.cnn.com/world/india",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "Today's Top Stories - Reuters",
+            "link": "https://www.reuters.com/world/india/",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "CNBC's Inside India newsletter: India is throwing its weight behind AI",
+            "link": "https://www.cnbc.com/2026/02/19/cnbcs-inside-india-newsletter-india-is-throwing-its-weight-behind-ai-but-is-there-substance-behind-the-headlines.html",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "India to make Rafale jets with France in boost to defence ties ...",
+            "link": "https://www.reuters.com/world/india/india-make-rafale-jets-with-france-boost-defence-ties-macron-says-2026-02-19/",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "Bill Gates pulls out of India AI summit amid Epstein scrutiny",
+            "link": "https://www.reuters.com/world/india/bill-gates-cancels-keynote-address-india-ai-summit-2026-02-19/",
+            "source": "tavily",
+            "published": ""
+          }
+        ],
+        "images": {
+          "total_images": 0,
+          "successful": 0,
+          "failed": 0,
+          "manipulation_risks": 0,
+          "image_types": {},
+          "objects_detected": [],
+          "descriptions": [],
+          "detailed_results": []
+        },
+        "exported_file": "output/india_report_20260220_024923.json"
+      },
+      "errors": [],
+      "skipped": [],
+      "fallbacks_used": [],
+      "regenerated": [],
+      "success": true
+    }
+  },
+  {
+    "timestamp": "2026-02-20T02:52:30.500724",
+    "result": {
+      "intent": "Get india news",
+      "domain": "india",
+      "tools_executed": [
+        {
+          "tool": "news_fetcher",
+          "success": true,
+          "retries": 0,
+          "used_fallback": false,
+          "regenerated": false
+        },
+        {
+          "tool": "image_analyzer",
+          "success": true,
+          "retries": 0,
+          "used_fallback": false,
+          "regenerated": false
+        },
+        {
+          "tool": "exporter",
+          "success": true,
+          "retries": 0,
+          "used_fallback": false,
+          "regenerated": false
+        }
+      ],
+      "data": {
+        "news": [
+          {
+            "title": "Opinion | An Ancient Power Is Reasserting Itself - The New York Times",
+            "link": "https://news.google.com/rss/articles/CBMihwFBVV95cUxPVkhRT0VMNzNPdWF3TTUxaHdzYWsxQkpreDJ6M21ZdU5wMUtnZ3ZIZURIUl80RWp1WHVxRjJVRjVPZk9rSXZxdkNLc3ZlY2prUDd6TTdLNVZ6dzFSR21tQmE0cHhsb0FoZGxLWEoyVEVhWXJrTFBseHh1RXJvaEdIWU9RZ0h3X28?oc=5",
+            "source": "rss",
+            "published": "Thu, 19 Feb 2026 10:05:25 GMT"
+          },
+          {
+            "title": "Why India joining this U.S.-led tech alliance could help supply chains - CNBC",
+            "link": "https://news.google.com/rss/articles/CBMigwFBVV95cUxNOW8yaFF6YnFmUmtqbTdpeEVjUEpNMmlYdUZmVGxwVGREMVpDa2dGVDdsRVNPalE2aC1qeVhteHFyS1ZzaUtkR2Eyb2t6TV9PU0hTdXBIbXBxOHdZZVFCN3NxSXo5dHJpVkkyOGF5VVlFSWxSMlZ3MjVyLXVjb2ZIeTRMMNIBiAFBVV95cUxNeXJMT1hQUXgydHpLWkFMc3Ztd29WVFpPSFdmSmpGV3BMZEFVME5SSFY1Q19pYW9COFBMVXNvR1VZSkdlMkhkR3VvVU5XenVnRE9HTGxaUTdKT0hIamw0dUUzOVBXYmliVW4yeThyV3Bxd3dGMTM5bVV6NzhUcWFkVTZmWC1RZXVG?oc=5",
+            "source": "rss",
+            "published": "Wed, 18 Feb 2026 23:00:01 GMT"
+          },
+          {
+            "title": "Money Talks as India Searches for Its Place in Global A.I. - The New York Times",
+            "link": "https://news.google.com/rss/articles/CBMie0FVX3lxTE53bmRXM0xta1h3WFEtb21wMU5TdFl4VHBSNzBncURHTjJ5WlJudG16UUR1VWFnV0JJNDJLUWJmcFVlR3BTaXlWd00tZHN3SWVUa3RiNGppVEswc2hfSmFRNGlvdU1qZ2g1UXp3MWR6emt3eV9jeWhBUXJYZw?oc=5",
+            "source": "rss",
+            "published": "Thu, 19 Feb 2026 07:29:05 GMT"
+          },
+          {
+            "title": "'India To Be OpenAI's Biggest Market Soon': Sam Altman At AI Impact Summit - NDTV",
+            "link": "https://news.google.com/rss/articles/CBMinAFBVV95cUxNS2NsbW5ob1R0WTZ1UGJxc2lJa1RBUUk2M1gzTWo5VkZ6RElGaTE2dHMzNTZ4b25sOGttR1N6SWhxRlR0VVphdGNVOVBsd2xOZW1jN01Hdkd1OVo0U1RSZmFoSEhmUTFtLUx1eEM3RmxRcmlFTnZfMFNNMjdrYXJJSl9TY2ZHMFcxNHMtNEl0SE1HYUd4V04wdFd1YVnSAaQBQVVfeXFMTWtDZmJoUm5LeGxyVU5BZFlQR2VWUkdlTGZacVJoTHRTV2lHMG5DV0tMMmQ3bXdTTF85S1FBMWoxWlNpTDljSlFNNTkwR2dmejZGNnNoNDd1WXFhT1FwbHFYRHNCOGhFbXVBT052NndXQkdrQno5M3N6OFBxekVxOEo3aEpCdWlIZUdDVTRlTWNKYk81MFdkblljNmUwM3JCVC11azY?oc=5",
+            "source": "rss",
+            "published": "Thu, 19 Feb 2026 19:11:33 GMT"
+          },
+          {
+            "title": "Bill Gates cancels keynote speech in India amid questions over Epstein ties - The Guardian",
+            "link": "https://news.google.com/rss/articles/CBMiugFBVV95cUxNSEc3MkhnQjZQa2FrQTVSVjRvNEREcTFPckdyODRObWZLMV90UkNUZ0tCeXB3YmJFeWZDeG1SQ3BKdENwTnFBMy1vXzhlS0tIUDlOZUo0b2VWVWVYZ2RQZzkxTkdIc2x4a2ttcGlKZGxIY2c3Q1dpWlltZ1hoRl9LRUMyQzQ1SFNVOXhKRGZOMTJWU09FQjM0cDFhNElKQ3BkT2x4Uk5ZX3pJc0UtTjJHMEo4c3Bmc1R6WXc?oc=5",
+            "source": "rss",
+            "published": "Thu, 19 Feb 2026 14:10:00 GMT"
+          },
+          {
+            "title": "India AI Impact Summit: AI\u2019s gains huge for India, but safety and backlash risks loom: Nilekani, Amodei",
+            "link": "https://www.cnbctv18.com/technology/ai-needs-india-but-safety-and-backlash-risks-loom-nilekani-amodei-ws-l-19853699.htm",
+            "source": "gnews",
+            "published": "2026-02-19T09:22:22Z",
+            "image": "https://images.cnbctv18.com/uploads/2026/02/infosys-and-anthropic-2026-02-361f59267e08ec3853741763c26d6775.jpg?im=FitAndFill,width=500,height=300"
+          },
+          {
+            "title": "India bets big on data centres in AI race. Where will the massive amounts of water come from?",
+            "link": "https://www.telegraphindia.com/india/india-bets-big-on-data-centres-in-ai-race-where-will-the-massive-amounts-of-water-come-from/cid/2148036",
+            "source": "gnews",
+            "published": "2026-02-19T09:22:08Z",
+            "image": "https://assets.telegraphindia.com/telegraph/2026/Feb/1771491756_modi_data-lead-image.gif"
+          },
+          {
+            "title": "Kallam Textiles receives NCLT notice for insolvency proceedings from Union Bank of India",
+            "link": "https://scanx.trade/stock-market-news/stocks/kallam-textiles-receives-nclt-notice-for-insolvency-proceedings-from-union-bank-of-india/33038499",
+            "source": "gnews",
+            "published": "2026-02-19T09:21:39Z",
+            "image": "http://news-images.dhan.co/kallam-textiles-receives-nclt-notice-for-insolvency-proceedings-from-union-bank-of-india.jpg"
+          },
+          {
+            "title": "Odisha govt writes to Centre, urges for safe return of 6 stranded workers from Thailand",
+            "link": "https://www.hindustantimes.com/india-news/odisha-govt-writes-to-centre-urges-for-safe-return-of-6-stranded-workers-from-thailand-101771492887996.html",
+            "source": "gnews",
+            "published": "2026-02-19T09:21:27Z",
+            "image": "https://www.hindustantimes.com/ht-img/img/2025/08/06/550x309/Untitled_design_1754465014585_1754465103581.png"
+          },
+          {
+            "title": "BASF expands dispersions production in India to meet growing demand in architectural paints and construction",
+            "link": "https://www.european-coatings.com/news/basf-expands-dispersions-production-in-india-to-meet-growing-demand-in-architectural-paints-and-construction/",
+            "source": "gnews",
+            "published": "2026-02-19T09:21:12Z",
+            "image": "https://www.european-coatings.com/wp-content/uploads/sites/2/2026/02/AdobeStock_522785941-1024x683.jpeg"
+          },
+          {
+            "title": "India news - breaking news, video and headlines and opinion",
+            "link": "https://www.cnn.com/world/india",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "CNBC's Inside India newsletter: India is throwing its weight behind AI",
+            "link": "https://www.cnbc.com/2026/02/19/cnbcs-inside-india-newsletter-india-is-throwing-its-weight-behind-ai-but-is-there-substance-behind-the-headlines.html",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "Tech majors commit billions of dollars to India at AI summit",
+            "link": "https://www.reuters.com/world/india/tech-majors-commit-billions-dollars-india-ai-summit-2026-02-19/",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "breaking news, videos, headlines and opinion",
+            "link": "https://www.cnn.com/world/asia",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "India to make Rafale jets with France in boost to defence ties ...",
+            "link": "https://www.reuters.com/world/india/india-make-rafale-jets-with-france-boost-defence-ties-macron-says-2026-02-19/",
+            "source": "tavily",
+            "published": ""
+          }
+        ],
+        "images": {
+          "total_images": 5,
+          "successful": 4,
+          "failed": 1,
+          "manipulation_risks": 1,
+          "image_types": {
+            "photo": 3,
+            "graphic": 1
+          },
+          "objects_detected": [],
+          "descriptions": [
+            "General image (500x300) from article: India AI Impact Summit: AI\u2019s gains huge for India, but safet",
+            "General image (900x600) from article: India bets big on data centres in AI race. Where will the ma",
+            "Banner image (549x309) from article: Odisha govt writes to Centre, urges for safe return of 6 str",
+            "General image (1024x683) from article: BASF expands dispersions production in India to meet growing"
+          ],
+          "detailed_results": [
+            {
+              "success": true,
+              "url": "https://images.cnbctv18.com/uploads/2026/02/infosys-and-anthropic-2026-02-361f59267e08ec3853741763c26d6775.jpg?im=FitAndFill,width=500,height=300",
+              "metadata": {
+                "format": "JPEG",
+                "mode": "RGB",
+                "size": [
+                  500,
+                  300
+                ],
+                "width": 500,
+                "height": 300,
+                "aspect_ratio": 1.67,
+                "file_size_kb": 19
+              },
+              "image_type": {
+                "type": "photo",
+                "confidence": 0.8,
+                "color_complexity": 0.786,
+                "edge_density": 0.095
+              },
+              "vision_analysis": {
+                "description": "General image (500x300) from article: India AI Impact Summit: AI\u2019s gains huge for India, but safet",
+                "objects": [],
+                "scene_type": "general",
+                "mood": "neutral",
+                "relevance": "medium",
+                "news_value": "Visual context for the news story",
+                "is_photo": true,
+                "is_grayscale": false,
+                "avg_brightness": 106,
+                "dominant_colors": [
+                  "#fff0f5",
+                  "#f7ebf5",
+                  "#000000",
+                  "#020107",
+                  "#f5e9f3"
+                ],
+                "source": "local_analysis"
+              },
+              "manipulation_score": {
+                "exif_data_present": false,
+                "unusual_aspect_ratio": false,
+                "suspicious_compression": false,
+                "risk_level": "low",
+                "flags": []
+              },
+              "context": "India AI Impact Summit: AI\u2019s gains huge for India, but safety and backlash risks loom: Nilekani, Amodei"
+            },
+            {
+              "success": true,
+              "url": "https://assets.telegraphindia.com/telegraph/2026/Feb/1771491756_modi_data-lead-image.gif",
+              "metadata": {
+                "format": "GIF",
+                "mode": "P",
+                "size": [
+                  900,
+                  600
+                ],
+                "width": 900,
+                "height": 600,
+                "aspect_ratio": 1.5,
+                "file_size_kb": 203
+              },
+              "image_type": {
+                "type": "photo",
+                "confidence": 0.8,
+                "color_complexity": 0.577,
+                "edge_density": 0.101
+              },
+              "vision_analysis": {
+                "description": "General image (900x600) from article: India bets big on data centres in AI race. Where will the ma",
+                "objects": [],
+                "scene_type": "general",
+                "mood": "dark/dramatic",
+                "relevance": "medium",
+                "news_value": "Visual context for the news story",
+                "is_photo": false,
+                "is_grayscale": false,
+                "avg_brightness": 56,
+                "dominant_colors": [
+                  "#000000",
+                  "#1c1c54",
+                  "#21215a",
+                  "#111815",
+                  "#080000"
+                ],
+                "source": "local_analysis"
+              },
+              "manipulation_score": {
+                "exif_data_present": false,
+                "unusual_aspect_ratio": false,
+                "suspicious_compression": false,
+                "risk_level": "medium",
+                "flags": [
+                  "Uniform border detected (possible composite)"
+                ]
+              },
+              "context": "India bets big on data centres in AI race. Where will the massive amounts of water come from?"
+            },
+            {
+              "success": true,
+              "url": "https://www.hindustantimes.com/ht-img/img/2025/08/06/550x309/Untitled_design_1754465014585_1754465103581.png",
+              "metadata": {
+                "format": "JPEG",
+                "mode": "RGB",
+                "size": [
+                  549,
+                  309
+                ],
+                "width": 549,
+                "height": 309,
+                "aspect_ratio": 1.78,
+                "file_size_kb": 12
+              },
+              "image_type": {
+                "type": "graphic",
+                "confidence": 0.85,
+                "color_complexity": 0.121,
+                "edge_density": 0.1
+              },
+              "vision_analysis": {
+                "description": "Banner image (549x309) from article: Odisha govt writes to Centre, urges for safe return of 6 str",
+                "objects": [],
+                "scene_type": "banner",
+                "mood": "bright/positive",
+                "relevance": "medium",
+                "news_value": "Visual context for the news story",
+                "is_photo": true,
+                "is_grayscale": false,
+                "avg_brightness": 236,
+                "dominant_colors": [
+                  "#fffffb",
+                  "#fefffa",
+                  "#fffffc",
+                  "#fffffd",
+                  "#fffffa"
+                ],
+                "source": "local_analysis"
+              },
+              "manipulation_score": {
+                "exif_data_present": false,
+                "unusual_aspect_ratio": false,
+                "suspicious_compression": false,
+                "risk_level": "low",
+                "flags": []
+              },
+              "context": "Odisha govt writes to Centre, urges for safe return of 6 stranded workers from Thailand"
+            },
+            {
+              "success": true,
+              "url": "https://www.european-coatings.com/wp-content/uploads/sites/2/2026/02/AdobeStock_522785941-1024x683.jpeg",
+              "metadata": {
+                "format": "JPEG",
+                "mode": "RGB",
+                "size": [
+                  1024,
+                  683
+                ],
+                "width": 1024,
+                "height": 683,
+                "aspect_ratio": 1.5,
+                "file_size_kb": 77
+              },
+              "image_type": {
+                "type": "photo",
+                "confidence": 0.8,
+                "color_complexity": 0.733,
+                "edge_density": 0.15
+              },
+              "vision_analysis": {
+                "description": "General image (1024x683) from article: BASF expands dispersions production in India to meet growing",
+                "objects": [],
+                "scene_type": "general",
+                "mood": "neutral",
+                "relevance": "medium",
+                "news_value": "Visual context for the news story",
+                "is_photo": true,
+                "is_grayscale": false,
+                "avg_brightness": 140,
+                "dominant_colors": [
+                  "#edf7f9",
+                  "#f7ede4",
+                  "#eaf5f9",
+                  "#983d8a",
+                  "#faece3"
+                ],
+                "source": "local_analysis"
+              },
+              "manipulation_score": {
+                "exif_data_present": false,
+                "unusual_aspect_ratio": false,
+                "suspicious_compression": false,
+                "risk_level": "low",
+                "flags": []
+              },
+              "context": "BASF expands dispersions production in India to meet growing demand in architectural paints and construction"
+            }
+          ]
+        },
+        "exported_file": "output/india_report_20260220_025230.json"
+      },
+      "errors": [],
+      "skipped": [],
+      "fallbacks_used": [],
+      "regenerated": [],
+      "success": true
+    }
+  },
+  {
+    "timestamp": "2026-02-20T02:53:58.519167",
+    "result": {
+      "intent": "Get india news",
+      "domain": "india",
+      "tools_executed": [
+        {
+          "tool": "news_fetcher",
+          "success": true,
+          "retries": 0,
+          "used_fallback": false,
+          "regenerated": false
+        },
+        {
+          "tool": "image_analyzer",
+          "success": true,
+          "retries": 0,
+          "used_fallback": false,
+          "regenerated": false
+        },
+        {
+          "tool": "exporter",
+          "success": true,
+          "retries": 0,
+          "used_fallback": false,
+          "regenerated": false
+        }
+      ],
+      "data": {
+        "news": [
+          {
+            "title": "Opinion | An Ancient Power Is Reasserting Itself - The New York Times",
+            "link": "https://news.google.com/rss/articles/CBMihwFBVV95cUxPVkhRT0VMNzNPdWF3TTUxaHdzYWsxQkpreDJ6M21ZdU5wMUtnZ3ZIZURIUl80RWp1WHVxRjJVRjVPZk9rSXZxdkNLc3ZlY2prUDd6TTdLNVZ6dzFSR21tQmE0cHhsb0FoZGxLWEoyVEVhWXJrTFBseHh1RXJvaEdIWU9RZ0h3X28?oc=5",
+            "source": "rss",
+            "published": "Thu, 19 Feb 2026 10:05:25 GMT"
+          },
+          {
+            "title": "Why India joining this U.S.-led tech alliance could help supply chains - CNBC",
+            "link": "https://news.google.com/rss/articles/CBMigwFBVV95cUxNOW8yaFF6YnFmUmtqbTdpeEVjUEpNMmlYdUZmVGxwVGREMVpDa2dGVDdsRVNPalE2aC1qeVhteHFyS1ZzaUtkR2Eyb2t6TV9PU0hTdXBIbXBxOHdZZVFCN3NxSXo5dHJpVkkyOGF5VVlFSWxSMlZ3MjVyLXVjb2ZIeTRMMNIBiAFBVV95cUxNeXJMT1hQUXgydHpLWkFMc3Ztd29WVFpPSFdmSmpGV3BMZEFVME5SSFY1Q19pYW9COFBMVXNvR1VZSkdlMkhkR3VvVU5XenVnRE9HTGxaUTdKT0hIamw0dUUzOVBXYmliVW4yeThyV3Bxd3dGMTM5bVV6NzhUcWFkVTZmWC1RZXVG?oc=5",
+            "source": "rss",
+            "published": "Wed, 18 Feb 2026 23:00:01 GMT"
+          },
+          {
+            "title": "Money Talks as India Searches for Its Place in Global A.I. - The New York Times",
+            "link": "https://news.google.com/rss/articles/CBMie0FVX3lxTE53bmRXM0xta1h3WFEtb21wMU5TdFl4VHBSNzBncURHTjJ5WlJudG16UUR1VWFnV0JJNDJLUWJmcFVlR3BTaXlWd00tZHN3SWVUa3RiNGppVEswc2hfSmFRNGlvdU1qZ2g1UXp3MWR6emt3eV9jeWhBUXJYZw?oc=5",
+            "source": "rss",
+            "published": "Thu, 19 Feb 2026 07:29:05 GMT"
+          },
+          {
+            "title": "'India To Be OpenAI's Biggest Market Soon': Sam Altman At AI Impact Summit - NDTV",
+            "link": "https://news.google.com/rss/articles/CBMinAFBVV95cUxNS2NsbW5ob1R0WTZ1UGJxc2lJa1RBUUk2M1gzTWo5VkZ6RElGaTE2dHMzNTZ4b25sOGttR1N6SWhxRlR0VVphdGNVOVBsd2xOZW1jN01Hdkd1OVo0U1RSZmFoSEhmUTFtLUx1eEM3RmxRcmlFTnZfMFNNMjdrYXJJSl9TY2ZHMFcxNHMtNEl0SE1HYUd4V04wdFd1YVnSAaQBQVVfeXFMTWtDZmJoUm5LeGxyVU5BZFlQR2VWUkdlTGZacVJoTHRTV2lHMG5DV0tMMmQ3bXdTTF85S1FBMWoxWlNpTDljSlFNNTkwR2dmejZGNnNoNDd1WXFhT1FwbHFYRHNCOGhFbXVBT052NndXQkdrQno5M3N6OFBxekVxOEo3aEpCdWlIZUdDVTRlTWNKYk81MFdkblljNmUwM3JCVC11azY?oc=5",
+            "source": "rss",
+            "published": "Thu, 19 Feb 2026 19:11:33 GMT"
+          },
+          {
+            "title": "Bill Gates cancels keynote speech in India amid questions over Epstein ties - The Guardian",
+            "link": "https://news.google.com/rss/articles/CBMiugFBVV95cUxNSEc3MkhnQjZQa2FrQTVSVjRvNEREcTFPckdyODRObWZLMV90UkNUZ0tCeXB3YmJFeWZDeG1SQ3BKdENwTnFBMy1vXzhlS0tIUDlOZUo0b2VWVWVYZ2RQZzkxTkdIc2x4a2ttcGlKZGxIY2c3Q1dpWlltZ1hoRl9LRUMyQzQ1SFNVOXhKRGZOMTJWU09FQjM0cDFhNElKQ3BkT2x4Uk5ZX3pJc0UtTjJHMEo4c3Bmc1R6WXc?oc=5",
+            "source": "rss",
+            "published": "Thu, 19 Feb 2026 14:10:00 GMT"
+          },
+          {
+            "title": "How Cloud Kitchens Are Emerging As Low-Cost Entry Points For Food Entrepreneurs: 'Is It Because Of Zomato?'",
+            "link": "https://www.news18.com/viral/how-cloud-kitchens-are-emerging-as-low-cost-entry-points-for-food-entrepreneurs-is-it-because-of-zomato-aa-ws-l-9917477.html",
+            "source": "gnews",
+            "published": "2026-02-19T09:23:16Z",
+            "image": "https://images.news18.com/ibnlive/uploads/2026/02/Untitled-design-2026-02-19T145217.523-2026-02-cff80ec99d916d338bff5caaf72dfe64-16x9.jpg"
+          },
+          {
+            "title": "Sand Stone by Technogym: the new era of Wellness Luxury Living",
+            "link": "https://www.newsx.com/business/sand-stone-by-technogym-the-new-era-of-wellness-luxury-living-169402/",
+            "source": "gnews",
+            "published": "2026-02-19T09:23:03Z",
+            "image": "https://www.newsx.com/wp-content/uploads/2026/02/Sand-Stone-by-Technogym-the-new-era-of-Wellness-Luxury.avif"
+          },
+          {
+            "title": "India enter Super Eights with plenty of batting issues, team remains calm ahead of South Africa clash",
+            "link": "https://www.indiatvnews.com/sports/cricket/india-enter-super-eights-with-plenty-of-batting-issues-team-remains-calm-ahead-of-south-africa-clash-2026-02-19-1030906",
+            "source": "gnews",
+            "published": "2026-02-19T09:22:59Z",
+            "image": "https://resize.indiatvnews.com/en/resize/newbucket/1200_-/2026/02/untitled-design-2026-02-19t144733-1771492665.jpg"
+          },
+          {
+            "title": "India AI Impact Summit: AI\u2019s gains huge for India, but safety and backlash risks loom: Nilekani, Amodei",
+            "link": "https://www.cnbctv18.com/technology/ai-needs-india-but-safety-and-backlash-risks-loom-nilekani-amodei-ws-l-19853699.htm",
+            "source": "gnews",
+            "published": "2026-02-19T09:22:22Z",
+            "image": "https://images.cnbctv18.com/uploads/2026/02/infosys-and-anthropic-2026-02-361f59267e08ec3853741763c26d6775.jpg?im=FitAndFill,width=500,height=300"
+          },
+          {
+            "title": "India bets big on data centres in AI race. Where will the massive amounts of water come from?",
+            "link": "https://www.telegraphindia.com/india/india-bets-big-on-data-centres-in-ai-race-where-will-the-massive-amounts-of-water-come-from/cid/2148036",
+            "source": "gnews",
+            "published": "2026-02-19T09:22:08Z",
+            "image": "https://assets.telegraphindia.com/telegraph/2026/Feb/1771491756_modi_data-lead-image.gif"
+          },
+          {
+            "title": "India news - breaking news, video and headlines and opinion",
+            "link": "https://www.cnn.com/world/india",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "CNBC's Inside India newsletter: India is throwing its weight behind AI",
+            "link": "https://www.cnbc.com/2026/02/19/cnbcs-inside-india-newsletter-india-is-throwing-its-weight-behind-ai-but-is-there-substance-behind-the-headlines.html",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "India to make Rafale jets with France in boost to defence ties ...",
+            "link": "https://www.reuters.com/world/india/india-make-rafale-jets-with-france-boost-defence-ties-macron-says-2026-02-19/",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "Breaking News, World News, US News, Sports ...",
+            "link": "https://www.bbc.com/",
+            "source": "tavily",
+            "published": ""
+          }
+        ],
+        "images": {
+          "total_images": 10,
+          "successful": 10,
+          "failed": 0,
+          "manipulation_risks": 4,
+          "image_types": {
+            "photo": 8,
+            "unknown": 2
+          },
+          "objects_detected": [],
+          "descriptions": [
+            "Banner image (1200x675) from article: How Cloud Kitchens Are Emerging As Low-Cost Entry Points For",
+            "Banner image (1200x675) from article: How Cloud Kitchens Are Emerging As Low-Cost Entry Points For",
+            "Banner image (1200x675) from article: India enter Super Eights with plenty of batting issues, team",
+            "Banner image (1200x675) from article: India enter Super Eights with plenty of batting issues, team",
+            "General image (500x300) from article: India AI Impact Summit: AI\u2019s gains huge for India, but safet"
+          ],
+          "detailed_results": [
+            {
+              "success": true,
+              "url": "https://images.news18.com/ibnlive/uploads/2026/02/Untitled-design-2026-02-19T145217.523-2026-02-cff80ec99d916d338bff5caaf72dfe64-16x9.jpg",
+              "metadata": {
+                "format": "JPEG",
+                "mode": "RGB",
+                "size": [
+                  1200,
+                  675
+                ],
+                "width": 1200,
+                "height": 675,
+                "aspect_ratio": 1.78,
+                "file_size_kb": 33
+              },
+              "image_type": {
+                "type": "photo",
+                "confidence": 0.8,
+                "color_complexity": 0.821,
+                "edge_density": 0.102
+              },
+              "vision_analysis": {
+                "description": "Banner image (1200x675) from article: How Cloud Kitchens Are Emerging As Low-Cost Entry Points For",
+                "objects": [],
+                "scene_type": "banner",
+                "mood": "neutral",
+                "relevance": "medium",
+                "news_value": "Visual context for the news story",
+                "is_photo": true,
+                "is_grayscale": false,
+                "avg_brightness": 68,
+                "dominant_colors": [
+                  "#46322b",
+                  "#837781",
+                  "#633d30",
+                  "#623c2f",
+                  "#0e030b"
+                ],
+                "source": "local_analysis"
+              },
+              "manipulation_score": {
+                "exif_data_present": false,
+                "unusual_aspect_ratio": false,
+                "suspicious_compression": true,
+                "risk_level": "medium",
+                "flags": [
+                  "Heavy compression detected"
+                ]
+              },
+              "context": "How Cloud Kitchens Are Emerging As Low-Cost Entry Points For Food Entrepreneurs: 'Is It Because Of Zomato?'"
+            },
+            {
+              "success": true,
+              "url": "https://images.news18.com/ibnlive/uploads/2026/02/Untitled-design-2026-02-19T145217.523-2026-02-cff80ec99d916d338bff5caaf72dfe64-16x9.jpg",
+              "metadata": {
+                "format": "JPEG",
+                "mode": "RGB",
+                "size": [
+                  1200,
+                  675
+                ],
+                "width": 1200,
+                "height": 675,
+                "aspect_ratio": 1.78,
+                "file_size_kb": 33
+              },
+              "image_type": {
+                "type": "photo",
+                "confidence": 0.8,
+                "color_complexity": 0.821,
+                "edge_density": 0.102
+              },
+              "vision_analysis": {
+                "description": "Banner image (1200x675) from article: How Cloud Kitchens Are Emerging As Low-Cost Entry Points For",
+                "objects": [],
+                "scene_type": "banner",
+                "mood": "neutral",
+                "relevance": "medium",
+                "news_value": "Visual context for the news story",
+                "is_photo": true,
+                "is_grayscale": false,
+                "avg_brightness": 68,
+                "dominant_colors": [
+                  "#46322b",
+                  "#837781",
+                  "#633d30",
+                  "#623c2f",
+                  "#0e030b"
+                ],
+                "source": "local_analysis"
+              },
+              "manipulation_score": {
+                "exif_data_present": false,
+                "unusual_aspect_ratio": false,
+                "suspicious_compression": true,
+                "risk_level": "medium",
+                "flags": [
+                  "Heavy compression detected"
+                ]
+              },
+              "context": "How Cloud Kitchens Are Emerging As Low-Cost Entry Points For Food Entrepreneurs: 'Is It Because Of Zomato?'"
+            },
+            {
+              "success": true,
+              "url": "https://www.newsx.com/wp-content/uploads/2026/02/Sand-Stone-by-Technogym-the-new-era-of-Wellness-Luxury.avif",
+              "metadata": {},
+              "image_type": {
+                "type": "unknown",
+                "confidence": 0
+              },
+              "vision_analysis": {
+                "error": "cannot identify image file <_io.BytesIO object at 0x000001B65C9117B0>",
+                "source": "local_analysis"
+              },
+              "manipulation_score": {
+                "error": "Could not analyze manipulation",
+                "risk_level": "unknown"
+              },
+              "context": "Sand Stone by Technogym: the new era of Wellness Luxury Living"
+            },
+            {
+              "success": true,
+              "url": "https://www.newsx.com/wp-content/uploads/2026/02/Sand-Stone-by-Technogym-the-new-era-of-Wellness-Luxury.avif",
+              "metadata": {},
+              "image_type": {
+                "type": "unknown",
+                "confidence": 0
+              },
+              "vision_analysis": {
+                "error": "cannot identify image file <_io.BytesIO object at 0x000001B65C91E3E0>",
+                "source": "local_analysis"
+              },
+              "manipulation_score": {
+                "error": "Could not analyze manipulation",
+                "risk_level": "unknown"
+              },
+              "context": "Sand Stone by Technogym: the new era of Wellness Luxury Living"
+            },
+            {
+              "success": true,
+              "url": "https://resize.indiatvnews.com/en/resize/newbucket/1200_-/2026/02/untitled-design-2026-02-19t144733-1771492665.jpg",
+              "metadata": {
+                "format": "JPEG",
+                "mode": "RGB",
+                "size": [
+                  1200,
+                  675
+                ],
+                "width": 1200,
+                "height": 675,
+                "aspect_ratio": 1.78,
+                "file_size_kb": 116,
+                "exif": {
+                  "orientation": "1"
+                }
+              },
+              "image_type": {
+                "type": "photo",
+                "confidence": 0.8,
+                "color_complexity": 0.92,
+                "edge_density": 0.192
+              },
+              "vision_analysis": {
+                "description": "Banner image (1200x675) from article: India enter Super Eights with plenty of batting issues, team",
+                "objects": [],
+                "scene_type": "banner",
+                "mood": "neutral",
+                "relevance": "medium",
+                "news_value": "Visual context for the news story",
+                "is_photo": true,
+                "is_grayscale": false,
+                "avg_brightness": 110,
+                "dominant_colors": [
+                  "#02e4fc",
+                  "#01e3fb",
+                  "#ebf2f7",
+                  "#0fd6b7",
+                  "#eaf1f6"
+                ],
+                "source": "local_analysis"
+              },
+              "manipulation_score": {
+                "exif_data_present": true,
+                "unusual_aspect_ratio": false,
+                "suspicious_compression": false,
+                "risk_level": "low",
+                "flags": []
+              },
+              "context": "India enter Super Eights with plenty of batting issues, team remains calm ahead of South Africa clash"
+            },
+            {
+              "success": true,
+              "url": "https://resize.indiatvnews.com/en/resize/newbucket/1200_-/2026/02/untitled-design-2026-02-19t144733-1771492665.jpg",
+              "metadata": {
+                "format": "JPEG",
+                "mode": "RGB",
+                "size": [
+                  1200,
+                  675
+                ],
+                "width": 1200,
+                "height": 675,
+                "aspect_ratio": 1.78,
+                "file_size_kb": 116,
+                "exif": {
+                  "orientation": "1"
+                }
+              },
+              "image_type": {
+                "type": "photo",
+                "confidence": 0.8,
+                "color_complexity": 0.92,
+                "edge_density": 0.192
+              },
+              "vision_analysis": {
+                "description": "Banner image (1200x675) from article: India enter Super Eights with plenty of batting issues, team",
+                "objects": [],
+                "scene_type": "banner",
+                "mood": "neutral",
+                "relevance": "medium",
+                "news_value": "Visual context for the news story",
+                "is_photo": true,
+                "is_grayscale": false,
+                "avg_brightness": 110,
+                "dominant_colors": [
+                  "#02e4fc",
+                  "#01e3fb",
+                  "#ebf2f7",
+                  "#0fd6b7",
+                  "#eaf1f6"
+                ],
+                "source": "local_analysis"
+              },
+              "manipulation_score": {
+                "exif_data_present": true,
+                "unusual_aspect_ratio": false,
+                "suspicious_compression": false,
+                "risk_level": "low",
+                "flags": []
+              },
+              "context": "India enter Super Eights with plenty of batting issues, team remains calm ahead of South Africa clash"
+            },
+            {
+              "success": true,
+              "url": "https://images.cnbctv18.com/uploads/2026/02/infosys-and-anthropic-2026-02-361f59267e08ec3853741763c26d6775.jpg?im=FitAndFill,width=500,height=300",
+              "metadata": {
+                "format": "JPEG",
+                "mode": "RGB",
+                "size": [
+                  500,
+                  300
+                ],
+                "width": 500,
+                "height": 300,
+                "aspect_ratio": 1.67,
+                "file_size_kb": 19
+              },
+              "image_type": {
+                "type": "photo",
+                "confidence": 0.8,
+                "color_complexity": 0.786,
+                "edge_density": 0.095
+              },
+              "vision_analysis": {
+                "description": "General image (500x300) from article: India AI Impact Summit: AI\u2019s gains huge for India, but safet",
+                "objects": [],
+                "scene_type": "general",
+                "mood": "neutral",
+                "relevance": "medium",
+                "news_value": "Visual context for the news story",
+                "is_photo": true,
+                "is_grayscale": false,
+                "avg_brightness": 106,
+                "dominant_colors": [
+                  "#fff0f5",
+                  "#f7ebf5",
+                  "#000000",
+                  "#020107",
+                  "#f5e9f3"
+                ],
+                "source": "local_analysis"
+              },
+              "manipulation_score": {
+                "exif_data_present": false,
+                "unusual_aspect_ratio": false,
+                "suspicious_compression": false,
+                "risk_level": "low",
+                "flags": []
+              },
+              "context": "India AI Impact Summit: AI\u2019s gains huge for India, but safety and backlash risks loom: Nilekani, Amodei"
+            },
+            {
+              "success": true,
+              "url": "https://images.cnbctv18.com/uploads/2026/02/infosys-and-anthropic-2026-02-361f59267e08ec3853741763c26d6775.jpg?im=FitAndFill,width=500,height=300",
+              "metadata": {
+                "format": "JPEG",
+                "mode": "RGB",
+                "size": [
+                  500,
+                  300
+                ],
+                "width": 500,
+                "height": 300,
+                "aspect_ratio": 1.67,
+                "file_size_kb": 19
+              },
+              "image_type": {
+                "type": "photo",
+                "confidence": 0.8,
+                "color_complexity": 0.786,
+                "edge_density": 0.095
+              },
+              "vision_analysis": {
+                "description": "General image (500x300) from article: India AI Impact Summit: AI\u2019s gains huge for India, but safet",
+                "objects": [],
+                "scene_type": "general",
+                "mood": "neutral",
+                "relevance": "medium",
+                "news_value": "Visual context for the news story",
+                "is_photo": true,
+                "is_grayscale": false,
+                "avg_brightness": 106,
+                "dominant_colors": [
+                  "#fff0f5",
+                  "#f7ebf5",
+                  "#000000",
+                  "#020107",
+                  "#f5e9f3"
+                ],
+                "source": "local_analysis"
+              },
+              "manipulation_score": {
+                "exif_data_present": false,
+                "unusual_aspect_ratio": false,
+                "suspicious_compression": false,
+                "risk_level": "low",
+                "flags": []
+              },
+              "context": "India AI Impact Summit: AI\u2019s gains huge for India, but safety and backlash risks loom: Nilekani, Amodei"
+            },
+            {
+              "success": true,
+              "url": "https://assets.telegraphindia.com/telegraph/2026/Feb/1771491756_modi_data-lead-image.gif",
+              "metadata": {
+                "format": "GIF",
+                "mode": "P",
+                "size": [
+                  900,
+                  600
+                ],
+                "width": 900,
+                "height": 600,
+                "aspect_ratio": 1.5,
+                "file_size_kb": 203
+              },
+              "image_type": {
+                "type": "photo",
+                "confidence": 0.8,
+                "color_complexity": 0.577,
+                "edge_density": 0.101
+              },
+              "vision_analysis": {
+                "description": "General image (900x600) from article: India bets big on data centres in AI race. Where will the ma",
+                "objects": [],
+                "scene_type": "general",
+                "mood": "dark/dramatic",
+                "relevance": "medium",
+                "news_value": "Visual context for the news story",
+                "is_photo": false,
+                "is_grayscale": false,
+                "avg_brightness": 56,
+                "dominant_colors": [
+                  "#000000",
+                  "#1c1c54",
+                  "#21215a",
+                  "#111815",
+                  "#080000"
+                ],
+                "source": "local_analysis"
+              },
+              "manipulation_score": {
+                "exif_data_present": false,
+                "unusual_aspect_ratio": false,
+                "suspicious_compression": false,
+                "risk_level": "medium",
+                "flags": [
+                  "Uniform border detected (possible composite)"
+                ]
+              },
+              "context": "India bets big on data centres in AI race. Where will the massive amounts of water come from?"
+            },
+            {
+              "success": true,
+              "url": "https://assets.telegraphindia.com/telegraph/2026/Feb/1771491756_modi_data-lead-image.gif",
+              "metadata": {
+                "format": "GIF",
+                "mode": "P",
+                "size": [
+                  900,
+                  600
+                ],
+                "width": 900,
+                "height": 600,
+                "aspect_ratio": 1.5,
+                "file_size_kb": 203
+              },
+              "image_type": {
+                "type": "photo",
+                "confidence": 0.8,
+                "color_complexity": 0.577,
+                "edge_density": 0.101
+              },
+              "vision_analysis": {
+                "description": "General image (900x600) from article: India bets big on data centres in AI race. Where will the ma",
+                "objects": [],
+                "scene_type": "general",
+                "mood": "dark/dramatic",
+                "relevance": "medium",
+                "news_value": "Visual context for the news story",
+                "is_photo": false,
+                "is_grayscale": false,
+                "avg_brightness": 56,
+                "dominant_colors": [
+                  "#000000",
+                  "#1c1c54",
+                  "#21215a",
+                  "#111815",
+                  "#080000"
+                ],
+                "source": "local_analysis"
+              },
+              "manipulation_score": {
+                "exif_data_present": false,
+                "unusual_aspect_ratio": false,
+                "suspicious_compression": false,
+                "risk_level": "medium",
+                "flags": [
+                  "Uniform border detected (possible composite)"
+                ]
+              },
+              "context": "India bets big on data centres in AI race. Where will the massive amounts of water come from?"
+            }
+          ]
+        },
+        "exported_file": "output/india_report_20260220_025358.json"
+      },
+      "errors": [],
+      "skipped": [],
+      "fallbacks_used": [],
+      "regenerated": [],
+      "success": true
+    }
+  },
+  {
+    "timestamp": "2026-02-20T02:57:58.515125",
+    "result": {
+      "intent": "Get india news",
+      "domain": "india",
+      "tools_executed": [
+        {
+          "tool": "news_fetcher",
+          "success": true,
+          "retries": 0,
+          "used_fallback": false,
+          "regenerated": false
+        },
+        {
+          "tool": "web_scraper",
+          "success": true,
+          "retries": 0,
+          "used_fallback": false,
+          "regenerated": false
+        },
+        {
+          "tool": "image_analyzer",
+          "success": true,
+          "retries": 0,
+          "used_fallback": false,
+          "regenerated": false
+        },
+        {
+          "tool": "exporter",
+          "success": true,
+          "retries": 0,
+          "used_fallback": false,
+          "regenerated": false
+        }
+      ],
+      "data": {
+        "news": [
+          {
+            "title": "Opinion | An Ancient Power Is Reasserting Itself - The New York Times",
+            "link": "https://news.google.com/rss/articles/CBMihwFBVV95cUxPVkhRT0VMNzNPdWF3TTUxaHdzYWsxQkpreDJ6M21ZdU5wMUtnZ3ZIZURIUl80RWp1WHVxRjJVRjVPZk9rSXZxdkNLc3ZlY2prUDd6TTdLNVZ6dzFSR21tQmE0cHhsb0FoZGxLWEoyVEVhWXJrTFBseHh1RXJvaEdIWU9RZ0h3X28?oc=5",
+            "source": "rss",
+            "published": "Thu, 19 Feb 2026 10:05:25 GMT"
+          },
+          {
+            "title": "Why India joining this U.S.-led tech alliance could help supply chains - CNBC",
+            "link": "https://news.google.com/rss/articles/CBMigwFBVV95cUxNOW8yaFF6YnFmUmtqbTdpeEVjUEpNMmlYdUZmVGxwVGREMVpDa2dGVDdsRVNPalE2aC1qeVhteHFyS1ZzaUtkR2Eyb2t6TV9PU0hTdXBIbXBxOHdZZVFCN3NxSXo5dHJpVkkyOGF5VVlFSWxSMlZ3MjVyLXVjb2ZIeTRMMNIBiAFBVV95cUxNeXJMT1hQUXgydHpLWkFMc3Ztd29WVFpPSFdmSmpGV3BMZEFVME5SSFY1Q19pYW9COFBMVXNvR1VZSkdlMkhkR3VvVU5XenVnRE9HTGxaUTdKT0hIamw0dUUzOVBXYmliVW4yeThyV3Bxd3dGMTM5bVV6NzhUcWFkVTZmWC1RZXVG?oc=5",
+            "source": "rss",
+            "published": "Wed, 18 Feb 2026 23:00:01 GMT"
+          },
+          {
+            "title": "'India To Be OpenAI's Biggest Market Soon': Sam Altman At AI Impact Summit - NDTV",
+            "link": "https://news.google.com/rss/articles/CBMinAFBVV95cUxNS2NsbW5ob1R0WTZ1UGJxc2lJa1RBUUk2M1gzTWo5VkZ6RElGaTE2dHMzNTZ4b25sOGttR1N6SWhxRlR0VVphdGNVOVBsd2xOZW1jN01Hdkd1OVo0U1RSZmFoSEhmUTFtLUx1eEM3RmxRcmlFTnZfMFNNMjdrYXJJSl9TY2ZHMFcxNHMtNEl0SE1HYUd4V04wdFd1YVnSAaQBQVVfeXFMTWtDZmJoUm5LeGxyVU5BZFlQR2VWUkdlTGZacVJoTHRTV2lHMG5DV0tMMmQ3bXdTTF85S1FBMWoxWlNpTDljSlFNNTkwR2dmejZGNnNoNDd1WXFhT1FwbHFYRHNCOGhFbXVBT052NndXQkdrQno5M3N6OFBxekVxOEo3aEpCdWlIZUdDVTRlTWNKYk81MFdkblljNmUwM3JCVC11azY?oc=5",
+            "source": "rss",
+            "published": "Thu, 19 Feb 2026 19:11:33 GMT"
+          },
+          {
+            "title": "Bill Gates pulls out of India AI summit amid Epstein scrutiny - Reuters",
+            "link": "https://news.google.com/rss/articles/CBMinwFBVV95cUxNMUVUdFRrMHBzSXhhTm9KcGF2VWUtYzNDTFhTeG4yWmtESC1oVG5qTTlYQ2VzZE9QY21SUkdfa3dqSFVBSk9FTWxRUGpxSzV3TEdPUXBKTmxMSzdyUFFtRWZfTHV2Y3NURURkOF9YMjA5SjJJQ0d2Q0xvOURRS2lkZm1mRWdSYjFGNTZCLTR4SldQeWJHRFZEbll1alN3OUE?oc=5",
+            "source": "rss",
+            "published": "Thu, 19 Feb 2026 03:14:00 GMT"
+          },
+          {
+            "title": "Rouble Nagi: The teacher who won $1m for turning India's slums into open-air classrooms - BBC",
+            "link": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE1HN0pvdVd1b3lMRHNRZnViaWpzUng1eVZjSEJMTkZYMXpNdVc4OUQ4U05acVFRdk4yOGlzRWllbVhHUHRsaDJzaXotcVl5aTh6cFNYUC1HdktVUQ?oc=5",
+            "source": "rss",
+            "published": "Thu, 19 Feb 2026 02:44:45 GMT"
+          },
+          {
+            "title": "RIL, Jio to pump in Rs 10 lakh crore into AI; Mukesh Ambani promises to reduce cost of AI \u2018dramatically\u2019 for Indians",
+            "link": "https://indianexpress.com/article/business/ril-jio-rs-10-lakh-crore-ai-mukesh-ambani-10540617/",
+            "source": "gnews",
+            "published": "2026-02-19T09:27:13Z",
+            "image": "https://images.indianexpress.com/2026/02/mukesh-ambani-file-.jpg"
+          },
+          {
+            "title": "Modi\u2019s AI summit turns awkward as tech leaders Sam Altman and Dario Amodei dodge contact",
+            "link": "https://www.breitbart.com/news/modis-ai-summit-turns-awkward-as-tech-leaders-sam-altman-and-dario-amodei-dodge-contact/",
+            "source": "gnews",
+            "published": "2026-02-19T09:26:47Z",
+            "image": "https://media.breitbart.com/media/2026/02/wi/ap/india-ai-summit-71802-india-ai-summit-india-prime-minister-narendra-modi-seventh-left-poses-photographs-640x335.jpg"
+          },
+          {
+            "title": "AUS vs IND Women\u2019s 2nd T20I: India opts to bowl against Australia",
+            "link": "https://www.thehindu.com/sport/cricket/india-australia-women-second-t20i-match-updates-february-19/article70651085.ece",
+            "source": "gnews",
+            "published": "2026-02-19T09:26:40Z",
+            "image": "https://th-i.thgim.com/public/incoming/bzvxg7/article70651097.ece/alternates/LANDSCAPE_1200/20251103001L.jpg"
+          },
+          {
+            "title": "Not Mithali Raj or Ellyse Perry: Harmanpreet Kaur becomes only women cricketer to achieve this historic feat",
+            "link": "https://timesofindia.indiatimes.com/sports/cricket/news/not-mithali-raj-or-ellyse-perry-harmanpreet-kaur-becomes-only-women-cricketer-to-achieve-this-historic-feat/articleshow/128549936.cms",
+            "source": "gnews",
+            "published": "2026-02-19T09:26:00Z",
+            "image": "https://static.toiimg.com/thumb/msid-128550046,width-1280,height-720,imgsize-40630,resizemode-6,overlay-toi_sw,pt-32,y_pad-600/photo.jpg"
+          },
+          {
+            "title": "Ahead of Modi's visit, India and Israel sign another MoU deepening defence ties",
+            "link": "https://economictimes.indiatimes.com/news/defence/ahead-of-modis-visit-india-and-israel-sign-another-mou-deepening-defence-ties/articleshow/128549978.cms",
+            "source": "gnews",
+            "published": "2026-02-19T09:26:00Z",
+            "image": "https://img.etimg.com/thumb/msid-128550227,width-1200,height-630,imgsize-20968,overlay-etdefence/articleshow.jpg"
+          },
+          {
+            "title": "India news - breaking news, video and headlines and opinion",
+            "link": "https://www.cnn.com/world/india",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "CNBC's Inside India newsletter: India is throwing its weight behind AI",
+            "link": "https://www.cnbc.com/2026/02/19/cnbcs-inside-india-newsletter-india-is-throwing-its-weight-behind-ai-but-is-there-substance-behind-the-headlines.html",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "Breaking News, World News, US News, Sports ...",
+            "link": "https://www.bbc.com/",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "India Prepares for the AI Triple Whammy",
+            "link": "https://www.bloomberg.com/news/newsletters/2026-02-19/modi-mukesh-ambani-google-ceo-and-sam-altman-speak-at-india-ai-summit",
+            "source": "tavily",
+            "published": ""
+          }
+        ],
+        "scraped_articles": {
+          "success": true,
+          "url": "https://indianexpress.com/article/business/ril-jio-rs-10-lakh-crore-ai-mukesh-ambani-10540617/",
+          "title": "RIL, Jio to pump Rs 10 lakh cr to make AI affordable: Ambani",
+          "content": "Reliance Industries (RIL) and Jio will invest Rs 10 lakh crore over seven years as the conglomerate looks to play a major role in India\u2019s AI transformation and make AI affordable and accessible for citizens, RIL Chairman and MD Mukesh Ambani said on Thursday. According to Ambani, after connecting \u201cIndia to the Internet era\u201d, Jio will connect the country to the \u201cintelligence era\u201d by reducing the cost as \u201cdramatically\u201d as the company did for mobile and internet data earlier. At the India AI Impact Summit, he announced Jio Intelligence\u2014RIL\u2019s AI-focussed arm\u2014will build India\u2019s sovereign compute infrastructure, and the conglomerate will partner with best tech companies globally not as importers of AI, but as \u201cco-architects of a new AI century\u201d. On the investment announcement, he said, \u201cThis is not speculative investment. It is not for chasing valuation. This is a patient, disciplined, nation-building capital, designed to create durable economic value and strategic resilience for six decades to come,\u201d he said. Likening AI to Akshaya Patra, Ambani said it offers limitless augmentation in knowledge, efficiency, and productivity. A central question around AI today, he said, is whether it will concentrate power in the hands of a few or will it democratise opportunity for all, and added that India believes in the latter\u2014a future where AI is \u201cavailable, affordable, and beneficial to all\u201d. He also said that success of the AI movement globally hinges critically on cooperation and sharing \u201cbe it chips or rare earths\u201d and not hoarding, and that India has a unique strength in that context as it serves as a \u201cvital bridge\u201d between the Global South and Global North. Ambani asserted India will emerge as \u201cone of the greatest AI powers\u201d in this century as no other country can match its strength in \u201cdemography, democracy, development, digital infrastructure, data generation, and AI harvest\u201d. Emphasising that Jio will deliver AI to Indians at highly affordable prices, Ambani said, \u201c\u2026 Jio will do so with the same reliability, quality, scale, and extreme affordability that transformed connectivity. India cannot afford to rent intelligence. Therefore, we will reduce the cost of intelligence as dramatically as we did the cost of data.\u201d Ambani said Jio Intelligence will build India\u2019s sovereign compute infrastructure through \u201cthree bold initiatives\u201d\u2014 gigawatt-scale data centres, ready green power surplus, and a nationwide edge compute. \u201cWe have already started construction on multi-gigawatt, AI-ready data-centres at Jamnagar. Over 120 MW will come online in the second half of 2026 this year, and a clear path to gigawatt-scale compute for training and large-scale inference\u2026 We have an in-house energy advantage with up to 10 GW of ready green-power surplus, anchored by solar in both Kutch and Andhra Pradesh,\u201d Ambani said. \u201cAn edge-compute layer, deeply integrated with Jio\u2019s network, will make intelligence responsive, low-latency and affordable \u2014 close to where Indians live, learn and work\u2026 Our resolve is clear: make intelligence as ubiquitous as connectivity,\u201d he added. The RIL chairman said Jio Intelligence is guided by five \u201cnon-negotiable principles\u201d, including a commitment to multilingual AI capability across all Indian languages and a promise that AI will create new high-skilled work opportunities rather than displacing jobs. The other principles include making AI accessible to agriculture and informal sectors, and small businesses, keeping \u201cresponsibility, security, data residency, and trust as Jio\u2019s core guarantees\u201d, and building a deep partnership ecosystem with Indian enterprises, startups, and top technology and research institutes. Sukalp Sharma is a Deputy Associate Editor with The Indian Express and writes on a host of subjects and sectors, notably energy and aviation. He has over 16 years of experience in journalism with a body of work spanning areas like politics, development, equity markets, corporates, trade, and economic policy. He considers himself an above-average photographer, which goes well with his love for travel. ... Read More",
+          "author": null,
+          "publish_date": "2026-02-19T14:57:13+05:30",
+          "images": [
+            "https://images.indianexpress.com/2026/02/mukesh-ambani-file-.jpg"
+          ],
+          "word_count": 629,
+          "reading_time_minutes": 3
+        },
+        "images": {
+          "total_images": 1,
+          "successful": 1,
+          "failed": 0,
+          "manipulation_risks": 1,
+          "image_types": {
+            "photo": 1
+          },
+          "objects_detected": [],
+          "descriptions": [
+            "Banner image (1600x900) from article: RIL, Jio to pump Rs 10 lakh cr to make AI affordable: Ambani"
+          ],
+          "detailed_results": [
+            {
+              "success": true,
+              "url": "https://images.indianexpress.com/2026/02/mukesh-ambani-file-.jpg",
+              "metadata": {
+                "format": "JPEG",
+                "mode": "RGB",
+                "size": [
+                  1600,
+                  900
+                ],
+                "width": 1600,
+                "height": 900,
+                "aspect_ratio": 1.78,
+                "file_size_kb": 60
+              },
+              "image_type": {
+                "type": "photo",
+                "confidence": 0.8,
+                "color_complexity": 0.544,
+                "edge_density": 0.099
+              },
+              "vision_analysis": {
+                "description": "Banner image (1600x900) from article: RIL, Jio to pump Rs 10 lakh cr to make AI affordable: Ambani",
+                "objects": [],
+                "scene_type": "banner",
+                "mood": "dark/dramatic",
+                "relevance": "medium",
+                "news_value": "Visual context for the news story",
+                "is_photo": true,
+                "is_grayscale": false,
+                "avg_brightness": 48,
+                "dominant_colors": [
+                  "#1a1728",
+                  "#1b1926",
+                  "#161324",
+                  "#171425",
+                  "#191627"
+                ],
+                "source": "local_analysis"
+              },
+              "manipulation_score": {
+                "exif_data_present": false,
+                "unusual_aspect_ratio": false,
+                "suspicious_compression": true,
+                "risk_level": "medium",
+                "flags": [
+                  "Heavy compression detected"
+                ]
+              },
+              "context": "RIL, Jio to pump Rs 10 lakh cr to make AI affordable: Ambani"
+            }
+          ]
+        },
+        "exported_file": "output/india_report_20260220_025758.json"
+      },
+      "errors": [],
+      "skipped": [],
+      "fallbacks_used": [],
+      "regenerated": [],
+      "success": true
+    }
   }
 ]

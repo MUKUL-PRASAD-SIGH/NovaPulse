@@ -1,16 +1,22 @@
-"""Image Analysis Tool - Analyze images from news articles."""
+"""Image Analysis Tool - Analyze images from news articles with AI vision."""
 import asyncio
 import base64
+import os
+import json
+import re
 from typing import Dict, List, Optional
 from io import BytesIO
 import httpx
 from PIL import Image
-import json
+import boto3
+from dotenv import load_dotenv
 from app.memory.store import log_tool_execution
+
+load_dotenv()
 
 
 class ImageAnalyzer:
-    """Analyze images using Amazon Nova Vision and basic image processing."""
+    """Analyze images using Amazon Nova Vision and intelligent image processing."""
     
     def __init__(self):
         self.timeout = 15
@@ -21,14 +27,14 @@ class ImageAnalyzer:
     
     async def analyze_image(self, image_url: str, context: Optional[str] = None) -> Dict:
         """
-        Analyze a single image.
+        Analyze a single image with AI vision + metadata forensics.
         
         Args:
             image_url: URL of the image to analyze
             context: Optional context about the image (article title, etc.)
             
         Returns:
-            Analysis results including description, objects, text, metadata
+            Analysis results including AI description, objects, metadata, manipulation score
         """
         try:
             # Download image
@@ -39,20 +45,24 @@ class ImageAnalyzer:
             # Get basic metadata
             metadata = self._get_image_metadata(image_data)
             
-            # Extract text (OCR simulation - in production use AWS Textract or Tesseract)
-            extracted_text = await self._extract_text(image_data)
+            # If we can't even get dimensions, the file is not a valid image
+            if not metadata.get("width") or not metadata.get("height"):
+                return {"success": False, "url": image_url, "error": "Not a valid image format"}
             
-            # Analyze with Nova Vision (simulated - in production use Amazon Bedrock Nova Vision)
+            # Classify image type (photo/graphic/chart/screenshot)
+            image_type = self._classify_image_type(image_data)
+            
+            # AI Vision analysis (Nova Bedrock or smart local fallback)
             vision_analysis = await self._analyze_with_vision(image_data, context)
             
-            # Detect image manipulation (basic checks)
+            # Detect image manipulation
             manipulation_score = self._detect_manipulation(image_data, metadata)
             
             return {
                 "success": True,
                 "url": image_url,
                 "metadata": metadata,
-                "extracted_text": extracted_text,
+                "image_type": image_type,
                 "vision_analysis": vision_analysis,
                 "manipulation_score": manipulation_score,
                 "context": context
@@ -72,7 +82,6 @@ class ImageAnalyzer:
                 response = await client.get(url)
                 response.raise_for_status()
                 
-                # Check size
                 if len(response.content) > self.max_image_size:
                     return None
                 
@@ -82,11 +91,11 @@ class ImageAnalyzer:
             return None
     
     def _get_image_metadata(self, image_data: bytes) -> Dict:
-        """Extract image metadata."""
+        """Extract image metadata including EXIF."""
         try:
             image = Image.open(BytesIO(image_data))
             
-            return {
+            meta = {
                 "format": image.format,
                 "mode": image.mode,
                 "size": image.size,
@@ -95,72 +104,247 @@ class ImageAnalyzer:
                 "aspect_ratio": round(image.width / image.height, 2),
                 "file_size_kb": len(image_data) // 1024
             }
+            
+            # Extract EXIF data if available
+            exif = image.getexif()
+            if exif:
+                exif_tags = {}
+                tag_names = {
+                    271: "camera_make", 272: "camera_model",
+                    274: "orientation", 306: "date_time",
+                    305: "software", 37377: "shutter_speed"
+                }
+                for tag_id, tag_name in tag_names.items():
+                    if tag_id in exif:
+                        val = exif[tag_id]
+                        if isinstance(val, bytes):
+                            try:
+                                val = val.decode("utf-8", errors="ignore").strip("\x00")
+                            except Exception:
+                                val = str(val)
+                        exif_tags[tag_name] = str(val)
+                if exif_tags:
+                    meta["exif"] = exif_tags
+            
+            return meta
         except Exception:
             return {}
     
-    async def _extract_text(self, image_data: bytes) -> Dict:
-        """
-        Extract text from image (OCR).
-        In production, use AWS Textract or Tesseract OCR.
-        This is a placeholder implementation.
-        """
-        # Placeholder - in production integrate with AWS Textract or pytesseract
-        return {
-            "has_text": False,
-            "text": "",
-            "confidence": 0,
-            "note": "OCR integration pending - use AWS Textract or Tesseract"
-        }
+    def _classify_image_type(self, image_data: bytes) -> Dict:
+        """Classify whether image is a photo, graphic, chart, or screenshot."""
+        try:
+            image = Image.open(BytesIO(image_data)).convert("RGB")
+            small = image.resize((100, 100))
+            pixels = list(small.getdata())
+            
+            unique_colors = len(set(pixels))
+            total_pixels = len(pixels)
+            color_ratio = unique_colors / total_pixels
+            
+            # Color variance
+            r_vals = [p[0] for p in pixels]
+            g_vals = [p[1] for p in pixels]
+            b_vals = [p[2] for p in pixels]
+            avg_r = sum(r_vals) / total_pixels
+            avg_g = sum(g_vals) / total_pixels
+            avg_b = sum(b_vals) / total_pixels
+            
+            # Edge detection: count sharp color transitions
+            edges = 0
+            for i in range(1, len(pixels)):
+                diff = abs(pixels[i][0] - pixels[i-1][0]) + abs(pixels[i][1] - pixels[i-1][1]) + abs(pixels[i][2] - pixels[i-1][2])
+                if diff > 100:
+                    edges += 1
+            edge_ratio = edges / total_pixels
+            
+            # Check for large flat color regions (indicates graphic/logo)
+            from collections import Counter
+            color_counts = Counter(pixels)
+            top_color_pct = color_counts.most_common(1)[0][1] / total_pixels if color_counts else 0
+            
+            if color_ratio < 0.15 and top_color_pct > 0.3:
+                img_type = "graphic"
+                confidence = 0.85
+            elif color_ratio < 0.25 and edge_ratio > 0.15:
+                img_type = "chart"
+                confidence = 0.7
+            elif edge_ratio > 0.3 and color_ratio < 0.4:
+                img_type = "screenshot"
+                confidence = 0.65
+            else:
+                img_type = "photo"
+                confidence = 0.8
+            
+            return {
+                "type": img_type,
+                "confidence": round(confidence, 2),
+                "color_complexity": round(color_ratio, 3),
+                "edge_density": round(edge_ratio, 3)
+            }
+        except Exception:
+            return {"type": "unknown", "confidence": 0}
     
     async def _analyze_with_vision(self, image_data: bytes, context: Optional[str]) -> Dict:
         """
-        Analyze image with vision AI.
-        In production, use Amazon Bedrock Nova Vision API.
-        This is a simulated implementation.
+        Analyze image with Amazon Nova Vision via Bedrock.
+        Falls back to smart local analysis if Bedrock unavailable.
         """
-        # Placeholder for Nova Vision integration
-        # In production, call Amazon Bedrock with Nova Vision model
+        use_mock = os.getenv("USE_MOCK_PLANNER", "true").lower() == "true"
         
+        if not use_mock:
+            try:
+                return await self._nova_vision_analyze(image_data, context)
+            except Exception as e:
+                print(f"[IMAGE_ANALYZER] Nova Vision failed, using local analysis: {e}")
+        
+        return self._local_vision_analysis(image_data, context)
+    
+    async def _nova_vision_analyze(self, image_data: bytes, context: Optional[str]) -> Dict:
+        """Call Amazon Bedrock Nova Vision for real AI image understanding."""
+        region = os.getenv("AWS_REGION", "us-east-1")
+        client = boto3.client("bedrock-runtime", region_name=region)
+        
+        # Encode image to base64
+        b64_image = base64.b64encode(image_data).decode("utf-8")
+        
+        # Detect format for media type
+        try:
+            img = Image.open(BytesIO(image_data))
+            fmt = (img.format or "JPEG").lower()
+            if fmt == "jpg":
+                fmt = "jpeg"
+            media_type = f"image/{fmt}"
+        except Exception:
+            media_type = "image/jpeg"
+        
+        context_hint = f" This image is from a news article titled: '{context}'." if context else ""
+        
+        prompt = f"""Analyze this news article image.{context_hint}
+
+Return ONLY valid JSON with these fields:
+{{
+  "description": "One sentence describing what the image shows",
+  "objects": ["list", "of", "key", "objects", "or", "people"],
+  "scene_type": "one of: portrait, group, event, infographic, product, nature, building, abstract",
+  "mood": "one of: positive, negative, neutral, dramatic, professional",
+  "relevance": "one of: high, medium, low - how relevant is this image to the article title",
+  "news_value": "One sentence on what this image adds to the news story"
+}}"""
+
+        body = {
+            "messages": [{
+                "role": "user",
+                "content": [
+                    {
+                        "image": {
+                            "format": fmt,
+                            "source": {"bytes": b64_image}
+                        }
+                    },
+                    {"text": prompt}
+                ]
+            }],
+            "inferenceConfig": {"maxTokens": 300, "temperature": 0.3}
+        }
+        
+        # Run synchronous boto3 call in executor to not block async loop
+        loop = asyncio.get_event_loop()
+        response = await loop.run_in_executor(None, lambda: client.invoke_model(
+            modelId="amazon.nova-lite-v1:0",
+            body=json.dumps(body),
+            contentType="application/json"
+        ))
+        
+        result = json.loads(response["body"].read())
+        output_text = result.get("output", {}).get("message", {}).get("content", [{}])[0].get("text", "{}")
+        output_text = re.sub(r"```json\s*|```\s*", "", output_text)
+        
+        parsed = json.loads(output_text.strip())
+        
+        # Add dominant colors from PIL (Nova doesn't return colors)
+        try:
+            image = Image.open(BytesIO(image_data))
+            parsed["dominant_colors"] = self._get_dominant_colors(image)
+        except Exception:
+            parsed["dominant_colors"] = []
+        
+        parsed["source"] = "nova_vision"
+        return parsed
+    
+    def _local_vision_analysis(self, image_data: bytes, context: Optional[str]) -> Dict:
+        """Smart local analysis when Nova Vision is unavailable."""
         try:
             image = Image.open(BytesIO(image_data))
             
-            # Basic analysis
             is_photo = image.mode in ['RGB', 'RGBA']
             is_grayscale = image.mode in ['L', 'LA']
+            dominant_colors = self._get_dominant_colors(image)
             
-            # Simulated analysis
-            analysis = {
-                "description": "Image analysis requires Amazon Bedrock Nova Vision API integration",
-                "objects_detected": [],
-                "scene_type": "unknown",
-                "confidence": 0,
+            # Determine likely content from image properties
+            w, h = image.size
+            aspect = w / h if h > 0 else 1
+            
+            # Heuristic scene classification
+            if aspect > 1.7:
+                scene_type = "banner"
+            elif aspect < 0.7:
+                scene_type = "portrait"
+            elif w > 1000 and h > 1000:
+                scene_type = "high-res photo"
+            else:
+                scene_type = "general"
+            
+            # Brightness analysis
+            gray = image.convert("L")
+            pixels = list(gray.getdata())
+            avg_brightness = sum(pixels) / len(pixels)
+            
+            if avg_brightness < 60:
+                mood = "dark/dramatic"
+            elif avg_brightness > 200:
+                mood = "bright/positive"
+            else:
+                mood = "neutral"
+            
+            # Determine description based on what we can infer
+            desc_parts = []
+            if is_grayscale:
+                desc_parts.append("Grayscale image")
+            else:
+                desc_parts.append(f"{scene_type.capitalize()} image")
+            desc_parts.append(f"({w}x{h})")
+            if context:
+                desc_parts.append(f"from article: {context[:60]}")
+            
+            return {
+                "description": " ".join(desc_parts),
+                "objects": [],
+                "scene_type": scene_type,
+                "mood": mood,
+                "relevance": "medium",
+                "news_value": "Visual context for the news story",
                 "is_photo": is_photo,
                 "is_grayscale": is_grayscale,
-                "dominant_colors": self._get_dominant_colors(image),
-                "note": "Integrate with Amazon Bedrock Nova Vision for full analysis"
+                "avg_brightness": round(avg_brightness),
+                "dominant_colors": dominant_colors,
+                "source": "local_analysis"
             }
             
-            return analysis
-            
         except Exception as e:
-            return {"error": str(e)}
+            return {"error": str(e), "source": "local_analysis"}
     
-    def _get_dominant_colors(self, image: Image.Image, num_colors: int = 3) -> List[str]:
+    def _get_dominant_colors(self, image: Image.Image, num_colors: int = 5) -> List[str]:
         """Extract dominant colors from image."""
         try:
-            # Resize for faster processing
             image = image.resize((150, 150))
             image = image.convert('RGB')
             
-            # Get color histogram
             colors = image.getcolors(image.width * image.height)
             if not colors:
                 return []
             
-            # Sort by frequency
             sorted_colors = sorted(colors, key=lambda x: x[0], reverse=True)
             
-            # Convert to hex
             dominant = []
             for count, color in sorted_colors[:num_colors]:
                 hex_color = '#{:02x}{:02x}{:02x}'.format(*color)
@@ -173,25 +357,24 @@ class ImageAnalyzer:
     
     def _detect_manipulation(self, image_data: bytes, metadata: Dict) -> Dict:
         """
-        Detect potential image manipulation.
-        Basic checks - in production use specialized forensics tools.
+        Detect potential image manipulation with enhanced heuristics.
         """
         try:
             image = Image.open(BytesIO(image_data))
             
-            # Basic checks
             checks = {
                 "exif_data_present": bool(image.getexif()),
                 "unusual_aspect_ratio": False,
                 "suspicious_compression": False,
-                "risk_level": "low"
+                "risk_level": "low",
+                "flags": []
             }
             
             # Check aspect ratio
             aspect_ratio = metadata.get('aspect_ratio', 1)
             if aspect_ratio < 0.3 or aspect_ratio > 3:
                 checks["unusual_aspect_ratio"] = True
-                checks["risk_level"] = "medium"
+                checks["flags"].append("Unusual aspect ratio")
             
             # Check file size vs dimensions (compression analysis)
             pixels = metadata.get('width', 0) * metadata.get('height', 0)
@@ -199,14 +382,48 @@ class ImageAnalyzer:
             
             if pixels > 0 and file_size_kb > 0:
                 bytes_per_pixel = (file_size_kb * 1024) / pixels
-                if bytes_per_pixel < 0.1 or bytes_per_pixel > 10:
+                if bytes_per_pixel < 0.05:
                     checks["suspicious_compression"] = True
-                    checks["risk_level"] = "medium"
+                    checks["flags"].append("Heavy compression detected")
+                elif bytes_per_pixel > 10:
+                    checks["flags"].append("Unusually large file size")
+            
+            # Check for uniform borders (possible crop/paste)
+            try:
+                rgb = image.convert("RGB")
+                w, h = rgb.size
+                if w > 20 and h > 20:
+                    # Check top and bottom 5px strips
+                    top_strip = list(rgb.crop((0, 0, w, 5)).getdata())
+                    bottom_strip = list(rgb.crop((0, h-5, w, h)).getdata())
+                    
+                    top_unique = len(set(top_strip))
+                    bottom_unique = len(set(bottom_strip))
+                    
+                    if top_unique < 3 or bottom_unique < 3:
+                        checks["flags"].append("Uniform border detected (possible composite)")
+            except Exception:
+                pass
+            
+            # EXIF software check
+            exif_data = metadata.get("exif", {})
+            software = exif_data.get("software", "").lower()
+            if software and any(tool in software for tool in ["photoshop", "gimp", "paint"]):
+                checks["flags"].append(f"Editing software in EXIF: {exif_data['software']}")
+            
+            # Calculate risk level
+            flag_count = len(checks["flags"])
+            if flag_count >= 3:
+                checks["risk_level"] = "high"
+            elif flag_count >= 1 or checks["suspicious_compression"] or checks["unusual_aspect_ratio"]:
+                checks["risk_level"] = "medium"
+            else:
+                checks["risk_level"] = "low"
             
             return checks
             
         except Exception:
-            return {"error": "Could not analyze manipulation"}
+            return {"error": "Could not analyze manipulation", "risk_level": "unknown"}
 
 
 async def analyze_image(image_url: str, context: Optional[str] = None) -> Dict:
@@ -240,7 +457,7 @@ async def analyze_article_images(articles: List[Dict]) -> Dict:
         articles: List of articles with image URLs or article links
         
     Returns:
-        Aggregated image analysis
+        Aggregated image analysis with AI insights
     """
     analyzer = ImageAnalyzer()
     
@@ -248,25 +465,42 @@ async def analyze_article_images(articles: List[Dict]) -> Dict:
     for i, a in enumerate(articles[:3]):
         print(f"  [{i}] title={a.get('title','')[:60]}, images={len(a.get('images',[]))}, link={a.get('link','')[:80]}")
     
-    # Collect all image URLs — first from explicit 'images' field, then extract from article pages
+    # Collect all image URLs (deduplicated)
     image_urls_with_context = []
+    seen_urls = set()
     
-    for article in articles[:8]:  # Limit to 8 articles
+    def _add_image(url, title):
+        """Add image URL if not already seen and looks like a real image."""
+        if not url or not url.startswith('http'):
+            return
+        # Normalize URL for dedup
+        clean_url = url.split('?')[0].split('#')[0]
+        if clean_url in seen_urls:
+            return
+        # Skip tracking pixels, social icons, and tiny placeholders
+        skip_patterns = ['/favicon', '/icon', '/logo-small', 'tracking', '1x1', 'pixel', '.svg']
+        if any(p in url.lower() for p in skip_patterns):
+            return
+        seen_urls.add(clean_url)
+        image_urls_with_context.append((url, title))
+    
+    for article in articles[:8]:
         images = article.get('images', [])
         title = article.get('title', '')
         
+        # Check for direct image URL from GNews/Tavily
+        _add_image(article.get('image', ''), title)
+        
         if isinstance(images, list) and images:
             for img_url in images[:2]:
-                # Accept both direct image URLs and any http URL (og:image URLs may not end in .jpg)
-                if img_url and img_url.startswith('http'):
-                    image_urls_with_context.append((img_url, title))
+                _add_image(img_url, title)
     
-    print(f"[IMAGE_ANALYZER] Found {len(image_urls_with_context)} direct image URLs")
+    print(f"[IMAGE_ANALYZER] Found {len(image_urls_with_context)} direct image URLs (deduped)")
     
-    # If we didn't find direct image URLs, extract og:image from article pages
+    # If no direct images, extract og:image from article pages
     if not image_urls_with_context:
         og_tasks = []
-        for article in articles[:5]:  # Top 5 articles
+        for article in articles[:5]:
             link = article.get('link', '')
             if link:
                 og_tasks.append(_extract_og_image(link))
@@ -277,7 +511,7 @@ async def analyze_article_images(articles: List[Dict]) -> Dict:
         for i, result in enumerate(og_results):
             if isinstance(result, str) and result:
                 title = articles[i].get('title', '') if i < len(articles) else ''
-                image_urls_with_context.append((result, title))
+                _add_image(result, title)
                 print(f"  [OK] og:image from article {i}: {result[:80]}")
             elif isinstance(result, Exception):
                 print(f"  [FAIL] og:image error for article {i}: {result}")
@@ -286,12 +520,11 @@ async def analyze_article_images(articles: List[Dict]) -> Dict:
     
     print(f"[IMAGE_ANALYZER] Total images to analyze: {len(image_urls_with_context)}")
     
-    # Now analyze the collected images
+    # Analyze in parallel
     image_tasks = []
     for img_url, ctx in image_urls_with_context:
         image_tasks.append(analyzer.analyze_image(img_url, ctx))
     
-    # Analyze in parallel
     results = await asyncio.gather(*image_tasks, return_exceptions=True)
     
     # Process results
@@ -300,9 +533,24 @@ async def analyze_article_images(articles: List[Dict]) -> Dict:
     
     print(f"[IMAGE_ANALYZER] Results: {len(successful)} successful, {failed} failed")
     
-    # Extract insights
-    total_text_found = sum(1 for r in successful if r.get('extracted_text', {}).get('has_text'))
+    # Extract aggregate insights
     manipulation_risks = [r for r in successful if r.get('manipulation_score', {}).get('risk_level') in ['medium', 'high']]
+    
+    # Count image types
+    type_counts = {}
+    for r in successful:
+        it = r.get("image_type", {}).get("type", "unknown")
+        type_counts[it] = type_counts.get(it, 0) + 1
+    
+    # Collect all detected objects from AI vision
+    all_objects = []
+    descriptions = []
+    for r in successful:
+        va = r.get("vision_analysis", {})
+        all_objects.extend(va.get("objects", []))
+        desc = va.get("description", "")
+        if desc:
+            descriptions.append(desc)
     
     await log_tool_execution(
         tool_name="image_analyzer",
@@ -314,38 +562,40 @@ async def analyze_article_images(articles: List[Dict]) -> Dict:
         "total_images": len(results),
         "successful": len(successful),
         "failed": failed,
-        "images_with_text": total_text_found,
         "manipulation_risks": len(manipulation_risks),
-        "detailed_results": successful[:10]  # Return top 10 detailed results
+        "image_types": type_counts,
+        "objects_detected": list(set(all_objects))[:20],
+        "descriptions": descriptions[:5],
+        "detailed_results": successful[:10]
     }
 
 
 async def _extract_og_image(url: str) -> Optional[str]:
     """Extract og:image meta tag from an article URL."""
     try:
-        async with httpx.AsyncClient(timeout=6, headers={
+        async with httpx.AsyncClient(timeout=10, headers={
             'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
         }, verify=False, follow_redirects=True) as client:
             response = await client.get(url)
             response.raise_for_status()
-            html = response.text[:50000]  # Only check first 50KB
+            html = response.text[:50000]
             
-            # Extract og:image using simple string search (avoid full HTML parse)
             import re
             # Try og:image
-            match = re.search(r'<meta[^>]+property=["\']og:image["\'][^>]+content=["\'](https?://[^"\']+)["\']', html, re.IGNORECASE)
+            match = re.search(r'<meta[^>]+property=["\']og:image["\'][^>]+content=["\'](https?://[^"\'>]+)["\']', html, re.IGNORECASE)
             if not match:
-                match = re.search(r'<meta[^>]+content=["\'](https?://[^"\']+)["\'][^>]+property=["\']og:image["\']', html, re.IGNORECASE)
+                match = re.search(r'<meta[^>]+content=["\'](https?://[^"\'>]+)["\'][^>]+property=["\']og:image["\']', html, re.IGNORECASE)
             if match:
                 return match.group(1)
             
             # Try twitter:image
-            match = re.search(r'<meta[^>]+(?:name|property)=["\']twitter:image["\'][^>]+content=["\'](https?://[^"\']+)["\']', html, re.IGNORECASE)
+            match = re.search(r'<meta[^>]+(?:name|property)=["\']twitter:image["\'][^>]+content=["\'](https?://[^"\'>]+)["\']', html, re.IGNORECASE)
             if not match:
-                match = re.search(r'<meta[^>]+content=["\'](https?://[^"\']+)["\'][^>]+(?:name|property)=["\']twitter:image["\']', html, re.IGNORECASE)
+                match = re.search(r'<meta[^>]+content=["\'](https?://[^"\'>]+)["\'][^>]+(?:name|property)=["\']twitter:image["\']', html, re.IGNORECASE)
             if match:
                 return match.group(1)
                 
     except Exception as e:
         print(f"[OG_IMAGE] Error fetching {url[:60]}: {e}")
     return None
+

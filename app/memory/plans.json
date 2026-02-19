@@ -1,215 +1,5 @@
 [
   {
-    "timestamp": "2026-02-04T13:23:59.498017",
-    "user_input": "elon muysk",
-    "plan": {
-      "intent": "Fetch and summarize news about Elon Musk",
-      "domain": "elon musk",
-      "steps": [
-        {
-          "tool": "news_fetcher",
-          "params": {
-            "topic": "elon musk",
-            "limit": 5
-          }
-        },
-        {
-          "tool": "summarizer",
-          "params": {
-            "news_items": "news_fetcher_output"
-          }
-        },
-        {
-          "tool": "exporter",
-          "params": {
-            "filename": "elon_musk_news_summary",
-            "format": "json"
-          }
-        }
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-02-04T13:24:48.251909",
-    "user_input": "india u8s trade deal",
-    "plan": {
-      "intent": "Fetch and summarize recent news about the India-U.S. trade deal",
-      "domain": "India-U.S. trade deal",
-      "steps": [
-        {
-          "tool": "news_fetcher",
-          "params": {
-            "topic": "India U.S trade deal",
-            "sources": [
-              "google"
-            ],
-            "limit": 5
-          }
-        },
-        {
-          "tool": "summarizer",
-          "params": {
-            "news_items": ""
-          }
-        },
-        {
-          "tool": "sentiment",
-          "params": {
-            "news_items": ""
-          }
-        },
-        {
-          "tool": "exporter",
-          "params": {
-            "filename": "trade_deal_report",
-            "format": "json"
-          }
-        }
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-02-04T13:26:34.582584",
-    "user_input": "india us trade deal",
-    "plan": {
-      "intent": "Fetch and summarize news on India-US trade deal, then export the report.",
-      "domain": "India-US trade deal",
-      "steps": [
-        {
-          "tool": "news_fetcher",
-          "params": {
-            "topic": "india us trade deal",
-            "sources": [
-              "google"
-            ],
-            "limit": 5
-          }
-        },
-        {
-          "tool": "summarizer",
-          "params": {
-            "news_items": "$.news_fetcher.news_items"
-          }
-        },
-        {
-          "tool": "exporter",
-          "params": {
-            "filename": "india_us_trade_deal_report",
-            "format": "json"
-          }
-        }
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-02-04T13:32:26.101800",
-    "user_input": "Movies",
-    "plan": {
-      "intent": "Fetch and export latest news about movies",
-      "domain": "movies",
-      "steps": [
-        {
-          "tool": "news_fetcher",
-          "params": {
-            "topic": "movies",
-            "limit": 5
-          }
-        },
-        {
-          "tool": "exporter",
-          "params": {
-            "filename": "movies_report",
-            "format": "json"
-          }
-        }
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-02-04T13:33:03.660366",
-    "user_input": "Stock Market with summarize and sentiment analysis and trends",
-    "plan": {
-      "intent": "Fetch and analyze stock market news with summarization, sentiment analysis, and trending topics extraction",
-      "domain": "Stock Market",
-      "steps": [
-        {
-          "tool": "news_fetcher",
-          "params": {
-            "topic": "Stock Market",
-            "limit": 5
-          }
-        },
-        {
-          "tool": "summarizer",
-          "params": {
-            "news_items": "news_fetcher output"
-          }
-        },
-        {
-          "tool": "sentiment",
-          "params": {
-            "news_items": "news_fetcher output"
-          }
-        },
-        {
-          "tool": "trends",
-          "params": {
-            "news_items": "news_fetcher output"
-          }
-        },
-        {
-          "tool": "exporter",
-          "params": {
-            "filename": "stock_market_report",
-            "format": "json"
-          }
-        }
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-02-04T14:38:35.362279",
-    "user_input": "India US trade deal with summarize and sentiment analysis and trends",
-    "plan": {
-      "intent": "Fetch news on India-US trade deal, summarize, perform sentiment analysis, extract trends, and export the results",
-      "domain": "India-US trade deal",
-      "steps": [
-        {
-          "tool": "news_fetcher",
-          "params": {
-            "topic": "India-US trade deal",
-            "limit": 5
-          }
-        },
-        {
-          "tool": "summarizer",
-          "params": {
-            "news_items": "news_fetcher_output"
-          }
-        },
-        {
-          "tool": "sentiment",
-          "params": {
-            "news_items": "news_fetcher_output"
-          }
-        },
-        {
-          "tool": "trends",
-          "params": {
-            "news_items": "news_fetcher_output"
-          }
-        },
-        {
-          "tool": "exporter",
-          "params": {
-            "filename": "India-US_trade_deal_report",
-            "format": "json"
-          }
-        }
-      ]
-    }
-  },
-  {
     "timestamp": "2026-02-04T15:32:49.314052",
     "user_input": "iNDIA  US TRADE DEAL",
     "plan": {
@@ -2015,6 +1805,196 @@
             ],
             "limit": 5
           }
+        },
+        {
+          "tool": "image_analyzer",
+          "params": {}
+        },
+        {
+          "tool": "exporter",
+          "params": {
+            "filename": "india_report",
+            "format": "json"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-20T02:47:01.512776",
+    "user_input": "india AI summit with image analysis",
+    "plan": {
+      "intent": "Get india news",
+      "domain": "india",
+      "steps": [
+        {
+          "tool": "news_fetcher",
+          "params": {
+            "topic": "india",
+            "sources": [
+              "google"
+            ],
+            "limit": 5
+          }
+        },
+        {
+          "tool": "image_analyzer",
+          "params": {}
+        },
+        {
+          "tool": "exporter",
+          "params": {
+            "filename": "india_report",
+            "format": "json"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-20T02:48:51.920320",
+    "user_input": "india AI summit with image analysis",
+    "plan": {
+      "intent": "Get india news",
+      "domain": "india",
+      "steps": [
+        {
+          "tool": "news_fetcher",
+          "params": {
+            "topic": "india",
+            "sources": [
+              "google"
+            ],
+            "limit": 5
+          }
+        },
+        {
+          "tool": "image_analyzer",
+          "params": {}
+        },
+        {
+          "tool": "exporter",
+          "params": {
+            "filename": "india_report",
+            "format": "json"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-20T02:49:15.681475",
+    "user_input": "india AI summit with image analysis",
+    "plan": {
+      "intent": "Get india news",
+      "domain": "india",
+      "steps": [
+        {
+          "tool": "news_fetcher",
+          "params": {
+            "topic": "india",
+            "sources": [
+              "google"
+            ],
+            "limit": 5
+          }
+        },
+        {
+          "tool": "image_analyzer",
+          "params": {}
+        },
+        {
+          "tool": "exporter",
+          "params": {
+            "filename": "india_report",
+            "format": "json"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-20T02:52:21.173369",
+    "user_input": "india AI summit with image analysis",
+    "plan": {
+      "intent": "Get india news",
+      "domain": "india",
+      "steps": [
+        {
+          "tool": "news_fetcher",
+          "params": {
+            "topic": "india",
+            "sources": [
+              "google"
+            ],
+            "limit": 5
+          }
+        },
+        {
+          "tool": "image_analyzer",
+          "params": {}
+        },
+        {
+          "tool": "exporter",
+          "params": {
+            "filename": "india_report",
+            "format": "json"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-20T02:53:50.767880",
+    "user_input": "india AI summit with image analysis",
+    "plan": {
+      "intent": "Get india news",
+      "domain": "india",
+      "steps": [
+        {
+          "tool": "news_fetcher",
+          "params": {
+            "topic": "india",
+            "sources": [
+              "google"
+            ],
+            "limit": 5
+          }
+        },
+        {
+          "tool": "image_analyzer",
+          "params": {}
+        },
+        {
+          "tool": "exporter",
+          "params": {
+            "filename": "india_report",
+            "format": "json"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-20T02:57:50.744320",
+    "user_input": "india AI summit with full article content and image analysis",
+    "plan": {
+      "intent": "Get india news",
+      "domain": "india",
+      "steps": [
+        {
+          "tool": "news_fetcher",
+          "params": {
+            "topic": "india",
+            "sources": [
+              "google"
+            ],
+            "limit": 5
+          }
+        },
+        {
+          "tool": "web_scraper",
+          "params": {}
         },
         {
           "tool": "image_analyzer",
