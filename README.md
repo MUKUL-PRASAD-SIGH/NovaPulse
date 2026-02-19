@@ -1,41 +1,84 @@
-# 🧠 Nova Intelligence Agent
+# 🧠 Nova — Multi-Agent Intelligence System
 
-> **Not just news. Intelligence.**
+> **9 agents. One query. Zero compromise.**
 
-A voice-powered multi-agent news intelligence system using **Amazon Nova AI**. Fetches news from multiple sources in parallel, deploys 9 specialized analysis tools, and delivers AI-powered intelligence reports — all from a single query.
+Nova is a **voice-powered Multi-Agent System (MAS)** built on **Amazon Nova AI** that orchestrates 9 specialist agents through a dependency-aware execution graph. Speak a query, and Nova's planner decomposes it into a parallel task tree — fetching, scraping, analyzing, and synthesizing intelligence across news, social, academic, and visual domains simultaneously.
 
-- 🎥 **Demo video**: [Watch on YouTube](https://youtu.be/KDNrGJ994Cw)
+News intelligence is the flagship pipeline. The architecture is the product.
 
-![Python](https://img.shields.io/badge/Python-3.9+-blue)
-![FastAPI](https://img.shields.io/badge/FastAPI-0.109+-green)
-![Nova AI](https://img.shields.io/badge/Amazon_Nova-AI-orange)
-![Tools](https://img.shields.io/badge/Tools-9_Active-purple)
-![MAS](https://img.shields.io/badge/Architecture-Multi--Agent-ff6b6b)
+- 🎥 **Demo**: [Watch on YouTube](https://youtu.be/KDNrGJ994Cw)
+
+![Architecture](https://img.shields.io/badge/Architecture-Multi--Agent_System-ff6b6b?style=for-the-badge)
+![Agents](https://img.shields.io/badge/Agents-9_Specialist-blueviolet?style=for-the-badge)
+![AI](https://img.shields.io/badge/LLM-Amazon_Nova-orange?style=for-the-badge)
+![Python](https://img.shields.io/badge/Python-3.9+-blue?style=for-the-badge)
+![FastAPI](https://img.shields.io/badge/FastAPI-0.109+-green?style=for-the-badge)
 
 ---
 
-## ⚡ Features at a Glance
+## 🔮 What Makes This a MAS — Not Just Another News App
+
+Most "AI news tools" are glorified API wrappers. Nova is architecturally different:
+
+```
+                            ┌─────────────────────┐
+                            │   🧠 PLANNER AGENT  │  ← Amazon Nova LLM
+                            │  Decomposes query    │     decomposes intent
+                            │  into task DAG       │     into executable plan
+                            └──────────┬──────────┘
+                                       │
+                              ┌────────▼────────┐
+                              │  ⚡ EXECUTOR    │  ← Dependency graph
+                              │     AGENT       │     orchestration
+                              └────────┬────────┘
+                                       │
+          ┌────────────────────────────┼────────────────────────────┐
+          │           │           │    │    │           │           │
+          ▼           ▼           ▼    ▼    ▼           ▼           ▼
+       ┌──────┐  ┌──────┐  ┌──────┐ ┌───┐ ┌──────┐  ┌──────┐  ┌──────┐
+       │📰News│  │🧠Summ│  │💭Sent│ │📊T│ │🌐Scrp│  │👤Enty│  │🖼️Img │
+       │Fetch │  │arize │  │iment │ │rnd│ │aper  │  │ities │  │Analy │
+       └──────┘  └──────┘  └──────┘ └───┘ └──────┘  └──────┘  └──────┘
+                                                │           │
+                                          ┌──────┐    ┌──────┐
+                                          │📱Socl│    │📚Rsrch│
+                                          │Media │    │Asst  │
+                                          └──────┘    └──────┘
+```
+
+| Principle | How Nova Implements It |
+|-----------|----------------------|
+| **Agent Autonomy** | Each tool is a self-contained agent with its own fallback logic |
+| **Parallel Execution** | `asyncio.gather()` runs independent agents simultaneously |
+| **Dependency Graphs** | Planner generates a DAG — Summarizer waits for News, Entities wait for Scraper |
+| **Graceful Degradation** | If an agent fails, dependent agents skip cleanly — pipeline never crashes |
+| **Shared Context** | All agents write to a unified context store consumed by the Package Builder |
+| **Dynamic Planning** | LLM-generated plans adapt to which tools are toggled on |
+
+---
+
+## ⚡ The 9 Agents
 
 ### 🎯 Core Intelligence Pipeline
 
-| Tool | Description | Backend |
-|------|-------------|---------|
-| 📰 **Multi-Source News Fetch** | Parallel news from Tavily, GNews & RSS with auto-failover | `asyncio.gather()` + priority queue |
-| 🧠 **AI Summarization** | Nova-powered executive digest with context-aware analysis | Amazon Nova Lite LLM |
-| 💭 **Sentiment Intelligence** | Bloomberg-style analyst narrative — *not just percentages* | NLP + Nova AI inference |
-| 📊 **Trend Extraction** | Velocity-weighted hot topics with time decay & source scoring | Regex NER + n-gram + history |
+| Agent | What It Does | Under the Hood |
+|-------|-------------|----------------|
+| 📰 **News Fetcher** | Parallel news from Tavily, GNews & RSS with auto-failover | `asyncio.gather()` + priority queue |
+| 🧠 **Summarizer** | Nova-powered executive digest with context-aware analysis | Amazon Nova Lite LLM |
+| 💭 **Sentiment Analyst** | Bloomberg-style narrative intelligence — *not just percentages* | NLP + Nova AI inference |
+| 📊 **Trend Detector** | Velocity-weighted hot topics with time decay & source scoring | Regex NER + n-gram + history |
 
-### 🛠️ Multi-Agent System (MAS) Tools
+### 🛠️ MAS Extension Agents
 
-| Tool | Description | Backend |
-|------|-------------|---------|
-| 🌐 **Web Scraper** | Full article content extraction with og:image, metadata parsing | `httpx` + `BeautifulSoup` |
-| 👤 **Entity Network** | NER extraction — people, orgs, locations + relationship mapping | Regex NER + co-occurrence |
-| 🖼️ **Image Intelligence** | Article image forensics — metadata, text extraction, manipulation detection | EXIF + regex + heuristics |
-| 📱 **Social Monitor** | Reddit & Twitter trend tracking with sentiment per platform | Reddit API + NLP |
+| Agent | What It Does | Under the Hood |
+|-------|-------------|----------------|
+| 🌐 **Web Scraper** | Full article extraction with og:image, metadata parsing | `httpx` + `BeautifulSoup` |
+| 👤 **Entity Extractor** | NER — people, orgs, locations + relationship mapping | Regex NER + co-occurrence |
+| 🖼️ **Image Analyst** | Article image forensics — EXIF, text extraction, tampering | EXIF + regex + heuristics |
+| 📱 **Social Monitor** | Reddit & Twitter trend tracking with per-platform sentiment | Reddit API + NLP |
 | 📚 **Research Assistant** | arXiv papers, GitHub repos, StackOverflow — academic & dev intel | Multi-API aggregation |
 
-### 🧩 Platform Features
+### 🧩 Platform Capabilities
 
 | Feature | Description | Backend |
 |---------|-------------|---------|
@@ -51,7 +94,24 @@ A voice-powered multi-agent news intelligence system using **Amazon Nova AI**. F
 
 ---
 
-## 🏗️ Architecture
+## 🏗️ System Architecture
+
+### Orchestration Flow
+
+```
+User Input → Planner Agent → Task DAG → Executor Agent
+                                              ↓
+            ┌──────────────────────────────────────────────────────┐
+            │  Core: News → Summary → Sentiment → Trends          │
+            │  MAS:  Scraper → Entities → Images → Social → Rsrch │
+            └──────────────────────────────────────────────────────┘
+                                              ↓
+                              Context Store → UI Rendering
+                                              ↓
+                    Supplementary: /translate │ /dictionary │ /languages
+```
+
+### Full Pipeline
 
 ```
 ┌─────────────────┐     ┌──────────────────┐     ┌─────────────────┐
@@ -96,9 +156,36 @@ A voice-powered multi-agent news intelligence system using **Amazon Nova AI**. F
               └──────────────────────┘
 ```
 
+### 💾 Multi-Layer Storage
+
+| Layer | Storage | Data | Retention |
+|-------|---------|------|-----------|
+| **Frontend** | LocalStorage | Search history, language prefs, settings | Permanent |
+| **Backend** | `app/memory/plans.json` | User task plans | All sessions |
+| **Backend** | `app/memory/results.json` | Execution outputs | All sessions |
+| **Backend** | `app/memory/logs.json` | Runtime logs & diagnostics | All sessions |
+| **Export** | `output/` folder | Timestamped reports (5 formats) | Permanent |
+
+### 🛡️ Resilience & Error Handling
+
+| Capability | Status |
+|------------|--------|
+| **Tool Error Isolation** | ✅ Agent failure doesn't kill pipeline |
+| **Per-Step Error Logging** | ✅ Errors stored individually |
+| **Graceful Degradation** | ✅ Partial results returned |
+| **Tool Retry Logic** | ✅ 2 retries with exponential backoff |
+| **Dependency Graph Execution** | ✅ Skip agent if dependency failed |
+| **Alternate Tool Fallback** | ✅ Fallback summarizer & sentiment |
+| **Auto Step Regeneration** | ✅ Retry with reduced params |
+| **Dynamic Plan Rewriting** | ✅ Recovery on critical failures |
+| **Redirect Following** | ✅ Handles 302 redirects gracefully |
+| **Direct URL Prioritization** | ✅ Prefers direct links over Google News redirects |
+
+> **💡 Smart Execution:** Feature toggles dynamically build plans — planner only invokes agents you enable, reducing API costs and execution time.
+
 ---
 
-## 🎯 Feature Deep-Dive
+## 🎯 Agent Deep-Dive
 
 ### 📰 Multi-Source News Intelligence
 
@@ -128,7 +215,7 @@ A voice-powered multi-agent news intelligence system using **Amazon Nova AI**. F
 
 ---
 
-### 💭 Sentiment Intelligence V2 — *"Narrative, Not Numbers"*
+### 💭 Sentiment Intelligence — *"Narrative, Not Numbers"*
 
 > 🧮 **OLD:** Word counting → *"60% positive"*  
 > 🧠 **NEW:** Market narrative intelligence → *"Bullish momentum with regulatory headwinds"*
@@ -163,14 +250,14 @@ A voice-powered multi-agent news intelligence system using **Amazon Nova AI**. F
 
 ---
 
-### 📊 Trend Intelligence V2 — *"Velocity, Not Just Frequency"*
+### 📊 Trend Intelligence — *"Velocity, Not Just Frequency"*
 
 > 📝 **OLD:** Keyword counting → *"OpenAI: 5 mentions"*  
 > 🔥 **NEW:** Time-weighted velocity detection → *"🔥 OpenAI GPT rising fast"*
 
 ```
 ┌─────────────────────────────────────────────────────────────────────────┐
-│  📊 TREND INTELLIGENCE V2                                               │
+│  📊 TREND INTELLIGENCE                                                   │
 ├─────────────────────────────────────────────────────────────────────────┤
 │  🔥 Rising Fast    │  📈 Rising    │  ➡️ Stable    │  📉 Fading        │
 │  India Trade Deal  │  Market Rally │  Fed Policy   │  Old Topic        │
@@ -200,9 +287,9 @@ A voice-powered multi-agent news intelligence system using **Amazon Nova AI**. F
 
 ---
 
-### 🛠️ Multi-Agent System (MAS) — *"5 Specialist Agents, One Query"*
+### 🛠️ MAS Extension Agents — *"5 Specialists, One Query"*
 
-> 🔧 **The MAS layer extends the core pipeline with 5 specialized tools that run in parallel, orchestrated by the Executor Agent's dependency graph.**
+> 🔧 **The MAS layer extends the core pipeline with 5 specialized agents that run in parallel, orchestrated by the Executor Agent's dependency graph.**
 
 ```
 ┌─────────────────────────────────────────────────────────────────────────┐
@@ -217,15 +304,15 @@ A voice-powered multi-agent news intelligence system using **Amazon Nova AI**. F
 │                                                                         │
 ├─────────────────────────────────────────────────────────────────────────┤
 │  ⚡ Execution: Parallel via asyncio │ 🔄 Auto-retry on failure          │
-│  🧠 Context: Shared pipeline state │ 📦 Export: All tools included      │
+│  🧠 Context: Shared pipeline state │ 📦 Export: All agents included     │
 └─────────────────────────────────────────────────────────────────────────┘
 ```
 
-| Tool | Input | Output | Fallback |
-|------|-------|--------|----------|
+| Agent | Input | Output | Fallback |
+|-------|-------|--------|----------|
 | **🌐 Web Scraper** | Article URLs (direct, not redirects) | Title, text, images, metadata | Skipped if URL blocked |
 | **👤 Entity Extractor** | News article list | People, orgs, locations + relationships | Empty entity map |
-| **🖼️ Image Analyzer** | Scraper images → og:image fallback | Forensics report per image | Zero images reported |
+| **🖼️ Image Analyst** | Scraper images → og:image fallback | Forensics report per image | Zero images reported |
 | **📱 Social Monitor** | Topic query | Reddit posts, scores, sentiment | Empty social section |
 | **📚 Research Assistant** | Topic query | Papers, repos, SO answers | Empty research section |
 
@@ -240,7 +327,7 @@ A voice-powered multi-agent news intelligence system using **Amazon Nova AI**. F
 ┌─────────────────────────────────────────────────────────────────────────┐
 │  📦 INTELLIGENCE PACKAGE BUILDER                                        │
 ├─────────────────────────────────────────────────────────────────────────┤
-│  Quality     │  🟢 Full (5+ tools) │ 🟡 Partial (3-4) │ 🔴 Raw (<3)   │
+│  Quality     │  🟢 Full (5+ agents) │ 🟡 Partial (3-4) │ 🔴 Raw (<3)  │
 │  Preview     │  ✔ News  ✔ Summary  ✔ Entities  ✔ Social  ✗ Images    │
 │  Stats       │  📰 15 Articles │ 📁 7 Sections │ ~85 KB                │
 │  Recommend   │  💡 JSON for structured intelligence data                │
@@ -257,9 +344,9 @@ A voice-powered multi-agent news intelligence system using **Amazon Nova AI**. F
 |---------|--------------|
 | **Quality Badges** | 🟢 Full (5+ sections) → 🟡 Partial (3-4) → 🔴 Raw (<3) |
 | **Smart Recommend** | JSON for MAS data, Markdown for narrative, CSV for tabular |
-| **Toggle-Aware** | Exports only enabled features — all 9 tools supported |
+| **Toggle-Aware** | Exports only enabled features — all 9 agents supported |
 | **5-Format Export** | JSON, Markdown, CSV, Word (DOCX), PDF |
-| **Execution Quality** | Shows tools ran, retries, fallbacks, confidence badge |
+| **Execution Quality** | Shows agents ran, retries, fallbacks, confidence badge |
 | **Copy Clipboard** | Instant JSON copy for API/dev use |
 
 ---
@@ -293,53 +380,7 @@ A voice-powered multi-agent news intelligence system using **Amazon Nova AI**. F
 
 ---
 
-## 🏗️ System Design
-
-### 🔄 End-to-End Flow
-
-```
-User Input → Planner Agent → Task JSON → Executor Agent
-                                              ↓
-            ┌──────────────────────────────────────────────────────┐
-            │  Core: News → Summary → Sentiment → Trends          │
-            │  MAS:  Scraper → Entities → Images → Social → Rsrch │
-            └──────────────────────────────────────────────────────┘
-                                              ↓
-                              Memory Store → UI Rendering
-                                              ↓
-                    Supplementary: /translate │ /dictionary │ /languages
-```
-
-### 💾 Multi-Layer Storage
-
-| Layer | Storage | Data | Retention |
-|-------|---------|------|-----------|
-| **Frontend** | LocalStorage | Search history, language prefs, settings | Permanent |
-| **Backend** | `app/memory/plans.json` | User task plans | All sessions |
-| **Backend** | `app/memory/results.json` | Execution outputs | All sessions |
-| **Backend** | `app/memory/logs.json` | Runtime logs & diagnostics | All sessions |
-| **Export** | `output/` folder | Timestamped reports (5 formats) | Permanent |
-
-### 🛡️ Error Handling & Resilience
-
-| Capability | Status |
-|------------|--------|
-| **Tool Error Isolation** | ✅ Step failure doesn't kill pipeline |
-| **Per-Step Error Logging** | ✅ Errors stored individually |
-| **Graceful Degradation** | ✅ Partial results returned |
-| **Tool Retry Logic** | ✅ 2 retries with exponential backoff |
-| **Dependency Graph Execution** | ✅ Skip tool if dependency failed |
-| **Alternate Tool Fallback** | ✅ Fallback summarizer & sentiment |
-| **Auto Step Regeneration** | ✅ Retry with reduced params |
-| **Dynamic Plan Rewriting** | ✅ Recovery on critical failures |
-| **Redirect Following** | ✅ Handles 302 redirects gracefully |
-| **Direct URL Prioritization** | ✅ Prefers direct links over Google News redirects |
-
-> **💡 Smart Execution:** Feature toggles dynamically build commands — planner only invokes tools you enable, reducing API costs and execution time.
-
----
-
-## 🚀 Quick Start
+##  Quick Start
 
 ### 1. Install Dependencies
 
@@ -380,13 +421,13 @@ Navigate to `http://localhost:8000`
 
 ## 🔌 MCP Server Integration
 
-**NEW:** NovaAI supports **Model Context Protocol (MCP)** — connect your intelligence system to AI assistants like Claude!
+**Nova supports Model Context Protocol (MCP)** — connect the MAS to AI assistants like Claude!
 
 ```
-"Use NovaAI to fetch the latest Tesla news and analyze sentiment"
+"Use Nova to fetch the latest Tesla news and analyze sentiment"
 ```
 
-The AI will automatically call NovaAI's 9 tools, fetch multi-source news, run entity extraction, analyze images, monitor social media, and deliver a comprehensive report.
+The AI will automatically invoke Nova's 9 agents, fetch multi-source news, run entity extraction, analyze images, monitor social media, and deliver a comprehensive intelligence report.
 
 ### Quick MCP Setup
 
@@ -402,7 +443,7 @@ The AI will automatically call NovaAI's 9 tools, fetch multi-source news, run en
 | `analyze_sentiment` | Institutional-grade sentiment analysis |
 | `summarize_news` | AI-powered summaries |
 | `extract_trends` | Trending topic detection |
-| `intelligence_query` | Full 9-tool pipeline (recommended) |
+| `intelligence_query` | Full 9-agent pipeline (recommended) |
 | `get_history` | Access past queries |
 
 📚 **Full MCP Documentation:** See [MCP_README.md](MCP_README.md)
@@ -426,7 +467,7 @@ Click badges in the UI to enable/disable:
 **MAS:**  🌐 Scraper • 👤 Entities • 🖼️ Images • 📱 Social • 📚 Research  
 **Export:** 📦 Package Builder (JSON, MD, CSV, Word, PDF)
 
-> ⚡ **Select All** for full 9-tool analysis or pick individual tools to customize your intelligence report.
+> ⚡ **Select All** for full 9-agent analysis or pick individual agents to customize your intelligence report.
 
 ---
 
@@ -441,7 +482,7 @@ NovaAI/
 │   ├── agents/
 │   │   ├── __init__.py
 │   │   ├── planner_agent.py         # Nova AI task planning
-│   │   └── executor_agent.py        # Tool orchestration & context
+│   │   └── executor_agent.py        # Agent orchestration & context
 │   │
 │   ├── api/
 │   │   ├── __init__.py
@@ -449,7 +490,7 @@ NovaAI/
 │   │
 │   ├── core/
 │   │   ├── __init__.py
-│   │   ├── tool_registry.py         # Tool management
+│   │   ├── tool_registry.py         # Agent management
 │   │   └── plan_validator.py        # Plan validation
 │   │
 │   ├── memory/
@@ -463,7 +504,7 @@ NovaAI/
 │   │   ├── __init__.py
 │   │   └── schemas.py               # Pydantic models
 │   │
-│   └── tools/                       # 🛠️ 9 Intelligence Tools
+│   └── tools/                       # 🛠️ 9 Intelligence Agents
 │       ├── __init__.py
 │       ├── multi_fetcher.py         # Parallel multi-source fetch
 │       ├── tavily_fetcher.py        # Tavily web search API
@@ -484,7 +525,7 @@ NovaAI/
 │   ├── index.html                   # Main UI + Settings + Package Builder
 │   ├── app.js                       # Frontend logic (1800+ lines)
 │   ├── style.css                    # Professional dark theme
-│   └── mas_styles.css               # MAS tool panel styles
+│   └── mas_styles.css               # MAS agent panel styles
 │
 ├── output/                          # Exported report files
 ├── .env                             # API keys (not in git)
@@ -502,9 +543,9 @@ NovaAI/
 
 | Method | Endpoint | Description |
 |--------|----------|-------------|
-| POST | `/api/command` | Process voice/text command (triggers full pipeline) |
+| POST | `/api/command` | Process voice/text command (triggers full agent pipeline) |
 | POST | `/api/export` | Export intelligence report (json/markdown/csv/docx/pdf) |
-| GET | `/api/capabilities` | Get available tools & system status |
+| GET | `/api/capabilities` | Get available agents & system status |
 | GET | `/api/history` | Get recent command history |
 | POST | `/api/translate` | Translate text to target language |
 | GET | `/api/languages` | Get available translation languages |

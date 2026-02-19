@@ -993,12 +993,16 @@ function displayImages(images) {
 
     if (!panel || !output) return;
 
-    const imageList = images.images || images.analyzed_images || [];
+    const imageList = images.detailed_results || images.images || images.analyzed_images || [];
 
     if (imageList.length === 0) {
+        const attempted = images.total_images || 0;
+        const noImgMsg = attempted > 0
+            ? `${attempted} image(s) were attempted but could not be fetched or analyzed.`
+            : `No article images were found to analyze.`;
         output.innerHTML = `
             <div class="mas-explanation">
-                <p>🔍 <strong>Image Forensics & Analysis</strong> — Analyzes article images for metadata (dimensions, format), dominant colors, embedded text (OCR), and potential manipulation. No article images were found to analyze.</p>
+                <p>🔍 <strong>Image Forensics & Analysis</strong> — Analyzes article images for metadata (dimensions, format), dominant colors, embedded text (OCR), and potential manipulation. ${noImgMsg}</p>
             </div>`;
         panel.classList.remove('hidden');
         return;

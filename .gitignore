@@ -1,26 +1,74 @@
-# Environment
+# ==========================================
+# 🔒 Environment & Secrets
+# ==========================================
 .env
 
-# Python
+# ==========================================
+# 🐍 Python
+# ==========================================
 __pycache__/
 *.pyc
 *.pyo
+*.pyd
 .venv/
 venv/
+*.egg-info/
+dist/
+build/
 
-# Output files
+# ==========================================
+# 📊 Runtime Data (user-specific)
+# ==========================================
+app/memory/logs.json
+app/memory/plans.json
+app/memory/results.json
+app/memory/trends_history.json
+
+# ==========================================
+# 📁 Generated Output
+# ==========================================
 output/
+diagnose_output.txt
+PROJECT_CODE_DUMP.md
+.codebase_snapshot.json
 
-# Demo videos / recordings
+# ==========================================
+# 🎥 Large Media
+# ==========================================
 Demo Videos/
 
-# Memory (optional - keep if you want history)
-# app/memory/*.json
+# ==========================================
+# 🧪 One-Time Test/Debug Scripts
+# ==========================================
+test_*.py
+_test_*.py
+check*.py
+diagnose*.py
 
-# IDE
+# ==========================================
+# 📝 Internal Dev Docs & Drafts
+# ==========================================
+FUTURE/
+MAS_README(v2).md
+scripts/
+
+# ==========================================
+# ⚙️ Machine-Specific Config
+# ==========================================
+mcp_config.json
+
+# ==========================================
+# 💻 IDE
+# ==========================================
 .vscode/
 .idea/
+*.swp
+*.swo
+*~
 
-# Documentation dumps
-PROJECT_CODE_DUMP.md
-future/
+# ==========================================
+# 📦 OS Files
+# ==========================================
+Thumbs.db
+.DS_Store
+desktop.ini

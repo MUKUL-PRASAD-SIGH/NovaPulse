@@ -120,12 +120,16 @@ def _fetch_gnews_sync(topic: str, limit: int, api_key: str) -> Dict:
             data = resp.json()
             articles = []
             for item in data.get("articles", [])[:limit]:
-                articles.append({
+                article = {
                     "title": item.get("title", "No title"),
                     "link": item.get("url", ""),
                     "source": "gnews",
                     "published": item.get("publishedAt", "")
-                })
+                }
+                # GNews API returns image URL per article
+                if item.get("image"):
+                    article["image"] = item["image"]
+                articles.append(article)
             return {"success": True, "articles": articles}
     except Exception as e:
         try:
