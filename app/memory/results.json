@@ -8319,5 +8319,636 @@
       "regenerated": [],
       "success": true
     }
+  },
+  {
+    "timestamp": "2026-02-20T01:36:11.283098",
+    "result": {
+      "intent": "Get india news",
+      "domain": "india",
+      "tools_executed": [
+        {
+          "tool": "news_fetcher",
+          "success": true,
+          "retries": 0,
+          "used_fallback": false,
+          "regenerated": false
+        },
+        {
+          "tool": "image_analyzer",
+          "success": false,
+          "error": "image_analyzer: 'charmap' codec can't encode character '\\u2705' in position 2: character maps to <undefined>",
+          "retries": 2
+        },
+        {
+          "tool": "exporter",
+          "success": true,
+          "retries": 0,
+          "used_fallback": false,
+          "regenerated": false
+        }
+      ],
+      "data": {
+        "news": [
+          {
+            "title": "Bill Gates pulls out of India's AI summit over Epstein files controversy - BBC",
+            "link": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE9CYWQ0VWFKa2QyaFJzTTBUamJWN2tmanZGbzBXSGxtLVF2d3VINzEtU2p6cUlJamxFdGdXSVJxdWducEJVRjI1Y3FocjVlRm9VcWlJVWpIVU9NUQ?oc=5",
+            "source": "rss",
+            "published": "Thu, 19 Feb 2026 08:13:25 GMT"
+          },
+          {
+            "title": "Introducing OpenAI for India - OpenAI",
+            "link": "https://news.google.com/rss/articles/CBMiVEFVX3lxTE5oVVpWelRjZHVha3lWa3o3RklFY2VvZkd4QmpPXzNoclM1akl3TEY2YnpXV0I1UDMxTWZJSkZET0JoU0NPWjZYVDRHMVpOU0dUY0NMWA?oc=5",
+            "source": "rss",
+            "published": "Thu, 19 Feb 2026 03:37:11 GMT"
+          },
+          {
+            "title": "'India To Be OpenAI's Biggest Market Soon': Sam Altman At AI Impact Summit - NDTV",
+            "link": "https://news.google.com/rss/articles/CBMinAFBVV95cUxNS2NsbW5ob1R0WTZ1UGJxc2lJa1RBUUk2M1gzTWo5VkZ6RElGaTE2dHMzNTZ4b25sOGttR1N6SWhxRlR0VVphdGNVOVBsd2xOZW1jN01Hdkd1OVo0U1RSZmFoSEhmUTFtLUx1eEM3RmxRcmlFTnZfMFNNMjdrYXJJSl9TY2ZHMFcxNHMtNEl0SE1HYUd4V04wdFd1YVnSAaQBQVVfeXFMTWtDZmJoUm5LeGxyVU5BZFlQR2VWUkdlTGZacVJoTHRTV2lHMG5DV0tMMmQ3bXdTTF85S1FBMWoxWlNpTDljSlFNNTkwR2dmejZGNnNoNDd1WXFhT1FwbHFYRHNCOGhFbXVBT052NndXQkdrQno5M3N6OFBxekVxOEo3aEpCdWlIZUdDVTRlTWNKYk81MFdkblljNmUwM3JCVC11azY?oc=5",
+            "source": "rss",
+            "published": "Thu, 19 Feb 2026 19:11:33 GMT"
+          },
+          {
+            "title": "Tata scion struggles to consolidate control at one of India\u2019s biggest groups - Financial Times",
+            "link": "https://news.google.com/rss/articles/CBMicEFVX3lxTFBaVnRmaUh0MTktSWVaOG1mVjdhZlRzakxsdk5YcXdLcUhGbWNxSnhONUhpLTU5VlFQWHJ5RzFiMUNyR29MSnBDb1VJcUdhTlpWcjNWamFLa2U2SVF2RDVIMlk2SW5RdEROR2hwUDN6U0g?oc=5",
+            "source": "rss",
+            "published": "Thu, 19 Feb 2026 05:00:11 GMT"
+          },
+          {
+            "title": "Historic trade deals put India on global stage - but challenges remain - BBC",
+            "link": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE03UTRzcTBSM0NQSlBVTXlPZ1BjYWhmaF9ick5Rd3dJbnVfUkdCc0lMS2p1UXQ0T1QxMXZZQklzQ0xPWFdzTnd1UXdQSmZXZ3huTUtzUDdOdzBLUQ?oc=5",
+            "source": "rss",
+            "published": "Wed, 18 Feb 2026 00:02:20 GMT"
+          },
+          {
+            "title": "Is Galgotias' Neha Singh \u2018open to work\u2019 after AI Summit robodog fiasco? LinkedIn status sparks buzz",
+            "link": "https://www.hindustantimes.com/india-news/has-galgotias-university-professor-neha-singh-been-fired-after-ai-summit-robodog-fiasco-linkedin-status-sparks-buzz-101771483005235.html",
+            "source": "gnews",
+            "published": "2026-02-19T08:05:54Z",
+            "image": "https://www.hindustantimes.com/ht-img/img/2026/02/19/550x309/Neha_Singh_HT_1771483307551_1771483313710.png"
+          },
+          {
+            "title": "\"Switzerland and India share common values in using AI for society\": SNSF Research Council President Torsten Schwede",
+            "link": "https://www.tribuneindia.com/news/world/switzerland-and-india-share-common-values-in-using-ai-for-society-snsf-research-council-president-torsten-schwede/",
+            "source": "gnews",
+            "published": "2026-02-19T08:05:48Z",
+            "image": "https://www.tribuneindia.com/sortd-service/imaginary/v22-01/jpg/large/high?url=dGhldHJpYnVuZS1zb3J0ZC1wcm8tcHJvZC1zb3J0ZC9tZWRpYWQxNDE0OTgwLTBkNjktMTFmMS1hN2NkLWExNzYyOTNmNDNjZS5qcGc="
+          },
+          {
+            "title": "JioHotstar partners with ChatGPT for conversational streaming experience in India",
+            "link": "https://www.cnbctv18.com/technology/jiohotstar-launches-chatgpt-powered-conversational-streaming-experience-in-india-ws-l-19853680.htm",
+            "source": "gnews",
+            "published": "2026-02-19T08:05:09Z",
+            "image": "https://images.cnbctv18.com/uploads/2026/01/gareema-feature-images-2026-01-20t145146061-2026-01-261a60e0bdf1c4abd8ba834a080cf1d3.jpg?im=FitAndFill,width=500,height=300"
+          },
+          {
+            "title": "The quieter story of Korean culture in India",
+            "link": "https://www.firstpost.com/lifestyle/the-quieter-story-of-korean-culture-in-india-13981543.html",
+            "source": "gnews",
+            "published": "2026-02-19T08:05:03Z",
+            "image": "https://images.firstpost.com/uploads/2026/02/2019-12-24T094952Z_988443107_RC2L1E95TKDN_RTRMADP_3_CHRISTMAS-SEASON-KPOP-BTS-2026-02-d2fd9ebfec92622f57290118708bd6e1-1200x675.jpg?im=FitAndFill=(1200,675)"
+          },
+          {
+            "title": "Brother vs brother: The \u2018new\u2019 Albie Morkel India must take note of before T20 World Cup Super Eight",
+            "link": "https://timesofindia.indiatimes.com/sports/cricket/icc-mens-t20-world-cup/brother-vs-brother-the-new-albie-morkel-india-must-take-note-of-before-t20-world-cup-super-eight/articleshow/128546437.cms",
+            "source": "gnews",
+            "published": "2026-02-19T08:05:00Z",
+            "image": "https://static.toiimg.com/thumb/msid-128546686,width-1280,height-720,imgsize-51140,resizemode-6,overlay-toi_sw,pt-32,y_pad-600/photo.jpg"
+          },
+          {
+            "title": "India news - breaking news, video and headlines and opinion",
+            "link": "https://www.cnn.com/world/india",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "Tech majors commit billions of dollars to India at AI summit",
+            "link": "https://www.reuters.com/world/india/tech-majors-commit-billions-dollars-india-ai-summit-2026-02-19/",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "India to make Rafale jets with France in boost to defence ties ...",
+            "link": "https://www.reuters.com/world/india/india-make-rafale-jets-with-france-boost-defence-ties-macron-says-2026-02-19/",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "Breaking News, World News, US News, Sports ...",
+            "link": "https://www.bbc.com/",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "Sam Altman and Dario Amodei avoid holding hands at India AI summit",
+            "link": "https://www.cnbc.com/2026/02/19/openai-sam-altman-anthropic-dario-amodei-india-ai-summit.html",
+            "source": "tavily",
+            "published": ""
+          }
+        ],
+        "exported_file": "output/india_report_20260220_013611.json"
+      },
+      "errors": [
+        "image_analyzer: 'charmap' codec can't encode character '\\u2705' in position 2: character maps to <undefined>"
+      ],
+      "skipped": [],
+      "fallbacks_used": [],
+      "regenerated": [],
+      "success": true
+    }
+  },
+  {
+    "timestamp": "2026-02-20T01:37:54.963046",
+    "result": {
+      "intent": "Get india news",
+      "domain": "india",
+      "tools_executed": [
+        {
+          "tool": "news_fetcher",
+          "success": true,
+          "retries": 0,
+          "used_fallback": false,
+          "regenerated": false
+        },
+        {
+          "tool": "image_analyzer",
+          "success": false,
+          "error": "image_analyzer: 'charmap' codec can't encode character '\\u2705' in position 2: character maps to <undefined>",
+          "retries": 2
+        },
+        {
+          "tool": "exporter",
+          "success": true,
+          "retries": 0,
+          "used_fallback": false,
+          "regenerated": false
+        }
+      ],
+      "data": {
+        "news": [
+          {
+            "title": "Bill Gates pulls out of India's AI summit over Epstein files controversy - BBC",
+            "link": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE9CYWQ0VWFKa2QyaFJzTTBUamJWN2tmanZGbzBXSGxtLVF2d3VINzEtU2p6cUlJamxFdGdXSVJxdWducEJVRjI1Y3FocjVlRm9VcWlJVWpIVU9NUQ?oc=5",
+            "source": "rss",
+            "published": "Thu, 19 Feb 2026 08:13:25 GMT"
+          },
+          {
+            "title": "Introducing OpenAI for India - OpenAI",
+            "link": "https://news.google.com/rss/articles/CBMiVEFVX3lxTE5oVVpWelRjZHVha3lWa3o3RklFY2VvZkd4QmpPXzNoclM1akl3TEY2YnpXV0I1UDMxTWZJSkZET0JoU0NPWjZYVDRHMVpOU0dUY0NMWA?oc=5",
+            "source": "rss",
+            "published": "Thu, 19 Feb 2026 03:37:11 GMT"
+          },
+          {
+            "title": "'India To Be OpenAI's Biggest Market Soon': Sam Altman At AI Impact Summit - NDTV",
+            "link": "https://news.google.com/rss/articles/CBMinAFBVV95cUxNS2NsbW5ob1R0WTZ1UGJxc2lJa1RBUUk2M1gzTWo5VkZ6RElGaTE2dHMzNTZ4b25sOGttR1N6SWhxRlR0VVphdGNVOVBsd2xOZW1jN01Hdkd1OVo0U1RSZmFoSEhmUTFtLUx1eEM3RmxRcmlFTnZfMFNNMjdrYXJJSl9TY2ZHMFcxNHMtNEl0SE1HYUd4V04wdFd1YVnSAaQBQVVfeXFMTWtDZmJoUm5LeGxyVU5BZFlQR2VWUkdlTGZacVJoTHRTV2lHMG5DV0tMMmQ3bXdTTF85S1FBMWoxWlNpTDljSlFNNTkwR2dmejZGNnNoNDd1WXFhT1FwbHFYRHNCOGhFbXVBT052NndXQkdrQno5M3N6OFBxekVxOEo3aEpCdWlIZUdDVTRlTWNKYk81MFdkblljNmUwM3JCVC11azY?oc=5",
+            "source": "rss",
+            "published": "Thu, 19 Feb 2026 19:11:33 GMT"
+          },
+          {
+            "title": "Tata scion struggles to consolidate control at one of India\u2019s biggest groups - Financial Times",
+            "link": "https://news.google.com/rss/articles/CBMicEFVX3lxTFBaVnRmaUh0MTktSWVaOG1mVjdhZlRzakxsdk5YcXdLcUhGbWNxSnhONUhpLTU5VlFQWHJ5RzFiMUNyR29MSnBDb1VJcUdhTlpWcjNWamFLa2U2SVF2RDVIMlk2SW5RdEROR2hwUDN6U0g?oc=5",
+            "source": "rss",
+            "published": "Thu, 19 Feb 2026 05:00:11 GMT"
+          },
+          {
+            "title": "Historic trade deals put India on global stage - but challenges remain - BBC",
+            "link": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE03UTRzcTBSM0NQSlBVTXlPZ1BjYWhmaF9ick5Rd3dJbnVfUkdCc0lMS2p1UXQ0T1QxMXZZQklzQ0xPWFdzTnd1UXdQSmZXZ3huTUtzUDdOdzBLUQ?oc=5",
+            "source": "rss",
+            "published": "Wed, 18 Feb 2026 00:02:20 GMT"
+          },
+          {
+            "title": "Aditi Hundia's relationship was confirmed by his grandfather, his mom denies wedding buzz",
+            "link": "https://timesofindia.indiatimes.com/relationships/shaadi-nahikhel-ka-samay-hai-after-ishan-kishan-aditi-hundias-relationship-was-confirmed-by-his-grandfather-his-mom-denies-wedding-buzz/articleshow/128546728.cms",
+            "source": "gnews",
+            "published": "2026-02-19T08:07:00Z",
+            "image": "https://static.toiimg.com/thumb/msid-128546780,width-1280,height-720,imgsize-101620,resizemode-6,overlay-toi_sw,pt-32,y_pad-600/photo.jpg"
+          },
+          {
+            "title": "IND-W vs AUS-W 2nd T20I: Harmanpreet Kaur Wins Toss, India to Bowl First Against Australia in Canberra",
+            "link": "https://www.lokmattimes.com/cricket/news/ind-w-vs-aus-w-2nd-t20i-harmanpreet-kaur-wins-toss-india-to-bowl-first-against-australia-in-canberra-a507/",
+            "source": "gnews",
+            "published": "2026-02-19T08:06:56Z",
+            "image": "https://d3pc1xvrcw35tl.cloudfront.net/ln/images/686x514/ind-w-vs-aus-w-2nd-t20i-harmanpreet-kaur-wins-toss-india-to-bowl-first-against-australia-in-canberra_2026021071483.jpg"
+          },
+          {
+            "title": "Democratization of AI: The Fair Path Forward, Says Sam Altman",
+            "link": "https://www.devdiscourse.com/article/technology/3810325-democratization-of-ai-the-fair-path-forward-says-sam-altman",
+            "source": "gnews",
+            "published": "2026-02-19T08:06:21Z",
+            "image": "https://www.devdiscourse.com/remote.axd?https://devdiscourse.blob.core.windows.net/devnews/16_02_2026_15_52_20_0956609.jpg?width=920&format=jpeg"
+          },
+          {
+            "title": "Is Galgotias' Neha Singh \u2018open to work\u2019 after AI Summit robodog fiasco? LinkedIn status sparks buzz",
+            "link": "https://www.hindustantimes.com/india-news/has-galgotias-university-professor-neha-singh-been-fired-after-ai-summit-robodog-fiasco-linkedin-status-sparks-buzz-101771483005235.html",
+            "source": "gnews",
+            "published": "2026-02-19T08:05:54Z",
+            "image": "https://www.hindustantimes.com/ht-img/img/2026/02/19/550x309/Neha_Singh_HT_1771483307551_1771483313710.png"
+          },
+          {
+            "title": "\"Switzerland and India share common values in using AI for society\": SNSF Research Council President Torsten Schwede",
+            "link": "https://www.tribuneindia.com/news/world/switzerland-and-india-share-common-values-in-using-ai-for-society-snsf-research-council-president-torsten-schwede/",
+            "source": "gnews",
+            "published": "2026-02-19T08:05:48Z",
+            "image": "https://www.tribuneindia.com/sortd-service/imaginary/v22-01/jpg/large/high?url=dGhldHJpYnVuZS1zb3J0ZC1wcm8tcHJvZC1zb3J0ZC9tZWRpYWQxNDE0OTgwLTBkNjktMTFmMS1hN2NkLWExNzYyOTNmNDNjZS5qcGc="
+          },
+          {
+            "title": "India news - breaking news, video and headlines and opinion",
+            "link": "https://www.cnn.com/world/india",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "Today's Top Stories - Reuters",
+            "link": "https://www.reuters.com/world/india/",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "CNBC's Inside India newsletter: India is throwing its weight behind AI",
+            "link": "https://www.cnbc.com/2026/02/19/cnbcs-inside-india-newsletter-india-is-throwing-its-weight-behind-ai-but-is-there-substance-behind-the-headlines.html",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "Breaking News, World News, US News, Sports ...",
+            "link": "https://www.bbc.com/",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "India to make Rafale jets with France in boost to defence ties ...",
+            "link": "https://www.reuters.com/world/india/india-make-rafale-jets-with-france-boost-defence-ties-macron-says-2026-02-19/",
+            "source": "tavily",
+            "published": ""
+          }
+        ],
+        "exported_file": "output/india_report_20260220_013754.json"
+      },
+      "errors": [
+        "image_analyzer: 'charmap' codec can't encode character '\\u2705' in position 2: character maps to <undefined>"
+      ],
+      "skipped": [],
+      "fallbacks_used": [],
+      "regenerated": [],
+      "success": true
+    }
+  },
+  {
+    "timestamp": "2026-02-20T01:43:08.748894",
+    "result": {
+      "intent": "Get india news",
+      "domain": "india",
+      "tools_executed": [
+        {
+          "tool": "news_fetcher",
+          "success": true,
+          "retries": 0,
+          "used_fallback": false,
+          "regenerated": false
+        },
+        {
+          "tool": "image_analyzer",
+          "success": true,
+          "retries": 0,
+          "used_fallback": false,
+          "regenerated": false
+        },
+        {
+          "tool": "exporter",
+          "success": true,
+          "retries": 0,
+          "used_fallback": false,
+          "regenerated": false
+        }
+      ],
+      "data": {
+        "news": [
+          {
+            "title": "Money Talks as India Searches for Its Place in Global A.I. - The New York Times",
+            "link": "https://news.google.com/rss/articles/CBMie0FVX3lxTE53bmRXM0xta1h3WFEtb21wMU5TdFl4VHBSNzBncURHTjJ5WlJudG16UUR1VWFnV0JJNDJLUWJmcFVlR3BTaXlWd00tZHN3SWVUa3RiNGppVEswc2hfSmFRNGlvdU1qZ2g1UXp3MWR6emt3eV9jeWhBUXJYZw?oc=5",
+            "source": "rss",
+            "published": "Thu, 19 Feb 2026 07:29:05 GMT"
+          },
+          {
+            "title": "Why India joining this U.S.-led tech alliance could help supply chains - CNBC",
+            "link": "https://news.google.com/rss/articles/CBMigwFBVV95cUxNOW8yaFF6YnFmUmtqbTdpeEVjUEpNMmlYdUZmVGxwVGREMVpDa2dGVDdsRVNPalE2aC1qeVhteHFyS1ZzaUtkR2Eyb2t6TV9PU0hTdXBIbXBxOHdZZVFCN3NxSXo5dHJpVkkyOGF5VVlFSWxSMlZ3MjVyLXVjb2ZIeTRMMNIBiAFBVV95cUxNeXJMT1hQUXgydHpLWkFMc3Ztd29WVFpPSFdmSmpGV3BMZEFVME5SSFY1Q19pYW9COFBMVXNvR1VZSkdlMkhkR3VvVU5XenVnRE9HTGxaUTdKT0hIamw0dUUzOVBXYmliVW4yeThyV3Bxd3dGMTM5bVV6NzhUcWFkVTZmWC1RZXVG?oc=5",
+            "source": "rss",
+            "published": "Wed, 18 Feb 2026 23:00:01 GMT"
+          },
+          {
+            "title": "Historic trade deals put India on global stage - but challenges remain - BBC",
+            "link": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE03UTRzcTBSM0NQSlBVTXlPZ1BjYWhmaF9ick5Rd3dJbnVfUkdCc0lMS2p1UXQ0T1QxMXZZQklzQ0xPWFdzTnd1UXdQSmZXZ3huTUtzUDdOdzBLUQ?oc=5",
+            "source": "rss",
+            "published": "Wed, 18 Feb 2026 00:02:20 GMT"
+          },
+          {
+            "title": "Trump repeats claim of 'stopping' India-Pak war with new twist: '11 expensive jets shot down' | India News - Hindustan Times",
+            "link": "https://news.google.com/rss/articles/CBMi8wFBVV95cUxNNnBFcXlkN1VhaHJ2d0tRQ0hacGs0T1Azb1ZhM3Nzejh4cERFbXVqUTVEdWw3d0lQWVBQSS1ULUJld1pFTVZLZFJFbVlpVGdoUDVkM0RLcWsyd0ZQcHFtR0FQZlY5R2cxWU4tZzVocWY3bE0yQ2lGU3M4WkpidmxLWk1uYVdaZ3pzSEVOWUJuZWNsbEpXVWdfcWJwcUhlMTJmYUJiZ0JRUU4ya3BxZEt4aF96OWh3bS1HcDFVWkhrMW9NNW5LTHgtaUIwOXJ5eDc0QmNqTWltSnUyOVpsZ3JBTDNORUdvbXRwQ2lCR21USEdFcmvSAfgBQVVfeXFMUE51c1BwalZxZUpQU2xxd0xzOFpTb0FXR3FndGJ3Y2hxM1BON01hVGhmZS1UVC1UaVlaSFQtM0dnS1dlbnlxR2R4Nl81ZnNzenBJWGRfTjlUYVJ6eTExVjNMRzVTMExwS2FYeW1kZURnNkJXVmY3MzQ4RkRLYXYxRXpLUFRsakVmaXVpeGxEX2RrWG9UUElUUHlVY1FaY1c1MUVrdUZqQm4zUlRBQTZfRmZFZVdfNmRUY1ViWHpHTWdvVFRNVFNCUGR3TGxzcTh3X3JoTm5aQUxmcldmNGhsT0tsaTY4a192dHo5LTJEdHlDd0JZUDFXd2w?oc=5",
+            "source": "rss",
+            "published": "Thu, 19 Feb 2026 15:21:24 GMT"
+          },
+          {
+            "title": "India Attends 1st Meet Of Trump's Board Of Peace In Washington As Observer - NDTV",
+            "link": "https://news.google.com/rss/articles/CBMitAFBVV95cUxNM0pjNWZ6UUwtMXA2eGhpNTlhVTd2Z2syQ0hMTFg4QTB4MDY2dmRJQTFFdUFkQW0xc0N2TXpKUDJFMVpZdDJVZWh1RHhIQ1l0c3B3cGtnNlJrTlBYNG5EOHR2UVB3WnFxdmV5a1Bnc2w2ZjR1cTZBVllZbzI3Zk0ydEszX19PSXVsaFI0SmhGSW5fMURVNWtwaDB5UUNkeHBYRlI1cjB6RGw3N3RlYXl5WlByQUXSAbwBQVVfeXFMTmRNNE9uZDRqd0FBdXVxWWNMdXI2ZS1iRE5uVW1PMnNhVzhiWWZBc0hfWHExMC1OM2E3bFNoRnJHczR4cWZvQ09oVnVIS1NPVERseHJvMUFDU045SjFMMmkzSmctMEtvbE9FX0ZhMXB5UHJnQ0MxbUswTG9HUXJpVEY2MEcyUmZXSDdUTTZ3clczYkFiX0JmV2dJNnBIZ2ZFSlJwUWE4MGdmWUpMdmkzTHp1S2JqcnhUalQtUmc?oc=5",
+            "source": "rss",
+            "published": "Thu, 19 Feb 2026 18:20:38 GMT"
+          },
+          {
+            "title": "Manipur: Editor-in-chief of local vernacular daily shot at, assaulted; probe on",
+            "link": "https://www.hindustantimes.com/india-news/manipur-editor-in-chief-of-local-vernacular-daily-shot-at-assaulted-probe-on-101771488785850.html",
+            "source": "gnews",
+            "published": "2026-02-19T08:13:05Z",
+            "image": "https://www.hindustantimes.com/ht-img/img/2026/02/19/550x309/Representational-image-_1771489559086.png"
+          },
+          {
+            "title": "Amid Modi's sovereign AI push, a look at 3 models made in India - SarvamAI, Gnani.ai, BharatGen",
+            "link": "https://www.hindustantimes.com/india-news/amid-indias-sovereign-ai-push-a-look-at-3-models-tailor-made-for-india-sarvamai-gnani-ai-bharatgen-pm-modi-101771487495175.html",
+            "source": "gnews",
+            "published": "2026-02-19T08:13:04Z",
+            "image": "https://www.hindustantimes.com/ht-img/img/2026/02/19/550x309/PM_Modi_1771487842080_1771487842208.jpg"
+          },
+          {
+            "title": "AI Impact Summit: Pichai bets $15 billion on India\u2019s AI future, calls it the \u2018biggest platform shift\u2019",
+            "link": "https://www.livemint.com/ai/ai-impact-summit-pichai-bets-15-billion-on-india-s-ai-future-calls-it-the-biggest-platform-shift-11771484101929.html",
+            "source": "gnews",
+            "published": "2026-02-19T08:11:32Z",
+            "image": "https://www.livemint.com/lm-img/img/2026/02/19/1600x900/logo/INDIA-AI-GOOGLE-2_1771487800195_1771487808797.jpg"
+          },
+          {
+            "title": "Vivo V70, V70 Elite with 1.5K AMOLED display, 6,500 mAH battery launched in India: Price, specs, launch offers and more",
+            "link": "https://www.livemint.com/technology/gadgets/vivo-v70-v70-elite-with-1-5k-amoled-display-6-500-mah-battery-launched-in-india-price-specs-launch-offers-and-more-11771488022248.html",
+            "source": "gnews",
+            "published": "2026-02-19T08:11:19Z",
+            "image": "https://www.livemint.com/lm-img/img/2026/02/19/1600x900/logo/Vivo_V70_Elite_1771488516320_1771488516572.png"
+          },
+          {
+            "title": "Fundraising activity hits 21-month low in January",
+            "link": "https://www.moneycontrol.com/news/business/markets/fund-raising-activity-hits-21-month-low-in-january-13835694.html",
+            "source": "gnews",
+            "published": "2026-02-19T08:11:09Z",
+            "image": "https://images.moneycontrol.com/static-mcnews/2026/02/20260218011350_image.jpg"
+          },
+          {
+            "title": "India news - breaking news, video and headlines and opinion",
+            "link": "https://www.cnn.com/world/india",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "Today's Top Stories - Reuters",
+            "link": "https://www.reuters.com/world/india/",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "Breaking News, World News, US News, Sports ...",
+            "link": "https://www.bbc.com/",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "India to make Rafale jets with France in boost to defence ties ...",
+            "link": "https://www.reuters.com/world/india/india-make-rafale-jets-with-france-boost-defence-ties-macron-says-2026-02-19/",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "CNBC's Inside India newsletter: India is throwing its weight behind AI",
+            "link": "https://www.cnbc.com/2026/02/19/cnbcs-inside-india-newsletter-india-is-throwing-its-weight-behind-ai-but-is-there-substance-behind-the-headlines.html",
+            "source": "tavily",
+            "published": ""
+          }
+        ],
+        "images": {
+          "total_images": 5,
+          "successful": 5,
+          "failed": 0,
+          "images_with_text": 0,
+          "manipulation_risks": 3,
+          "detailed_results": [
+            {
+              "success": true,
+              "url": "https://www.hindustantimes.com/ht-img/img/2026/02/19/550x309/Representational-image-_1771489559086.png",
+              "metadata": {
+                "format": "JPEG",
+                "mode": "RGB",
+                "size": [
+                  550,
+                  309
+                ],
+                "width": 550,
+                "height": 309,
+                "aspect_ratio": 1.78,
+                "file_size_kb": 6
+              },
+              "extracted_text": {
+                "has_text": false,
+                "text": "",
+                "confidence": 0,
+                "note": "OCR integration pending - use AWS Textract or Tesseract"
+              },
+              "vision_analysis": {
+                "description": "Image analysis requires Amazon Bedrock Nova Vision API integration",
+                "objects_detected": [],
+                "scene_type": "unknown",
+                "confidence": 0,
+                "is_photo": true,
+                "is_grayscale": false,
+                "dominant_colors": [
+                  "#000000",
+                  "#010101",
+                  "#020202"
+                ],
+                "note": "Integrate with Amazon Bedrock Nova Vision for full analysis"
+              },
+              "manipulation_score": {
+                "exif_data_present": false,
+                "unusual_aspect_ratio": false,
+                "suspicious_compression": true,
+                "risk_level": "medium"
+              },
+              "context": "Manipur: Editor-in-chief of local vernacular daily shot at, assaulted; probe on"
+            },
+            {
+              "success": true,
+              "url": "https://www.hindustantimes.com/ht-img/img/2026/02/19/550x309/PM_Modi_1771487842080_1771487842208.jpg",
+              "metadata": {
+                "format": "JPEG",
+                "mode": "RGB",
+                "size": [
+                  549,
+                  309
+                ],
+                "width": 549,
+                "height": 309,
+                "aspect_ratio": 1.78,
+                "file_size_kb": 40
+              },
+              "extracted_text": {
+                "has_text": false,
+                "text": "",
+                "confidence": 0,
+                "note": "OCR integration pending - use AWS Textract or Tesseract"
+              },
+              "vision_analysis": {
+                "description": "Image analysis requires Amazon Bedrock Nova Vision API integration",
+                "objects_detected": [],
+                "scene_type": "unknown",
+                "confidence": 0,
+                "is_photo": true,
+                "is_grayscale": false,
+                "dominant_colors": [
+                  "#f6f6f8",
+                  "#f1f1f3",
+                  "#f4f4f6"
+                ],
+                "note": "Integrate with Amazon Bedrock Nova Vision for full analysis"
+              },
+              "manipulation_score": {
+                "exif_data_present": false,
+                "unusual_aspect_ratio": false,
+                "suspicious_compression": false,
+                "risk_level": "low"
+              },
+              "context": "Amid Modi's sovereign AI push, a look at 3 models made in India - SarvamAI, Gnani.ai, BharatGen"
+            },
+            {
+              "success": true,
+              "url": "https://www.livemint.com/lm-img/img/2026/02/19/1600x900/logo/INDIA-AI-GOOGLE-2_1771487800195_1771487808797.jpg",
+              "metadata": {
+                "format": "JPEG",
+                "mode": "RGB",
+                "size": [
+                  1600,
+                  900
+                ],
+                "width": 1600,
+                "height": 900,
+                "aspect_ratio": 1.78,
+                "file_size_kb": 106
+              },
+              "extracted_text": {
+                "has_text": false,
+                "text": "",
+                "confidence": 0,
+                "note": "OCR integration pending - use AWS Textract or Tesseract"
+              },
+              "vision_analysis": {
+                "description": "Image analysis requires Amazon Bedrock Nova Vision API integration",
+                "objects_detected": [],
+                "scene_type": "unknown",
+                "confidence": 0,
+                "is_photo": true,
+                "is_grayscale": false,
+                "dominant_colors": [
+                  "#f9fafc",
+                  "#f4f8fb",
+                  "#f8f9fb"
+                ],
+                "note": "Integrate with Amazon Bedrock Nova Vision for full analysis"
+              },
+              "manipulation_score": {
+                "exif_data_present": true,
+                "unusual_aspect_ratio": false,
+                "suspicious_compression": true,
+                "risk_level": "medium"
+              },
+              "context": "AI Impact Summit: Pichai bets $15 billion on India\u2019s AI future, calls it the \u2018biggest platform shift\u2019"
+            },
+            {
+              "success": true,
+              "url": "https://www.livemint.com/lm-img/img/2026/02/19/1600x900/logo/Vivo_V70_Elite_1771488516320_1771488516572.png",
+              "metadata": {
+                "format": "PNG",
+                "mode": "RGBA",
+                "size": [
+                  1600,
+                  899
+                ],
+                "width": 1600,
+                "height": 899,
+                "aspect_ratio": 1.78,
+                "file_size_kb": 891
+              },
+              "extracted_text": {
+                "has_text": false,
+                "text": "",
+                "confidence": 0,
+                "note": "OCR integration pending - use AWS Textract or Tesseract"
+              },
+              "vision_analysis": {
+                "description": "Image analysis requires Amazon Bedrock Nova Vision API integration",
+                "objects_detected": [],
+                "scene_type": "unknown",
+                "confidence": 0,
+                "is_photo": true,
+                "is_grayscale": false,
+                "dominant_colors": [
+                  "#090804",
+                  "#ffffff",
+                  "#080703"
+                ],
+                "note": "Integrate with Amazon Bedrock Nova Vision for full analysis"
+              },
+              "manipulation_score": {
+                "exif_data_present": false,
+                "unusual_aspect_ratio": false,
+                "suspicious_compression": false,
+                "risk_level": "low"
+              },
+              "context": "Vivo V70, V70 Elite with 1.5K AMOLED display, 6,500 mAH battery launched in India: Price, specs, launch offers and more"
+            },
+            {
+              "success": true,
+              "url": "https://images.moneycontrol.com/static-mcnews/2026/02/20260218011350_image.jpg",
+              "metadata": {
+                "format": "JPEG",
+                "mode": "RGB",
+                "size": [
+                  1600,
+                  900
+                ],
+                "width": 1600,
+                "height": 900,
+                "aspect_ratio": 1.78,
+                "file_size_kb": 112
+              },
+              "extracted_text": {
+                "has_text": false,
+                "text": "",
+                "confidence": 0,
+                "note": "OCR integration pending - use AWS Textract or Tesseract"
+              },
+              "vision_analysis": {
+                "description": "Image analysis requires Amazon Bedrock Nova Vision API integration",
+                "objects_detected": [],
+                "scene_type": "unknown",
+                "confidence": 0,
+                "is_photo": true,
+                "is_grayscale": false,
+                "dominant_colors": [
+                  "#b7c3cf",
+                  "#b8c4d0",
+                  "#b5c1cd"
+                ],
+                "note": "Integrate with Amazon Bedrock Nova Vision for full analysis"
+              },
+              "manipulation_score": {
+                "exif_data_present": false,
+                "unusual_aspect_ratio": false,
+                "suspicious_compression": true,
+                "risk_level": "medium"
+              },
+              "context": "Fundraising activity hits 21-month low in January"
+            }
+          ]
+        },
+        "exported_file": "output/india_report_20260220_014308.json"
+      },
+      "errors": [],
+      "skipped": [],
+      "fallbacks_used": [],
+      "regenerated": [],
+      "success": true
+    }
   }
 ]

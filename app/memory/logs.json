@@ -1,379 +1,5 @@
 [
   {
-    "timestamp": "2026-02-19T23:21:55.911541",
-    "level": "WARN",
-    "message": "Retry 2/2 for entity_extractor in 2.0s"
-  },
-  {
-    "timestamp": "2026-02-19T23:21:57.941577",
-    "level": "DEBUG",
-    "message": "Running tool: entity_extractor",
-    "data": {
-      "params": [
-        "text"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-02-19T23:21:57.959881",
-    "level": "ERROR",
-    "message": "Tool entity_extractor failed: extract_entities_from_articles() got an unexpected keyword argument 'text'"
-  },
-  {
-    "timestamp": "2026-02-19T23:21:57.980050",
-    "level": "DEBUG",
-    "message": "Running tool: image_analyzer",
-    "data": {
-      "params": []
-    }
-  },
-  {
-    "timestamp": "2026-02-19T23:21:58.005047",
-    "level": "ERROR",
-    "message": "Tool image_analyzer failed: analyze_article_images() missing 1 required positional argument: 'articles'"
-  },
-  {
-    "timestamp": "2026-02-19T23:21:58.025806",
-    "level": "WARN",
-    "message": "Retry 1/2 for image_analyzer in 1.0s"
-  },
-  {
-    "timestamp": "2026-02-19T23:21:59.045842",
-    "level": "DEBUG",
-    "message": "Running tool: image_analyzer",
-    "data": {
-      "params": []
-    }
-  },
-  {
-    "timestamp": "2026-02-19T23:21:59.065007",
-    "level": "ERROR",
-    "message": "Tool image_analyzer failed: analyze_article_images() missing 1 required positional argument: 'articles'"
-  },
-  {
-    "timestamp": "2026-02-19T23:21:59.086746",
-    "level": "WARN",
-    "message": "Retry 2/2 for image_analyzer in 2.0s"
-  },
-  {
-    "timestamp": "2026-02-19T23:22:01.123147",
-    "level": "DEBUG",
-    "message": "Running tool: image_analyzer",
-    "data": {
-      "params": []
-    }
-  },
-  {
-    "timestamp": "2026-02-19T23:22:01.144309",
-    "level": "ERROR",
-    "message": "Tool image_analyzer failed: analyze_article_images() missing 1 required positional argument: 'articles'"
-  },
-  {
-    "timestamp": "2026-02-19T23:22:01.164927",
-    "level": "DEBUG",
-    "message": "Running tool: social_monitor",
-    "data": {
-      "params": [
-        "topic",
-        "platforms"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-02-19T23:22:01.185234",
-    "level": "DEBUG",
-    "message": "Running tool: research_assistant",
-    "data": {
-      "params": [
-        "query"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-02-19T23:22:01.205020",
-    "level": "ERROR",
-    "message": "Tool research_assistant failed: comprehensive_research() got an unexpected keyword argument 'query'"
-  },
-  {
-    "timestamp": "2026-02-19T23:22:01.227206",
-    "level": "WARN",
-    "message": "Retry 1/2 for research_assistant in 1.0s"
-  },
-  {
-    "timestamp": "2026-02-19T23:22:02.258016",
-    "level": "DEBUG",
-    "message": "Running tool: research_assistant",
-    "data": {
-      "params": [
-        "query"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-02-19T23:22:02.276676",
-    "level": "ERROR",
-    "message": "Tool research_assistant failed: comprehensive_research() got an unexpected keyword argument 'query'"
-  },
-  {
-    "timestamp": "2026-02-19T23:22:02.296690",
-    "level": "WARN",
-    "message": "Retry 2/2 for research_assistant in 2.0s"
-  },
-  {
-    "timestamp": "2026-02-19T23:22:04.323665",
-    "level": "DEBUG",
-    "message": "Running tool: research_assistant",
-    "data": {
-      "params": [
-        "query"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-02-19T23:22:04.344551",
-    "level": "ERROR",
-    "message": "Tool research_assistant failed: comprehensive_research() got an unexpected keyword argument 'query'"
-  },
-  {
-    "timestamp": "2026-02-19T23:22:04.362772",
-    "level": "DEBUG",
-    "message": "Running tool: exporter",
-    "data": {
-      "params": [
-        "filename",
-        "format",
-        "data"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-02-19T23:22:04.388700",
-    "level": "ERROR",
-    "message": "Tool exporter failed: Object of type coroutine is not JSON serializable"
-  },
-  {
-    "timestamp": "2026-02-19T23:22:04.409735",
-    "level": "WARN",
-    "message": "Retry 1/2 for exporter in 1.0s"
-  },
-  {
-    "timestamp": "2026-02-19T23:22:05.451281",
-    "level": "DEBUG",
-    "message": "Running tool: exporter",
-    "data": {
-      "params": [
-        "filename",
-        "format",
-        "data"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-02-19T23:22:05.471723",
-    "level": "ERROR",
-    "message": "Tool exporter failed: Object of type coroutine is not JSON serializable"
-  },
-  {
-    "timestamp": "2026-02-19T23:22:05.498850",
-    "level": "WARN",
-    "message": "Retry 2/2 for exporter in 2.0s"
-  },
-  {
-    "timestamp": "2026-02-19T23:22:07.531846",
-    "level": "DEBUG",
-    "message": "Running tool: exporter",
-    "data": {
-      "params": [
-        "filename",
-        "format",
-        "data"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-02-19T23:22:07.554183",
-    "level": "ERROR",
-    "message": "Tool exporter failed: Object of type coroutine is not JSON serializable"
-  },
-  {
-    "timestamp": "2026-02-19T23:22:07.574778",
-    "level": "INFO",
-    "message": "Sentiment-Trend fusion applied"
-  },
-  {
-    "timestamp": "2026-02-19T23:22:07.613131",
-    "level": "INFO",
-    "message": "Execution complete: 10 tools run, 0 skipped, 0 fallbacks used"
-  },
-  {
-    "timestamp": "2026-02-19T23:35:43.357534",
-    "level": "INFO",
-    "message": "Planning task for: elon musk with summarize and sentiment analysis and trends and full article content and entity extraction and image analysis and social media monitoring and research papers"
-  },
-  {
-    "timestamp": "2026-02-19T23:35:43.375269",
-    "level": "INFO",
-    "message": "Using mock planner",
-    "data": {
-      "plan": {
-        "intent": "Get elon news",
-        "domain": "elon",
-        "steps": [
-          {
-            "tool": "news_fetcher",
-            "params": {
-              "topic": "elon",
-              "sources": [
-                "google"
-              ],
-              "limit": 5
-            }
-          },
-          {
-            "tool": "summarizer",
-            "params": {}
-          },
-          {
-            "tool": "sentiment",
-            "params": {}
-          },
-          {
-            "tool": "trends",
-            "params": {}
-          },
-          {
-            "tool": "web_scraper",
-            "params": {}
-          },
-          {
-            "tool": "entity_extractor",
-            "params": {}
-          },
-          {
-            "tool": "image_analyzer",
-            "params": {}
-          },
-          {
-            "tool": "social_monitor",
-            "params": {
-              "topic": "elon",
-              "platforms": [
-                "reddit"
-              ]
-            }
-          },
-          {
-            "tool": "research_assistant",
-            "params": {
-              "query": "elon"
-            }
-          },
-          {
-            "tool": "exporter",
-            "params": {
-              "filename": "elon_report",
-              "format": "json"
-            }
-          }
-        ]
-      }
-    }
-  },
-  {
-    "timestamp": "2026-02-19T23:35:43.408503",
-    "level": "INFO",
-    "message": "Executing plan: Get elon news",
-    "data": {
-      "steps": 10
-    }
-  },
-  {
-    "timestamp": "2026-02-19T23:35:43.425018",
-    "level": "DEBUG",
-    "message": "Running tool: news_fetcher",
-    "data": {
-      "params": [
-        "topic",
-        "sources",
-        "limit"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-02-19T23:35:43.439250",
-    "level": "INFO",
-    "message": "Multi-source fetch for: elon"
-  },
-  {
-    "timestamp": "2026-02-19T23:35:53.406734",
-    "level": "INFO",
-    "message": "Multi-source complete: 15 articles from 3 sources",
-    "data": {
-      "rss": {
-        "success": true,
-        "count": 5
-      },
-      "gnews": {
-        "success": true,
-        "count": 5
-      },
-      "tavily": {
-        "success": true,
-        "count": 5
-      }
-    }
-  },
-  {
-    "timestamp": "2026-02-19T23:35:53.420325",
-    "level": "DEBUG",
-    "message": "Running tool: summarizer",
-    "data": {
-      "params": [
-        "news_items"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-02-19T23:35:53.432872",
-    "level": "DEBUG",
-    "message": "Running tool: sentiment",
-    "data": {
-      "params": [
-        "news_items"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-02-19T23:35:53.447918",
-    "level": "DEBUG",
-    "message": "Running tool: trends",
-    "data": {
-      "params": [
-        "news_items"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-02-19T23:35:56.788111",
-    "level": "DEBUG",
-    "message": "Running tool: web_scraper",
-    "data": {
-      "params": [
-        "url"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-02-19T23:35:57.164176",
-    "level": "ERROR",
-    "message": "Tool web_scraper failed: log_tool_execution() got an unexpected keyword argument 'params'"
-  },
-  {
-    "timestamp": "2026-02-19T23:35:57.186911",
-    "level": "WARN",
-    "message": "Retry 1/2 for web_scraper in 1.0s"
-  },
-  {
     "timestamp": "2026-02-19T23:35:58.237834",
     "level": "DEBUG",
     "message": "Running tool: web_scraper",
@@ -2288,5 +1914,443 @@
     "timestamp": "2026-02-20T01:11:14.009492",
     "level": "INFO",
     "message": "Execution complete: 10 tools run, 0 skipped, 0 fallbacks used"
+  },
+  {
+    "timestamp": "2026-02-20T01:35:59.299268",
+    "level": "INFO",
+    "message": "Planning task for: india AI summit with image analysis"
+  },
+  {
+    "timestamp": "2026-02-20T01:35:59.318091",
+    "level": "INFO",
+    "message": "Using mock planner",
+    "data": {
+      "plan": {
+        "intent": "Get india news",
+        "domain": "india",
+        "steps": [
+          {
+            "tool": "news_fetcher",
+            "params": {
+              "topic": "india",
+              "sources": [
+                "google"
+              ],
+              "limit": 5
+            }
+          },
+          {
+            "tool": "image_analyzer",
+            "params": {}
+          },
+          {
+            "tool": "exporter",
+            "params": {
+              "filename": "india_report",
+              "format": "json"
+            }
+          }
+        ]
+      }
+    }
+  },
+  {
+    "timestamp": "2026-02-20T01:35:59.339028",
+    "level": "INFO",
+    "message": "Executing plan: Get india news",
+    "data": {
+      "steps": 3
+    }
+  },
+  {
+    "timestamp": "2026-02-20T01:35:59.354791",
+    "level": "DEBUG",
+    "message": "Running tool: news_fetcher",
+    "data": {
+      "params": [
+        "topic",
+        "sources",
+        "limit"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-20T01:35:59.370731",
+    "level": "INFO",
+    "message": "Multi-source fetch for: india"
+  },
+  {
+    "timestamp": "2026-02-20T01:36:06.145535",
+    "level": "INFO",
+    "message": "Multi-source complete: 15 articles from 3 sources",
+    "data": {
+      "rss": {
+        "success": true,
+        "count": 5
+      },
+      "gnews": {
+        "success": true,
+        "count": 5
+      },
+      "tavily": {
+        "success": true,
+        "count": 5
+      }
+    }
+  },
+  {
+    "timestamp": "2026-02-20T01:36:06.158057",
+    "level": "DEBUG",
+    "message": "Running tool: image_analyzer",
+    "data": {
+      "params": [
+        "articles"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-20T01:36:07.615307",
+    "level": "ERROR",
+    "message": "Tool image_analyzer failed: 'charmap' codec can't encode character '\\u2705' in position 2: character maps to <undefined>"
+  },
+  {
+    "timestamp": "2026-02-20T01:36:07.634952",
+    "level": "WARN",
+    "message": "Retry 1/2 for image_analyzer in 1.0s"
+  },
+  {
+    "timestamp": "2026-02-20T01:36:08.668782",
+    "level": "DEBUG",
+    "message": "Running tool: image_analyzer",
+    "data": {
+      "params": [
+        "articles"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-20T01:36:08.951507",
+    "level": "ERROR",
+    "message": "Tool image_analyzer failed: 'charmap' codec can't encode character '\\u2705' in position 2: character maps to <undefined>"
+  },
+  {
+    "timestamp": "2026-02-20T01:36:08.971658",
+    "level": "WARN",
+    "message": "Retry 2/2 for image_analyzer in 2.0s"
+  },
+  {
+    "timestamp": "2026-02-20T01:36:11.006616",
+    "level": "DEBUG",
+    "message": "Running tool: image_analyzer",
+    "data": {
+      "params": [
+        "articles"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-20T01:36:11.247020",
+    "level": "ERROR",
+    "message": "Tool image_analyzer failed: 'charmap' codec can't encode character '\\u2705' in position 2: character maps to <undefined>"
+  },
+  {
+    "timestamp": "2026-02-20T01:36:11.268100",
+    "level": "DEBUG",
+    "message": "Running tool: exporter",
+    "data": {
+      "params": [
+        "filename",
+        "format",
+        "data"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-20T01:36:11.319102",
+    "level": "INFO",
+    "message": "Execution complete: 3 tools run, 0 skipped, 0 fallbacks used"
+  },
+  {
+    "timestamp": "2026-02-20T01:37:43.641235",
+    "level": "INFO",
+    "message": "Planning task for: india AI summit with image analysis"
+  },
+  {
+    "timestamp": "2026-02-20T01:37:43.657835",
+    "level": "INFO",
+    "message": "Using mock planner",
+    "data": {
+      "plan": {
+        "intent": "Get india news",
+        "domain": "india",
+        "steps": [
+          {
+            "tool": "news_fetcher",
+            "params": {
+              "topic": "india",
+              "sources": [
+                "google"
+              ],
+              "limit": 5
+            }
+          },
+          {
+            "tool": "image_analyzer",
+            "params": {}
+          },
+          {
+            "tool": "exporter",
+            "params": {
+              "filename": "india_report",
+              "format": "json"
+            }
+          }
+        ]
+      }
+    }
+  },
+  {
+    "timestamp": "2026-02-20T01:37:43.697724",
+    "level": "INFO",
+    "message": "Executing plan: Get india news",
+    "data": {
+      "steps": 3
+    }
+  },
+  {
+    "timestamp": "2026-02-20T01:37:43.715401",
+    "level": "DEBUG",
+    "message": "Running tool: news_fetcher",
+    "data": {
+      "params": [
+        "topic",
+        "sources",
+        "limit"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-20T01:37:43.736006",
+    "level": "INFO",
+    "message": "Multi-source fetch for: india"
+  },
+  {
+    "timestamp": "2026-02-20T01:37:49.822016",
+    "level": "INFO",
+    "message": "Multi-source complete: 15 articles from 3 sources",
+    "data": {
+      "rss": {
+        "success": true,
+        "count": 5
+      },
+      "gnews": {
+        "success": true,
+        "count": 5
+      },
+      "tavily": {
+        "success": true,
+        "count": 5
+      }
+    }
+  },
+  {
+    "timestamp": "2026-02-20T01:37:49.836252",
+    "level": "DEBUG",
+    "message": "Running tool: image_analyzer",
+    "data": {
+      "params": [
+        "articles"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-20T01:37:50.779923",
+    "level": "ERROR",
+    "message": "Tool image_analyzer failed: 'charmap' codec can't encode character '\\u2705' in position 2: character maps to <undefined>"
+  },
+  {
+    "timestamp": "2026-02-20T01:37:50.802708",
+    "level": "WARN",
+    "message": "Retry 1/2 for image_analyzer in 1.0s"
+  },
+  {
+    "timestamp": "2026-02-20T01:37:51.835019",
+    "level": "DEBUG",
+    "message": "Running tool: image_analyzer",
+    "data": {
+      "params": [
+        "articles"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-20T01:37:52.558107",
+    "level": "ERROR",
+    "message": "Tool image_analyzer failed: 'charmap' codec can't encode character '\\u2705' in position 2: character maps to <undefined>"
+  },
+  {
+    "timestamp": "2026-02-20T01:37:52.576151",
+    "level": "WARN",
+    "message": "Retry 2/2 for image_analyzer in 2.0s"
+  },
+  {
+    "timestamp": "2026-02-20T01:37:54.600174",
+    "level": "DEBUG",
+    "message": "Running tool: image_analyzer",
+    "data": {
+      "params": [
+        "articles"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-20T01:37:54.931166",
+    "level": "ERROR",
+    "message": "Tool image_analyzer failed: 'charmap' codec can't encode character '\\u2705' in position 2: character maps to <undefined>"
+  },
+  {
+    "timestamp": "2026-02-20T01:37:54.949865",
+    "level": "DEBUG",
+    "message": "Running tool: exporter",
+    "data": {
+      "params": [
+        "filename",
+        "format",
+        "data"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-20T01:37:54.994528",
+    "level": "INFO",
+    "message": "Execution complete: 3 tools run, 0 skipped, 0 fallbacks used"
+  },
+  {
+    "timestamp": "2026-02-20T01:43:01.329456",
+    "level": "INFO",
+    "message": "Planning task for: india AI summit with image analysis"
+  },
+  {
+    "timestamp": "2026-02-20T01:43:01.349138",
+    "level": "INFO",
+    "message": "Using mock planner",
+    "data": {
+      "plan": {
+        "intent": "Get india news",
+        "domain": "india",
+        "steps": [
+          {
+            "tool": "news_fetcher",
+            "params": {
+              "topic": "india",
+              "sources": [
+                "google"
+              ],
+              "limit": 5
+            }
+          },
+          {
+            "tool": "image_analyzer",
+            "params": {}
+          },
+          {
+            "tool": "exporter",
+            "params": {
+              "filename": "india_report",
+              "format": "json"
+            }
+          }
+        ]
+      }
+    }
+  },
+  {
+    "timestamp": "2026-02-20T01:43:01.396360",
+    "level": "INFO",
+    "message": "Executing plan: Get india news",
+    "data": {
+      "steps": 3
+    }
+  },
+  {
+    "timestamp": "2026-02-20T01:43:01.425743",
+    "level": "DEBUG",
+    "message": "Running tool: news_fetcher",
+    "data": {
+      "params": [
+        "topic",
+        "sources",
+        "limit"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-20T01:43:01.449278",
+    "level": "INFO",
+    "message": "Multi-source fetch for: india"
+  },
+  {
+    "timestamp": "2026-02-20T01:43:07.607444",
+    "level": "INFO",
+    "message": "Multi-source complete: 15 articles from 3 sources",
+    "data": {
+      "rss": {
+        "success": true,
+        "count": 5
+      },
+      "gnews": {
+        "success": true,
+        "count": 5
+      },
+      "tavily": {
+        "success": true,
+        "count": 5
+      }
+    }
+  },
+  {
+    "timestamp": "2026-02-20T01:43:07.623604",
+    "level": "DEBUG",
+    "message": "Running tool: image_analyzer",
+    "data": {
+      "params": [
+        "articles"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-20T01:43:08.693910",
+    "level": "INFO",
+    "message": "Tool image_analyzer executed",
+    "data": {
+      "tool": "image_analyzer",
+      "success": true,
+      "duration_seconds": 0.0,
+      "params": {
+        "article_count": 5,
+        "total_images": 5
+      },
+      "result": {
+        "successful": 5,
+        "failed": 0
+      }
+    }
+  },
+  {
+    "timestamp": "2026-02-20T01:43:08.728489",
+    "level": "DEBUG",
+    "message": "Running tool: exporter",
+    "data": {
+      "params": [
+        "filename",
+        "format",
+        "data"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-20T01:43:08.829600",
+    "level": "INFO",
+    "message": "Execution complete: 3 tools run, 0 skipped, 0 fallbacks used"
   }
 ]

@@ -1,77 +1,5 @@
 [
   {
-    "timestamp": "2026-02-04T13:13:44.877226",
-    "user_input": "car accident",
-    "plan": {
-      "intent": "Fetch and export news about a car accident",
-      "domain": "car accident",
-      "steps": [
-        {
-          "tool": "news_fetcher",
-          "params": {
-            "topic": "car accident",
-            "limit": 5
-          }
-        },
-        {
-          "tool": "exporter",
-          "params": {
-            "filename": "car_accident_report",
-            "format": "json"
-          }
-        }
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-02-04T13:20:32.225958",
-    "user_input": "tesla news",
-    "plan": {
-      "intent": "Fetch and export Tesla news",
-      "domain": "Tesla",
-      "steps": [
-        {
-          "tool": "news_fetcher",
-          "params": {
-            "topic": "tesla",
-            "limit": 5
-          }
-        },
-        {
-          "tool": "exporter",
-          "params": {
-            "filename": "tesla_news_report",
-            "format": "json"
-          }
-        }
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-02-04T13:20:53.029757",
-    "user_input": "elon musk news",
-    "plan": {
-      "intent": "Fetch and export Elon Musk news articles",
-      "domain": "Elon Musk",
-      "steps": [
-        {
-          "tool": "news_fetcher",
-          "params": {
-            "topic": "elon musk",
-            "limit": 5
-          }
-        },
-        {
-          "tool": "exporter",
-          "params": {
-            "filename": "elon_musk_news",
-            "format": "json"
-          }
-        }
-      ]
-    }
-  },
-  {
     "timestamp": "2026-02-04T13:23:59.498017",
     "user_input": "elon muysk",
     "plan": {
@@ -1998,6 +1926,99 @@
           "params": {
             "query": "india"
           }
+        },
+        {
+          "tool": "exporter",
+          "params": {
+            "filename": "india_report",
+            "format": "json"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-20T01:35:59.321595",
+    "user_input": "india AI summit with image analysis",
+    "plan": {
+      "intent": "Get india news",
+      "domain": "india",
+      "steps": [
+        {
+          "tool": "news_fetcher",
+          "params": {
+            "topic": "india",
+            "sources": [
+              "google"
+            ],
+            "limit": 5
+          }
+        },
+        {
+          "tool": "image_analyzer",
+          "params": {}
+        },
+        {
+          "tool": "exporter",
+          "params": {
+            "filename": "india_report",
+            "format": "json"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-20T01:37:43.680501",
+    "user_input": "india AI summit with image analysis",
+    "plan": {
+      "intent": "Get india news",
+      "domain": "india",
+      "steps": [
+        {
+          "tool": "news_fetcher",
+          "params": {
+            "topic": "india",
+            "sources": [
+              "google"
+            ],
+            "limit": 5
+          }
+        },
+        {
+          "tool": "image_analyzer",
+          "params": {}
+        },
+        {
+          "tool": "exporter",
+          "params": {
+            "filename": "india_report",
+            "format": "json"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-20T01:43:01.374433",
+    "user_input": "india AI summit with image analysis",
+    "plan": {
+      "intent": "Get india news",
+      "domain": "india",
+      "steps": [
+        {
+          "tool": "news_fetcher",
+          "params": {
+            "topic": "india",
+            "sources": [
+              "google"
+            ],
+            "limit": 5
+          }
+        },
+        {
+          "tool": "image_analyzer",
+          "params": {}
         },
         {
           "tool": "exporter",

@@ -278,11 +278,11 @@ async def analyze_article_images(articles: List[Dict]) -> Dict:
             if isinstance(result, str) and result:
                 title = articles[i].get('title', '') if i < len(articles) else ''
                 image_urls_with_context.append((result, title))
-                print(f"  ✅ og:image from article {i}: {result[:80]}")
+                print(f"  [OK] og:image from article {i}: {result[:80]}")
             elif isinstance(result, Exception):
-                print(f"  ❌ og:image error for article {i}: {result}")
+                print(f"  [FAIL] og:image error for article {i}: {result}")
             else:
-                print(f"  ❌ og:image not found for article {i}")
+                print(f"  [FAIL] og:image not found for article {i}")
     
     print(f"[IMAGE_ANALYZER] Total images to analyze: {len(image_urls_with_context)}")
     
