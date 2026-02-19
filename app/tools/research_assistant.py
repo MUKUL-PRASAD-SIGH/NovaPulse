@@ -2,6 +2,7 @@
 import asyncio
 from typing import Dict, List, Optional
 from datetime import datetime
+from urllib.parse import quote_plus
 import httpx
 from app.memory.store import log_tool_execution
 
@@ -27,10 +28,11 @@ class ResearchAssistant:
             Academic paper search results
         """
         try:
-            # arXiv API
-            arxiv_url = f"http://export.arxiv.org/api/query?search_query=all:{query}&start=0&max_results={min(limit, 50)}"
+            # arXiv API — URL-encode the query for multi-word topics
+            encoded_query = quote_plus(query)
+            arxiv_url = f"https://export.arxiv.org/api/query?search_query=all:{encoded_query}&start=0&max_results={min(limit, 50)}"
             
-            async with httpx.AsyncClient(timeout=self.timeout, verify=False) as client:
+            async with httpx.AsyncClient(timeout=self.timeout, verify=False, follow_redirects=True) as client:
                 response = await client.get(arxiv_url)
                 response.raise_for_status()
             
@@ -101,7 +103,7 @@ class ResearchAssistant:
         
         source_results = await asyncio.gather(*tasks, return_exceptions=True)
         
-        # Combine results
+        # Combine results — flatten so github/stackoverflow are top-level keys
         for i, source in enumerate(sources):
             if i < len(source_results) and not isinstance(source_results[i], Exception):
                 results[source] = source_results[i]
@@ -109,7 +111,7 @@ class ResearchAssistant:
         return {
             "success": True,
             "query": query,
-            "sources": results,
+            **results,  # github and stackoverflow as top-level keys
             "total_results": sum(r.get('count', 0) for r in results.values())
         }
     
@@ -218,7 +220,7 @@ class ResearchAssistant:
                     'score': item.get('score', 0),
                     'answer_count': item.get('answer_count', 0),
                     'is_answered': item.get('is_answered', False),
-                    'url': item.get('link'),
+                    'link': item.get('link'),
                     'tags': item.get('tags', [])
                 })
             

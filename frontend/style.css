@@ -1591,6 +1591,9 @@ code {
     padding: 2rem;
     min-width: 450px;
     max-width: 550px;
+    max-height: 70vh;
+    display: flex;
+    flex-direction: column;
     box-shadow: var(--shadow-lg);
 }
 
@@ -1640,6 +1643,26 @@ code {
     display: flex;
     flex-direction: column;
     gap: 0.75rem;
+    max-height: 45vh;
+    overflow-y: auto;
+    padding-right: 4px;
+}
+
+.pipeline-steps::-webkit-scrollbar {
+    width: 5px;
+}
+
+.pipeline-steps::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.pipeline-steps::-webkit-scrollbar-thumb {
+    background: rgba(99, 102, 241, 0.3);
+    border-radius: 10px;
+}
+
+.pipeline-steps::-webkit-scrollbar-thumb:hover {
+    background: rgba(99, 102, 241, 0.5);
 }
 
 .pipeline-step {

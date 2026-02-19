@@ -304,8 +304,18 @@ print(f"Research papers: {report['research']['summary']['papers_found']}")
 
 ### Planned Features
 - ✅ Entity graph visualization (D3.js/Cytoscape)
-- ✅ AWS Textract integration for OCR
-- ✅ Amazon Bedrock Nova Vision for image understanding
+### 🖼️ Enhanced Image Intelligence (v2.0)
+Advanced computer vision pipeline that goes beyond basic metadata:
+*   **AI Scene Understanding**: `Amazon Nova Vision` or robust context-aware local analysis ("Naturally lit, warm-toned wide banner-format news photo").
+*   **Object Detection**: Identifies key objects (people, technology).
+*   **Manipulation Forensics**: Flags potential deepfakes via compression/metadata checks.
+*   **Smart Filtering**: Advanced deduplication & junk filtering.
+
+### 📚 Research Library (Real-Time)
+A powerful research engine aggregating:
+*   **arXiv Papers**: Recent academic papers with abstracts & PDF links (handles redirects).
+*   **GitHub Repos**: Relevant open-source projects with stars & language metrics.
+*   **StackOverflow**: Community Q&A threads with answer status & tags.
 - ✅ Twitter API v2 integration
 - ✅ USPTO patent search
 - ✅ Real-time social feed updates

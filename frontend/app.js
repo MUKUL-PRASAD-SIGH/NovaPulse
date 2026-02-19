@@ -1218,16 +1218,24 @@ function displayResearch(research) {
 
     if (!panel || !output) return;
 
+    // Resolve technical docs data (support both flat and nested structures)
+    const td = research.technical_docs || {};
+    const github = td.github || td.sources?.github || {};
+    const stackoverflow = td.stackoverflow || td.sources?.stackoverflow || {};
+    const papers = research.academic_papers?.papers || [];
+    const repos = github.repositories || [];
+    const questions = stackoverflow.questions || [];
+    const totalSources = papers.length + repos.length + questions.length;
+
     let html = `
         <div class="mas-explanation">
-            <p>🔍 <strong>Academic & Technical Research</strong> — Searches arXiv for academic papers, GitHub for related repositories, and StackOverflow for community discussions. Provides links to PDFs, repos, and Q&A threads relevant to your topic.</p>
+            <p>🔍 <strong>Academic & Technical Research</strong> — Found <strong>${totalSources}</strong> source(s) across arXiv (${papers.length} papers), GitHub (${repos.length} repos), and StackOverflow (${questions.length} threads).</p>
         </div>
     `;
     html += '<div class="research-sections">';
 
     // Academic Papers
-    if (research.academic_papers && research.academic_papers.papers && research.academic_papers.papers.length > 0) {
-        const papers = research.academic_papers.papers;
+    if (papers.length > 0) {
         html += `
             <div class="research-section">
                 <h5>📄 Academic Papers <span class="research-count">${papers.length}</span></h5>
@@ -1239,6 +1247,7 @@ function displayResearch(research) {
                                 <span class="research-authors">${paper.authors?.slice(0, 3).join(', ')}${paper.authors?.length > 3 ? ' et al.' : ''}</span>
                                 <span>${paper.published?.substring(0, 10) || 'N/A'}</span>
                             </div>
+                            ${paper.summary ? `<div class="research-summary">${paper.summary.substring(0, 200)}...</div>` : ''}
                             <div class="research-links">
                                 ${paper.pdf_url ? `<a href="${paper.pdf_url}" target="_blank" class="research-link">📥 PDF</a>` : ''}
                                 ${paper.arxiv_url ? `<a href="${paper.arxiv_url}" target="_blank" class="research-link">🔗 arXiv</a>` : ''}
@@ -1251,8 +1260,7 @@ function displayResearch(research) {
     }
 
     // GitHub Repositories
-    if (research.technical_docs?.github && research.technical_docs.github.repositories && research.technical_docs.github.repositories.length > 0) {
-        const repos = research.technical_docs.github.repositories;
+    if (repos.length > 0) {
         html += `
             <div class="research-section">
                 <h5>💻 GitHub Repositories <span class="research-count">${repos.length}</span></h5>
@@ -1264,7 +1272,7 @@ function displayResearch(research) {
                                 <span>${repo.description || 'No description'}</span>
                             </div>
                             <div class="repo-stats">
-                                <span class="repo-stat">⭐ <strong>${repo.stars || 0}</strong> stars</span>
+                                <span class="repo-stat">⭐ <strong>${(repo.stars || 0).toLocaleString()}</strong> stars</span>
                                 ${repo.language ? `<span class="repo-stat">💬 <strong>${repo.language}</strong></span>` : ''}
                             </div>
                             <div class="research-links">
@@ -1278,8 +1286,7 @@ function displayResearch(research) {
     }
 
     // StackOverflow
-    if (research.technical_docs?.stackoverflow && research.technical_docs.stackoverflow.questions && research.technical_docs.stackoverflow.questions.length > 0) {
-        const questions = research.technical_docs.stackoverflow.questions;
+    if (questions.length > 0) {
         html += `
             <div class="research-section">
                 <h5>💡 StackOverflow Discussions <span class="research-count">${questions.length}</span></h5>
@@ -1290,7 +1297,9 @@ function displayResearch(research) {
                             <div class="research-meta">
                                 <span>Score: ${q.score || 0}</span>
                                 <span>${q.answer_count || 0} answers</span>
+                                ${q.is_answered ? '<span style="color:#22c55e;">✓ Answered</span>' : '<span style="color:#f59e0b;">○ Open</span>'}
                             </div>
+                            ${q.tags?.length > 0 ? `<div class="research-tags">${q.tags.slice(0, 5).map(t => `<span class="research-tag">${t}</span>`).join('')}</div>` : ''}
                             <div class="research-links">
                                 ${q.link ? `<a href="${q.link}" target="_blank" class="research-link">🔗 View Question</a>` : ''}
                             </div>
@@ -1299,6 +1308,10 @@ function displayResearch(research) {
                 </div>
             </div>
         `;
+    }
+
+    if (totalSources === 0) {
+        html += '<p style="color:var(--text-muted);text-align:center;padding:1rem;">No research results found for this topic.</p>';
     }
 
     html += '</div>';

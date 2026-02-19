@@ -10536,5 +10536,2559 @@
       "regenerated": [],
       "success": true
     }
+  },
+  {
+    "timestamp": "2026-02-20T02:59:56.308456",
+    "result": {
+      "intent": "Get india news",
+      "domain": "india",
+      "tools_executed": [
+        {
+          "tool": "news_fetcher",
+          "success": true,
+          "retries": 0,
+          "used_fallback": false,
+          "regenerated": false
+        },
+        {
+          "tool": "image_analyzer",
+          "success": true,
+          "retries": 0,
+          "used_fallback": false,
+          "regenerated": false
+        },
+        {
+          "tool": "exporter",
+          "success": true,
+          "retries": 0,
+          "used_fallback": false,
+          "regenerated": false
+        }
+      ],
+      "data": {
+        "news": [
+          {
+            "title": "Opinion | An Ancient Power Is Reasserting Itself - The New York Times",
+            "link": "https://news.google.com/rss/articles/CBMihwFBVV95cUxPVkhRT0VMNzNPdWF3TTUxaHdzYWsxQkpreDJ6M21ZdU5wMUtnZ3ZIZURIUl80RWp1WHVxRjJVRjVPZk9rSXZxdkNLc3ZlY2prUDd6TTdLNVZ6dzFSR21tQmE0cHhsb0FoZGxLWEoyVEVhWXJrTFBseHh1RXJvaEdIWU9RZ0h3X28?oc=5",
+            "source": "rss",
+            "published": "Thu, 19 Feb 2026 10:05:25 GMT"
+          },
+          {
+            "title": "Why India joining this U.S.-led tech alliance could help supply chains - CNBC",
+            "link": "https://news.google.com/rss/articles/CBMigwFBVV95cUxNOW8yaFF6YnFmUmtqbTdpeEVjUEpNMmlYdUZmVGxwVGREMVpDa2dGVDdsRVNPalE2aC1qeVhteHFyS1ZzaUtkR2Eyb2t6TV9PU0hTdXBIbXBxOHdZZVFCN3NxSXo5dHJpVkkyOGF5VVlFSWxSMlZ3MjVyLXVjb2ZIeTRMMNIBiAFBVV95cUxNeXJMT1hQUXgydHpLWkFMc3Ztd29WVFpPSFdmSmpGV3BMZEFVME5SSFY1Q19pYW9COFBMVXNvR1VZSkdlMkhkR3VvVU5XenVnRE9HTGxaUTdKT0hIamw0dUUzOVBXYmliVW4yeThyV3Bxd3dGMTM5bVV6NzhUcWFkVTZmWC1RZXVG?oc=5",
+            "source": "rss",
+            "published": "Wed, 18 Feb 2026 23:00:01 GMT"
+          },
+          {
+            "title": "'India To Be OpenAI's Biggest Market Soon': Sam Altman At AI Impact Summit - NDTV",
+            "link": "https://news.google.com/rss/articles/CBMinAFBVV95cUxNS2NsbW5ob1R0WTZ1UGJxc2lJa1RBUUk2M1gzTWo5VkZ6RElGaTE2dHMzNTZ4b25sOGttR1N6SWhxRlR0VVphdGNVOVBsd2xOZW1jN01Hdkd1OVo0U1RSZmFoSEhmUTFtLUx1eEM3RmxRcmlFTnZfMFNNMjdrYXJJSl9TY2ZHMFcxNHMtNEl0SE1HYUd4V04wdFd1YVnSAaQBQVVfeXFMTWtDZmJoUm5LeGxyVU5BZFlQR2VWUkdlTGZacVJoTHRTV2lHMG5DV0tMMmQ3bXdTTF85S1FBMWoxWlNpTDljSlFNNTkwR2dmejZGNnNoNDd1WXFhT1FwbHFYRHNCOGhFbXVBT052NndXQkdrQno5M3N6OFBxekVxOEo3aEpCdWlIZUdDVTRlTWNKYk81MFdkblljNmUwM3JCVC11azY?oc=5",
+            "source": "rss",
+            "published": "Thu, 19 Feb 2026 19:11:33 GMT"
+          },
+          {
+            "title": "Bill Gates pulls out of India AI summit amid Epstein scrutiny - Reuters",
+            "link": "https://news.google.com/rss/articles/CBMinwFBVV95cUxNMUVUdFRrMHBzSXhhTm9KcGF2VWUtYzNDTFhTeG4yWmtESC1oVG5qTTlYQ2VzZE9QY21SUkdfa3dqSFVBSk9FTWxRUGpxSzV3TEdPUXBKTmxMSzdyUFFtRWZfTHV2Y3NURURkOF9YMjA5SjJJQ0d2Q0xvOURRS2lkZm1mRWdSYjFGNTZCLTR4SldQeWJHRFZEbll1alN3OUE?oc=5",
+            "source": "rss",
+            "published": "Thu, 19 Feb 2026 03:14:00 GMT"
+          },
+          {
+            "title": "Rouble Nagi: The teacher who won $1m for turning India's slums into open-air classrooms - BBC",
+            "link": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE1HN0pvdVd1b3lMRHNRZnViaWpzUng1eVZjSEJMTkZYMXpNdVc4OUQ4U05acVFRdk4yOGlzRWllbVhHUHRsaDJzaXotcVl5aTh6cFNYUC1HdktVUQ?oc=5",
+            "source": "rss",
+            "published": "Thu, 19 Feb 2026 02:44:45 GMT"
+          },
+          {
+            "title": "Sam Altman, At Delhi Summit, Shares One Thing He Agrees With Others On AI",
+            "link": "https://www.ndtv.com/india-news/openai-chatgpt-chief-sam-altman-at-delhi-summit-shares-one-thing-he-agrees-with-others-on-ai-11069550",
+            "source": "gnews",
+            "published": "2026-02-19T09:29:01Z",
+            "image": "https://c.ndtvimg.com/2026-02/h701fkuo_sam-altman_625x300_19_February_26.jpeg"
+          },
+          {
+            "title": "IT services sector can thrive in the AI age if they reinvent: Julie Sweet, Accenture",
+            "link": "https://economictimes.indiatimes.com/tech/information-tech/it-services-sector-can-thrive-in-the-ai-age-if-they-reinvent-julie-sweet-accenture/articleshow/128550379.cms",
+            "source": "gnews",
+            "published": "2026-02-19T09:28:41Z",
+            "image": "https://img.etimg.com/thumb/width-1200,height-900,imgsize-40732,resizemode-75,msid-128550379/tech/information-tech/it-services-sector-can-thrive-in-the-ai-age-if-they-reinvent-julie-sweet-accenture.jpg"
+          },
+          {
+            "title": "India AI Impact Summit 2026: Sam Altman Dario Amodei swkward moment sparks 'AI cold war' talk",
+            "link": "https://www.businesstoday.in/latest/trends/story/india-ai-impact-summit-2026-sam-altman-dario-amodei-awkward-moment-sparks-ai-cold-war-talk-516995-2026-02-19",
+            "source": "gnews",
+            "published": "2026-02-19T09:28:18Z",
+            "image": "https://akm-img-a-in.tosshub.com/businesstoday/images/story/202602/6996d708443a3-the-relationship-between-altman-and-amodei-is-rooted-in-collaboration-turned-rivalry-192522720-16x9.png"
+          },
+          {
+            "title": "AI Impact Summit: PM Modi unveils MANAV vision promoting ethical, inclusive AI",
+            "link": "https://www.hindustantimes.com/india-news/ai-impact-summit-pm-modi-unveils-manav-ai-vision-promoting-ethical-inclusive-ai-101771493287997.html",
+            "source": "gnews",
+            "published": "2026-02-19T09:28:07Z",
+            "image": "https://www.hindustantimes.com/ht-img/img/2026/02/19/550x309/Prime-Minister-Narendra-Modi-on-Thursday-unveiled-_1771493522019.jpg"
+          },
+          {
+            "title": "RIL, Jio to pump in Rs 10 lakh crore into AI; Mukesh Ambani promises to reduce cost of AI \u2018dramatically\u2019 for Indians",
+            "link": "https://indianexpress.com/article/business/ril-jio-rs-10-lakh-crore-ai-mukesh-ambani-10540617/",
+            "source": "gnews",
+            "published": "2026-02-19T09:27:13Z",
+            "image": "https://images.indianexpress.com/2026/02/mukesh-ambani-file-.jpg"
+          },
+          {
+            "title": "India news - breaking news, video and headlines and opinion",
+            "link": "https://www.cnn.com/world/india",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "CNBC's Inside India newsletter: India is throwing its weight behind AI",
+            "link": "https://www.cnbc.com/2026/02/19/cnbcs-inside-india-newsletter-india-is-throwing-its-weight-behind-ai-but-is-there-substance-behind-the-headlines.html",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "Breaking News, World News, US News, Sports ...",
+            "link": "https://www.bbc.com/",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "India to make Rafale jets with France in boost to defence ties ...",
+            "link": "https://www.reuters.com/world/india/india-make-rafale-jets-with-france-boost-defence-ties-macron-says-2026-02-19/",
+            "source": "tavily",
+            "published": ""
+          }
+        ],
+        "images": {
+          "total_images": 5,
+          "successful": 5,
+          "failed": 0,
+          "manipulation_risks": 1,
+          "image_types": {
+            "photo": 5
+          },
+          "objects_detected": [],
+          "descriptions": [
+            "General image (1200x738)",
+            "General image (1200x898)",
+            "Banner image (1200x675)",
+            "Banner image (550x309)",
+            "Banner image (1600x900)"
+          ],
+          "detailed_results": [
+            {
+              "success": true,
+              "url": "https://c.ndtvimg.com/2026-02/h701fkuo_sam-altman_625x300_19_February_26.jpeg",
+              "metadata": {
+                "format": "JPEG",
+                "mode": "RGB",
+                "size": [
+                  1200,
+                  738
+                ],
+                "width": 1200,
+                "height": 738,
+                "aspect_ratio": 1.63,
+                "file_size_kb": 68
+              },
+              "image_type": {
+                "type": "photo",
+                "confidence": 0.8,
+                "color_complexity": 0.504,
+                "edge_density": 0.085
+              },
+              "vision_analysis": {
+                "description": "General image (1200x738)",
+                "objects": [],
+                "scene_type": "general",
+                "mood": "neutral",
+                "relevance": "medium",
+                "news_value": "Visual context for the news story",
+                "is_photo": true,
+                "is_grayscale": false,
+                "avg_brightness": 186,
+                "dominant_colors": [
+                  "#fefefe",
+                  "#f9f9f9",
+                  "#fbfbfb",
+                  "#f1f0f5",
+                  "#f6f6f8"
+                ],
+                "source": "local_analysis"
+              },
+              "manipulation_score": {
+                "exif_data_present": false,
+                "unusual_aspect_ratio": false,
+                "suspicious_compression": false,
+                "risk_level": "low",
+                "flags": []
+              },
+              "context": "Sam Altman, At Delhi Summit, Shares One Thing He Agrees With Others On AI"
+            },
+            {
+              "success": true,
+              "url": "https://img.etimg.com/thumb/width-1200,height-900,imgsize-40732,resizemode-75,msid-128550379/tech/information-tech/it-services-sector-can-thrive-in-the-ai-age-if-they-reinvent-julie-sweet-accenture.jpg",
+              "metadata": {
+                "format": "JPEG",
+                "mode": "RGB",
+                "size": [
+                  1200,
+                  898
+                ],
+                "width": 1200,
+                "height": 898,
+                "aspect_ratio": 1.34,
+                "file_size_kb": 55
+              },
+              "image_type": {
+                "type": "photo",
+                "confidence": 0.8,
+                "color_complexity": 0.735,
+                "edge_density": 0.049
+              },
+              "vision_analysis": {
+                "description": "General image (1200x898)",
+                "objects": [],
+                "scene_type": "general",
+                "mood": "neutral",
+                "relevance": "medium",
+                "news_value": "Visual context for the news story",
+                "is_photo": true,
+                "is_grayscale": false,
+                "avg_brightness": 64,
+                "dominant_colors": [
+                  "#06050a",
+                  "#282329",
+                  "#2b262c",
+                  "#272228",
+                  "#2c272d"
+                ],
+                "source": "local_analysis"
+              },
+              "manipulation_score": {
+                "exif_data_present": false,
+                "unusual_aspect_ratio": false,
+                "suspicious_compression": false,
+                "risk_level": "low",
+                "flags": []
+              },
+              "context": "IT services sector can thrive in the AI age if they reinvent: Julie Sweet, Accenture"
+            },
+            {
+              "success": true,
+              "url": "https://akm-img-a-in.tosshub.com/businesstoday/images/story/202602/6996d708443a3-the-relationship-between-altman-and-amodei-is-rooted-in-collaboration-turned-rivalry-192522720-16x9.png",
+              "metadata": {
+                "format": "JPEG",
+                "mode": "RGB",
+                "size": [
+                  1200,
+                  675
+                ],
+                "width": 1200,
+                "height": 675,
+                "aspect_ratio": 1.78,
+                "file_size_kb": 115
+              },
+              "image_type": {
+                "type": "photo",
+                "confidence": 0.8,
+                "color_complexity": 0.653,
+                "edge_density": 0.166
+              },
+              "vision_analysis": {
+                "description": "Banner image (1200x675)",
+                "objects": [],
+                "scene_type": "banner",
+                "mood": "neutral",
+                "relevance": "medium",
+                "news_value": "Visual context for the news story",
+                "is_photo": true,
+                "is_grayscale": false,
+                "avg_brightness": 64,
+                "dominant_colors": [
+                  "#0c192a",
+                  "#532298",
+                  "#0e1b2c",
+                  "#431c93",
+                  "#572199"
+                ],
+                "source": "local_analysis"
+              },
+              "manipulation_score": {
+                "exif_data_present": false,
+                "unusual_aspect_ratio": false,
+                "suspicious_compression": false,
+                "risk_level": "low",
+                "flags": []
+              },
+              "context": "India AI Impact Summit 2026: Sam Altman Dario Amodei swkward moment sparks 'AI cold war' talk"
+            },
+            {
+              "success": true,
+              "url": "https://www.hindustantimes.com/ht-img/img/2026/02/19/550x309/Prime-Minister-Narendra-Modi-on-Thursday-unveiled-_1771493522019.jpg",
+              "metadata": {
+                "format": "JPEG",
+                "mode": "RGB",
+                "size": [
+                  550,
+                  309
+                ],
+                "width": 550,
+                "height": 309,
+                "aspect_ratio": 1.78,
+                "file_size_kb": 25
+              },
+              "image_type": {
+                "type": "photo",
+                "confidence": 0.8,
+                "color_complexity": 0.687,
+                "edge_density": 0.194
+              },
+              "vision_analysis": {
+                "description": "Banner image (550x309)",
+                "objects": [],
+                "scene_type": "banner",
+                "mood": "neutral",
+                "relevance": "medium",
+                "news_value": "Visual context for the news story",
+                "is_photo": true,
+                "is_grayscale": false,
+                "avg_brightness": 116,
+                "dominant_colors": [
+                  "#3c35a9",
+                  "#3b34a8",
+                  "#4235ab",
+                  "#4336ac",
+                  "#3f31a3"
+                ],
+                "source": "local_analysis"
+              },
+              "manipulation_score": {
+                "exif_data_present": false,
+                "unusual_aspect_ratio": false,
+                "suspicious_compression": false,
+                "risk_level": "low",
+                "flags": []
+              },
+              "context": "AI Impact Summit: PM Modi unveils MANAV vision promoting ethical, inclusive AI"
+            },
+            {
+              "success": true,
+              "url": "https://images.indianexpress.com/2026/02/mukesh-ambani-file-.jpg",
+              "metadata": {
+                "format": "JPEG",
+                "mode": "RGB",
+                "size": [
+                  1600,
+                  900
+                ],
+                "width": 1600,
+                "height": 900,
+                "aspect_ratio": 1.78,
+                "file_size_kb": 60
+              },
+              "image_type": {
+                "type": "photo",
+                "confidence": 0.8,
+                "color_complexity": 0.544,
+                "edge_density": 0.099
+              },
+              "vision_analysis": {
+                "description": "Banner image (1600x900)",
+                "objects": [],
+                "scene_type": "banner",
+                "mood": "dark/dramatic",
+                "relevance": "medium",
+                "news_value": "Visual context for the news story",
+                "is_photo": true,
+                "is_grayscale": false,
+                "avg_brightness": 48,
+                "dominant_colors": [
+                  "#1a1728",
+                  "#1b1926",
+                  "#161324",
+                  "#171425",
+                  "#191627"
+                ],
+                "source": "local_analysis"
+              },
+              "manipulation_score": {
+                "exif_data_present": false,
+                "unusual_aspect_ratio": false,
+                "suspicious_compression": true,
+                "risk_level": "medium",
+                "flags": [
+                  "Heavy compression detected"
+                ]
+              },
+              "context": "RIL, Jio to pump in Rs 10 lakh crore into AI; Mukesh Ambani promises to reduce cost of AI \u2018dramatically\u2019 for Indians"
+            }
+          ]
+        },
+        "exported_file": "output/india_report_20260220_025956.json"
+      },
+      "errors": [],
+      "skipped": [],
+      "fallbacks_used": [],
+      "regenerated": [],
+      "success": true
+    }
+  },
+  {
+    "timestamp": "2026-02-20T03:03:39.360300",
+    "result": {
+      "intent": "Get india news",
+      "domain": "india",
+      "tools_executed": [
+        {
+          "tool": "news_fetcher",
+          "success": true,
+          "retries": 0,
+          "used_fallback": false,
+          "regenerated": false
+        },
+        {
+          "tool": "image_analyzer",
+          "success": true,
+          "retries": 0,
+          "used_fallback": false,
+          "regenerated": false
+        },
+        {
+          "tool": "exporter",
+          "success": true,
+          "retries": 0,
+          "used_fallback": false,
+          "regenerated": false
+        }
+      ],
+      "data": {
+        "news": [
+          {
+            "title": "Opinion | An Ancient Power Is Reasserting Itself - The New York Times",
+            "link": "https://news.google.com/rss/articles/CBMihwFBVV95cUxPVkhRT0VMNzNPdWF3TTUxaHdzYWsxQkpreDJ6M21ZdU5wMUtnZ3ZIZURIUl80RWp1WHVxRjJVRjVPZk9rSXZxdkNLc3ZlY2prUDd6TTdLNVZ6dzFSR21tQmE0cHhsb0FoZGxLWEoyVEVhWXJrTFBseHh1RXJvaEdIWU9RZ0h3X28?oc=5",
+            "source": "rss",
+            "published": "Thu, 19 Feb 2026 10:05:25 GMT"
+          },
+          {
+            "title": "Why India joining this U.S.-led tech alliance could help supply chains - CNBC",
+            "link": "https://news.google.com/rss/articles/CBMigwFBVV95cUxNOW8yaFF6YnFmUmtqbTdpeEVjUEpNMmlYdUZmVGxwVGREMVpDa2dGVDdsRVNPalE2aC1qeVhteHFyS1ZzaUtkR2Eyb2t6TV9PU0hTdXBIbXBxOHdZZVFCN3NxSXo5dHJpVkkyOGF5VVlFSWxSMlZ3MjVyLXVjb2ZIeTRMMNIBiAFBVV95cUxNeXJMT1hQUXgydHpLWkFMc3Ztd29WVFpPSFdmSmpGV3BMZEFVME5SSFY1Q19pYW9COFBMVXNvR1VZSkdlMkhkR3VvVU5XenVnRE9HTGxaUTdKT0hIamw0dUUzOVBXYmliVW4yeThyV3Bxd3dGMTM5bVV6NzhUcWFkVTZmWC1RZXVG?oc=5",
+            "source": "rss",
+            "published": "Wed, 18 Feb 2026 23:00:01 GMT"
+          },
+          {
+            "title": "'India To Be OpenAI's Biggest Market Soon': Sam Altman At AI Impact Summit - NDTV",
+            "link": "https://news.google.com/rss/articles/CBMinAFBVV95cUxNS2NsbW5ob1R0WTZ1UGJxc2lJa1RBUUk2M1gzTWo5VkZ6RElGaTE2dHMzNTZ4b25sOGttR1N6SWhxRlR0VVphdGNVOVBsd2xOZW1jN01Hdkd1OVo0U1RSZmFoSEhmUTFtLUx1eEM3RmxRcmlFTnZfMFNNMjdrYXJJSl9TY2ZHMFcxNHMtNEl0SE1HYUd4V04wdFd1YVnSAaQBQVVfeXFMTWtDZmJoUm5LeGxyVU5BZFlQR2VWUkdlTGZacVJoTHRTV2lHMG5DV0tMMmQ3bXdTTF85S1FBMWoxWlNpTDljSlFNNTkwR2dmejZGNnNoNDd1WXFhT1FwbHFYRHNCOGhFbXVBT052NndXQkdrQno5M3N6OFBxekVxOEo3aEpCdWlIZUdDVTRlTWNKYk81MFdkblljNmUwM3JCVC11azY?oc=5",
+            "source": "rss",
+            "published": "Thu, 19 Feb 2026 19:11:33 GMT"
+          },
+          {
+            "title": "Bill Gates pulls out of India AI summit amid Epstein scrutiny - Reuters",
+            "link": "https://news.google.com/rss/articles/CBMinwFBVV95cUxNMUVUdFRrMHBzSXhhTm9KcGF2VWUtYzNDTFhTeG4yWmtESC1oVG5qTTlYQ2VzZE9QY21SUkdfa3dqSFVBSk9FTWxRUGpxSzV3TEdPUXBKTmxMSzdyUFFtRWZfTHV2Y3NURURkOF9YMjA5SjJJQ0d2Q0xvOURRS2lkZm1mRWdSYjFGNTZCLTR4SldQeWJHRFZEbll1alN3OUE?oc=5",
+            "source": "rss",
+            "published": "Thu, 19 Feb 2026 03:14:00 GMT"
+          },
+          {
+            "title": "Rouble Nagi: The teacher who won $1m for turning India's slums into open-air classrooms - BBC",
+            "link": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE1HN0pvdVd1b3lMRHNRZnViaWpzUng1eVZjSEJMTkZYMXpNdVc4OUQ4U05acVFRdk4yOGlzRWllbVhHUHRsaDJzaXotcVl5aTh6cFNYUC1HdktVUQ?oc=5",
+            "source": "rss",
+            "published": "Thu, 19 Feb 2026 02:44:45 GMT"
+          },
+          {
+            "title": "Red Hat helping enterprises move from AI pilots to scaled deployment; says India among top three APAC markets",
+            "link": "https://www.moneycontrol.com/news/business/red-hat-helping-enterprises-move-from-ai-pilots-to-scaled-deployment-says-india-among-top-three-apac-markets-13835849.html",
+            "source": "gnews",
+            "published": "2026-02-19T09:33:01Z",
+            "image": "https://images.moneycontrol.com/static-mcnews/2026/02/20260219093225_AI-summit.png"
+          },
+          {
+            "title": "Will Mukesh Ambani's Reliance And Jio Lead India\u2019s AI Revolution? \u20b910 Lakh Crore Investment as Jio AI Bharat Goes Live",
+            "link": "https://www.newsx.com/business/will-mukesh-ambanis-reliance-and-jio-lead-indias-ai-revolution-10-lakh-crore-investment-as-jio-ai-bharat-goes-live-is-this-the-time-to-invest-169405/",
+            "source": "gnews",
+            "published": "2026-02-19T09:33:00Z",
+            "image": "https://www.newsx.com/wp-content/uploads/2026/02/live-2026-02-19t145259402.jpg"
+          },
+          {
+            "title": "Bill Gates Cancels AI Summit Keynote Amid Epstein Allegations - Reports",
+            "link": "https://sputnikglobe.com/20260219/bill-gates-cancels-ai-summit-keynote-amid-epstein-allegations---reports-1123656480.html",
+            "source": "gnews",
+            "published": "2026-02-19T09:33:00Z",
+            "image": "https://cdn1.img.sputnikglobe.com/images/sharing/article/eng/1123656480.jpg?11206576911771493596"
+          },
+          {
+            "title": "Bangladesh's New Sports Minister Seeks To \"Resolve Issue\" With India After T20 WC Row",
+            "link": "https://www.deccanchronicle.com/sports/bangladeshs-new-sports-minister-seeks-to-resolve-issue-with-india-after-t20-wc-row-1938385",
+            "source": "gnews",
+            "published": "2026-02-19T09:32:28Z",
+            "image": "https://www.deccanchronicle.com/h-upload/2026/02/19/2011899-la-3215051.jpg"
+          },
+          {
+            "title": "New Tax Regime Push Spurs Rise In Wallet",
+            "link": "https://www.outlookmoney.com/tax/new-tax-regime-push-spurs-rise-in-wallet-based-employee-benefits",
+            "source": "gnews",
+            "published": "2026-02-19T09:32:23Z",
+            "image": "https://media.assettype.com/outlookmoney/2026-02-19/xzb2wz39/employee-benefits-pix.jpg?w=1200&ar=40%3A21&auto=format%2Ccompress&ogImage=true&mode=crop&enlarge=true&overlay=false&overlay_position=bottom&overlay_width=100"
+          },
+          {
+            "title": "India news - breaking news, video and headlines and opinion",
+            "link": "https://www.cnn.com/world/india",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "CNBC's Inside India newsletter: India is throwing its weight behind AI",
+            "link": "https://www.cnbc.com/2026/02/19/cnbcs-inside-india-newsletter-india-is-throwing-its-weight-behind-ai-but-is-there-substance-behind-the-headlines.html",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "breaking news, videos, headlines and opinion",
+            "link": "https://www.cnn.com/world/asia",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "Breaking News, World News, US News, Sports ...",
+            "link": "https://www.bbc.com/",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "India to make Rafale jets with France in boost to defence ties ...",
+            "link": "https://www.reuters.com/world/india/india-make-rafale-jets-with-france-boost-defence-ties-macron-says-2026-02-19/",
+            "source": "tavily",
+            "published": ""
+          }
+        ],
+        "images": {
+          "total_images": 5,
+          "successful": 5,
+          "failed": 0,
+          "manipulation_risks": 1,
+          "image_types": {
+            "photo": 5
+          },
+          "objects_detected": [],
+          "descriptions": [
+            "Banner image (1280x720)",
+            "General image (1200x900)",
+            "Banner image (2070x1165)",
+            "High-res photo image (4059x2435)",
+            "Banner image (1200x675)"
+          ],
+          "detailed_results": [
+            {
+              "success": true,
+              "url": "https://images.moneycontrol.com/static-mcnews/2026/02/20260219093225_AI-summit.png",
+              "metadata": {
+                "format": "JPEG",
+                "mode": "RGB",
+                "size": [
+                  1280,
+                  720
+                ],
+                "width": 1280,
+                "height": 720,
+                "aspect_ratio": 1.78,
+                "file_size_kb": 67
+              },
+              "image_type": {
+                "type": "photo",
+                "confidence": 0.8,
+                "color_complexity": 0.917,
+                "edge_density": 0.167
+              },
+              "vision_analysis": {
+                "description": "Banner image (1280x720)",
+                "objects": [],
+                "scene_type": "banner",
+                "mood": "neutral",
+                "relevance": "medium",
+                "news_value": "Visual context for the news story",
+                "is_photo": true,
+                "is_grayscale": false,
+                "avg_brightness": 114,
+                "dominant_colors": [
+                  "#211d12",
+                  "#e0e8eb",
+                  "#271f14",
+                  "#f67f54",
+                  "#e1e5ee"
+                ],
+                "source": "local_analysis"
+              },
+              "manipulation_score": {
+                "exif_data_present": false,
+                "unusual_aspect_ratio": false,
+                "suspicious_compression": false,
+                "risk_level": "low",
+                "flags": []
+              },
+              "context": "Red Hat helping enterprises move from AI pilots to scaled deployment; says India among top three APAC markets"
+            },
+            {
+              "success": true,
+              "url": "https://www.newsx.com/wp-content/uploads/2026/02/live-2026-02-19t145259402.jpg",
+              "metadata": {
+                "format": "JPEG",
+                "mode": "RGB",
+                "size": [
+                  1200,
+                  900
+                ],
+                "width": 1200,
+                "height": 900,
+                "aspect_ratio": 1.33,
+                "file_size_kb": 91,
+                "exif": {
+                  "orientation": "1"
+                }
+              },
+              "image_type": {
+                "type": "photo",
+                "confidence": 0.8,
+                "color_complexity": 0.453,
+                "edge_density": 0.11
+              },
+              "vision_analysis": {
+                "description": "General image (1200x900)",
+                "objects": [],
+                "scene_type": "general",
+                "mood": "dark/dramatic",
+                "relevance": "medium",
+                "news_value": "Visual context for the news story",
+                "is_photo": true,
+                "is_grayscale": false,
+                "avg_brightness": 57,
+                "dominant_colors": [
+                  "#01008a",
+                  "#272264",
+                  "#24215a",
+                  "#282365",
+                  "#272265"
+                ],
+                "source": "local_analysis"
+              },
+              "manipulation_score": {
+                "exif_data_present": true,
+                "unusual_aspect_ratio": false,
+                "suspicious_compression": false,
+                "risk_level": "low",
+                "flags": []
+              },
+              "context": "Will Mukesh Ambani's Reliance And Jio Lead India\u2019s AI Revolution? \u20b910 Lakh Crore Investment as Jio AI Bharat Goes Live"
+            },
+            {
+              "success": true,
+              "url": "https://cdn1.img.sputnikglobe.com/images/sharing/article/eng/1123656480.jpg?11206576911771493596",
+              "metadata": {
+                "format": "JPEG",
+                "mode": "RGB",
+                "size": [
+                  2070,
+                  1165
+                ],
+                "width": 2070,
+                "height": 1165,
+                "aspect_ratio": 1.78,
+                "file_size_kb": 100
+              },
+              "image_type": {
+                "type": "photo",
+                "confidence": 0.8,
+                "color_complexity": 0.411,
+                "edge_density": 0.124
+              },
+              "vision_analysis": {
+                "description": "Banner image (2070x1165)",
+                "objects": [],
+                "scene_type": "banner",
+                "mood": "dark/dramatic",
+                "relevance": "medium",
+                "news_value": "Visual context for the news story",
+                "is_photo": true,
+                "is_grayscale": false,
+                "avg_brightness": 39,
+                "dominant_colors": [
+                  "#010214",
+                  "#00041d",
+                  "#001440",
+                  "#030419",
+                  "#011039"
+                ],
+                "source": "local_analysis"
+              },
+              "manipulation_score": {
+                "exif_data_present": false,
+                "unusual_aspect_ratio": false,
+                "suspicious_compression": true,
+                "risk_level": "medium",
+                "flags": [
+                  "Heavy compression detected"
+                ]
+              },
+              "context": "Bill Gates Cancels AI Summit Keynote Amid Epstein Allegations - Reports"
+            },
+            {
+              "success": true,
+              "url": "https://www.deccanchronicle.com/h-upload/2026/02/19/2011899-la-3215051.jpg",
+              "metadata": {
+                "format": "JPEG",
+                "mode": "RGB",
+                "size": [
+                  4059,
+                  2435
+                ],
+                "width": 4059,
+                "height": 2435,
+                "aspect_ratio": 1.67,
+                "file_size_kb": 672
+              },
+              "image_type": {
+                "type": "photo",
+                "confidence": 0.8,
+                "color_complexity": 0.894,
+                "edge_density": 0.147
+              },
+              "vision_analysis": {
+                "description": "High-res photo image (4059x2435)",
+                "objects": [],
+                "scene_type": "high-res photo",
+                "mood": "neutral",
+                "relevance": "medium",
+                "news_value": "Visual context for the news story",
+                "is_photo": true,
+                "is_grayscale": false,
+                "avg_brightness": 75,
+                "dominant_colors": [
+                  "#0d111a",
+                  "#161c28",
+                  "#151b27",
+                  "#141a26",
+                  "#0e121b"
+                ],
+                "source": "local_analysis"
+              },
+              "manipulation_score": {
+                "exif_data_present": false,
+                "unusual_aspect_ratio": false,
+                "suspicious_compression": false,
+                "risk_level": "low",
+                "flags": []
+              },
+              "context": "Bangladesh's New Sports Minister Seeks To \"Resolve Issue\" With India After T20 WC Row"
+            },
+            {
+              "success": true,
+              "url": "https://media.assettype.com/outlookmoney/2026-02-19/xzb2wz39/employee-benefits-pix.jpg?w=1200&ar=40%3A21&auto=format%2Ccompress&ogImage=true&mode=crop&enlarge=true&overlay=false&overlay_position=bottom&overlay_width=100",
+              "metadata": {
+                "format": "JPEG",
+                "mode": "RGB",
+                "size": [
+                  1200,
+                  675
+                ],
+                "width": 1200,
+                "height": 675,
+                "aspect_ratio": 1.78,
+                "file_size_kb": 135
+              },
+              "image_type": {
+                "type": "photo",
+                "confidence": 0.8,
+                "color_complexity": 0.908,
+                "edge_density": 0.172
+              },
+              "vision_analysis": {
+                "description": "Banner image (1200x675)",
+                "objects": [],
+                "scene_type": "banner",
+                "mood": "neutral",
+                "relevance": "medium",
+                "news_value": "Visual context for the news story",
+                "is_photo": true,
+                "is_grayscale": false,
+                "avg_brightness": 109,
+                "dominant_colors": [
+                  "#000000",
+                  "#e9e8ed",
+                  "#eff0f5",
+                  "#665e5b",
+                  "#e5e4e9"
+                ],
+                "source": "local_analysis"
+              },
+              "manipulation_score": {
+                "exif_data_present": false,
+                "unusual_aspect_ratio": false,
+                "suspicious_compression": false,
+                "risk_level": "low",
+                "flags": []
+              },
+              "context": "New Tax Regime Push Spurs Rise In Wallet"
+            }
+          ]
+        },
+        "exported_file": "output/india_report_20260220_030339.json"
+      },
+      "errors": [],
+      "skipped": [],
+      "fallbacks_used": [],
+      "regenerated": [],
+      "success": true
+    }
+  },
+  {
+    "timestamp": "2026-02-20T03:04:40.162881",
+    "result": {
+      "intent": "Get india news",
+      "domain": "india",
+      "tools_executed": [
+        {
+          "tool": "news_fetcher",
+          "success": true,
+          "retries": 0,
+          "used_fallback": false,
+          "regenerated": false
+        },
+        {
+          "tool": "web_scraper",
+          "success": true,
+          "retries": 0,
+          "used_fallback": false,
+          "regenerated": false
+        },
+        {
+          "tool": "entity_extractor",
+          "success": true,
+          "retries": 0,
+          "used_fallback": false,
+          "regenerated": false
+        },
+        {
+          "tool": "image_analyzer",
+          "success": true,
+          "retries": 0,
+          "used_fallback": false,
+          "regenerated": false
+        },
+        {
+          "tool": "social_monitor",
+          "success": true,
+          "retries": 0,
+          "used_fallback": false,
+          "regenerated": false
+        },
+        {
+          "tool": "research_assistant",
+          "success": true,
+          "retries": 0,
+          "used_fallback": false,
+          "regenerated": false
+        },
+        {
+          "tool": "exporter",
+          "success": true,
+          "retries": 0,
+          "used_fallback": false,
+          "regenerated": false
+        }
+      ],
+      "data": {
+        "news": [
+          {
+            "title": "Opinion | An Ancient Power Is Reasserting Itself - The New York Times",
+            "link": "https://news.google.com/rss/articles/CBMihwFBVV95cUxPVkhRT0VMNzNPdWF3TTUxaHdzYWsxQkpreDJ6M21ZdU5wMUtnZ3ZIZURIUl80RWp1WHVxRjJVRjVPZk9rSXZxdkNLc3ZlY2prUDd6TTdLNVZ6dzFSR21tQmE0cHhsb0FoZGxLWEoyVEVhWXJrTFBseHh1RXJvaEdIWU9RZ0h3X28?oc=5",
+            "source": "rss",
+            "published": "Thu, 19 Feb 2026 10:05:25 GMT"
+          },
+          {
+            "title": "Why India joining this U.S.-led tech alliance could help supply chains - CNBC",
+            "link": "https://news.google.com/rss/articles/CBMigwFBVV95cUxNOW8yaFF6YnFmUmtqbTdpeEVjUEpNMmlYdUZmVGxwVGREMVpDa2dGVDdsRVNPalE2aC1qeVhteHFyS1ZzaUtkR2Eyb2t6TV9PU0hTdXBIbXBxOHdZZVFCN3NxSXo5dHJpVkkyOGF5VVlFSWxSMlZ3MjVyLXVjb2ZIeTRMMNIBiAFBVV95cUxNeXJMT1hQUXgydHpLWkFMc3Ztd29WVFpPSFdmSmpGV3BMZEFVME5SSFY1Q19pYW9COFBMVXNvR1VZSkdlMkhkR3VvVU5XenVnRE9HTGxaUTdKT0hIamw0dUUzOVBXYmliVW4yeThyV3Bxd3dGMTM5bVV6NzhUcWFkVTZmWC1RZXVG?oc=5",
+            "source": "rss",
+            "published": "Wed, 18 Feb 2026 23:00:01 GMT"
+          },
+          {
+            "title": "'India To Be OpenAI's Biggest Market Soon': Sam Altman At AI Impact Summit - NDTV",
+            "link": "https://news.google.com/rss/articles/CBMinAFBVV95cUxNS2NsbW5ob1R0WTZ1UGJxc2lJa1RBUUk2M1gzTWo5VkZ6RElGaTE2dHMzNTZ4b25sOGttR1N6SWhxRlR0VVphdGNVOVBsd2xOZW1jN01Hdkd1OVo0U1RSZmFoSEhmUTFtLUx1eEM3RmxRcmlFTnZfMFNNMjdrYXJJSl9TY2ZHMFcxNHMtNEl0SE1HYUd4V04wdFd1YVnSAaQBQVVfeXFMTWtDZmJoUm5LeGxyVU5BZFlQR2VWUkdlTGZacVJoTHRTV2lHMG5DV0tMMmQ3bXdTTF85S1FBMWoxWlNpTDljSlFNNTkwR2dmejZGNnNoNDd1WXFhT1FwbHFYRHNCOGhFbXVBT052NndXQkdrQno5M3N6OFBxekVxOEo3aEpCdWlIZUdDVTRlTWNKYk81MFdkblljNmUwM3JCVC11azY?oc=5",
+            "source": "rss",
+            "published": "Thu, 19 Feb 2026 19:11:33 GMT"
+          },
+          {
+            "title": "Bill Gates pulls out of India AI summit amid Epstein scrutiny - Reuters",
+            "link": "https://news.google.com/rss/articles/CBMinwFBVV95cUxNMUVUdFRrMHBzSXhhTm9KcGF2VWUtYzNDTFhTeG4yWmtESC1oVG5qTTlYQ2VzZE9QY21SUkdfa3dqSFVBSk9FTWxRUGpxSzV3TEdPUXBKTmxMSzdyUFFtRWZfTHV2Y3NURURkOF9YMjA5SjJJQ0d2Q0xvOURRS2lkZm1mRWdSYjFGNTZCLTR4SldQeWJHRFZEbll1alN3OUE?oc=5",
+            "source": "rss",
+            "published": "Thu, 19 Feb 2026 03:14:00 GMT"
+          },
+          {
+            "title": "Rouble Nagi: The teacher who won $1m for turning India's slums into open-air classrooms - BBC",
+            "link": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE1HN0pvdVd1b3lMRHNRZnViaWpzUng1eVZjSEJMTkZYMXpNdVc4OUQ4U05acVFRdk4yOGlzRWllbVhHUHRsaDJzaXotcVl5aTh6cFNYUC1HdktVUQ?oc=5",
+            "source": "rss",
+            "published": "Thu, 19 Feb 2026 02:44:45 GMT"
+          },
+          {
+            "title": "ITCONS E-Solutions Ltd Secures INR 43.14 Lakh Contract from Uranium Corporation of India Limited",
+            "link": "https://scanx.trade/stock-market-news/orders-deals/itcons-e-solutions-ltd-secures-inr-43-14-lakh-contract-from-uranium-corporation-of-india-limited/33039269",
+            "source": "gnews",
+            "published": "2026-02-19T09:34:29Z",
+            "image": "http://news-images.dhan.co/itcons-e-solutions-ltd-secures-inr-43-14-lakh-contract-from-uranium-corporation-of-india-limited.jpg"
+          },
+          {
+            "title": "Philips and Apollo Hospitals Collaborate to Strengthen Stroke and Structural Heart Disease Care in India",
+            "link": "https://www.tribuneindia.com/news/business/philips-and-apollo-hospitals-collaborate-to-strengthen-stroke-and-structural-heart-disease-care-in-india/",
+            "source": "gnews",
+            "published": "2026-02-19T09:34:06Z",
+            "image": "https://www.tribuneindia.com/sortd-service/imaginary/v22-01/jpg/large/high?url=dGhldHJpYnVuZS1zb3J0ZC1wcm8tcHJvZC1zb3J0ZC9tZWRpYWM5MGU4NGYwLTBkNzYtMTFmMS1hN2NkLWExNzYyOTNmNDNjZS5qcGc="
+          },
+          {
+            "title": "Zydus Lifesciences Launches India's First Indigenous Aflibercept Biosimilar ANYRA\u2122",
+            "link": "https://scanx.trade/stock-market-news/stocks/zydus-lifesciences-launches-india-s-first-indigenous-aflibercept-biosimilar-anyra/33039239",
+            "source": "gnews",
+            "published": "2026-02-19T09:33:59Z",
+            "image": "http://news-images.dhan.co/zydus-lifesciences-launches-india-s-first-indigenous-aflibercept-biosimilar-anyra.jpg"
+          },
+          {
+            "title": "From Riteish Deshmukh to Rishab Shetty: Actors who portrayed and are set to depict Chhatrapati Shivaji Maharaj on screen",
+            "link": "https://timesofindia.indiatimes.com/entertainment/hindi/bollywood/news/from-riteish-deshmukh-to-rishab-shetty-actors-who-portrayed-and-are-set-to-depict-chhatrapati-shivaji-maharaj-on-screen/photostory/128550194.cms",
+            "source": "gnews",
+            "published": "2026-02-19T09:33:51Z",
+            "image": "https://static.toiimg.com/thumb/msid-128550276,width-1280,height-720,imgsize-28964,resizemode-6,overlay-toi_sw,pt-32,y_pad-600/photo.jpg"
+          },
+          {
+            "title": "Red Hat helping enterprises move from AI pilots to scaled deployment; says India among top three APAC markets",
+            "link": "https://www.moneycontrol.com/news/business/red-hat-helping-enterprises-move-from-ai-pilots-to-scaled-deployment-says-india-among-top-three-apac-markets-13835849.html",
+            "source": "gnews",
+            "published": "2026-02-19T09:33:01Z",
+            "image": "https://images.moneycontrol.com/static-mcnews/2026/02/20260219093225_AI-summit.png"
+          },
+          {
+            "title": "India news - breaking news, video and headlines and opinion",
+            "link": "https://www.cnn.com/world/india",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "CNBC's Inside India newsletter: India is throwing its weight behind AI",
+            "link": "https://www.cnbc.com/2026/02/19/cnbcs-inside-india-newsletter-india-is-throwing-its-weight-behind-ai-but-is-there-substance-behind-the-headlines.html",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "Breaking News, World News, US News, Sports ...",
+            "link": "https://www.bbc.com/",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "Tech majors commit billions of dollars to India at AI summit",
+            "link": "https://www.reuters.com/world/india/tech-majors-commit-billions-dollars-india-ai-summit-2026-02-19/",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "India to make Rafale jets with France in boost to defence ties ...",
+            "link": "https://www.reuters.com/world/india/india-make-rafale-jets-with-france-boost-defence-ties-macron-says-2026-02-19/",
+            "source": "tavily",
+            "published": ""
+          }
+        ],
+        "scraped_articles": {
+          "success": true,
+          "url": "https://scanx.trade/stock-market-news/orders-deals/itcons-e-solutions-ltd-secures-inr-43-14-lakh-contract-from-uranium-corporation-of-india-limited/33039269",
+          "title": "ITCONS E-Solutions Ltd Secures INR 43.14 Lakh Contract from Uranium Corporation of India Limited",
+          "content": "ITCONS E-Solutions Ltd has won a INR 43.14 lakh manpower outsourcing contract from Uranium Corporation of India Limited, Department of Atomic Energy, PMO. The one-year agreement involves deploying 10 resources from February 26, 2026, to February 25, 2027. The company described this domestic contract as a significant milestone reflecting continued trust from government agencies, with the total value of INR 4314220.86 inclusive of all taxes and duties. *this image is generated using AI for illustrative purposes only. ITCONS E-Solutions Ltd has secured a new contract worth INR 43.14 lakh from Uranium Corporation of India Limited, marking another significant achievement for the IT solutions provider. The company announced this development through a regulatory filing under SEBI Regulation 30, emphasizing the contract as a notable milestone that demonstrates continued confidence from government agencies. The manpower outsourcing services contract involves the deployment of 10 resources for Uranium Corporation of India Limited, Department of Atomic Energy, PMO. The agreement spans one year, with operations scheduled to begin on February 26, 2026, and conclude on February 25, 2027, unless extended through mutual agreement between the parties. The contract announcement was made in compliance with SEBI (Listing Obligations and Disclosure Requirements) Regulations, 2015, specifically under Regulation 30. The company provided comprehensive details as required under SEBI Master Circular SEBI/HO/CFD/PoD2/CIR/P/0155 dated November 11, 2024. Key regulatory aspects of the contract include: This contract represents ITCONS E-Solutions Ltd's continued engagement with government agencies and public sector undertakings. The company highlighted that this agreement reflects the sustained trust placed in them by government organizations, reinforcing their position in the manpower outsourcing services sector. The one-year contract duration provides revenue visibility for the company, with the total contract value of INR 4314220.86 contributing to the company's order book. The engagement with Uranium Corporation of India Limited, a key entity under the Department of Atomic Energy, demonstrates the company's capability to serve critical government infrastructure projects. ITCONS E-Solutions Ltd, formerly known as ITCONS E-Solutions Private Limited, is listed on the BSE SME Exchange under the symbol ITCONS with scrip code 543806. The company operates from its registered office in New Delhi and maintains operational facilities in Noida, Uttar Pradesh, focusing on IT solutions and manpower outsourcing services for various government and private sector clients. Historical Stock Returns for ITCONS E-Solutions",
+          "author": "Dhan",
+          "publish_date": null,
+          "images": [
+            "http://news-images.dhan.co/itcons-e-solutions-ltd-secures-inr-43-14-lakh-contract-from-uranium-corporation-of-india-limited.jpg"
+          ],
+          "word_count": 379,
+          "reading_time_minutes": 1
+        },
+        "entities": {
+          "entities": {
+            "people": [
+              {
+                "name": "An Ancient Power",
+                "title": null,
+                "full_mention": "An Ancient Power"
+              },
+              {
+                "name": "Is Reasserting Itself",
+                "title": null,
+                "full_mention": "Is Reasserting Itself"
+              },
+              {
+                "name": "Times   Why India",
+                "title": null,
+                "full_mention": "Times   Why India"
+              },
+              {
+                "name": "India To Be",
+                "title": null,
+                "full_mention": "India To Be"
+              },
+              {
+                "name": "Biggest Market Soon",
+                "title": null,
+                "full_mention": "Biggest Market Soon"
+              },
+              {
+                "name": "Sam Altman At",
+                "title": null,
+                "full_mention": "Sam Altman At"
+              },
+              {
+                "name": "Impact Summit",
+                "title": null,
+                "full_mention": "Impact Summit"
+              },
+              {
+                "name": "Bill Gates",
+                "title": null,
+                "full_mention": "Bill Gates"
+              },
+              {
+                "name": "Reuters   Rouble Nagi",
+                "title": null,
+                "full_mention": "Reuters   Rouble Nagi"
+              },
+              {
+                "name": "Solutions Ltd Secures",
+                "title": null,
+                "full_mention": "Solutions Ltd Secures"
+              },
+              {
+                "name": "Lakh Contract",
+                "title": null,
+                "full_mention": "Lakh Contract"
+              },
+              {
+                "name": "Uranium Corporation",
+                "title": null,
+                "full_mention": "Uranium Corporation"
+              },
+              {
+                "name": "India Limited   Philips",
+                "title": null,
+                "full_mention": "India Limited   Philips"
+              },
+              {
+                "name": "Apollo Hospitals Collaborate",
+                "title": null,
+                "full_mention": "Apollo Hospitals Collaborate"
+              },
+              {
+                "name": "Strengthen Stroke",
+                "title": null,
+                "full_mention": "Strengthen Stroke"
+              },
+              {
+                "name": "Structural Heart Disease",
+                "title": null,
+                "full_mention": "Structural Heart Disease"
+              },
+              {
+                "name": "India   Zydus Lifesciences",
+                "title": null,
+                "full_mention": "India   Zydus Lifesciences"
+              },
+              {
+                "name": "Launches India",
+                "title": null,
+                "full_mention": "Launches India"
+              },
+              {
+                "name": "First Indigenous Aflibercept",
+                "title": null,
+                "full_mention": "First Indigenous Aflibercept"
+              },
+              {
+                "name": "From Riteish Deshmukh",
+                "title": null,
+                "full_mention": "From Riteish Deshmukh"
+              }
+            ],
+            "organizations": [
+              {
+                "name": "Solutions Ltd",
+                "type": "general"
+              },
+              {
+                "name": "Lakh Contract from Uranium Corporation",
+                "type": "general"
+              },
+              {
+                "name": "CNBC",
+                "type": "acronym"
+              },
+              {
+                "name": "AI",
+                "type": "acronym"
+              },
+              {
+                "name": "NDTV",
+                "type": "acronym"
+              },
+              {
+                "name": "BBC",
+                "type": "acronym"
+              },
+              {
+                "name": "ITCONS",
+                "type": "acronym"
+              },
+              {
+                "name": "INR",
+                "type": "acronym"
+              },
+              {
+                "name": "ANYRA",
+                "type": "acronym"
+              },
+              {
+                "name": "APAC",
+                "type": "acronym"
+              }
+            ],
+            "locations": [
+              {
+                "name": "France",
+                "type": "known"
+              },
+              {
+                "name": "New York",
+                "type": "known"
+              },
+              {
+                "name": "India",
+                "type": "known"
+              }
+            ],
+            "emails": [],
+            "urls": [],
+            "phones": [],
+            "money": [
+              "$1"
+            ],
+            "percentages": [],
+            "dates": [],
+            "hashtags": [],
+            "mentions": []
+          },
+          "relationships": [
+            {
+              "source": "India To Be",
+              "target": "Solutions Ltd",
+              "type": "person_org",
+              "context": "-led tech alliance could help supply chains - CNBC   'India To Be OpenAI's Biggest Market Soon': Sam"
+            },
+            {
+              "source": "India To Be",
+              "target": "CNBC",
+              "type": "person_org",
+              "context": "-led tech alliance could help supply chains - CNBC   'India To Be OpenAI's Biggest Market Soon': Sam"
+            },
+            {
+              "source": "India To Be",
+              "target": "AI",
+              "type": "person_org",
+              "context": "-led tech alliance could help supply chains - CNBC   'India To Be OpenAI's Biggest Market Soon': Sam"
+            },
+            {
+              "source": "India To Be",
+              "target": "NDTV",
+              "type": "person_org",
+              "context": "-led tech alliance could help supply chains - CNBC   'India To Be OpenAI's Biggest Market Soon': Sam"
+            },
+            {
+              "source": "India To Be",
+              "target": "BBC",
+              "type": "person_org",
+              "context": "-led tech alliance could help supply chains - CNBC   'India To Be OpenAI's Biggest Market Soon': Sam"
+            },
+            {
+              "source": "India To Be",
+              "target": "ITCONS",
+              "type": "person_org",
+              "context": "-led tech alliance could help supply chains - CNBC   'India To Be OpenAI's Biggest Market Soon': Sam"
+            },
+            {
+              "source": "India To Be",
+              "target": "INR",
+              "type": "person_org",
+              "context": "-led tech alliance could help supply chains - CNBC   'India To Be OpenAI's Biggest Market Soon': Sam"
+            },
+            {
+              "source": "Biggest Market Soon",
+              "target": "Solutions Ltd",
+              "type": "person_org",
+              "context": "-led tech alliance could help supply chains - CNBC   'India To Be OpenAI's Biggest Market Soon': Sam"
+            },
+            {
+              "source": "Biggest Market Soon",
+              "target": "CNBC",
+              "type": "person_org",
+              "context": "-led tech alliance could help supply chains - CNBC   'India To Be OpenAI's Biggest Market Soon': Sam"
+            },
+            {
+              "source": "Biggest Market Soon",
+              "target": "AI",
+              "type": "person_org",
+              "context": "-led tech alliance could help supply chains - CNBC   'India To Be OpenAI's Biggest Market Soon': Sam"
+            },
+            {
+              "source": "Biggest Market Soon",
+              "target": "NDTV",
+              "type": "person_org",
+              "context": "-led tech alliance could help supply chains - CNBC   'India To Be OpenAI's Biggest Market Soon': Sam"
+            },
+            {
+              "source": "Biggest Market Soon",
+              "target": "BBC",
+              "type": "person_org",
+              "context": "-led tech alliance could help supply chains - CNBC   'India To Be OpenAI's Biggest Market Soon': Sam"
+            },
+            {
+              "source": "Biggest Market Soon",
+              "target": "ITCONS",
+              "type": "person_org",
+              "context": "-led tech alliance could help supply chains - CNBC   'India To Be OpenAI's Biggest Market Soon': Sam"
+            },
+            {
+              "source": "Biggest Market Soon",
+              "target": "INR",
+              "type": "person_org",
+              "context": "-led tech alliance could help supply chains - CNBC   'India To Be OpenAI's Biggest Market Soon': Sam"
+            },
+            {
+              "source": "Sam Altman At",
+              "target": "Solutions Ltd",
+              "type": "person_org",
+              "context": "-led tech alliance could help supply chains - CNBC   'India To Be OpenAI's Biggest Market Soon': Sam"
+            },
+            {
+              "source": "Sam Altman At",
+              "target": "CNBC",
+              "type": "person_org",
+              "context": "-led tech alliance could help supply chains - CNBC   'India To Be OpenAI's Biggest Market Soon': Sam"
+            },
+            {
+              "source": "Sam Altman At",
+              "target": "AI",
+              "type": "person_org",
+              "context": "-led tech alliance could help supply chains - CNBC   'India To Be OpenAI's Biggest Market Soon': Sam"
+            },
+            {
+              "source": "Sam Altman At",
+              "target": "NDTV",
+              "type": "person_org",
+              "context": "-led tech alliance could help supply chains - CNBC   'India To Be OpenAI's Biggest Market Soon': Sam"
+            },
+            {
+              "source": "Sam Altman At",
+              "target": "BBC",
+              "type": "person_org",
+              "context": "-led tech alliance could help supply chains - CNBC   'India To Be OpenAI's Biggest Market Soon': Sam"
+            },
+            {
+              "source": "Sam Altman At",
+              "target": "ITCONS",
+              "type": "person_org",
+              "context": "-led tech alliance could help supply chains - CNBC   'India To Be OpenAI's Biggest Market Soon': Sam"
+            },
+            {
+              "source": "Sam Altman At",
+              "target": "INR",
+              "type": "person_org",
+              "context": "-led tech alliance could help supply chains - CNBC   'India To Be OpenAI's Biggest Market Soon': Sam"
+            },
+            {
+              "source": "Impact Summit",
+              "target": "Solutions Ltd",
+              "type": "person_org",
+              "context": "-led tech alliance could help supply chains - CNBC   'India To Be OpenAI's Biggest Market Soon': Sam"
+            },
+            {
+              "source": "Impact Summit",
+              "target": "CNBC",
+              "type": "person_org",
+              "context": "-led tech alliance could help supply chains - CNBC   'India To Be OpenAI's Biggest Market Soon': Sam"
+            },
+            {
+              "source": "Impact Summit",
+              "target": "AI",
+              "type": "person_org",
+              "context": "-led tech alliance could help supply chains - CNBC   'India To Be OpenAI's Biggest Market Soon': Sam"
+            },
+            {
+              "source": "Impact Summit",
+              "target": "NDTV",
+              "type": "person_org",
+              "context": "-led tech alliance could help supply chains - CNBC   'India To Be OpenAI's Biggest Market Soon': Sam"
+            },
+            {
+              "source": "Impact Summit",
+              "target": "BBC",
+              "type": "person_org",
+              "context": "-led tech alliance could help supply chains - CNBC   'India To Be OpenAI's Biggest Market Soon': Sam"
+            },
+            {
+              "source": "Impact Summit",
+              "target": "ITCONS",
+              "type": "person_org",
+              "context": "-led tech alliance could help supply chains - CNBC   'India To Be OpenAI's Biggest Market Soon': Sam"
+            },
+            {
+              "source": "Impact Summit",
+              "target": "INR",
+              "type": "person_org",
+              "context": "-led tech alliance could help supply chains - CNBC   'India To Be OpenAI's Biggest Market Soon': Sam"
+            },
+            {
+              "source": "Bill Gates",
+              "target": "Solutions Ltd",
+              "type": "person_org",
+              "context": "-led tech alliance could help supply chains - CNBC   'India To Be OpenAI's Biggest Market Soon': Sam"
+            },
+            {
+              "source": "Bill Gates",
+              "target": "CNBC",
+              "type": "person_org",
+              "context": "-led tech alliance could help supply chains - CNBC   'India To Be OpenAI's Biggest Market Soon': Sam"
+            },
+            {
+              "source": "Bill Gates",
+              "target": "AI",
+              "type": "person_org",
+              "context": "-led tech alliance could help supply chains - CNBC   'India To Be OpenAI's Biggest Market Soon': Sam"
+            },
+            {
+              "source": "Bill Gates",
+              "target": "NDTV",
+              "type": "person_org",
+              "context": "-led tech alliance could help supply chains - CNBC   'India To Be OpenAI's Biggest Market Soon': Sam"
+            },
+            {
+              "source": "Bill Gates",
+              "target": "BBC",
+              "type": "person_org",
+              "context": "-led tech alliance could help supply chains - CNBC   'India To Be OpenAI's Biggest Market Soon': Sam"
+            },
+            {
+              "source": "Bill Gates",
+              "target": "ITCONS",
+              "type": "person_org",
+              "context": "-led tech alliance could help supply chains - CNBC   'India To Be OpenAI's Biggest Market Soon': Sam"
+            },
+            {
+              "source": "Bill Gates",
+              "target": "INR",
+              "type": "person_org",
+              "context": "-led tech alliance could help supply chains - CNBC   'India To Be OpenAI's Biggest Market Soon': Sam"
+            },
+            {
+              "source": "Reuters   Rouble Nagi",
+              "target": "Solutions Ltd",
+              "type": "person_org",
+              "context": "-led tech alliance could help supply chains - CNBC   'India To Be OpenAI's Biggest Market Soon': Sam"
+            },
+            {
+              "source": "Reuters   Rouble Nagi",
+              "target": "CNBC",
+              "type": "person_org",
+              "context": "-led tech alliance could help supply chains - CNBC   'India To Be OpenAI's Biggest Market Soon': Sam"
+            },
+            {
+              "source": "Reuters   Rouble Nagi",
+              "target": "AI",
+              "type": "person_org",
+              "context": "-led tech alliance could help supply chains - CNBC   'India To Be OpenAI's Biggest Market Soon': Sam"
+            },
+            {
+              "source": "Reuters   Rouble Nagi",
+              "target": "NDTV",
+              "type": "person_org",
+              "context": "-led tech alliance could help supply chains - CNBC   'India To Be OpenAI's Biggest Market Soon': Sam"
+            },
+            {
+              "source": "Reuters   Rouble Nagi",
+              "target": "BBC",
+              "type": "person_org",
+              "context": "-led tech alliance could help supply chains - CNBC   'India To Be OpenAI's Biggest Market Soon': Sam"
+            },
+            {
+              "source": "Reuters   Rouble Nagi",
+              "target": "ITCONS",
+              "type": "person_org",
+              "context": "-led tech alliance could help supply chains - CNBC   'India To Be OpenAI's Biggest Market Soon': Sam"
+            },
+            {
+              "source": "Reuters   Rouble Nagi",
+              "target": "INR",
+              "type": "person_org",
+              "context": "-led tech alliance could help supply chains - CNBC   'India To Be OpenAI's Biggest Market Soon': Sam"
+            },
+            {
+              "source": "Solutions Ltd Secures",
+              "target": "Solutions Ltd",
+              "type": "person_org",
+              "context": "-led tech alliance could help supply chains - CNBC   'India To Be OpenAI's Biggest Market Soon': Sam"
+            },
+            {
+              "source": "Solutions Ltd Secures",
+              "target": "CNBC",
+              "type": "person_org",
+              "context": "-led tech alliance could help supply chains - CNBC   'India To Be OpenAI's Biggest Market Soon': Sam"
+            },
+            {
+              "source": "Solutions Ltd Secures",
+              "target": "AI",
+              "type": "person_org",
+              "context": "-led tech alliance could help supply chains - CNBC   'India To Be OpenAI's Biggest Market Soon': Sam"
+            },
+            {
+              "source": "Solutions Ltd Secures",
+              "target": "NDTV",
+              "type": "person_org",
+              "context": "-led tech alliance could help supply chains - CNBC   'India To Be OpenAI's Biggest Market Soon': Sam"
+            },
+            {
+              "source": "Solutions Ltd Secures",
+              "target": "BBC",
+              "type": "person_org",
+              "context": "-led tech alliance could help supply chains - CNBC   'India To Be OpenAI's Biggest Market Soon': Sam"
+            },
+            {
+              "source": "Solutions Ltd Secures",
+              "target": "ITCONS",
+              "type": "person_org",
+              "context": "-led tech alliance could help supply chains - CNBC   'India To Be OpenAI's Biggest Market Soon': Sam"
+            },
+            {
+              "source": "Solutions Ltd Secures",
+              "target": "INR",
+              "type": "person_org",
+              "context": "-led tech alliance could help supply chains - CNBC   'India To Be OpenAI's Biggest Market Soon': Sam"
+            },
+            {
+              "source": "Solutions Ltd",
+              "target": "India",
+              "type": "org_location",
+              "context": "-led tech alliance could help supply chains - CNBC   'India To Be OpenAI's Biggest Market Soon': Sam"
+            }
+          ],
+          "importance_scores": {
+            "India": {
+              "mentions": 13,
+              "category": "locations",
+              "importance": 100
+            },
+            "AI": {
+              "mentions": 8,
+              "category": "organizations",
+              "importance": 80
+            },
+            "CNBC": {
+              "mentions": 2,
+              "category": "organizations",
+              "importance": 20
+            },
+            "An Ancient Power": {
+              "mentions": 1,
+              "category": "people",
+              "importance": 10
+            },
+            "Is Reasserting Itself": {
+              "mentions": 1,
+              "category": "people",
+              "importance": 10
+            },
+            "Times   Why India": {
+              "mentions": 1,
+              "category": "people",
+              "importance": 10
+            },
+            "India To Be": {
+              "mentions": 1,
+              "category": "people",
+              "importance": 10
+            },
+            "Biggest Market Soon": {
+              "mentions": 1,
+              "category": "people",
+              "importance": 10
+            },
+            "Sam Altman At": {
+              "mentions": 1,
+              "category": "people",
+              "importance": 10
+            },
+            "Impact Summit": {
+              "mentions": 1,
+              "category": "people",
+              "importance": 10
+            },
+            "Bill Gates": {
+              "mentions": 1,
+              "category": "people",
+              "importance": 10
+            },
+            "Reuters   Rouble Nagi": {
+              "mentions": 1,
+              "category": "people",
+              "importance": 10
+            },
+            "Solutions Ltd Secures": {
+              "mentions": 1,
+              "category": "people",
+              "importance": 10
+            },
+            "Lakh Contract": {
+              "mentions": 1,
+              "category": "people",
+              "importance": 10
+            },
+            "Uranium Corporation": {
+              "mentions": 1,
+              "category": "people",
+              "importance": 10
+            },
+            "India Limited   Philips": {
+              "mentions": 1,
+              "category": "people",
+              "importance": 10
+            },
+            "Apollo Hospitals Collaborate": {
+              "mentions": 1,
+              "category": "people",
+              "importance": 10
+            },
+            "Strengthen Stroke": {
+              "mentions": 1,
+              "category": "people",
+              "importance": 10
+            },
+            "Structural Heart Disease": {
+              "mentions": 1,
+              "category": "people",
+              "importance": 10
+            },
+            "India   Zydus Lifesciences": {
+              "mentions": 1,
+              "category": "people",
+              "importance": 10
+            }
+          },
+          "entity_count": 34,
+          "unique_entities": 34
+        },
+        "images": {
+          "total_images": 1,
+          "successful": 0,
+          "failed": 1,
+          "manipulation_risks": 0,
+          "image_types": {},
+          "objects_detected": [],
+          "descriptions": [],
+          "detailed_results": []
+        },
+        "social": {
+          "topic": "india",
+          "platforms": {
+            "reddit": {
+              "platform": "reddit",
+              "status": "error",
+              "error": "Client error '403 Blocked' for url 'https://www.reddit.com/search.json?q=india&limit=25&sort=relevance&t=week&raw_json=1'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403"
+            }
+          },
+          "aggregate": {
+            "total_mentions": 0,
+            "platforms_monitored": 0,
+            "avg_sentiment": {
+              "positive": 0,
+              "neutral": 0,
+              "negative": 0
+            },
+            "overall_sentiment": "neutral",
+            "social_buzz_level": "low"
+          },
+          "timestamp": "2026-02-20T03:04:38.906540"
+        },
+        "research": {
+          "topic": "india",
+          "timestamp": "2026-02-20T03:04:40.040053",
+          "academic_papers": {
+            "success": false,
+            "error": "Redirect response '301 Moved Permanently' for url 'http://export.arxiv.org/api/query?search_query=all:india&start=0&max_results=5'\nRedirect location: 'https://export.arxiv.org/api/query?search_query=all:india&start=0&max_results=5'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/301"
+          },
+          "patents": {
+            "success": true,
+            "source": "patents",
+            "query": "india",
+            "count": 0,
+            "patents": [],
+            "note": "Patent search requires USPTO API or Google Patents integration"
+          },
+          "technical_docs": {
+            "success": true,
+            "query": "india",
+            "sources": {
+              "github": {
+                "success": true,
+                "count": 10,
+                "repositories": [
+                  {
+                    "name": "covid19india/covid19india.github.io",
+                    "description": "Tracking the impact of COVID-19 in India",
+                    "stars": 6824,
+                    "language": "JavaScript",
+                    "url": "https://github.com/covid19india/covid19india.github.io",
+                    "updated": "2026-02-14T00:02:21Z"
+                  },
+                  {
+                    "name": "nammayatri/nammayatri",
+                    "description": "A Direct-to-Driver open mobility platform powering the next-generation of mobility applications in India.",
+                    "stars": 2461,
+                    "language": "Haskell",
+                    "url": "https://github.com/nammayatri/nammayatri",
+                    "updated": "2026-02-19T15:40:47Z"
+                  },
+                  {
+                    "name": "github/india",
+                    "description": "GitHub resources and information for the developer community in India",
+                    "stars": 1811,
+                    "language": "Ruby",
+                    "url": "https://github.com/github/india",
+                    "updated": "2026-02-06T21:40:12Z"
+                  },
+                  {
+                    "name": "microsoft/EdgeML",
+                    "description": "This repository provides code for machine learning algorithms for edge devices developed at Microsoft Research India.",
+                    "stars": 1662,
+                    "language": "C++",
+                    "url": "https://github.com/microsoft/EdgeML",
+                    "updated": "2026-02-16T05:13:32Z"
+                  },
+                  {
+                    "name": "fossasia/jugaadfest.com",
+                    "description": "Jugaadfest in India https://jugaadfest.com",
+                    "stars": 1532,
+                    "language": "HTML",
+                    "url": "https://github.com/fossasia/jugaadfest.com",
+                    "updated": "2025-11-01T19:45:00Z"
+                  },
+                  {
+                    "name": "fossasia/sciencehack.in",
+                    "description": "Science Hack Day in India http://sciencehack.in",
+                    "stars": 1513,
+                    "language": "HTML",
+                    "url": "https://github.com/fossasia/sciencehack.in",
+                    "updated": "2026-01-13T19:03:22Z"
+                  },
+                  {
+                    "name": "OpnTec/opentechsummit.in",
+                    "description": "OpenTechSummit India",
+                    "stars": 1380,
+                    "language": "HTML",
+                    "url": "https://github.com/OpnTec/opentechsummit.in",
+                    "updated": "2026-01-13T18:58:35Z"
+                  },
+                  {
+                    "name": "maanavshah/stock-market-india",
+                    "description": "API for Indian Stock Market's NSE and BSE.",
+                    "stars": 1004,
+                    "language": "JavaScript",
+                    "url": "https://github.com/maanavshah/stock-market-india",
+                    "updated": "2026-02-08T16:17:57Z"
+                  },
+                  {
+                    "name": "someshkar/covid19india-cluster",
+                    "description": ":microscope: Covid19 India Cluster Graph",
+                    "stars": 986,
+                    "language": "JavaScript",
+                    "url": "https://github.com/someshkar/covid19india-cluster",
+                    "updated": "2026-01-23T21:33:06Z"
+                  },
+                  {
+                    "name": "sanjay-kv/Open-source-Practice",
+                    "description": "GSSoC is a 3-month long #OpenSource program by GirlScript Foundation, India.",
+                    "stars": 941,
+                    "language": "Makefile",
+                    "url": "https://github.com/sanjay-kv/Open-source-Practice",
+                    "updated": "2026-02-14T08:11:03Z"
+                  }
+                ]
+              },
+              "stackoverflow": {
+                "success": true,
+                "count": 10,
+                "questions": [
+                  {
+                    "title": "How does this code generate the map of India?",
+                    "score": 176,
+                    "answer_count": 2,
+                    "is_answered": true,
+                    "url": "https://stackoverflow.com/questions/3533348/how-does-this-code-generate-the-map-of-india",
+                    "tags": [
+                      "c",
+                      "obfuscation"
+                    ]
+                  },
+                  {
+                    "title": "What are CN, OU, DC in an LDAP search?",
+                    "score": 660,
+                    "answer_count": 4,
+                    "is_answered": true,
+                    "url": "https://stackoverflow.com/questions/18756688/what-are-cn-ou-dc-in-an-ldap-search",
+                    "tags": [
+                      "active-directory",
+                      "ldap",
+                      "ldap-query"
+                    ]
+                  },
+                  {
+                    "title": "Paypal Subscription error india merchant india customer payment error",
+                    "score": 0,
+                    "answer_count": 1,
+                    "is_answered": false,
+                    "url": "https://stackoverflow.com/questions/68760511/paypal-subscription-error-india-merchant-india-customer-payment-error",
+                    "tags": [
+                      "paypal"
+                    ]
+                  },
+                  {
+                    "title": "API Yahoo India Maps",
+                    "score": 5,
+                    "answer_count": 1,
+                    "is_answered": true,
+                    "url": "https://stackoverflow.com/questions/5918/api-yahoo-india-maps",
+                    "tags": [
+                      "yahoo-api",
+                      "yahoo-maps"
+                    ]
+                  },
+                  {
+                    "title": "Google checkout alternatives in India",
+                    "score": 2,
+                    "answer_count": 2,
+                    "is_answered": true,
+                    "url": "https://stackoverflow.com/questions/9925163/google-checkout-alternatives-in-india",
+                    "tags": [
+                      "android",
+                      "paypal",
+                      "checkout"
+                    ]
+                  },
+                  {
+                    "title": "gvisGeoChart India province level",
+                    "score": 0,
+                    "answer_count": 1,
+                    "is_answered": false,
+                    "url": "https://stackoverflow.com/questions/33217294/gvisgeochart-india-province-level",
+                    "tags": [
+                      "r",
+                      "google-maps",
+                      "gvisgeomap"
+                    ]
+                  },
+                  {
+                    "title": "Blackberry Maps for India",
+                    "score": 3,
+                    "answer_count": 1,
+                    "is_answered": true,
+                    "url": "https://stackoverflow.com/questions/8629722/blackberry-maps-for-india",
+                    "tags": [
+                      "blackberry",
+                      "maps"
+                    ]
+                  },
+                  {
+                    "title": "GeoJson File for INDIA",
+                    "score": -3,
+                    "answer_count": 1,
+                    "is_answered": true,
+                    "url": "https://stackoverflow.com/questions/45157292/geojson-file-for-india",
+                    "tags": [
+                      "json",
+                      "d3.js",
+                      "geojson"
+                    ]
+                  },
+                  {
+                    "title": "Paypal (India to India) payment error in live mode",
+                    "score": 0,
+                    "answer_count": 1,
+                    "is_answered": true,
+                    "url": "https://stackoverflow.com/questions/37701711/paypal-india-to-india-payment-error-in-live-mode",
+                    "tags": [
+                      "php",
+                      "paypal",
+                      "payment-gateway",
+                      "paypal-sandbox",
+                      "payment"
+                    ]
+                  },
+                  {
+                    "title": "IOS mapkit Direction for India",
+                    "score": 2,
+                    "answer_count": 0,
+                    "is_answered": false,
+                    "url": "https://stackoverflow.com/questions/34749231/ios-mapkit-direction-for-india",
+                    "tags": [
+                      "ios",
+                      "mapkit"
+                    ]
+                  }
+                ]
+              }
+            },
+            "total_results": 20
+          },
+          "summary": {
+            "total_sources_found": 20,
+            "papers_found": 0,
+            "patents_found": 0,
+            "tech_docs_found": 20
+          }
+        },
+        "exported_file": "output/india_report_20260220_030440.json"
+      },
+      "errors": [],
+      "skipped": [],
+      "fallbacks_used": [],
+      "regenerated": [],
+      "success": true
+    }
+  },
+  {
+    "timestamp": "2026-02-20T04:30:48.943267",
+    "result": {
+      "intent": "Get india news",
+      "domain": "india",
+      "tools_executed": [
+        {
+          "tool": "news_fetcher",
+          "success": true,
+          "retries": 0,
+          "used_fallback": false,
+          "regenerated": false
+        },
+        {
+          "tool": "image_analyzer",
+          "success": true,
+          "retries": 0,
+          "used_fallback": false,
+          "regenerated": false
+        },
+        {
+          "tool": "social_monitor",
+          "success": true,
+          "retries": 0,
+          "used_fallback": false,
+          "regenerated": false
+        },
+        {
+          "tool": "research_assistant",
+          "success": true,
+          "retries": 0,
+          "used_fallback": false,
+          "regenerated": false
+        },
+        {
+          "tool": "exporter",
+          "success": true,
+          "retries": 0,
+          "used_fallback": false,
+          "regenerated": false
+        }
+      ],
+      "data": {
+        "news": [
+          {
+            "title": "Opinion | Welcome to the Indian Century - The New York Times",
+            "link": "https://news.google.com/rss/articles/CBMihwFBVV95cUxPVkhRT0VMNzNPdWF3TTUxaHdzYWsxQkpreDJ6M21ZdU5wMUtnZ3ZIZURIUl80RWp1WHVxRjJVRjVPZk9rSXZxdkNLc3ZlY2prUDd6TTdLNVZ6dzFSR21tQmE0cHhsb0FoZGxLWEoyVEVhWXJrTFBseHh1RXJvaEdIWU9RZ0h3X28?oc=5",
+            "source": "rss",
+            "published": "Thu, 19 Feb 2026 10:05:25 GMT"
+          },
+          {
+            "title": "Why India joining this U.S.-led tech alliance could help supply chains - CNBC",
+            "link": "https://news.google.com/rss/articles/CBMigwFBVV95cUxNOW8yaFF6YnFmUmtqbTdpeEVjUEpNMmlYdUZmVGxwVGREMVpDa2dGVDdsRVNPalE2aC1qeVhteHFyS1ZzaUtkR2Eyb2t6TV9PU0hTdXBIbXBxOHdZZVFCN3NxSXo5dHJpVkkyOGF5VVlFSWxSMlZ3MjVyLXVjb2ZIeTRMMNIBiAFBVV95cUxNeXJMT1hQUXgydHpLWkFMc3Ztd29WVFpPSFdmSmpGV3BMZEFVME5SSFY1Q19pYW9COFBMVXNvR1VZSkdlMkhkR3VvVU5XenVnRE9HTGxaUTdKT0hIamw0dUUzOVBXYmliVW4yeThyV3Bxd3dGMTM5bVV6NzhUcWFkVTZmWC1RZXVG?oc=5",
+            "source": "rss",
+            "published": "Wed, 18 Feb 2026 23:00:01 GMT"
+          },
+          {
+            "title": "Video: Opinion | Is the World Underestimating India? - The New York Times",
+            "link": "https://news.google.com/rss/articles/CBMimAFBVV95cUxQVDNWOXQzaFFZYTZ3X3U1TDR5X01Qa0Jqb1RUMWJkcm53UllPM0JodTVrOWp1Ul9RcThsM3d6LVB1M3ViTWU3SFJOdlBJSmQybi1wYkpXeTdBRGZjU1VrX2VFM2VXZ1NySFgwTTNHZVpEdEQ4Tldsa1d5Z0IxeDNobV95WGc4a0lXQmlhdHhVNHFfMFBVNHZzTA?oc=5",
+            "source": "rss",
+            "published": "Thu, 19 Feb 2026 21:45:44 GMT"
+          },
+          {
+            "title": "Video: Opinion | What\u2019s Behind Anti-Indian Backlash in America? - The New York Times",
+            "link": "https://news.google.com/rss/articles/CBMipgFBVV95cUxQQnBZZEo0b0pjLTVzWVJEYXNTSmhzMzNYMGpwZjJmU3dmSXVOeXlHOVY0Rnp4RHVZLXNDal9QQkQzUUlVRndCRVNEdzhUazhDUHdyR21jTmlpM19LRHlMNGFFNjdCbHJNdU5WaE5EOVFFQXAtdXNXek9ZbDBQUFl4TWJuSGw5YmhyeGFaazMzOTBGclVNcG5mNWd5a1oxNW12TFU4WndR?oc=5",
+            "source": "rss",
+            "published": "Thu, 19 Feb 2026 21:54:43 GMT"
+          },
+          {
+            "title": "Bill Gates pulls out of India's AI summit over Epstein files controversy - BBC",
+            "link": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE9CYWQ0VWFKa2QyaFJzTTBUamJWN2tmanZGbzBXSGxtLVF2d3VINzEtU2p6cUlJamxFdGdXSVJxdWducEJVRjI1Y3FocjVlRm9VcWlJVWpIVU9NUQ?oc=5",
+            "source": "rss",
+            "published": "Thu, 19 Feb 2026 08:13:25 GMT"
+          },
+          {
+            "title": "India's Office Momentum Builds APAC Edge, Delhi-NCR in Spotlight",
+            "link": "https://www.news18.com/agency-feeds/indias-office-momentum-builds-apac-edge-delhi-ncr-in-spotlight-9917897.html",
+            "source": "gnews",
+            "published": "2026-02-19T11:00:23Z",
+            "image": "https://images.news18.com/ibnlive/uploads/2025/05/News18_India_Section_Default_Image_1600x900-2025-05-b4faf46d67a95708181b01e36cf20c4b.jpg"
+          },
+          {
+            "title": "India U20 women to play four friendly matches against Swedish clubs",
+            "link": "https://www.news18.com/agency-feeds/india-u20-women-to-play-four-friendly-matches-against-swedish-clubs-9917888.html",
+            "source": "gnews",
+            "published": "2026-02-19T11:00:09Z",
+            "image": "https://images.news18.com/ibnlive/uploads/2025/05/News18_India_Section_Default_Image_1600x900-2025-05-b4faf46d67a95708181b01e36cf20c4b.jpg"
+          },
+          {
+            "title": "Global private equity firms bowled over by Indian cricket league IPL",
+            "link": "https://www.cnbctv18.com/sports/global-private-equity-firms-bowled-over-by-indian-cricket-league-ipl-19853879.htm",
+            "source": "gnews",
+            "published": "2026-02-19T10:59:39Z",
+            "image": "https://images.cnbctv18.com/uploads/2026/02/2025-07-29t133555z-726040185-up1el5410xnzj-rtrmadp-3-cricket-ipl-kkr-rr-2026-02-60171fc61fd488e51bfdeff0d91babb6-scaled.jpg?im=FitAndFill,width=500,height=300"
+          },
+          {
+            "title": "Epic AI Tangle: Altman and Amodei's Awkward Summit Moment",
+            "link": "https://www.devdiscourse.com/article/technology/3810552-epic-ai-tangle-altman-and-amodeis-awkward-summit-moment",
+            "source": "gnews",
+            "published": "2026-02-19T10:59:22Z",
+            "image": "https://www.devdiscourse.com/remote.axd?https://devdiscourse.blob.core.windows.net/devnews/13_11_2025_15_12_56_287961.jpg?width=920&format=jpeg"
+          },
+          {
+            "title": "LinkedIn 'Open To Work' Status Sparks Speculation About Galgotias University Professor Neha Singh\u2019s Future Post-RoboDog Controversy",
+            "link": "https://www.freepressjournal.in/education/linkedin-open-to-work-status-sparks-speculation-about-galgotias-university-professor-neha-singhs-future-post-robodog-controversy",
+            "source": "gnews",
+            "published": "2026-02-19T10:59:14Z",
+            "image": "https://media.assettype.com/freepressjournal/2026-02-18/r6fkie9e/Screenshot-2026-02-18-130233.png"
+          },
+          {
+            "title": "CNBC's Inside India newsletter: India is throwing its weight behind AI",
+            "link": "https://www.cnbc.com/2026/02/19/cnbcs-inside-india-newsletter-india-is-throwing-its-weight-behind-ai-but-is-there-substance-behind-the-headlines.html",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "India news - breaking news, video and headlines and opinion",
+            "link": "https://www.cnn.com/world/india",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "India to make Rafale jets with France in boost to defence ties ...",
+            "link": "https://www.reuters.com/world/india/india-make-rafale-jets-with-france-boost-defence-ties-macron-says-2026-02-19/",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "Breaking News, World News, US News, Sports ...",
+            "link": "https://www.bbc.com/",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "Sam Altman and Dario Amodei avoid holding hands at India AI summit",
+            "link": "https://www.cnbc.com/2026/02/19/openai-sam-altman-anthropic-dario-amodei-india-ai-summit.html",
+            "source": "tavily",
+            "published": ""
+          }
+        ],
+        "images": {
+          "total_images": 4,
+          "successful": 4,
+          "failed": 0,
+          "manipulation_risks": 0,
+          "image_types": {
+            "photo": 4
+          },
+          "objects_detected": [
+            "regions",
+            "man",
+            "gray shirt",
+            "silver ball",
+            "people in background",
+            "cities",
+            "woman",
+            "India",
+            "people",
+            "microphone",
+            "stadium",
+            "reporter",
+            "poster",
+            "bat",
+            "Earth",
+            "cricket player",
+            "pink uniform"
+          ],
+          "descriptions": [
+            "A nighttime view of the Earth with a focus on India, highlighting its cities and regions.",
+            "A cricket player in a pink uniform is standing on the field, holding a bat, and looking towards the audience.",
+            "A man in a gray shirt stands in a room with a large silver ball, while others are in the background.",
+            "A woman is being interviewed by a reporter at an event."
+          ],
+          "detailed_results": [
+            {
+              "success": true,
+              "url": "https://images.news18.com/ibnlive/uploads/2025/05/News18_India_Section_Default_Image_1600x900-2025-05-b4faf46d67a95708181b01e36cf20c4b.jpg",
+              "metadata": {
+                "format": "JPEG",
+                "mode": "RGB",
+                "size": [
+                  1600,
+                  900
+                ],
+                "width": 1600,
+                "height": 900,
+                "aspect_ratio": 1.78,
+                "file_size_kb": 205
+              },
+              "image_type": {
+                "type": "photo",
+                "confidence": 0.8,
+                "color_complexity": 0.396,
+                "edge_density": 0.054
+              },
+              "vision_analysis": {
+                "description": "A nighttime view of the Earth with a focus on India, highlighting its cities and regions.",
+                "objects": [
+                  "Earth",
+                  "India",
+                  "cities",
+                  "regions"
+                ],
+                "scene_type": "nature",
+                "mood": "neutral",
+                "relevance": "high",
+                "news_value": "This image visually represents the focus on India's office momentum and its significance in the APAC region.",
+                "dominant_colors": [
+                  "#1a0c01",
+                  "#1b0d02",
+                  "#1f1104",
+                  "#1e1003",
+                  "#1c0e01"
+                ],
+                "source": "nova_vision"
+              },
+              "manipulation_score": {
+                "exif_data_present": false,
+                "unusual_aspect_ratio": false,
+                "suspicious_compression": false,
+                "risk_level": "low",
+                "flags": []
+              },
+              "context": "India's Office Momentum Builds APAC Edge, Delhi-NCR in Spotlight"
+            },
+            {
+              "success": true,
+              "url": "https://images.cnbctv18.com/uploads/2026/02/2025-07-29t133555z-726040185-up1el5410xnzj-rtrmadp-3-cricket-ipl-kkr-rr-2026-02-60171fc61fd488e51bfdeff0d91babb6-scaled.jpg?im=FitAndFill,width=500,height=300",
+              "metadata": {
+                "format": "JPEG",
+                "mode": "RGB",
+                "size": [
+                  500,
+                  300
+                ],
+                "width": 500,
+                "height": 300,
+                "aspect_ratio": 1.67,
+                "file_size_kb": 30
+              },
+              "image_type": {
+                "type": "photo",
+                "confidence": 0.8,
+                "color_complexity": 0.76,
+                "edge_density": 0.109
+              },
+              "vision_analysis": {
+                "description": "A cricket player in a pink uniform is standing on the field, holding a bat, and looking towards the audience.",
+                "objects": [
+                  "cricket player",
+                  "bat",
+                  "pink uniform",
+                  "stadium"
+                ],
+                "scene_type": "event",
+                "mood": "neutral",
+                "relevance": "high",
+                "news_value": "This image adds visual context to the news article by showing a cricket player in action, highlighting the appeal and popularity of the IPL.",
+                "dominant_colors": [
+                  "#13181c",
+                  "#14191d",
+                  "#16171b",
+                  "#141519",
+                  "#15161a"
+                ],
+                "source": "nova_vision"
+              },
+              "manipulation_score": {
+                "exif_data_present": false,
+                "unusual_aspect_ratio": false,
+                "suspicious_compression": false,
+                "risk_level": "low",
+                "flags": []
+              },
+              "context": "Global private equity firms bowled over by Indian cricket league IPL"
+            },
+            {
+              "success": true,
+              "url": "https://www.devdiscourse.com/remote.axd?https://devdiscourse.blob.core.windows.net/devnews/13_11_2025_15_12_56_287961.jpg?width=920&format=jpeg",
+              "metadata": {
+                "format": "JPEG",
+                "mode": "RGB",
+                "size": [
+                  920,
+                  690
+                ],
+                "width": 920,
+                "height": 690,
+                "aspect_ratio": 1.33,
+                "file_size_kb": 99
+              },
+              "image_type": {
+                "type": "photo",
+                "confidence": 0.8,
+                "color_complexity": 0.631,
+                "edge_density": 0.116
+              },
+              "vision_analysis": {
+                "description": "A man in a gray shirt stands in a room with a large silver ball, while others are in the background.",
+                "objects": [
+                  "man",
+                  "gray shirt",
+                  "silver ball",
+                  "people in background"
+                ],
+                "scene_type": "event",
+                "mood": "neutral",
+                "relevance": "high",
+                "news_value": "This image captures a moment from the summit, highlighting the presence of the silver ball and the man's interaction with it.",
+                "dominant_colors": [
+                  "#ffffff",
+                  "#373631",
+                  "#393833",
+                  "#363530",
+                  "#383732"
+                ],
+                "source": "nova_vision"
+              },
+              "manipulation_score": {
+                "exif_data_present": false,
+                "unusual_aspect_ratio": false,
+                "suspicious_compression": false,
+                "risk_level": "low",
+                "flags": []
+              },
+              "context": "Epic AI Tangle: Altman and Amodei's Awkward Summit Moment"
+            },
+            {
+              "success": true,
+              "url": "https://media.assettype.com/freepressjournal/2026-02-18/r6fkie9e/Screenshot-2026-02-18-130233.png",
+              "metadata": {
+                "format": "JPEG",
+                "mode": "RGB",
+                "size": [
+                  1200,
+                  675
+                ],
+                "width": 1200,
+                "height": 675,
+                "aspect_ratio": 1.78,
+                "file_size_kb": 69
+              },
+              "image_type": {
+                "type": "photo",
+                "confidence": 0.8,
+                "color_complexity": 0.677,
+                "edge_density": 0.119
+              },
+              "vision_analysis": {
+                "description": "A woman is being interviewed by a reporter at an event.",
+                "objects": [
+                  "woman",
+                  "reporter",
+                  "microphone",
+                  "poster",
+                  "people"
+                ],
+                "scene_type": "event",
+                "mood": "neutral",
+                "relevance": "high",
+                "news_value": "This image shows the woman being interviewed, which is relevant to the news story about her future.",
+                "dominant_colors": [
+                  "#ffffff",
+                  "#68777e",
+                  "#69787f",
+                  "#677a7e",
+                  "#657074"
+                ],
+                "source": "nova_vision"
+              },
+              "manipulation_score": {
+                "exif_data_present": false,
+                "unusual_aspect_ratio": false,
+                "suspicious_compression": false,
+                "risk_level": "low",
+                "flags": []
+              },
+              "context": "LinkedIn 'Open To Work' Status Sparks Speculation About Galgotias University Professor Neha Singh\u2019s Future Post-RoboDog Controversy"
+            }
+          ]
+        },
+        "social": {
+          "topic": "india",
+          "platforms": {
+            "reddit": {
+              "platform": "reddit",
+              "status": "error",
+              "error": "Client error '403 Blocked' for url 'https://www.reddit.com/search.json?q=india&limit=25&sort=relevance&t=week&raw_json=1'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403"
+            }
+          },
+          "aggregate": {
+            "total_mentions": 0,
+            "platforms_monitored": 0,
+            "avg_sentiment": {
+              "positive": 0,
+              "neutral": 0,
+              "negative": 0
+            },
+            "overall_sentiment": "neutral",
+            "social_buzz_level": "low"
+          },
+          "timestamp": "2026-02-20T04:30:44.373141"
+        },
+        "research": {
+          "topic": "india",
+          "timestamp": "2026-02-20T04:30:48.878646",
+          "academic_papers": {
+            "success": true,
+            "source": "arXiv",
+            "query": "india",
+            "count": 5,
+            "papers": [
+              {
+                "title": "Analysis of various climate change parameters in India using machine learning",
+                "summary": "Climate change in India is one of the most alarming problems faced by our community. Due to adverse and sudden changes in climate in past few years, mankind is at threat. Various impacts of climate change include extreme heat, changing rainfall patterns, droughts, groundwater, glacier melt, sea-level rise, and many more. Machine Learning can be used to analyze and predict the graph of change using previous data and thus design a model which in the future can furthermore be used to catalyze impac",
+                "authors": [
+                  "Rutvij Wamanse",
+                  "Tushuli Patil"
+                ],
+                "published": "2022-01-25T06:46:46Z",
+                "updated": "2022-01-25T06:46:46Z",
+                "pdf_url": "https://arxiv.org/pdf/2201.10123v1",
+                "arxiv_url": "https://arxiv.org/abs/2201.10123v1",
+                "categories": [
+                  "stat.AP",
+                  "cs.LG"
+                ]
+              },
+              {
+                "title": "ICT in Universities of the Western Himalayan Region of India II: A Comparative SWOT Analysis",
+                "summary": "This study presents a comparative SWOT analysis to comprehend the pattern of development of ICT within six universities of western Himalayan region of India. With the objective of achieving quality and excellence in higher education system in the region, this study provides a basis to decision makers to exploit opportunities and minimize the external threats. The SWOT analysis of different universities, placed under three categories, has been undertaken within the four-tier framework used earlie",
+                "authors": [
+                  "Dhirendra Sharma",
+                  "Vikram Singh"
+                ],
+                "published": "2010-02-05T10:51:00Z",
+                "updated": "2010-02-05T10:51:00Z",
+                "pdf_url": "https://arxiv.org/pdf/1002.1193v1",
+                "arxiv_url": "https://arxiv.org/abs/1002.1193v1",
+                "categories": [
+                  "cs.OH"
+                ]
+              },
+              {
+                "title": "Ideas of Physical Forces and Differential Calculus in Ancient India",
+                "summary": "We have studied the context and development of the ideas of physical forces and differential calculus in ancient India by studying relevant literature related to both astrology and astronomy since pre-Greek periods. The concept of Naisargika Bala (natural force) discussed in Hora texts from India is defined to be proportional to planetary size and inversely related to planetary distance. This idea developed several centuries prior to Isaac Newton resembles fundamental physical forces in nature e",
+                "authors": [
+                  "T. E. Girish",
+                  "C. Radhakrishnan Nair"
+                ],
+                "published": "2011-01-01T04:20:46Z",
+                "updated": "2011-01-01T04:20:46Z",
+                "pdf_url": "https://arxiv.org/pdf/1101.0315v1",
+                "arxiv_url": "https://arxiv.org/abs/1101.0315v1",
+                "categories": [
+                  "physics.gen-ph"
+                ]
+              },
+              {
+                "title": "Perspective Chapter: MOOCs in India: Evolution, Innovation, Impact, and Roadmap",
+                "summary": "With the largest population of the world and one of the highest enrolments in higher education, India needs efficient and effective means to educate its learners. India started focusing on open and digital education in 1980's and its efforts were escalated in 2009 through the NMEICT program of the Government of India. A study by the Government and FICCI in 2014 noted that India cannot meet its educational needs just by capacity building in brick and mortar institutions. It was decided that ongoi",
+                "authors": [
+                  "Partha Pratim Das"
+                ],
+                "published": "2025-01-02T17:44:28Z",
+                "updated": "2025-01-02T17:44:28Z",
+                "pdf_url": "https://arxiv.org/pdf/2501.14780v1",
+                "arxiv_url": "https://arxiv.org/abs/2501.14780v1",
+                "categories": [
+                  "cs.CY",
+                  "cs.AI",
+                  "cs.DL"
+                ]
+              },
+              {
+                "title": "First Radio Neutrino & Cosmic Rays Astronomy Workshop in India",
+                "summary": "We summarize the motivation for (as well as the presentations from) the April, 2024 workshop held in India and focused on radiowave techniques for cosmic ray and neutrino detection.",
+                "authors": [
+                  "Mohammad Ful Hossain Seikh",
+                  "Victor Grachev",
+                  "Ilya Kravchenko",
+                  "Mohammad Sajjad Athar",
+                  "Dave Besson"
+                ],
+                "published": "2025-09-25T03:11:32Z",
+                "updated": "2025-09-25T03:11:32Z",
+                "pdf_url": "https://arxiv.org/pdf/2509.20704v1",
+                "arxiv_url": "https://arxiv.org/abs/2509.20704v1",
+                "categories": [
+                  "astro-ph.HE",
+                  "hep-ex"
+                ]
+              }
+            ]
+          },
+          "patents": {
+            "success": true,
+            "source": "patents",
+            "query": "india",
+            "count": 0,
+            "patents": [],
+            "note": "Patent search requires USPTO API or Google Patents integration"
+          },
+          "technical_docs": {
+            "success": true,
+            "query": "india",
+            "github": {
+              "success": true,
+              "count": 10,
+              "repositories": [
+                {
+                  "name": "covid19india/covid19india.github.io",
+                  "description": "Tracking the impact of COVID-19 in India",
+                  "stars": 6824,
+                  "language": "JavaScript",
+                  "url": "https://github.com/covid19india/covid19india.github.io",
+                  "updated": "2026-02-14T00:02:21Z"
+                },
+                {
+                  "name": "nammayatri/nammayatri",
+                  "description": "A Direct-to-Driver open mobility platform powering the next-generation of mobility applications in India.",
+                  "stars": 2461,
+                  "language": "Haskell",
+                  "url": "https://github.com/nammayatri/nammayatri",
+                  "updated": "2026-02-19T15:40:47Z"
+                },
+                {
+                  "name": "github/india",
+                  "description": "GitHub resources and information for the developer community in India",
+                  "stars": 1811,
+                  "language": "Ruby",
+                  "url": "https://github.com/github/india",
+                  "updated": "2026-02-06T21:40:12Z"
+                },
+                {
+                  "name": "microsoft/EdgeML",
+                  "description": "This repository provides code for machine learning algorithms for edge devices developed at Microsoft Research India.",
+                  "stars": 1662,
+                  "language": "C++",
+                  "url": "https://github.com/microsoft/EdgeML",
+                  "updated": "2026-02-16T05:13:32Z"
+                },
+                {
+                  "name": "fossasia/jugaadfest.com",
+                  "description": "Jugaadfest in India https://jugaadfest.com",
+                  "stars": 1532,
+                  "language": "HTML",
+                  "url": "https://github.com/fossasia/jugaadfest.com",
+                  "updated": "2025-11-01T19:45:00Z"
+                },
+                {
+                  "name": "fossasia/sciencehack.in",
+                  "description": "Science Hack Day in India http://sciencehack.in",
+                  "stars": 1513,
+                  "language": "HTML",
+                  "url": "https://github.com/fossasia/sciencehack.in",
+                  "updated": "2026-01-13T19:03:22Z"
+                },
+                {
+                  "name": "OpnTec/opentechsummit.in",
+                  "description": "OpenTechSummit India",
+                  "stars": 1380,
+                  "language": "HTML",
+                  "url": "https://github.com/OpnTec/opentechsummit.in",
+                  "updated": "2026-01-13T18:58:35Z"
+                },
+                {
+                  "name": "maanavshah/stock-market-india",
+                  "description": "API for Indian Stock Market's NSE and BSE.",
+                  "stars": 1004,
+                  "language": "JavaScript",
+                  "url": "https://github.com/maanavshah/stock-market-india",
+                  "updated": "2026-02-08T16:17:57Z"
+                },
+                {
+                  "name": "someshkar/covid19india-cluster",
+                  "description": ":microscope: Covid19 India Cluster Graph",
+                  "stars": 986,
+                  "language": "JavaScript",
+                  "url": "https://github.com/someshkar/covid19india-cluster",
+                  "updated": "2026-01-23T21:33:06Z"
+                },
+                {
+                  "name": "sanjay-kv/Open-source-Practice",
+                  "description": "GSSoC is a 3-month long #OpenSource program by GirlScript Foundation, India.",
+                  "stars": 941,
+                  "language": "Makefile",
+                  "url": "https://github.com/sanjay-kv/Open-source-Practice",
+                  "updated": "2026-02-14T08:11:03Z"
+                }
+              ]
+            },
+            "stackoverflow": {
+              "success": true,
+              "count": 10,
+              "questions": [
+                {
+                  "title": "How does this code generate the map of India?",
+                  "score": 176,
+                  "answer_count": 2,
+                  "is_answered": true,
+                  "link": "https://stackoverflow.com/questions/3533348/how-does-this-code-generate-the-map-of-india",
+                  "tags": [
+                    "c",
+                    "obfuscation"
+                  ]
+                },
+                {
+                  "title": "What are CN, OU, DC in an LDAP search?",
+                  "score": 660,
+                  "answer_count": 4,
+                  "is_answered": true,
+                  "link": "https://stackoverflow.com/questions/18756688/what-are-cn-ou-dc-in-an-ldap-search",
+                  "tags": [
+                    "active-directory",
+                    "ldap",
+                    "ldap-query"
+                  ]
+                },
+                {
+                  "title": "Paypal Subscription error india merchant india customer payment error",
+                  "score": 0,
+                  "answer_count": 1,
+                  "is_answered": false,
+                  "link": "https://stackoverflow.com/questions/68760511/paypal-subscription-error-india-merchant-india-customer-payment-error",
+                  "tags": [
+                    "paypal"
+                  ]
+                },
+                {
+                  "title": "API Yahoo India Maps",
+                  "score": 5,
+                  "answer_count": 1,
+                  "is_answered": true,
+                  "link": "https://stackoverflow.com/questions/5918/api-yahoo-india-maps",
+                  "tags": [
+                    "yahoo-api",
+                    "yahoo-maps"
+                  ]
+                },
+                {
+                  "title": "Google checkout alternatives in India",
+                  "score": 2,
+                  "answer_count": 2,
+                  "is_answered": true,
+                  "link": "https://stackoverflow.com/questions/9925163/google-checkout-alternatives-in-india",
+                  "tags": [
+                    "android",
+                    "paypal",
+                    "checkout"
+                  ]
+                },
+                {
+                  "title": "gvisGeoChart India province level",
+                  "score": 0,
+                  "answer_count": 1,
+                  "is_answered": false,
+                  "link": "https://stackoverflow.com/questions/33217294/gvisgeochart-india-province-level",
+                  "tags": [
+                    "r",
+                    "google-maps",
+                    "gvisgeomap"
+                  ]
+                },
+                {
+                  "title": "Blackberry Maps for India",
+                  "score": 3,
+                  "answer_count": 1,
+                  "is_answered": true,
+                  "link": "https://stackoverflow.com/questions/8629722/blackberry-maps-for-india",
+                  "tags": [
+                    "blackberry",
+                    "maps"
+                  ]
+                },
+                {
+                  "title": "GeoJson File for INDIA",
+                  "score": -3,
+                  "answer_count": 1,
+                  "is_answered": true,
+                  "link": "https://stackoverflow.com/questions/45157292/geojson-file-for-india",
+                  "tags": [
+                    "json",
+                    "d3.js",
+                    "geojson"
+                  ]
+                },
+                {
+                  "title": "Paypal (India to India) payment error in live mode",
+                  "score": 0,
+                  "answer_count": 1,
+                  "is_answered": true,
+                  "link": "https://stackoverflow.com/questions/37701711/paypal-india-to-india-payment-error-in-live-mode",
+                  "tags": [
+                    "php",
+                    "paypal",
+                    "payment-gateway",
+                    "paypal-sandbox",
+                    "payment"
+                  ]
+                },
+                {
+                  "title": "IOS mapkit Direction for India",
+                  "score": 2,
+                  "answer_count": 0,
+                  "is_answered": false,
+                  "link": "https://stackoverflow.com/questions/34749231/ios-mapkit-direction-for-india",
+                  "tags": [
+                    "ios",
+                    "mapkit"
+                  ]
+                }
+              ]
+            },
+            "total_results": 20
+          },
+          "summary": {
+            "total_sources_found": 25,
+            "papers_found": 5,
+            "patents_found": 0,
+            "tech_docs_found": 20
+          }
+        },
+        "exported_file": "output/india_report_20260220_043048.json"
+      },
+      "errors": [],
+      "skipped": [],
+      "fallbacks_used": [],
+      "regenerated": [],
+      "success": true
+    }
   }
 ]

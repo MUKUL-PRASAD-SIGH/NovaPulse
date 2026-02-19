@@ -1,812 +1,5 @@
 [
   {
-    "timestamp": "2026-02-19T23:54:09.299063",
-    "level": "INFO",
-    "message": "Tool image_analyzer executed",
-    "data": {
-      "tool": "image_analyzer",
-      "success": true,
-      "duration_seconds": 0.0,
-      "params": {
-        "article_count": 15,
-        "total_images": 0
-      },
-      "result": {
-        "successful": 0,
-        "failed": 0
-      }
-    }
-  },
-  {
-    "timestamp": "2026-02-19T23:54:09.324922",
-    "level": "DEBUG",
-    "message": "Running tool: social_monitor",
-    "data": {
-      "params": [
-        "topic",
-        "platforms"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-02-19T23:54:10.203173",
-    "level": "INFO",
-    "message": "Tool social_monitor executed",
-    "data": {
-      "tool": "social_monitor",
-      "success": true,
-      "duration_seconds": 0.0,
-      "params": {
-        "topic": "elon",
-        "platforms": [
-          "reddit"
-        ]
-      },
-      "result": {
-        "total_mentions": 0
-      }
-    }
-  },
-  {
-    "timestamp": "2026-02-19T23:54:10.223464",
-    "level": "DEBUG",
-    "message": "Running tool: research_assistant",
-    "data": {
-      "params": [
-        "topic"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-02-19T23:54:12.329542",
-    "level": "INFO",
-    "message": "Tool research_assistant executed",
-    "data": {
-      "tool": "research_assistant",
-      "success": true,
-      "duration_seconds": 0.0,
-      "params": {
-        "topic": "elon",
-        "type": "comprehensive"
-      },
-      "result": {
-        "total_sources": 20
-      }
-    }
-  },
-  {
-    "timestamp": "2026-02-19T23:54:12.349001",
-    "level": "DEBUG",
-    "message": "Running tool: exporter",
-    "data": {
-      "params": [
-        "filename",
-        "format",
-        "data"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-02-19T23:54:12.374892",
-    "level": "INFO",
-    "message": "Sentiment-Trend fusion applied"
-  },
-  {
-    "timestamp": "2026-02-19T23:54:12.421709",
-    "level": "INFO",
-    "message": "Execution complete: 10 tools run, 0 skipped, 0 fallbacks used"
-  },
-  {
-    "timestamp": "2026-02-19T23:59:00.775203",
-    "level": "INFO",
-    "message": "Planning task for: india AI summit with summarize and sentiment analysis and trends and full article content and entity extraction and image analysis and social media monitoring and research papers"
-  },
-  {
-    "timestamp": "2026-02-19T23:59:00.791895",
-    "level": "INFO",
-    "message": "Using mock planner",
-    "data": {
-      "plan": {
-        "intent": "Get india news",
-        "domain": "india",
-        "steps": [
-          {
-            "tool": "news_fetcher",
-            "params": {
-              "topic": "india",
-              "sources": [
-                "google"
-              ],
-              "limit": 5
-            }
-          },
-          {
-            "tool": "summarizer",
-            "params": {}
-          },
-          {
-            "tool": "sentiment",
-            "params": {}
-          },
-          {
-            "tool": "trends",
-            "params": {}
-          },
-          {
-            "tool": "web_scraper",
-            "params": {}
-          },
-          {
-            "tool": "entity_extractor",
-            "params": {}
-          },
-          {
-            "tool": "image_analyzer",
-            "params": {}
-          },
-          {
-            "tool": "social_monitor",
-            "params": {
-              "topic": "india",
-              "platforms": [
-                "reddit"
-              ]
-            }
-          },
-          {
-            "tool": "research_assistant",
-            "params": {
-              "query": "india"
-            }
-          },
-          {
-            "tool": "exporter",
-            "params": {
-              "filename": "india_report",
-              "format": "json"
-            }
-          }
-        ]
-      }
-    }
-  },
-  {
-    "timestamp": "2026-02-19T23:59:00.827710",
-    "level": "INFO",
-    "message": "Executing plan: Get india news",
-    "data": {
-      "steps": 10
-    }
-  },
-  {
-    "timestamp": "2026-02-19T23:59:00.841264",
-    "level": "DEBUG",
-    "message": "Running tool: news_fetcher",
-    "data": {
-      "params": [
-        "topic",
-        "sources",
-        "limit"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-02-19T23:59:00.855392",
-    "level": "INFO",
-    "message": "Multi-source fetch for: india"
-  },
-  {
-    "timestamp": "2026-02-19T23:59:09.164114",
-    "level": "INFO",
-    "message": "Multi-source complete: 15 articles from 3 sources",
-    "data": {
-      "rss": {
-        "success": true,
-        "count": 5
-      },
-      "gnews": {
-        "success": true,
-        "count": 5
-      },
-      "tavily": {
-        "success": true,
-        "count": 5
-      }
-    }
-  },
-  {
-    "timestamp": "2026-02-19T23:59:09.178152",
-    "level": "DEBUG",
-    "message": "Running tool: summarizer",
-    "data": {
-      "params": [
-        "news_items"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-02-19T23:59:09.191591",
-    "level": "DEBUG",
-    "message": "Running tool: sentiment",
-    "data": {
-      "params": [
-        "news_items"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-02-19T23:59:09.207660",
-    "level": "DEBUG",
-    "message": "Running tool: trends",
-    "data": {
-      "params": [
-        "news_items"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-02-19T23:59:10.859402",
-    "level": "DEBUG",
-    "message": "Running tool: web_scraper",
-    "data": {
-      "params": [
-        "url"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-02-19T23:59:11.212860",
-    "level": "INFO",
-    "message": "Tool web_scraper executed",
-    "data": {
-      "tool": "web_scraper",
-      "success": true,
-      "duration_seconds": 0.0,
-      "params": {
-        "url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxPYUtrYzJaVnVoeUlsdzdoVkI0bWtCaFBvR3hXbU9sUDNHWjVzX0VvWWdrdkpvNXJ4dzdJcFUxWkloeW1FbkpQaHVzdDdacnA0UVhIM2s3U3M4ZWNBQ1lIVVF1eWNtZ0UycXBXLTc4Q244bVZFdTNVSEcyOXdtc2oyd2hvTFNETlRTUDlBZDB2WFVBMWFWa2w0RUJ6MFNtZWFtZTEyOGp6bGZkOWprMmNWT3ZRa0dXQjZNVFhzTTFUVEZ2N1k?oc=5"
-      },
-      "result": {
-        "success": false,
-        "word_count": 0
-      }
-    }
-  },
-  {
-    "timestamp": "2026-02-19T23:59:11.234433",
-    "level": "DEBUG",
-    "message": "Running tool: entity_extractor",
-    "data": {
-      "params": [
-        "articles"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-02-19T23:59:11.262654",
-    "level": "INFO",
-    "message": "Tool entity_extractor executed",
-    "data": {
-      "tool": "entity_extractor",
-      "success": true,
-      "duration_seconds": 0.0,
-      "params": {
-        "article_count": 15
-      },
-      "result": {
-        "entity_count": 34
-      }
-    }
-  },
-  {
-    "timestamp": "2026-02-19T23:59:11.286741",
-    "level": "DEBUG",
-    "message": "Running tool: image_analyzer",
-    "data": {
-      "params": [
-        "articles"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-02-19T23:59:11.311714",
-    "level": "INFO",
-    "message": "Tool image_analyzer executed",
-    "data": {
-      "tool": "image_analyzer",
-      "success": true,
-      "duration_seconds": 0.0,
-      "params": {
-        "article_count": 15,
-        "total_images": 0
-      },
-      "result": {
-        "successful": 0,
-        "failed": 0
-      }
-    }
-  },
-  {
-    "timestamp": "2026-02-19T23:59:11.338456",
-    "level": "DEBUG",
-    "message": "Running tool: social_monitor",
-    "data": {
-      "params": [
-        "topic",
-        "platforms"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-02-19T23:59:11.826880",
-    "level": "INFO",
-    "message": "Tool social_monitor executed",
-    "data": {
-      "tool": "social_monitor",
-      "success": true,
-      "duration_seconds": 0.0,
-      "params": {
-        "topic": "india",
-        "platforms": [
-          "reddit"
-        ]
-      },
-      "result": {
-        "total_mentions": 0
-      }
-    }
-  },
-  {
-    "timestamp": "2026-02-19T23:59:11.847667",
-    "level": "DEBUG",
-    "message": "Running tool: research_assistant",
-    "data": {
-      "params": [
-        "topic"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-02-19T23:59:12.823568",
-    "level": "INFO",
-    "message": "Tool research_assistant executed",
-    "data": {
-      "tool": "research_assistant",
-      "success": true,
-      "duration_seconds": 0.0,
-      "params": {
-        "topic": "india",
-        "type": "comprehensive"
-      },
-      "result": {
-        "total_sources": 20
-      }
-    }
-  },
-  {
-    "timestamp": "2026-02-19T23:59:12.845972",
-    "level": "DEBUG",
-    "message": "Running tool: exporter",
-    "data": {
-      "params": [
-        "filename",
-        "format",
-        "data"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-02-19T23:59:12.875395",
-    "level": "INFO",
-    "message": "Sentiment-Trend fusion applied"
-  },
-  {
-    "timestamp": "2026-02-19T23:59:12.926245",
-    "level": "INFO",
-    "message": "Execution complete: 10 tools run, 0 skipped, 0 fallbacks used"
-  },
-  {
-    "timestamp": "2026-02-20T00:07:03.752089",
-    "level": "INFO",
-    "message": "Planning task for: india AI summit with summarize and sentiment analysis and trends and full article content and entity extraction and image analysis and social media monitoring and research papers"
-  },
-  {
-    "timestamp": "2026-02-20T00:07:03.771807",
-    "level": "INFO",
-    "message": "Using mock planner",
-    "data": {
-      "plan": {
-        "intent": "Get india news",
-        "domain": "india",
-        "steps": [
-          {
-            "tool": "news_fetcher",
-            "params": {
-              "topic": "india",
-              "sources": [
-                "google"
-              ],
-              "limit": 5
-            }
-          },
-          {
-            "tool": "summarizer",
-            "params": {}
-          },
-          {
-            "tool": "sentiment",
-            "params": {}
-          },
-          {
-            "tool": "trends",
-            "params": {}
-          },
-          {
-            "tool": "web_scraper",
-            "params": {}
-          },
-          {
-            "tool": "entity_extractor",
-            "params": {}
-          },
-          {
-            "tool": "image_analyzer",
-            "params": {}
-          },
-          {
-            "tool": "social_monitor",
-            "params": {
-              "topic": "india",
-              "platforms": [
-                "reddit"
-              ]
-            }
-          },
-          {
-            "tool": "research_assistant",
-            "params": {
-              "query": "india"
-            }
-          },
-          {
-            "tool": "exporter",
-            "params": {
-              "filename": "india_report",
-              "format": "json"
-            }
-          }
-        ]
-      }
-    }
-  },
-  {
-    "timestamp": "2026-02-20T00:07:03.788504",
-    "level": "INFO",
-    "message": "Executing plan: Get india news",
-    "data": {
-      "steps": 10
-    }
-  },
-  {
-    "timestamp": "2026-02-20T00:07:03.801315",
-    "level": "DEBUG",
-    "message": "Running tool: news_fetcher",
-    "data": {
-      "params": [
-        "topic",
-        "sources",
-        "limit"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-02-20T00:07:03.820062",
-    "level": "INFO",
-    "message": "Multi-source fetch for: india"
-  },
-  {
-    "timestamp": "2026-02-20T00:07:11.008535",
-    "level": "INFO",
-    "message": "Multi-source complete: 13 articles from 3 sources",
-    "data": {
-      "rss": {
-        "success": true,
-        "count": 5
-      },
-      "gnews": {
-        "success": true,
-        "count": 5
-      },
-      "tavily": {
-        "success": true,
-        "count": 5
-      }
-    }
-  },
-  {
-    "timestamp": "2026-02-20T00:07:11.028601",
-    "level": "DEBUG",
-    "message": "Running tool: summarizer",
-    "data": {
-      "params": [
-        "news_items"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-02-20T00:07:11.049851",
-    "level": "DEBUG",
-    "message": "Running tool: sentiment",
-    "data": {
-      "params": [
-        "news_items"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-02-20T00:07:11.070227",
-    "level": "DEBUG",
-    "message": "Running tool: trends",
-    "data": {
-      "params": [
-        "news_items"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-02-20T00:07:13.314202",
-    "level": "DEBUG",
-    "message": "Running tool: web_scraper",
-    "data": {
-      "params": [
-        "url"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-02-20T00:07:13.486408",
-    "level": "INFO",
-    "message": "Tool web_scraper executed",
-    "data": {
-      "tool": "web_scraper",
-      "success": true,
-      "duration_seconds": 0.0,
-      "params": {
-        "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE53bmRXM0xta1h3WFEtb21wMU5TdFl4VHBSNzBncURHTjJ5WlJudG16UUR1VWFnV0JJNDJLUWJmcFVlR3BTaXlWd00tZHN3SWVUa3RiNGppVEswc2hfSmFRNGlvdU1qZ2g1UXp3MWR6emt3eV9jeWhBUXJYZw?oc=5"
-      },
-      "result": {
-        "success": false,
-        "word_count": 0
-      }
-    }
-  },
-  {
-    "timestamp": "2026-02-20T00:07:13.508990",
-    "level": "DEBUG",
-    "message": "Running tool: entity_extractor",
-    "data": {
-      "params": [
-        "articles"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-02-20T00:07:13.543974",
-    "level": "INFO",
-    "message": "Tool entity_extractor executed",
-    "data": {
-      "tool": "entity_extractor",
-      "success": true,
-      "duration_seconds": 0.0,
-      "params": {
-        "article_count": 13
-      },
-      "result": {
-        "entity_count": 28
-      }
-    }
-  },
-  {
-    "timestamp": "2026-02-20T00:07:13.567286",
-    "level": "DEBUG",
-    "message": "Running tool: image_analyzer",
-    "data": {
-      "params": [
-        "articles"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-02-20T00:07:14.542999",
-    "level": "INFO",
-    "message": "Tool image_analyzer executed",
-    "data": {
-      "tool": "image_analyzer",
-      "success": true,
-      "duration_seconds": 0.0,
-      "params": {
-        "article_count": 5,
-        "total_images": 0
-      },
-      "result": {
-        "successful": 0,
-        "failed": 0
-      }
-    }
-  },
-  {
-    "timestamp": "2026-02-20T00:07:14.565741",
-    "level": "DEBUG",
-    "message": "Running tool: social_monitor",
-    "data": {
-      "params": [
-        "topic",
-        "platforms"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-02-20T00:07:15.765767",
-    "level": "INFO",
-    "message": "Tool social_monitor executed",
-    "data": {
-      "tool": "social_monitor",
-      "success": true,
-      "duration_seconds": 0.0,
-      "params": {
-        "topic": "india",
-        "platforms": [
-          "reddit"
-        ]
-      },
-      "result": {
-        "total_mentions": 25
-      }
-    }
-  },
-  {
-    "timestamp": "2026-02-20T00:07:15.791000",
-    "level": "DEBUG",
-    "message": "Running tool: research_assistant",
-    "data": {
-      "params": [
-        "topic"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-02-20T00:07:16.834471",
-    "level": "INFO",
-    "message": "Tool research_assistant executed",
-    "data": {
-      "tool": "research_assistant",
-      "success": true,
-      "duration_seconds": 0.0,
-      "params": {
-        "topic": "india",
-        "type": "comprehensive"
-      },
-      "result": {
-        "total_sources": 20
-      }
-    }
-  },
-  {
-    "timestamp": "2026-02-20T00:07:16.864208",
-    "level": "DEBUG",
-    "message": "Running tool: exporter",
-    "data": {
-      "params": [
-        "filename",
-        "format",
-        "data"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-02-20T00:07:16.900245",
-    "level": "INFO",
-    "message": "Sentiment-Trend fusion applied"
-  },
-  {
-    "timestamp": "2026-02-20T00:07:16.950818",
-    "level": "INFO",
-    "message": "Execution complete: 10 tools run, 0 skipped, 0 fallbacks used"
-  },
-  {
-    "timestamp": "2026-02-20T00:32:32.752175",
-    "level": "INFO",
-    "message": "Planning task for: india AI summit with summarize and sentiment analysis and trends and full article content and entity extraction and image analysis and social media monitoring and research papers"
-  },
-  {
-    "timestamp": "2026-02-20T00:32:32.772231",
-    "level": "INFO",
-    "message": "Using mock planner",
-    "data": {
-      "plan": {
-        "intent": "Get india news",
-        "domain": "india",
-        "steps": [
-          {
-            "tool": "news_fetcher",
-            "params": {
-              "topic": "india",
-              "sources": [
-                "google"
-              ],
-              "limit": 5
-            }
-          },
-          {
-            "tool": "summarizer",
-            "params": {}
-          },
-          {
-            "tool": "sentiment",
-            "params": {}
-          },
-          {
-            "tool": "trends",
-            "params": {}
-          },
-          {
-            "tool": "web_scraper",
-            "params": {}
-          },
-          {
-            "tool": "entity_extractor",
-            "params": {}
-          },
-          {
-            "tool": "image_analyzer",
-            "params": {}
-          },
-          {
-            "tool": "social_monitor",
-            "params": {
-              "topic": "india",
-              "platforms": [
-                "reddit"
-              ]
-            }
-          },
-          {
-            "tool": "research_assistant",
-            "params": {
-              "query": "india"
-            }
-          },
-          {
-            "tool": "exporter",
-            "params": {
-              "filename": "india_report",
-              "format": "json"
-            }
-          }
-        ]
-      }
-    }
-  },
-  {
-    "timestamp": "2026-02-20T00:32:32.790076",
-    "level": "INFO",
-    "message": "Executing plan: Get india news",
-    "data": {
-      "steps": 10
-    }
-  },
-  {
-    "timestamp": "2026-02-20T00:32:32.803228",
-    "level": "DEBUG",
-    "message": "Running tool: news_fetcher",
-    "data": {
-      "params": [
-        "topic",
-        "sources",
-        "limit"
-      ]
-    }
-  },
-  {
     "timestamp": "2026-02-20T00:32:32.816652",
     "level": "INFO",
     "message": "Multi-source fetch for: india"
@@ -2564,5 +1757,790 @@
     "timestamp": "2026-02-20T02:57:58.562913",
     "level": "INFO",
     "message": "Execution complete: 4 tools run, 0 skipped, 0 fallbacks used"
+  },
+  {
+    "timestamp": "2026-02-20T02:59:49.776344",
+    "level": "INFO",
+    "message": "Planning task for: india AI summit with image analysis"
+  },
+  {
+    "timestamp": "2026-02-20T02:59:49.794569",
+    "level": "INFO",
+    "message": "Using mock planner",
+    "data": {
+      "plan": {
+        "intent": "Get india news",
+        "domain": "india",
+        "steps": [
+          {
+            "tool": "news_fetcher",
+            "params": {
+              "topic": "india",
+              "sources": [
+                "google"
+              ],
+              "limit": 5
+            }
+          },
+          {
+            "tool": "image_analyzer",
+            "params": {}
+          },
+          {
+            "tool": "exporter",
+            "params": {
+              "filename": "india_report",
+              "format": "json"
+            }
+          }
+        ]
+      }
+    }
+  },
+  {
+    "timestamp": "2026-02-20T02:59:49.833043",
+    "level": "INFO",
+    "message": "Executing plan: Get india news",
+    "data": {
+      "steps": 3
+    }
+  },
+  {
+    "timestamp": "2026-02-20T02:59:49.852295",
+    "level": "DEBUG",
+    "message": "Running tool: news_fetcher",
+    "data": {
+      "params": [
+        "topic",
+        "sources",
+        "limit"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-20T02:59:49.870650",
+    "level": "INFO",
+    "message": "Multi-source fetch for: india"
+  },
+  {
+    "timestamp": "2026-02-20T02:59:55.429152",
+    "level": "INFO",
+    "message": "Multi-source complete: 14 articles from 3 sources",
+    "data": {
+      "rss": {
+        "success": true,
+        "count": 5
+      },
+      "gnews": {
+        "success": true,
+        "count": 5
+      },
+      "tavily": {
+        "success": true,
+        "count": 5
+      }
+    }
+  },
+  {
+    "timestamp": "2026-02-20T02:59:55.446291",
+    "level": "DEBUG",
+    "message": "Running tool: image_analyzer",
+    "data": {
+      "params": [
+        "articles"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-20T02:59:56.234950",
+    "level": "INFO",
+    "message": "Tool image_analyzer executed",
+    "data": {
+      "tool": "image_analyzer",
+      "success": true,
+      "duration_seconds": 0.0,
+      "params": {
+        "article_count": 5,
+        "total_images": 5
+      },
+      "result": {
+        "successful": 5,
+        "failed": 0
+      }
+    }
+  },
+  {
+    "timestamp": "2026-02-20T02:59:56.265270",
+    "level": "DEBUG",
+    "message": "Running tool: exporter",
+    "data": {
+      "params": [
+        "filename",
+        "format",
+        "data"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-20T02:59:56.366177",
+    "level": "INFO",
+    "message": "Execution complete: 3 tools run, 0 skipped, 0 fallbacks used"
+  },
+  {
+    "timestamp": "2026-02-20T03:03:29.727820",
+    "level": "INFO",
+    "message": "Planning task for: india AI summit with image analysis"
+  },
+  {
+    "timestamp": "2026-02-20T03:03:29.746047",
+    "level": "INFO",
+    "message": "Using mock planner",
+    "data": {
+      "plan": {
+        "intent": "Get india news",
+        "domain": "india",
+        "steps": [
+          {
+            "tool": "news_fetcher",
+            "params": {
+              "topic": "india",
+              "sources": [
+                "google"
+              ],
+              "limit": 5
+            }
+          },
+          {
+            "tool": "image_analyzer",
+            "params": {}
+          },
+          {
+            "tool": "exporter",
+            "params": {
+              "filename": "india_report",
+              "format": "json"
+            }
+          }
+        ]
+      }
+    }
+  },
+  {
+    "timestamp": "2026-02-20T03:03:29.788462",
+    "level": "INFO",
+    "message": "Executing plan: Get india news",
+    "data": {
+      "steps": 3
+    }
+  },
+  {
+    "timestamp": "2026-02-20T03:03:29.812015",
+    "level": "DEBUG",
+    "message": "Running tool: news_fetcher",
+    "data": {
+      "params": [
+        "topic",
+        "sources",
+        "limit"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-20T03:03:29.836289",
+    "level": "INFO",
+    "message": "Multi-source fetch for: india"
+  },
+  {
+    "timestamp": "2026-02-20T03:03:36.295123",
+    "level": "INFO",
+    "message": "Multi-source complete: 15 articles from 3 sources",
+    "data": {
+      "rss": {
+        "success": true,
+        "count": 5
+      },
+      "gnews": {
+        "success": true,
+        "count": 5
+      },
+      "tavily": {
+        "success": true,
+        "count": 5
+      }
+    }
+  },
+  {
+    "timestamp": "2026-02-20T03:03:36.319788",
+    "level": "DEBUG",
+    "message": "Running tool: image_analyzer",
+    "data": {
+      "params": [
+        "articles"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-20T03:03:39.292371",
+    "level": "INFO",
+    "message": "Tool image_analyzer executed",
+    "data": {
+      "tool": "image_analyzer",
+      "success": true,
+      "duration_seconds": 0.0,
+      "params": {
+        "article_count": 5,
+        "total_images": 5
+      },
+      "result": {
+        "successful": 5,
+        "failed": 0
+      }
+    }
+  },
+  {
+    "timestamp": "2026-02-20T03:03:39.321925",
+    "level": "DEBUG",
+    "message": "Running tool: exporter",
+    "data": {
+      "params": [
+        "filename",
+        "format",
+        "data"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-20T03:03:39.414379",
+    "level": "INFO",
+    "message": "Execution complete: 3 tools run, 0 skipped, 0 fallbacks used"
+  },
+  {
+    "timestamp": "2026-02-20T03:04:30.773991",
+    "level": "INFO",
+    "message": "Planning task for: india AI summit with full article content and entity extraction and image analysis and social media monitoring and research papers"
+  },
+  {
+    "timestamp": "2026-02-20T03:04:30.787174",
+    "level": "INFO",
+    "message": "Using mock planner",
+    "data": {
+      "plan": {
+        "intent": "Get india news",
+        "domain": "india",
+        "steps": [
+          {
+            "tool": "news_fetcher",
+            "params": {
+              "topic": "india",
+              "sources": [
+                "google"
+              ],
+              "limit": 5
+            }
+          },
+          {
+            "tool": "web_scraper",
+            "params": {}
+          },
+          {
+            "tool": "entity_extractor",
+            "params": {}
+          },
+          {
+            "tool": "image_analyzer",
+            "params": {}
+          },
+          {
+            "tool": "social_monitor",
+            "params": {
+              "topic": "india",
+              "platforms": [
+                "reddit"
+              ]
+            }
+          },
+          {
+            "tool": "research_assistant",
+            "params": {
+              "query": "india"
+            }
+          },
+          {
+            "tool": "exporter",
+            "params": {
+              "filename": "india_report",
+              "format": "json"
+            }
+          }
+        ]
+      }
+    }
+  },
+  {
+    "timestamp": "2026-02-20T03:04:30.814052",
+    "level": "INFO",
+    "message": "Executing plan: Get india news",
+    "data": {
+      "steps": 7
+    }
+  },
+  {
+    "timestamp": "2026-02-20T03:04:30.826386",
+    "level": "DEBUG",
+    "message": "Running tool: news_fetcher",
+    "data": {
+      "params": [
+        "topic",
+        "sources",
+        "limit"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-20T03:04:30.839630",
+    "level": "INFO",
+    "message": "Multi-source fetch for: india"
+  },
+  {
+    "timestamp": "2026-02-20T03:04:36.510865",
+    "level": "INFO",
+    "message": "Multi-source complete: 15 articles from 3 sources",
+    "data": {
+      "rss": {
+        "success": true,
+        "count": 5
+      },
+      "gnews": {
+        "success": true,
+        "count": 5
+      },
+      "tavily": {
+        "success": true,
+        "count": 5
+      }
+    }
+  },
+  {
+    "timestamp": "2026-02-20T03:04:36.546006",
+    "level": "DEBUG",
+    "message": "Running tool: web_scraper",
+    "data": {
+      "params": [
+        "url"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-20T03:04:37.870467",
+    "level": "INFO",
+    "message": "Tool web_scraper executed",
+    "data": {
+      "tool": "web_scraper",
+      "success": true,
+      "duration_seconds": 0.0,
+      "params": {
+        "url": "https://scanx.trade/stock-market-news/orders-deals/itcons-e-solutions-ltd-secures-inr-43-14-lakh-contract-from-uranium-corporation-of-india-limited/33039269"
+      },
+      "result": {
+        "success": true,
+        "word_count": 379
+      }
+    }
+  },
+  {
+    "timestamp": "2026-02-20T03:04:37.906507",
+    "level": "DEBUG",
+    "message": "Running tool: entity_extractor",
+    "data": {
+      "params": [
+        "articles"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-20T03:04:37.967539",
+    "level": "INFO",
+    "message": "Tool entity_extractor executed",
+    "data": {
+      "tool": "entity_extractor",
+      "success": true,
+      "duration_seconds": 0.0,
+      "params": {
+        "article_count": 15
+      },
+      "result": {
+        "entity_count": 34
+      }
+    }
+  },
+  {
+    "timestamp": "2026-02-20T03:04:38.007896",
+    "level": "DEBUG",
+    "message": "Running tool: image_analyzer",
+    "data": {
+      "params": [
+        "articles"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-20T03:04:38.244526",
+    "level": "INFO",
+    "message": "Tool image_analyzer executed",
+    "data": {
+      "tool": "image_analyzer",
+      "success": true,
+      "duration_seconds": 0.0,
+      "params": {
+        "article_count": 1,
+        "total_images": 1
+      },
+      "result": {
+        "successful": 0,
+        "failed": 1
+      }
+    }
+  },
+  {
+    "timestamp": "2026-02-20T03:04:38.275855",
+    "level": "DEBUG",
+    "message": "Running tool: social_monitor",
+    "data": {
+      "params": [
+        "topic",
+        "platforms"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-20T03:04:38.929835",
+    "level": "INFO",
+    "message": "Tool social_monitor executed",
+    "data": {
+      "tool": "social_monitor",
+      "success": true,
+      "duration_seconds": 0.0,
+      "params": {
+        "topic": "india",
+        "platforms": [
+          "reddit"
+        ]
+      },
+      "result": {
+        "total_mentions": 0
+      }
+    }
+  },
+  {
+    "timestamp": "2026-02-20T03:04:38.958651",
+    "level": "DEBUG",
+    "message": "Running tool: research_assistant",
+    "data": {
+      "params": [
+        "topic"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-20T03:04:40.064431",
+    "level": "INFO",
+    "message": "Tool research_assistant executed",
+    "data": {
+      "tool": "research_assistant",
+      "success": true,
+      "duration_seconds": 0.0,
+      "params": {
+        "topic": "india",
+        "type": "comprehensive"
+      },
+      "result": {
+        "total_sources": 20
+      }
+    }
+  },
+  {
+    "timestamp": "2026-02-20T03:04:40.101509",
+    "level": "DEBUG",
+    "message": "Running tool: exporter",
+    "data": {
+      "params": [
+        "filename",
+        "format",
+        "data"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-20T03:04:40.236979",
+    "level": "INFO",
+    "message": "Execution complete: 7 tools run, 0 skipped, 0 fallbacks used"
+  },
+  {
+    "timestamp": "2026-02-20T04:14:38.906343",
+    "level": "INFO",
+    "message": "Tool research_assistant executed",
+    "data": {
+      "tool": "research_assistant",
+      "success": true,
+      "duration_seconds": 0.0,
+      "params": {
+        "topic": "India AI",
+        "type": "comprehensive"
+      },
+      "result": {
+        "total_sources": 20
+      }
+    }
+  },
+  {
+    "timestamp": "2026-02-20T04:15:33.545411",
+    "level": "INFO",
+    "message": "Tool research_assistant executed",
+    "data": {
+      "tool": "research_assistant",
+      "success": true,
+      "duration_seconds": 0.0,
+      "params": {
+        "topic": "India AI",
+        "type": "comprehensive"
+      },
+      "result": {
+        "total_sources": 25
+      }
+    }
+  },
+  {
+    "timestamp": "2026-02-20T04:17:38.412490",
+    "level": "INFO",
+    "message": "Tool research_assistant executed",
+    "data": {
+      "tool": "research_assistant",
+      "success": true,
+      "duration_seconds": 0.0,
+      "params": {
+        "topic": "India AI",
+        "type": "comprehensive"
+      },
+      "result": {
+        "total_sources": 25
+      }
+    }
+  },
+  {
+    "timestamp": "2026-02-20T04:17:54.581637",
+    "level": "INFO",
+    "message": "Tool research_assistant executed",
+    "data": {
+      "tool": "research_assistant",
+      "success": true,
+      "duration_seconds": 0.0,
+      "params": {
+        "topic": "India AI",
+        "type": "comprehensive"
+      },
+      "result": {
+        "total_sources": 25
+      }
+    }
+  },
+  {
+    "timestamp": "2026-02-20T04:30:33.291738",
+    "level": "INFO",
+    "message": "Planning task for: India AI with research papers and github repos and stackoverflow questions and image analysis and social media monitoring"
+  },
+  {
+    "timestamp": "2026-02-20T04:30:33.314248",
+    "level": "INFO",
+    "message": "Using mock planner",
+    "data": {
+      "plan": {
+        "intent": "Get india news",
+        "domain": "india",
+        "steps": [
+          {
+            "tool": "news_fetcher",
+            "params": {
+              "topic": "india",
+              "sources": [
+                "google"
+              ],
+              "limit": 5
+            }
+          },
+          {
+            "tool": "image_analyzer",
+            "params": {}
+          },
+          {
+            "tool": "social_monitor",
+            "params": {
+              "topic": "india",
+              "platforms": [
+                "reddit"
+              ]
+            }
+          },
+          {
+            "tool": "research_assistant",
+            "params": {
+              "query": "india"
+            }
+          },
+          {
+            "tool": "exporter",
+            "params": {
+              "filename": "india_report",
+              "format": "json"
+            }
+          }
+        ]
+      }
+    }
+  },
+  {
+    "timestamp": "2026-02-20T04:30:33.337695",
+    "level": "INFO",
+    "message": "Executing plan: Get india news",
+    "data": {
+      "steps": 5
+    }
+  },
+  {
+    "timestamp": "2026-02-20T04:30:33.354832",
+    "level": "DEBUG",
+    "message": "Running tool: news_fetcher",
+    "data": {
+      "params": [
+        "topic",
+        "sources",
+        "limit"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-20T04:30:33.371047",
+    "level": "INFO",
+    "message": "Multi-source fetch for: india"
+  },
+  {
+    "timestamp": "2026-02-20T04:30:39.775900",
+    "level": "INFO",
+    "message": "Multi-source complete: 15 articles from 3 sources",
+    "data": {
+      "rss": {
+        "success": true,
+        "count": 5
+      },
+      "gnews": {
+        "success": true,
+        "count": 5
+      },
+      "tavily": {
+        "success": true,
+        "count": 5
+      }
+    }
+  },
+  {
+    "timestamp": "2026-02-20T04:30:39.789653",
+    "level": "DEBUG",
+    "message": "Running tool: image_analyzer",
+    "data": {
+      "params": [
+        "articles"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-20T04:30:43.795297",
+    "level": "INFO",
+    "message": "Tool image_analyzer executed",
+    "data": {
+      "tool": "image_analyzer",
+      "success": true,
+      "duration_seconds": 0.0,
+      "params": {
+        "article_count": 5,
+        "total_images": 4
+      },
+      "result": {
+        "successful": 4,
+        "failed": 0
+      }
+    }
+  },
+  {
+    "timestamp": "2026-02-20T04:30:43.817134",
+    "level": "DEBUG",
+    "message": "Running tool: social_monitor",
+    "data": {
+      "params": [
+        "topic",
+        "platforms"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-20T04:30:44.383216",
+    "level": "INFO",
+    "message": "Tool social_monitor executed",
+    "data": {
+      "tool": "social_monitor",
+      "success": true,
+      "duration_seconds": 0.0,
+      "params": {
+        "topic": "india",
+        "platforms": [
+          "reddit"
+        ]
+      },
+      "result": {
+        "total_mentions": 0
+      }
+    }
+  },
+  {
+    "timestamp": "2026-02-20T04:30:44.401076",
+    "level": "DEBUG",
+    "message": "Running tool: research_assistant",
+    "data": {
+      "params": [
+        "topic"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-20T04:30:48.895246",
+    "level": "INFO",
+    "message": "Tool research_assistant executed",
+    "data": {
+      "tool": "research_assistant",
+      "success": true,
+      "duration_seconds": 0.0,
+      "params": {
+        "topic": "india",
+        "type": "comprehensive"
+      },
+      "result": {
+        "total_sources": 25
+      }
+    }
+  },
+  {
+    "timestamp": "2026-02-20T04:30:48.925370",
+    "level": "DEBUG",
+    "message": "Running tool: exporter",
+    "data": {
+      "params": [
+        "filename",
+        "format",
+        "data"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-20T04:30:49.010320",
+    "level": "INFO",
+    "message": "Execution complete: 5 tools run, 0 skipped, 0 fallbacks used"
   }
 ]

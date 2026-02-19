@@ -492,6 +492,29 @@
     color: var(--accent);
 }
 
+.research-summary {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+    margin: 0.4rem 0;
+    font-style: italic;
+}
+
+.research-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    margin-top: 0.4rem;
+}
+
+.research-tag {
+    font-size: 0.65rem;
+    padding: 2px 8px;
+    background: rgba(99, 102, 241, 0.12);
+    color: var(--accent);
+    border-radius: 10px;
+}
+
 /* Collapse button for panels */
 .collapse-btn {
     background: transparent;

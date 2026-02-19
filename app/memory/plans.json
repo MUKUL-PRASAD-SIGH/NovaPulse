@@ -1,122 +1,5 @@
 [
   {
-    "timestamp": "2026-02-04T15:32:49.314052",
-    "user_input": "iNDIA  US TRADE DEAL",
-    "plan": {
-      "intent": "Fetch and summarize news about India-US trade deal",
-      "domain": "India-US trade deal",
-      "steps": [
-        {
-          "tool": "news_fetcher",
-          "params": {
-            "topic": "India-US trade deal",
-            "sources": [
-              "google"
-            ],
-            "limit": 5
-          }
-        },
-        {
-          "tool": "summarizer",
-          "params": {
-            "news_items": "news from news_fetcher"
-          }
-        },
-        {
-          "tool": "exporter",
-          "params": {
-            "filename": "India-US_trade_deal_report",
-            "format": "json"
-          }
-        }
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-02-04T15:33:03.112467",
-    "user_input": "iNDIA  US TRADE DEAL with sentiment analysis",
-    "plan": {
-      "intent": "Fetch news on India-US trade deal and perform sentiment analysis",
-      "domain": "India-US Trade Deal",
-      "steps": [
-        {
-          "tool": "news_fetcher",
-          "params": {
-            "topic": "India-US Trade Deal",
-            "limit": 5
-          }
-        },
-        {
-          "tool": "sentiment",
-          "params": {
-            "news_items": "news_fetcher_output"
-          }
-        },
-        {
-          "tool": "exporter",
-          "params": {
-            "filename": "India-US_Trade_Deal_Sentiment_Analysis",
-            "format": "json"
-          }
-        }
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-02-04T16:15:50.312163",
-    "user_input": "India EU trade deal",
-    "plan": {
-      "intent": "Fetch and export news on India EU trade deal",
-      "domain": "India EU trade deal",
-      "steps": [
-        {
-          "tool": "news_fetcher",
-          "params": {
-            "topic": "India EU trade deal",
-            "limit": 5
-          }
-        },
-        {
-          "tool": "exporter",
-          "params": {
-            "filename": "India_EU_trade_deal_report",
-            "format": "json"
-          }
-        }
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-02-04T16:16:13.348095",
-    "user_input": "India EU trade deal with sentiment analysis",
-    "plan": {
-      "intent": "Fetch news on India EU trade deal and perform sentiment analysis",
-      "domain": "India EU trade deal",
-      "steps": [
-        {
-          "tool": "news_fetcher",
-          "params": {
-            "topic": "India EU trade deal",
-            "limit": 5
-          }
-        },
-        {
-          "tool": "sentiment",
-          "params": {
-            "news_items": "news_fetcher_output"
-          }
-        },
-        {
-          "tool": "exporter",
-          "params": {
-            "filename": "India_EU_trade_deal_sentiment_analysis_report",
-            "format": "json"
-          }
-        }
-      ]
-    }
-  },
-  {
     "timestamp": "2026-02-04T16:24:20.458558",
     "user_input": "India eu trade deal vs india us trade deal",
     "plan": {
@@ -1999,6 +1882,168 @@
         {
           "tool": "image_analyzer",
           "params": {}
+        },
+        {
+          "tool": "exporter",
+          "params": {
+            "filename": "india_report",
+            "format": "json"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-20T02:59:49.814241",
+    "user_input": "india AI summit with image analysis",
+    "plan": {
+      "intent": "Get india news",
+      "domain": "india",
+      "steps": [
+        {
+          "tool": "news_fetcher",
+          "params": {
+            "topic": "india",
+            "sources": [
+              "google"
+            ],
+            "limit": 5
+          }
+        },
+        {
+          "tool": "image_analyzer",
+          "params": {}
+        },
+        {
+          "tool": "exporter",
+          "params": {
+            "filename": "india_report",
+            "format": "json"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-20T03:03:29.766411",
+    "user_input": "india AI summit with image analysis",
+    "plan": {
+      "intent": "Get india news",
+      "domain": "india",
+      "steps": [
+        {
+          "tool": "news_fetcher",
+          "params": {
+            "topic": "india",
+            "sources": [
+              "google"
+            ],
+            "limit": 5
+          }
+        },
+        {
+          "tool": "image_analyzer",
+          "params": {}
+        },
+        {
+          "tool": "exporter",
+          "params": {
+            "filename": "india_report",
+            "format": "json"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-20T03:04:30.801425",
+    "user_input": "india AI summit with full article content and entity extraction and image analysis and social media monitoring and research papers",
+    "plan": {
+      "intent": "Get india news",
+      "domain": "india",
+      "steps": [
+        {
+          "tool": "news_fetcher",
+          "params": {
+            "topic": "india",
+            "sources": [
+              "google"
+            ],
+            "limit": 5
+          }
+        },
+        {
+          "tool": "web_scraper",
+          "params": {}
+        },
+        {
+          "tool": "entity_extractor",
+          "params": {}
+        },
+        {
+          "tool": "image_analyzer",
+          "params": {}
+        },
+        {
+          "tool": "social_monitor",
+          "params": {
+            "topic": "india",
+            "platforms": [
+              "reddit"
+            ]
+          }
+        },
+        {
+          "tool": "research_assistant",
+          "params": {
+            "query": "india"
+          }
+        },
+        {
+          "tool": "exporter",
+          "params": {
+            "filename": "india_report",
+            "format": "json"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-20T04:30:33.318966",
+    "user_input": "India AI with research papers and github repos and stackoverflow questions and image analysis and social media monitoring",
+    "plan": {
+      "intent": "Get india news",
+      "domain": "india",
+      "steps": [
+        {
+          "tool": "news_fetcher",
+          "params": {
+            "topic": "india",
+            "sources": [
+              "google"
+            ],
+            "limit": 5
+          }
+        },
+        {
+          "tool": "image_analyzer",
+          "params": {}
+        },
+        {
+          "tool": "social_monitor",
+          "params": {
+            "topic": "india",
+            "platforms": [
+              "reddit"
+            ]
+          }
+        },
+        {
+          "tool": "research_assistant",
+          "params": {
+            "query": "india"
+          }
         },
         {
           "tool": "exporter",

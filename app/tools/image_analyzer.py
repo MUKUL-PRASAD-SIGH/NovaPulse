@@ -187,15 +187,16 @@ class ImageAnalyzer:
     async def _analyze_with_vision(self, image_data: bytes, context: Optional[str]) -> Dict:
         """
         Analyze image with Amazon Nova Vision via Bedrock.
-        Falls back to smart local analysis if Bedrock unavailable.
+        Always tries AI first (independent of USE_MOCK_PLANNER).
+        Set IMAGE_AI=false to disable Nova Vision calls.
         """
-        use_mock = os.getenv("USE_MOCK_PLANNER", "true").lower() == "true"
+        image_ai = os.getenv("IMAGE_AI", "true").lower() != "false"
         
-        if not use_mock:
+        if image_ai:
             try:
                 return await self._nova_vision_analyze(image_data, context)
             except Exception as e:
-                print(f"[IMAGE_ANALYZER] Nova Vision failed, using local analysis: {e}")
+                print(f"[IMAGE_ANALYZER] Nova Vision failed, using smart local analysis: {e}")
         
         return self._local_vision_analysis(image_data, context)
     
@@ -213,9 +214,8 @@ class ImageAnalyzer:
             fmt = (img.format or "JPEG").lower()
             if fmt == "jpg":
                 fmt = "jpeg"
-            media_type = f"image/{fmt}"
         except Exception:
-            media_type = "image/jpeg"
+            fmt = "jpeg"
         
         context_hint = f" This image is from a news article titled: '{context}'." if context else ""
         
@@ -272,7 +272,7 @@ Return ONLY valid JSON with these fields:
         return parsed
     
     def _local_vision_analysis(self, image_data: bytes, context: Optional[str]) -> Dict:
-        """Smart local analysis when Nova Vision is unavailable."""
+        """Context-aware local analysis using image properties + article title."""
         try:
             image = Image.open(BytesIO(image_data))
             
@@ -280,19 +280,25 @@ Return ONLY valid JSON with these fields:
             is_grayscale = image.mode in ['L', 'LA']
             dominant_colors = self._get_dominant_colors(image)
             
-            # Determine likely content from image properties
             w, h = image.size
             aspect = w / h if h > 0 else 1
             
-            # Heuristic scene classification
+            # Scene classification from aspect ratio + resolution
             if aspect > 1.7:
                 scene_type = "banner"
+                layout_desc = "wide banner-format"
             elif aspect < 0.7:
                 scene_type = "portrait"
-            elif w > 1000 and h > 1000:
+                layout_desc = "vertical portrait-format"
+            elif w > 1200 and h > 1200:
                 scene_type = "high-res photo"
+                layout_desc = "high-resolution"
+            elif w < 400 or h < 300:
+                scene_type = "thumbnail"
+                layout_desc = "small thumbnail"
             else:
-                scene_type = "general"
+                scene_type = "standard"
+                layout_desc = "standard-format"
             
             # Brightness analysis
             gray = image.convert("L")
@@ -301,31 +307,82 @@ Return ONLY valid JSON with these fields:
             
             if avg_brightness < 60:
                 mood = "dark/dramatic"
+                brightness_desc = "dark-toned"
             elif avg_brightness > 200:
                 mood = "bright/positive"
+                brightness_desc = "bright, well-lit"
+            elif avg_brightness > 140:
+                mood = "neutral"
+                brightness_desc = "naturally lit"
             else:
                 mood = "neutral"
+                brightness_desc = "moderately lit"
             
-            # Determine description based on what we can infer
-            desc_parts = []
-            if is_grayscale:
-                desc_parts.append("Grayscale image")
+            # Color temperature analysis
+            rgb_image = image.convert("RGB").resize((50, 50))
+            rgb_pixels = list(rgb_image.getdata())
+            avg_r = sum(p[0] for p in rgb_pixels) / len(rgb_pixels)
+            avg_b = sum(p[2] for p in rgb_pixels) / len(rgb_pixels)
+            
+            if avg_r > avg_b + 30:
+                color_temp = "warm-toned"
+            elif avg_b > avg_r + 30:
+                color_temp = "cool-toned"
             else:
-                desc_parts.append(f"{scene_type.capitalize()} image")
-            desc_parts.append(f"({w}x{h})")
+                color_temp = "balanced color"
+            
+            # Contrast analysis
+            min_px = min(pixels)
+            max_px = max(pixels)
+            contrast_range = max_px - min_px
+            if contrast_range > 200:
+                contrast_desc = "high contrast"
+            elif contrast_range < 80:
+                contrast_desc = "low contrast"
+            else:
+                contrast_desc = "moderate contrast"
+            
+            # Build context-aware description
             if context:
-                desc_parts.append(f"from article: {context[:60]}")
+                # Use article title to make the description meaningful
+                topic = context[:80]
+                if is_grayscale:
+                    description = f"Grayscale {layout_desc} news image related to: {topic}"
+                else:
+                    description = f"{brightness_desc.capitalize()}, {color_temp} {layout_desc} news photo related to: {topic}"
+                
+                news_value = f"Visual accompaniment for coverage on {topic}"
+                relevance = "high"
+            else:
+                if is_grayscale:
+                    description = f"Grayscale {layout_desc} image ({w}x{h}), {contrast_desc}"
+                else:
+                    description = f"{brightness_desc.capitalize()}, {color_temp} {layout_desc} image ({w}x{h}), {contrast_desc}"
+                
+                news_value = "News imagery without article context"
+                relevance = "medium"
+            
+            # Infer likely content from image properties
+            inferred_objects = []
+            if scene_type == "portrait" and not is_grayscale:
+                inferred_objects.append("person (likely)")
+            if contrast_range > 200 and avg_brightness < 100:
+                inferred_objects.append("high-contrast scene")
+            if len(dominant_colors) >= 3:
+                inferred_objects.append(f"{len(dominant_colors)} distinct color regions")
             
             return {
-                "description": " ".join(desc_parts),
-                "objects": [],
+                "description": description,
+                "objects": inferred_objects,
                 "scene_type": scene_type,
                 "mood": mood,
-                "relevance": "medium",
-                "news_value": "Visual context for the news story",
+                "relevance": relevance,
+                "news_value": news_value,
                 "is_photo": is_photo,
                 "is_grayscale": is_grayscale,
                 "avg_brightness": round(avg_brightness),
+                "color_temperature": color_temp,
+                "contrast": contrast_desc,
                 "dominant_colors": dominant_colors,
                 "source": "local_analysis"
             }

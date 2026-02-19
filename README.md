@@ -349,22 +349,30 @@ User Input --> Planner Agent --> Task DAG --> Executor Agent
 +=========================================================================+
 ```
 
-**🔧 Under the Hood:**
+### 🖼️ Enhanced Image Intelligence (v2.0)
+Advanced computer vision pipeline that goes beyond basic metadata:
 
-| Feature | What It Does |
-|---------|--------------|
-| **URL Deduplication** | Normalizes URLs (strips query params) and deduplicates — prevents the same image from being analyzed twice |
-| **Image Validation** | Downloads image, checks PIL can open it and extract dimensions — rejects SVGs, corrupt files, and non-image URLs |
-| **Image Type Classifier** | Pixel analysis: color complexity + edge density + flat region detection → classifies as photo/chart/graphic/screenshot |
-| **Amazon Nova Vision** | Sends image as base64 to Bedrock → AI describes scene, detects objects, classifies mood, scores article relevance |
-| **Smart Local Fallback** | When `USE_MOCK_PLANNER=true`: brightness-based mood, aspect-based scene type (banner/portrait/general), dominant colors |
-| **Manipulation Forensics** | EXIF software flags (Photoshop/GIMP), compression anomalies (bytes/pixel), uniform border detection, unusual aspect ratios |
-| **EXIF Extraction** | Camera make/model, orientation, software used, creation date — shown per image card |
-| **Dominant Colors** | Top 5 colors extracted via frequency analysis with hover-zoom swatches |
-| **Junk Filtering** | Auto-skips favicons, social icons, tracking pixels, 1×1 GIFs, SVG logos |
-| **Aggregate Insights** | Summary header: total objects detected across images, type breakdown (photo: 5 · chart: 2), AI descriptions |
+1.  **AI Scene Understanding**: Uses `Amazon Nova Vision` (or robust local fallback) to generate detailed, context-aware descriptions of image content.
+    *   *Example*: "Naturally lit, warm-toned wide banner-format news photo related to: India AI Impact Summit"
+2.  **Object Detection**: Identifies key objects (people, technology, text) within the image.
+3.  **Manipulation Forensics**: Analyzes compression artifacts, metadata consistency, and unnatural edge detection to flag potential deepfakes or edited images.
+4.  **Smart Filtering**:
+    *   **Deduplication**: Automatically detects and skips duplicate images across multiple articles.
+    *   **Junk Filter**: Ignores icons, tracking pixels, and non-content images.
+    *   **Validation**: Verifies image integrity before processing.
+5.  **Relevance Scoring**: Scores images based on their semantic similarity to the article topic.
 
-> 💡 **Two Modes:** `USE_MOCK_PLANNER=false` → Real Nova Vision AI via Bedrock | `USE_MOCK_PLANNER=true` → Smart local pixel analysis
+### 📚 Research Library (New!)
+A powerful academic and technical research engine that aggregates knowledge from three major sources:
+
+1.  **arXiv Papers**: Fetches recent academic papers with abstract summaries and PDF links.
+    *   *Features*: intelligent query encoding, redirection handling, and metadata extraction.
+2.  **GitHub Repositories**: Discovers relevant open-source projects.
+    *   *Metrics*: Stars, language, description, and direct repo links.
+3.  **StackOverflow Discussions**: Finds community Q&A threads related to the topic.
+    *   *Details*: Answer status, score, tags, and discussion links.
+
+> **Note**: The Research Library seamlessly handles 301 redirects and complex queries to ensure reliable data retrieval.
 
 ---
 
