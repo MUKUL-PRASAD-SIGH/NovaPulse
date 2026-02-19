@@ -1,6 +1,7 @@
-"""Multi-source fetcher - simplified sync version."""
+"""Multi-source fetcher - simplified sync version with SSL fixes."""
 import feedparser
 import os
+import ssl
 import httpx
 from typing import List, Dict
 from difflib import SequenceMatcher
@@ -10,42 +11,70 @@ from app.memory.store import log
 
 load_dotenv()
 
+# Create a lenient SSL context for Windows compatibility
+def _get_http_client(timeout: float = 10.0) -> httpx.Client:
+    """Create an httpx client with SSL verification disabled for Windows compatibility."""
+    try:
+        return httpx.Client(timeout=timeout, verify=False)
+    except Exception:
+        return httpx.Client(timeout=timeout)
+
 
 def fetch_news_multi(topic: str, limit: int = 5, **kwargs) -> List[Dict]:
     """
     Fetch from multiple sources with failover.
     Simplified sync version for reliability.
+    NEVER raises - always returns a list (possibly empty).
     """
-    log("INFO", f"Multi-source fetch for: {topic}")
+    try:
+        log("INFO", f"Multi-source fetch for: {topic}")
+    except Exception:
+        pass
     
     all_articles = []
     sources_status = {}
     
     # 1. Try RSS (always works, free)
-    rss_result = _fetch_rss_sync(topic, limit)
-    sources_status["rss"] = {"success": rss_result["success"], "count": len(rss_result["articles"])}
-    if rss_result["success"]:
-        all_articles.extend(rss_result["articles"])
+    try:
+        rss_result = _fetch_rss_sync(topic, limit)
+        sources_status["rss"] = {"success": rss_result["success"], "count": len(rss_result["articles"])}
+        if rss_result["success"]:
+            all_articles.extend(rss_result["articles"])
+    except Exception as e:
+        sources_status["rss"] = {"success": False, "error": str(e)}
     
     # 2. Try GNews if key exists
     gnews_key = os.getenv("GNEWS_API_KEY", "")
     if gnews_key:
-        gnews_result = _fetch_gnews_sync(topic, limit, gnews_key)
-        sources_status["gnews"] = {"success": gnews_result["success"], "count": len(gnews_result["articles"])}
-        if gnews_result["success"]:
-            all_articles.extend(gnews_result["articles"])
+        try:
+            gnews_result = _fetch_gnews_sync(topic, limit, gnews_key)
+            sources_status["gnews"] = {"success": gnews_result["success"], "count": len(gnews_result["articles"])}
+            if gnews_result["success"]:
+                all_articles.extend(gnews_result["articles"])
+        except Exception as e:
+            sources_status["gnews"] = {"success": False, "error": str(e)}
     
     # 3. Try Tavily if key exists
     tavily_key = os.getenv("TAVILY_API_KEY", "")
     if tavily_key:
-        tavily_result = _fetch_tavily_sync(topic, limit, tavily_key)
-        sources_status["tavily"] = {"success": tavily_result["success"], "count": len(tavily_result["articles"])}
-        if tavily_result["success"]:
-            all_articles.extend(tavily_result["articles"])
+        try:
+            tavily_result = _fetch_tavily_sync(topic, limit, tavily_key)
+            sources_status["tavily"] = {"success": tavily_result["success"], "count": len(tavily_result["articles"])}
+            if tavily_result["success"]:
+                all_articles.extend(tavily_result["articles"])
+        except Exception as e:
+            sources_status["tavily"] = {"success": False, "error": str(e)}
     
     # Deduplicate
-    unique = _deduplicate(all_articles)
-    log("INFO", f"Multi-source complete: {len(unique)} articles from {len(sources_status)} sources")
+    try:
+        unique = _deduplicate(all_articles)
+    except Exception:
+        unique = all_articles
+    
+    try:
+        log("INFO", f"Multi-source complete: {len(unique)} articles from {len(sources_status)} sources", sources_status)
+    except Exception:
+        pass
     
     return unique
 
@@ -54,6 +83,11 @@ def _fetch_rss_sync(topic: str, limit: int) -> Dict:
     """Fetch from Google News RSS."""
     try:
         url = f"https://news.google.com/rss/search?q={topic.replace(' ', '+')}&hl=en-US&gl=US&ceid=US:en"
+        
+        # feedparser handles SSL internally, but we can set a custom handler
+        if hasattr(ssl, '_create_unverified_context'):
+            ssl._create_default_https_context = ssl._create_unverified_context
+        
         feed = feedparser.parse(url)
         articles = []
         for entry in feed.entries[:limit]:
@@ -63,16 +97,19 @@ def _fetch_rss_sync(topic: str, limit: int) -> Dict:
                 "source": "rss",
                 "published": entry.get("published", "")
             })
-        return {"success": True, "articles": articles}
+        return {"success": len(articles) > 0, "articles": articles}
     except Exception as e:
-        log("ERROR", f"RSS failed: {e}")
+        try:
+            log("ERROR", f"RSS failed: {e}")
+        except Exception:
+            pass
         return {"success": False, "articles": []}
 
 
 def _fetch_gnews_sync(topic: str, limit: int, api_key: str) -> Dict:
     """Fetch from GNews API."""
     try:
-        with httpx.Client(timeout=10.0) as client:
+        with _get_http_client(timeout=10.0) as client:
             resp = client.get(
                 "https://gnews.io/api/v4/search",
                 params={"apikey": api_key, "q": topic, "lang": "en", "max": limit}
@@ -91,14 +128,17 @@ def _fetch_gnews_sync(topic: str, limit: int, api_key: str) -> Dict:
                 })
             return {"success": True, "articles": articles}
     except Exception as e:
-        log("ERROR", f"GNews failed: {e}")
+        try:
+            log("ERROR", f"GNews failed: {e}")
+        except Exception:
+            pass
         return {"success": False, "articles": []}
 
 
 def _fetch_tavily_sync(topic: str, limit: int, api_key: str) -> Dict:
     """Fetch from Tavily search API with title cleaning."""
     try:
-        with httpx.Client(timeout=10.0) as client:
+        with _get_http_client(timeout=15.0) as client:
             resp = client.post(
                 "https://api.tavily.com/search",
                 json={
@@ -141,7 +181,10 @@ def _fetch_tavily_sync(topic: str, limit: int, api_key: str) -> Dict:
             
             return {"success": True, "articles": articles}
     except Exception as e:
-        log("ERROR", f"Tavily failed: {e}")
+        try:
+            log("ERROR", f"Tavily failed: {e}")
+        except Exception:
+            pass
         return {"success": False, "articles": []}
 
 

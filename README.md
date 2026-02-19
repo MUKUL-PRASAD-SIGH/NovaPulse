@@ -2,191 +2,102 @@
 
 > **Not just news. Intelligence.**
 
-A voice-powered multi-agent news intelligence system using **Amazon Nova AI**. Fetches news from multiple sources in parallel, analyzes sentiment, extracts trends, and generates AI summaries.
+A voice-powered multi-agent news intelligence system using **Amazon Nova AI**. Fetches news from multiple sources in parallel, deploys 9 specialized analysis tools, and delivers AI-powered intelligence reports — all from a single query.
 
 - 🎥 **Demo video**: [Watch on YouTube](https://youtu.be/KDNrGJ994Cw)
 
 ![Python](https://img.shields.io/badge/Python-3.9+-blue)
 ![FastAPI](https://img.shields.io/badge/FastAPI-0.109+-green)
 ![Nova AI](https://img.shields.io/badge/Amazon_Nova-AI-orange)
+![Tools](https://img.shields.io/badge/Tools-9_Active-purple)
+![MAS](https://img.shields.io/badge/Architecture-Multi--Agent-ff6b6b)
 
 ---
 
 ## ⚡ Features at a Glance
 
+### 🎯 Core Intelligence Pipeline
+
+| Tool | Description | Backend |
+|------|-------------|---------|
+| 📰 **Multi-Source News Fetch** | Parallel news from Tavily, GNews & RSS with auto-failover | `asyncio.gather()` + priority queue |
+| 🧠 **AI Summarization** | Nova-powered executive digest with context-aware analysis | Amazon Nova Lite LLM |
+| 💭 **Sentiment Intelligence** | Bloomberg-style analyst narrative — *not just percentages* | NLP + Nova AI inference |
+| 📊 **Trend Extraction** | Velocity-weighted hot topics with time decay & source scoring | Regex NER + n-gram + history |
+
+### 🛠️ Multi-Agent System (MAS) Tools
+
+| Tool | Description | Backend |
+|------|-------------|---------|
+| 🌐 **Web Scraper** | Full article content extraction with og:image, metadata parsing | `httpx` + `BeautifulSoup` |
+| 👤 **Entity Network** | NER extraction — people, orgs, locations + relationship mapping | Regex NER + co-occurrence |
+| 🖼️ **Image Intelligence** | Article image forensics — metadata, text extraction, manipulation detection | EXIF + regex + heuristics |
+| 📱 **Social Monitor** | Reddit & Twitter trend tracking with sentiment per platform | Reddit API + NLP |
+| 📚 **Research Assistant** | arXiv papers, GitHub repos, StackOverflow — academic & dev intel | Multi-API aggregation |
+
+### 🧩 Platform Features
+
 | Feature | Description | Backend |
 |---------|-------------|---------|
-| 📰 **Multi-Source Fetch** | Parallel news from Tavily, GNews & RSS | `asyncio` concurrent pipelines |
-| 🔄 **Auto-Failover** | Quota/failure-aware source switching | Priority queue + retry logic |
-| 🧠 **AI Summary** | Nova-powered intelligent digests | Amazon Nova Lite LLM |
-| 💭 **Sentiment Intelligence** | Institutional analyst-style analysis | NLP + Nova AI inference |
-| 📊 **Trend Extraction** | Hot topics via entity recognition | Regex NER + frequency analysis |
-| 💾 **Multi-Format Export** | JSON, Markdown, CSV reports | Template engine + streaming |
-| 🎤 **Voice Interface** | Browser speech recognition | Web Speech API |
-| 🕒 **Search History** | Persisted recent searches | LocalStorage + JSON store |
-| 📖 **Dictionary Lookup** | Instant word definitions | Merriam-Webster API |
-| 🌐 **Translation** | Translate reports to 18+ languages | MyMemory API |
-| ⚙️ **Settings Panel** | Customize language & dictionary prefs | LocalStorage persistence |
-| 🎛️ **Dynamic Panels** | Toggle-responsive layout with smooth animations | CSS Grid + auto-fit |
-| 💊 **Summary Chip** | Collapsed execution summary, expandable trace view | JS state management |
-| 📦 **Package Builder** | Intelligence packaging with preview, multi-format export | Quality badges + smart recommendations |
+| 🎤 **Voice Interface** | Speak your query — browser speech recognition | Web Speech API |
+| 📦 **Package Builder** | 5-format export (JSON, MD, CSV, Word, PDF) with quality badges | Template engine + streaming |
+| 🌐 **Translation** | Translate reports to 18+ languages instantly | MyMemory API |
+| 📖 **Dictionary** | Click any word for instant definition | Merriam-Webster API |
+| ⚙️ **Settings Panel** | Tool info, language prefs, dictionary config, data management | LocalStorage persistence |
+| 🕒 **Search History** | Persisted recent queries with timestamp & status | LocalStorage + JSON store |
+| 💊 **Execution Pipeline** | Live step-by-step progress overlay with retry/fallback tracking | JS state machine |
+| 🎛️ **Dynamic Panels** | Toggle-responsive layout with smooth CSS animations | CSS Grid + auto-fit |
+| 🎯 **Smart Tooltips** | Hover over finance terms for instant explanations | JS hover detection |
 
 ---
 
-## 🌐 Language & Dictionary Tools
-
-> *Understand any term. Read in any language.*
-
-### 📖 Dictionary Lookup
+## 🏗️ Architecture
 
 ```
-┌──────────────────────────────────────────────────────────────┐
-│  🧠 Intelligence Report                    [DICT] [Translate]│
-├──────────────────────────────────────────────────────────────┤
-│  Click DICT → Type word → Press GO                           │
-│  ──────────────────────────────────────────────────          │
-│  ┌─────────────────────────────────┐                         │
-│  │ 📖 momentum                     │                         │
-│  │ noun                            │                         │
-│  │ • the strength or force of      │                         │
-│  │   movement or change            │                         │
-│  │ Source: Merriam-Webster         │                         │
-│  └─────────────────────────────────┘                         │
-└──────────────────────────────────────────────────────────────┘
+┌─────────────────┐     ┌──────────────────┐     ┌─────────────────┐
+│   Voice/Text    │────▶│   Nova Planner   │────▶│    Executor     │
+│     Input       │     │  (Amazon Nova)   │     │     Agent       │
+└─────────────────┘     └──────────────────┘     └────────┬────────┘
+                                                          │
+            ┌─────────────────────────────────────────────┼──────────────────────────────────────┐
+            │                    │                        │                   │                   │
+            ▼                    ▼                        ▼                   ▼                   ▼
+   ┌─────────────┐     ┌─────────────┐          ┌─────────────┐    ┌─────────────┐     ┌─────────────┐
+   │   Tavily    │     │   GNews     │          │  RSS Feeds  │    │  Reddit API │     │  arXiv/GH   │
+   │ (Web Search)│     │   (API)     │          │ (Google)    │    │ (Social)    │     │ (Research)  │
+   └──────┬──────┘     └──────┬──────┘          └──────┬──────┘    └──────┬──────┘     └──────┬──────┘
+          │                   │                        │                  │                   │
+          └───────────────────┼────────────────────────┘                  │                   │
+                              ▼                                           ▼                   ▼
+                    ┌─────────────────┐                         ┌──────────────────────────────────┐
+                    │  Deduplicator   │                         │    MAS Tool Results Aggregation   │
+                    │  & Merger       │                         └───────────────┬──────────────────┘
+                    └────────┬────────┘                                         │
+                             │                                                 │
+            ┌────────────────┼────────────────┐                                │
+            │                │                │                                │
+            ▼                ▼                ▼                                │
+   ┌─────────────┐  ┌─────────────┐  ┌─────────────┐                         │
+   │ Summarizer  │  │ Sentiment   │  │   Trends    │                         │
+   │ (Nova AI)   │  │  Analyzer   │  │  Extractor  │                         │
+   └──────┬──────┘  └──────┬──────┘  └──────┬──────┘                         │
+          │                │                │                                 │
+          └────────────────┼────────────────┘                                 │
+                           ▼                                                  │
+                  ┌─────────────────┐                                         │
+                  │  Context Store  │◄────────────────────────────────────────┘
+                  │  (Unified)      │
+                  └────────┬────────┘
+                           │
+                           ▼
+              ┌──────────────────────┐
+              │   Package Builder    │
+              │ JSON/MD/CSV/DOCX/PDF │
+              └──────────────────────┘
 ```
-
-**How it works:**
-1. Click **DICT** button in Intelligence Report header
-2. Type any English word (e.g., "tariff", "bullish", "volatility")
-3. Press **GO** or hit Enter
-4. Definition popup appears instantly
-
-**Backend:** Merriam-Webster Collegiate Dictionary API (1000 queries/day free)
 
 ---
 
-### 🌐 Translation System
-
-```
-┌────────────────────────────────────────────────────────────┐
-│  ⚙️ Settings                                               │
-├────────────────────────────────────────────────────────────┤
-│  🌐 Translation Languages (select up to 3)                 │
-│  ┌────────┐ ┌────────┐ ┌────────┐ ┌────────┐ ┌────────┐   │
-│  │☑ Hindi │ │☐ Spanish│ │☐ French│ │☐ German│ │☐ Chinese│  │
-│  └────────┘ └────────┘ └────────┘ └────────┘ └────────┘   │
-│  ... (18 languages available)                              │
-│                                           [💾 Save Settings]│
-└────────────────────────────────────────────────────────────┘
-```
-
-**Workflow:**
-1. Click **⚙️ Settings** button (top-right)
-2. Select up to **3 languages** from 18 available
-3. Click **Save Settings**
-4. Use **Translate** dropdown on Intelligence Report
-5. Translated text appears with **Show Original** button
-
-**Supported Languages:**
-`English` `Hindi` `Spanish` `French` `German` `Chinese` `Japanese` `Korean` `Arabic` `Portuguese` `Russian` `Italian` `Tamil` `Telugu` `Bengali` `Marathi` `Gujarati` `Punjabi`
-
-**Backend:** MyMemory Translation API (10,000 chars/day free, no key required)
-
----
-
-### 🎯 Smart Tooltips
-
-Finance terms in Sentiment Intelligence are highlighted and show explanations on hover:
-
-| Term | Explanation |
-|------|-------------|
-| **Momentum** | How fast and strong sentiment is changing |
-| **Risk-On** | Investors favor risky assets (stocks, crypto) |
-| **Risk-Off** | Investors prefer safe assets (bonds, gold) |
-| **Bullish Signals** | Factors driving positive sentiment |
-| **Confidence** | Certainty level based on data consistency |
-
-*Hover over blue-highlighted terms for 0.5s to see tooltip.*
-
----
-
-### 💾 Multi-Layer Storage Architecture
-
-| Layer | Storage | Data | Retention |
-|-------|---------|------|-----------|
-| **Frontend** | LocalStorage | Search history, language prefs, settings | Permanent |
-| **Backend** | `app/memory/plans.json` | User task plans | All sessions |
-| **Backend** | `app/memory/results.json` | Execution outputs | All sessions |
-| **Backend** | `app/memory/logs.json` | Runtime logs & diagnostics | All sessions |
-| **Export** | `output/` folder | Timestamped reports | Permanent |
-
----
-
-## 🏗️ Sentiment & Intelligence Layer Architecture
-
-> *Not just features. A mini intelligence platform.*
-
-### 🔄 End-to-End System Flow
-
-```
-User Input → Planner Agent → Task JSON → Executor Agent
-                                              ↓
-            ┌────────────────────────────────────────────────┐
-            │  Tools: News → Summary → Sentiment → Trends   │
-            └────────────────────────────────────────────────┘
-                                              ↓
-                              Memory Store → UI Rendering
-                                              ↓
-                    Supplementary: /translate │ /dictionary │ /languages
-```
-
-### ⚙️ Dictionary Engine
-
-| Aspect | Design |
-|--------|--------|
-| **Primary API** | Merriam-Webster (if key available) |
-| **Fallback API** | Free Dictionary API (zero config) |
-| **Trigger** | Click DICT → Type → GO |
-| **Reliability** | Dynamic API fallback, zero breakage |
-
-### 🌐 Translation Engine
-
-| Aspect | Design |
-|--------|--------|
-| **API** | MyMemory (no key required) |
-| **Limit** | 500 chars/request (quota protection) |
-| **Languages** | 18 languages, max 3 selected |
-| **Prefs** | Persisted in LocalStorage |
-
-### ⭐ Architecture Highlights
-
-```
-┌─────────────────────────────────────────────────────────────────┐
-│  ✅ Multi-layer persistence (Frontend + Backend)               │
-│  ✅ External API fallback reliability model                    │
-│  ✅ Preference-aware UI behavior                               │
-│  ✅ Modular tool-driven intelligence pipeline                  │
-│  ✅ Feature toggle driven UX                                   │
-│  ✅ Cost-aware planning (fewer tools = less cost + faster)     │
-└─────────────────────────────────────────────────────────────────┘
-```
-
-> **💡 Smart Execution:** Feature toggles dynamically build commands — planner only invokes tools you enable, reducing API costs and execution time.
-
-### 🛡️ Error Handling & Resilience
-
-| Capability | Status |
-|------------|--------|
-| **Tool Error Isolation** | ✅ Step failure doesn't kill pipeline |
-| **Per-Step Error Logging** | ✅ Errors stored individually |
-| **Graceful Degradation** | ✅ Partial results returned |
-| **Tool Retry Logic** | ✅ 2 retries with exponential backoff |
-| **Dependency Graph Execution** | ✅ Skip tool if dependency failed |
-| **Alternate Tool Fallback** | ✅ Fallback summarizer & sentiment |
-| **Auto Step Regeneration** | ✅ Retry with reduced params |
-| **Dynamic Plan Rewriting** | ✅ Recovery on critical failures |
-
->
 ## 🎯 Feature Deep-Dive
 
 ### 📰 Multi-Source News Intelligence
@@ -252,17 +163,6 @@ User Input → Planner Agent → Task JSON → Executor Agent
 
 ---
 
-### 🧠 AI Summarization Engine
-
-| Aspect | Details |
-|--------|---------|
-| **Model** | Amazon Nova Lite v1 |
-| **Context** | Up to 12 headlines per analysis |
-| **Output** | 2-3 sentence executive digest |
-| **Fallback** | Template-based summary on error |
-
----
-
 ### 📊 Trend Intelligence V2 — *"Velocity, Not Just Frequency"*
 
 > 📝 **OLD:** Keyword counting → *"OpenAI: 5 mentions"*  
@@ -300,6 +200,37 @@ User Input → Planner Agent → Task JSON → Executor Agent
 
 ---
 
+### 🛠️ Multi-Agent System (MAS) — *"5 Specialist Agents, One Query"*
+
+> 🔧 **The MAS layer extends the core pipeline with 5 specialized tools that run in parallel, orchestrated by the Executor Agent's dependency graph.**
+
+```
+┌─────────────────────────────────────────────────────────────────────────┐
+│  🛠️ MULTI-AGENT SYSTEM                                                  │
+├─────────────────────────────────────────────────────────────────────────┤
+│                                                                         │
+│  🌐 Web Scraper          →  Full article text + og:image extraction     │
+│  👤 Entity Extractor     →  NER: people, orgs, locations, relations     │
+│  🖼️ Image Analyzer       →  EXIF forensics, text detection, tampering   │
+│  📱 Social Monitor       →  Reddit threads, sentiment per-post          │
+│  📚 Research Assistant   →  arXiv papers, GitHub repos, SO threads      │
+│                                                                         │
+├─────────────────────────────────────────────────────────────────────────┤
+│  ⚡ Execution: Parallel via asyncio │ 🔄 Auto-retry on failure          │
+│  🧠 Context: Shared pipeline state │ 📦 Export: All tools included      │
+└─────────────────────────────────────────────────────────────────────────┘
+```
+
+| Tool | Input | Output | Fallback |
+|------|-------|--------|----------|
+| **🌐 Web Scraper** | Article URLs (direct, not redirects) | Title, text, images, metadata | Skipped if URL blocked |
+| **👤 Entity Extractor** | News article list | People, orgs, locations + relationships | Empty entity map |
+| **🖼️ Image Analyzer** | Scraper images → og:image fallback | Forensics report per image | Zero images reported |
+| **📱 Social Monitor** | Topic query | Reddit posts, scores, sentiment | Empty social section |
+| **📚 Research Assistant** | Topic query | Papers, repos, SO answers | Empty research section |
+
+---
+
 ### 📦 Intelligence Package Builder — *"Not Save. Deliver."*
 
 > 📁 **OLD:** Basic file export → *"Download JSON"*  
@@ -309,13 +240,13 @@ User Input → Planner Agent → Task JSON → Executor Agent
 ┌─────────────────────────────────────────────────────────────────────────┐
 │  📦 INTELLIGENCE PACKAGE BUILDER                                        │
 ├─────────────────────────────────────────────────────────────────────────┤
-│  Quality     │  🟢 Full Report │ 🟡 Partial │ 🔴 Raw Data              │
-│  Preview     │  ✔ News  ✔ Summary  ✔ Sentiment  ✗ Trends              │
-│  Stats       │  📰 15 Articles │ 📁 3 Sections │ ~45 KB                │
-│  Recommend   │  💡 Markdown for rich formatting                        │
+│  Quality     │  🟢 Full (5+ tools) │ 🟡 Partial (3-4) │ 🔴 Raw (<3)   │
+│  Preview     │  ✔ News  ✔ Summary  ✔ Entities  ✔ Social  ✗ Images    │
+│  Stats       │  📰 15 Articles │ 📁 7 Sections │ ~85 KB                │
+│  Recommend   │  💡 JSON for structured intelligence data                │
 ├─────────────────────────────────────────────────────────────────────────┤
-│  [{ } JSON]  [📄 Markdown]  [📊 CSV]                                   │
-│  [⬇️ Download All Formats]                                              │
+│  [{ } JSON]  [📄 Markdown]  [📊 CSV]  [📝 Word]  [📕 PDF]             │
+│  [⬇️ Download All 5 Formats]                                            │
 │  [📋 Copy JSON to Clipboard]                                            │
 └─────────────────────────────────────────────────────────────────────────┘
 ```
@@ -324,52 +255,87 @@ User Input → Planner Agent → Task JSON → Executor Agent
 
 | Feature | What It Does |
 |---------|--------------|
-| **Quality Badges** | 🟢 Full (3+ sections) → 🟡 Partial (2) → 🔴 Raw (1) |
-| **Smart Recommend** | Markdown for rich, CSV for data, JSON for API |
-| **Toggle-Aware** | Exports only enabled features |
-| **Multi-Export** | One-click download all 3 formats |
-| **Copy Clipboard** | Instant JSON copy for dev use |
+| **Quality Badges** | 🟢 Full (5+ sections) → 🟡 Partial (3-4) → 🔴 Raw (<3) |
+| **Smart Recommend** | JSON for MAS data, Markdown for narrative, CSV for tabular |
+| **Toggle-Aware** | Exports only enabled features — all 9 tools supported |
+| **5-Format Export** | JSON, Markdown, CSV, Word (DOCX), PDF |
+| **Execution Quality** | Shows tools ran, retries, fallbacks, confidence badge |
+| **Copy Clipboard** | Instant JSON copy for API/dev use |
 
 ---
 
-## 🏗️ Architecture
+### 🌐 Language & Dictionary Tools
+
+> *Understand any term. Read in any language.*
+
+**📖 Dictionary Lookup:**
+1. Click **DICT** button in Intelligence Report header
+2. Type any English word (e.g., "tariff", "bullish", "volatility")  
+3. Press **GO** or hit Enter → Definition popup appears instantly
+
+**🌐 Translation System:**
+1. Click **⚙️ Settings** → Select up to **3 languages** from 18 available
+2. Use **Translate** dropdown on Intelligence Report
+3. Translated text appears with **Show Original** button
+
+**Supported Languages:**
+`English` `Hindi` `Spanish` `French` `German` `Chinese` `Japanese` `Korean` `Arabic` `Portuguese` `Russian` `Italian` `Tamil` `Telugu` `Bengali` `Marathi` `Gujarati` `Punjabi`
+
+**🎯 Smart Tooltips** — Finance terms highlighted with hover explanations:
+
+| Term | Explanation |
+|------|-------------|
+| **Momentum** | How fast and strong sentiment is changing |
+| **Risk-On** | Investors favor risky assets (stocks, crypto) |
+| **Risk-Off** | Investors prefer safe assets (bonds, gold) |
+| **Bullish Signals** | Factors driving positive sentiment |
+| **Confidence** | Certainty level based on data consistency |
+
+---
+
+## 🏗️ System Design
+
+### 🔄 End-to-End Flow
 
 ```
-┌─────────────────┐     ┌──────────────────┐     ┌─────────────────┐
-│   Voice/Text    │────▶│   Nova Planner   │────▶│    Executor     │
-│     Input       │     │  (Amazon Nova)   │     │     Agent       │
-└─────────────────┘     └──────────────────┘     └────────┬────────┘
-                                                          │
-                        ┌─────────────────────────────────┼─────────────────────────────────┐
-                        │                                 │                                 │
-                        ▼                                 ▼                                 ▼
-              ┌─────────────────┐              ┌─────────────────┐              ┌─────────────────┐
-              │  Tavily Search  │              │   GNews API     │              │   RSS Feeds     │
-              │  (Web Search)   │              │  (News API)     │              │ (Google News)   │
-              └────────┬────────┘              └────────┬────────┘              └────────┬────────┘
-                       │                                │                                │
-                       └────────────────────────────────┼────────────────────────────────┘
-                                                        │
-                                                        ▼
-                                              ┌─────────────────┐
-                                              │   Deduplicator  │
-                                              │  & Merger       │
-                                              └────────┬────────┘
-                                                       │
-                        ┌──────────────────────────────┼──────────────────────────────┐
-                        │                              │                              │
-                        ▼                              ▼                              ▼
-              ┌─────────────────┐            ┌─────────────────┐            ┌─────────────────┐
-              │   Summarizer    │            │   Sentiment     │            │    Trends       │
-              │   (Nova AI)     │            │   Analyzer      │            │   Extractor     │
-              └─────────────────┘            └─────────────────┘            └─────────────────┘
-                                                        │
-                                                        ▼
-                                              ┌─────────────────┐
-                                              │    Exporter     │
-                                              │  JSON/MD/CSV    │
-                                              └─────────────────┘
+User Input → Planner Agent → Task JSON → Executor Agent
+                                              ↓
+            ┌──────────────────────────────────────────────────────┐
+            │  Core: News → Summary → Sentiment → Trends          │
+            │  MAS:  Scraper → Entities → Images → Social → Rsrch │
+            └──────────────────────────────────────────────────────┘
+                                              ↓
+                              Memory Store → UI Rendering
+                                              ↓
+                    Supplementary: /translate │ /dictionary │ /languages
 ```
+
+### 💾 Multi-Layer Storage
+
+| Layer | Storage | Data | Retention |
+|-------|---------|------|-----------|
+| **Frontend** | LocalStorage | Search history, language prefs, settings | Permanent |
+| **Backend** | `app/memory/plans.json` | User task plans | All sessions |
+| **Backend** | `app/memory/results.json` | Execution outputs | All sessions |
+| **Backend** | `app/memory/logs.json` | Runtime logs & diagnostics | All sessions |
+| **Export** | `output/` folder | Timestamped reports (5 formats) | Permanent |
+
+### 🛡️ Error Handling & Resilience
+
+| Capability | Status |
+|------------|--------|
+| **Tool Error Isolation** | ✅ Step failure doesn't kill pipeline |
+| **Per-Step Error Logging** | ✅ Errors stored individually |
+| **Graceful Degradation** | ✅ Partial results returned |
+| **Tool Retry Logic** | ✅ 2 retries with exponential backoff |
+| **Dependency Graph Execution** | ✅ Skip tool if dependency failed |
+| **Alternate Tool Fallback** | ✅ Fallback summarizer & sentiment |
+| **Auto Step Regeneration** | ✅ Retry with reduced params |
+| **Dynamic Plan Rewriting** | ✅ Recovery on critical failures |
+| **Redirect Following** | ✅ Handles 302 redirects gracefully |
+| **Direct URL Prioritization** | ✅ Prefers direct links over Google News redirects |
+
+> **💡 Smart Execution:** Feature toggles dynamically build commands — planner only invokes tools you enable, reducing API costs and execution time.
 
 ---
 
@@ -414,46 +380,30 @@ Navigate to `http://localhost:8000`
 
 ## 🔌 MCP Server Integration
 
-**NEW:** NovaAI now supports **Model Context Protocol (MCP)** - connect your intelligence system to AI assistants like Claude!
-
-### What is MCP?
-
-MCP allows AI assistants to use NovaAI as a tool. Instead of using the web interface, you can ask Claude (or other MCP-compatible AIs):
+**NEW:** NovaAI supports **Model Context Protocol (MCP)** — connect your intelligence system to AI assistants like Claude!
 
 ```
 "Use NovaAI to fetch the latest Tesla news and analyze sentiment"
 ```
 
-The AI will automatically:
-1. Call NovaAI's intelligence tools
-2. Fetch news from multiple sources
-3. Analyze sentiment using Amazon Nova
-4. Present you with a comprehensive report
+The AI will automatically call NovaAI's 9 tools, fetch multi-source news, run entity extraction, analyze images, monitor social media, and deliver a comprehensive report.
 
 ### Quick MCP Setup
 
-1. **Install MCP dependency:**
-   ```bash
-   pip install mcp>=0.9.0
-   ```
-
-2. **Test the MCP server:**
-   ```bash
-   python test_mcp.py
-   ```
-
-3. **Configure your AI assistant** (e.g., Claude Desktop):
-   - Use the provided `mcp_config.json`
-   - See [MCP_README.md](MCP_README.md) for detailed instructions
+1. **Install:** `pip install mcp>=0.9.0`
+2. **Test:** `python test_mcp.py`
+3. **Configure:** Use `mcp_config.json` with Claude Desktop — see [MCP_README.md](MCP_README.md)
 
 ### Available MCP Tools
 
-- `fetch_news` - Multi-source news fetching
-- `analyze_sentiment` - Institutional-grade sentiment analysis
-- `summarize_news` - AI-powered summaries
-- `extract_trends` - Trending topic detection
-- `intelligence_query` - Full pipeline (recommended)
-- `get_history` - Access past queries
+| Tool | Description |
+|------|-------------|
+| `fetch_news` | Multi-source news fetching |
+| `analyze_sentiment` | Institutional-grade sentiment analysis |
+| `summarize_news` | AI-powered summaries |
+| `extract_trends` | Trending topic detection |
+| `intelligence_query` | Full 9-tool pipeline (recommended) |
+| `get_history` | Access past queries |
 
 📚 **Full MCP Documentation:** See [MCP_README.md](MCP_README.md)
 
@@ -471,11 +421,12 @@ The AI will automatically:
 
 ### Feature Toggles
 Click badges in the UI to enable/disable:
-- 📰 **News** - Always on
-- 🧠 **Summary** - AI digest
-- 💭 **Sentiment** - Tone analysis
-- 📊 **Trends** - Hot topics
-- 💾 **Export** - Save results
+
+**Core:**  📰 News • 🧠 Summary • 💭 Sentiment • 📊 Trends  
+**MAS:**  🌐 Scraper • 👤 Entities • 🖼️ Images • 📱 Social • 📚 Research  
+**Export:** 📦 Package Builder (JSON, MD, CSV, Word, PDF)
+
+> ⚡ **Select All** for full 9-tool analysis or pick individual tools to customize your intelligence report.
 
 ---
 
@@ -485,55 +436,63 @@ Click badges in the UI to enable/disable:
 NovaAI/
 ├── app/
 │   ├── __init__.py
-│   ├── main.py                    # FastAPI entry point
+│   ├── main.py                      # FastAPI entry point
 │   │
 │   ├── agents/
 │   │   ├── __init__.py
-│   │   ├── planner_agent.py       # Nova AI task planning
-│   │   └── executor_agent.py      # Tool orchestration & context
+│   │   ├── planner_agent.py         # Nova AI task planning
+│   │   └── executor_agent.py        # Tool orchestration & context
 │   │
 │   ├── api/
 │   │   ├── __init__.py
-│   │   └── routes.py              # REST API endpoints
+│   │   └── routes.py                # REST API endpoints
 │   │
 │   ├── core/
 │   │   ├── __init__.py
-│   │   ├── tool_registry.py       # Tool management
-│   │   └── plan_validator.py      # Plan validation
+│   │   ├── tool_registry.py         # Tool management
+│   │   └── plan_validator.py        # Plan validation
 │   │
 │   ├── memory/
 │   │   ├── __init__.py
-│   │   ├── store.py               # Logging & persistence
-│   │   ├── logs.json              # Execution logs
-│   │   ├── plans.json             # Saved plans
-│   │   └── results.json           # Execution results
+│   │   ├── store.py                 # Logging & persistence
+│   │   ├── logs.json                # Execution logs
+│   │   ├── plans.json               # Saved plans
+│   │   └── results.json             # Execution results
 │   │
 │   ├── models/
 │   │   ├── __init__.py
-│   │   └── schemas.py             # Pydantic models
+│   │   └── schemas.py               # Pydantic models
 │   │
-│   └── tools/
+│   └── tools/                       # 🛠️ 9 Intelligence Tools
 │       ├── __init__.py
-│       ├── multi_fetcher.py       # Parallel multi-source fetch
-│       ├── tavily_fetcher.py      # Tavily web search API
-│       ├── gnews_fetcher.py       # GNews API
-│       ├── rss_fetcher.py         # Google News RSS
-│       ├── news_fetcher.py        # Legacy single-source
-│       ├── summarizer.py          # Nova AI summary
-│       ├── sentiment.py           # Nova AI sentiment
-│       ├── trends.py              # Topic extraction
-│       └── exporter.py            # JSON/MD/CSV export
+│       ├── multi_fetcher.py         # Parallel multi-source fetch
+│       ├── tavily_fetcher.py        # Tavily web search API
+│       ├── gnews_fetcher.py         # GNews API
+│       ├── rss_fetcher.py           # Google News RSS
+│       ├── news_fetcher.py          # Legacy single-source
+│       ├── summarizer.py            # Nova AI summary
+│       ├── sentiment.py             # Nova AI sentiment
+│       ├── trends.py                # Topic extraction & velocity
+│       ├── exporter.py              # 5-format export engine
+│       ├── web_scraper.py           # 🌐 Full article scraper
+│       ├── entity_extractor.py      # 👤 NER extraction
+│       ├── image_analyzer.py        # 🖼️ Image forensics
+│       ├── social_monitor.py        # 📱 Reddit/Twitter monitor
+│       └── research_assistant.py    # 📚 arXiv/GitHub/SO search
 │
 ├── frontend/
-│   ├── index.html                 # Voice UI interface
-│   ├── app.js                     # Frontend logic & history
-│   └── style.css                  # Professional dark theme
+│   ├── index.html                   # Main UI + Settings + Package Builder
+│   ├── app.js                       # Frontend logic (1800+ lines)
+│   ├── style.css                    # Professional dark theme
+│   └── mas_styles.css               # MAS tool panel styles
 │
-├── output/                        # Exported report files
-├── .env                           # API keys (not in git)
-├── .env.example                   # Template for .env
+├── output/                          # Exported report files
+├── .env                             # API keys (not in git)
+├── .env.example                     # Template for .env
 ├── .gitignore
 ├── requirements.txt
+├── mcp_config.json                  # MCP server configuration
+├── MCP_README.md                    # MCP documentation
 └── README.md
 ```
 
@@ -543,9 +502,10 @@ NovaAI/
 
 | Method | Endpoint | Description |
 |--------|----------|-------------|
-| POST | `/api/command` | Process voice/text command |
-| GET | `/api/capabilities` | Get available tools |
-| GET | `/api/history` | Get recent commands |
+| POST | `/api/command` | Process voice/text command (triggers full pipeline) |
+| POST | `/api/export` | Export intelligence report (json/markdown/csv/docx/pdf) |
+| GET | `/api/capabilities` | Get available tools & system status |
+| GET | `/api/history` | Get recent command history |
 | POST | `/api/translate` | Translate text to target language |
 | GET | `/api/languages` | Get available translation languages |
 | GET | `/api/dictionary/{word}` | Get word definition |
@@ -577,17 +537,36 @@ curl -X POST http://localhost:8000/api/command \
 
 ```json
 {
-  "summary": "The Tesla-India trade deal focuses on...",
+  "news": [...],
+  "summary": "The India AI summit highlighted national AI strategy...",
   "sentiment": {
     "overall": "positive",
-    "score": 0.72,
-    "breakdown": {"positive": 5, "neutral": 3, "negative": 2}
+    "mood_label": "Strong bullish momentum",
+    "direction": "improving",
+    "confidence": "high",
+    "market_bias": "risk_on",
+    "score": 0.75,
+    "positive_signals": ["Product launches", "Strategic partnerships"],
+    "emerging_themes": ["India", "OpenAI", "Trump"]
   },
-  "trends": [
-    {"topic": "Tesla", "mentions": 8},
-    {"topic": "India", "mentions": 6}
-  ],
-  "articles": [...]
+  "trends": {
+    "trending_topics": [
+      { "topic": "India", "score": 50.38, "velocity": "stable", "story_direction": "Strong Coverage" }
+    ]
+  },
+  "entities": {
+    "people": [{ "name": "Modi", "title": "PM" }],
+    "organizations": [{ "name": "OpenAI", "mentions": 3 }],
+    "locations": [{ "name": "India", "mentions": 12 }]
+  },
+  "social": {
+    "reddit": { "posts": [...], "sentiment": { "positive": 45, "neutral": 40, "negative": 15 } }
+  },
+  "images": {
+    "total_images": 3,
+    "successful": 2,
+    "detailed_results": [...]
+  }
 }
 ```
 
@@ -599,5 +578,5 @@ MIT License - See [LICENSE](LICENSE)
 
 ---
 
-Built with ❤️ using Amazon Nova AI
-MUKUL PRASAD
+Built with ❤️ using Amazon Nova AI  
+**MUKUL PRASAD**

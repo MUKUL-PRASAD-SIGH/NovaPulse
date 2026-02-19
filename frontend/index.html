@@ -7,6 +7,7 @@
     <title>Nova Intelligence Agent</title>
     <meta name="description" content="AI-powered news intelligence with voice interface">
     <link rel="stylesheet" href="/static/style.css">
+    <link rel="stylesheet" href="/static/mas_styles.css">
 </head>
 
 <body>
@@ -39,6 +40,38 @@
                             <input type="checkbox" id="dictToggle" checked>
                         </div>
                     </div>
+                    <div class="setting-group">
+                        <label>🛠️ Intelligence Tools</label>
+                        <p class="setting-hint">Available analysis tools — toggle badges in the toolbar to enable</p>
+                        <div class="tools-info-grid">
+                            <div class="tool-info-item"><span class="tool-dot core"></span> 📰 News Fetcher <em>—
+                                    Multi-source parallel fetch</em></div>
+                            <div class="tool-info-item"><span class="tool-dot core"></span> 🧠 AI Summary <em>—
+                                    Nova-powered digest</em></div>
+                            <div class="tool-info-item"><span class="tool-dot core"></span> 💭 Sentiment <em>—
+                                    Analyst-style narrative</em></div>
+                            <div class="tool-info-item"><span class="tool-dot core"></span> 📊 Trends <em>—
+                                    Velocity-based detection</em></div>
+                            <div class="tool-info-item"><span class="tool-dot mas"></span> 🌐 Web Scraper <em>— Full
+                                    article extraction</em></div>
+                            <div class="tool-info-item"><span class="tool-dot mas"></span> 👤 Entities <em>— NER people,
+                                    orgs, places</em></div>
+                            <div class="tool-info-item"><span class="tool-dot mas"></span> 🖼️ Images <em>— Forensics &
+                                    metadata</em></div>
+                            <div class="tool-info-item"><span class="tool-dot mas"></span> 📱 Social <em>— Reddit &
+                                    Twitter monitor</em></div>
+                            <div class="tool-info-item"><span class="tool-dot mas"></span> 📚 Research <em>— arXiv,
+                                    GitHub, SO</em></div>
+                        </div>
+                    </div>
+                    <div class="setting-group">
+                        <label>💾 Data & Export</label>
+                        <p class="setting-hint">Manage cached data and search history</p>
+                        <div class="toggle-row">
+                            <span>Clear Search History</span>
+                            <button id="clearHistoryBtn" class="setting-action-btn">🗑️ Clear</button>
+                        </div>
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button id="saveSettings" class="save-btn">💾 Save Settings</button>
@@ -48,10 +81,28 @@
 
         <!-- Feature Toggles (Clickable) -->
         <div class="features">
+            <!-- Select All Button -->
+            <button id="selectAllBtn" class="badge select-all-badge" title="Select/Deselect All Tools">⚡ Select
+                All</button>
+            <span class="feature-divider"></span>
+
+            <!-- Core Intelligence Tools -->
             <button class="badge toggle-badge active" data-feature="news">📰 News</button>
             <button class="badge toggle-badge" data-feature="summary">🧠 Summary</button>
             <button class="badge toggle-badge" data-feature="sentiment">💭 Sentiment</button>
             <button class="badge toggle-badge" data-feature="trends">📊 Trends</button>
+
+            <!-- MAS Tools (New) -->
+            <button class="badge toggle-badge" data-feature="scraper" title="Extract full article content">🌐
+                Scraper</button>
+            <button class="badge toggle-badge" data-feature="entities"
+                title="Extract people, organizations, locations">👤 Entities</button>
+            <button class="badge toggle-badge" data-feature="images" title="Analyze images from articles">🖼️
+                Images</button>
+            <button class="badge toggle-badge" data-feature="social" title="Monitor Reddit &amp; Twitter">📱
+                Social</button>
+            <button class="badge toggle-badge" data-feature="research" title="Search papers, GitHub, StackOverflow">📚
+                Research</button>
 
             <!-- Package Builder Button (replaces export toggle) -->
             <button id="openPackageBuilder" class="package-builder-btn" title="Intelligence Package Builder">
@@ -64,7 +115,8 @@
                 Export
             </button>
         </div>
-        <p class="toggle-hint">Click badges to toggle features • Click Export to download intelligence reports</p>
+        <p class="toggle-hint">⚡ Select All for full analysis • Click badges to toggle • Click Export to download
+            reports</p>
 
         <!-- Intelligence Package Builder Modal -->
         <div id="packageModal" class="package-modal hidden">
@@ -217,7 +269,7 @@
 
         <!-- Collapsed Summary Chip (stays visible after execution) -->
         <div id="summaryChip" class="summary-chip hidden">
-            <span class="chip-icon">✅</span>
+            <span class="chip-icon" id="chipIcon">✅</span>
             <span class="chip-text" id="chipText">5 tools • 3.2s • No errors</span>
             <button class="chip-expand-btn" id="chipExpandBtn" title="View execution trace">↗</button>
             <button class="chip-dismiss-btn" id="chipDismissBtn" title="Dismiss">×</button>
@@ -248,6 +300,50 @@
                     </div>
                 </div>
                 <div id="intelOutput" class="intel-content"></div>
+            </div>
+
+            <!-- Entity Network Panel (NEW) -->
+            <div id="entityPanel" class="panel entity-panel hidden">
+                <div class="panel-header">
+                    <h3>👤 Entity Network</h3>
+                    <button class="collapse-btn" data-target="entityContent">▼</button>
+                </div>
+                <div id="entityContent" class="panel-content">
+                    <div id="entityOutput"></div>
+                </div>
+            </div>
+
+            <!-- Image Gallery Panel (NEW) -->
+            <div id="imagePanel" class="panel image-panel hidden">
+                <div class="panel-header">
+                    <h3>🖼️ Image Intelligence</h3>
+                    <button class="collapse-btn" data-target="imageContent">▼</button>
+                </div>
+                <div id="imageContent" class="panel-content">
+                    <div id="imageOutput" class="image-grid"></div>
+                </div>
+            </div>
+
+            <!-- Social Media Panel (NEW) -->
+            <div id="socialPanel" class="panel social-panel hidden">
+                <div class="panel-header">
+                    <h3>📱 Social Media Intelligence</h3>
+                    <button class="collapse-btn" data-target="socialContent">▼</button>
+                </div>
+                <div id="socialContent" class="panel-content">
+                    <div id="socialOutput"></div>
+                </div>
+            </div>
+
+            <!-- Research Library Panel (NEW) -->
+            <div id="researchPanel" class="panel research-panel hidden">
+                <div class="panel-header">
+                    <h3>📚 Research Library</h3>
+                    <button class="collapse-btn" data-target="researchContent">▼</button>
+                </div>
+                <div id="researchContent" class="panel-content">
+                    <div id="researchOutput"></div>
+                </div>
             </div>
         </div>
 

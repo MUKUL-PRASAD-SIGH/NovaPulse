@@ -47,3 +47,26 @@ def get_recent_plans(limit: int = 10) -> List[Dict]:
 
 def get_recent_results(limit: int = 10) -> List[Dict]:
     return _load("results.json")[-limit:]
+
+async def log_tool_execution(tool_name: str = "", success: bool = True, duration: float = 0.0, 
+                              metadata: Optional[Dict] = None, **kwargs):
+    """Log tool execution for monitoring and debugging.
+    
+    Accepts both old-style (tool_name, success, duration) and 
+    new-style (tool_name, params, result) keyword arguments.
+    """
+    log_data = {
+        "tool": tool_name,
+        "success": success,
+        "duration_seconds": duration,
+    }
+    if metadata:
+        log_data.update(metadata)
+    # Support new-style kwargs from MAS tools (params=..., result=...)
+    if "params" in kwargs:
+        log_data["params"] = kwargs["params"]
+    if "result" in kwargs:
+        log_data["result"] = kwargs["result"]
+    
+    log("INFO" if success else "ERROR", f"Tool {tool_name} executed", log_data)
+

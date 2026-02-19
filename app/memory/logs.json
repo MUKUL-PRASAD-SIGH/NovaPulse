@@ -1,42 +1,141 @@
 [
   {
-    "timestamp": "2026-02-04T16:35:12.949899",
+    "timestamp": "2026-02-19T23:21:55.911541",
+    "level": "WARN",
+    "message": "Retry 2/2 for entity_extractor in 2.0s"
+  },
+  {
+    "timestamp": "2026-02-19T23:21:57.941577",
     "level": "DEBUG",
-    "message": "Running tool: news_fetcher",
+    "message": "Running tool: entity_extractor",
+    "data": {
+      "params": [
+        "text"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-19T23:21:57.959881",
+    "level": "ERROR",
+    "message": "Tool entity_extractor failed: extract_entities_from_articles() got an unexpected keyword argument 'text'"
+  },
+  {
+    "timestamp": "2026-02-19T23:21:57.980050",
+    "level": "DEBUG",
+    "message": "Running tool: image_analyzer",
+    "data": {
+      "params": []
+    }
+  },
+  {
+    "timestamp": "2026-02-19T23:21:58.005047",
+    "level": "ERROR",
+    "message": "Tool image_analyzer failed: analyze_article_images() missing 1 required positional argument: 'articles'"
+  },
+  {
+    "timestamp": "2026-02-19T23:21:58.025806",
+    "level": "WARN",
+    "message": "Retry 1/2 for image_analyzer in 1.0s"
+  },
+  {
+    "timestamp": "2026-02-19T23:21:59.045842",
+    "level": "DEBUG",
+    "message": "Running tool: image_analyzer",
+    "data": {
+      "params": []
+    }
+  },
+  {
+    "timestamp": "2026-02-19T23:21:59.065007",
+    "level": "ERROR",
+    "message": "Tool image_analyzer failed: analyze_article_images() missing 1 required positional argument: 'articles'"
+  },
+  {
+    "timestamp": "2026-02-19T23:21:59.086746",
+    "level": "WARN",
+    "message": "Retry 2/2 for image_analyzer in 2.0s"
+  },
+  {
+    "timestamp": "2026-02-19T23:22:01.123147",
+    "level": "DEBUG",
+    "message": "Running tool: image_analyzer",
+    "data": {
+      "params": []
+    }
+  },
+  {
+    "timestamp": "2026-02-19T23:22:01.144309",
+    "level": "ERROR",
+    "message": "Tool image_analyzer failed: analyze_article_images() missing 1 required positional argument: 'articles'"
+  },
+  {
+    "timestamp": "2026-02-19T23:22:01.164927",
+    "level": "DEBUG",
+    "message": "Running tool: social_monitor",
     "data": {
       "params": [
         "topic",
-        "limit"
+        "platforms"
       ]
     }
   },
   {
-    "timestamp": "2026-02-04T16:35:12.968626",
-    "level": "INFO",
-    "message": "Multi-source fetch for: India-US trade deal"
-  },
-  {
-    "timestamp": "2026-02-04T16:35:15.840212",
-    "level": "ERROR",
-    "message": "GNews failed: Client error '400 Bad Request' for url 'https://gnews.io/api/v4/search?apikey=a7519075e5f8447070cc6f0047260ca2&q=India-US+trade+deal&lang=en&max=5'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400"
-  },
-  {
-    "timestamp": "2026-02-04T16:35:19.315716",
-    "level": "INFO",
-    "message": "Multi-source complete: 10 articles from 3 sources"
-  },
-  {
-    "timestamp": "2026-02-04T16:35:19.336951",
+    "timestamp": "2026-02-19T23:22:01.185234",
     "level": "DEBUG",
-    "message": "Running tool: sentiment",
+    "message": "Running tool: research_assistant",
     "data": {
       "params": [
-        "news_items"
+        "query"
       ]
     }
   },
   {
-    "timestamp": "2026-02-04T16:35:21.624977",
+    "timestamp": "2026-02-19T23:22:01.205020",
+    "level": "ERROR",
+    "message": "Tool research_assistant failed: comprehensive_research() got an unexpected keyword argument 'query'"
+  },
+  {
+    "timestamp": "2026-02-19T23:22:01.227206",
+    "level": "WARN",
+    "message": "Retry 1/2 for research_assistant in 1.0s"
+  },
+  {
+    "timestamp": "2026-02-19T23:22:02.258016",
+    "level": "DEBUG",
+    "message": "Running tool: research_assistant",
+    "data": {
+      "params": [
+        "query"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-19T23:22:02.276676",
+    "level": "ERROR",
+    "message": "Tool research_assistant failed: comprehensive_research() got an unexpected keyword argument 'query'"
+  },
+  {
+    "timestamp": "2026-02-19T23:22:02.296690",
+    "level": "WARN",
+    "message": "Retry 2/2 for research_assistant in 2.0s"
+  },
+  {
+    "timestamp": "2026-02-19T23:22:04.323665",
+    "level": "DEBUG",
+    "message": "Running tool: research_assistant",
+    "data": {
+      "params": [
+        "query"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-19T23:22:04.344551",
+    "level": "ERROR",
+    "message": "Tool research_assistant failed: comprehensive_research() got an unexpected keyword argument 'query'"
+  },
+  {
+    "timestamp": "2026-02-19T23:22:04.362772",
     "level": "DEBUG",
     "message": "Running tool: exporter",
     "data": {
@@ -48,41 +147,131 @@
     }
   },
   {
-    "timestamp": "2026-02-04T16:35:21.659932",
-    "level": "INFO",
-    "message": "Execution complete: 3 tools run"
+    "timestamp": "2026-02-19T23:22:04.388700",
+    "level": "ERROR",
+    "message": "Tool exporter failed: Object of type coroutine is not JSON serializable"
   },
   {
-    "timestamp": "2026-02-04T16:35:21.683762",
-    "level": "INFO",
-    "message": "Planning task for: india us trade deal with sentiment analysis"
+    "timestamp": "2026-02-19T23:22:04.409735",
+    "level": "WARN",
+    "message": "Retry 1/2 for exporter in 1.0s"
   },
   {
-    "timestamp": "2026-02-04T16:35:23.251746",
+    "timestamp": "2026-02-19T23:22:05.451281",
+    "level": "DEBUG",
+    "message": "Running tool: exporter",
+    "data": {
+      "params": [
+        "filename",
+        "format",
+        "data"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-19T23:22:05.471723",
+    "level": "ERROR",
+    "message": "Tool exporter failed: Object of type coroutine is not JSON serializable"
+  },
+  {
+    "timestamp": "2026-02-19T23:22:05.498850",
+    "level": "WARN",
+    "message": "Retry 2/2 for exporter in 2.0s"
+  },
+  {
+    "timestamp": "2026-02-19T23:22:07.531846",
+    "level": "DEBUG",
+    "message": "Running tool: exporter",
+    "data": {
+      "params": [
+        "filename",
+        "format",
+        "data"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-19T23:22:07.554183",
+    "level": "ERROR",
+    "message": "Tool exporter failed: Object of type coroutine is not JSON serializable"
+  },
+  {
+    "timestamp": "2026-02-19T23:22:07.574778",
     "level": "INFO",
-    "message": "Nova plan generated",
+    "message": "Sentiment-Trend fusion applied"
+  },
+  {
+    "timestamp": "2026-02-19T23:22:07.613131",
+    "level": "INFO",
+    "message": "Execution complete: 10 tools run, 0 skipped, 0 fallbacks used"
+  },
+  {
+    "timestamp": "2026-02-19T23:35:43.357534",
+    "level": "INFO",
+    "message": "Planning task for: elon musk with summarize and sentiment analysis and trends and full article content and entity extraction and image analysis and social media monitoring and research papers"
+  },
+  {
+    "timestamp": "2026-02-19T23:35:43.375269",
+    "level": "INFO",
+    "message": "Using mock planner",
     "data": {
       "plan": {
-        "intent": "fetch news on India-US trade deal with sentiment analysis",
-        "domain": "India-US trade deal",
+        "intent": "Get elon news",
+        "domain": "elon",
         "steps": [
           {
             "tool": "news_fetcher",
             "params": {
-              "topic": "India-US trade deal",
+              "topic": "elon",
+              "sources": [
+                "google"
+              ],
               "limit": 5
             }
           },
           {
+            "tool": "summarizer",
+            "params": {}
+          },
+          {
             "tool": "sentiment",
+            "params": {}
+          },
+          {
+            "tool": "trends",
+            "params": {}
+          },
+          {
+            "tool": "web_scraper",
+            "params": {}
+          },
+          {
+            "tool": "entity_extractor",
+            "params": {}
+          },
+          {
+            "tool": "image_analyzer",
+            "params": {}
+          },
+          {
+            "tool": "social_monitor",
             "params": {
-              "news_items": "news_fetcher_output"
+              "topic": "elon",
+              "platforms": [
+                "reddit"
+              ]
+            }
+          },
+          {
+            "tool": "research_assistant",
+            "params": {
+              "query": "elon"
             }
           },
           {
             "tool": "exporter",
             "params": {
-              "filename": "India-US_trade_deal_sentiment_report",
+              "filename": "elon_report",
               "format": "json"
             }
           }
@@ -91,135 +280,61 @@
     }
   },
   {
-    "timestamp": "2026-02-04T16:35:23.278854",
+    "timestamp": "2026-02-19T23:35:43.408503",
     "level": "INFO",
-    "message": "Executing plan: fetch news on India-US trade deal with sentiment analysis",
+    "message": "Executing plan: Get elon news",
     "data": {
-      "steps": 3
+      "steps": 10
     }
   },
   {
-    "timestamp": "2026-02-04T16:35:23.301991",
+    "timestamp": "2026-02-19T23:35:43.425018",
     "level": "DEBUG",
     "message": "Running tool: news_fetcher",
     "data": {
       "params": [
         "topic",
+        "sources",
         "limit"
       ]
     }
   },
   {
-    "timestamp": "2026-02-04T16:35:23.328776",
+    "timestamp": "2026-02-19T23:35:43.439250",
     "level": "INFO",
-    "message": "Multi-source fetch for: India-US trade deal"
+    "message": "Multi-source fetch for: elon"
   },
   {
-    "timestamp": "2026-02-04T16:35:24.399796",
-    "level": "ERROR",
-    "message": "GNews failed: Client error '400 Bad Request' for url 'https://gnews.io/api/v4/search?apikey=a7519075e5f8447070cc6f0047260ca2&q=India-US+trade+deal&lang=en&max=5'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400"
-  },
-  {
-    "timestamp": "2026-02-04T16:35:29.045524",
+    "timestamp": "2026-02-19T23:35:53.406734",
     "level": "INFO",
-    "message": "Multi-source complete: 10 articles from 3 sources"
-  },
-  {
-    "timestamp": "2026-02-04T16:35:29.070056",
-    "level": "DEBUG",
-    "message": "Running tool: sentiment",
+    "message": "Multi-source complete: 15 articles from 3 sources",
     "data": {
-      "params": [
-        "news_items"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-02-04T16:35:31.136205",
-    "level": "DEBUG",
-    "message": "Running tool: exporter",
-    "data": {
-      "params": [
-        "filename",
-        "format",
-        "data"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-02-04T16:35:31.173002",
-    "level": "INFO",
-    "message": "Execution complete: 3 tools run"
-  },
-  {
-    "timestamp": "2026-02-04T16:41:02.113370",
-    "level": "INFO",
-    "message": "Planning task for: india us trade deal with sentiment analysis"
-  },
-  {
-    "timestamp": "2026-02-04T16:41:03.740975",
-    "level": "INFO",
-    "message": "Nova plan generated",
-    "data": {
-      "plan": {
-        "intent": "Fetch news on India-US trade deal, perform sentiment analysis, and export the results.",
-        "domain": "India-US trade deal",
-        "steps": [
-          {
-            "tool": "news_fetcher",
-            "params": {
-              "topic": "india us trade deal",
-              "limit": 5
-            }
-          },
-          {
-            "tool": "sentiment",
-            "params": {
-              "news_items": "news_fetcher output"
-            }
-          },
-          {
-            "tool": "exporter",
-            "params": {
-              "filename": "india_us_trade_deal_sentiment",
-              "format": "json"
-            }
-          }
-        ]
+      "rss": {
+        "success": true,
+        "count": 5
+      },
+      "gnews": {
+        "success": true,
+        "count": 5
+      },
+      "tavily": {
+        "success": true,
+        "count": 5
       }
     }
   },
   {
-    "timestamp": "2026-02-04T16:41:03.773689",
-    "level": "INFO",
-    "message": "Executing plan: Fetch news on India-US trade deal, perform sentiment analysis, and export the results.",
-    "data": {
-      "steps": 3
-    }
-  },
-  {
-    "timestamp": "2026-02-04T16:41:03.798716",
+    "timestamp": "2026-02-19T23:35:53.420325",
     "level": "DEBUG",
-    "message": "Running tool: news_fetcher",
+    "message": "Running tool: summarizer",
     "data": {
       "params": [
-        "topic",
-        "limit"
+        "news_items"
       ]
     }
   },
   {
-    "timestamp": "2026-02-04T16:41:03.819906",
-    "level": "INFO",
-    "message": "Multi-source fetch for: india us trade deal"
-  },
-  {
-    "timestamp": "2026-02-04T16:41:09.607365",
-    "level": "INFO",
-    "message": "Multi-source complete: 15 articles from 3 sources"
-  },
-  {
-    "timestamp": "2026-02-04T16:41:09.629403",
+    "timestamp": "2026-02-19T23:35:53.432872",
     "level": "DEBUG",
     "message": "Running tool: sentiment",
     "data": {
@@ -229,7 +344,295 @@
     }
   },
   {
-    "timestamp": "2026-02-04T16:41:11.813814",
+    "timestamp": "2026-02-19T23:35:53.447918",
+    "level": "DEBUG",
+    "message": "Running tool: trends",
+    "data": {
+      "params": [
+        "news_items"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-19T23:35:56.788111",
+    "level": "DEBUG",
+    "message": "Running tool: web_scraper",
+    "data": {
+      "params": [
+        "url"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-19T23:35:57.164176",
+    "level": "ERROR",
+    "message": "Tool web_scraper failed: log_tool_execution() got an unexpected keyword argument 'params'"
+  },
+  {
+    "timestamp": "2026-02-19T23:35:57.186911",
+    "level": "WARN",
+    "message": "Retry 1/2 for web_scraper in 1.0s"
+  },
+  {
+    "timestamp": "2026-02-19T23:35:58.237834",
+    "level": "DEBUG",
+    "message": "Running tool: web_scraper",
+    "data": {
+      "params": [
+        "url"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-19T23:35:58.832909",
+    "level": "ERROR",
+    "message": "Tool web_scraper failed: log_tool_execution() got an unexpected keyword argument 'params'"
+  },
+  {
+    "timestamp": "2026-02-19T23:35:58.878646",
+    "level": "WARN",
+    "message": "Retry 2/2 for web_scraper in 2.0s"
+  },
+  {
+    "timestamp": "2026-02-19T23:36:00.920247",
+    "level": "DEBUG",
+    "message": "Running tool: web_scraper",
+    "data": {
+      "params": [
+        "url"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-19T23:36:01.479774",
+    "level": "ERROR",
+    "message": "Tool web_scraper failed: log_tool_execution() got an unexpected keyword argument 'params'"
+  },
+  {
+    "timestamp": "2026-02-19T23:36:01.506072",
+    "level": "DEBUG",
+    "message": "Running tool: entity_extractor",
+    "data": {
+      "params": [
+        "articles"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-19T23:36:01.550265",
+    "level": "ERROR",
+    "message": "Tool entity_extractor failed: log_tool_execution() got an unexpected keyword argument 'params'"
+  },
+  {
+    "timestamp": "2026-02-19T23:36:01.573281",
+    "level": "WARN",
+    "message": "Retry 1/2 for entity_extractor in 1.0s"
+  },
+  {
+    "timestamp": "2026-02-19T23:36:02.599442",
+    "level": "DEBUG",
+    "message": "Running tool: entity_extractor",
+    "data": {
+      "params": [
+        "articles"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-19T23:36:02.631325",
+    "level": "ERROR",
+    "message": "Tool entity_extractor failed: log_tool_execution() got an unexpected keyword argument 'params'"
+  },
+  {
+    "timestamp": "2026-02-19T23:36:02.654105",
+    "level": "WARN",
+    "message": "Retry 2/2 for entity_extractor in 2.0s"
+  },
+  {
+    "timestamp": "2026-02-19T23:36:04.690725",
+    "level": "DEBUG",
+    "message": "Running tool: entity_extractor",
+    "data": {
+      "params": [
+        "articles"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-19T23:36:04.713860",
+    "level": "ERROR",
+    "message": "Tool entity_extractor failed: log_tool_execution() got an unexpected keyword argument 'params'"
+  },
+  {
+    "timestamp": "2026-02-19T23:36:04.732421",
+    "level": "DEBUG",
+    "message": "Running tool: image_analyzer",
+    "data": {
+      "params": [
+        "articles"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-19T23:36:04.755502",
+    "level": "ERROR",
+    "message": "Tool image_analyzer failed: log_tool_execution() got an unexpected keyword argument 'params'"
+  },
+  {
+    "timestamp": "2026-02-19T23:36:04.775188",
+    "level": "WARN",
+    "message": "Retry 1/2 for image_analyzer in 1.0s"
+  },
+  {
+    "timestamp": "2026-02-19T23:36:05.806300",
+    "level": "DEBUG",
+    "message": "Running tool: image_analyzer",
+    "data": {
+      "params": [
+        "articles"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-19T23:36:05.831873",
+    "level": "ERROR",
+    "message": "Tool image_analyzer failed: log_tool_execution() got an unexpected keyword argument 'params'"
+  },
+  {
+    "timestamp": "2026-02-19T23:36:05.853884",
+    "level": "WARN",
+    "message": "Retry 2/2 for image_analyzer in 2.0s"
+  },
+  {
+    "timestamp": "2026-02-19T23:36:07.880168",
+    "level": "DEBUG",
+    "message": "Running tool: image_analyzer",
+    "data": {
+      "params": [
+        "articles"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-19T23:36:07.903021",
+    "level": "ERROR",
+    "message": "Tool image_analyzer failed: log_tool_execution() got an unexpected keyword argument 'params'"
+  },
+  {
+    "timestamp": "2026-02-19T23:36:07.922633",
+    "level": "DEBUG",
+    "message": "Running tool: social_monitor",
+    "data": {
+      "params": [
+        "topic",
+        "platforms"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-19T23:36:08.762567",
+    "level": "ERROR",
+    "message": "Tool social_monitor failed: log_tool_execution() got an unexpected keyword argument 'params'"
+  },
+  {
+    "timestamp": "2026-02-19T23:36:08.787716",
+    "level": "WARN",
+    "message": "Retry 1/2 for social_monitor in 1.0s"
+  },
+  {
+    "timestamp": "2026-02-19T23:36:09.822462",
+    "level": "DEBUG",
+    "message": "Running tool: social_monitor",
+    "data": {
+      "params": [
+        "topic",
+        "platforms"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-19T23:36:11.669554",
+    "level": "ERROR",
+    "message": "Tool social_monitor failed: log_tool_execution() got an unexpected keyword argument 'params'"
+  },
+  {
+    "timestamp": "2026-02-19T23:36:11.689084",
+    "level": "WARN",
+    "message": "Retry 2/2 for social_monitor in 2.0s"
+  },
+  {
+    "timestamp": "2026-02-19T23:36:13.711699",
+    "level": "DEBUG",
+    "message": "Running tool: social_monitor",
+    "data": {
+      "params": [
+        "topic",
+        "platforms"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-19T23:36:15.746913",
+    "level": "ERROR",
+    "message": "Tool social_monitor failed: log_tool_execution() got an unexpected keyword argument 'params'"
+  },
+  {
+    "timestamp": "2026-02-19T23:36:15.768063",
+    "level": "DEBUG",
+    "message": "Running tool: research_assistant",
+    "data": {
+      "params": [
+        "topic"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-19T23:36:17.489255",
+    "level": "ERROR",
+    "message": "Tool research_assistant failed: log_tool_execution() got an unexpected keyword argument 'params'"
+  },
+  {
+    "timestamp": "2026-02-19T23:36:17.510566",
+    "level": "WARN",
+    "message": "Retry 1/2 for research_assistant in 1.0s"
+  },
+  {
+    "timestamp": "2026-02-19T23:36:18.550451",
+    "level": "DEBUG",
+    "message": "Running tool: research_assistant",
+    "data": {
+      "params": [
+        "topic"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-19T23:36:20.456740",
+    "level": "ERROR",
+    "message": "Tool research_assistant failed: log_tool_execution() got an unexpected keyword argument 'params'"
+  },
+  {
+    "timestamp": "2026-02-19T23:36:20.480215",
+    "level": "WARN",
+    "message": "Retry 2/2 for research_assistant in 2.0s"
+  },
+  {
+    "timestamp": "2026-02-19T23:36:22.518427",
+    "level": "DEBUG",
+    "message": "Running tool: research_assistant",
+    "data": {
+      "params": [
+        "topic"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-19T23:36:23.695541",
+    "level": "ERROR",
+    "message": "Tool research_assistant failed: log_tool_execution() got an unexpected keyword argument 'params'"
+  },
+  {
+    "timestamp": "2026-02-19T23:36:23.716698",
     "level": "DEBUG",
     "message": "Running tool: exporter",
     "data": {
@@ -241,28 +644,33 @@
     }
   },
   {
-    "timestamp": "2026-02-04T16:41:11.848630",
+    "timestamp": "2026-02-19T23:36:23.740639",
     "level": "INFO",
-    "message": "Execution complete: 3 tools run"
+    "message": "Sentiment-Trend fusion applied"
   },
   {
-    "timestamp": "2026-02-04T17:30:22.255453",
+    "timestamp": "2026-02-19T23:36:23.784670",
     "level": "INFO",
-    "message": "Planning task for: INDIAN STOCK MARKET TODAY"
+    "message": "Execution complete: 10 tools run, 0 skipped, 0 fallbacks used"
   },
   {
-    "timestamp": "2026-02-04T17:30:24.373757",
+    "timestamp": "2026-02-19T23:42:46.164183",
     "level": "INFO",
-    "message": "Nova plan generated",
+    "message": "Planning task for: elon musk"
+  },
+  {
+    "timestamp": "2026-02-19T23:42:46.191532",
+    "level": "INFO",
+    "message": "Using mock planner",
     "data": {
       "plan": {
-        "intent": "Fetch and export news about the Indian stock market for today",
-        "domain": "Indian stock market",
+        "intent": "Get elon news",
+        "domain": "elon",
         "steps": [
           {
             "tool": "news_fetcher",
             "params": {
-              "topic": "Indian stock market today",
+              "topic": "elon",
               "sources": [
                 "google"
               ],
@@ -272,7 +680,7 @@
           {
             "tool": "exporter",
             "params": {
-              "filename": "indian_stock_market_today",
+              "filename": "elon_report",
               "format": "json"
             }
           }
@@ -281,15 +689,15 @@
     }
   },
   {
-    "timestamp": "2026-02-04T17:30:24.406560",
+    "timestamp": "2026-02-19T23:42:46.220493",
     "level": "INFO",
-    "message": "Executing plan: Fetch and export news about the Indian stock market for today",
+    "message": "Executing plan: Get elon news",
     "data": {
       "steps": 2
     }
   },
   {
-    "timestamp": "2026-02-04T17:30:24.427310",
+    "timestamp": "2026-02-19T23:42:46.245671",
     "level": "DEBUG",
     "message": "Running tool: news_fetcher",
     "data": {
@@ -301,17 +709,31 @@
     }
   },
   {
-    "timestamp": "2026-02-04T17:30:24.446328",
+    "timestamp": "2026-02-19T23:42:46.269391",
     "level": "INFO",
-    "message": "Multi-source fetch for: Indian stock market today"
+    "message": "Multi-source fetch for: elon"
   },
   {
-    "timestamp": "2026-02-04T17:30:32.585015",
+    "timestamp": "2026-02-19T23:42:56.097199",
     "level": "INFO",
-    "message": "Multi-source complete: 13 articles from 3 sources"
+    "message": "Multi-source complete: 15 articles from 3 sources",
+    "data": {
+      "rss": {
+        "success": true,
+        "count": 5
+      },
+      "gnews": {
+        "success": true,
+        "count": 5
+      },
+      "tavily": {
+        "success": true,
+        "count": 5
+      }
+    }
   },
   {
-    "timestamp": "2026-02-04T17:30:32.609327",
+    "timestamp": "2026-02-19T23:42:56.111377",
     "level": "DEBUG",
     "message": "Running tool: exporter",
     "data": {
@@ -323,28 +745,28 @@
     }
   },
   {
-    "timestamp": "2026-02-04T17:30:32.646128",
+    "timestamp": "2026-02-19T23:42:56.128226",
     "level": "INFO",
     "message": "Execution complete: 2 tools run, 0 skipped, 0 fallbacks used"
   },
   {
-    "timestamp": "2026-02-04T17:30:51.434429",
+    "timestamp": "2026-02-19T23:53:59.633401",
     "level": "INFO",
-    "message": "Planning task for: INDIAN STOCK MARKET TODAY with sentiment analysis"
+    "message": "Planning task for: elon musk with summarize and sentiment analysis and trends and full article content and entity extraction and image analysis and social media monitoring and research papers"
   },
   {
-    "timestamp": "2026-02-04T17:30:53.064863",
+    "timestamp": "2026-02-19T23:53:59.651714",
     "level": "INFO",
-    "message": "Nova plan generated",
+    "message": "Using mock planner",
     "data": {
       "plan": {
-        "intent": "Fetch news about the Indian stock market today and perform sentiment analysis",
-        "domain": "Indian stock market",
+        "intent": "Get elon news",
+        "domain": "elon",
         "steps": [
           {
             "tool": "news_fetcher",
             "params": {
-              "topic": "Indian stock market today",
+              "topic": "elon",
               "sources": [
                 "google"
               ],
@@ -352,15 +774,48 @@
             }
           },
           {
+            "tool": "summarizer",
+            "params": {}
+          },
+          {
             "tool": "sentiment",
+            "params": {}
+          },
+          {
+            "tool": "trends",
+            "params": {}
+          },
+          {
+            "tool": "web_scraper",
+            "params": {}
+          },
+          {
+            "tool": "entity_extractor",
+            "params": {}
+          },
+          {
+            "tool": "image_analyzer",
+            "params": {}
+          },
+          {
+            "tool": "social_monitor",
             "params": {
-              "news_items": "news_fetcher_output"
+              "topic": "elon",
+              "platforms": [
+                "reddit"
+              ]
+            }
+          },
+          {
+            "tool": "research_assistant",
+            "params": {
+              "query": "elon"
             }
           },
           {
             "tool": "exporter",
             "params": {
-              "filename": "indian_stock_market_sentiment_report",
+              "filename": "elon_report",
               "format": "json"
             }
           }
@@ -369,15 +824,15 @@
     }
   },
   {
-    "timestamp": "2026-02-04T17:30:53.089985",
+    "timestamp": "2026-02-19T23:53:59.678125",
     "level": "INFO",
-    "message": "Executing plan: Fetch news about the Indian stock market today and perform sentiment analysis",
+    "message": "Executing plan: Get elon news",
     "data": {
-      "steps": 3
+      "steps": 10
     }
   },
   {
-    "timestamp": "2026-02-04T17:30:53.119046",
+    "timestamp": "2026-02-19T23:53:59.690950",
     "level": "DEBUG",
     "message": "Running tool: news_fetcher",
     "data": {
@@ -389,123 +844,31 @@
     }
   },
   {
-    "timestamp": "2026-02-04T17:30:53.142200",
+    "timestamp": "2026-02-19T23:53:59.705489",
     "level": "INFO",
-    "message": "Multi-source fetch for: Indian stock market today"
+    "message": "Multi-source fetch for: elon"
   },
   {
-    "timestamp": "2026-02-04T17:30:58.563445",
+    "timestamp": "2026-02-19T23:54:06.817802",
     "level": "INFO",
-    "message": "Multi-source complete: 15 articles from 3 sources"
-  },
-  {
-    "timestamp": "2026-02-04T17:30:58.590205",
-    "level": "DEBUG",
-    "message": "Running tool: sentiment",
+    "message": "Multi-source complete: 15 articles from 3 sources",
     "data": {
-      "params": [
-        "news_items"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-02-04T17:31:01.285105",
-    "level": "DEBUG",
-    "message": "Running tool: exporter",
-    "data": {
-      "params": [
-        "filename",
-        "format",
-        "data"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-02-04T17:31:01.320933",
-    "level": "INFO",
-    "message": "Execution complete: 3 tools run, 0 skipped, 0 fallbacks used"
-  },
-  {
-    "timestamp": "2026-02-04T17:31:42.065620",
-    "level": "INFO",
-    "message": "Planning task for: INDIAN STOCK MARKET TODAY with summarize and sentiment analysis and trends"
-  },
-  {
-    "timestamp": "2026-02-04T17:31:43.954646",
-    "level": "INFO",
-    "message": "Nova plan generated",
-    "data": {
-      "plan": {
-        "intent": "Fetch, summarize, analyze sentiment, and extract trends for the Indian stock market today",
-        "domain": "Indian stock market",
-        "steps": [
-          {
-            "tool": "news_fetcher",
-            "params": {
-              "topic": "INDIAN STOCK MARKET TODAY",
-              "limit": 5
-            }
-          },
-          {
-            "tool": "summarizer",
-            "params": {
-              "news_items": "news_fetcher output"
-            }
-          },
-          {
-            "tool": "sentiment",
-            "params": {
-              "news_items": "news_fetcher output"
-            }
-          },
-          {
-            "tool": "trends",
-            "params": {
-              "news_items": "news_fetcher output"
-            }
-          },
-          {
-            "tool": "exporter",
-            "params": {
-              "filename": "indian_stock_market_report",
-              "format": "json"
-            }
-          }
-        ]
+      "rss": {
+        "success": true,
+        "count": 5
+      },
+      "gnews": {
+        "success": true,
+        "count": 5
+      },
+      "tavily": {
+        "success": true,
+        "count": 5
       }
     }
   },
   {
-    "timestamp": "2026-02-04T17:31:43.978053",
-    "level": "INFO",
-    "message": "Executing plan: Fetch, summarize, analyze sentiment, and extract trends for the Indian stock market today",
-    "data": {
-      "steps": 5
-    }
-  },
-  {
-    "timestamp": "2026-02-04T17:31:43.998276",
-    "level": "DEBUG",
-    "message": "Running tool: news_fetcher",
-    "data": {
-      "params": [
-        "topic",
-        "limit"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-02-04T17:31:44.019886",
-    "level": "INFO",
-    "message": "Multi-source fetch for: INDIAN STOCK MARKET TODAY"
-  },
-  {
-    "timestamp": "2026-02-04T17:31:51.393000",
-    "level": "INFO",
-    "message": "Multi-source complete: 15 articles from 3 sources"
-  },
-  {
-    "timestamp": "2026-02-04T17:31:51.417897",
+    "timestamp": "2026-02-19T23:54:06.831242",
     "level": "DEBUG",
     "message": "Running tool: summarizer",
     "data": {
@@ -515,7 +878,7 @@
     }
   },
   {
-    "timestamp": "2026-02-04T17:31:53.244177",
+    "timestamp": "2026-02-19T23:54:06.844270",
     "level": "DEBUG",
     "message": "Running tool: sentiment",
     "data": {
@@ -525,7 +888,7 @@
     }
   },
   {
-    "timestamp": "2026-02-04T17:31:55.402496",
+    "timestamp": "2026-02-19T23:54:06.857802",
     "level": "DEBUG",
     "message": "Running tool: trends",
     "data": {
@@ -535,7 +898,145 @@
     }
   },
   {
-    "timestamp": "2026-02-04T17:31:55.426729",
+    "timestamp": "2026-02-19T23:54:08.948420",
+    "level": "DEBUG",
+    "message": "Running tool: web_scraper",
+    "data": {
+      "params": [
+        "url"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-19T23:54:09.199218",
+    "level": "INFO",
+    "message": "Tool web_scraper executed",
+    "data": {
+      "tool": "web_scraper",
+      "success": true,
+      "duration_seconds": 0.0,
+      "params": {
+        "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTFBLZXBjQldNTkZtWjJwTzA5SnpsbjJycjMxUVFLTXNFTkVGM0dmcUFRUW5kR1dod1dzaTVsWC11VnN5Wm1PSGZ4cmlsSzNYdWFnSTRxYVBFbkw3dw?oc=5"
+      },
+      "result": {
+        "success": false,
+        "word_count": 0
+      }
+    }
+  },
+  {
+    "timestamp": "2026-02-19T23:54:09.220856",
+    "level": "DEBUG",
+    "message": "Running tool: entity_extractor",
+    "data": {
+      "params": [
+        "articles"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-19T23:54:09.251280",
+    "level": "INFO",
+    "message": "Tool entity_extractor executed",
+    "data": {
+      "tool": "entity_extractor",
+      "success": true,
+      "duration_seconds": 0.0,
+      "params": {
+        "article_count": 15
+      },
+      "result": {
+        "entity_count": 27
+      }
+    }
+  },
+  {
+    "timestamp": "2026-02-19T23:54:09.275266",
+    "level": "DEBUG",
+    "message": "Running tool: image_analyzer",
+    "data": {
+      "params": [
+        "articles"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-19T23:54:09.299063",
+    "level": "INFO",
+    "message": "Tool image_analyzer executed",
+    "data": {
+      "tool": "image_analyzer",
+      "success": true,
+      "duration_seconds": 0.0,
+      "params": {
+        "article_count": 15,
+        "total_images": 0
+      },
+      "result": {
+        "successful": 0,
+        "failed": 0
+      }
+    }
+  },
+  {
+    "timestamp": "2026-02-19T23:54:09.324922",
+    "level": "DEBUG",
+    "message": "Running tool: social_monitor",
+    "data": {
+      "params": [
+        "topic",
+        "platforms"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-19T23:54:10.203173",
+    "level": "INFO",
+    "message": "Tool social_monitor executed",
+    "data": {
+      "tool": "social_monitor",
+      "success": true,
+      "duration_seconds": 0.0,
+      "params": {
+        "topic": "elon",
+        "platforms": [
+          "reddit"
+        ]
+      },
+      "result": {
+        "total_mentions": 0
+      }
+    }
+  },
+  {
+    "timestamp": "2026-02-19T23:54:10.223464",
+    "level": "DEBUG",
+    "message": "Running tool: research_assistant",
+    "data": {
+      "params": [
+        "topic"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-19T23:54:12.329542",
+    "level": "INFO",
+    "message": "Tool research_assistant executed",
+    "data": {
+      "tool": "research_assistant",
+      "success": true,
+      "duration_seconds": 0.0,
+      "params": {
+        "topic": "elon",
+        "type": "comprehensive"
+      },
+      "result": {
+        "total_sources": 20
+      }
+    }
+  },
+  {
+    "timestamp": "2026-02-19T23:54:12.349001",
     "level": "DEBUG",
     "message": "Running tool: exporter",
     "data": {
@@ -547,28 +1048,33 @@
     }
   },
   {
-    "timestamp": "2026-02-04T17:31:55.460521",
+    "timestamp": "2026-02-19T23:54:12.374892",
     "level": "INFO",
-    "message": "Execution complete: 5 tools run, 0 skipped, 0 fallbacks used"
+    "message": "Sentiment-Trend fusion applied"
   },
   {
-    "timestamp": "2026-02-04T17:39:59.838308",
+    "timestamp": "2026-02-19T23:54:12.421709",
     "level": "INFO",
-    "message": "Planning task for: INDIAN STOCK MARKET TODAY"
+    "message": "Execution complete: 10 tools run, 0 skipped, 0 fallbacks used"
   },
   {
-    "timestamp": "2026-02-04T17:40:02.058768",
+    "timestamp": "2026-02-19T23:59:00.775203",
     "level": "INFO",
-    "message": "Nova plan generated",
+    "message": "Planning task for: india AI summit with summarize and sentiment analysis and trends and full article content and entity extraction and image analysis and social media monitoring and research papers"
+  },
+  {
+    "timestamp": "2026-02-19T23:59:00.791895",
+    "level": "INFO",
+    "message": "Using mock planner",
     "data": {
       "plan": {
-        "intent": "Fetch and summarize the latest news about the Indian stock market today",
-        "domain": "Indian stock market",
+        "intent": "Get india news",
+        "domain": "india",
         "steps": [
           {
             "tool": "news_fetcher",
             "params": {
-              "topic": "Indian stock market today",
+              "topic": "india",
               "sources": [
                 "google"
               ],
@@ -577,14 +1083,47 @@
           },
           {
             "tool": "summarizer",
+            "params": {}
+          },
+          {
+            "tool": "sentiment",
+            "params": {}
+          },
+          {
+            "tool": "trends",
+            "params": {}
+          },
+          {
+            "tool": "web_scraper",
+            "params": {}
+          },
+          {
+            "tool": "entity_extractor",
+            "params": {}
+          },
+          {
+            "tool": "image_analyzer",
+            "params": {}
+          },
+          {
+            "tool": "social_monitor",
             "params": {
-              "news_items": "news_items_from_previous_step"
+              "topic": "india",
+              "platforms": [
+                "reddit"
+              ]
+            }
+          },
+          {
+            "tool": "research_assistant",
+            "params": {
+              "query": "india"
             }
           },
           {
             "tool": "exporter",
             "params": {
-              "filename": "indian_stock_market_today",
+              "filename": "india_report",
               "format": "json"
             }
           }
@@ -593,15 +1132,15 @@
     }
   },
   {
-    "timestamp": "2026-02-04T17:40:02.088340",
+    "timestamp": "2026-02-19T23:59:00.827710",
     "level": "INFO",
-    "message": "Executing plan: Fetch and summarize the latest news about the Indian stock market today",
+    "message": "Executing plan: Get india news",
     "data": {
-      "steps": 3
+      "steps": 10
     }
   },
   {
-    "timestamp": "2026-02-04T17:40:02.108680",
+    "timestamp": "2026-02-19T23:59:00.841264",
     "level": "DEBUG",
     "message": "Running tool: news_fetcher",
     "data": {
@@ -613,17 +1152,31 @@
     }
   },
   {
-    "timestamp": "2026-02-04T17:40:02.129560",
+    "timestamp": "2026-02-19T23:59:00.855392",
     "level": "INFO",
-    "message": "Multi-source fetch for: Indian stock market today"
+    "message": "Multi-source fetch for: india"
   },
   {
-    "timestamp": "2026-02-04T17:40:08.904718",
+    "timestamp": "2026-02-19T23:59:09.164114",
     "level": "INFO",
-    "message": "Multi-source complete: 15 articles from 3 sources"
+    "message": "Multi-source complete: 15 articles from 3 sources",
+    "data": {
+      "rss": {
+        "success": true,
+        "count": 5
+      },
+      "gnews": {
+        "success": true,
+        "count": 5
+      },
+      "tavily": {
+        "success": true,
+        "count": 5
+      }
+    }
   },
   {
-    "timestamp": "2026-02-04T17:40:08.936628",
+    "timestamp": "2026-02-19T23:59:09.178152",
     "level": "DEBUG",
     "message": "Running tool: summarizer",
     "data": {
@@ -633,7 +1186,165 @@
     }
   },
   {
-    "timestamp": "2026-02-04T17:40:10.734157",
+    "timestamp": "2026-02-19T23:59:09.191591",
+    "level": "DEBUG",
+    "message": "Running tool: sentiment",
+    "data": {
+      "params": [
+        "news_items"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-19T23:59:09.207660",
+    "level": "DEBUG",
+    "message": "Running tool: trends",
+    "data": {
+      "params": [
+        "news_items"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-19T23:59:10.859402",
+    "level": "DEBUG",
+    "message": "Running tool: web_scraper",
+    "data": {
+      "params": [
+        "url"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-19T23:59:11.212860",
+    "level": "INFO",
+    "message": "Tool web_scraper executed",
+    "data": {
+      "tool": "web_scraper",
+      "success": true,
+      "duration_seconds": 0.0,
+      "params": {
+        "url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxPYUtrYzJaVnVoeUlsdzdoVkI0bWtCaFBvR3hXbU9sUDNHWjVzX0VvWWdrdkpvNXJ4dzdJcFUxWkloeW1FbkpQaHVzdDdacnA0UVhIM2s3U3M4ZWNBQ1lIVVF1eWNtZ0UycXBXLTc4Q244bVZFdTNVSEcyOXdtc2oyd2hvTFNETlRTUDlBZDB2WFVBMWFWa2w0RUJ6MFNtZWFtZTEyOGp6bGZkOWprMmNWT3ZRa0dXQjZNVFhzTTFUVEZ2N1k?oc=5"
+      },
+      "result": {
+        "success": false,
+        "word_count": 0
+      }
+    }
+  },
+  {
+    "timestamp": "2026-02-19T23:59:11.234433",
+    "level": "DEBUG",
+    "message": "Running tool: entity_extractor",
+    "data": {
+      "params": [
+        "articles"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-19T23:59:11.262654",
+    "level": "INFO",
+    "message": "Tool entity_extractor executed",
+    "data": {
+      "tool": "entity_extractor",
+      "success": true,
+      "duration_seconds": 0.0,
+      "params": {
+        "article_count": 15
+      },
+      "result": {
+        "entity_count": 34
+      }
+    }
+  },
+  {
+    "timestamp": "2026-02-19T23:59:11.286741",
+    "level": "DEBUG",
+    "message": "Running tool: image_analyzer",
+    "data": {
+      "params": [
+        "articles"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-19T23:59:11.311714",
+    "level": "INFO",
+    "message": "Tool image_analyzer executed",
+    "data": {
+      "tool": "image_analyzer",
+      "success": true,
+      "duration_seconds": 0.0,
+      "params": {
+        "article_count": 15,
+        "total_images": 0
+      },
+      "result": {
+        "successful": 0,
+        "failed": 0
+      }
+    }
+  },
+  {
+    "timestamp": "2026-02-19T23:59:11.338456",
+    "level": "DEBUG",
+    "message": "Running tool: social_monitor",
+    "data": {
+      "params": [
+        "topic",
+        "platforms"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-19T23:59:11.826880",
+    "level": "INFO",
+    "message": "Tool social_monitor executed",
+    "data": {
+      "tool": "social_monitor",
+      "success": true,
+      "duration_seconds": 0.0,
+      "params": {
+        "topic": "india",
+        "platforms": [
+          "reddit"
+        ]
+      },
+      "result": {
+        "total_mentions": 0
+      }
+    }
+  },
+  {
+    "timestamp": "2026-02-19T23:59:11.847667",
+    "level": "DEBUG",
+    "message": "Running tool: research_assistant",
+    "data": {
+      "params": [
+        "topic"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-19T23:59:12.823568",
+    "level": "INFO",
+    "message": "Tool research_assistant executed",
+    "data": {
+      "tool": "research_assistant",
+      "success": true,
+      "duration_seconds": 0.0,
+      "params": {
+        "topic": "india",
+        "type": "comprehensive"
+      },
+      "result": {
+        "total_sources": 20
+      }
+    }
+  },
+  {
+    "timestamp": "2026-02-19T23:59:12.845972",
     "level": "DEBUG",
     "message": "Running tool: exporter",
     "data": {
@@ -645,28 +1356,33 @@
     }
   },
   {
-    "timestamp": "2026-02-04T17:40:10.774848",
+    "timestamp": "2026-02-19T23:59:12.875395",
     "level": "INFO",
-    "message": "Execution complete: 3 tools run, 0 skipped, 0 fallbacks used"
+    "message": "Sentiment-Trend fusion applied"
   },
   {
-    "timestamp": "2026-02-04T19:12:13.282356",
+    "timestamp": "2026-02-19T23:59:12.926245",
     "level": "INFO",
-    "message": "Planning task for: INDIAN STOCK MARKET TODAY"
+    "message": "Execution complete: 10 tools run, 0 skipped, 0 fallbacks used"
   },
   {
-    "timestamp": "2026-02-04T19:12:16.379594",
+    "timestamp": "2026-02-20T00:07:03.752089",
     "level": "INFO",
-    "message": "Nova plan generated",
+    "message": "Planning task for: india AI summit with summarize and sentiment analysis and trends and full article content and entity extraction and image analysis and social media monitoring and research papers"
+  },
+  {
+    "timestamp": "2026-02-20T00:07:03.771807",
+    "level": "INFO",
+    "message": "Using mock planner",
     "data": {
       "plan": {
-        "intent": "Fetch and export the latest news about the Indian stock market today",
-        "domain": "Indian stock market",
+        "intent": "Get india news",
+        "domain": "india",
         "steps": [
           {
             "tool": "news_fetcher",
             "params": {
-              "topic": "Indian stock market today",
+              "topic": "india",
               "sources": [
                 "google"
               ],
@@ -674,9 +1390,48 @@
             }
           },
           {
+            "tool": "summarizer",
+            "params": {}
+          },
+          {
+            "tool": "sentiment",
+            "params": {}
+          },
+          {
+            "tool": "trends",
+            "params": {}
+          },
+          {
+            "tool": "web_scraper",
+            "params": {}
+          },
+          {
+            "tool": "entity_extractor",
+            "params": {}
+          },
+          {
+            "tool": "image_analyzer",
+            "params": {}
+          },
+          {
+            "tool": "social_monitor",
+            "params": {
+              "topic": "india",
+              "platforms": [
+                "reddit"
+              ]
+            }
+          },
+          {
+            "tool": "research_assistant",
+            "params": {
+              "query": "india"
+            }
+          },
+          {
             "tool": "exporter",
             "params": {
-              "filename": "Indian_stock_market_today",
+              "filename": "india_report",
               "format": "json"
             }
           }
@@ -685,15 +1440,15 @@
     }
   },
   {
-    "timestamp": "2026-02-04T19:12:16.420119",
+    "timestamp": "2026-02-20T00:07:03.788504",
     "level": "INFO",
-    "message": "Executing plan: Fetch and export the latest news about the Indian stock market today",
+    "message": "Executing plan: Get india news",
     "data": {
-      "steps": 2
+      "steps": 10
     }
   },
   {
-    "timestamp": "2026-02-04T19:12:16.444409",
+    "timestamp": "2026-02-20T00:07:03.801315",
     "level": "DEBUG",
     "message": "Running tool: news_fetcher",
     "data": {
@@ -705,17 +1460,199 @@
     }
   },
   {
-    "timestamp": "2026-02-04T19:12:16.473295",
+    "timestamp": "2026-02-20T00:07:03.820062",
     "level": "INFO",
-    "message": "Multi-source fetch for: Indian stock market today"
+    "message": "Multi-source fetch for: india"
   },
   {
-    "timestamp": "2026-02-04T19:12:23.894873",
+    "timestamp": "2026-02-20T00:07:11.008535",
     "level": "INFO",
-    "message": "Multi-source complete: 15 articles from 3 sources"
+    "message": "Multi-source complete: 13 articles from 3 sources",
+    "data": {
+      "rss": {
+        "success": true,
+        "count": 5
+      },
+      "gnews": {
+        "success": true,
+        "count": 5
+      },
+      "tavily": {
+        "success": true,
+        "count": 5
+      }
+    }
   },
   {
-    "timestamp": "2026-02-04T19:12:23.923019",
+    "timestamp": "2026-02-20T00:07:11.028601",
+    "level": "DEBUG",
+    "message": "Running tool: summarizer",
+    "data": {
+      "params": [
+        "news_items"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-20T00:07:11.049851",
+    "level": "DEBUG",
+    "message": "Running tool: sentiment",
+    "data": {
+      "params": [
+        "news_items"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-20T00:07:11.070227",
+    "level": "DEBUG",
+    "message": "Running tool: trends",
+    "data": {
+      "params": [
+        "news_items"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-20T00:07:13.314202",
+    "level": "DEBUG",
+    "message": "Running tool: web_scraper",
+    "data": {
+      "params": [
+        "url"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-20T00:07:13.486408",
+    "level": "INFO",
+    "message": "Tool web_scraper executed",
+    "data": {
+      "tool": "web_scraper",
+      "success": true,
+      "duration_seconds": 0.0,
+      "params": {
+        "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE53bmRXM0xta1h3WFEtb21wMU5TdFl4VHBSNzBncURHTjJ5WlJudG16UUR1VWFnV0JJNDJLUWJmcFVlR3BTaXlWd00tZHN3SWVUa3RiNGppVEswc2hfSmFRNGlvdU1qZ2g1UXp3MWR6emt3eV9jeWhBUXJYZw?oc=5"
+      },
+      "result": {
+        "success": false,
+        "word_count": 0
+      }
+    }
+  },
+  {
+    "timestamp": "2026-02-20T00:07:13.508990",
+    "level": "DEBUG",
+    "message": "Running tool: entity_extractor",
+    "data": {
+      "params": [
+        "articles"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-20T00:07:13.543974",
+    "level": "INFO",
+    "message": "Tool entity_extractor executed",
+    "data": {
+      "tool": "entity_extractor",
+      "success": true,
+      "duration_seconds": 0.0,
+      "params": {
+        "article_count": 13
+      },
+      "result": {
+        "entity_count": 28
+      }
+    }
+  },
+  {
+    "timestamp": "2026-02-20T00:07:13.567286",
+    "level": "DEBUG",
+    "message": "Running tool: image_analyzer",
+    "data": {
+      "params": [
+        "articles"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-20T00:07:14.542999",
+    "level": "INFO",
+    "message": "Tool image_analyzer executed",
+    "data": {
+      "tool": "image_analyzer",
+      "success": true,
+      "duration_seconds": 0.0,
+      "params": {
+        "article_count": 5,
+        "total_images": 0
+      },
+      "result": {
+        "successful": 0,
+        "failed": 0
+      }
+    }
+  },
+  {
+    "timestamp": "2026-02-20T00:07:14.565741",
+    "level": "DEBUG",
+    "message": "Running tool: social_monitor",
+    "data": {
+      "params": [
+        "topic",
+        "platforms"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-20T00:07:15.765767",
+    "level": "INFO",
+    "message": "Tool social_monitor executed",
+    "data": {
+      "tool": "social_monitor",
+      "success": true,
+      "duration_seconds": 0.0,
+      "params": {
+        "topic": "india",
+        "platforms": [
+          "reddit"
+        ]
+      },
+      "result": {
+        "total_mentions": 25
+      }
+    }
+  },
+  {
+    "timestamp": "2026-02-20T00:07:15.791000",
+    "level": "DEBUG",
+    "message": "Running tool: research_assistant",
+    "data": {
+      "params": [
+        "topic"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-20T00:07:16.834471",
+    "level": "INFO",
+    "message": "Tool research_assistant executed",
+    "data": {
+      "tool": "research_assistant",
+      "success": true,
+      "duration_seconds": 0.0,
+      "params": {
+        "topic": "india",
+        "type": "comprehensive"
+      },
+      "result": {
+        "total_sources": 20
+      }
+    }
+  },
+  {
+    "timestamp": "2026-02-20T00:07:16.864208",
     "level": "DEBUG",
     "message": "Running tool: exporter",
     "data": {
@@ -727,28 +1664,33 @@
     }
   },
   {
-    "timestamp": "2026-02-04T19:12:23.988107",
+    "timestamp": "2026-02-20T00:07:16.900245",
     "level": "INFO",
-    "message": "Execution complete: 2 tools run, 0 skipped, 0 fallbacks used"
+    "message": "Sentiment-Trend fusion applied"
   },
   {
-    "timestamp": "2026-02-04T19:26:11.840247",
+    "timestamp": "2026-02-20T00:07:16.950818",
     "level": "INFO",
-    "message": "Planning task for: INDIAN STOCK MARKET TODAY"
+    "message": "Execution complete: 10 tools run, 0 skipped, 0 fallbacks used"
   },
   {
-    "timestamp": "2026-02-04T19:26:14.662521",
+    "timestamp": "2026-02-20T00:32:32.752175",
     "level": "INFO",
-    "message": "Nova plan generated",
+    "message": "Planning task for: india AI summit with summarize and sentiment analysis and trends and full article content and entity extraction and image analysis and social media monitoring and research papers"
+  },
+  {
+    "timestamp": "2026-02-20T00:32:32.772231",
+    "level": "INFO",
+    "message": "Using mock planner",
     "data": {
       "plan": {
-        "intent": "Fetch and export the latest news about the Indian stock market today",
-        "domain": "Indian stock market",
+        "intent": "Get india news",
+        "domain": "india",
         "steps": [
           {
             "tool": "news_fetcher",
             "params": {
-              "topic": "Indian stock market today",
+              "topic": "india",
               "sources": [
                 "google"
               ],
@@ -756,9 +1698,48 @@
             }
           },
           {
+            "tool": "summarizer",
+            "params": {}
+          },
+          {
+            "tool": "sentiment",
+            "params": {}
+          },
+          {
+            "tool": "trends",
+            "params": {}
+          },
+          {
+            "tool": "web_scraper",
+            "params": {}
+          },
+          {
+            "tool": "entity_extractor",
+            "params": {}
+          },
+          {
+            "tool": "image_analyzer",
+            "params": {}
+          },
+          {
+            "tool": "social_monitor",
+            "params": {
+              "topic": "india",
+              "platforms": [
+                "reddit"
+              ]
+            }
+          },
+          {
+            "tool": "research_assistant",
+            "params": {
+              "query": "india"
+            }
+          },
+          {
             "tool": "exporter",
             "params": {
-              "filename": "indian_stock_market_today",
+              "filename": "india_report",
               "format": "json"
             }
           }
@@ -767,15 +1748,15 @@
     }
   },
   {
-    "timestamp": "2026-02-04T19:26:14.701563",
+    "timestamp": "2026-02-20T00:32:32.790076",
     "level": "INFO",
-    "message": "Executing plan: Fetch and export the latest news about the Indian stock market today",
+    "message": "Executing plan: Get india news",
     "data": {
-      "steps": 2
+      "steps": 10
     }
   },
   {
-    "timestamp": "2026-02-04T19:26:14.727879",
+    "timestamp": "2026-02-20T00:32:32.803228",
     "level": "DEBUG",
     "message": "Running tool: news_fetcher",
     "data": {
@@ -787,17 +1768,199 @@
     }
   },
   {
-    "timestamp": "2026-02-04T19:26:14.761392",
+    "timestamp": "2026-02-20T00:32:32.816652",
     "level": "INFO",
-    "message": "Multi-source fetch for: Indian stock market today"
+    "message": "Multi-source fetch for: india"
   },
   {
-    "timestamp": "2026-02-04T19:26:21.545708",
+    "timestamp": "2026-02-20T00:32:39.970331",
     "level": "INFO",
-    "message": "Multi-source complete: 15 articles from 3 sources"
+    "message": "Multi-source complete: 14 articles from 3 sources",
+    "data": {
+      "rss": {
+        "success": true,
+        "count": 5
+      },
+      "gnews": {
+        "success": true,
+        "count": 5
+      },
+      "tavily": {
+        "success": true,
+        "count": 4
+      }
+    }
   },
   {
-    "timestamp": "2026-02-04T19:26:21.574170",
+    "timestamp": "2026-02-20T00:32:39.990325",
+    "level": "DEBUG",
+    "message": "Running tool: summarizer",
+    "data": {
+      "params": [
+        "news_items"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-20T00:32:40.011911",
+    "level": "DEBUG",
+    "message": "Running tool: sentiment",
+    "data": {
+      "params": [
+        "news_items"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-20T00:32:40.033846",
+    "level": "DEBUG",
+    "message": "Running tool: trends",
+    "data": {
+      "params": [
+        "news_items"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-20T00:32:41.995253",
+    "level": "DEBUG",
+    "message": "Running tool: web_scraper",
+    "data": {
+      "params": [
+        "url"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-20T00:32:42.173095",
+    "level": "INFO",
+    "message": "Tool web_scraper executed",
+    "data": {
+      "tool": "web_scraper",
+      "success": true,
+      "duration_seconds": 0.0,
+      "params": {
+        "url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxPYUtrYzJaVnVoeUlsdzdoVkI0bWtCaFBvR3hXbU9sUDNHWjVzX0VvWWdrdkpvNXJ4dzdJcFUxWkloeW1FbkpQaHVzdDdacnA0UVhIM2s3U3M4ZWNBQ1lIVVF1eWNtZ0UycXBXLTc4Q244bVZFdTNVSEcyOXdtc2oyd2hvTFNETlRTUDlBZDB2WFVBMWFWa2w0RUJ6MFNtZWFtZTEyOGp6bGZkOWprMmNWT3ZRa0dXQjZNVFhzTTFUVEZ2N1k?oc=5"
+      },
+      "result": {
+        "success": false,
+        "word_count": 0
+      }
+    }
+  },
+  {
+    "timestamp": "2026-02-20T00:32:42.195829",
+    "level": "DEBUG",
+    "message": "Running tool: entity_extractor",
+    "data": {
+      "params": [
+        "articles"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-20T00:32:42.230887",
+    "level": "INFO",
+    "message": "Tool entity_extractor executed",
+    "data": {
+      "tool": "entity_extractor",
+      "success": true,
+      "duration_seconds": 0.0,
+      "params": {
+        "article_count": 14
+      },
+      "result": {
+        "entity_count": 29
+      }
+    }
+  },
+  {
+    "timestamp": "2026-02-20T00:32:42.254173",
+    "level": "DEBUG",
+    "message": "Running tool: image_analyzer",
+    "data": {
+      "params": [
+        "articles"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-20T00:32:44.100747",
+    "level": "INFO",
+    "message": "Tool image_analyzer executed",
+    "data": {
+      "tool": "image_analyzer",
+      "success": true,
+      "duration_seconds": 0.0,
+      "params": {
+        "article_count": 5,
+        "total_images": 4
+      },
+      "result": {
+        "successful": 4,
+        "failed": 0
+      }
+    }
+  },
+  {
+    "timestamp": "2026-02-20T00:32:44.125770",
+    "level": "DEBUG",
+    "message": "Running tool: social_monitor",
+    "data": {
+      "params": [
+        "topic",
+        "platforms"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-20T00:32:45.440605",
+    "level": "INFO",
+    "message": "Tool social_monitor executed",
+    "data": {
+      "tool": "social_monitor",
+      "success": true,
+      "duration_seconds": 0.0,
+      "params": {
+        "topic": "india",
+        "platforms": [
+          "reddit"
+        ]
+      },
+      "result": {
+        "total_mentions": 25
+      }
+    }
+  },
+  {
+    "timestamp": "2026-02-20T00:32:45.461808",
+    "level": "DEBUG",
+    "message": "Running tool: research_assistant",
+    "data": {
+      "params": [
+        "topic"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-20T00:32:46.579323",
+    "level": "INFO",
+    "message": "Tool research_assistant executed",
+    "data": {
+      "tool": "research_assistant",
+      "success": true,
+      "duration_seconds": 0.0,
+      "params": {
+        "topic": "india",
+        "type": "comprehensive"
+      },
+      "result": {
+        "total_sources": 20
+      }
+    }
+  },
+  {
+    "timestamp": "2026-02-20T00:32:46.599517",
     "level": "DEBUG",
     "message": "Running tool: exporter",
     "data": {
@@ -809,28 +1972,33 @@
     }
   },
   {
-    "timestamp": "2026-02-04T19:26:21.628617",
+    "timestamp": "2026-02-20T00:32:46.627216",
     "level": "INFO",
-    "message": "Execution complete: 2 tools run, 0 skipped, 0 fallbacks used"
+    "message": "Sentiment-Trend fusion applied"
   },
   {
-    "timestamp": "2026-02-04T20:18:15.451214",
+    "timestamp": "2026-02-20T00:32:46.669281",
     "level": "INFO",
-    "message": "Planning task for: INDIAN STOCK MARKET TODAY"
+    "message": "Execution complete: 10 tools run, 0 skipped, 0 fallbacks used"
   },
   {
-    "timestamp": "2026-02-04T20:18:18.136744",
+    "timestamp": "2026-02-20T01:10:56.909557",
     "level": "INFO",
-    "message": "Nova plan generated",
+    "message": "Planning task for: india AI summit with summarize and sentiment analysis and trends and full article content and entity extraction and image analysis and social media monitoring and research papers"
+  },
+  {
+    "timestamp": "2026-02-20T01:10:56.947822",
+    "level": "INFO",
+    "message": "Using mock planner",
     "data": {
       "plan": {
-        "intent": "Fetch and export the latest news about the Indian stock market today",
-        "domain": "Indian stock market",
+        "intent": "Get india news",
+        "domain": "india",
         "steps": [
           {
             "tool": "news_fetcher",
             "params": {
-              "topic": "Indian stock market today",
+              "topic": "india",
               "sources": [
                 "google"
               ],
@@ -838,9 +2006,48 @@
             }
           },
           {
+            "tool": "summarizer",
+            "params": {}
+          },
+          {
+            "tool": "sentiment",
+            "params": {}
+          },
+          {
+            "tool": "trends",
+            "params": {}
+          },
+          {
+            "tool": "web_scraper",
+            "params": {}
+          },
+          {
+            "tool": "entity_extractor",
+            "params": {}
+          },
+          {
+            "tool": "image_analyzer",
+            "params": {}
+          },
+          {
+            "tool": "social_monitor",
+            "params": {
+              "topic": "india",
+              "platforms": [
+                "reddit"
+              ]
+            }
+          },
+          {
+            "tool": "research_assistant",
+            "params": {
+              "query": "india"
+            }
+          },
+          {
             "tool": "exporter",
             "params": {
-              "filename": "Indian_stock_market_today",
+              "filename": "india_report",
               "format": "json"
             }
           }
@@ -849,15 +2056,15 @@
     }
   },
   {
-    "timestamp": "2026-02-04T20:18:18.169828",
+    "timestamp": "2026-02-20T01:10:56.982773",
     "level": "INFO",
-    "message": "Executing plan: Fetch and export the latest news about the Indian stock market today",
+    "message": "Executing plan: Get india news",
     "data": {
-      "steps": 2
+      "steps": 10
     }
   },
   {
-    "timestamp": "2026-02-04T20:18:18.190806",
+    "timestamp": "2026-02-20T01:10:57.001547",
     "level": "DEBUG",
     "message": "Running tool: news_fetcher",
     "data": {
@@ -869,117 +2076,31 @@
     }
   },
   {
-    "timestamp": "2026-02-04T20:18:18.212635",
+    "timestamp": "2026-02-20T01:10:57.026865",
     "level": "INFO",
-    "message": "Multi-source fetch for: Indian stock market today"
+    "message": "Multi-source fetch for: india"
   },
   {
-    "timestamp": "2026-02-04T20:18:25.206938",
+    "timestamp": "2026-02-20T01:11:06.331043",
     "level": "INFO",
-    "message": "Multi-source complete: 13 articles from 3 sources"
-  },
-  {
-    "timestamp": "2026-02-04T20:18:25.232647",
-    "level": "DEBUG",
-    "message": "Running tool: exporter",
+    "message": "Multi-source complete: 15 articles from 3 sources",
     "data": {
-      "params": [
-        "filename",
-        "format",
-        "data"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-02-04T20:18:25.274549",
-    "level": "INFO",
-    "message": "Execution complete: 2 tools run, 0 skipped, 0 fallbacks used"
-  },
-  {
-    "timestamp": "2026-02-04T20:18:35.547230",
-    "level": "INFO",
-    "message": "Planning task for: INDIAN STOCK MARKET TODAY with summarize and sentiment analysis and trends"
-  },
-  {
-    "timestamp": "2026-02-04T20:18:37.359291",
-    "level": "INFO",
-    "message": "Nova plan generated",
-    "data": {
-      "plan": {
-        "intent": "Fetch, summarize, analyze sentiment, and extract trends for the Indian stock market today",
-        "domain": "Indian stock market",
-        "steps": [
-          {
-            "tool": "news_fetcher",
-            "params": {
-              "topic": "INDIAN STOCK MARKET TODAY",
-              "sources": [
-                "google"
-              ],
-              "limit": 5
-            }
-          },
-          {
-            "tool": "summarizer",
-            "params": {
-              "news_items": "fetched news"
-            }
-          },
-          {
-            "tool": "sentiment",
-            "params": {
-              "news_items": "fetched news"
-            }
-          },
-          {
-            "tool": "trends",
-            "params": {
-              "news_items": "fetched news"
-            }
-          },
-          {
-            "tool": "exporter",
-            "params": {
-              "filename": "indian_stock_market_report",
-              "format": "json"
-            }
-          }
-        ]
+      "rss": {
+        "success": true,
+        "count": 5
+      },
+      "gnews": {
+        "success": true,
+        "count": 5
+      },
+      "tavily": {
+        "success": true,
+        "count": 5
       }
     }
   },
   {
-    "timestamp": "2026-02-04T20:18:37.382656",
-    "level": "INFO",
-    "message": "Executing plan: Fetch, summarize, analyze sentiment, and extract trends for the Indian stock market today",
-    "data": {
-      "steps": 5
-    }
-  },
-  {
-    "timestamp": "2026-02-04T20:18:37.397057",
-    "level": "DEBUG",
-    "message": "Running tool: news_fetcher",
-    "data": {
-      "params": [
-        "topic",
-        "sources",
-        "limit"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-02-04T20:18:37.412080",
-    "level": "INFO",
-    "message": "Multi-source fetch for: INDIAN STOCK MARKET TODAY"
-  },
-  {
-    "timestamp": "2026-02-04T20:18:44.644792",
-    "level": "INFO",
-    "message": "Multi-source complete: 15 articles from 3 sources"
-  },
-  {
-    "timestamp": "2026-02-04T20:18:44.672789",
+    "timestamp": "2026-02-20T01:11:06.348339",
     "level": "DEBUG",
     "message": "Running tool: summarizer",
     "data": {
@@ -989,7 +2110,7 @@
     }
   },
   {
-    "timestamp": "2026-02-04T20:18:46.628566",
+    "timestamp": "2026-02-20T01:11:06.365403",
     "level": "DEBUG",
     "message": "Running tool: sentiment",
     "data": {
@@ -999,7 +2120,7 @@
     }
   },
   {
-    "timestamp": "2026-02-04T20:18:49.465976",
+    "timestamp": "2026-02-20T01:11:06.388521",
     "level": "DEBUG",
     "message": "Running tool: trends",
     "data": {
@@ -1009,7 +2130,145 @@
     }
   },
   {
-    "timestamp": "2026-02-04T20:18:49.497396",
+    "timestamp": "2026-02-20T01:11:10.176851",
+    "level": "DEBUG",
+    "message": "Running tool: web_scraper",
+    "data": {
+      "params": [
+        "url"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-20T01:11:10.854659",
+    "level": "INFO",
+    "message": "Tool web_scraper executed",
+    "data": {
+      "tool": "web_scraper",
+      "success": true,
+      "duration_seconds": 0.0,
+      "params": {
+        "url": "https://www.outlookbusiness.com/news/openai-for-india-sam-altman-to-open-new-offices-in-mumbai-bengaluru-in-2026"
+      },
+      "result": {
+        "success": true,
+        "word_count": 684
+      }
+    }
+  },
+  {
+    "timestamp": "2026-02-20T01:11:10.882932",
+    "level": "DEBUG",
+    "message": "Running tool: entity_extractor",
+    "data": {
+      "params": [
+        "articles"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-20T01:11:10.929036",
+    "level": "INFO",
+    "message": "Tool entity_extractor executed",
+    "data": {
+      "tool": "entity_extractor",
+      "success": true,
+      "duration_seconds": 0.0,
+      "params": {
+        "article_count": 15
+      },
+      "result": {
+        "entity_count": 31
+      }
+    }
+  },
+  {
+    "timestamp": "2026-02-20T01:11:10.954727",
+    "level": "DEBUG",
+    "message": "Running tool: image_analyzer",
+    "data": {
+      "params": [
+        "articles"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-20T01:11:11.413431",
+    "level": "INFO",
+    "message": "Tool image_analyzer executed",
+    "data": {
+      "tool": "image_analyzer",
+      "success": true,
+      "duration_seconds": 0.0,
+      "params": {
+        "article_count": 1,
+        "total_images": 2
+      },
+      "result": {
+        "successful": 2,
+        "failed": 0
+      }
+    }
+  },
+  {
+    "timestamp": "2026-02-20T01:11:11.438516",
+    "level": "DEBUG",
+    "message": "Running tool: social_monitor",
+    "data": {
+      "params": [
+        "topic",
+        "platforms"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-20T01:11:12.882757",
+    "level": "INFO",
+    "message": "Tool social_monitor executed",
+    "data": {
+      "tool": "social_monitor",
+      "success": true,
+      "duration_seconds": 0.0,
+      "params": {
+        "topic": "india",
+        "platforms": [
+          "reddit"
+        ]
+      },
+      "result": {
+        "total_mentions": 25
+      }
+    }
+  },
+  {
+    "timestamp": "2026-02-20T01:11:12.913549",
+    "level": "DEBUG",
+    "message": "Running tool: research_assistant",
+    "data": {
+      "params": [
+        "topic"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-20T01:11:13.904393",
+    "level": "INFO",
+    "message": "Tool research_assistant executed",
+    "data": {
+      "tool": "research_assistant",
+      "success": true,
+      "duration_seconds": 0.0,
+      "params": {
+        "topic": "india",
+        "type": "comprehensive"
+      },
+      "result": {
+        "total_sources": 20
+      }
+    }
+  },
+  {
+    "timestamp": "2026-02-20T01:11:13.930288",
     "level": "DEBUG",
     "message": "Running tool: exporter",
     "data": {
@@ -1021,1073 +2280,13 @@
     }
   },
   {
-    "timestamp": "2026-02-04T20:18:49.519974",
+    "timestamp": "2026-02-20T01:11:13.960042",
     "level": "INFO",
     "message": "Sentiment-Trend fusion applied"
   },
   {
-    "timestamp": "2026-02-04T20:18:49.558379",
+    "timestamp": "2026-02-20T01:11:14.009492",
     "level": "INFO",
-    "message": "Execution complete: 5 tools run, 0 skipped, 0 fallbacks used"
-  },
-  {
-    "timestamp": "2026-02-04T21:13:46.638567",
-    "level": "INFO",
-    "message": "Planning task for: India US trade deal"
-  },
-  {
-    "timestamp": "2026-02-04T21:13:49.524913",
-    "level": "INFO",
-    "message": "Nova plan generated",
-    "data": {
-      "plan": {
-        "intent": "Fetch and export news on India US trade deal",
-        "domain": "India US trade deal",
-        "steps": [
-          {
-            "tool": "news_fetcher",
-            "params": {
-              "topic": "India US trade deal",
-              "limit": 5
-            }
-          },
-          {
-            "tool": "exporter",
-            "params": {
-              "filename": "India_US_trade_deal_report",
-              "format": "json"
-            }
-          }
-        ]
-      }
-    }
-  },
-  {
-    "timestamp": "2026-02-04T21:13:49.576485",
-    "level": "INFO",
-    "message": "Executing plan: Fetch and export news on India US trade deal",
-    "data": {
-      "steps": 2
-    }
-  },
-  {
-    "timestamp": "2026-02-04T21:13:49.603872",
-    "level": "DEBUG",
-    "message": "Running tool: news_fetcher",
-    "data": {
-      "params": [
-        "topic",
-        "limit"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-02-04T21:13:49.631220",
-    "level": "INFO",
-    "message": "Multi-source fetch for: India US trade deal"
-  },
-  {
-    "timestamp": "2026-02-04T21:13:57.113840",
-    "level": "INFO",
-    "message": "Multi-source complete: 15 articles from 3 sources"
-  },
-  {
-    "timestamp": "2026-02-04T21:13:57.152210",
-    "level": "DEBUG",
-    "message": "Running tool: exporter",
-    "data": {
-      "params": [
-        "filename",
-        "format",
-        "data"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-02-04T21:13:57.248813",
-    "level": "INFO",
-    "message": "Execution complete: 2 tools run, 0 skipped, 0 fallbacks used"
-  },
-  {
-    "timestamp": "2026-02-04T21:14:07.250598",
-    "level": "INFO",
-    "message": "Planning task for: India US trade deal with summarize and sentiment analysis and trends"
-  },
-  {
-    "timestamp": "2026-02-04T21:14:09.653593",
-    "level": "INFO",
-    "message": "Nova plan generated",
-    "data": {
-      "plan": {
-        "intent": "Fetch, summarize, perform sentiment analysis, and extract trends for the India-US trade deal",
-        "domain": "India-US trade deal",
-        "steps": [
-          {
-            "tool": "news_fetcher",
-            "params": {
-              "topic": "India-US trade deal",
-              "limit": 5
-            }
-          },
-          {
-            "tool": "summarizer",
-            "params": {
-              "news_items": "{{news_fetcher.output}}"
-            }
-          },
-          {
-            "tool": "sentiment",
-            "params": {
-              "news_items": "{{news_fetcher.output}}"
-            }
-          },
-          {
-            "tool": "trends",
-            "params": {
-              "news_items": "{{news_fetcher.output}}"
-            }
-          },
-          {
-            "tool": "exporter",
-            "params": {
-              "filename": "India-US_trade_deal_report",
-              "format": "json"
-            }
-          }
-        ]
-      }
-    }
-  },
-  {
-    "timestamp": "2026-02-04T21:14:09.690423",
-    "level": "INFO",
-    "message": "Executing plan: Fetch, summarize, perform sentiment analysis, and extract trends for the India-US trade deal",
-    "data": {
-      "steps": 5
-    }
-  },
-  {
-    "timestamp": "2026-02-04T21:14:09.721856",
-    "level": "DEBUG",
-    "message": "Running tool: news_fetcher",
-    "data": {
-      "params": [
-        "topic",
-        "limit"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-02-04T21:14:09.746279",
-    "level": "INFO",
-    "message": "Multi-source fetch for: India-US trade deal"
-  },
-  {
-    "timestamp": "2026-02-04T21:14:12.271204",
-    "level": "ERROR",
-    "message": "GNews failed: Client error '400 Bad Request' for url 'https://gnews.io/api/v4/search?apikey=a7519075e5f8447070cc6f0047260ca2&q=India-US+trade+deal&lang=en&max=5'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400"
-  },
-  {
-    "timestamp": "2026-02-04T21:14:17.378227",
-    "level": "INFO",
-    "message": "Multi-source complete: 10 articles from 3 sources"
-  },
-  {
-    "timestamp": "2026-02-04T21:14:17.406428",
-    "level": "DEBUG",
-    "message": "Running tool: summarizer",
-    "data": {
-      "params": [
-        "news_items"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-02-04T21:14:19.488258",
-    "level": "DEBUG",
-    "message": "Running tool: sentiment",
-    "data": {
-      "params": [
-        "news_items"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-02-04T21:14:22.042106",
-    "level": "DEBUG",
-    "message": "Running tool: trends",
-    "data": {
-      "params": [
-        "news_items"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-02-04T21:14:22.073513",
-    "level": "DEBUG",
-    "message": "Running tool: exporter",
-    "data": {
-      "params": [
-        "filename",
-        "format",
-        "data"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-02-04T21:14:22.093554",
-    "level": "INFO",
-    "message": "Sentiment-Trend fusion applied"
-  },
-  {
-    "timestamp": "2026-02-04T21:14:22.133175",
-    "level": "INFO",
-    "message": "Execution complete: 5 tools run, 0 skipped, 0 fallbacks used"
-  },
-  {
-    "timestamp": "2026-02-04T21:29:20.411258",
-    "level": "INFO",
-    "message": "Planning task for: India US trade deal"
-  },
-  {
-    "timestamp": "2026-02-04T21:29:23.056965",
-    "level": "INFO",
-    "message": "Nova plan generated",
-    "data": {
-      "plan": {
-        "intent": "Fetch and export news on India-US trade deal",
-        "domain": "India US trade deal",
-        "steps": [
-          {
-            "tool": "news_fetcher",
-            "params": {
-              "topic": "India US trade deal",
-              "limit": 5
-            }
-          },
-          {
-            "tool": "exporter",
-            "params": {
-              "filename": "India_US_trade_deal_report",
-              "format": "json"
-            }
-          }
-        ]
-      }
-    }
-  },
-  {
-    "timestamp": "2026-02-04T21:29:23.093556",
-    "level": "INFO",
-    "message": "Executing plan: Fetch and export news on India-US trade deal",
-    "data": {
-      "steps": 2
-    }
-  },
-  {
-    "timestamp": "2026-02-04T21:29:23.119714",
-    "level": "DEBUG",
-    "message": "Running tool: news_fetcher",
-    "data": {
-      "params": [
-        "topic",
-        "limit"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-02-04T21:29:23.149249",
-    "level": "INFO",
-    "message": "Multi-source fetch for: India US trade deal"
-  },
-  {
-    "timestamp": "2026-02-04T21:29:30.113655",
-    "level": "INFO",
-    "message": "Multi-source complete: 15 articles from 3 sources"
-  },
-  {
-    "timestamp": "2026-02-04T21:29:30.140510",
-    "level": "DEBUG",
-    "message": "Running tool: exporter",
-    "data": {
-      "params": [
-        "filename",
-        "format",
-        "data"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-02-04T21:29:30.202775",
-    "level": "INFO",
-    "message": "Execution complete: 2 tools run, 0 skipped, 0 fallbacks used"
-  },
-  {
-    "timestamp": "2026-02-04T21:29:34.043013",
-    "level": "INFO",
-    "message": "Planning task for: India US trade deal with summarize and sentiment analysis and trends"
-  },
-  {
-    "timestamp": "2026-02-04T21:29:36.478399",
-    "level": "INFO",
-    "message": "Nova plan generated",
-    "data": {
-      "plan": {
-        "intent": "Fetch, summarize, perform sentiment analysis, and extract trends for the India-US trade deal news",
-        "domain": "India-US trade deal",
-        "steps": [
-          {
-            "tool": "news_fetcher",
-            "params": {
-              "topic": "India-US trade deal",
-              "limit": 5
-            }
-          },
-          {
-            "tool": "summarizer",
-            "params": {
-              "news_items": "{{news_fetcher.output}}"
-            }
-          },
-          {
-            "tool": "sentiment",
-            "params": {
-              "news_items": "{{news_fetcher.output}}"
-            }
-          },
-          {
-            "tool": "trends",
-            "params": {
-              "news_items": "{{news_fetcher.output}}"
-            }
-          },
-          {
-            "tool": "exporter",
-            "params": {
-              "filename": "India-US_trade_deal_report",
-              "format": "json"
-            }
-          }
-        ]
-      }
-    }
-  },
-  {
-    "timestamp": "2026-02-04T21:29:36.521489",
-    "level": "INFO",
-    "message": "Executing plan: Fetch, summarize, perform sentiment analysis, and extract trends for the India-US trade deal news",
-    "data": {
-      "steps": 5
-    }
-  },
-  {
-    "timestamp": "2026-02-04T21:29:36.555852",
-    "level": "DEBUG",
-    "message": "Running tool: news_fetcher",
-    "data": {
-      "params": [
-        "topic",
-        "limit"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-02-04T21:29:36.585689",
-    "level": "INFO",
-    "message": "Multi-source fetch for: India-US trade deal"
-  },
-  {
-    "timestamp": "2026-02-04T21:29:39.047367",
-    "level": "ERROR",
-    "message": "GNews failed: Client error '400 Bad Request' for url 'https://gnews.io/api/v4/search?apikey=a7519075e5f8447070cc6f0047260ca2&q=India-US+trade+deal&lang=en&max=5'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400"
-  },
-  {
-    "timestamp": "2026-02-04T21:29:43.803904",
-    "level": "INFO",
-    "message": "Multi-source complete: 10 articles from 3 sources"
-  },
-  {
-    "timestamp": "2026-02-04T21:29:43.835709",
-    "level": "DEBUG",
-    "message": "Running tool: summarizer",
-    "data": {
-      "params": [
-        "news_items"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-02-04T21:29:45.826396",
-    "level": "DEBUG",
-    "message": "Running tool: sentiment",
-    "data": {
-      "params": [
-        "news_items"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-02-04T21:29:48.236046",
-    "level": "DEBUG",
-    "message": "Running tool: trends",
-    "data": {
-      "params": [
-        "news_items"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-02-04T21:29:48.283922",
-    "level": "DEBUG",
-    "message": "Running tool: exporter",
-    "data": {
-      "params": [
-        "filename",
-        "format",
-        "data"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-02-04T21:29:48.313893",
-    "level": "INFO",
-    "message": "Sentiment-Trend fusion applied"
-  },
-  {
-    "timestamp": "2026-02-04T21:29:48.359310",
-    "level": "INFO",
-    "message": "Execution complete: 5 tools run, 0 skipped, 0 fallbacks used"
-  },
-  {
-    "timestamp": "2026-02-04T21:38:37.675311",
-    "level": "INFO",
-    "message": "Planning task for: India US trade deal with summarize and sentiment analysis and trends"
-  },
-  {
-    "timestamp": "2026-02-04T21:38:40.249739",
-    "level": "INFO",
-    "message": "Nova plan generated",
-    "data": {
-      "plan": {
-        "intent": "Fetch news on India-US trade deal, summarize, perform sentiment analysis, extract trends, and export the results.",
-        "domain": "India-US trade deal",
-        "steps": [
-          {
-            "tool": "news_fetcher",
-            "params": {
-              "topic": "India-US trade deal",
-              "limit": 5
-            }
-          },
-          {
-            "tool": "summarizer",
-            "params": {
-              "news_items": "news_fetcher output"
-            }
-          },
-          {
-            "tool": "sentiment",
-            "params": {
-              "news_items": "news_fetcher output"
-            }
-          },
-          {
-            "tool": "trends",
-            "params": {
-              "news_items": "news_fetcher output"
-            }
-          },
-          {
-            "tool": "exporter",
-            "params": {
-              "filename": "India-US_trade_deal_report",
-              "format": "json"
-            }
-          }
-        ]
-      }
-    }
-  },
-  {
-    "timestamp": "2026-02-04T21:38:40.285623",
-    "level": "INFO",
-    "message": "Executing plan: Fetch news on India-US trade deal, summarize, perform sentiment analysis, extract trends, and export the results.",
-    "data": {
-      "steps": 5
-    }
-  },
-  {
-    "timestamp": "2026-02-04T21:38:40.311571",
-    "level": "DEBUG",
-    "message": "Running tool: news_fetcher",
-    "data": {
-      "params": [
-        "topic",
-        "limit"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-02-04T21:38:40.340795",
-    "level": "INFO",
-    "message": "Multi-source fetch for: India-US trade deal"
-  },
-  {
-    "timestamp": "2026-02-04T21:38:42.861762",
-    "level": "ERROR",
-    "message": "GNews failed: Client error '400 Bad Request' for url 'https://gnews.io/api/v4/search?apikey=a7519075e5f8447070cc6f0047260ca2&q=India-US+trade+deal&lang=en&max=5'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400"
-  },
-  {
-    "timestamp": "2026-02-04T21:38:48.189491",
-    "level": "INFO",
-    "message": "Multi-source complete: 10 articles from 3 sources"
-  },
-  {
-    "timestamp": "2026-02-04T21:38:48.215290",
-    "level": "DEBUG",
-    "message": "Running tool: summarizer",
-    "data": {
-      "params": [
-        "news_items"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-02-04T21:38:50.625611",
-    "level": "DEBUG",
-    "message": "Running tool: sentiment",
-    "data": {
-      "params": [
-        "news_items"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-02-04T21:38:53.154111",
-    "level": "DEBUG",
-    "message": "Running tool: trends",
-    "data": {
-      "params": [
-        "news_items"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-02-04T21:38:55.726615",
-    "level": "DEBUG",
-    "message": "Running tool: exporter",
-    "data": {
-      "params": [
-        "filename",
-        "format",
-        "data"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-02-04T21:38:55.750769",
-    "level": "INFO",
-    "message": "Sentiment-Trend fusion applied"
-  },
-  {
-    "timestamp": "2026-02-04T21:38:55.794532",
-    "level": "INFO",
-    "message": "Execution complete: 5 tools run, 0 skipped, 0 fallbacks used"
-  },
-  {
-    "timestamp": "2026-02-04T23:10:30.573323",
-    "level": "INFO",
-    "message": "Planning task for: India US trade deal with summarize and sentiment analysis and trends"
-  },
-  {
-    "timestamp": "2026-02-04T23:10:33.872984",
-    "level": "INFO",
-    "message": "Nova plan generated",
-    "data": {
-      "plan": {
-        "intent": "Fetch news on India-US trade deal, summarize, perform sentiment analysis, extract trends, and export the results",
-        "domain": "India-US trade deal",
-        "steps": [
-          {
-            "tool": "news_fetcher",
-            "params": {
-              "topic": "India-US trade deal",
-              "limit": 5
-            }
-          },
-          {
-            "tool": "summarizer",
-            "params": {
-              "news_items": "news_fetcher_output"
-            }
-          },
-          {
-            "tool": "sentiment",
-            "params": {
-              "news_items": "news_fetcher_output"
-            }
-          },
-          {
-            "tool": "trends",
-            "params": {
-              "news_items": "news_fetcher_output"
-            }
-          },
-          {
-            "tool": "exporter",
-            "params": {
-              "filename": "India-US_trade_deal_report",
-              "format": "json"
-            }
-          }
-        ]
-      }
-    }
-  },
-  {
-    "timestamp": "2026-02-04T23:10:33.922137",
-    "level": "INFO",
-    "message": "Executing plan: Fetch news on India-US trade deal, summarize, perform sentiment analysis, extract trends, and export the results",
-    "data": {
-      "steps": 5
-    }
-  },
-  {
-    "timestamp": "2026-02-04T23:10:33.958249",
-    "level": "DEBUG",
-    "message": "Running tool: news_fetcher",
-    "data": {
-      "params": [
-        "topic",
-        "limit"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-02-04T23:10:34.005673",
-    "level": "INFO",
-    "message": "Multi-source fetch for: India-US trade deal"
-  },
-  {
-    "timestamp": "2026-02-04T23:10:36.438445",
-    "level": "ERROR",
-    "message": "GNews failed: Client error '400 Bad Request' for url 'https://gnews.io/api/v4/search?apikey=a7519075e5f8447070cc6f0047260ca2&q=India-US+trade+deal&lang=en&max=5'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400"
-  },
-  {
-    "timestamp": "2026-02-04T23:10:40.571915",
-    "level": "INFO",
-    "message": "Multi-source complete: 10 articles from 3 sources"
-  },
-  {
-    "timestamp": "2026-02-04T23:10:40.604684",
-    "level": "DEBUG",
-    "message": "Running tool: summarizer",
-    "data": {
-      "params": [
-        "news_items"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-02-04T23:10:42.953914",
-    "level": "DEBUG",
-    "message": "Running tool: sentiment",
-    "data": {
-      "params": [
-        "news_items"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-02-04T23:10:45.280828",
-    "level": "DEBUG",
-    "message": "Running tool: trends",
-    "data": {
-      "params": [
-        "news_items"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-02-04T23:10:47.419378",
-    "level": "DEBUG",
-    "message": "Running tool: exporter",
-    "data": {
-      "params": [
-        "filename",
-        "format",
-        "data"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-02-04T23:10:47.446135",
-    "level": "INFO",
-    "message": "Sentiment-Trend fusion applied"
-  },
-  {
-    "timestamp": "2026-02-04T23:10:47.489487",
-    "level": "INFO",
-    "message": "Execution complete: 5 tools run, 0 skipped, 0 fallbacks used"
-  },
-  {
-    "timestamp": "2026-02-04T23:12:07.923196",
-    "level": "INFO",
-    "message": "Planning task for: India US trade deal"
-  },
-  {
-    "timestamp": "2026-02-04T23:12:12.517818",
-    "level": "INFO",
-    "message": "Nova plan generated",
-    "data": {
-      "plan": {
-        "intent": "Fetch and summarize news on India-US trade deal",
-        "domain": "India-US trade deal",
-        "steps": [
-          {
-            "tool": "news_fetcher",
-            "params": {
-              "topic": "India US trade deal",
-              "sources": [
-                "google"
-              ],
-              "limit": 5
-            }
-          },
-          {
-            "tool": "summarizer",
-            "params": {
-              "news_items": "news_fetcher output"
-            }
-          },
-          {
-            "tool": "exporter",
-            "params": {
-              "filename": "India_US_trade_deal_report",
-              "format": "json"
-            }
-          }
-        ]
-      }
-    }
-  },
-  {
-    "timestamp": "2026-02-04T23:12:12.551927",
-    "level": "INFO",
-    "message": "Executing plan: Fetch and summarize news on India-US trade deal",
-    "data": {
-      "steps": 3
-    }
-  },
-  {
-    "timestamp": "2026-02-04T23:12:12.573477",
-    "level": "DEBUG",
-    "message": "Running tool: news_fetcher",
-    "data": {
-      "params": [
-        "topic",
-        "sources",
-        "limit"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-02-04T23:12:12.594388",
-    "level": "INFO",
-    "message": "Multi-source fetch for: India US trade deal"
-  },
-  {
-    "timestamp": "2026-02-04T23:12:19.619379",
-    "level": "INFO",
-    "message": "Multi-source complete: 15 articles from 3 sources"
-  },
-  {
-    "timestamp": "2026-02-04T23:12:19.654576",
-    "level": "DEBUG",
-    "message": "Running tool: summarizer",
-    "data": {
-      "params": [
-        "news_items"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-02-04T23:12:21.969308",
-    "level": "DEBUG",
-    "message": "Running tool: exporter",
-    "data": {
-      "params": [
-        "filename",
-        "format",
-        "data"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-02-04T23:12:22.026867",
-    "level": "INFO",
-    "message": "Execution complete: 3 tools run, 0 skipped, 0 fallbacks used"
-  },
-  {
-    "timestamp": "2026-02-04T23:12:22.055291",
-    "level": "INFO",
-    "message": "Planning task for: India US trade deal with summarize and sentiment analysis and trends"
-  },
-  {
-    "timestamp": "2026-02-04T23:12:25.119917",
-    "level": "INFO",
-    "message": "Nova plan generated",
-    "data": {
-      "plan": {
-        "intent": "Fetch, summarize, perform sentiment analysis, extract trends, and export the results for the India-US trade deal",
-        "domain": "India US trade deal",
-        "steps": [
-          {
-            "tool": "news_fetcher",
-            "params": {
-              "topic": "India US trade deal",
-              "limit": 5
-            }
-          },
-          {
-            "tool": "summarizer",
-            "params": {
-              "news_items": "news_fetcher output"
-            }
-          },
-          {
-            "tool": "sentiment",
-            "params": {
-              "news_items": "news_fetcher output"
-            }
-          },
-          {
-            "tool": "trends",
-            "params": {
-              "news_items": "news_fetcher output"
-            }
-          },
-          {
-            "tool": "exporter",
-            "params": {
-              "filename": "India_US_trade_deal_report",
-              "format": "json"
-            }
-          }
-        ]
-      }
-    }
-  },
-  {
-    "timestamp": "2026-02-04T23:12:25.162794",
-    "level": "INFO",
-    "message": "Executing plan: Fetch, summarize, perform sentiment analysis, extract trends, and export the results for the India-US trade deal",
-    "data": {
-      "steps": 5
-    }
-  },
-  {
-    "timestamp": "2026-02-04T23:12:25.191869",
-    "level": "DEBUG",
-    "message": "Running tool: news_fetcher",
-    "data": {
-      "params": [
-        "topic",
-        "limit"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-02-04T23:12:25.216882",
-    "level": "INFO",
-    "message": "Multi-source fetch for: India US trade deal"
-  },
-  {
-    "timestamp": "2026-02-04T23:12:31.942055",
-    "level": "INFO",
-    "message": "Multi-source complete: 15 articles from 3 sources"
-  },
-  {
-    "timestamp": "2026-02-04T23:12:31.974436",
-    "level": "DEBUG",
-    "message": "Running tool: summarizer",
-    "data": {
-      "params": [
-        "news_items"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-02-04T23:12:34.026116",
-    "level": "DEBUG",
-    "message": "Running tool: sentiment",
-    "data": {
-      "params": [
-        "news_items"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-02-04T23:12:36.489464",
-    "level": "DEBUG",
-    "message": "Running tool: trends",
-    "data": {
-      "params": [
-        "news_items"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-02-04T23:12:38.811617",
-    "level": "DEBUG",
-    "message": "Running tool: exporter",
-    "data": {
-      "params": [
-        "filename",
-        "format",
-        "data"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-02-04T23:12:38.850101",
-    "level": "INFO",
-    "message": "Sentiment-Trend fusion applied"
-  },
-  {
-    "timestamp": "2026-02-04T23:12:38.922026",
-    "level": "INFO",
-    "message": "Execution complete: 5 tools run, 0 skipped, 0 fallbacks used"
-  },
-  {
-    "timestamp": "2026-02-04T23:15:57.311616",
-    "level": "INFO",
-    "message": "Planning task for: India US trade deal with summarize and sentiment analysis and trends"
-  },
-  {
-    "timestamp": "2026-02-04T23:16:00.953816",
-    "level": "INFO",
-    "message": "Nova plan generated",
-    "data": {
-      "plan": {
-        "intent": "Fetch news on India US trade deal, summarize, perform sentiment analysis, extract trends, and export the results",
-        "domain": "India US trade deal",
-        "steps": [
-          {
-            "tool": "news_fetcher",
-            "params": {
-              "topic": "India US trade deal",
-              "limit": 5
-            }
-          },
-          {
-            "tool": "summarizer",
-            "params": {
-              "news_items": "news_fetcher output"
-            }
-          },
-          {
-            "tool": "sentiment",
-            "params": {
-              "news_items": "news_fetcher output"
-            }
-          },
-          {
-            "tool": "trends",
-            "params": {
-              "news_items": "news_fetcher output"
-            }
-          },
-          {
-            "tool": "exporter",
-            "params": {
-              "filename": "India_US_trade_deal_report",
-              "format": "json"
-            }
-          }
-        ]
-      }
-    }
-  },
-  {
-    "timestamp": "2026-02-04T23:16:00.996589",
-    "level": "INFO",
-    "message": "Executing plan: Fetch news on India US trade deal, summarize, perform sentiment analysis, extract trends, and export the results",
-    "data": {
-      "steps": 5
-    }
-  },
-  {
-    "timestamp": "2026-02-04T23:16:01.029759",
-    "level": "DEBUG",
-    "message": "Running tool: news_fetcher",
-    "data": {
-      "params": [
-        "topic",
-        "limit"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-02-04T23:16:01.059807",
-    "level": "INFO",
-    "message": "Multi-source fetch for: India US trade deal"
-  },
-  {
-    "timestamp": "2026-02-04T23:16:09.310947",
-    "level": "INFO",
-    "message": "Multi-source complete: 15 articles from 3 sources"
-  },
-  {
-    "timestamp": "2026-02-04T23:16:09.347446",
-    "level": "DEBUG",
-    "message": "Running tool: summarizer",
-    "data": {
-      "params": [
-        "news_items"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-02-04T23:16:11.324887",
-    "level": "DEBUG",
-    "message": "Running tool: sentiment",
-    "data": {
-      "params": [
-        "news_items"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-02-04T23:16:13.997785",
-    "level": "DEBUG",
-    "message": "Running tool: trends",
-    "data": {
-      "params": [
-        "news_items"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-02-04T23:16:23.593316",
-    "level": "DEBUG",
-    "message": "Running tool: exporter",
-    "data": {
-      "params": [
-        "filename",
-        "format",
-        "data"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-02-04T23:16:23.627130",
-    "level": "INFO",
-    "message": "Sentiment-Trend fusion applied"
-  },
-  {
-    "timestamp": "2026-02-04T23:16:23.693957",
-    "level": "INFO",
-    "message": "Execution complete: 5 tools run, 0 skipped, 0 fallbacks used"
+    "message": "Execution complete: 10 tools run, 0 skipped, 0 fallbacks used"
   }
 ]

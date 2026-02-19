@@ -13,7 +13,7 @@ from app.memory.store import log
 load_dotenv()
 
 
-PLANNER_PROMPT = """You are Nova Intelligence Agent - an AI news analysis system.
+PLANNER_PROMPT = """You are Nova Intelligence Agent - an AI news analysis system with Multi-Agent capabilities.
 
 Convert user requests into a JSON task plan.
 
@@ -37,7 +37,12 @@ RULES:
 2. Add summarizer if user wants summary
 3. Add sentiment if user asks about sentiment/mood/tone
 4. Add trends if user asks about trending/popular topics
-5. Always end with exporter"""
+5. Add web_scraper if user wants full article content or deep analysis
+6. Add entity_extractor if user wants to know about people, organizations, or locations
+7. Add image_analyzer if user mentions images or visual content
+8. Add social_monitor if user wants social media buzz or Reddit/Twitter data
+9. Add research_assistant if user wants academic papers, GitHub repos, or technical research
+10. Always end with exporter"""
 
 
 def get_mock_plan(user_input: str) -> Dict:
@@ -57,12 +62,25 @@ def get_mock_plan(user_input: str) -> Dict:
         {"tool": "news_fetcher", "params": {"topic": topic, "sources": ["google"], "limit": 5}}
     ]
     
+    # Core intelligence tools
     if any(w in input_lower for w in ["summar", "digest", "brief"]):
         steps.append({"tool": "summarizer", "params": {}})
     if any(w in input_lower for w in ["sentiment", "mood", "tone"]):
         steps.append({"tool": "sentiment", "params": {}})
     if any(w in input_lower for w in ["trend", "trending", "popular"]):
         steps.append({"tool": "trends", "params": {}})
+    
+    # MAS tools
+    if any(w in input_lower for w in ["full", "article", "content", "scrape", "deep", "detailed"]):
+        steps.append({"tool": "web_scraper", "params": {}})
+    if any(w in input_lower for w in ["entity", "entities", "people", "person", "organization", "company", "location"]):
+        steps.append({"tool": "entity_extractor", "params": {}})
+    if any(w in input_lower for w in ["image", "images", "photo", "picture", "visual"]):
+        steps.append({"tool": "image_analyzer", "params": {}})
+    if any(w in input_lower for w in ["social", "reddit", "twitter", "buzz", "discussion"]):
+        steps.append({"tool": "social_monitor", "params": {"topic": topic, "platforms": ["reddit"]}})
+    if any(w in input_lower for w in ["research", "paper", "academic", "github", "repo", "stackoverflow", "technical"]):
+        steps.append({"tool": "research_assistant", "params": {"query": topic}})
     
     export_format = "markdown" if "markdown" in input_lower else "csv" if "csv" in input_lower else "json"
     steps.append({"tool": "exporter", "params": {"filename": f"{topic}_report", "format": export_format}})

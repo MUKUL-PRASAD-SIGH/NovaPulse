@@ -1,361 +1,5 @@
 [
   {
-    "timestamp": "2026-02-04T12:20:28.288259",
-    "user_input": "News about Moltbot from 3rd and 4th feb",
-    "plan": {
-      "intent": "Fetch and export news about Moltbot from 3rd and 4th February",
-      "domain": "Moltbot",
-      "steps": [
-        {
-          "tool": "news_fetcher",
-          "params": {
-            "topic": "Moltbot",
-            "sources": [
-              "google"
-            ],
-            "limit": 5
-          }
-        },
-        {
-          "tool": "exporter",
-          "params": {
-            "data": "news_items",
-            "filename": "moltbot_news_report",
-            "format": "json"
-          }
-        }
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-02-04T12:20:51.921552",
-    "user_input": "cra accident",
-    "plan": {
-      "intent": "Fetch and export news about a car accident in CRA",
-      "domain": "car accident",
-      "steps": [
-        {
-          "tool": "news_fetcher",
-          "params": {
-            "topic": "cra accident",
-            "sources": [
-              "google"
-            ],
-            "limit": 5
-          }
-        },
-        {
-          "tool": "exporter",
-          "params": {
-            "filename": "cra_accident_report",
-            "format": "json"
-          }
-        }
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-02-04T12:20:58.197557",
-    "user_input": "car accident",
-    "plan": {
-      "intent": "Fetch and export news about a car accident",
-      "domain": "car accident",
-      "steps": [
-        {
-          "tool": "news_fetcher",
-          "params": {
-            "topic": "car accident",
-            "sources": [
-              "google"
-            ],
-            "limit": 5
-          }
-        },
-        {
-          "tool": "exporter",
-          "params": {
-            "filename": "car_accident_report",
-            "format": "json"
-          }
-        }
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-02-04T12:21:26.489067",
-    "user_input": "\"News about Moltbot\"",
-    "plan": {
-      "intent": "Fetch and export news about Moltbot",
-      "domain": "technology",
-      "steps": [
-        {
-          "tool": "news_fetcher",
-          "params": {
-            "topic": "Moltbot",
-            "sources": [
-              "google"
-            ],
-            "limit": 5
-          }
-        },
-        {
-          "tool": "exporter",
-          "params": {
-            "filename": "moltbot_news_report",
-            "format": "json"
-          }
-        }
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-02-04T12:22:06.036813",
-    "user_input": "car accident news",
-    "plan": {
-      "intent": "Fetch and export recent car accident news",
-      "domain": "car accident",
-      "steps": [
-        {
-          "tool": "news_fetcher",
-          "params": {
-            "topic": "car accident",
-            "sources": [
-              "google"
-            ],
-            "limit": 5
-          }
-        },
-        {
-          "tool": "exporter",
-          "params": {
-            "data": "news_items",
-            "filename": "car_accident_news_report",
-            "format": "json"
-          }
-        }
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-02-04T12:23:44.560391",
-    "user_input": "stock market news",
-    "plan": {
-      "intent": "Fetch and export the latest stock market news",
-      "domain": "stock market",
-      "steps": [
-        {
-          "tool": "news_fetcher",
-          "params": {
-            "topic": "stock market",
-            "sources": [
-              "google"
-            ],
-            "limit": 5
-          }
-        },
-        {
-          "tool": "exporter",
-          "params": {
-            "filename": "stock_market_news",
-            "format": "json"
-          }
-        }
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-02-04T12:26:41.220804",
-    "user_input": "stock market",
-    "plan": {
-      "intent": "Fetch and export the latest news about the stock market",
-      "domain": "stock market",
-      "steps": [
-        {
-          "tool": "news_fetcher",
-          "params": {
-            "topic": "stock market",
-            "sources": [
-              "google"
-            ],
-            "limit": 5
-          }
-        },
-        {
-          "tool": "exporter",
-          "params": {
-            "filename": "stock_market_news",
-            "format": "json"
-          }
-        }
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-02-04T12:27:00.953863",
-    "user_input": "India US trade deal",
-    "plan": {
-      "intent": "Fetch and export news on India US trade deal",
-      "domain": "India US trade deal",
-      "steps": [
-        {
-          "tool": "news_fetcher",
-          "params": {
-            "topic": "India US trade deal",
-            "sources": [
-              "google"
-            ],
-            "limit": 5
-          }
-        },
-        {
-          "tool": "exporter",
-          "params": {
-            "filename": "India_US_trade_deal_report",
-            "format": "json"
-          }
-        }
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-02-04T12:59:40.245883",
-    "user_input": "car accident",
-    "plan": {
-      "intent": "Fetch and export news about a car accident",
-      "domain": "car accident",
-      "steps": [
-        {
-          "tool": "news_fetcher",
-          "params": {
-            "topic": "car accident",
-            "limit": 5
-          }
-        },
-        {
-          "tool": "exporter",
-          "params": {
-            "filename": "car_accident_report",
-            "format": "json"
-          }
-        }
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-02-04T12:59:59.209162",
-    "user_input": "tesla news",
-    "plan": {
-      "intent": "Fetch and export latest Tesla news",
-      "domain": "Tesla",
-      "steps": [
-        {
-          "tool": "news_fetcher",
-          "params": {
-            "topic": "tesla",
-            "limit": 5
-          }
-        },
-        {
-          "tool": "exporter",
-          "params": {
-            "filename": "tesla_news_report",
-            "format": "json"
-          }
-        }
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-02-04T13:13:26.974479",
-    "user_input": "What's trending in tech?",
-    "plan": {
-      "intent": "Identify trending topics in the tech industry",
-      "domain": "tech",
-      "steps": [
-        {
-          "tool": "news_fetcher",
-          "params": {
-            "topic": "tech",
-            "limit": 5
-          }
-        },
-        {
-          "tool": "trends",
-          "params": {
-            "news_items": "news_fetcher output"
-          }
-        },
-        {
-          "tool": "exporter",
-          "params": {
-            "filename": "tech_trends_report",
-            "format": "json"
-          }
-        }
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-02-04T13:13:33.223269",
-    "user_input": "Get crypto news with sentiment analysis",
-    "plan": {
-      "intent": "Fetch crypto news and perform sentiment analysis",
-      "domain": "crypto",
-      "steps": [
-        {
-          "tool": "news_fetcher",
-          "params": {
-            "topic": "crypto",
-            "limit": 5
-          }
-        },
-        {
-          "tool": "sentiment",
-          "params": {
-            "news_items": "news_fetcher_output"
-          }
-        },
-        {
-          "tool": "exporter",
-          "params": {
-            "filename": "crypto_news_sentiment_report",
-            "format": "json"
-          }
-        }
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-02-04T13:13:39.314358",
-    "user_input": "Get AI news and summarize",
-    "plan": {
-      "intent": "Fetch and summarize AI news",
-      "domain": "AI",
-      "steps": [
-        {
-          "tool": "news_fetcher",
-          "params": {
-            "topic": "AI",
-            "limit": 5
-          }
-        },
-        {
-          "tool": "summarizer",
-          "params": {
-            "news_items": "news_fetcher_output"
-          }
-        },
-        {
-          "tool": "exporter",
-          "params": {
-            "filename": "AI_news_summary",
-            "format": "json"
-          }
-        }
-      ]
-    }
-  },
-  {
     "timestamp": "2026-02-04T13:13:44.877226",
     "user_input": "car accident",
     "plan": {
@@ -1579,6 +1223,786 @@
           "tool": "exporter",
           "params": {
             "filename": "India_US_trade_deal_report",
+            "format": "json"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-18T03:47:28.649576",
+    "user_input": "G4 summit with summarize and sentiment analysis and trends and full article content and entity extraction and image analysis and social media monitoring and research papers",
+    "plan": {
+      "intent": "Get summit news",
+      "domain": "summit",
+      "steps": [
+        {
+          "tool": "news_fetcher",
+          "params": {
+            "topic": "summit",
+            "sources": [
+              "google"
+            ],
+            "limit": 5
+          }
+        },
+        {
+          "tool": "summarizer",
+          "params": {}
+        },
+        {
+          "tool": "sentiment",
+          "params": {}
+        },
+        {
+          "tool": "trends",
+          "params": {}
+        },
+        {
+          "tool": "web_scraper",
+          "params": {}
+        },
+        {
+          "tool": "entity_extractor",
+          "params": {}
+        },
+        {
+          "tool": "image_analyzer",
+          "params": {}
+        },
+        {
+          "tool": "social_monitor",
+          "params": {
+            "topic": "summit",
+            "platforms": [
+              "reddit"
+            ]
+          }
+        },
+        {
+          "tool": "research_assistant",
+          "params": {
+            "query": "summit"
+          }
+        },
+        {
+          "tool": "exporter",
+          "params": {
+            "filename": "summit_report",
+            "format": "json"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-18T03:49:43.562131",
+    "user_input": "G4 summit with summarize and sentiment analysis and trends and full article content and entity extraction and image analysis and social media monitoring and research papers",
+    "plan": {
+      "intent": "Get summit news",
+      "domain": "summit",
+      "steps": [
+        {
+          "tool": "news_fetcher",
+          "params": {
+            "topic": "summit",
+            "sources": [
+              "google"
+            ],
+            "limit": 5
+          }
+        },
+        {
+          "tool": "summarizer",
+          "params": {}
+        },
+        {
+          "tool": "sentiment",
+          "params": {}
+        },
+        {
+          "tool": "trends",
+          "params": {}
+        },
+        {
+          "tool": "web_scraper",
+          "params": {}
+        },
+        {
+          "tool": "entity_extractor",
+          "params": {}
+        },
+        {
+          "tool": "image_analyzer",
+          "params": {}
+        },
+        {
+          "tool": "social_monitor",
+          "params": {
+            "topic": "summit",
+            "platforms": [
+              "reddit"
+            ]
+          }
+        },
+        {
+          "tool": "research_assistant",
+          "params": {
+            "query": "summit"
+          }
+        },
+        {
+          "tool": "exporter",
+          "params": {
+            "filename": "summit_report",
+            "format": "json"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-19T23:05:19.736644",
+    "user_input": "elon musk",
+    "plan": {
+      "intent": "Get elon news",
+      "domain": "elon",
+      "steps": [
+        {
+          "tool": "news_fetcher",
+          "params": {
+            "topic": "elon",
+            "sources": [
+              "google"
+            ],
+            "limit": 5
+          }
+        },
+        {
+          "tool": "exporter",
+          "params": {
+            "filename": "elon_report",
+            "format": "json"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-19T23:05:56.809876",
+    "user_input": "elon musk with summarize and sentiment analysis and trends and full article content and entity extraction and image analysis and social media monitoring and research papers",
+    "plan": {
+      "intent": "Get elon news",
+      "domain": "elon",
+      "steps": [
+        {
+          "tool": "news_fetcher",
+          "params": {
+            "topic": "elon",
+            "sources": [
+              "google"
+            ],
+            "limit": 5
+          }
+        },
+        {
+          "tool": "summarizer",
+          "params": {}
+        },
+        {
+          "tool": "sentiment",
+          "params": {}
+        },
+        {
+          "tool": "trends",
+          "params": {}
+        },
+        {
+          "tool": "web_scraper",
+          "params": {}
+        },
+        {
+          "tool": "entity_extractor",
+          "params": {}
+        },
+        {
+          "tool": "image_analyzer",
+          "params": {}
+        },
+        {
+          "tool": "social_monitor",
+          "params": {
+            "topic": "elon",
+            "platforms": [
+              "reddit"
+            ]
+          }
+        },
+        {
+          "tool": "research_assistant",
+          "params": {
+            "query": "elon"
+          }
+        },
+        {
+          "tool": "exporter",
+          "params": {
+            "filename": "elon_report",
+            "format": "json"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-19T23:10:44.426379",
+    "user_input": "elon musk with summarize and sentiment analysis and trends and full article content and entity extraction and image analysis and social media monitoring and research papers",
+    "plan": {
+      "intent": "Get elon news",
+      "domain": "elon",
+      "steps": [
+        {
+          "tool": "news_fetcher",
+          "params": {
+            "topic": "elon",
+            "sources": [
+              "google"
+            ],
+            "limit": 5
+          }
+        },
+        {
+          "tool": "summarizer",
+          "params": {}
+        },
+        {
+          "tool": "sentiment",
+          "params": {}
+        },
+        {
+          "tool": "trends",
+          "params": {}
+        },
+        {
+          "tool": "web_scraper",
+          "params": {}
+        },
+        {
+          "tool": "entity_extractor",
+          "params": {}
+        },
+        {
+          "tool": "image_analyzer",
+          "params": {}
+        },
+        {
+          "tool": "social_monitor",
+          "params": {
+            "topic": "elon",
+            "platforms": [
+              "reddit"
+            ]
+          }
+        },
+        {
+          "tool": "research_assistant",
+          "params": {
+            "query": "elon"
+          }
+        },
+        {
+          "tool": "exporter",
+          "params": {
+            "filename": "elon_report",
+            "format": "json"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-19T23:21:40.863628",
+    "user_input": "elon musk with summarize and sentiment analysis and trends and full article content and entity extraction and image analysis and social media monitoring and research papers",
+    "plan": {
+      "intent": "Get elon news",
+      "domain": "elon",
+      "steps": [
+        {
+          "tool": "news_fetcher",
+          "params": {
+            "topic": "elon",
+            "sources": [
+              "google"
+            ],
+            "limit": 5
+          }
+        },
+        {
+          "tool": "summarizer",
+          "params": {}
+        },
+        {
+          "tool": "sentiment",
+          "params": {}
+        },
+        {
+          "tool": "trends",
+          "params": {}
+        },
+        {
+          "tool": "web_scraper",
+          "params": {}
+        },
+        {
+          "tool": "entity_extractor",
+          "params": {}
+        },
+        {
+          "tool": "image_analyzer",
+          "params": {}
+        },
+        {
+          "tool": "social_monitor",
+          "params": {
+            "topic": "elon",
+            "platforms": [
+              "reddit"
+            ]
+          }
+        },
+        {
+          "tool": "research_assistant",
+          "params": {
+            "query": "elon"
+          }
+        },
+        {
+          "tool": "exporter",
+          "params": {
+            "filename": "elon_report",
+            "format": "json"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-19T23:35:43.392358",
+    "user_input": "elon musk with summarize and sentiment analysis and trends and full article content and entity extraction and image analysis and social media monitoring and research papers",
+    "plan": {
+      "intent": "Get elon news",
+      "domain": "elon",
+      "steps": [
+        {
+          "tool": "news_fetcher",
+          "params": {
+            "topic": "elon",
+            "sources": [
+              "google"
+            ],
+            "limit": 5
+          }
+        },
+        {
+          "tool": "summarizer",
+          "params": {}
+        },
+        {
+          "tool": "sentiment",
+          "params": {}
+        },
+        {
+          "tool": "trends",
+          "params": {}
+        },
+        {
+          "tool": "web_scraper",
+          "params": {}
+        },
+        {
+          "tool": "entity_extractor",
+          "params": {}
+        },
+        {
+          "tool": "image_analyzer",
+          "params": {}
+        },
+        {
+          "tool": "social_monitor",
+          "params": {
+            "topic": "elon",
+            "platforms": [
+              "reddit"
+            ]
+          }
+        },
+        {
+          "tool": "research_assistant",
+          "params": {
+            "query": "elon"
+          }
+        },
+        {
+          "tool": "exporter",
+          "params": {
+            "filename": "elon_report",
+            "format": "json"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-19T23:42:46.197050",
+    "user_input": "elon musk",
+    "plan": {
+      "intent": "Get elon news",
+      "domain": "elon",
+      "steps": [
+        {
+          "tool": "news_fetcher",
+          "params": {
+            "topic": "elon",
+            "sources": [
+              "google"
+            ],
+            "limit": 5
+          }
+        },
+        {
+          "tool": "exporter",
+          "params": {
+            "filename": "elon_report",
+            "format": "json"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-19T23:53:59.664576",
+    "user_input": "elon musk with summarize and sentiment analysis and trends and full article content and entity extraction and image analysis and social media monitoring and research papers",
+    "plan": {
+      "intent": "Get elon news",
+      "domain": "elon",
+      "steps": [
+        {
+          "tool": "news_fetcher",
+          "params": {
+            "topic": "elon",
+            "sources": [
+              "google"
+            ],
+            "limit": 5
+          }
+        },
+        {
+          "tool": "summarizer",
+          "params": {}
+        },
+        {
+          "tool": "sentiment",
+          "params": {}
+        },
+        {
+          "tool": "trends",
+          "params": {}
+        },
+        {
+          "tool": "web_scraper",
+          "params": {}
+        },
+        {
+          "tool": "entity_extractor",
+          "params": {}
+        },
+        {
+          "tool": "image_analyzer",
+          "params": {}
+        },
+        {
+          "tool": "social_monitor",
+          "params": {
+            "topic": "elon",
+            "platforms": [
+              "reddit"
+            ]
+          }
+        },
+        {
+          "tool": "research_assistant",
+          "params": {
+            "query": "elon"
+          }
+        },
+        {
+          "tool": "exporter",
+          "params": {
+            "filename": "elon_report",
+            "format": "json"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-19T23:59:00.812549",
+    "user_input": "india AI summit with summarize and sentiment analysis and trends and full article content and entity extraction and image analysis and social media monitoring and research papers",
+    "plan": {
+      "intent": "Get india news",
+      "domain": "india",
+      "steps": [
+        {
+          "tool": "news_fetcher",
+          "params": {
+            "topic": "india",
+            "sources": [
+              "google"
+            ],
+            "limit": 5
+          }
+        },
+        {
+          "tool": "summarizer",
+          "params": {}
+        },
+        {
+          "tool": "sentiment",
+          "params": {}
+        },
+        {
+          "tool": "trends",
+          "params": {}
+        },
+        {
+          "tool": "web_scraper",
+          "params": {}
+        },
+        {
+          "tool": "entity_extractor",
+          "params": {}
+        },
+        {
+          "tool": "image_analyzer",
+          "params": {}
+        },
+        {
+          "tool": "social_monitor",
+          "params": {
+            "topic": "india",
+            "platforms": [
+              "reddit"
+            ]
+          }
+        },
+        {
+          "tool": "research_assistant",
+          "params": {
+            "query": "india"
+          }
+        },
+        {
+          "tool": "exporter",
+          "params": {
+            "filename": "india_report",
+            "format": "json"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-20T00:07:03.774318",
+    "user_input": "india AI summit with summarize and sentiment analysis and trends and full article content and entity extraction and image analysis and social media monitoring and research papers",
+    "plan": {
+      "intent": "Get india news",
+      "domain": "india",
+      "steps": [
+        {
+          "tool": "news_fetcher",
+          "params": {
+            "topic": "india",
+            "sources": [
+              "google"
+            ],
+            "limit": 5
+          }
+        },
+        {
+          "tool": "summarizer",
+          "params": {}
+        },
+        {
+          "tool": "sentiment",
+          "params": {}
+        },
+        {
+          "tool": "trends",
+          "params": {}
+        },
+        {
+          "tool": "web_scraper",
+          "params": {}
+        },
+        {
+          "tool": "entity_extractor",
+          "params": {}
+        },
+        {
+          "tool": "image_analyzer",
+          "params": {}
+        },
+        {
+          "tool": "social_monitor",
+          "params": {
+            "topic": "india",
+            "platforms": [
+              "reddit"
+            ]
+          }
+        },
+        {
+          "tool": "research_assistant",
+          "params": {
+            "query": "india"
+          }
+        },
+        {
+          "tool": "exporter",
+          "params": {
+            "filename": "india_report",
+            "format": "json"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-20T00:32:32.775911",
+    "user_input": "india AI summit with summarize and sentiment analysis and trends and full article content and entity extraction and image analysis and social media monitoring and research papers",
+    "plan": {
+      "intent": "Get india news",
+      "domain": "india",
+      "steps": [
+        {
+          "tool": "news_fetcher",
+          "params": {
+            "topic": "india",
+            "sources": [
+              "google"
+            ],
+            "limit": 5
+          }
+        },
+        {
+          "tool": "summarizer",
+          "params": {}
+        },
+        {
+          "tool": "sentiment",
+          "params": {}
+        },
+        {
+          "tool": "trends",
+          "params": {}
+        },
+        {
+          "tool": "web_scraper",
+          "params": {}
+        },
+        {
+          "tool": "entity_extractor",
+          "params": {}
+        },
+        {
+          "tool": "image_analyzer",
+          "params": {}
+        },
+        {
+          "tool": "social_monitor",
+          "params": {
+            "topic": "india",
+            "platforms": [
+              "reddit"
+            ]
+          }
+        },
+        {
+          "tool": "research_assistant",
+          "params": {
+            "query": "india"
+          }
+        },
+        {
+          "tool": "exporter",
+          "params": {
+            "filename": "india_report",
+            "format": "json"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-20T01:10:56.956840",
+    "user_input": "india AI summit with summarize and sentiment analysis and trends and full article content and entity extraction and image analysis and social media monitoring and research papers",
+    "plan": {
+      "intent": "Get india news",
+      "domain": "india",
+      "steps": [
+        {
+          "tool": "news_fetcher",
+          "params": {
+            "topic": "india",
+            "sources": [
+              "google"
+            ],
+            "limit": 5
+          }
+        },
+        {
+          "tool": "summarizer",
+          "params": {}
+        },
+        {
+          "tool": "sentiment",
+          "params": {}
+        },
+        {
+          "tool": "trends",
+          "params": {}
+        },
+        {
+          "tool": "web_scraper",
+          "params": {}
+        },
+        {
+          "tool": "entity_extractor",
+          "params": {}
+        },
+        {
+          "tool": "image_analyzer",
+          "params": {}
+        },
+        {
+          "tool": "social_monitor",
+          "params": {
+            "topic": "india",
+            "platforms": [
+              "reddit"
+            ]
+          }
+        },
+        {
+          "tool": "research_assistant",
+          "params": {
+            "query": "india"
+          }
+        },
+        {
+          "tool": "exporter",
+          "params": {
+            "filename": "india_report",
             "format": "json"
           }
         }

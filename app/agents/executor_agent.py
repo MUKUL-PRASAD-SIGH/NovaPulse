@@ -13,6 +13,8 @@ Features:
 from typing import Dict, Any, List, Optional
 import time
 import copy
+import asyncio
+import inspect
 from app.core.tool_registry import get_tool, list_tools
 from app.models.schemas import TaskPlan, ToolStep
 from app.memory.store import save_result, log
@@ -23,6 +25,12 @@ TOOL_DEPENDENCIES = {
     "summarizer": ["news_fetcher"],
     "sentiment": ["news_fetcher"],
     "trends": ["news_fetcher"],
+    # MAS tools
+    "web_scraper": ["news_fetcher"],  # Needs URLs from news
+    "entity_extractor": ["news_fetcher"],  # Needs text from news
+    "image_analyzer": ["news_fetcher"],  # Needs image URLs from news
+    "social_monitor": [],  # Independent
+    "research_assistant": [],  # Independent
     "exporter": []  # Exporter can run with partial data
 }
 
@@ -54,7 +62,28 @@ def execute_plan(plan: TaskPlan) -> Dict[str, Any]:
     - Alternate tool fallback
     - Auto step regeneration
     - Dynamic plan rewriting
+    
+    NEVER raises - always returns a result dict.
     """
+    try:
+        return _execute_plan_inner(plan)
+    except Exception as e:
+        print(f"[EXECUTOR ERROR] Top-level failure: {e}")
+        return {
+            "intent": getattr(plan, 'intent', 'unknown'),
+            "domain": getattr(plan, 'domain', 'unknown'),
+            "tools_executed": [],
+            "data": {},
+            "errors": [f"Executor crashed: {str(e)}"],
+            "skipped": [],
+            "fallbacks_used": [],
+            "regenerated": [],
+            "success": False
+        }
+
+
+def _execute_plan_inner(plan: TaskPlan) -> Dict[str, Any]:
+    """Inner execution logic."""
     log("INFO", f"Executing plan: {plan.intent}", {"steps": len(plan.steps)})
     
     result = {
@@ -140,7 +169,10 @@ def execute_plan(plan: TaskPlan) -> Dict[str, Any]:
     result["success"] = len(result["errors"]) == 0 or len(context.get("news", [])) > 0
     
     # Save to memory
-    save_result(result)
+    try:
+        save_result(result)
+    except Exception as e:
+        print(f"[EXECUTOR WARN] Failed to save result: {e}")
     
     executed = len(result['tools_executed'])
     skipped = len(result['skipped'])
@@ -322,7 +354,7 @@ def _execute_step_with_retry(step: ToolStep, context: Dict, step_index: int) -> 
 
 
 def _execute_step(step: ToolStep, context: Dict, step_index: int) -> Dict:
-    """Execute a single tool step."""
+    """Execute a single tool step (handles both sync and async tools)."""
     tool_fn = get_tool(step.tool)
     
     if not tool_fn:
@@ -338,7 +370,22 @@ def _execute_step(step: ToolStep, context: Dict, step_index: int) -> Dict:
         
         log("DEBUG", f"Running tool: {step.tool}", {"params": list(params.keys())})
         
-        output = tool_fn(**params)
+        # Handle async tools (MAS tools are async)
+        if inspect.iscoroutinefunction(tool_fn):
+            try:
+                loop = asyncio.get_event_loop()
+                if loop.is_running():
+                    # We're inside an async context (FastAPI), use a new thread
+                    import concurrent.futures
+                    with concurrent.futures.ThreadPoolExecutor() as pool:
+                        output = pool.submit(asyncio.run, tool_fn(**params)).result(timeout=30)
+                else:
+                    output = loop.run_until_complete(tool_fn(**params))
+            except RuntimeError:
+                # No event loop, create one
+                output = asyncio.run(tool_fn(**params))
+        else:
+            output = tool_fn(**params)
         
         return {
             "success": True,
@@ -362,12 +409,79 @@ def _inject_context(tool_name: str, params: Dict, context: Dict) -> Dict:
         if "news" in context:
             params["news_items"] = context["news"]
     
+    # MAS tools context injection - match actual function signatures
+    if tool_name == "web_scraper":
+        # scrape_url() expects a single 'url' string
+        if "news" in context and "url" not in params:
+            # Prioritize direct article URLs over Google News redirects
+            direct_urls = [item.get("link") for item in context["news"] 
+                          if item.get("link") and not item["link"].startswith("https://news.google.com/")]
+            all_urls = [item.get("link") for item in context["news"] if item.get("link")]
+            urls = direct_urls or all_urls
+            if urls:
+                params["url"] = urls[0]  # Single URL for scrape_url()
+        # Remove 'urls' if accidentally set by mock planner
+        params.pop("urls", None)
+    
+    if tool_name == "entity_extractor":
+        # extract_entities_from_articles() expects 'articles' (List[Dict])
+        if "news" in context and "articles" not in params:
+            params["articles"] = context["news"]
+        # Remove 'text' if accidentally set by mock planner
+        params.pop("text", None)
+    
+    if tool_name == "image_analyzer":
+        # analyze_article_images() expects 'articles' (List[Dict]) with 'images' field
+        if "articles" not in params:
+            # First: try to use web_scraper results which include extracted images
+            scraped = context.get("scraped_articles") or context.get("web_scraper")
+            if scraped and isinstance(scraped, dict):
+                # Scraper returns individual article result
+                scraped_list = scraped.get("articles", [scraped]) if isinstance(scraped.get("articles"), list) else [scraped]
+                params["articles"] = [a for a in scraped_list if a.get("images")]
+            
+            # Fallback: pass article links so analyzer can extract og:image from pages
+            if not params.get("articles") and "news" in context:
+                # Prioritize direct article links (gnews, tavily) over Google News redirects
+                direct_articles = [item for item in context["news"] if not item.get("link", "").startswith("https://news.google.com/")]
+                if not direct_articles:
+                    direct_articles = context["news"]
+                enriched = []
+                for item in direct_articles[:5]:
+                    link = item.get("link", "")
+                    if link:
+                        enriched.append({
+                            "title": item.get("title", ""),
+                            "link": link,
+                            "images": []  # No direct images — analyzer will extract og:image
+                        })
+                params["articles"] = enriched
+        # Remove wrong param names
+        params.pop("image_urls", None)
+    
+    if tool_name == "research_assistant":
+        # comprehensive_research() expects 'topic' (str)
+        if "query" in params and "topic" not in params:
+            params["topic"] = params.pop("query")
+        if "topic" not in params:
+            # Try to derive topic from user input
+            params["topic"] = context.get("user_input", "AI news")
+    
+    if tool_name == "social_monitor":
+        # monitor_social_media() expects 'topic' (str)
+        if "topic" not in params:
+            params["topic"] = context.get("user_input", "AI")
+    
     if tool_name == "exporter":
         params["data"] = {
             "news": context.get("news", []),
             "summary": context.get("summary"),
             "sentiment": context.get("sentiment"),
-            "trends": context.get("trends")
+            "trends": context.get("trends"),
+            "entities": context.get("entities"),
+            "images": context.get("images"),
+            "social": context.get("social"),
+            "research": context.get("research")
         }
         params["data"] = {k: v for k, v in params["data"].items() if v is not None}
     
@@ -385,5 +499,16 @@ def _update_context(context: Dict, tool_name: str, output: Any):
         context["sentiment"] = output
     elif tool_name == "trends":
         context["trends"] = output
+    # MAS tools
+    elif tool_name == "web_scraper":
+        context["scraped_articles"] = output
+    elif tool_name == "entity_extractor":
+        context["entities"] = output
+    elif tool_name == "image_analyzer":
+        context["images"] = output
+    elif tool_name == "social_monitor":
+        context["social"] = output
+    elif tool_name == "research_assistant":
+        context["research"] = output
     elif tool_name == "exporter":
         context["exported_file"] = output

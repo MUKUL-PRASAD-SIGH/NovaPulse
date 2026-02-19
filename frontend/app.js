@@ -19,7 +19,13 @@ const features = {
     news: true,
     summary: false,
     sentiment: false,
-    trends: false
+    trends: false,
+    // MAS Tools (new)
+    scraper: false,
+    entities: false,
+    images: false,
+    social: false,
+    research: false
 };
 
 // Last result data for download
@@ -144,9 +150,48 @@ document.querySelectorAll('.toggle-badge').forEach(badge => {
         features[feature] = !features[feature];
         badge.classList.toggle('active', features[feature]);
 
+        updateSelectAllState();
         updateStatusHint();
     });
 });
+
+// Select All button
+const selectAllBtn = document.getElementById('selectAllBtn');
+if (selectAllBtn) {
+    selectAllBtn.addEventListener('click', () => {
+        // Check if all non-news features are currently active
+        const toggleableFeatures = Object.keys(features).filter(f => f !== 'news');
+        const allActive = toggleableFeatures.every(f => features[f]);
+
+        // Toggle: if all active → deselect all; otherwise → select all
+        const newState = !allActive;
+
+        toggleableFeatures.forEach(f => {
+            features[f] = newState;
+        });
+
+        // Update all badge visuals
+        document.querySelectorAll('.toggle-badge').forEach(badge => {
+            const feature = badge.dataset.feature;
+            if (feature === 'news') return;
+            badge.classList.toggle('active', newState);
+        });
+
+        // Update Select All button state
+        updateSelectAllState();
+        updateStatusHint();
+    });
+}
+
+function updateSelectAllState() {
+    const btn = document.getElementById('selectAllBtn');
+    if (!btn) return;
+    const toggleableFeatures = Object.keys(features).filter(f => f !== 'news');
+    const allActive = toggleableFeatures.every(f => features[f]);
+    btn.classList.toggle('active', allActive);
+    btn.textContent = allActive ? '⚡ Deselect All' : '⚡ Select All';
+}
+
 
 // Example chips
 document.querySelectorAll('.chip').forEach(chip => {
@@ -201,6 +246,11 @@ function buildCommand(topic) {
     if (features.summary) extras.push('summarize');
     if (features.sentiment) extras.push('sentiment analysis');
     if (features.trends) extras.push('trends');
+    if (features.scraper) extras.push('full article content');
+    if (features.entities) extras.push('entity extraction');
+    if (features.images) extras.push('image analysis');
+    if (features.social) extras.push('social media monitoring');
+    if (features.research) extras.push('research papers');
 
     if (extras.length > 0) {
         cmd = `${topic} with ${extras.join(' and ')}`;
@@ -236,7 +286,14 @@ async function sendCommand(topic) {
         });
 
         if (!response.ok) {
-            throw new Error(`HTTP ${response.status}`);
+            // Try to parse error body for details
+            try {
+                const errData = await response.json();
+                throw new Error(errData.detail || `HTTP ${response.status}`);
+            } catch (parseErr) {
+                if (parseErr.message.includes('HTTP')) throw parseErr;
+                throw new Error(`HTTP ${response.status}`);
+            }
         }
 
         const data = await response.json();
@@ -272,6 +329,9 @@ function buildExpectedSteps() {
         { id: 'news_fetcher', name: 'Fetching News', icon: '📰', status: 'pending' }
     ];
 
+    if (features.scraper) {
+        steps.push({ id: 'web_scraper', name: 'Scraping Articles', icon: '🌐', status: 'pending' });
+    }
     if (features.summary) {
         steps.push({ id: 'summarizer', name: 'Generating Summary', icon: '🧠', status: 'pending' });
     }
@@ -280,6 +340,18 @@ function buildExpectedSteps() {
     }
     if (features.trends) {
         steps.push({ id: 'trends', name: 'Trend Extraction', icon: '📊', status: 'pending' });
+    }
+    if (features.entities) {
+        steps.push({ id: 'entity_extractor', name: 'Extracting Entities', icon: '👤', status: 'pending' });
+    }
+    if (features.images) {
+        steps.push({ id: 'image_analyzer', name: 'Analyzing Images', icon: '🖼️', status: 'pending' });
+    }
+    if (features.social) {
+        steps.push({ id: 'social_monitor', name: 'Monitoring Social Media', icon: '📱', status: 'pending' });
+    }
+    if (features.research) {
+        steps.push({ id: 'research_assistant', name: 'Searching Research', icon: '📚', status: 'pending' });
     }
     if (features.export) {
         steps.push({ id: 'exporter', name: 'Export Report', icon: '💾', status: 'pending' });
@@ -460,11 +532,11 @@ function showSummaryChip() {
 
     // Set chip content
     if (errorCount === 0) {
-        chipIcon.textContent = '✅';
+        if (chipIcon) chipIcon.textContent = '✅';
         chipText.textContent = `${completedCount} tools • ${elapsed}s • Success`;
         chip.classList.remove('has-errors');
     } else {
-        chipIcon.textContent = '⚠️';
+        if (chipIcon) chipIcon.textContent = '⚠️';
         chipText.textContent = `${completedCount} tools • ${elapsed}s • ${errorCount} error(s)`;
         chip.classList.add('has-errors');
     }
@@ -615,6 +687,7 @@ function displayResults(data) {
             success: data.result.success ?? true
         };
         displayIntelligence(data.result.data);
+        displayMASResults(data.result.data); // Display MAS tool results
     }
 }
 
@@ -802,10 +875,366 @@ function displayNews(articles) {
     newsOutput.innerHTML = html;
 }
 
+// ===== MAS TOOLS DISPLAY FUNCTIONS =====
+
+function displayMASResults(data) {
+    // Display Entity Network
+    if (data.entities) {
+        displayEntities(data.entities);
+    }
+
+    // Display Image Gallery
+    if (data.images) {
+        displayImages(data.images);
+    }
+
+    // Display Social Media
+    if (data.social) {
+        displaySocial(data.social);
+    }
+
+    // Display Research
+    if (data.research) {
+        displayResearch(data.research);
+    }
+}
+
+function displayEntities(entities) {
+    const panel = document.getElementById('entityPanel');
+    const output = document.getElementById('entityOutput');
+
+    if (!panel || !output) return;
+
+    let html = `
+        <div class="mas-explanation">
+            <p>🔍 <strong>Named Entity Recognition (NER)</strong> — Automatically extracts people, organizations, and locations mentioned across all fetched articles. Relationships show which entities appear together in the same sentence, suggesting a connection.</p>
+        </div>
+    `;
+
+    // Entity categories
+    if (entities.entities) {
+        html += '<div class="entity-list">';
+
+        // People
+        if (entities.entities.people && entities.entities.people.length > 0) {
+            html += `
+                <div class="entity-category">
+                    <h5>👤 People (${entities.entities.people.length})</h5>
+                    ${entities.entities.people.slice(0, 6).map(p => `
+                        <div class="entity-item">
+                            <span class="entity-name">${p.name}</span>
+                            <span class="entity-count">${p.mentions || 1}</span>
+                        </div>
+                    `).join('')}
+                    ${entities.entities.people.length > 6 ? `<span style="font-size:0.65rem;color:var(--text-muted);margin-left:4px;">+${entities.entities.people.length - 6} more</span>` : ''}
+                </div>
+            `;
+        }
+
+        // Organizations
+        if (entities.entities.organizations && entities.entities.organizations.length > 0) {
+            html += `
+                <div class="entity-category">
+                    <h5>🏢 Organizations (${entities.entities.organizations.length})</h5>
+                    ${entities.entities.organizations.slice(0, 6).map(o => `
+                        <div class="entity-item">
+                            <span class="entity-name">${o.name}</span>
+                            <span class="entity-count">${o.mentions || 1}</span>
+                        </div>
+                    `).join('')}
+                    ${entities.entities.organizations.length > 6 ? `<span style="font-size:0.65rem;color:var(--text-muted);margin-left:4px;">+${entities.entities.organizations.length - 6} more</span>` : ''}
+                </div>
+            `;
+        }
+
+        // Locations
+        if (entities.entities.locations && entities.entities.locations.length > 0) {
+            html += `
+                <div class="entity-category">
+                    <h5>📍 Locations (${entities.entities.locations.length})</h5>
+                    ${entities.entities.locations.slice(0, 6).map(l => `
+                        <div class="entity-item">
+                            <span class="entity-name">${l.name}</span>
+                            <span class="entity-count">${l.mentions || 1}</span>
+                        </div>
+                    `).join('')}
+                    ${entities.entities.locations.length > 6 ? `<span style="font-size:0.65rem;color:var(--text-muted);margin-left:4px;">+${entities.entities.locations.length - 6} more</span>` : ''}
+                </div>
+            `;
+        }
+
+        html += '</div>';
+    }
+
+    // Relationships
+    if (entities.relationships && entities.relationships.length > 0) {
+        html += `
+            <div class="relationship-graph">
+                <h5>🔗 Relationships (${entities.relationships.length})</h5>
+                ${entities.relationships.slice(0, 8).map(r => `
+                    <div class="relationship-item">
+                        <span>${r.source}</span>
+                        <span class="relationship-arrow">→</span>
+                        <span>${r.target}</span>
+                    </div>
+                `).join('')}
+                ${entities.relationships.length > 8 ? `<span style="font-size:0.65rem;color:var(--text-muted);display:block;margin-top:0.3rem;">+${entities.relationships.length - 8} more connections</span>` : ''}
+            </div>
+        `;
+    }
+
+    output.innerHTML = html || '<p>No entities extracted.</p>';
+    panel.classList.remove('hidden');
+}
+
+function displayImages(images) {
+    const panel = document.getElementById('imagePanel');
+    const output = document.getElementById('imageOutput');
+
+    if (!panel || !output) return;
+
+    const imageList = images.images || images.analyzed_images || [];
+
+    if (imageList.length === 0) {
+        output.innerHTML = `
+            <div class="mas-explanation">
+                <p>🔍 <strong>Image Forensics & Analysis</strong> — Analyzes article images for metadata (dimensions, format), dominant colors, embedded text (OCR), and potential manipulation. No article images were found to analyze.</p>
+            </div>`;
+        panel.classList.remove('hidden');
+        return;
+    }
+
+    const html = imageList.map(img => `
+        <div class="image-card">
+            <img src="${img.url}" alt="Article image" class="image-preview" loading="lazy" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22200%22 height=%22150%22%3E%3Crect fill=%22%232d3346%22 width=%22200%22 height=%22150%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 fill=%22%238e95a5%22 text-anchor=%22middle%22 dy=%22.3em%22%3EImage%3C/text%3E%3C/svg%3E'">
+            <div class="image-meta">
+                <div class="image-status ${img.manipulation_score?.risk_level === 'low' ? 'safe' : 'warning'}">
+                    ${img.manipulation_score?.risk_level === 'low' ? '✓ Authentic' : '⚠ Check Required'}
+                </div>
+                <div class="image-details">
+                    ${img.metadata?.width}×${img.metadata?.height} • ${img.metadata?.format || 'Unknown'}
+                </div>
+                ${img.vision_analysis?.dominant_colors ? `
+                    <div class="image-colors">
+                        ${img.vision_analysis.dominant_colors.slice(0, 5).map(color => `
+                            <div class="color-swatch" style="background-color: ${color}"></div>
+                        `).join('')}
+                    </div>
+                ` : ''}
+            </div>
+        </div>
+    `).join('');
+
+    output.innerHTML = html;
+    panel.classList.remove('hidden');
+}
+
+function displaySocial(social) {
+    const panel = document.getElementById('socialPanel');
+    const output = document.getElementById('socialOutput');
+
+    if (!panel || !output) return;
+
+    let html = `
+        <div class="mas-explanation">
+            <p>🔍 <strong>Social Media Monitoring</strong> — Scans Reddit (live) and Twitter (API required) for discussions about your topic. Shows post volume, sentiment breakdown, trending subreddits, and engagement velocity. Low buzz = few recent posts found.</p>
+        </div>
+    `;
+    html += '<div class="social-platforms">';
+
+    // Reddit
+    if (social.platforms?.reddit) {
+        const reddit = social.platforms.reddit;
+        html += `
+            <div class="platform-card">
+                <div class="platform-header">
+                    <span class="platform-name">🔴 Reddit</span>
+                    <span class="platform-status">Live</span>
+                </div>
+                <div class="platform-stats">
+                    <div class="stat-item">
+                        <span class="stat-value">${reddit.post_count || 0}</span>
+                        <span class="stat-label">Posts</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-value">${reddit.velocity?.posts_per_day || 0}</span>
+                        <span class="stat-label">Per Day</span>
+                    </div>
+                </div>
+                ${reddit.sentiment ? `
+                    <div class="sentiment-breakdown">
+                        <div class="sentiment-pill positive">${reddit.sentiment.positive ?? 0}% Positive</div>
+                        <div class="sentiment-pill neutral">${reddit.sentiment.neutral ?? 0}% Neutral</div>
+                        <div class="sentiment-pill negative">${reddit.sentiment.negative ?? 0}% Negative</div>
+                    </div>
+                ` : ''}
+                ${reddit.top_posts && reddit.top_posts.length > 0 ? `
+                    <div class="top-posts">
+                        <h6 style="font-size: 0.75rem; margin-bottom: 0.5rem; color: var(--text-muted);">Top Posts</h6>
+                        ${reddit.top_posts.slice(0, 3).map(post => `
+                            <div class="post-item">
+                                <div class="post-title">${(post.title || '').substring(0, 80)}${(post.title || '').length > 80 ? '...' : ''}</div>
+                                <div class="post-meta">
+                                    <span>r/${post.subreddit || 'unknown'}</span>
+                                    <span>↑ ${post.score || 0}</span>
+                                    <span>💬 ${post.num_comments || 0}</span>
+                                </div>
+                            </div>
+                        `).join('')}
+                    </div>
+                ` : ''}
+            </div>
+        `;
+    }
+
+    // Twitter (if available)
+    if (social.platforms?.twitter) {
+        const twitter = social.platforms.twitter;
+        html += `
+            <div class="platform-card">
+                <div class="platform-header">
+                    <span class="platform-name">🐦 Twitter</span>
+                    <span class="platform-status">${twitter.simulated ? 'Simulated' : 'Live'}</span>
+                </div>
+                <div class="platform-stats">
+                    <div class="stat-item">
+                        <span class="stat-value">${twitter.tweet_count || 0}</span>
+                        <span class="stat-label">Tweets</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-value">${twitter.engagement || 0}</span>
+                        <span class="stat-label">Engagement</span>
+                    </div>
+                </div>
+            </div>
+        `;
+    }
+
+    html += '</div>';
+
+    // Aggregate insights
+    if (social.aggregate) {
+        html += `
+            <div style="padding: 1rem; background: var(--bg-elevated); border-radius: 8px; margin-top: 1rem;">
+                <h5 style="font-size: 0.85rem; margin-bottom: 0.5rem;">📊 Aggregate Insights</h5>
+                <p style="font-size: 0.8rem; color: var(--text-secondary);">
+                    <strong>${social.aggregate.total_mentions}</strong> total mentions • 
+                    <strong>${social.aggregate.overall_sentiment}</strong> sentiment • 
+                    <strong>${social.aggregate.social_buzz_level}</strong> buzz level
+                </p>
+            </div>
+        `;
+    }
+
+    output.innerHTML = html;
+    panel.classList.remove('hidden');
+}
+
+function displayResearch(research) {
+    const panel = document.getElementById('researchPanel');
+    const output = document.getElementById('researchOutput');
+
+    if (!panel || !output) return;
+
+    let html = `
+        <div class="mas-explanation">
+            <p>🔍 <strong>Academic & Technical Research</strong> — Searches arXiv for academic papers, GitHub for related repositories, and StackOverflow for community discussions. Provides links to PDFs, repos, and Q&A threads relevant to your topic.</p>
+        </div>
+    `;
+    html += '<div class="research-sections">';
+
+    // Academic Papers
+    if (research.academic_papers && research.academic_papers.papers && research.academic_papers.papers.length > 0) {
+        const papers = research.academic_papers.papers;
+        html += `
+            <div class="research-section">
+                <h5>📄 Academic Papers <span class="research-count">${papers.length}</span></h5>
+                <div class="research-list">
+                    ${papers.slice(0, 5).map(paper => `
+                        <div class="research-item">
+                            <div class="research-title">${paper.title}</div>
+                            <div class="research-meta">
+                                <span class="research-authors">${paper.authors?.slice(0, 3).join(', ')}${paper.authors?.length > 3 ? ' et al.' : ''}</span>
+                                <span>${paper.published?.substring(0, 10) || 'N/A'}</span>
+                            </div>
+                            <div class="research-links">
+                                ${paper.pdf_url ? `<a href="${paper.pdf_url}" target="_blank" class="research-link">📥 PDF</a>` : ''}
+                                ${paper.arxiv_url ? `<a href="${paper.arxiv_url}" target="_blank" class="research-link">🔗 arXiv</a>` : ''}
+                            </div>
+                        </div>
+                    `).join('')}
+                </div>
+            </div>
+        `;
+    }
+
+    // GitHub Repositories
+    if (research.technical_docs?.github && research.technical_docs.github.repositories && research.technical_docs.github.repositories.length > 0) {
+        const repos = research.technical_docs.github.repositories;
+        html += `
+            <div class="research-section">
+                <h5>💻 GitHub Repositories <span class="research-count">${repos.length}</span></h5>
+                <div class="research-list">
+                    ${repos.slice(0, 5).map(repo => `
+                        <div class="research-item">
+                            <div class="research-title">${repo.name}</div>
+                            <div class="research-meta">
+                                <span>${repo.description || 'No description'}</span>
+                            </div>
+                            <div class="repo-stats">
+                                <span class="repo-stat">⭐ <strong>${repo.stars || 0}</strong> stars</span>
+                                ${repo.language ? `<span class="repo-stat">💬 <strong>${repo.language}</strong></span>` : ''}
+                            </div>
+                            <div class="research-links">
+                                ${repo.url ? `<a href="${repo.url}" target="_blank" class="research-link">🔗 View Repo</a>` : ''}
+                            </div>
+                        </div>
+                    `).join('')}
+                </div>
+            </div>
+        `;
+    }
+
+    // StackOverflow
+    if (research.technical_docs?.stackoverflow && research.technical_docs.stackoverflow.questions && research.technical_docs.stackoverflow.questions.length > 0) {
+        const questions = research.technical_docs.stackoverflow.questions;
+        html += `
+            <div class="research-section">
+                <h5>💡 StackOverflow Discussions <span class="research-count">${questions.length}</span></h5>
+                <div class="research-list">
+                    ${questions.slice(0, 5).map(q => `
+                        <div class="research-item">
+                            <div class="research-title">${q.title}</div>
+                            <div class="research-meta">
+                                <span>Score: ${q.score || 0}</span>
+                                <span>${q.answer_count || 0} answers</span>
+                            </div>
+                            <div class="research-links">
+                                ${q.link ? `<a href="${q.link}" target="_blank" class="research-link">🔗 View Question</a>` : ''}
+                            </div>
+                        </div>
+                    `).join('')}
+                </div>
+            </div>
+        `;
+    }
+
+    html += '</div>';
+
+    output.innerHTML = html;
+    panel.classList.remove('hidden');
+}
+
 function capitalize(str) {
     if (!str) return '';
     return str.charAt(0).toUpperCase() + str.slice(1);
 }
+
+// ============ SETTINGS STATE (must be before init) ============
+
+// Settings state - declared early so init() -> loadSettings() can access them
+let selectedLanguages = JSON.parse(localStorage.getItem('novaLanguages') || '["hi", "es", "fr"]');
+let dictionaryEnabled = localStorage.getItem('novaDictEnabled') !== 'false';
 
 // Initialize
 async function init() {
@@ -824,6 +1253,20 @@ async function init() {
     }
 }
 
+// Add collapse button functionality for MAS panels
+document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.collapse-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const targetId = btn.dataset.target;
+            const targetContent = document.getElementById(targetId);
+            if (targetContent) {
+                targetContent.classList.toggle('collapsed');
+                btn.textContent = targetContent.classList.contains('collapsed') ? '▶' : '▼';
+            }
+        });
+    });
+});
+
 init();
 
 // ============ SETTINGS PANEL ============
@@ -835,8 +1278,7 @@ const languageSelector = document.getElementById('languageSelector');
 const translateLang = document.getElementById('translateLang');
 
 // Settings state
-let selectedLanguages = JSON.parse(localStorage.getItem('novaLanguages') || '["hi", "es", "fr"]');
-let dictionaryEnabled = localStorage.getItem('novaDictEnabled') !== 'false';
+// selectedLanguages and dictionaryEnabled are declared above init() to avoid temporal dead zone
 
 function loadSettings() {
     const dictToggle = document.getElementById('dictToggle');
@@ -874,6 +1316,14 @@ document.getElementById('saveSettings')?.addEventListener('click', () => {
     // Close modal with confirmation
     settingsModal.classList.add('hidden');
     setStatus('✅ Settings saved!');
+});
+
+// Clear History Button
+document.getElementById('clearHistoryBtn')?.addEventListener('click', () => {
+    searchHistory = [];
+    localStorage.removeItem('novaSearchHistory');
+    renderHistory();
+    setStatus('🗑️ Search history cleared!');
 });
 
 async function loadLanguages() {
@@ -1154,12 +1604,17 @@ function updatePackagePreview() {
     const estimatedSize = document.getElementById('estimatedSize');
     const formatRec = document.getElementById('formatRecommendation');
 
-    // Build contents preview
+    // Build contents preview — core + MAS tools
     const contentItems = [
         { key: 'news', icon: '📰', label: 'News Articles', toggle: features.news },
         { key: 'summary', icon: '🧠', label: 'AI Summary', toggle: features.summary },
         { key: 'sentiment', icon: '💭', label: 'Sentiment Analysis', toggle: features.sentiment },
-        { key: 'trends', icon: '📊', label: 'Trend Extraction', toggle: features.trends }
+        { key: 'trends', icon: '📊', label: 'Trend Extraction', toggle: features.trends },
+        { key: 'scraped_articles', icon: '🌐', label: 'Web Scraper', toggle: features.scraper },
+        { key: 'entities', icon: '👤', label: 'Entity Network', toggle: features.entities },
+        { key: 'images', icon: '🖼️', label: 'Image Intelligence', toggle: features.images },
+        { key: 'social', icon: '📱', label: 'Social Media', toggle: features.social },
+        { key: 'research', icon: '📚', label: 'Research Library', toggle: features.research }
     ];
 
     contentsGrid.innerHTML = contentItems.map(item => {
@@ -1183,12 +1638,12 @@ function updatePackagePreview() {
     sectionCount.textContent = sections;
     estimatedSize.textContent = `~${sizeKB} KB`;
 
-    // Quality badge logic
+    // Quality badge logic — updated thresholds for 9 tools
     qualityBadge.className = 'quality-badge';
-    if (sections >= 3) {
+    if (sections >= 5) {
         qualityBadge.classList.add('quality-full');
         qualityBadge.innerHTML = '<span class="badge-icon">🟢</span><span class="badge-text">Full Intelligence Report</span>';
-    } else if (sections >= 2) {
+    } else if (sections >= 3) {
         qualityBadge.classList.add('quality-partial');
         qualityBadge.innerHTML = '<span class="badge-icon">🟡</span><span class="badge-text">Partial Report</span>';
     } else {
@@ -1200,7 +1655,10 @@ function updatePackagePreview() {
     let recFormat = 'JSON';
     let recReason = 'for API integration';
 
-    if (features.summary || features.sentiment || features.trends) {
+    if (features.entities || features.social || features.research) {
+        recFormat = 'JSON';
+        recReason = 'for structured intelligence data';
+    } else if (features.summary || features.sentiment || features.trends) {
         recFormat = 'Markdown';
         recReason = 'for rich formatting';
     } else if (features.news && !features.summary && !features.sentiment) {
@@ -1250,6 +1708,12 @@ function getFilteredData() {
     if (features.summary && lastResultData?.summary) filtered.summary = lastResultData.summary;
     if (features.sentiment && lastResultData?.sentiment) filtered.sentiment = lastResultData.sentiment;
     if (features.trends && lastResultData?.trends) filtered.trends = lastResultData.trends;
+    // MAS tools
+    if (features.scraper && lastResultData?.scraped_articles) filtered.scraped_articles = lastResultData.scraped_articles;
+    if (features.entities && lastResultData?.entities) filtered.entities = lastResultData.entities;
+    if (features.images && lastResultData?.images) filtered.images = lastResultData.images;
+    if (features.social && lastResultData?.social) filtered.social = lastResultData.social;
+    if (features.research && lastResultData?.research) filtered.research = lastResultData.research;
     return filtered;
 }
 

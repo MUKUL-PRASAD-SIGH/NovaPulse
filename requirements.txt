@@ -16,6 +16,11 @@ pydantic>=2.5.0
 # News Parsing
 feedparser>=6.0.10
 
+# Web Scraping & Image Analysis
+beautifulsoup4>=4.12.0
+Pillow>=10.0.0
+lxml>=4.9.0
+
 # Async Support
 nest_asyncio>=1.5.8
 

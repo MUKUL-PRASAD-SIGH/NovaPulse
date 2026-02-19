@@ -5,6 +5,7 @@ from typing import Dict, Any
 import httpx
 import os
 import io
+import traceback
 from dotenv import load_dotenv
 
 from app.models.schemas import CommandRequest, TaskPlan
@@ -25,24 +26,61 @@ async def process_command(request: CommandRequest) -> Dict[str, Any]:
     Main endpoint: Process a voice/text command.
     
     Flow: Text → Planner → Task JSON → Executor → Results
+    Never returns HTTP 500 - always returns a response with error details.
     """
+    plan_dict = None
+    result = None
+    errors = []
+    
+    # Step 1: Plan the task
     try:
-        # Step 1: Plan the task
+        print(f"[API] Planning task for: {request.text}")
         plan_dict = plan_task(request.text)
         save_plan(plan_dict, request.text)
-        
-        # Step 2: Execute the plan
-        plan = TaskPlan(**plan_dict)
-        result = execute_plan(plan)
-        
-        return {
-            "success": True,
-            "plan": plan_dict,
-            "result": result
-        }
-        
+        print(f"[API] Plan created: {plan_dict.get('intent', 'unknown')}")
     except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
+        error_msg = f"Planning failed: {str(e)}"
+        print(f"[API ERROR] {error_msg}\n{traceback.format_exc()}")
+        errors.append(error_msg)
+        # Create a minimal fallback plan
+        plan_dict = {
+            "intent": f"Get {request.text} news",
+            "domain": request.text.split()[0] if request.text else "ai",
+            "steps": [
+                {"tool": "news_fetcher", "params": {"topic": request.text or "ai", "sources": ["google"], "limit": 5}},
+                {"tool": "exporter", "params": {"filename": "report", "format": "json"}}
+            ]
+        }
+    
+    # Step 2: Execute the plan
+    try:
+        plan = TaskPlan(**plan_dict)
+        print(f"[API] Executing {len(plan.steps)} steps...")
+        result = execute_plan(plan)
+        print(f"[API] Execution complete. Success: {result.get('success', False)}")
+    except Exception as e:
+        error_msg = f"Execution failed: {str(e)}"
+        print(f"[API ERROR] {error_msg}\n{traceback.format_exc()}")
+        errors.append(error_msg)
+        result = {
+            "intent": plan_dict.get("intent", "unknown"),
+            "domain": plan_dict.get("domain", "unknown"),
+            "tools_executed": [],
+            "data": {},
+            "errors": errors,
+            "skipped": [],
+            "fallbacks_used": [],
+            "regenerated": [],
+            "success": False
+        }
+    
+    # Always return 200 with results (even if partial)
+    return {
+        "success": len(errors) == 0 and result.get("success", False),
+        "plan": plan_dict,
+        "result": result,
+        "errors": errors
+    }
 
 
 @router.get("/capabilities")
@@ -50,17 +88,22 @@ async def get_capabilities() -> Dict[str, Any]:
     """Get agent capabilities for UI display."""
     return {
         "name": "Nova Intelligence Agent",
-        "version": "1.0",
+        "version": "2.0",
         "features": [
             {"id": "multi_source", "name": "Multi-Source News", "icon": "📰"},
             {"id": "ai_summary", "name": "AI Summary", "icon": "🧠"},
             {"id": "sentiment", "name": "Sentiment Analysis", "icon": "💭"},
             {"id": "trends", "name": "Trend Detection", "icon": "📊"},
-            {"id": "export", "name": "Multi-Format Export", "icon": "💾"},
+            {"id": "web_scraper", "name": "Web Scraper", "icon": "🌐"},
+            {"id": "entity_extractor", "name": "Entity Network", "icon": "👤"},
+            {"id": "image_analyzer", "name": "Image Intelligence", "icon": "🖼️"},
+            {"id": "social_monitor", "name": "Social Monitor", "icon": "📱"},
+            {"id": "research_assistant", "name": "Research Assistant", "icon": "📚"},
+            {"id": "export", "name": "Package Builder", "icon": "📦"},
         ],
-        "sources": ["Google News", "TechCrunch", "The Verge"],
-        "domains": ["AI", "Tech", "Crypto", "Research", "Business"],
-        "export_formats": ["JSON", "Markdown", "CSV"],
+        "sources": ["Tavily", "GNews", "Google News RSS", "Reddit", "arXiv", "GitHub", "StackOverflow"],
+        "domains": ["AI", "Tech", "Crypto", "Research", "Business", "Politics", "Science"],
+        "export_formats": ["JSON", "Markdown", "CSV", "Word", "PDF"],
         "tools": list_tools()
     }
 
@@ -87,7 +130,7 @@ async def export_report(request: Dict[str, Any]):
     """
     Export filtered report data in specified format.
     
-    Body: {"data": {...}, "format": "json|markdown|csv", "filename": "report"}
+    Body: {"data": {...}, "format": "json|markdown|csv|docx|pdf", "filename": "report"}
     Returns: Downloadable file
     """
     data = request.get("data", {})
@@ -105,7 +148,9 @@ async def export_report(request: Dict[str, Any]):
         content_types = {
             "json": "application/json",
             "markdown": "text/markdown",
-            "csv": "text/csv"
+            "csv": "text/csv",
+            "docx": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+            "pdf": "application/pdf"
         }
         content_type = content_types.get(format_type, "application/octet-stream")
         
@@ -114,7 +159,7 @@ async def export_report(request: Dict[str, Any]):
             content = f.read()
         
         # Determine file extension
-        extensions = {"json": "json", "markdown": "md", "csv": "csv"}
+        extensions = {"json": "json", "markdown": "md", "csv": "csv", "docx": "docx", "pdf": "pdf"}
         ext = extensions.get(format_type, "txt")
         
         return StreamingResponse(
