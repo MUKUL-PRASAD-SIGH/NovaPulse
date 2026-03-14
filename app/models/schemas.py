@@ -1,6 +1,6 @@
 """Pydantic schemas for Nova Intelligence Agent."""
 from pydantic import BaseModel
-from typing import List, Dict, Any
+from typing import List, Dict, Any, Optional
 
 
 class ToolStep(BaseModel):
@@ -17,8 +17,12 @@ class TaskPlan(BaseModel):
 
 
 class CommandRequest(BaseModel):
-    """API request from frontend."""
+    """API request from frontend.
+    
+    v3: Added feature_toggles for supervisor routing decisions.
+    """
     text: str
+    feature_toggles: Optional[Dict[str, bool]] = None
 
 
 class CommandResponse(BaseModel):

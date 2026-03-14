@@ -1,50 +1,5 @@
 [
   {
-    "timestamp": "2026-02-04T16:24:20.458558",
-    "user_input": "India eu trade deal vs india us trade deal",
-    "plan": {
-      "intent": "Compare the trade deals between India and the EU versus India and the US",
-      "domain": "trade deals",
-      "steps": [
-        {
-          "tool": "news_fetcher",
-          "params": {
-            "topic": "India EU trade deal vs India US trade deal",
-            "sources": [
-              "google"
-            ],
-            "limit": 5
-          }
-        },
-        {
-          "tool": "summarizer",
-          "params": {
-            "news_items": "fetched news"
-          }
-        },
-        {
-          "tool": "sentiment",
-          "params": {
-            "news_items": "fetched news"
-          }
-        },
-        {
-          "tool": "trends",
-          "params": {
-            "news_items": "fetched news"
-          }
-        },
-        {
-          "tool": "exporter",
-          "params": {
-            "filename": "trade_deal_comparison_report",
-            "format": "json"
-          }
-        }
-      ]
-    }
-  },
-  {
     "timestamp": "2026-02-04T16:24:54.487030",
     "user_input": "India eu trade deal vs india us trade deal with sentiment analysis",
     "plan": {
@@ -2049,6 +2004,72 @@
           "tool": "exporter",
           "params": {
             "filename": "india_report",
+            "format": "json"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-02-21T02:05:14.905756",
+    "user_input": "US SUPREME COURT ON TRUMP with summarize and sentiment analysis and trends and full article content and entity extraction and image analysis and social media monitoring and research papers",
+    "plan": {
+      "intent": "Get supreme news",
+      "domain": "supreme",
+      "steps": [
+        {
+          "tool": "news_fetcher",
+          "params": {
+            "topic": "supreme",
+            "sources": [
+              "google"
+            ],
+            "limit": 5
+          }
+        },
+        {
+          "tool": "summarizer",
+          "params": {}
+        },
+        {
+          "tool": "sentiment",
+          "params": {}
+        },
+        {
+          "tool": "trends",
+          "params": {}
+        },
+        {
+          "tool": "web_scraper",
+          "params": {}
+        },
+        {
+          "tool": "entity_extractor",
+          "params": {}
+        },
+        {
+          "tool": "image_analyzer",
+          "params": {}
+        },
+        {
+          "tool": "social_monitor",
+          "params": {
+            "topic": "supreme",
+            "platforms": [
+              "reddit"
+            ]
+          }
+        },
+        {
+          "tool": "research_assistant",
+          "params": {
+            "query": "supreme"
+          }
+        },
+        {
+          "tool": "exporter",
+          "params": {
+            "filename": "supreme_report",
             "format": "json"
           }
         }

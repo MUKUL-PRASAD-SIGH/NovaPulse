@@ -8,15 +8,225 @@
     <meta name="description" content="AI-powered news intelligence with voice interface">
     <link rel="stylesheet" href="/static/style.css">
     <link rel="stylesheet" href="/static/mas_styles.css">
+    <style>
+        /* Hide Spline Logo natively */
+        spline-viewer::part(logo) {
+            display: none !important;
+        }
+
+        spline-viewer::part(watermark) {
+            display: none !important;
+        }
+    </style>
+    <!-- Spline 3D Viewer -->
+    <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.48/build/spline-viewer.js"></script>
 </head>
 
 <body>
-    <div class="container">
+    <!-- 🌍 Full Marketing "Getting Started" Page 🌍 -->
+    <div id="marketingView" class="marketing-page">
+        <!-- Interactive 3D Background just for marketing -->
+        <spline-viewer url="https://prod.spline.design/6Wq1Q7YGyM-iab9i/scene.splinecode"
+            class="mkt-spline-bg"></spline-viewer>
+
+        <nav class="mkt-nav glass-nav">
+            <div class="mkt-logo">NovaOS</div>
+        </nav>
+
+        <main class="mkt-content">
+            <section class="mkt-hero">
+                <h1 class="mkt-title">Nova Intelligence OS</h1>
+                <p class="mkt-subtitle">
+                    A cinematic 3D operating system for news, markets and global events –
+                    orchestrating parallel agents, memory and graphs so you see the world like an analyst, not a feed.
+                </p>
+                <div class="mkt-hero-actions">
+                    <button class="bento-btn-blue mkt-main-btn" onclick="goToAuth()">Initialize Console</button>
+                    <a href="#features" class="mkt-scroll-link">Discover Features ↓</a>
+                </div>
+            </section>
+
+            <section id="features" class="mkt-features">
+                <div class="mkt-feature-card glass-panel">
+                    <div class="mkt-f-icon">⚡</div>
+                    <h3>Parallel Execution</h3>
+                    <p>Trigger News, Sentiment, and Entity Extraction simultaneously across a multi-agent cluster.</p>
+                </div>
+                <div class="mkt-feature-card glass-panel">
+                    <div class="mkt-f-icon">🧠</div>
+                    <h3>Semantic Memory</h3>
+                    <p>Continuously maps the entities and knowledge graphs constructed throughout your entire history.
+                    </p>
+                </div>
+                <div class="mkt-feature-card glass-panel">
+                    <div class="mkt-f-icon">🛡️</div>
+                    <h3>Agent Graph Routing</h3>
+                    <p>Intelligent supervisor nodes verify requests and orchestrate the right external connections.</p>
+                </div>
+            </section>
+
+            <section class="mkt-pipeline">
+                <h3 style="text-align:center; color:white; margin-bottom: 2rem; font-size: 1.5rem;">Pipeline
+                    Architecture</h3>
+                <div class="mkt-pipeline-visual">
+                    <div class="pipe-node active glass-panel">1. Input Intake</div>
+                    <div class="pipe-line">
+                        <div class="pipe-progress"></div>
+                    </div>
+                    <div class="pipe-node active glass-panel">2. Web/DB Search</div>
+                    <div class="pipe-line">
+                        <div class="pipe-progress" style="animation-delay: 1.5s;"></div>
+                    </div>
+                    <div class="pipe-node active glass-panel">3. Graph Synthesis</div>
+                </div>
+            </section>
+
+            <!-- 3D Use-Case Orbit Section -->
+            <section id="use-cases" class="mkt-usecases">
+                <div class="mkt-usecases-header">
+                    <p class="mkt-tag">3D Mission Deck</p>
+                    <h2>What NovaOS is built to do</h2>
+                    <p class="mkt-usecases-sub">
+                        Each tile below represents a live 3D workspace inside Nova – hover to tilt the cards and see how the agents
+                        reconfigure themselves for different missions.
+                    </p>
+                </div>
+
+                <div class="mkt-usecases-grid">
+                    <article class="mkt-usecase-card">
+                        <div class="mkt-orbit-ring"></div>
+                        <div class="mkt-orbit-core">🕵️</div>
+                        <h3>Threat & Geopolitics Desk</h3>
+                        <p>
+                            Map breaking incidents, sanctions, cyber campaigns and state actors into a single entity graph –
+                            Nova links who, where and why across thousands of headlines.
+                        </p>
+                        <ul>
+                            <li>Entity network of people, orgs and regions</li>
+                            <li>Risk-weighted sentiment & escalation signals</li>
+                            <li>Continuous monitor streams via V3 engine</li>
+                        </ul>
+                    </article>
+
+                    <article class="mkt-usecase-card">
+                        <div class="mkt-orbit-ring alt"></div>
+                        <div class="mkt-orbit-core alt">📈</div>
+                        <h3>Market & Macro Radar</h3>
+                        <p>
+                            Turn noisy finance news into structured trade context – trends, regimes and narratives across
+                            equities, crypto, commodities and macro.
+                        </p>
+                        <ul>
+                            <li>Velocity-based trend surfaces and fading themes</li>
+                            <li>Market sentiment with regime & bias detection</li>
+                            <li>Export-ready MD/PDF intelligence packs</li>
+                        </ul>
+                    </article>
+
+                    <article class="mkt-usecase-card">
+                        <div class="mkt-orbit-ring purple"></div>
+                        <div class="mkt-orbit-core purple">🧪</div>
+                        <h3>Research & Builder Studio</h3>
+                        <p>
+                            For builders and researchers: mix arXiv, GitHub, StackOverflow and live news into one 3D canvas
+                            of ideas, references and examples.
+                        </p>
+                        <ul>
+                            <li>Multi-source research graph with citations</li>
+                            <li>Image & media forensics on visual assets</li>
+                            <li>Social and developer ecosystem monitoring</li>
+                        </ul>
+                    </article>
+                </div>
+            </section>
+        </main>
+
+        <footer class="mkt-footer glass-panel">
+            <p>
+                &copy; 2026 Nova Intelligence OS · Powered by Multi-Agent Hierarchy ·
+                <span class="mkt-made-by">Made by <strong>Mukul Prasad</strong></span>
+                · <a href="https://github.com/mukulprasad/NovaAI" target="_blank" rel="noopener">GitHub Repo</a>
+            </p>
+        </footer>
+
+        <!-- Spline Watermark Hider Overlay -->
+        <div class="spline-watermark-hider"></div>
+    </div>
+
+    <!-- 🔐 Authentication View (Hidden originally) 🔐 -->
+    <div id="authView" class="landing-container" style="display:none;">
+        <spline-viewer url="https://prod.spline.design/6Wq1Q7YGyM-iab9i/scene.splinecode"
+            class="spline-bg"></spline-viewer>
+
+        <div class="landing-content glass-bento auth-only">
+            <button class="back-btn-auth" onclick="goToMarketing()">&larr; Back</button>
+            <h1 class="landing-title">Nova Intelligence</h1>
+            <p class="landing-subtitle">The AI OS that doesn't just read the news, it understands the world.</p>
+
+            <div class="landing-auth-box">
+                <div class="auth-tabs">
+                    <button class="auth-tab active" onclick="switchAuth('login')">Login</button>
+                    <button class="auth-tab" onclick="switchAuth('register')">Register</button>
+                </div>
+                <form id="authForm" class="auth-form">
+                    <input type="text" id="authUsername" placeholder="Select a Username" style="display:none;">
+                    <input type="email" id="authEmail" placeholder="Email Address" required>
+                    <button type="submit" id="authSubmit" class="bento-btn-blue auth-btn">Send Login OTP</button>
+                    <p id="authError" class="auth-error"></p>
+
+                    <div style="text-align:center; margin: 1.5rem 0;">
+                        <span style="color:#a1a1aa; font-size: 0.85rem; letter-spacing:0.1rem;">OR CONTINUE WITH</span>
+                    </div>
+
+                    <button type="button" class="bento-btn-blue auth-btn" style="background:#fff; color:#000;"
+                        onclick="window.location.href='/api/auth/google/login'">
+                        <svg style="width:18px; height:18px; margin-right:8px; vertical-align:middle"
+                            viewBox="0 0 24 24">
+                            <path fill="#4285F4"
+                                d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" />
+                            <path fill="#34A853"
+                                d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" />
+                            <path fill="#FBBC05"
+                                d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" />
+                            <path fill="#EA4335"
+                                d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" />
+                        </svg>
+                        Sign in with Google
+                    </button>
+                </form>
+
+                <form id="otpForm" class="auth-form" style="display:none;">
+                    <p style="color:#a1a1aa; font-size:0.9rem; margin-bottom:1rem; text-align:center;">Enter the 6-digit
+                        code sent to your email.</p>
+                    <input type="text" id="authOtp" placeholder="000000" pattern="\d{6}" maxlength="6" required
+                        style="text-align:center; font-size:1.5rem; letter-spacing:0.5rem;">
+                    <button type="submit" id="otpSubmit" class="bento-btn-blue auth-btn">Verify & Access NovaOS</button>
+                    <p id="otpError" class="auth-error"></p>
+                    <div style="text-align:center; margin-top:1rem;">
+                        <button type="button" onclick="resetToEmail()"
+                            style="background:none; border:none; color:#a1a1aa; cursor:pointer;">&larr; Back to
+                            Email</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Spline Watermark Hider Overlay -->
+        <div class="spline-watermark-hider"></div>
+    </div>
+
+    <!-- 🚀 Main App Dashboard (Hidden by default) 🚀 -->
+    <div id="dashboardView" class="container" style="display: none;">
         <!-- Header with Settings -->
         <header class="header">
-            <h1>🧠 Nova Intelligence Agent</h1>
-            <p class="tagline">Not just news. Intelligence.</p>
-            <button id="settingsBtn" class="settings-btn" title="Settings">⚙️</button>
+            <div class="header-titles">
+                <h1>🧠 Nova Intelligence Agent</h1>
+                <p class="tagline">Not just news. Intelligence.</p>
+            </div>
+            <div class="header-actions">
+                <button id="v3MonitorBtn" class="settings-btn" title="V3 Continuous Monitor & Diagnostics">📊</button>
+                <button id="settingsBtn" class="settings-btn" title="Settings">⚙️</button>
+            </div>
         </header>
 
         <!-- Settings Modal -->
@@ -34,9 +244,9 @@
                     </div>
                     <div class="setting-group">
                         <label>📖 Dictionary</label>
-                        <p class="setting-hint">Hover over any word for 6+ seconds to see its definition</p>
+                        <p class="setting-hint">Double-click on any word to instantly see its definition</p>
                         <div class="toggle-row">
-                            <span>Auto-Dictionary on Hover</span>
+                            <span>Double-Click Dictionary</span>
                             <input type="checkbox" id="dictToggle" checked>
                         </div>
                     </div>
@@ -79,160 +289,238 @@
             </div>
         </div>
 
-        <!-- Feature Toggles (Clickable) -->
-        <div class="features">
-            <!-- Select All Button -->
-            <button id="selectAllBtn" class="badge select-all-badge" title="Select/Deselect All Tools">⚡ Select
-                All</button>
-            <span class="feature-divider"></span>
-
-            <!-- Core Intelligence Tools -->
-            <button class="badge toggle-badge active" data-feature="news">📰 News</button>
-            <button class="badge toggle-badge" data-feature="summary">🧠 Summary</button>
-            <button class="badge toggle-badge" data-feature="sentiment">💭 Sentiment</button>
-            <button class="badge toggle-badge" data-feature="trends">📊 Trends</button>
-
-            <!-- MAS Tools (New) -->
-            <button class="badge toggle-badge" data-feature="scraper" title="Extract full article content">🌐
-                Scraper</button>
-            <button class="badge toggle-badge" data-feature="entities"
-                title="Extract people, organizations, locations">👤 Entities</button>
-            <button class="badge toggle-badge" data-feature="images" title="Analyze images from articles">🖼️
-                Images</button>
-            <button class="badge toggle-badge" data-feature="social" title="Monitor Reddit &amp; Twitter">📱
-                Social</button>
-            <button class="badge toggle-badge" data-feature="research" title="Search papers, GitHub, StackOverflow">📚
-                Research</button>
-
-            <!-- Package Builder Button (replaces export toggle) -->
-            <button id="openPackageBuilder" class="package-builder-btn" title="Intelligence Package Builder">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
-                    stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-                    <polyline points="7 10 12 15 17 10" />
-                    <line x1="12" y1="15" x2="12" y2="3" />
-                </svg>
-                Export
-            </button>
-        </div>
-        <p class="toggle-hint">⚡ Select All for full analysis • Click badges to toggle • Click Export to download
-            reports</p>
-
-        <!-- Intelligence Package Builder Modal -->
-        <div id="packageModal" class="package-modal hidden">
-            <div class="package-modal-content">
-                <div class="package-header">
-                    <h2>📦 Intelligence Package Builder</h2>
-                    <button id="closePackageModal" class="close-btn">×</button>
+        <!-- V3 Continuous Monitor Modal -->
+        <div id="v3MonitorModal" class="modal hidden">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>📊 V3 Engine Monitor & Memory</h3>
+                    <button id="closeV3Monitor" class="close-btn">&times;</button>
                 </div>
-
-                <!-- Quality Badge -->
-                <div id="qualityBadge" class="quality-badge quality-full">
-                    <span class="badge-icon">🟢</span>
-                    <span class="badge-text">Full Intelligence Report</span>
-                </div>
-
-                <!-- Package Preview -->
-                <div class="package-preview">
-                    <h3>📋 Package Contents</h3>
-                    <div id="packageContents" class="contents-grid">
-                        <!-- Dynamically populated -->
+                <div class="modal-body">
+                    <!-- Graph Engine Status -->
+                    <div class="setting-group v3-status-box">
+                        <label>🚀 Engine Status</label>
+                        <div id="graphStatusDisplay" class="v3-status-indicator">Checking engine...</div>
                     </div>
-                </div>
 
-                <!-- Intelligence Summary -->
-                <div class="intel-summary-box">
-                    <div class="summary-row">
-                        <span>📰 Articles</span>
-                        <span id="articleCount">0</span>
-                    </div>
-                    <div class="summary-row">
-                        <span>📁 Sections</span>
-                        <span id="sectionCount">0</span>
-                    </div>
-                    <div class="summary-row">
-                        <span>📊 Estimated Size</span>
-                        <span id="estimatedSize">~0 KB</span>
-                    </div>
-                </div>
-
-                <!-- Execution Quality -->
-                <div id="execQualityBox" class="exec-quality-box">
-                    <h4>⚡ Execution Quality</h4>
-                    <div class="exec-stats">
-                        <div class="exec-stat">
-                            <span class="stat-value" id="toolsRanCount">0</span>
-                            <span class="stat-label">Tools</span>
-                        </div>
-                        <div class="exec-stat">
-                            <span class="stat-value" id="retriesCount">0</span>
-                            <span class="stat-label">Retries</span>
-                        </div>
-                        <div class="exec-stat">
-                            <span class="stat-value" id="fallbacksCount">0</span>
-                            <span class="stat-label">Fallbacks</span>
+                    <!-- Memory Stats -->
+                    <div class="setting-group">
+                        <label>💾 3-Layer Memory Stats</label>
+                        <div class="memory-stats-grid" id="memoryStatsGrid">
+                            <div class="mem-stat"><span>Queries</span><strong id="statQueries">-</strong></div>
+                            <div class="mem-stat"><span>Entities</span><strong id="statEntities">-</strong></div>
+                            <div class="mem-stat"><span>Trends</span><strong id="statTrends">-</strong></div>
                         </div>
                     </div>
-                    <div id="execConfidence" class="exec-confidence">
-                        <span class="confidence-badge high">🟢 High Confidence</span>
+
+                    <!-- Continuous Monitors -->
+                    <div class="setting-group">
+                        <label>🔄 Continuous Intelligence Monitors</label>
+                        <p class="setting-hint">Nova will automatically re-run intelligence pipelines and stream
+                            updates.</p>
+
+                        <div class="monitor-add-form">
+                            <input type="text" id="newMonitorTopic" placeholder="Topic (e.g., Tesla)...">
+                            <select id="newMonitorInterval">
+                                <option value="15">15 min</option>
+                                <option value="30" selected>30 min</option>
+                                <option value="60">1 hour</option>
+                            </select>
+                            <button id="startMonitorBtn" class="action-btn">Start</button>
+                        </div>
+
+                        <!-- List of active monitors -->
+                        <div id="activeMonitorsList" class="monitor-list">
+                            <p class="no-monitors">No active monitors.</p>
+                        </div>
                     </div>
                 </div>
-
-                <!-- Smart Recommendation -->
-                <div id="formatRecommendation" class="format-recommendation">
-                    <span class="rec-icon">💡</span>
-                    <span class="rec-text">Recommended: <strong>Markdown</strong> for rich formatting</span>
-                </div>
-
-                <!-- Export Strategy -->
-                <div class="export-strategy">
-                    <p>📝 <em>Structured intelligence packaging for offline analysis, sharing, and reporting.</em></p>
-                </div>
-
-                <!-- Export Buttons -->
-                <div class="export-buttons five-col">
-                    <button id="exportJson" class="export-btn export-json">
-                        <span class="btn-icon">{ }</span>
-                        <span>JSON</span>
-                    </button>
-                    <button id="exportMd" class="export-btn export-md">
-                        <span class="btn-icon">📄</span>
-                        <span>Markdown</span>
-                    </button>
-                    <button id="exportCsv" class="export-btn export-csv">
-                        <span class="btn-icon">📊</span>
-                        <span>CSV</span>
-                    </button>
-                    <button id="exportDocx" class="export-btn export-docx">
-                        <span class="btn-icon">📝</span>
-                        <span>Word</span>
-                    </button>
-                    <button id="exportPdf" class="export-btn export-pdf">
-                        <span class="btn-icon">📕</span>
-                        <span>PDF</span>
-                    </button>
-                </div>
-
-                <!-- Export All -->
-                <button id="exportAll" class="export-all-btn">
-                    ⬇️ Download All Formats
-                </button>
-
-                <!-- Copy to Clipboard -->
-                <button id="copyJson" class="copy-btn">
-                    📋 Copy JSON to Clipboard
-                </button>
             </div>
         </div>
 
-        <!-- Input Section -->
-        <div class="input-section">
-            <button id="micBtn" class="mic-btn" title="Click to speak">
-                <span class="mic-icon">🎤</span>
-            </button>
-            <input type="text" id="textInput" placeholder="Enter topic: 'Tesla', 'India US trade deal', 'crypto'"
-                autocomplete="off">
-            <button id="sendBtn" class="send-btn">Send</button>
+        <!-- Feature Toggles (Clickable) -->
+        <!-- iOS 26 Spline Bento Dashboard Layout -->
+        <div class="bento-layout">
+
+            <!-- LEFT COLUMN: Vertical Pillars -->
+            <div class="bento-col bento-left">
+                <!-- Three vertical sliders represented as tall toggle buttons -->
+                <div class="bento-vertical-grid">
+                    <div class="bento-tall active">
+                        <span class="bento-icon">📰</span>
+                        <div class="bento-slider-track">
+                            <div class="bento-slider-fill" style="height:70%; background:#FF9500;"></div>
+                        </div>
+                    </div>
+                    <div class="bento-tall">
+                        <span class="bento-icon">🧠</span>
+                        <div class="bento-slider-track">
+                            <div class="bento-slider-fill" style="height:40%; background:#007AFF;"></div>
+                        </div>
+                    </div>
+                    <div class="bento-tall">
+                        <span class="bento-icon">💭</span>
+                        <div class="bento-slider-track">
+                            <div class="bento-slider-fill" style="height:90%; background:#FFCC00;"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Large squircle App Icons -->
+                <div class="bento-app-icons">
+                    <button class="bento-app btn-green" title="Social Agent">📱</button>
+                    <button class="bento-app btn-blue" title="Research Agent">📚</button>
+                </div>
+
+                <!-- Settings/Style Menus (Replacing Toggle Badge layout) -->
+                <div class="bento-menu-wrapper">
+                    <div class="bento-menu-tabs">
+                        <button class="bento-tab active">📊 Global Data</button>
+                        <button class="bento-tab">🌐 Extranet</button>
+                    </div>
+                    <div class="bento-menu-box">
+                        <button class="bento-menu-row auth-user-row"><span class="bento-icon">👤</span> <span
+                                id="displayUsername">Guest</span></button>
+                        <button class="bento-menu-row" onclick="logout()" style="color:#ef4444;"><span
+                                class="bento-icon">🚪</span> Logout</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CENTER COLUMN: Dialog & Input -->
+            <div class="bento-col bento-center">
+                <div class="bento-main-dialog">
+                    <h3>Review Intelligence?</h3>
+                    <p>Enter a topic below to unleash parallel agent workflows. Includes news, insights, and datasets.
+                    </p>
+                    <div class="bento-input-wrapper">
+                        <input type="text" id="textInput" placeholder="Enter topic: 'Tesla', 'Crypto'..."
+                            autocomplete="off">
+                        <button id="micBtn" class="bento-mic" title="Voice">🎤</button>
+                    </div>
+                    <div class="bento-dialog-actions">
+                        <button id="clearBtnAlt" class="bento-btn-dark"
+                            onclick="document.getElementById('textInput').value = ''">Don't Allow</button>
+                        <button id="sendBtn" class="bento-btn-blue">Allow Search</button>
+                    </div>
+                </div>
+
+                <!-- Lower navigation pills - All 9 Agent Tools -->
+                <div class="bento-nav-bar"
+                    style="flex-wrap: wrap; gap: 0.8rem; justify-content: center; padding: 1rem;">
+                    <div class="bento-nav-item toggle-badge active" data-feature="news"
+                        style="width: auto; padding: 0.4rem 1rem; flex-direction: row;">
+                        <span class="icon">📰</span><span class="label">News</span>
+                    </div>
+                    <div class="bento-nav-item toggle-badge" data-feature="summary"
+                        style="width: auto; padding: 0.4rem 1rem; flex-direction: row;">
+                        <span class="icon">🧠</span><span class="label">Summary</span>
+                    </div>
+                    <div class="bento-nav-item toggle-badge" data-feature="sentiment"
+                        style="width: auto; padding: 0.4rem 1rem; flex-direction: row;">
+                        <span class="icon">💭</span><span class="label">Sentiment</span>
+                    </div>
+                    <div class="bento-nav-item toggle-badge" data-feature="trends"
+                        style="width: auto; padding: 0.4rem 1rem; flex-direction: row;">
+                        <span class="icon">📊</span><span class="label">Trends</span>
+                    </div>
+                    <div class="bento-nav-item toggle-badge" data-feature="scraper"
+                        style="width: auto; padding: 0.4rem 1rem; flex-direction: row;">
+                        <span class="icon">🌐</span><span class="label">Scraper</span>
+                    </div>
+                    <div class="bento-nav-item toggle-badge" data-feature="entities"
+                        style="width: auto; padding: 0.4rem 1rem; flex-direction: row;">
+                        <span class="icon">👤</span><span class="label">Entities</span>
+                    </div>
+                    <div class="bento-nav-item toggle-badge" data-feature="images"
+                        style="width: auto; padding: 0.4rem 1rem; flex-direction: row;">
+                        <span class="icon">🖼️</span><span class="label">Images</span>
+                    </div>
+                    <div class="bento-nav-item toggle-badge" data-feature="social"
+                        style="width: auto; padding: 0.4rem 1rem; flex-direction: row;">
+                        <span class="icon">📱</span><span class="label">Social</span>
+                    </div>
+                    <div class="bento-nav-item toggle-badge" data-feature="research"
+                        style="width: auto; padding: 0.4rem 1rem; flex-direction: row;">
+                        <span class="icon">📚</span><span class="label">Research</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- RIGHT COLUMN: Stacked settings -->
+            <div class="bento-col bento-right">
+                <div class="bento-header-actions">
+                    <button id="clearHistoryBtnRight" class="bento-action red"
+                        onclick="document.getElementById('clearHistoryBtn').click()">🗑️ Clear</button>
+                    <button class="bento-action dark" onclick="document.getElementById('openPackageBuilder').click()">📥
+                        Export</button>
+                    <button class="bento-action dark" onclick="startRoboTour()">▶ Guide</button>
+                    <button class="bento-action dark" onclick="document.getElementById('settingsBtn').click()">⚙️
+                        Settings</button>
+                </div>
+
+                <div class="bento-switches">
+                    <div class="bento-switch-row" title="Toggle Dark or Light Mode">
+                        <span class="icon">🌗</span>
+                        <span class="label">Dark Mode</span>
+                        <button id="themeToggleBtn" class="switch-ui active">
+                            <div class="thumb"></div>
+                        </button>
+                    </div>
+                    <div class="bento-switch-row" title="Enable all Agent Tools at once">
+                        <span class="icon">⚡</span>
+                        <span class="label">Select All Tools</span>
+                        <button id="selectAllSwitchBtn" class="switch-ui">
+                            <div class="thumb"></div>
+                        </button>
+                    </div>
+                    <div class="bento-switch-row" title="Double click words for instant dictionary">
+                        <span class="icon">📖</span>
+                        <span class="label">Auto-Dictionary</span>
+                        <button id="dictSwitchBtn" class="switch-ui active">
+                            <div class="thumb"></div>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="bento-h-sliders">
+                    <div class="h-slider-row">
+                        <span class="icon" style="font-size:1.5rem">☀️</span>
+                        <div class="bento-slider-h-track">
+                            <div class="bento-slider-h-fill" style="width: 70%;"></div>
+                            <div class="bento-slider-h-thumb square" style="left:70%;"></div>
+                        </div>
+                        <span class="icon">☀️</span>
+                    </div>
+                    <div class="h-slider-row">
+                        <span class="icon" style="font-size:1.5rem">☀️</span>
+                        <div class="bento-slider-h-track">
+                            <div class="bento-slider-h-fill" style="width: 40%;"></div>
+                            <div class="bento-slider-h-thumb pill" style="left:40%;"></div>
+                        </div>
+                        <span class="icon">☀️</span>
+                    </div>
+                    <div class="h-slider-row">
+                        <span class="icon" style="font-size:1.5rem">☀️</span>
+                        <div class="bento-slider-h-track">
+                            <div class="bento-slider-h-fill" style="width: 25%;"></div>
+                            <div class="bento-slider-h-thumb pill" style="left:25%;"></div>
+                        </div>
+                        <span class="icon">☀️</span>
+                    </div>
+                    <div class="h-slider-row">
+                        <span class="icon" style="font-size:1.5rem">☀️</span>
+                        <div class="bento-slider-h-track">
+                            <div class="bento-slider-h-fill" style="width: 90%;"></div>
+                            <div class="bento-slider-h-thumb pill" style="left:90%;"></div>
+                        </div>
+                        <span class="icon">☀️</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Hidden original elements required by Javascript logic -->
+            <button id="selectAllBtn" style="display:none"></button>
         </div>
 
         <!-- Status -->
@@ -368,12 +656,36 @@
         </div>
     </div>
 
+    </div>
+
     <!-- Dictionary Popup (floating) -->
     <div id="dictPopup" class="dict-popup hidden">
         <div class="dict-word"></div>
         <div class="dict-pos"></div>
         <div class="dict-defs"></div>
         <div class="dict-source"></div>
+    </div>
+
+    <!-- Robo Guide Modal -->
+    <div id="roboGuideModal" class="modal hidden">
+        <div class="modal-content bento-modal">
+            <div class="modal-header">
+                <h3>🤖 Nova Guide</h3>
+                <button class="close-btn"
+                    onclick="document.getElementById('roboGuideModal').classList.add('hidden')">&times;</button>
+            </div>
+            <div class="modal-body robo-body">
+                <div class="robo-screen">
+                    <div id="roboFace" class="robo-face">(^._.^)ﾉ</div>
+                    <div id="roboText" class="robo-text">Hello! I am Nova's onboarding assistant. Need a quick tour?
+                    </div>
+                </div>
+                <div class="robo-steps" style="display:flex; gap:1rem; margin-top:20px;">
+                    <button class="bento-btn-dark robo-btn" onclick="nextRoboStep()">Next >></button>
+                    <button class="bento-btn-dark robo-btn" onclick="skipRoboTour()">Skip</button>
+                </div>
+            </div>
+        </div>
     </div>
 
     <script src="/static/app.js"></script>

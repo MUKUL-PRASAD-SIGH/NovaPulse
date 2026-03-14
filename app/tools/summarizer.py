@@ -47,7 +47,12 @@ Return ONLY valid JSON: {{"summary": "...", "key_points": ["...", "...", "..."]}
 
 
 def _get_mock_summary(news_items: List[Dict]) -> Dict:
-    titles = [item.get("title", "")[:60] for item in news_items[:3]]
+    titles = []
+    for item in news_items[:3]:
+        t = item.get("title", "")
+        # Use full title if short, otherwise cleanly truncate
+        titles.append(t if len(t) <= 120 else t[:117] + "...")
+        
     return {
         "summary": f"Today's news covers {len(news_items)} stories focusing on recent developments. Key headlines include updates on technology advancements and industry trends.",
         "key_points": titles if titles else ["No headlines available"]

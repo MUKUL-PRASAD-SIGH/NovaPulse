@@ -2,6 +2,14 @@
 # 🔒 Environment & Secrets
 # ==========================================
 .env
+.env.*
+*.env
+
+# ==========================================
+# 📝 Markdown (keep only main README)
+# ==========================================
+*.md
+!README.md
 
 # ==========================================
 # 🐍 Python
@@ -23,6 +31,7 @@ app/memory/logs.json
 app/memory/plans.json
 app/memory/results.json
 app/memory/trends_history.json
+*.db
 
 # ==========================================
 # 📁 Generated Output

@@ -1,0 +1,21 @@
+INFO:     Started server process [30176]
+INFO:     Waiting for application startup.
+ERROR:    Traceback (most recent call last):
+  File "C:\Users\Mukul Prasad\AppData\Local\Programs\Python\Python310\lib\site-packages\starlette\routing.py", line 693, in lifespan
+    async with self.lifespan_context(app) as maybe_state:
+  File "C:\Users\Mukul Prasad\AppData\Local\Programs\Python\Python310\lib\contextlib.py", line 199, in __aenter__
+    return await anext(self.gen)
+  File "C:\Users\Mukul Prasad\AppData\Local\Programs\Python\Python310\lib\site-packages\fastapi\routing.py", line 133, in merged_lifespan
+    async with original_context(app) as maybe_original_state:
+  File "C:\Users\Mukul Prasad\AppData\Local\Programs\Python\Python310\lib\site-packages\starlette\routing.py", line 569, in __aenter__
+    await self._router.startup()
+  File "C:\Users\Mukul Prasad\AppData\Local\Programs\Python\Python310\lib\site-packages\starlette\routing.py", line 670, in startup
+    await handler()
+  File "C:\Users\Mukul Prasad\Desktop\PROJECTS\NovaAI\app\main.py", line 313, in startup_event
+    print("  \U0001f9e0 Nova Intelligence Agent v3.0")
+  File "C:\Users\Mukul Prasad\AppData\Local\Programs\Python\Python310\lib\encodings\cp1252.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+UnicodeEncodeError: 'charmap' codec can't encode character '\U0001f9e0' in position 2: character maps to <undefined>
+
+ERROR:    Application startup failed. Exiting.
+============================================================

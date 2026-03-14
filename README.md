@@ -60,6 +60,31 @@ Most "AI news tools" are glorified API wrappers. Nova is architecturally differe
 
 ---
 
+## 🌌 NovaOS Landing Experience
+
+Nova ships with a **cinematic 3D landing page** that feels like booting an operating system, not just opening a dashboard.
+
+- **Spline-powered 3D background** wrapping the whole viewport.
+- **NovaOS hero**: “Nova Intelligence OS — a cinematic 3D operating system for news, markets and global events.”
+- **Primary CTA**: `Initialize Console` → takes you into the auth flow and then the full NovaOS dashboard.
+- **3D “mission deck” use‑cases**:
+  - **Threat & Geopolitics Desk** – map incidents, sanctions, cyber campaigns and state actors into one entity graph.
+  - **Market & Macro Radar** – detect macro regimes, narratives and hot tickers from finance news and social.
+  - **Research & Builder Studio** – blend arXiv, GitHub, StackOverflow and news into a single 3D canvas of ideas.
+
+Each use-case is rendered as a **3D-tilted glass bento card** with:
+
+- Orbiting **core icons** (🕵️ / 📈 / 🧪) lifted in Z‑space.
+- Glow rings that respond to hover.
+- Bullet‑point capabilities so visitors immediately see what Nova is **for**, not just how it works.
+
+The footer credits:
+
+- **Made by Mukul Prasad**
+- GitHub: [`mukul-prasad-sigh/NovaAI`](https://github.com/mukul-prasad-sigh/NovaAI)
+
+---
+
 ## ⚡ The 9 Agents
 
 ### 🎯 Core Intelligence Pipeline
@@ -85,15 +110,27 @@ Most "AI news tools" are glorified API wrappers. Nova is architecturally differe
 
 | Feature | Description | Backend |
 |---------|-------------|---------|
+| 🎨 **iOS 26 Bento UI** | Fluid glassmorphism interface with Spline 3D elements | Vanilla CSS + HTML5 |
+| 🔐 **Passwordless OTP** | Secure email-based OTP login with JWT sessions | SQLite + PyJWT |
+| 🤖 **Robo Guide** | Interactive onboarding modal for new users | Vanilla JS |
 | 🎤 **Voice Interface** | Speak your query — browser speech recognition | Web Speech API |
 | 📦 **Package Builder** | 5-format export (JSON, MD, CSV, Word, PDF) with quality badges | Template engine + streaming |
 | 🌐 **Translation** | Translate reports to 18+ languages instantly | MyMemory API |
 | 📖 **Dictionary** | Click any word for instant definition | Merriam-Webster API |
 | ⚙️ **Settings Panel** | Tool info, language prefs, dictionary config, data management | LocalStorage persistence |
-| 🕒 **Search History** | Persisted recent queries with timestamp & status | LocalStorage + JSON store |
 | 💊 **Execution Pipeline** | Live step-by-step progress overlay with retry/fallback tracking | JS state machine |
 | 🎛️ **Dynamic Panels** | Toggle-responsive layout with smooth CSS animations | CSS Grid + auto-fit |
 | 🎯 **Smart Tooltips** | Hover over finance terms for instant explanations | JS hover detection |
+
+---
+
+## 🔐 Security & Authentication
+
+NovaOS utilizes a robust, frictionless, and modern security architecture:
+
+1. **Passwordless Access**: Users authenticate utilizing a secure 6-digit Time-Based One-Time Password (OTP) dispatched to their registered email.
+2. **Stateless JWT Sessions**: Upon successful OTP validation, the backend generates an HMAC-SHA256 authenticated JSON Web Token (JWT) establishing the user session securely without requiring heavy database queries on every authenticated endpoint.
+3. **Database Security**: Powered by strictly-typed `aiosqlite`. Sensitive pending registrations and active session tokens are hashed, salted (`pbkdf2_hmac`), and subject to strict 10-minute expiration TTLs.
 
 ---
 

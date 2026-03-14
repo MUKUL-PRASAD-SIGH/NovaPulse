@@ -282,7 +282,7 @@ async function sendCommand(topic) {
         const response = await fetch(`${API_BASE}/command`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ text: fullCommand })
+            body: JSON.stringify({ text: fullCommand, feature_toggles: features })
         });
 
         if (!response.ok) {
@@ -688,6 +688,11 @@ function displayResults(data) {
         };
         displayIntelligence(data.result.data);
         displayMASResults(data.result.data); // Display MAS tool results
+
+        // v3: Show engine metadata badge
+        if (data.v3 && data.result.v3_meta) {
+            displayV3Context(data.result.v3_meta);
+        }
     }
 }
 
@@ -873,6 +878,70 @@ function displayNews(articles) {
     `).join('');
 
     newsOutput.innerHTML = html;
+}
+
+// ===== V3 ENGINE CONTEXT DISPLAY =====
+
+function displayV3Context(meta) {
+    // Remove existing v3 context if present
+    const existing = document.getElementById('v3ContextBadge');
+    if (existing) existing.remove();
+
+    const qualityColors = {
+        'full': { bg: 'rgba(34, 197, 94, 0.15)', border: '#22c55e', icon: '🟢', label: 'Full Intelligence' },
+        'standard': { bg: 'rgba(234, 179, 8, 0.15)', border: '#eab308', icon: '🟡', label: 'Standard Intelligence' },
+        'partial': { bg: 'rgba(249, 115, 22, 0.15)', border: '#f97316', icon: '🟠', label: 'Partial Intelligence' },
+        'raw': { bg: 'rgba(239, 68, 68, 0.15)', border: '#ef4444', icon: '🔴', label: 'Raw Data' },
+    };
+
+    const q = qualityColors[meta.quality_badge] || qualityColors['standard'];
+    const confidence = Math.round((meta.confidence || 0) * 100);
+    const criticScore = meta.critic_score || 0;
+    const pipelines = meta.pipelines_executed || [];
+    const depth = meta.depth || 'standard';
+    const retries = meta.retry_count || 0;
+
+    let memoryHtml = '';
+    if (meta.memory && meta.memory.comparison && meta.memory.comparison.comparison_available) {
+        const comp = meta.memory.comparison;
+        const dirIcon = comp.direction === 'improving' ? '📈' : comp.direction === 'declining' ? '📉' : '➡️';
+        const deltaText = comp.sentiment_delta > 0 ? `+${comp.sentiment_delta}` : `${comp.sentiment_delta}`;
+
+        memoryHtml = `
+            <div class="v3-memory-context">
+                <span class="v3-memory-label">📊 vs. last analysis:</span>
+                <span class="v3-memory-direction">${dirIcon} ${comp.direction}</span>
+                <span class="v3-memory-delta">Sentiment: ${deltaText}</span>
+                <span class="v3-memory-span">${comp.time_span_hours}h ago</span>
+            </div>
+        `;
+    }
+
+    const badge = document.createElement('div');
+    badge.id = 'v3ContextBadge';
+    badge.className = 'v3-context-badge';
+    badge.style.background = q.bg;
+    badge.style.borderColor = q.border;
+    badge.innerHTML = `
+        <div class="v3-badge-row">
+            <span class="v3-quality">${q.icon} ${q.label}</span>
+            <span class="v3-engine-tag">v3 Engine</span>
+        </div>
+        <div class="v3-badge-stats">
+            <span class="v3-stat" title="Critic quality score">🎯 Critic: ${criticScore}/100</span>
+            <span class="v3-stat" title="Overall confidence">💎 Confidence: ${confidence}%</span>
+            <span class="v3-stat" title="Pipelines executed">🔧 ${pipelines.length} pipeline${pipelines.length !== 1 ? 's' : ''}</span>
+            <span class="v3-stat" title="Analysis depth">📐 ${depth}</span>
+            ${retries > 0 ? `<span class="v3-stat v3-retry" title="Critic-induced retries">🔄 ${retries} retry</span>` : ''}
+        </div>
+        ${memoryHtml}
+    `;
+
+    // Insert at the top of intel panel
+    const intelOutput = document.getElementById('intelOutput');
+    if (intelOutput) {
+        intelOutput.prepend(badge);
+    }
 }
 
 // ===== MAS TOOLS DISPLAY FUNCTIONS =====
@@ -1935,4 +2004,532 @@ document.getElementById('copyJson')?.addEventListener('click', async () => {
 
 // Initialize dynamic panel toggles
 initPanelToggles();
+
+// Render search history on load
+renderHistory();
+
+/* ========================================
+   V3 CONTINUOUS MONITOR & MEMORY UI (NEW)
+   ======================================== */
+const v3MonitorBtn = document.getElementById('v3MonitorBtn');
+const v3MonitorModal = document.getElementById('v3MonitorModal');
+const closeV3Monitor = document.getElementById('closeV3Monitor');
+const startMonitorBtn = document.getElementById('startMonitorBtn');
+const activeMonitorsList = document.getElementById('activeMonitorsList');
+
+let wsConnection = null;
+
+// Open V3 Monitor & Fetch Stats
+v3MonitorBtn?.addEventListener('click', async () => {
+    v3MonitorModal.classList.remove('hidden');
+    await fetchV3Status();
+    await fetchMemoryStats();
+    await fetchActiveMonitors();
+    connectWebSocket();
+});
+
+closeV3Monitor?.addEventListener('click', () => {
+    v3MonitorModal.classList.add('hidden');
+});
+
+v3MonitorModal?.addEventListener('click', (e) => {
+    if (e.target === v3MonitorModal) {
+        v3MonitorModal.classList.add('hidden');
+    }
+});
+
+async function fetchV3Status() {
+    const el = document.getElementById('graphStatusDisplay');
+    try {
+        const res = await fetch('/api/graph/status');
+        const data = await res.json();
+
+        if (data.status === 'ok') {
+            el.innerHTML = `🟢 Graph Engine Ready <span class="v3-memory-span">(${data.time_str})</span>`;
+        } else {
+            el.innerHTML = `⚠️ Graph fallback (v2 mode)`;
+        }
+    } catch (err) {
+        el.innerHTML = `❌ Connection Error`;
+    }
+}
+
+async function fetchMemoryStats() {
+    try {
+        const res = await fetch('/api/memory/stats');
+        const data = await res.json();
+        if (data.db_path) {
+            document.getElementById('statQueries').textContent = data.query_history_entries;
+            document.getElementById('statEntities').textContent = data.entity_sightings;
+            document.getElementById('statTrends').textContent = data.trend_snapshots;
+        }
+    } catch (err) {
+        console.warn('Memory stats unavailable', err);
+    }
+}
+
+async function fetchActiveMonitors() {
+    try {
+        const res = await fetch('/api/monitor/active');
+        const data = await res.json();
+        renderMonitorsList(data.active_monitors || []);
+    } catch (err) {
+        console.warn('Monitors unreachable', err);
+    }
+}
+
+// Start a new monitor
+startMonitorBtn?.addEventListener('click', async () => {
+    const topic = document.getElementById('newMonitorTopic').value.trim();
+    const interval = parseInt(document.getElementById('newMonitorInterval').value);
+
+    if (!topic) return;
+
+    startMonitorBtn.disabled = true;
+    startMonitorBtn.textContent = '...';
+
+    try {
+        const res = await fetch('/api/monitor', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                topic: topic,
+                interval_minutes: interval,
+                duration_hours: 24
+            })
+        });
+
+        if (res.ok) {
+            document.getElementById('newMonitorTopic').value = '';
+            await fetchActiveMonitors();
+            setStatus(`👀 Monitoring ${topic} every ${interval}min`, 'success');
+        }
+    } catch (err) {
+        setStatus(`❌ Failed to start monitor`, 'error');
+    } finally {
+        startMonitorBtn.disabled = false;
+        startMonitorBtn.textContent = 'Start';
+    }
+});
+
+async function deleteMonitor(taskId) {
+    try {
+        await fetch(`/api/monitor/${taskId}`, { method: 'DELETE' });
+        await fetchActiveMonitors();
+    } catch (err) {
+        console.warn('Failed to delete monitor', err);
+    }
+}
+
+function renderMonitorsList(monitors) {
+    if (monitors.length === 0) {
+        activeMonitorsList.innerHTML = `<p class="no-monitors">No active monitors.</p>`;
+        return;
+    }
+
+    activeMonitorsList.innerHTML = monitors.map(m => `
+        <div class="monitor-item">
+            <div>
+                <div class="monitor-info-topic">🎯 ${m.topic}</div>
+                <div class="monitor-info-meta">Every ${m.interval_minutes}min (Last run: ${m.last_run ? new Date(m.last_run).toLocaleTimeString() : 'Pending'})</div>
+            </div>
+            <button class="monitor-stop-btn" onclick="deleteMonitor('${m.task_id}')">Stop</button>
+        </div>
+    `).join('');
+}
+
+// WebSocket Connection
+function connectWebSocket() {
+    if (wsConnection && wsConnection.readyState === WebSocket.OPEN) return;
+
+    const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
+    const host = window.location.host;
+    wsConnection = new WebSocket(`${protocol}//${host}/ws/intelligence`);
+
+    wsConnection.onopen = () => {
+        console.log('V3 Continuous Intelligence WebSocket Connected');
+    };
+
+    wsConnection.onmessage = (event) => {
+        const msg = JSON.parse(event.data);
+        console.log('WebSocket Message:', msg);
+
+        if (msg.event === 'monitor_status') {
+            // System broadcast of active monitors
+            if (v3MonitorModal.classList.contains('hidden') === false) {
+                fetchActiveMonitors();
+            }
+        } else if (msg.event === 'nova_intelligence_update') {
+            // Let user know live intelligence arrived!
+            setStatus(`⚡ Intelligence Update: ${msg.topic}!`, 'success');
+
+            // If we're not currently busy loading, maybe prompt them to click and view?
+            // Since we don't want to disrupt user flow unexpectedly, we can just show a special notification:
+            const el = document.getElementById('status');
+            el.innerHTML += ` <button onclick="sendCommand('${msg.topic}')" style="background:transparent; border:1px solid #4f8cff; color:#4f8cff; padding:2px 8px; border-radius:4px; font-size:12px; cursor:pointer; margin-left:10px;">Load Update</button>`;
+        }
+    };
+
+    wsConnection.onclose = () => {
+        console.log('WebSocket closed. Details won\'t live stream.');
+        wsConnection = null;
+    };
+}
+
+
+/* ========================================
+   DICTIONARY TOOLTIP (DOUBLE CLICK)
+   ======================================== */
+document.addEventListener('dblclick', async (e) => {
+    const dictToggle = document.getElementById('dictToggle');
+    if (!dictToggle || !dictToggle.checked) return;
+
+    const selection = window.getSelection();
+    let word = selection.toString().trim().replace(/[.,!?;:()[\]{}"']/g, '');
+
+    if (!word || word.includes(' ') || word.length < 2) return;
+
+    // Show loading tooltip near mouse
+    let tooltip = document.getElementById('novaDictTooltip');
+    if (!tooltip) {
+        tooltip = document.createElement('div');
+        tooltip.id = 'novaDictTooltip';
+        tooltip.style.position = 'absolute';
+        tooltip.style.background = '#232838';
+        tooltip.style.color = '#f0f2f5';
+        tooltip.style.border = '1px solid rgba(79, 140, 255, 0.5)';
+        tooltip.style.padding = '8px 12px';
+        tooltip.style.borderRadius = '8px';
+        tooltip.style.boxShadow = '0 4px 12px rgba(0,0,0,0.4)';
+        tooltip.style.zIndex = '9999';
+        tooltip.style.fontSize = '0.8rem';
+        tooltip.style.maxWidth = '250px';
+        tooltip.style.pointerEvents = 'none';
+        document.body.appendChild(tooltip);
+    }
+
+    tooltip.style.left = `${e.pageX + 10}px`;
+    tooltip.style.top = `${e.pageY + 10}px`;
+    tooltip.style.display = 'block';
+    tooltip.innerHTML = `<em>Looking up "${word}"...</em>`;
+
+    try {
+        const res = await fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${encodeURIComponent(word)}`);
+        if (!res.ok) throw new Error('Not found');
+        const data = await res.json();
+
+        const meanings = data[0].meanings[0];
+        const def = meanings.definitions[0].definition;
+        const part = meanings.partOfSpeech;
+
+        tooltip.innerHTML = `<strong style="color:#4f8cff; display:block; margin-bottom:4px;">${word} <em>(${part})</em></strong>${def}`;
+
+        // Hide after 5 seconds if mouse moves away 
+        setTimeout(() => {
+            tooltip.style.display = 'none';
+        }, 6000);
+
+    } catch (err) {
+        tooltip.innerHTML = `<em>${word}</em>: Definition not found.`;
+        setTimeout(() => { tooltip.style.display = 'none'; }, 2000);
+    }
+});
+
+document.addEventListener('mousedown', (e) => {
+    const tooltip = document.getElementById('novaDictTooltip');
+    if (tooltip && tooltip.style.display === 'block') {
+        tooltip.style.display = 'none';
+    }
+});
+
+/* ========================================
+   BENTO UI TOGGLE SWITCHES
+   ======================================== */
+document.addEventListener('DOMContentLoaded', () => {
+    // 1. Dark/Light Mode Theme Toggle
+    const themeToggleBtn = document.getElementById('themeToggleBtn');
+    if (themeToggleBtn) {
+        themeToggleBtn.addEventListener('click', () => {
+            const isActive = themeToggleBtn.classList.toggle('active');
+            if (isActive) {
+                document.body.classList.remove('light-theme'); // Dark mode
+            } else {
+                document.body.classList.add('light-theme'); // Light mode
+            }
+        });
+    }
+
+    // 2. Select All Tools Toggle
+    const selectAllSwitchBtn = document.getElementById('selectAllSwitchBtn');
+    if (selectAllSwitchBtn) {
+        selectAllSwitchBtn.addEventListener('click', () => {
+            selectAllSwitchBtn.classList.toggle('active');
+            const selectAllBtn = document.getElementById('selectAllBtn');
+            if (selectAllBtn) selectAllBtn.click();
+        });
+
+        // Sync the switch state when updateSelectAllState is called
+        const originalUpdateSelectAllState = window.updateSelectAllState;
+        window.updateSelectAllState = function () {
+            if (originalUpdateSelectAllState) originalUpdateSelectAllState();
+            const btn = document.getElementById('selectAllBtn');
+            if (btn && selectAllSwitchBtn) {
+                if (btn.classList.contains('active')) {
+                    selectAllSwitchBtn.classList.add('active');
+                } else {
+                    selectAllSwitchBtn.classList.remove('active');
+                }
+            }
+        };
+    }
+
+    // 3. Auto-Dictionary Toggle
+    const dictSwitchBtn = document.getElementById('dictSwitchBtn');
+    if (dictSwitchBtn) {
+        const dictToggle = document.getElementById('dictToggle');
+
+        // Sync initial state
+        if (dictToggle && !dictToggle.checked) {
+            dictSwitchBtn.classList.remove('active');
+        }
+
+        dictSwitchBtn.addEventListener('click', () => {
+            const isActive = dictSwitchBtn.classList.toggle('active');
+            if (dictToggle) {
+                dictToggle.checked = isActive;
+            }
+        });
+
+        // Two-way sync if dictToggle changes elsewhere
+        if (dictToggle) {
+            dictToggle.addEventListener('change', (e) => {
+                if (e.target.checked) dictSwitchBtn.classList.add('active');
+                else dictSwitchBtn.classList.remove('active');
+            });
+        }
+    }
+});
+
+/* ========================================
+   LANDING VIEW & AUTHENTICATION
+   ======================================== */
+const marketingView = document.getElementById('marketingView');
+const authView = document.getElementById('authView');
+const dashboardView = document.getElementById('dashboardView');
+const authForm = document.getElementById('authForm');
+const otpForm = document.getElementById('otpForm');
+const authUsername = document.getElementById('authUsername');
+const authEmail = document.getElementById('authEmail');
+const authError = document.getElementById('authError');
+const authSubmitBtn = document.getElementById('authSubmit');
+const authOtp = document.getElementById('authOtp');
+const otpError = document.getElementById('otpError');
+const displayUsername = document.getElementById('displayUsername');
+
+let authMode = 'login'; // 'login' or 'register'
+let tempEmail = '';
+
+function switchAuth(mode) {
+    authMode = mode;
+    document.querySelectorAll('.auth-tab').forEach(t => t.classList.remove('active'));
+    event.target.classList.add('active');
+
+    if (mode === 'register') {
+        authUsername.style.display = 'block';
+        authUsername.required = true;
+        authSubmitBtn.textContent = 'Send Registration OTP';
+    } else {
+        authUsername.style.display = 'none';
+        authUsername.required = false;
+        authSubmitBtn.textContent = 'Send Login OTP';
+    }
+    authError.textContent = '';
+
+    // Auto reset to email view if switching modes
+    resetToEmail();
+}
+
+function resetToEmail() {
+    authForm.style.display = 'flex';
+    otpForm.style.display = 'none';
+    authOtp.value = '';
+    otpError.textContent = '';
+    authError.textContent = '';
+}
+
+if (authForm) {
+    authForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const username = authUsername.value.trim();
+        const email = authEmail.value.trim();
+
+        if (!email) return;
+
+        authError.style.color = "#a1a1aa";
+        authError.textContent = "Requesting secure code...";
+        authSubmitBtn.disabled = true;
+
+        try {
+            const res = await fetch('/api/auth/send-otp', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email, username, mode: authMode })
+            });
+            const data = await res.json();
+
+            if (!res.ok) {
+                throw new Error(data.detail || 'Failed to send OTP');
+            }
+
+            tempEmail = email; // Store for verification step
+
+            // Switch to OTP Form
+            authForm.style.display = 'none';
+            otpForm.style.display = 'flex';
+
+        } catch (err) {
+            authError.style.color = "#FF3B30";
+            authError.textContent = err.message;
+        } finally {
+            authSubmitBtn.disabled = false;
+        }
+    });
+}
+
+if (otpForm) {
+    otpForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const otp = authOtp.value.trim();
+        if (!otp) return;
+
+        otpError.style.color = "#a1a1aa";
+        otpError.textContent = "Verifying...";
+        document.getElementById('otpSubmit').disabled = true;
+
+        try {
+            const res = await fetch('/api/auth/verify-otp', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email: tempEmail, otp })
+            });
+            const data = await res.json();
+
+            if (!res.ok) {
+                throw new Error(data.detail || 'Invalid OTP');
+            }
+
+            // Success
+            localStorage.setItem('novaToken', data.token);
+            localStorage.setItem('novaRefreshToken', data.refresh_token);
+            localStorage.setItem('novaUser', data.username);
+
+            showDashboard(data.username);
+
+            // Clean up
+            resetToEmail();
+            authEmail.value = '';
+            authUsername.value = '';
+
+        } catch (err) {
+            otpError.style.color = "#FF3B30";
+            otpError.textContent = err.message;
+        } finally {
+            document.getElementById('otpSubmit').disabled = false;
+        }
+    });
+}
+
+function goToAuth() {
+    if (marketingView) marketingView.style.display = 'none';
+    if (authView) authView.style.display = 'flex';
+}
+
+function goToMarketing() {
+    if (marketingView) marketingView.style.display = 'block';
+    if (authView) authView.style.display = 'none';
+}
+
+function showDashboard(username) {
+    if (marketingView) marketingView.style.display = 'none';
+    if (authView) authView.style.display = 'none';
+    if (dashboardView) dashboardView.style.display = 'block';
+    if (displayUsername) displayUsername.textContent = username;
+}
+
+function logout() {
+    localStorage.removeItem('novaToken');
+    localStorage.removeItem('novaRefreshToken');
+    localStorage.removeItem('novaUser');
+    if (marketingView) marketingView.style.display = 'block';
+    if (authView) authView.style.display = 'none';
+    if (dashboardView) dashboardView.style.display = 'none';
+    if (authUsername) authUsername.value = '';
+    if (authPassword) authPassword.value = '';
+    if (authError) {
+        authError.textContent = 'Logged out successfully.';
+        authError.style.color = "#fff";
+    }
+}
+
+// Auto-login check on load (but keep marketing landing as default entry)
+document.addEventListener('DOMContentLoaded', () => {
+    // Check URL params for OAuth redirect
+    const urlParams = new URLSearchParams(window.location.search);
+    const urlToken = urlParams.get('token');
+    const urlRefresh = urlParams.get('refresh');
+    const urlUsername = urlParams.get('username');
+
+    // If we just returned from Google OAuth, drop the tokens into storage
+    // and go straight to the console once.
+    if (urlToken && urlRefresh && urlUsername) {
+        localStorage.setItem('novaToken', urlToken);
+        localStorage.setItem('novaRefreshToken', urlRefresh);
+        localStorage.setItem('novaUser', urlUsername);
+
+        // Clean URL so tokens aren't left hanging in the browser bar
+        window.history.replaceState({}, document.title, window.location.pathname);
+        showDashboard(urlUsername);
+        return;
+    }
+
+    // Default for direct visits / refresh: always show the 3D marketing landing,
+    // even if a valid token is present in localStorage.
+    if (marketingView) marketingView.style.display = 'block';
+});
+
+/* ========================================
+   ROBO GUIDE TOUR
+   ======================================== */
+const roboSteps = [
+    { text: "Hello! I am Nova's onboarding assistant. Need a quick tour?", face: "(^._.^)ﾉ" },
+    { text: "The Central Input gets everything started. Ask me to research a topic like 'Tesla'.", face: "( °o°)" },
+    { text: "Activate my tools via the Nav Pills below. I can grab News, Sentiment, Entities, and Social Data at once!", face: "( ✧≖ ͜ʖ≖)" },
+    { text: "When you have results, use the 'Export' button to generate a beautiful markdown intelligence package.", face: "( ˘ᴗ˘ )" },
+    { text: "You can toggle the Spline iOS 26 layout features strictly via the settings toggles. Enjoy NovaOS!", face: "( ͡° ͜ʖ ͡°)" }
+];
+let currentRoboStep = 0;
+
+function startRoboTour() {
+    currentRoboStep = 0;
+    document.getElementById('roboGuideModal').classList.remove('hidden');
+    renderRoboStep();
+}
+
+function nextRoboStep() {
+    currentRoboStep++;
+    if (currentRoboStep >= roboSteps.length) {
+        skipRoboTour();
+    } else {
+        renderRoboStep();
+    }
+}
+
+function skipRoboTour() {
+    document.getElementById('roboGuideModal').classList.add('hidden');
+}
+
+function renderRoboStep() {
+    document.getElementById('roboText').textContent = roboSteps[currentRoboStep].text;
+    document.getElementById('roboFace').textContent = roboSteps[currentRoboStep].face;
+}
 

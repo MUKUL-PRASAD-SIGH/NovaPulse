@@ -1,7 +1,12 @@
-"""FastAPI routes for Nova Intelligence Agent."""
+"""FastAPI routes for Nova Intelligence Agent.
+
+v3: Routes through LangGraph pipeline with v2 fallback.
+Phase 3: Memory endpoints + Continuous monitoring.
+"""
 from fastapi import APIRouter, HTTPException
 from fastapi.responses import StreamingResponse
-from typing import Dict, Any
+from pydantic import BaseModel
+from typing import Dict, Any, Optional
 import httpx
 import os
 import io
@@ -15,7 +20,31 @@ from app.memory.store import save_plan, get_recent_plans, get_recent_results
 from app.core.tool_registry import list_tools
 from app.tools.exporter import export_data
 
+# v3 Phase 3: Memory manager and WebSocket
+try:
+    from app.memory.manager import memory_manager
+    MEMORY_AVAILABLE = True
+except ImportError:
+    MEMORY_AVAILABLE = False
+
+try:
+    from app.api.ws import continuous_engine
+    CONTINUOUS_AVAILABLE = True
+except ImportError:
+    CONTINUOUS_AVAILABLE = False
+
+# v3: LangGraph pipeline (graceful import — falls back to v2 if not available)
+try:
+    from app.graph.nova_graph import run_graph
+    NOVA_V3_AVAILABLE = True
+except ImportError:
+    NOVA_V3_AVAILABLE = False
+    print("[ROUTES] LangGraph not available — using v2 executor")
+
 load_dotenv()
+
+# Configuration: set USE_V3_GRAPH=true to enable LangGraph pipeline
+USE_V3_GRAPH = os.getenv("USE_V3_GRAPH", "true").lower() == "true"
 
 router = APIRouter()
 
@@ -25,24 +54,59 @@ async def process_command(request: CommandRequest) -> Dict[str, Any]:
     """
     Main endpoint: Process a voice/text command.
     
-    Flow: Text → Planner → Task JSON → Executor → Results
+    v3 Flow: Text → LangGraph (supervisor → pipelines → fusion → critic → memory → output)
+    v2 Fallback: Text → Planner → Task JSON → Executor → Results
+    
     Never returns HTTP 500 - always returns a response with error details.
     """
+    # ═══ v3 PATH: LangGraph Pipeline ═══
+    if USE_V3_GRAPH and NOVA_V3_AVAILABLE:
+        try:
+            print(f"[API v3] Running graph for: {request.text}")
+
+            # Extract feature toggles from request
+            toggles = request.feature_toggles or {}
+
+            result = await run_graph(
+                query=request.text,
+                feature_toggles=toggles
+            )
+
+            # run_graph returns the final_report which is v2-compatible
+            plan_dict = result.get("plan", {
+                "intent": result.get("intent", ""),
+                "domain": result.get("domain", ""),
+            })
+
+            print(f"[API v3] Graph complete. Success: {result.get('success', False)}")
+
+            return {
+                "success": result.get("success", False),
+                "plan": plan_dict,
+                "result": result,
+                "errors": result.get("errors", []),
+                "v3": True,  # Signal to frontend that v3 was used
+            }
+
+        except Exception as e:
+            print(f"[API v3 ERROR] Graph failed, falling back to v2: {e}")
+            # Fall through to v2 path
+
+    # ═══ v2 PATH: Legacy Planner → Executor ═══
     plan_dict = None
     result = None
     errors = []
     
     # Step 1: Plan the task
     try:
-        print(f"[API] Planning task for: {request.text}")
+        print(f"[API v2] Planning task for: {request.text}")
         plan_dict = plan_task(request.text)
         save_plan(plan_dict, request.text)
-        print(f"[API] Plan created: {plan_dict.get('intent', 'unknown')}")
+        print(f"[API v2] Plan created: {plan_dict.get('intent', 'unknown')}")
     except Exception as e:
         error_msg = f"Planning failed: {str(e)}"
         print(f"[API ERROR] {error_msg}\n{traceback.format_exc()}")
         errors.append(error_msg)
-        # Create a minimal fallback plan
         plan_dict = {
             "intent": f"Get {request.text} news",
             "domain": request.text.split()[0] if request.text else "ai",
@@ -55,9 +119,9 @@ async def process_command(request: CommandRequest) -> Dict[str, Any]:
     # Step 2: Execute the plan
     try:
         plan = TaskPlan(**plan_dict)
-        print(f"[API] Executing {len(plan.steps)} steps...")
+        print(f"[API v2] Executing {len(plan.steps)} steps...")
         result = execute_plan(plan)
-        print(f"[API] Execution complete. Success: {result.get('success', False)}")
+        print(f"[API v2] Execution complete. Success: {result.get('success', False)}")
     except Exception as e:
         error_msg = f"Execution failed: {str(e)}"
         print(f"[API ERROR] {error_msg}\n{traceback.format_exc()}")
@@ -74,12 +138,12 @@ async def process_command(request: CommandRequest) -> Dict[str, Any]:
             "success": False
         }
     
-    # Always return 200 with results (even if partial)
     return {
         "success": len(errors) == 0 and result.get("success", False),
         "plan": plan_dict,
         "result": result,
-        "errors": errors
+        "errors": errors,
+        "v3": False,
     }
 
 
@@ -88,7 +152,8 @@ async def get_capabilities() -> Dict[str, Any]:
     """Get agent capabilities for UI display."""
     return {
         "name": "Nova Intelligence Agent",
-        "version": "2.0",
+        "version": "3.0",
+        "engine": "LangGraph" if (USE_V3_GRAPH and NOVA_V3_AVAILABLE) else "v2-executor",
         "features": [
             {"id": "multi_source", "name": "Multi-Source News", "icon": "📰"},
             {"id": "ai_summary", "name": "AI Summary", "icon": "🧠"},
@@ -101,6 +166,13 @@ async def get_capabilities() -> Dict[str, Any]:
             {"id": "research_assistant", "name": "Research Assistant", "icon": "📚"},
             {"id": "export", "name": "Package Builder", "icon": "📦"},
         ],
+        "v3_capabilities": {
+            "multi_pipeline": True,
+            "critic_agent": True,
+            "memory_system": True,
+            "supervisor_agent": True,
+            "fusion_layer": True,
+        },
         "sources": ["Tavily", "GNews", "Google News RSS", "Reddit", "arXiv", "GitHub", "StackOverflow"],
         "domains": ["AI", "Tech", "Crypto", "Research", "Business", "Politics", "Science"],
         "export_formats": ["JSON", "Markdown", "CSV", "Word", "PDF"],
@@ -336,3 +408,145 @@ async def _get_free_dictionary(word: str) -> Dict[str, Any]:
             
     except Exception as e:
         return {"success": False, "word": word, "error": str(e)}
+
+
+# ============ PHASE 3: CONTINUOUS MONITORING ============
+
+class MonitorRequest(BaseModel):
+    topic: str
+    interval_minutes: int = 30
+    duration_hours: int = 24
+    depth: str = "standard"
+
+
+@router.post("/monitor")
+async def start_monitor(request: MonitorRequest) -> Dict[str, Any]:
+    """Start a continuous intelligence monitor.
+    
+    Body: {"topic": "Tesla", "interval_minutes": 30, "duration_hours": 24}
+    """
+    if not CONTINUOUS_AVAILABLE:
+        raise HTTPException(status_code=503, detail="Continuous mode not available")
+
+    # Inject graph runner if not set
+    if continuous_engine._graph_runner is None and NOVA_V3_AVAILABLE:
+        continuous_engine.set_graph_runner(run_graph)
+
+    task_id = await continuous_engine.start_monitor(
+        topic=request.topic,
+        interval_minutes=request.interval_minutes,
+        duration_hours=request.duration_hours,
+        depth=request.depth,
+    )
+
+    return {
+        "success": True,
+        "monitor_id": task_id,
+        "message": f"Monitoring '{request.topic}' every {request.interval_minutes}min for {request.duration_hours}h",
+    }
+
+
+@router.delete("/monitor/{monitor_id}")
+async def stop_monitor(monitor_id: str) -> Dict[str, Any]:
+    """Stop a running monitor."""
+    if not CONTINUOUS_AVAILABLE:
+        raise HTTPException(status_code=503, detail="Continuous mode not available")
+
+    success = continuous_engine.stop_monitor(monitor_id)
+    if not success:
+        raise HTTPException(status_code=404, detail=f"Monitor '{monitor_id}' not found")
+
+    return {"success": True, "message": f"Monitor '{monitor_id}' stopped"}
+
+
+@router.get("/monitor/active")
+async def list_active_monitors() -> Dict[str, Any]:
+    """List all active monitoring tasks."""
+    if not CONTINUOUS_AVAILABLE:
+        return {"monitors": [], "message": "Continuous mode not available"}
+
+    return {
+        "monitors": continuous_engine.get_active_monitors(),
+        "total": len(continuous_engine.get_active_monitors()),
+    }
+
+
+# ============ PHASE 3: MEMORY ENDPOINTS ============
+
+@router.get("/memory/query")
+async def query_memory(topic: str, limit: int = 10) -> Dict[str, Any]:
+    """Search past intelligence by topic.
+    
+    Query: /api/memory/query?topic=Tesla&limit=5
+    """
+    if not MEMORY_AVAILABLE:
+        raise HTTPException(status_code=503, detail="Memory system not available")
+
+    history = memory_manager.long_term.get_topic_history(topic, limit=limit)
+
+    # Slim down results (don't send full result_json)
+    results = []
+    for entry in history:
+        results.append({
+            "query": entry.get("query", ""),
+            "depth": entry.get("depth", "standard"),
+            "critic_score": entry.get("critic_score", 0),
+            "confidence": entry.get("confidence", 0.0),
+            "pipelines": entry.get("pipelines", "[]"),
+            "created_at": entry.get("created_at", ""),
+            "duration_ms": entry.get("duration_ms", 0),
+        })
+
+    return {
+        "topic": topic,
+        "results": results,
+        "count": len(results),
+    }
+
+
+@router.get("/memory/compare")
+async def compare_memory(topic: str, days: int = 7) -> Dict[str, Any]:
+    """Compare topic intelligence over time.
+    
+    Query: /api/memory/compare?topic=Tesla&days=7
+    """
+    if not MEMORY_AVAILABLE:
+        raise HTTPException(status_code=503, detail="Memory system not available")
+
+    comparison = memory_manager.compare_topic(topic, days=days)
+    entity_history = memory_manager.get_entity_history(topic, limit=10)
+    trend_changes = memory_manager.detect_trend_changes(topic, hours=days * 24)
+
+    return {
+        "topic": topic,
+        "comparison": comparison,
+        "entity_history": entity_history,
+        "trend_changes": trend_changes,
+    }
+
+
+@router.get("/memory/stats")
+async def memory_stats() -> Dict[str, Any]:
+    """Get memory system statistics."""
+    if not MEMORY_AVAILABLE:
+        return {"available": False}
+
+    stats = memory_manager.get_stats()
+    stats["available"] = True
+    return stats
+
+
+# ============ PHASE 3: GRAPH STATUS ============
+
+@router.get("/graph/status")
+async def graph_status() -> Dict[str, Any]:
+    """Get v3 graph engine status."""
+    return {
+        "v3_available": NOVA_V3_AVAILABLE,
+        "v3_enabled": USE_V3_GRAPH,
+        "engine": "LangGraph" if (USE_V3_GRAPH and NOVA_V3_AVAILABLE) else "v2-executor",
+        "memory_available": MEMORY_AVAILABLE,
+        "continuous_available": CONTINUOUS_AVAILABLE,
+        "memory_stats": memory_manager.get_stats() if MEMORY_AVAILABLE else None,
+        "active_monitors": continuous_engine.get_active_monitors() if CONTINUOUS_AVAILABLE else [],
+    }
