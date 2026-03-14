@@ -1,200 +1,5 @@
 [
   {
-    "timestamp": "2026-02-22T12:48:02.360354",
-    "level": "INFO",
-    "message": "Nova v3 graph compiled successfully"
-  },
-  {
-    "timestamp": "2026-02-22T12:48:02.386546",
-    "level": "INFO",
-    "message": "Planning task for: Claude with summarize and sentiment analysis and trends and full article content and entity extraction and image analysis and social media monitoring and research papers"
-  },
-  {
-    "timestamp": "2026-02-22T12:48:02.406651",
-    "level": "INFO",
-    "message": "Using mock planner",
-    "data": {
-      "plan": {
-        "intent": "Get claude news",
-        "domain": "claude",
-        "steps": [
-          {
-            "tool": "news_fetcher",
-            "params": {
-              "topic": "claude",
-              "sources": [
-                "google"
-              ],
-              "limit": 5
-            }
-          },
-          {
-            "tool": "summarizer",
-            "params": {}
-          },
-          {
-            "tool": "sentiment",
-            "params": {}
-          },
-          {
-            "tool": "trends",
-            "params": {}
-          },
-          {
-            "tool": "web_scraper",
-            "params": {}
-          },
-          {
-            "tool": "entity_extractor",
-            "params": {}
-          },
-          {
-            "tool": "image_analyzer",
-            "params": {}
-          },
-          {
-            "tool": "social_monitor",
-            "params": {
-              "topic": "claude",
-              "platforms": [
-                "reddit"
-              ]
-            }
-          },
-          {
-            "tool": "research_assistant",
-            "params": {
-              "query": "claude"
-            }
-          },
-          {
-            "tool": "exporter",
-            "params": {
-              "filename": "claude_report",
-              "format": "json"
-            }
-          }
-        ]
-      }
-    }
-  },
-  {
-    "timestamp": "2026-02-22T12:48:02.429691",
-    "level": "INFO",
-    "message": "Supervisor: depth=deep, pipelines=['news', 'social', 'research', 'market']"
-  },
-  {
-    "timestamp": "2026-02-22T12:48:02.454493",
-    "level": "INFO",
-    "message": "Executing plan: Get claude news",
-    "data": {
-      "steps": 10
-    }
-  },
-  {
-    "timestamp": "2026-02-22T12:48:02.479713",
-    "level": "DEBUG",
-    "message": "Running tool: news_fetcher",
-    "data": {
-      "params": [
-        "topic",
-        "sources",
-        "limit"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-02-22T12:48:02.500778",
-    "level": "INFO",
-    "message": "Multi-source fetch for: claude"
-  },
-  {
-    "timestamp": "2026-02-22T12:48:09.482746",
-    "level": "INFO",
-    "message": "Multi-source complete: 15 articles from 3 sources",
-    "data": {
-      "rss": {
-        "success": true,
-        "count": 5
-      },
-      "gnews": {
-        "success": true,
-        "count": 5
-      },
-      "tavily": {
-        "success": true,
-        "count": 5
-      }
-    }
-  },
-  {
-    "timestamp": "2026-02-22T12:48:09.495772",
-    "level": "DEBUG",
-    "message": "Running tool: summarizer",
-    "data": {
-      "params": [
-        "news_items"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-02-22T12:48:09.511324",
-    "level": "DEBUG",
-    "message": "Running tool: sentiment",
-    "data": {
-      "params": [
-        "news_items"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-02-22T12:48:09.532875",
-    "level": "DEBUG",
-    "message": "Running tool: trends",
-    "data": {
-      "params": [
-        "news_items"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-02-22T12:48:12.586106",
-    "level": "DEBUG",
-    "message": "Running tool: web_scraper",
-    "data": {
-      "params": [
-        "url"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-02-22T12:48:14.008521",
-    "level": "INFO",
-    "message": "Tool web_scraper executed",
-    "data": {
-      "tool": "web_scraper",
-      "success": true,
-      "duration_seconds": 0.0,
-      "params": {
-        "url": "https://gizmodo.com/obedient-traders-respond-to-claude-code-cybersecurity-plugin-by-selling-cybersecurity-stocks-2000723240"
-      },
-      "result": {
-        "success": true,
-        "word_count": 656
-      }
-    }
-  },
-  {
-    "timestamp": "2026-02-22T12:48:14.036401",
-    "level": "DEBUG",
-    "message": "Running tool: entity_extractor",
-    "data": {
-      "params": [
-        "articles"
-      ]
-    }
-  },
-  {
     "timestamp": "2026-02-22T12:48:14.069024",
     "level": "INFO",
     "message": "Tool entity_extractor executed",
@@ -2307,6 +2112,141 @@
   },
   {
     "timestamp": "2026-03-15T01:46:07.322665",
+    "level": "INFO",
+    "message": "Output packaged: confidence=0.68, badge=partial"
+  },
+  {
+    "timestamp": "2026-03-15T01:53:47.276809",
+    "level": "INFO",
+    "message": "Nova v3 graph compiled successfully"
+  },
+  {
+    "timestamp": "2026-03-15T01:53:47.297805",
+    "level": "INFO",
+    "message": "Planning task for: tesla news"
+  },
+  {
+    "timestamp": "2026-03-15T01:53:47.322844",
+    "level": "INFO",
+    "message": "Using mock planner",
+    "data": {
+      "plan": {
+        "intent": "Get tesla news",
+        "domain": "tesla",
+        "steps": [
+          {
+            "tool": "news_fetcher",
+            "params": {
+              "topic": "tesla",
+              "sources": [
+                "google"
+              ],
+              "limit": 5
+            }
+          },
+          {
+            "tool": "exporter",
+            "params": {
+              "filename": "tesla_report",
+              "format": "json"
+            }
+          }
+        ]
+      }
+    }
+  },
+  {
+    "timestamp": "2026-03-15T01:53:47.339844",
+    "level": "INFO",
+    "message": "Supervisor: depth=standard, pipelines=['news']"
+  },
+  {
+    "timestamp": "2026-03-15T01:53:47.363844",
+    "level": "INFO",
+    "message": "Executing plan: Get tesla news",
+    "data": {
+      "steps": 2
+    }
+  },
+  {
+    "timestamp": "2026-03-15T01:53:47.386167",
+    "level": "DEBUG",
+    "message": "Running tool: news_fetcher",
+    "data": {
+      "params": [
+        "topic",
+        "sources",
+        "limit"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-03-15T01:53:47.404165",
+    "level": "INFO",
+    "message": "Multi-source fetch for: tesla"
+  },
+  {
+    "timestamp": "2026-03-15T01:53:54.134949",
+    "level": "INFO",
+    "message": "Multi-source complete: 13 articles from 3 sources",
+    "data": {
+      "rss": {
+        "success": true,
+        "count": 5
+      },
+      "gnews": {
+        "success": true,
+        "count": 5
+      },
+      "tavily": {
+        "success": true,
+        "count": 5
+      }
+    }
+  },
+  {
+    "timestamp": "2026-03-15T01:53:54.151949",
+    "level": "DEBUG",
+    "message": "Running tool: exporter",
+    "data": {
+      "params": [
+        "filename",
+        "format",
+        "data"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-03-15T01:53:54.255524",
+    "level": "INFO",
+    "message": "Execution complete: 2 tools run, 0 skipped, 0 fallbacks used"
+  },
+  {
+    "timestamp": "2026-03-15T01:53:54.275525",
+    "level": "INFO",
+    "message": "News pipeline complete in 6910ms",
+    "data": {
+      "node": "news_pipeline",
+      "status": "success",
+      "duration_ms": 6910,
+      "tools_executed": 2,
+      "errors": 0,
+      "skipped": 0,
+      "fallbacks": 0
+    }
+  },
+  {
+    "timestamp": "2026-03-15T01:53:54.294527",
+    "level": "INFO",
+    "message": "Fusion complete: ['news'] in 0ms"
+  },
+  {
+    "timestamp": "2026-03-15T01:53:54.414917",
+    "level": "INFO",
+    "message": "Memory saved: query='tesla news', score=100, entities=0, trends=0"
+  },
+  {
+    "timestamp": "2026-03-15T01:53:54.434158",
     "level": "INFO",
     "message": "Output packaged: confidence=0.68, badge=partial"
   }

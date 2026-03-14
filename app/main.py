@@ -311,13 +311,13 @@ async def startup_event():
     asyncio.create_task(background_cleanup())
 
     print("=" * 60)
-    print("  [SYSTEM] Nova Intelligence Agent v3.0")
+    print("  Nova Intelligence Agent v3.0")
     print("=" * 60)
-    print(f"  [Engine]     {'LangGraph' if GRAPH_AVAILABLE else 'v2-executor'}")
-    print(f"  [WebSocket]  {'Active' if WS_AVAILABLE else 'Unavailable'}")
-    print(f"  [API]        http://localhost:8000/api")
-    print(f"  [Frontend]   http://localhost:8000")
-    print(f"  [WS]         ws://localhost:8000/ws/intelligence")
+    print(f"  Engine:    {'LangGraph' if GRAPH_AVAILABLE else 'v2-executor'}")
+    print(f"  WebSocket: {'Active' if WS_AVAILABLE else 'Unavailable'}")
+    print(f"  API:       http://localhost:8000/api")
+    print(f"  Frontend:  http://localhost:8000")
+    print(f"  WS:        ws://localhost:8000/ws/intelligence")
     print("=" * 60)
 
     # Wire up continuous engine to graph runner
