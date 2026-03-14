@@ -18,12 +18,36 @@ from typing import Dict, List, Any, Optional
 from threading import Lock
 
 
-DB_DIR = os.path.join(os.path.dirname(__file__), "db")
-DB_PATH = os.path.join(DB_DIR, "nova.db")
+def _ensure_db_dir() -> str:
+    """
+    Ensure a writable database directory exists and return its path.
 
+    - Prefer an explicit NOVA_DB_DIR env var if provided.
+    - Fallback to a local ./db folder next to this file (for local dev).
+    - On read-only filesystems (e.g. Vercel /var/task), transparently
+      fall back to /tmp/nova_memory_db which is writable.
+    """
+    # 1) Explicit override (e.g. NOVA_DB_DIR=/tmp/nova_memory_db on Vercel)
+    env_dir = os.getenv("NOVA_DB_DIR")
+    if env_dir:
+        try:
+            os.makedirs(env_dir, exist_ok=True)
+            return env_dir
+        except OSError:
+            # If even the env dir is not writable, fall through to /tmp
+            pass
 
-def _ensure_db_dir():
-    os.makedirs(DB_DIR, exist_ok=True)
+    # 2) Default next to this file (works locally)
+    default_dir = os.path.join(os.path.dirname(__file__), "db")
+    try:
+        os.makedirs(default_dir, exist_ok=True)
+        return default_dir
+    except OSError:
+        # Most hosted/serverless environments (like Vercel) make the code
+        # directory read-only. Use the standard writable temp dir there.
+        tmp_dir = os.path.join("/tmp", "nova_memory_db")
+        os.makedirs(tmp_dir, exist_ok=True)
+        return tmp_dir
 
 
 class LongTermMemory:
@@ -35,9 +59,9 @@ class LongTermMemory:
       - trend_snapshots: Point-in-time trend captures
     """
 
-    def __init__(self, db_path: str = DB_PATH, max_entries: int = 500):
-        _ensure_db_dir()
-        self._db_path = db_path
+    def __init__(self, db_path: Optional[str] = None, max_entries: int = 500):
+        db_dir = _ensure_db_dir()
+        self._db_path = db_path or os.path.join(db_dir, "nova.db")
         self._max = max_entries
         self._lock = Lock()
         self._init_db()
