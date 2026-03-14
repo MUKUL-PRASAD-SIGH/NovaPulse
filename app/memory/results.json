@@ -31231,5 +31231,236 @@
         "pipeline_count": 4
       }
     }
+  },
+  {
+    "timestamp": "2026-03-15T01:46:07.077466",
+    "result": {
+      "intent": "Get tesla news",
+      "domain": "tesla",
+      "tools_executed": [
+        {
+          "tool": "news_fetcher",
+          "success": true,
+          "retries": 0,
+          "used_fallback": false,
+          "regenerated": false
+        },
+        {
+          "tool": "exporter",
+          "success": true,
+          "retries": 0,
+          "used_fallback": false,
+          "regenerated": false
+        }
+      ],
+      "data": {
+        "news": [
+          {
+            "title": "LA's Tesla Diner is so dead, even the protesters gave up - SFGATE",
+            "link": "https://news.google.com/rss/articles/CBMibkFVX3lxTE9pY1pXZndmLXJmZEhxdDBRekk4WXBqM0V6MVg1dmNDQmpjeFJfQVVneWQ0eGRuYnRwdW0zamJDQndERjZkOFJJMHRHVklaQzZTUUF4VmMtdGpQR20wZkl0QVhWYmhscVNNaUplVV93?oc=5",
+            "source": "rss",
+            "published": "Fri, 13 Mar 2026 17:23:39 GMT"
+          },
+          {
+            "title": "Former Tesla president surprised after ripping apart Chinese EV: 'They save a lot of money that way' - Yahoo Autos",
+            "link": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxPalNURkJLYkFWMU9wWTg1Y1NJWThIRTVHSFJmMHlvTTI1MnJlVVpyX1dCTDNaSTFxanBDYXpRbUlZaGtsSVlReGRRckVDVmNOa2I0aUVoNk9QNGtzUVRzeE1FMURHRjEzTmJTcjllQzFzdzhjTEdINlRvNmM0a09hcWRqa25PZXphZDRTcDFGUy1URi1XUmx5RGxCV3piR3dldjlod0tmaUdzVnM?oc=5",
+            "source": "rss",
+            "published": "Sat, 14 Mar 2026 02:00:00 GMT"
+          },
+          {
+            "title": "Tesla's China sales climb in the first two months of 2026 while BYD numbers drop - CNBC",
+            "link": "https://news.google.com/rss/articles/CBMitwFBVV95cUxOdGxJVnUzRGw5ZUhPTDN5V2QtWEExRjBGTG1VS3RXLWtDR3J5WEc4a2d1V2JTZU9yMWpwN2ZzckEwNWJUQTl1b1V4ckNMOG1ZWUVqUm5sVHkzaGZSdEVZa0FocjN5b0wtZDFpdEswX0ttTWFDOEE4ZWRscEtObmJ3R0VJQXdfbDRIV0ttSlhXcEJILXNGcDBNUkg4Z1dOYzZjUzU4MGwwb25EVFFNaVFsUXhxUWR5VGvSAbwBQVVfeXFMTmRBbFFvclc0UUNPVklGS1h2ZmlveHhkZkFFTWtHRDBzM2QxenJqcGpiRUpXSHozeE9DTlJxdjJUZFNLcW13THhqVFc2R0VqeHdnNHFXWGN2YXlaMGFSNzhQMHRKWks2VzhtOFEtSU5KcTJheFhhOExSSzl1UWRETG0zeXZHZC1NaTlJaHBoVm5lTjlhdEdyZmR3dUM4NlNZdVFDNzRjcG9MUThHUVpXYXRRVVhyQWRiQlBpanE?oc=5",
+            "source": "rss",
+            "published": "Fri, 13 Mar 2026 07:02:05 GMT"
+          },
+          {
+            "title": "Tesla China Sales Show It Isn't Struggling As Much As Its Rivals - Investor's Business Daily",
+            "link": "https://news.google.com/rss/articles/CBMijwFBVV95cUxQUElFYzdNM2tUeUFBcTFKZ2ZMTEVXZ09OcFpsV2doZk5DSlBJdzF2QmpKUzg5NE50X3VlcDdMajltTkEtUGpwdVI4dUNCUkNVUDg1czlyTndkd1I5Mk5GZU1CYTM0MmFBODlTbi1tSWVDdVhPUDNRZFg0V3Y1MU5KTDU4bE9PejU5ZEF1ZmpTZw?oc=5",
+            "source": "rss",
+            "published": "Thu, 12 Mar 2026 14:54:00 GMT"
+          },
+          {
+            "title": "BYD Just Announced 5-Minute EV Charging. Should Tesla Investors Be Concerned? - finance.yahoo.com",
+            "link": "https://news.google.com/rss/articles/CBMifkFVX3lxTE5PcHN1ZDh5cUJzbGlHeEZpc0lpNmxIUEYzb204UGVEZXFxajN2UGlLc0FHSnJSd3VHTnN4aElCeEJHaUZKVnZlZnFPRjFzWkNhTnBfNy1xUkt3M2ZROHgzOE1xUEp1a1BRSlJGVXFRbEUyV3BmZWR0akRob1VlQQ?oc=5",
+            "source": "rss",
+            "published": "Sat, 14 Mar 2026 18:50:00 GMT"
+          },
+          {
+            "title": "Tesla sued after driver claims full self driving system caused Cybertruck crash in Houston",
+            "link": "https://www.thenews.com.pk/latest/1395614-tesla-sued-after-driver-claims-full-self-driving-system-caused-cybertruck-crash-in-houston",
+            "source": "gnews",
+            "published": "2026-03-14T06:14:21Z",
+            "image": "https://www.thenews.com.pk/assets/uploads/2026-03-14/1395614_111611_updates.jpg"
+          },
+          {
+            "title": "I drove 'Car of the Year' electric vehicle and three things left me stunned",
+            "link": "https://www.getsurrey.co.uk/news/motoring/motoring-news/drove-car-year-electric-vehicle-33588964",
+            "source": "gnews",
+            "published": "2026-03-14T06:00:00Z",
+            "image": "https://i2-prod.liverpoolecho.co.uk/incoming/article33588136.ece/ALTERNATES/s1200/1_image00011jpegjpgarp.jpg"
+          },
+          {
+            "title": "I drove EV named 'Car of the Year' that's not Audi or Tesla and three things surprised me",
+            "link": "https://www.mirror.co.uk/lifestyle/motoring/drove-ev-named-car-year-36862406",
+            "source": "gnews",
+            "published": "2026-03-14T04:00:00Z",
+            "image": "https://i2-prod.mirror.co.uk/article36858264.ece/ALTERNATES/s1200d/0_image00004jpeg.jpg"
+          },
+          {
+            "title": "Elon Musk emails Tesla workers: 'Breaking even is looking super tight'",
+            "link": "https://www.cnbc.com/2020/06/29/elon-musk-emails-tesla-workers-breaking-even-is-looking-super-tight.html",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "Tesla under investigation after parents report breaking windows to get kids out of cars",
+            "link": "https://apnews.com/article/tesla-door-handle-nhtsa-053af5d5619f06eabac7e7009c17cc29",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "Trump considering selling his Tesla and not interested in talking to ...",
+            "link": "https://www.bbc.com/news/live/cyvm2181lqvt?post=asset:80385d45-57f8-41fd-b778-2afc87de4fd9",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "Tesla's troubles are deeper than you think",
+            "link": "https://www.cnn.com/2025/07/08/business/tesla-troubled-financial-outlook",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "Tesla loses title as world's biggest electric vehicle maker as sales ...",
+            "link": "https://apnews.com/article/tesla-sales-musk-trump-deliveries-robotaxi-6d60715babde97b3b1a8e2416f4065ca",
+            "source": "tavily",
+            "published": ""
+          }
+        ],
+        "exported_file": "output/tesla_report_20260315_014607.json"
+      },
+      "errors": [],
+      "skipped": [],
+      "fallbacks_used": [],
+      "regenerated": [],
+      "success": true
+    }
+  },
+  {
+    "timestamp": "2026-03-15T01:46:07.230878",
+    "result": {
+      "query": "tesla news",
+      "critic_score": 100,
+      "data": {
+        "news": [
+          {
+            "title": "LA's Tesla Diner is so dead, even the protesters gave up - SFGATE",
+            "link": "https://news.google.com/rss/articles/CBMibkFVX3lxTE9pY1pXZndmLXJmZEhxdDBRekk4WXBqM0V6MVg1dmNDQmpjeFJfQVVneWQ0eGRuYnRwdW0zamJDQndERjZkOFJJMHRHVklaQzZTUUF4VmMtdGpQR20wZkl0QVhWYmhscVNNaUplVV93?oc=5",
+            "source": "rss",
+            "published": "Fri, 13 Mar 2026 17:23:39 GMT"
+          },
+          {
+            "title": "Former Tesla president surprised after ripping apart Chinese EV: 'They save a lot of money that way' - Yahoo Autos",
+            "link": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxPalNURkJLYkFWMU9wWTg1Y1NJWThIRTVHSFJmMHlvTTI1MnJlVVpyX1dCTDNaSTFxanBDYXpRbUlZaGtsSVlReGRRckVDVmNOa2I0aUVoNk9QNGtzUVRzeE1FMURHRjEzTmJTcjllQzFzdzhjTEdINlRvNmM0a09hcWRqa25PZXphZDRTcDFGUy1URi1XUmx5RGxCV3piR3dldjlod0tmaUdzVnM?oc=5",
+            "source": "rss",
+            "published": "Sat, 14 Mar 2026 02:00:00 GMT"
+          },
+          {
+            "title": "Tesla's China sales climb in the first two months of 2026 while BYD numbers drop - CNBC",
+            "link": "https://news.google.com/rss/articles/CBMitwFBVV95cUxOdGxJVnUzRGw5ZUhPTDN5V2QtWEExRjBGTG1VS3RXLWtDR3J5WEc4a2d1V2JTZU9yMWpwN2ZzckEwNWJUQTl1b1V4ckNMOG1ZWUVqUm5sVHkzaGZSdEVZa0FocjN5b0wtZDFpdEswX0ttTWFDOEE4ZWRscEtObmJ3R0VJQXdfbDRIV0ttSlhXcEJILXNGcDBNUkg4Z1dOYzZjUzU4MGwwb25EVFFNaVFsUXhxUWR5VGvSAbwBQVVfeXFMTmRBbFFvclc0UUNPVklGS1h2ZmlveHhkZkFFTWtHRDBzM2QxenJqcGpiRUpXSHozeE9DTlJxdjJUZFNLcW13THhqVFc2R0VqeHdnNHFXWGN2YXlaMGFSNzhQMHRKWks2VzhtOFEtSU5KcTJheFhhOExSSzl1UWRETG0zeXZHZC1NaTlJaHBoVm5lTjlhdEdyZmR3dUM4NlNZdVFDNzRjcG9MUThHUVpXYXRRVVhyQWRiQlBpanE?oc=5",
+            "source": "rss",
+            "published": "Fri, 13 Mar 2026 07:02:05 GMT"
+          },
+          {
+            "title": "Tesla China Sales Show It Isn't Struggling As Much As Its Rivals - Investor's Business Daily",
+            "link": "https://news.google.com/rss/articles/CBMijwFBVV95cUxQUElFYzdNM2tUeUFBcTFKZ2ZMTEVXZ09OcFpsV2doZk5DSlBJdzF2QmpKUzg5NE50X3VlcDdMajltTkEtUGpwdVI4dUNCUkNVUDg1czlyTndkd1I5Mk5GZU1CYTM0MmFBODlTbi1tSWVDdVhPUDNRZFg0V3Y1MU5KTDU4bE9PejU5ZEF1ZmpTZw?oc=5",
+            "source": "rss",
+            "published": "Thu, 12 Mar 2026 14:54:00 GMT"
+          },
+          {
+            "title": "BYD Just Announced 5-Minute EV Charging. Should Tesla Investors Be Concerned? - finance.yahoo.com",
+            "link": "https://news.google.com/rss/articles/CBMifkFVX3lxTE5PcHN1ZDh5cUJzbGlHeEZpc0lpNmxIUEYzb204UGVEZXFxajN2UGlLc0FHSnJSd3VHTnN4aElCeEJHaUZKVnZlZnFPRjFzWkNhTnBfNy1xUkt3M2ZROHgzOE1xUEp1a1BRSlJGVXFRbEUyV3BmZWR0akRob1VlQQ?oc=5",
+            "source": "rss",
+            "published": "Sat, 14 Mar 2026 18:50:00 GMT"
+          },
+          {
+            "title": "Tesla sued after driver claims full self driving system caused Cybertruck crash in Houston",
+            "link": "https://www.thenews.com.pk/latest/1395614-tesla-sued-after-driver-claims-full-self-driving-system-caused-cybertruck-crash-in-houston",
+            "source": "gnews",
+            "published": "2026-03-14T06:14:21Z",
+            "image": "https://www.thenews.com.pk/assets/uploads/2026-03-14/1395614_111611_updates.jpg"
+          },
+          {
+            "title": "I drove 'Car of the Year' electric vehicle and three things left me stunned",
+            "link": "https://www.getsurrey.co.uk/news/motoring/motoring-news/drove-car-year-electric-vehicle-33588964",
+            "source": "gnews",
+            "published": "2026-03-14T06:00:00Z",
+            "image": "https://i2-prod.liverpoolecho.co.uk/incoming/article33588136.ece/ALTERNATES/s1200/1_image00011jpegjpgarp.jpg"
+          },
+          {
+            "title": "I drove EV named 'Car of the Year' that's not Audi or Tesla and three things surprised me",
+            "link": "https://www.mirror.co.uk/lifestyle/motoring/drove-ev-named-car-year-36862406",
+            "source": "gnews",
+            "published": "2026-03-14T04:00:00Z",
+            "image": "https://i2-prod.mirror.co.uk/article36858264.ece/ALTERNATES/s1200d/0_image00004jpeg.jpg"
+          },
+          {
+            "title": "Elon Musk emails Tesla workers: 'Breaking even is looking super tight'",
+            "link": "https://www.cnbc.com/2020/06/29/elon-musk-emails-tesla-workers-breaking-even-is-looking-super-tight.html",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "Tesla under investigation after parents report breaking windows to get kids out of cars",
+            "link": "https://apnews.com/article/tesla-door-handle-nhtsa-053af5d5619f06eabac7e7009c17cc29",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "Trump considering selling his Tesla and not interested in talking to ...",
+            "link": "https://www.bbc.com/news/live/cyvm2181lqvt?post=asset:80385d45-57f8-41fd-b778-2afc87de4fd9",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "Tesla's troubles are deeper than you think",
+            "link": "https://www.cnn.com/2025/07/08/business/tesla-troubled-financial-outlook",
+            "source": "tavily",
+            "published": ""
+          },
+          {
+            "title": "Tesla loses title as world's biggest electric vehicle maker as sales ...",
+            "link": "https://apnews.com/article/tesla-sales-musk-trump-deliveries-robotaxi-6d60715babde97b3b1a8e2416f4065ca",
+            "source": "tavily",
+            "published": ""
+          }
+        ],
+        "news_meta": {
+          "tools_executed": [
+            {
+              "tool": "news_fetcher",
+              "success": true,
+              "retries": 0,
+              "used_fallback": false,
+              "regenerated": false
+            },
+            {
+              "tool": "exporter",
+              "success": true,
+              "retries": 0,
+              "used_fallback": false,
+              "regenerated": false
+            }
+          ],
+          "errors": [],
+          "skipped": [],
+          "fallbacks_used": []
+        },
+        "pipelines_included": [
+          "news"
+        ],
+        "pipeline_count": 1
+      }
+    }
   }
 ]

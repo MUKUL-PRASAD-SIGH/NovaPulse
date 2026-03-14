@@ -541,7 +541,10 @@ async def memory_stats() -> Dict[str, Any]:
 @router.get("/graph/status")
 async def graph_status() -> Dict[str, Any]:
     """Get v3 graph engine status."""
+    from datetime import datetime
     return {
+        "status": "ok",
+        "time_str": datetime.utcnow().strftime("%H:%M UTC"),
         "v3_available": NOVA_V3_AVAILABLE,
         "v3_enabled": USE_V3_GRAPH,
         "engine": "LangGraph" if (USE_V3_GRAPH and NOVA_V3_AVAILABLE) else "v2-executor",

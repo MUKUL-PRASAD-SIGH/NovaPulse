@@ -1,124 +1,5 @@
 [
   {
-    "timestamp": "2026-02-22T02:51:28.819404",
-    "level": "INFO",
-    "message": "News pipeline complete in 19747ms",
-    "data": {
-      "node": "news_pipeline",
-      "status": "success",
-      "duration_ms": 19747,
-      "tools_executed": 10,
-      "errors": 0,
-      "skipped": 0,
-      "fallbacks": 0
-    }
-  },
-  {
-    "timestamp": "2026-02-22T02:51:28.860467",
-    "level": "INFO",
-    "message": "Multi-source fetch for: DHURANDHAR 2 with summarize and sentiment analysis and trends and full article content and entity extraction and image analysis and social media monitoring and research papers market stock finance"
-  },
-  {
-    "timestamp": "2026-02-22T02:51:32.735572",
-    "level": "INFO",
-    "message": "Multi-source complete: 0 articles from 3 sources",
-    "data": {
-      "rss": {
-        "success": false,
-        "count": 0
-      },
-      "gnews": {
-        "success": true,
-        "count": 0
-      },
-      "tavily": {
-        "success": true,
-        "count": 0
-      }
-    }
-  },
-  {
-    "timestamp": "2026-02-22T02:51:32.779068",
-    "level": "INFO",
-    "message": "Market pipeline complete in 3919ms"
-  },
-  {
-    "timestamp": "2026-02-22T02:51:34.159960",
-    "level": "INFO",
-    "message": "Tool research_assistant executed",
-    "data": {
-      "tool": "research_assistant",
-      "success": true,
-      "duration_seconds": 0.0,
-      "params": {
-        "topic": "DHURANDHAR 2 with summarize and sentiment analysis and trends and full article content and entity extraction and image analysis and social media monitoring and research papers",
-        "type": "comprehensive"
-      },
-      "result": {
-        "total_sources": 5
-      }
-    }
-  },
-  {
-    "timestamp": "2026-02-22T02:51:34.191328",
-    "level": "INFO",
-    "message": "Research pipeline complete in 5338ms"
-  },
-  {
-    "timestamp": "2026-02-22T02:51:35.146015",
-    "level": "INFO",
-    "message": "Tool social_monitor executed",
-    "data": {
-      "tool": "social_monitor",
-      "success": true,
-      "duration_seconds": 0.0,
-      "params": {
-        "topic": "DHURANDHAR 2 with summarize and sentiment analysis and trends and full article content and entity extraction and image analysis and social media monitoring and research papers",
-        "platforms": [
-          "reddit"
-        ]
-      },
-      "result": {
-        "total_mentions": 25
-      }
-    }
-  },
-  {
-    "timestamp": "2026-02-22T02:51:35.173777",
-    "level": "INFO",
-    "message": "Social pipeline complete in 6325ms"
-  },
-  {
-    "timestamp": "2026-02-22T02:51:35.198553",
-    "level": "INFO",
-    "message": "Fusion complete: ['news', 'social', 'research', 'market'] in 0ms"
-  },
-  {
-    "timestamp": "2026-02-22T02:51:35.244093",
-    "level": "INFO",
-    "message": "Critic: score=82/100, approved=True, feedback=[]"
-  },
-  {
-    "timestamp": "2026-02-22T02:51:35.514632",
-    "level": "INFO",
-    "message": "Memory saved: query='DHURANDHAR 2 with summarize and sentiment analysis and trends and full article content and entity extraction and image analysis and social media monitoring and research papers', score=82, entities=0, trends=10"
-  },
-  {
-    "timestamp": "2026-02-22T02:51:35.559619",
-    "level": "INFO",
-    "message": "Output packaged: confidence=0.93, badge=full"
-  },
-  {
-    "timestamp": "2026-02-22T12:47:08.041395",
-    "level": "INFO",
-    "message": "Memory saved: query='Tesla test', score=85, entities=0, trends=0"
-  },
-  {
-    "timestamp": "2026-02-22T12:47:08.065884",
-    "level": "INFO",
-    "message": "Output packaged: confidence=0.62, badge=partial"
-  },
-  {
     "timestamp": "2026-02-22T12:48:02.360354",
     "level": "INFO",
     "message": "Nova v3 graph compiled successfully"
@@ -2293,5 +2174,140 @@
     "timestamp": "2026-03-01T16:21:26.129973",
     "level": "INFO",
     "message": "Output packaged: confidence=0.83, badge=full"
+  },
+  {
+    "timestamp": "2026-03-15T01:46:00.811772",
+    "level": "INFO",
+    "message": "Nova v3 graph compiled successfully"
+  },
+  {
+    "timestamp": "2026-03-15T01:46:00.834936",
+    "level": "INFO",
+    "message": "Planning task for: tesla news"
+  },
+  {
+    "timestamp": "2026-03-15T01:46:00.850934",
+    "level": "INFO",
+    "message": "Using mock planner",
+    "data": {
+      "plan": {
+        "intent": "Get tesla news",
+        "domain": "tesla",
+        "steps": [
+          {
+            "tool": "news_fetcher",
+            "params": {
+              "topic": "tesla",
+              "sources": [
+                "google"
+              ],
+              "limit": 5
+            }
+          },
+          {
+            "tool": "exporter",
+            "params": {
+              "filename": "tesla_report",
+              "format": "json"
+            }
+          }
+        ]
+      }
+    }
+  },
+  {
+    "timestamp": "2026-03-15T01:46:00.868939",
+    "level": "INFO",
+    "message": "Supervisor: depth=quick, pipelines=['news']"
+  },
+  {
+    "timestamp": "2026-03-15T01:46:00.890980",
+    "level": "INFO",
+    "message": "Executing plan: Get tesla news",
+    "data": {
+      "steps": 2
+    }
+  },
+  {
+    "timestamp": "2026-03-15T01:46:00.908980",
+    "level": "DEBUG",
+    "message": "Running tool: news_fetcher",
+    "data": {
+      "params": [
+        "topic",
+        "sources",
+        "limit"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-03-15T01:46:00.928978",
+    "level": "INFO",
+    "message": "Multi-source fetch for: tesla"
+  },
+  {
+    "timestamp": "2026-03-15T01:46:07.036040",
+    "level": "INFO",
+    "message": "Multi-source complete: 13 articles from 3 sources",
+    "data": {
+      "rss": {
+        "success": true,
+        "count": 5
+      },
+      "gnews": {
+        "success": true,
+        "count": 5
+      },
+      "tavily": {
+        "success": true,
+        "count": 5
+      }
+    }
+  },
+  {
+    "timestamp": "2026-03-15T01:46:07.050353",
+    "level": "DEBUG",
+    "message": "Running tool: exporter",
+    "data": {
+      "params": [
+        "filename",
+        "format",
+        "data"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-03-15T01:46:07.150051",
+    "level": "INFO",
+    "message": "Execution complete: 2 tools run, 0 skipped, 0 fallbacks used"
+  },
+  {
+    "timestamp": "2026-03-15T01:46:07.169051",
+    "level": "INFO",
+    "message": "News pipeline complete in 6278ms",
+    "data": {
+      "node": "news_pipeline",
+      "status": "success",
+      "duration_ms": 6278,
+      "tools_executed": 2,
+      "errors": 0,
+      "skipped": 0,
+      "fallbacks": 0
+    }
+  },
+  {
+    "timestamp": "2026-03-15T01:46:07.188140",
+    "level": "INFO",
+    "message": "Fusion complete: ['news'] in 0ms"
+  },
+  {
+    "timestamp": "2026-03-15T01:46:07.302666",
+    "level": "INFO",
+    "message": "Memory saved: query='tesla news', score=100, entities=0, trends=0"
+  },
+  {
+    "timestamp": "2026-03-15T01:46:07.322665",
+    "level": "INFO",
+    "message": "Output packaged: confidence=0.68, badge=partial"
   }
 ]

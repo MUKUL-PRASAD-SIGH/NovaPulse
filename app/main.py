@@ -61,11 +61,6 @@ async def background_cleanup():
             logger.error(f"Cleanup task failed: {e}")
         await asyncio.sleep(3600)  # Sleep for 1 hour
 
-# Initialize Auth DB & Background jobs on startup
-@app.on_event("startup")
-async def startup_event():
-    await init_auth_db()
-    asyncio.create_task(background_cleanup())
 
 
 # CORS middleware for frontend
@@ -312,6 +307,9 @@ if os.path.exists(frontend_dir):
 @app.on_event("startup")
 async def startup_event():
     """Initialize on startup."""
+    await init_auth_db()
+    asyncio.create_task(background_cleanup())
+
     print("=" * 60)
     print("  [SYSTEM] Nova Intelligence Agent v3.0")
     print("=" * 60)

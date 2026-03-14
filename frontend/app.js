@@ -1404,7 +1404,6 @@ let dictionaryEnabled = localStorage.getItem('novaDictEnabled') !== 'false';
 async function init() {
     renderHistory(); // Load saved history
     loadSettings(); // Load saved language preferences
-    initDictionary(); // Setup dictionary hover
     try {
         const resp = await fetch(`${API_BASE}/capabilities`);
         const caps = await resp.json();

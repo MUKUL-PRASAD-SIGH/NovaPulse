@@ -683,6 +683,41 @@
 
     </div>
 
+    <!-- Package Builder Modal -->
+    <div id="packageModal" class="modal hidden">
+        <div class="modal-content" style="max-width:600px;">
+            <div class="modal-header">
+                <h3>📦 Intelligence Package Builder</h3>
+                <button id="closePackageModal" class="close-btn">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div id="qualityBadge" class="quality-badge"></div>
+                <div class="package-stats" style="display:flex;gap:1.5rem;margin:1rem 0;font-size:0.85rem;color:var(--text-secondary);">
+                    <span>📰 Articles: <strong id="articleCount">0</strong></span>
+                    <span>📂 Sections: <strong id="sectionCount">0</strong></span>
+                    <span>💾 Size: <strong id="estimatedSize">0 KB</strong></span>
+                </div>
+                <div id="packageContents" class="package-contents-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:0.5rem;margin-bottom:1rem;"></div>
+                <div id="formatRecommendation" style="font-size:0.82rem;color:var(--text-muted);margin-bottom:1rem;"><span class="rec-text"></span></div>
+                <div class="exec-quality" style="display:flex;gap:1rem;font-size:0.8rem;margin-bottom:1rem;">
+                    <span>🔧 Tools: <strong id="toolsRanCount">-</strong></span>
+                    <span>🔄 Retries: <strong id="retriesCount">-</strong></span>
+                    <span>⚡ Fallbacks: <strong id="fallbacksCount">-</strong></span>
+                    <span id="execConfidence"></span>
+                </div>
+                <div class="export-buttons" style="display:flex;flex-wrap:wrap;gap:0.5rem;">
+                    <button id="exportJson" class="bento-btn-dark">JSON</button>
+                    <button id="exportMd" class="bento-btn-dark">Markdown</button>
+                    <button id="exportCsv" class="bento-btn-dark">CSV</button>
+                    <button id="exportDocx" class="bento-btn-dark">Word</button>
+                    <button id="exportPdf" class="bento-btn-dark">PDF</button>
+                    <button id="exportAll" class="bento-btn-blue">📦 Download All</button>
+                </div>
+                <button id="copyJson" class="bento-btn-dark" style="width:100%;margin-top:0.5rem;">📋 Copy JSON to Clipboard</button>
+            </div>
+        </div>
+    </div>
+
     <!-- Dictionary Popup (floating) -->
     <div id="dictPopup" class="dict-popup hidden">
         <div class="dict-word"></div>
