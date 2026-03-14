@@ -5,7 +5,35 @@ import os
 import random
 import datetime
 
-DB_PATH = 'nova_auth.db'
+
+def _get_auth_db_path() -> str:
+    """
+    Return a writable path for the auth SQLite database.
+
+    - Prefer NOVA_DB_DIR if set (so backend + memory can share /tmp on Vercel).
+    - Otherwise use ./nova_auth.db next to this file for local dev.
+    - If that is read-only (e.g. Vercel code dir), fall back to /tmp.
+    """
+    env_dir = os.getenv("NOVA_DB_DIR")
+    if env_dir:
+        try:
+            os.makedirs(env_dir, exist_ok=True)
+            return os.path.join(env_dir, "nova_auth.db")
+        except OSError:
+            pass
+
+    default_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), "..", "nova_auth.db")
+    try:
+        base_dir = os.path.dirname(default_path)
+        os.makedirs(base_dir, exist_ok=True)
+        return default_path
+    except OSError:
+        tmp_dir = os.path.join("/tmp", "nova_memory_db")
+        os.makedirs(tmp_dir, exist_ok=True)
+        return os.path.join(tmp_dir, "nova_auth.db")
+
+
+DB_PATH = _get_auth_db_path()
 
 async def init_auth_db():
     async with aiosqlite.connect(DB_PATH) as db:
