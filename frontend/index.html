@@ -143,8 +143,9 @@
 
         <footer class="mkt-footer glass-panel">
             <p>
-                &copy; 2026 Nova Intelligence OS · Powered by Multi-Agent Hierarchy ·
+                &copy; 2026 Nova Intelligence OS · Powered by Multi-Agent Hierarchy<br>
                 <span class="mkt-made-by">Made by <strong>Mukul Prasad</strong></span>
+                · <a href="https://github.com/mukulprasad" target="_blank" rel="noopener">GitHub Profile</a>
                 · <a href="https://github.com/mukulprasad/NovaAI" target="_blank" rel="noopener">GitHub Repo</a>
             </p>
         </footer>
@@ -219,15 +220,36 @@
     <div id="dashboardView" class="container" style="display: none;">
         <!-- Header with Settings -->
         <header class="header">
+            <div class="header-left">
+                <button id="quickAccessBtn" class="top-left-quick-btn" title="Quick Access Dashboard">☰</button>
+            </div>
             <div class="header-titles">
                 <h1>🧠 Nova Intelligence Agent</h1>
                 <p class="tagline">Not just news. Intelligence.</p>
             </div>
             <div class="header-actions">
+                <a href="https://github.com/mukulprasad" target="_blank" rel="noopener" class="settings-btn github-btn" title="GitHub Profile">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.87 8.166 6.84 9.49.5.09.68-.22.68-.485v-1.72c-2.78.6-3.37-1.34-3.37-1.34-.45-1.15-1.11-1.46-1.11-1.46-.91-.62.07-.61.07-.61 1.01.07 1.54 1.04 1.54 1.04.9 1.54 2.36 1.1 2.93.84.09-.65.35-1.1.64-1.35-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.98 1.03-2.68-.1-.26-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02.8-.22 1.65-.33 2.5-.33.85 0 1.7.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.39.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.85v2.75c0 .27.18.58.69.48C19.13 20.16 22 16.42 22 12c0-5.523-4.477-10-10-10z"></path>
+                    </svg>
+                </a>
                 <button id="v3MonitorBtn" class="settings-btn" title="V3 Continuous Monitor & Diagnostics">📊</button>
                 <button id="settingsBtn" class="settings-btn" title="Settings">⚙️</button>
             </div>
         </header>
+
+        <!-- Quick Access Panel -->
+        <div id="quickAccessPanel" class="quick-access-panel hidden">
+            <div class="quick-access-header">
+                <h3>🚀 Quick Access</h3>
+                <button id="closeQuickAccess" class="close-btn">&times;</button>
+            </div>
+            <div class="quick-access-body">
+                <button class="quick-menu-item" onclick="document.getElementById('settingsBtn').click()">⚙️ Settings</button>
+                <button class="quick-menu-item" onclick="document.getElementById('themeToggleBtn').click()">🎨 Theme Toggle</button>
+                <button class="quick-menu-item" onclick="updateStatusHint()">⚡ Mini Dashboard</button>
+            </div>
+        </div>
 
         <!-- Settings Modal -->
         <div id="settingsModal" class="modal hidden">
@@ -284,6 +306,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
+                    <p class="settings-credits">Made by <strong>Mukul Prasad</strong> | <a href="https://github.com/mukulprasad" target="_blank" rel="noopener">GitHub Profile</a></p>
                     <button id="saveSettings" class="save-btn">💾 Save Settings</button>
                 </div>
             </div>
@@ -381,6 +404,9 @@
                     <div class="bento-menu-box">
                         <button class="bento-menu-row auth-user-row"><span class="bento-icon">👤</span> <span
                                 id="displayUsername">Guest</span></button>
+                        <a href="https://github.com/mukulprasad" target="_blank" rel="noopener" class="bento-menu-row" style="text-decoration:none;">
+                            <span class="bento-icon">🐙</span> GitHub Profile
+                        </a>
                         <button class="bento-menu-row" onclick="logout()" style="color:#ef4444;"><span
                                 class="bento-icon">🚪</span> Logout</button>
                     </div>
@@ -520,7 +546,6 @@
             </div>
 
             <!-- Hidden original elements required by Javascript logic -->
-            <button id="selectAllBtn" style="display:none"></button>
         </div>
 
         <!-- Status -->
@@ -687,6 +712,18 @@
             </div>
         </div>
     </div>
+
+    <!-- Live Feature Preview (Bottom Right) -->
+    <div id="liveFeaturePreview" class="live-preview-panel glass-panel">
+        <div class="live-preview-icon">✨</div>
+        <div class="live-preview-content">
+            <span class="preview-title">Upcoming Feature</span>
+            <span id="livePreviewTip" class="preview-text">Smart AI Suggestions</span>
+        </div>
+    </div>
+
+    <!-- Creator Watermark -->
+    <div class="creator-watermark">Made by Mukul Prasad</div>
 
     <script src="/static/app.js"></script>
 </body>

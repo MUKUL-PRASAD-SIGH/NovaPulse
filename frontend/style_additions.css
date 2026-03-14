@@ -1,0 +1,252 @@
+/* ========================================
+   QUICK ACCESS & PREVIEW & CREDITS STYLES
+   ======================================== */
+.github-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.top-left-quick-btn {
+    background: linear-gradient(135deg, #10b981, #059669);
+    border: none;
+    color: white;
+    width: 45px;
+    height: 45px;
+    border-radius: 14px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(16, 185, 129, 0.4);
+    transition: all 0.25s cubic-bezier(0.25, 0.8, 0.25, 1);
+    margin-right: 15px;
+}
+.top-left-quick-btn:hover {
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 6px 20px rgba(16, 185, 129, 0.5);
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+}
+
+/* Quick Access Panel */
+.quick-access-panel {
+    position: fixed;
+    top: 80px;
+    left: 20px;
+    background: rgba(15, 20, 30, 0.95);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    width: 280px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+    z-index: 1000;
+    transform: translateX(-120%);
+    opacity: 0;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+.quick-access-panel.visible {
+    transform: translateX(0);
+    opacity: 1;
+}
+.quick-access-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.2rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+.quick-access-header h3 { font-size: 1rem; color: #fff; }
+.quick-access-body { padding: 1rem; display: flex; flex-direction: column; gap: 0.5rem; }
+.quick-menu-item {
+    background: rgba(255,255,255,0.05);
+    border: none;
+    border-radius: 12px;
+    padding: 1rem;
+    color: #fff;
+    cursor: pointer;
+    text-align: left;
+    font-size: 0.95rem;
+    transition: all 0.2s;
+}
+.quick-menu-item:hover { background: rgba(255,255,255,0.1); transform: translateX(5px); }
+
+/* Live Preview Bottom Right */
+.live-preview-panel {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: linear-gradient(135deg, rgba(20, 25, 35, 0.9), rgba(10, 15, 25, 0.95));
+    border: 1px solid rgba(99, 102, 241, 0.3);
+    border-radius: 16px;
+    padding: 1rem 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.4), 0 0 20px rgba(99, 102, 241, 0.2);
+    z-index: 50;
+    transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    cursor: default;
+}
+.live-preview-panel:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.5), 0 0 30px rgba(99, 102, 241, 0.4);
+}
+.live-preview-icon {
+    font-size: 1.5rem;
+    animation: float 3s ease-in-out infinite;
+}
+.live-preview-content {
+    display: flex;
+    flex-direction: column;
+}
+.preview-title {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    background: linear-gradient(90deg, #6366f1, #a855f7);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 700;
+}
+.preview-text {
+    font-size: 0.9rem;
+    color: #fff;
+    font-weight: 500;
+    transition: opacity 0.5s;
+}
+
+/* Watermark */
+.creator-watermark {
+    position: fixed;
+    bottom: 10px;
+    left: 10px;
+    font-size: 0.65rem;
+    color: rgba(255,255,255,0.2);
+    pointer-events: none;
+    z-index: 1000;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+/* Credits in settings */
+.settings-credits {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}
+.settings-credits a {
+    color: var(--accent);
+    text-decoration: none;
+}
+.settings-credits a:hover {
+    text-decoration: underline;
+}
+
+/* ========================================
+   SELECT ALL & BADGE COLOR FIXES
+   ======================================== */
+.bento-nav-item {
+    transition: all 0.25s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+.bento-nav-item:active {
+    transform: scale(0.92);
+}
+
+.bento-nav-item[data-feature="news"].active .icon { color: #ff3b30; text-shadow: 0 0 15px rgba(255, 59, 48, 0.8); }
+.bento-nav-item[data-feature="news"].active { background: rgba(255, 59, 48, 0.15) !important; border: 1px solid rgba(255, 59, 48, 0.3); }
+
+.bento-nav-item[data-feature="summary"].active .icon { color: #ff9500; text-shadow: 0 0 15px rgba(255, 149, 0, 0.8); }
+.bento-nav-item[data-feature="summary"].active { background: rgba(255, 149, 0, 0.15) !important; border: 1px solid rgba(255, 149, 0, 0.3); }
+
+.bento-nav-item[data-feature="sentiment"].active .icon { color: #ffcc00; text-shadow: 0 0 15px rgba(255, 204, 0, 0.8); }
+.bento-nav-item[data-feature="sentiment"].active { background: rgba(255, 204, 0, 0.15) !important; border: 1px solid rgba(255, 204, 0, 0.3); }
+
+.bento-nav-item[data-feature="trends"].active .icon { color: #34c759; text-shadow: 0 0 15px rgba(52, 199, 89, 0.8); }
+.bento-nav-item[data-feature="trends"].active { background: rgba(52, 199, 89, 0.15) !important; border: 1px solid rgba(52, 199, 89, 0.3); }
+
+.bento-nav-item[data-feature="scraper"].active .icon { color: #5ac8fa; text-shadow: 0 0 15px rgba(90, 200, 250, 0.8); }
+.bento-nav-item[data-feature="scraper"].active { background: rgba(90, 200, 250, 0.15) !important; border: 1px solid rgba(90, 200, 250, 0.3); }
+
+.bento-nav-item[data-feature="entities"].active .icon { color: #007aff; text-shadow: 0 0 15px rgba(0, 122, 255, 0.8); }
+.bento-nav-item[data-feature="entities"].active { background: rgba(0, 122, 255, 0.15) !important; border: 1px solid rgba(0, 122, 255, 0.3); }
+
+.bento-nav-item[data-feature="images"].active .icon { color: #5856d6; text-shadow: 0 0 15px rgba(88, 86, 214, 0.8); }
+.bento-nav-item[data-feature="images"].active { background: rgba(88, 86, 214, 0.15) !important; border: 1px solid rgba(88, 86, 214, 0.3); }
+
+.bento-nav-item[data-feature="social"].active .icon { color: #ff2d55; text-shadow: 0 0 15px rgba(255, 45, 85, 0.8); }
+.bento-nav-item[data-feature="social"].active { background: rgba(255, 45, 85, 0.15) !important; border: 1px solid rgba(255, 45, 85, 0.3); }
+
+.bento-nav-item[data-feature="research"].active .icon { color: #af52de; text-shadow: 0 0 15px rgba(175, 82, 222, 0.8); }
+.bento-nav-item[data-feature="research"].active { background: rgba(175, 82, 222, 0.15) !important; border: 1px solid rgba(175, 82, 222, 0.3); }
+
+/* ========================================
+   MODERN SETTINGS PANEL UI
+   ======================================== */
+.modal-content {
+    background: rgba(20, 20, 25, 0.85);
+    backdrop-filter: blur(30px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 25px 50px rgba(0,0,0,0.6), inset 0 1px 1px rgba(255,255,255,0.1);
+    border-radius: 24px;
+}
+
+.modal-header {
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.05), transparent);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.modal-header h3 {
+    background: linear-gradient(90deg, #fff, #a1a1aa);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 1.3rem;
+}
+
+.setting-group {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 16px;
+    padding: 1.2rem;
+    margin-bottom: 1.2rem;
+    transition: background 0.3s;
+}
+
+.setting-group:hover {
+    background: rgba(255, 255, 255, 0.04);
+}
+
+.setting-group label {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: #fff;
+}
+
+.setting-hint {
+    font-size: 0.8rem;
+    color: #a1a1aa;
+    margin-bottom: 1rem;
+}
+
+.toggle-row {
+    background: rgba(0, 0, 0, 0.2);
+    padding: 1rem;
+    border-radius: 12px;
+}
+
+.save-btn {
+    background: linear-gradient(135deg, #007aff, #005bb5);
+    border: none;
+    border-radius: 100px;
+    padding: 0.8rem 2rem;
+    color: #fff;
+    font-weight: 600;
+    box-shadow: 0 4px 15px rgba(0, 122, 255, 0.3);
+    transition: all 0.3s;
+}
+
+.save-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 122, 255, 0.5);
+    background: linear-gradient(135deg, #0088ff, #0066cc);
+}

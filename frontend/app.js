@@ -156,9 +156,9 @@ document.querySelectorAll('.toggle-badge').forEach(badge => {
 });
 
 // Select All button
-const selectAllBtn = document.getElementById('selectAllBtn');
-if (selectAllBtn) {
-    selectAllBtn.addEventListener('click', () => {
+const selectAllSwitchBtn = document.getElementById('selectAllSwitchBtn');
+if (selectAllSwitchBtn) {
+    selectAllSwitchBtn.addEventListener('click', () => {
         // Check if all non-news features are currently active
         const toggleableFeatures = Object.keys(features).filter(f => f !== 'news');
         const allActive = toggleableFeatures.every(f => features[f]);
@@ -180,16 +180,16 @@ if (selectAllBtn) {
         // Update Select All button state
         updateSelectAllState();
         updateStatusHint();
+        if (typeof updatePanelVisibility === 'function') updatePanelVisibility();
     });
 }
 
 function updateSelectAllState() {
-    const btn = document.getElementById('selectAllBtn');
+    const btn = document.getElementById('selectAllSwitchBtn');
     if (!btn) return;
     const toggleableFeatures = Object.keys(features).filter(f => f !== 'news');
     const allActive = toggleableFeatures.every(f => features[f]);
     btn.classList.toggle('active', allActive);
-    btn.textContent = allActive ? '⚡ Deselect All' : '⚡ Select All';
 }
 
 
@@ -2471,7 +2471,7 @@ function logout() {
     }
 }
 
-// Auto-login check on load (but keep marketing landing as default entry)
+// Auto-login check on load
 document.addEventListener('DOMContentLoaded', () => {
     // Check URL params for OAuth redirect
     const urlParams = new URLSearchParams(window.location.search);
@@ -2492,10 +2492,56 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
     }
 
-    // Default for direct visits / refresh: always show the 3D marketing landing,
-    // even if a valid token is present in localStorage.
-    if (marketingView) marketingView.style.display = 'block';
+    // Persistent login check
+    const storedToken = localStorage.getItem('novaToken');
+    const storedUser = localStorage.getItem('novaUser');
+    if (storedToken && storedUser) {
+        showDashboard(storedUser);
+    } else {
+        if (marketingView) marketingView.style.display = 'block';
+    }
 });
+
+/* ========================================
+   QUICK ACCESS PANEL & LIVE PREVIEW
+   ======================================== */
+const quickAccessBtn = document.getElementById('quickAccessBtn');
+const quickAccessPanel = document.getElementById('quickAccessPanel');
+const closeQuickAccess = document.getElementById('closeQuickAccess');
+
+if (quickAccessBtn && quickAccessPanel) {
+    quickAccessBtn.addEventListener('click', () => {
+        quickAccessPanel.classList.remove('hidden');
+        quickAccessPanel.classList.add('visible');
+    });
+}
+
+if (closeQuickAccess && quickAccessPanel) {
+    closeQuickAccess.addEventListener('click', () => {
+        quickAccessPanel.classList.remove('visible');
+        setTimeout(() => quickAccessPanel.classList.add('hidden'), 300);
+    });
+}
+
+const previewTips = [
+    "🚀 Smart AI Suggestions coming",
+    "📊 Enhanced Performance Insights",
+    "🔍 Deep Web Search Integration",
+    "🧠 Auto-Generating Knowledge Graphs"
+];
+let tipIndex = 0;
+const livePreviewTip = document.getElementById('livePreviewTip');
+
+setInterval(() => {
+    if (livePreviewTip) {
+        livePreviewTip.style.opacity = '0';
+        setTimeout(() => {
+            tipIndex = (tipIndex + 1) % previewTips.length;
+            livePreviewTip.textContent = previewTips[tipIndex];
+            livePreviewTip.style.opacity = '1';
+        }, 500);
+    }
+}, 5000);
 
 /* ========================================
    ROBO GUIDE TOUR
