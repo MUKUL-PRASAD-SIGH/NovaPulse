@@ -9,6 +9,10 @@ News intelligence is the flagship pipeline. The architecture is the product.
 - 🎥 **Demo**: [Watch on YouTube Part 1](https://youtu.be/KDNrGJ994Cw)
 - [Watch on YouTube Part 2](https://youtu.be/KBmNAY7ayVg)
 
+## 🚀 Live Demo
+
+[![Nova Pulse AI](https://img.shields.io/badge/⚡_Launch_Nova_Pulse-AI_News_Intelligence-ff0055?style=for-the-badge&logo=vercel&logoColor=white)](https://nova-pulse-gilt.vercel.app/)
+
 ![Architecture](https://img.shields.io/badge/Architecture-Multi--Agent_System-ff6b6b?style=for-the-badge)
 ![Agents](https://img.shields.io/badge/Agents-9_Specialist-blueviolet?style=for-the-badge)
 ![AI](https://img.shields.io/badge/LLM-Amazon_Nova-orange?style=for-the-badge)
