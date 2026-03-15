@@ -7,7 +7,7 @@ Nova is a **voice-powered Multi-Agent System (MAS)** built on **Amazon Nova AI**
 News intelligence is the flagship pipeline. The architecture is the product.
 
 - 🎥 **Demo**: [Watch on YouTube Part 1](https://youtu.be/KDNrGJ994Cw)
-- [Watch on YouTube Part 1](https://youtu.be/KBmNAY7ayVg)
+- [Watch on YouTube Part 2](https://youtu.be/KBmNAY7ayVg)
 
 ![Architecture](https://img.shields.io/badge/Architecture-Multi--Agent_System-ff6b6b?style=for-the-badge)
 ![Agents](https://img.shields.io/badge/Agents-9_Specialist-blueviolet?style=for-the-badge)
