@@ -45,7 +45,7 @@ RULES:
 10. Always end with exporter"""
 
 
-def get_mock_plan(user_input: str) -> Dict:
+def get_mock_plan(user_input: str, feature_toggles: Dict = None) -> Dict:
     """Generate mock plan - extracts topic from input."""
     input_lower = user_input.lower()
     
@@ -62,24 +62,26 @@ def get_mock_plan(user_input: str) -> Dict:
         {"tool": "news_fetcher", "params": {"topic": topic, "sources": ["google"], "limit": 5}}
     ]
     
-    # Core intelligence tools
-    if any(w in input_lower for w in ["summar", "digest", "brief"]):
+    t = feature_toggles or {}
+
+    # Core intelligence tools — toggle takes priority, fall back to keyword detection
+    if t.get("summary") or any(w in input_lower for w in ["summar", "digest", "brief"]):
         steps.append({"tool": "summarizer", "params": {}})
-    if any(w in input_lower for w in ["sentiment", "mood", "tone"]):
+    if t.get("sentiment") or any(w in input_lower for w in ["sentiment", "mood", "tone"]):
         steps.append({"tool": "sentiment", "params": {}})
-    if any(w in input_lower for w in ["trend", "trending", "popular"]):
+    if t.get("trends") or any(w in input_lower for w in ["trend", "trending", "popular"]):
         steps.append({"tool": "trends", "params": {}})
-    
+
     # MAS tools
-    if any(w in input_lower for w in ["full", "article", "content", "scrape", "deep", "detailed"]):
+    if t.get("scraper") or any(w in input_lower for w in ["full", "article", "content", "scrape", "deep", "detailed"]):
         steps.append({"tool": "web_scraper", "params": {}})
-    if any(w in input_lower for w in ["entity", "entities", "people", "person", "organization", "company", "location"]):
+    if t.get("entities") or any(w in input_lower for w in ["entity", "entities", "people", "person", "organization", "company", "location"]):
         steps.append({"tool": "entity_extractor", "params": {}})
-    if any(w in input_lower for w in ["image", "images", "photo", "picture", "visual"]):
+    if t.get("images") or any(w in input_lower for w in ["image", "images", "photo", "picture", "visual"]):
         steps.append({"tool": "image_analyzer", "params": {}})
-    if any(w in input_lower for w in ["social", "reddit", "twitter", "buzz", "discussion"]):
+    if t.get("social") or any(w in input_lower for w in ["social", "reddit", "twitter", "buzz", "discussion"]):
         steps.append({"tool": "social_monitor", "params": {"topic": topic, "platforms": ["reddit"]}})
-    if any(w in input_lower for w in ["research", "paper", "academic", "github", "repo", "stackoverflow", "technical"]):
+    if t.get("research") or any(w in input_lower for w in ["research", "paper", "academic", "github", "repo", "stackoverflow", "technical"]):
         steps.append({"tool": "research_assistant", "params": {"query": topic}})
     
     export_format = "markdown" if "markdown" in input_lower else "csv" if "csv" in input_lower else "json"
@@ -88,12 +90,12 @@ def get_mock_plan(user_input: str) -> Dict:
     return {"intent": f"Get {topic} news", "domain": topic, "steps": steps}
 
 
-def plan_task(user_input: str) -> Dict:
+def plan_task(user_input: str, feature_toggles: Dict = None) -> Dict:
     """Convert user input to task plan."""
     log("INFO", f"Planning task for: {user_input}")
     
     if os.getenv("USE_MOCK_PLANNER", "true").lower() == "true":
-        plan = get_mock_plan(user_input)
+        plan = get_mock_plan(user_input, feature_toggles)
         log("INFO", "Using mock planner", {"plan": plan})
         return plan
     

@@ -1,135 +1,12 @@
 [
   {
-    "timestamp": "2026-02-22T12:48:14.069024",
+    "timestamp": "2026-03-15T09:23:26.150767",
     "level": "INFO",
-    "message": "Tool entity_extractor executed",
-    "data": {
-      "tool": "entity_extractor",
-      "success": true,
-      "duration_seconds": 0.0,
-      "params": {
-        "article_count": 15
-      },
-      "result": {
-        "entity_count": 23
-      }
-    }
-  },
-  {
-    "timestamp": "2026-02-22T12:48:14.095018",
-    "level": "DEBUG",
-    "message": "Running tool: image_analyzer",
-    "data": {
-      "params": [
-        "articles"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-02-22T12:48:16.753096",
-    "level": "INFO",
-    "message": "Tool image_analyzer executed",
-    "data": {
-      "tool": "image_analyzer",
-      "success": true,
-      "duration_seconds": 0.0,
-      "params": {
-        "article_count": 1,
-        "total_images": 1
-      },
-      "result": {
-        "successful": 1,
-        "failed": 0
-      }
-    }
-  },
-  {
-    "timestamp": "2026-02-22T12:48:16.777287",
-    "level": "DEBUG",
-    "message": "Running tool: social_monitor",
-    "data": {
-      "params": [
-        "topic",
-        "platforms"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-02-22T12:48:17.909058",
-    "level": "INFO",
-    "message": "Tool social_monitor executed",
-    "data": {
-      "tool": "social_monitor",
-      "success": true,
-      "duration_seconds": 0.0,
-      "params": {
-        "topic": "claude",
-        "platforms": [
-          "reddit"
-        ]
-      },
-      "result": {
-        "total_mentions": 25
-      }
-    }
-  },
-  {
-    "timestamp": "2026-02-22T12:48:17.934542",
-    "level": "DEBUG",
-    "message": "Running tool: research_assistant",
-    "data": {
-      "params": [
-        "topic"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-02-22T12:48:18.536253",
-    "level": "INFO",
-    "message": "Tool research_assistant executed",
-    "data": {
-      "tool": "research_assistant",
-      "success": true,
-      "duration_seconds": 0.0,
-      "params": {
-        "topic": "claude",
-        "type": "comprehensive"
-      },
-      "result": {
-        "total_sources": 25
-      }
-    }
-  },
-  {
-    "timestamp": "2026-02-22T12:48:18.560906",
-    "level": "DEBUG",
-    "message": "Running tool: exporter",
-    "data": {
-      "params": [
-        "filename",
-        "format",
-        "data"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-02-22T12:48:18.596936",
-    "level": "INFO",
-    "message": "Sentiment-Trend fusion applied"
-  },
-  {
-    "timestamp": "2026-02-22T12:48:18.694826",
-    "level": "INFO",
-    "message": "Execution complete: 10 tools run, 0 skipped, 0 fallbacks used"
-  },
-  {
-    "timestamp": "2026-02-22T12:48:18.717919",
-    "level": "INFO",
-    "message": "News pipeline complete in 16263ms",
+    "message": "News pipeline complete in 19710ms",
     "data": {
       "node": "news_pipeline",
       "status": "success",
-      "duration_ms": 16263,
+      "duration_ms": 19710,
       "tools_executed": 10,
       "errors": 0,
       "skipped": 0,
@@ -137,14 +14,14 @@
     }
   },
   {
-    "timestamp": "2026-02-22T12:48:18.747201",
+    "timestamp": "2026-03-15T09:23:26.202726",
     "level": "INFO",
-    "message": "Multi-source fetch for: Claude with summarize and sentiment analysis and trends and full article content and entity extraction and image analysis and social media monitoring and research papers market stock finance"
+    "message": "Multi-source fetch for: tesla news with summarize and sentiment analysis and trends and full article content and entity extraction and image analysis and social media monitoring and research papers market stock finance"
   },
   {
-    "timestamp": "2026-02-22T12:48:24.492629",
+    "timestamp": "2026-03-15T09:23:32.119111",
     "level": "INFO",
-    "message": "Multi-source complete: 9 articles from 3 sources",
+    "message": "Multi-source complete: 10 articles from 3 sources",
     "data": {
       "rss": {
         "success": true,
@@ -156,17 +33,17 @@
       },
       "tavily": {
         "success": true,
-        "count": 4
+        "count": 5
       }
     }
   },
   {
-    "timestamp": "2026-02-22T12:48:26.092655",
+    "timestamp": "2026-03-15T09:23:34.282437",
     "level": "INFO",
-    "message": "Market pipeline complete in 7356ms"
+    "message": "Market pipeline complete in 8092ms"
   },
   {
-    "timestamp": "2026-02-22T12:48:27.461459",
+    "timestamp": "2026-03-15T09:23:35.749214",
     "level": "INFO",
     "message": "Tool research_assistant executed",
     "data": {
@@ -174,7 +51,7 @@
       "success": true,
       "duration_seconds": 0.0,
       "params": {
-        "topic": "Claude with summarize and sentiment analysis and trends and full article content and entity extraction and image analysis and social media monitoring and research papers",
+        "topic": "tesla with summarize and sentiment analysis and trends and full article content and entity extraction and image analysis and social media monitoring and research papers",
         "type": "comprehensive"
       },
       "result": {
@@ -183,12 +60,12 @@
     }
   },
   {
-    "timestamp": "2026-02-22T12:48:27.475252",
+    "timestamp": "2026-03-15T09:23:35.793212",
     "level": "INFO",
-    "message": "Research pipeline complete in 8740ms"
+    "message": "Research pipeline complete in 9602ms"
   },
   {
-    "timestamp": "2026-02-22T12:48:28.432954",
+    "timestamp": "2026-03-15T09:23:36.431298",
     "level": "INFO",
     "message": "Tool social_monitor executed",
     "data": {
@@ -196,7 +73,7 @@
       "success": true,
       "duration_seconds": 0.0,
       "params": {
-        "topic": "Claude with summarize and sentiment analysis and trends and full article content and entity extraction and image analysis and social media monitoring and research papers",
+        "topic": "tesla with summarize and sentiment analysis and trends and full article content and entity extraction and image analysis and social media monitoring and research papers",
         "platforms": [
           "reddit"
         ]
@@ -207,53 +84,53 @@
     }
   },
   {
-    "timestamp": "2026-02-22T12:48:28.447403",
+    "timestamp": "2026-03-15T09:23:36.464153",
     "level": "INFO",
-    "message": "Social pipeline complete in 9713ms"
+    "message": "Social pipeline complete in 10281ms"
   },
   {
-    "timestamp": "2026-02-22T12:48:28.465482",
+    "timestamp": "2026-03-15T09:23:36.533431",
     "level": "INFO",
     "message": "Fusion complete: ['news', 'social', 'research', 'market'] in 0ms"
   },
   {
-    "timestamp": "2026-02-22T12:48:28.487232",
+    "timestamp": "2026-03-15T09:23:36.588743",
     "level": "INFO",
-    "message": "Critic: score=82/100, approved=True, feedback=[]"
+    "message": "Critic: score=83/100, approved=True, feedback=[]"
   },
   {
-    "timestamp": "2026-02-22T12:48:28.619701",
+    "timestamp": "2026-03-15T09:23:37.037517",
     "level": "INFO",
-    "message": "Memory saved: query='Claude with summarize and sentiment analysis and trends and full article content and entity extraction and image analysis and social media monitoring and research papers', score=82, entities=0, trends=10"
+    "message": "Memory saved: query='tesla news with summarize and sentiment analysis and trends and full article content and entity extraction and image analysis and social media monitoring and research papers', score=83, entities=0, trends=10"
   },
   {
-    "timestamp": "2026-02-22T12:48:28.641387",
+    "timestamp": "2026-03-15T09:23:37.085028",
     "level": "INFO",
     "message": "Output packaged: confidence=0.93, badge=full"
   },
   {
-    "timestamp": "2026-02-22T17:07:47.082852",
+    "timestamp": "2026-03-15T09:24:43.513898",
     "level": "INFO",
     "message": "Nova v3 graph compiled successfully"
   },
   {
-    "timestamp": "2026-02-22T17:07:47.111603",
+    "timestamp": "2026-03-15T09:24:43.528022",
     "level": "INFO",
-    "message": "Planning task for: AWS outage with summarize and sentiment analysis and trends and full article content and entity extraction and image analysis and social media monitoring and research papers"
+    "message": "Planning task for: tesla news with summarize and sentiment analysis and trends and full article content and entity extraction and image analysis and social media monitoring and research papers"
   },
   {
-    "timestamp": "2026-02-22T17:07:47.135801",
+    "timestamp": "2026-03-15T09:24:43.540028",
     "level": "INFO",
     "message": "Using mock planner",
     "data": {
       "plan": {
-        "intent": "Get aws news",
-        "domain": "aws",
+        "intent": "Get tesla news",
+        "domain": "tesla",
         "steps": [
           {
             "tool": "news_fetcher",
             "params": {
-              "topic": "aws",
+              "topic": "tesla",
               "sources": [
                 "google"
               ],
@@ -287,7 +164,7 @@
           {
             "tool": "social_monitor",
             "params": {
-              "topic": "aws",
+              "topic": "tesla",
               "platforms": [
                 "reddit"
               ]
@@ -296,13 +173,13 @@
           {
             "tool": "research_assistant",
             "params": {
-              "query": "aws"
+              "query": "tesla"
             }
           },
           {
             "tool": "exporter",
             "params": {
-              "filename": "aws_report",
+              "filename": "tesla_report",
               "format": "json"
             }
           }
@@ -311,20 +188,20 @@
     }
   },
   {
-    "timestamp": "2026-02-22T17:07:47.165284",
+    "timestamp": "2026-03-15T09:24:43.552025",
     "level": "INFO",
     "message": "Supervisor: depth=deep, pipelines=['news', 'social', 'research', 'market']"
   },
   {
-    "timestamp": "2026-02-22T17:07:47.195236",
+    "timestamp": "2026-03-15T09:24:43.569026",
     "level": "INFO",
-    "message": "Executing plan: Get aws news",
+    "message": "Executing plan: Get tesla news",
     "data": {
       "steps": 10
     }
   },
   {
-    "timestamp": "2026-02-22T17:07:47.222509",
+    "timestamp": "2026-03-15T09:24:43.582026",
     "level": "DEBUG",
     "message": "Running tool: news_fetcher",
     "data": {
@@ -336,14 +213,14 @@
     }
   },
   {
-    "timestamp": "2026-02-22T17:07:47.247902",
+    "timestamp": "2026-03-15T09:24:43.596023",
     "level": "INFO",
-    "message": "Multi-source fetch for: aws"
+    "message": "Multi-source fetch for: tesla"
   },
   {
-    "timestamp": "2026-02-22T17:07:53.383121",
+    "timestamp": "2026-03-15T09:24:48.155130",
     "level": "INFO",
-    "message": "Multi-source complete: 14 articles from 3 sources",
+    "message": "Multi-source complete: 11 articles from 3 sources",
     "data": {
       "rss": {
         "success": true,
@@ -360,7 +237,7 @@
     }
   },
   {
-    "timestamp": "2026-02-22T17:07:53.407567",
+    "timestamp": "2026-03-15T09:24:48.165156",
     "level": "DEBUG",
     "message": "Running tool: summarizer",
     "data": {
@@ -370,7 +247,7 @@
     }
   },
   {
-    "timestamp": "2026-02-22T17:07:53.434596",
+    "timestamp": "2026-03-15T09:24:48.175105",
     "level": "DEBUG",
     "message": "Running tool: sentiment",
     "data": {
@@ -380,7 +257,7 @@
     }
   },
   {
-    "timestamp": "2026-02-22T17:07:53.461313",
+    "timestamp": "2026-03-15T09:24:48.186224",
     "level": "DEBUG",
     "message": "Running tool: trends",
     "data": {
@@ -390,7 +267,7 @@
     }
   },
   {
-    "timestamp": "2026-02-22T17:07:56.498818",
+    "timestamp": "2026-03-15T09:24:50.552402",
     "level": "DEBUG",
     "message": "Running tool: web_scraper",
     "data": {
@@ -400,7 +277,7 @@
     }
   },
   {
-    "timestamp": "2026-02-22T17:08:01.285755",
+    "timestamp": "2026-03-15T09:24:52.271748",
     "level": "INFO",
     "message": "Tool web_scraper executed",
     "data": {
@@ -408,16 +285,16 @@
       "success": true,
       "duration_seconds": 0.0,
       "params": {
-        "url": "https://www.engadget.com/ai/13-hour-aws-outage-reportedly-caused-by-amazons-own-ai-tools-170930190.html"
+        "url": "https://techbullion.com/breaking-the-chip-wall-elon-musk-announces-teslas-terafab-project-launches-in-seven-days/"
       },
       "result": {
         "success": true,
-        "word_count": 605
+        "word_count": 434
       }
     }
   },
   {
-    "timestamp": "2026-02-22T17:08:01.306773",
+    "timestamp": "2026-03-15T09:24:52.287746",
     "level": "DEBUG",
     "message": "Running tool: entity_extractor",
     "data": {
@@ -427,7 +304,7 @@
     }
   },
   {
-    "timestamp": "2026-02-22T17:08:01.333595",
+    "timestamp": "2026-03-15T09:24:52.306767",
     "level": "INFO",
     "message": "Tool entity_extractor executed",
     "data": {
@@ -435,15 +312,15 @@
       "success": true,
       "duration_seconds": 0.0,
       "params": {
-        "article_count": 14
+        "article_count": 11
       },
       "result": {
-        "entity_count": 11
+        "entity_count": 20
       }
     }
   },
   {
-    "timestamp": "2026-02-22T17:08:01.356191",
+    "timestamp": "2026-03-15T09:24:52.321970",
     "level": "DEBUG",
     "message": "Running tool: image_analyzer",
     "data": {
@@ -453,7 +330,7 @@
     }
   },
   {
-    "timestamp": "2026-02-22T17:08:04.418133",
+    "timestamp": "2026-03-15T09:24:55.409348",
     "level": "INFO",
     "message": "Tool image_analyzer executed",
     "data": {
@@ -471,7 +348,7 @@
     }
   },
   {
-    "timestamp": "2026-02-22T17:08:04.441359",
+    "timestamp": "2026-03-15T09:24:55.428613",
     "level": "DEBUG",
     "message": "Running tool: social_monitor",
     "data": {
@@ -482,7 +359,7 @@
     }
   },
   {
-    "timestamp": "2026-02-22T17:08:05.598271",
+    "timestamp": "2026-03-15T09:24:56.424246",
     "level": "INFO",
     "message": "Tool social_monitor executed",
     "data": {
@@ -490,7 +367,7 @@
       "success": true,
       "duration_seconds": 0.0,
       "params": {
-        "topic": "aws",
+        "topic": "tesla",
         "platforms": [
           "reddit"
         ]
@@ -501,7 +378,7 @@
     }
   },
   {
-    "timestamp": "2026-02-22T17:08:05.623663",
+    "timestamp": "2026-03-15T09:24:56.443061",
     "level": "DEBUG",
     "message": "Running tool: research_assistant",
     "data": {
@@ -511,7 +388,7 @@
     }
   },
   {
-    "timestamp": "2026-02-22T17:08:06.303553",
+    "timestamp": "2026-03-15T09:24:57.303441",
     "level": "INFO",
     "message": "Tool research_assistant executed",
     "data": {
@@ -519,7 +396,7 @@
       "success": true,
       "duration_seconds": 0.0,
       "params": {
-        "topic": "aws",
+        "topic": "tesla",
         "type": "comprehensive"
       },
       "result": {
@@ -528,7 +405,7 @@
     }
   },
   {
-    "timestamp": "2026-02-22T17:08:06.328870",
+    "timestamp": "2026-03-15T09:24:57.324443",
     "level": "DEBUG",
     "message": "Running tool: exporter",
     "data": {
@@ -540,23 +417,23 @@
     }
   },
   {
-    "timestamp": "2026-02-22T17:08:06.359878",
+    "timestamp": "2026-03-15T09:24:57.346442",
     "level": "INFO",
     "message": "Sentiment-Trend fusion applied"
   },
   {
-    "timestamp": "2026-02-22T17:08:06.479815",
+    "timestamp": "2026-03-15T09:24:57.545340",
     "level": "INFO",
     "message": "Execution complete: 10 tools run, 0 skipped, 0 fallbacks used"
   },
   {
-    "timestamp": "2026-02-22T17:08:06.503355",
+    "timestamp": "2026-03-15T09:24:57.562352",
     "level": "INFO",
-    "message": "News pipeline complete in 19309ms",
+    "message": "News pipeline complete in 13993ms",
     "data": {
       "node": "news_pipeline",
       "status": "success",
-      "duration_ms": 19309,
+      "duration_ms": 13993,
       "tools_executed": 10,
       "errors": 0,
       "skipped": 0,
@@ -564,18 +441,18 @@
     }
   },
   {
-    "timestamp": "2026-02-22T17:08:06.525359",
+    "timestamp": "2026-03-15T09:24:57.580953",
     "level": "INFO",
-    "message": "Multi-source fetch for: AWS outage with summarize and sentiment analysis and trends and full article content and entity extraction and image analysis and social media monitoring and research papers market stock finance"
+    "message": "Multi-source fetch for: tesla news with summarize and sentiment analysis and trends and full article content and entity extraction and image analysis and social media monitoring and research papers market stock finance"
   },
   {
-    "timestamp": "2026-02-22T17:08:26.441461",
+    "timestamp": "2026-03-15T09:25:03.708119",
     "level": "INFO",
-    "message": "Multi-source complete: 7 articles from 3 sources",
+    "message": "Multi-source complete: 10 articles from 3 sources",
     "data": {
       "rss": {
         "success": true,
-        "count": 2
+        "count": 5
       },
       "gnews": {
         "success": true,
@@ -588,12 +465,12 @@
     }
   },
   {
-    "timestamp": "2026-02-22T17:08:31.645682",
+    "timestamp": "2026-03-15T09:25:05.294457",
     "level": "INFO",
-    "message": "Market pipeline complete in 25122ms"
+    "message": "Market pipeline complete in 7712ms"
   },
   {
-    "timestamp": "2026-02-22T17:08:32.861391",
+    "timestamp": "2026-03-15T09:25:05.741956",
     "level": "INFO",
     "message": "Tool research_assistant executed",
     "data": {
@@ -601,7 +478,7 @@
       "success": true,
       "duration_seconds": 0.0,
       "params": {
-        "topic": "AWS outage with summarize and sentiment analysis and trends and full article content and entity extraction and image analysis and social media monitoring and research papers",
+        "topic": "tesla with summarize and sentiment analysis and trends and full article content and entity extraction and image analysis and social media monitoring and research papers",
         "type": "comprehensive"
       },
       "result": {
@@ -610,12 +487,12 @@
     }
   },
   {
-    "timestamp": "2026-02-22T17:08:32.884408",
+    "timestamp": "2026-03-15T09:25:05.759001",
     "level": "INFO",
-    "message": "Research pipeline complete in 26356ms"
+    "message": "Research pipeline complete in 8179ms"
   },
   {
-    "timestamp": "2026-02-22T17:08:35.056215",
+    "timestamp": "2026-03-15T09:25:07.369232",
     "level": "INFO",
     "message": "Tool social_monitor executed",
     "data": {
@@ -623,7 +500,7 @@
       "success": true,
       "duration_seconds": 0.0,
       "params": {
-        "topic": "AWS outage with summarize and sentiment analysis and trends and full article content and entity extraction and image analysis and social media monitoring and research papers",
+        "topic": "tesla with summarize and sentiment analysis and trends and full article content and entity extraction and image analysis and social media monitoring and research papers",
         "platforms": [
           "reddit"
         ]
@@ -634,53 +511,53 @@
     }
   },
   {
-    "timestamp": "2026-02-22T17:08:35.077613",
+    "timestamp": "2026-03-15T09:25:07.387261",
     "level": "INFO",
-    "message": "Social pipeline complete in 28551ms"
+    "message": "Social pipeline complete in 9806ms"
   },
   {
-    "timestamp": "2026-02-22T17:08:35.100033",
+    "timestamp": "2026-03-15T09:25:07.411327",
     "level": "INFO",
     "message": "Fusion complete: ['news', 'social', 'research', 'market'] in 0ms"
   },
   {
-    "timestamp": "2026-02-22T17:08:35.123956",
+    "timestamp": "2026-03-15T09:25:07.432325",
     "level": "INFO",
     "message": "Critic: score=82/100, approved=True, feedback=[]"
   },
   {
-    "timestamp": "2026-02-22T17:08:35.247880",
+    "timestamp": "2026-03-15T09:25:07.600382",
     "level": "INFO",
-    "message": "Memory saved: query='AWS outage with summarize and sentiment analysis and trends and full article content and entity extraction and image analysis and social media monitoring and research papers', score=82, entities=0, trends=15"
+    "message": "Memory saved: query='tesla news with summarize and sentiment analysis and trends and full article content and entity extraction and image analysis and social media monitoring and research papers', score=82, entities=0, trends=15"
   },
   {
-    "timestamp": "2026-02-22T17:08:35.269609",
+    "timestamp": "2026-03-15T09:25:07.619381",
     "level": "INFO",
     "message": "Output packaged: confidence=0.93, badge=full"
   },
   {
-    "timestamp": "2026-02-23T02:19:33.824227",
+    "timestamp": "2026-03-15T10:18:12.481537",
     "level": "INFO",
     "message": "Nova v3 graph compiled successfully"
   },
   {
-    "timestamp": "2026-02-23T02:19:33.855847",
+    "timestamp": "2026-03-15T10:18:12.514533",
     "level": "INFO",
-    "message": "Planning task for: claude 4.6"
+    "message": "Planning task for: tesla news"
   },
   {
-    "timestamp": "2026-02-23T02:19:33.887119",
+    "timestamp": "2026-03-15T10:18:12.542539",
     "level": "INFO",
     "message": "Using mock planner",
     "data": {
       "plan": {
-        "intent": "Get claude news",
-        "domain": "claude",
+        "intent": "Get tesla news",
+        "domain": "tesla",
         "steps": [
           {
             "tool": "news_fetcher",
             "params": {
-              "topic": "claude",
+              "topic": "tesla",
               "sources": [
                 "google"
               ],
@@ -690,7 +567,7 @@
           {
             "tool": "exporter",
             "params": {
-              "filename": "claude_report",
+              "filename": "tesla_report",
               "format": "json"
             }
           }
@@ -699,20 +576,20 @@
     }
   },
   {
-    "timestamp": "2026-02-23T02:19:33.913180",
+    "timestamp": "2026-03-15T10:18:12.570536",
     "level": "INFO",
-    "message": "Supervisor: depth=quick, pipelines=['news']"
+    "message": "Supervisor: depth=deep, pipelines=['news', 'social', 'research', 'market']"
   },
   {
-    "timestamp": "2026-02-23T02:19:33.938846",
+    "timestamp": "2026-03-15T10:18:12.608573",
     "level": "INFO",
-    "message": "Executing plan: Get claude news",
+    "message": "Executing plan: Get tesla news",
     "data": {
       "steps": 2
     }
   },
   {
-    "timestamp": "2026-02-23T02:19:33.967190",
+    "timestamp": "2026-03-15T10:18:12.634725",
     "level": "DEBUG",
     "message": "Running tool: news_fetcher",
     "data": {
@@ -724,14 +601,14 @@
     }
   },
   {
-    "timestamp": "2026-02-23T02:19:33.989468",
+    "timestamp": "2026-03-15T10:18:12.661729",
     "level": "INFO",
-    "message": "Multi-source fetch for: claude"
+    "message": "Multi-source fetch for: tesla"
   },
   {
-    "timestamp": "2026-02-23T02:19:40.626749",
+    "timestamp": "2026-03-15T10:18:19.799873",
     "level": "INFO",
-    "message": "Multi-source complete: 14 articles from 3 sources",
+    "message": "Multi-source complete: 12 articles from 3 sources",
     "data": {
       "rss": {
         "success": true,
@@ -748,7 +625,7 @@
     }
   },
   {
-    "timestamp": "2026-02-23T02:19:40.661186",
+    "timestamp": "2026-03-15T10:18:19.827892",
     "level": "DEBUG",
     "message": "Running tool: exporter",
     "data": {
@@ -760,18 +637,18 @@
     }
   },
   {
-    "timestamp": "2026-02-23T02:19:40.853467",
+    "timestamp": "2026-03-15T10:18:20.043404",
     "level": "INFO",
     "message": "Execution complete: 2 tools run, 0 skipped, 0 fallbacks used"
   },
   {
-    "timestamp": "2026-02-23T02:19:40.887887",
+    "timestamp": "2026-03-15T10:18:20.070727",
     "level": "INFO",
-    "message": "News pipeline complete in 6942ms",
+    "message": "News pipeline complete in 7460ms",
     "data": {
       "node": "news_pipeline",
       "status": "success",
-      "duration_ms": 6942,
+      "duration_ms": 7460,
       "tools_executed": 2,
       "errors": 0,
       "skipped": 0,
@@ -779,27 +656,738 @@
     }
   },
   {
-    "timestamp": "2026-02-23T02:19:40.924142",
+    "timestamp": "2026-03-15T10:18:20.101151",
+    "level": "INFO",
+    "message": "Multi-source fetch for: tesla news market stock finance"
+  },
+  {
+    "timestamp": "2026-03-15T10:18:26.987303",
+    "level": "INFO",
+    "message": "Multi-source complete: 10 articles from 3 sources",
+    "data": {
+      "rss": {
+        "success": true,
+        "count": 5
+      },
+      "gnews": {
+        "success": true,
+        "count": 0
+      },
+      "tavily": {
+        "success": true,
+        "count": 5
+      }
+    }
+  },
+  {
+    "timestamp": "2026-03-15T10:18:31.042171",
+    "level": "INFO",
+    "message": "Market pipeline complete in 10948ms"
+  },
+  {
+    "timestamp": "2026-03-15T10:18:32.373031",
+    "level": "INFO",
+    "message": "Tool research_assistant executed",
+    "data": {
+      "tool": "research_assistant",
+      "success": true,
+      "duration_seconds": 0.0,
+      "params": {
+        "topic": "tesla",
+        "type": "comprehensive"
+      },
+      "result": {
+        "total_sources": 20
+      }
+    }
+  },
+  {
+    "timestamp": "2026-03-15T10:18:32.390169",
+    "level": "INFO",
+    "message": "Research pipeline complete in 12298ms"
+  },
+  {
+    "timestamp": "2026-03-15T10:18:32.712483",
+    "level": "INFO",
+    "message": "Tool social_monitor executed",
+    "data": {
+      "tool": "social_monitor",
+      "success": true,
+      "duration_seconds": 0.0,
+      "params": {
+        "topic": "tesla",
+        "platforms": [
+          "reddit"
+        ]
+      },
+      "result": {
+        "total_mentions": 25
+      }
+    }
+  },
+  {
+    "timestamp": "2026-03-15T10:18:32.732481",
+    "level": "INFO",
+    "message": "Social pipeline complete in 12639ms"
+  },
+  {
+    "timestamp": "2026-03-15T10:18:32.751480",
+    "level": "INFO",
+    "message": "Fusion complete: ['news', 'social', 'research', 'market'] in 0ms"
+  },
+  {
+    "timestamp": "2026-03-15T10:18:32.769939",
+    "level": "INFO",
+    "message": "Critic: score=69/100, approved=True, feedback=['Summary too shallow: only 0 words']"
+  },
+  {
+    "timestamp": "2026-03-15T10:18:32.973376",
+    "level": "INFO",
+    "message": "Memory saved: query='tesla news', score=69, entities=0, trends=0"
+  },
+  {
+    "timestamp": "2026-03-15T10:18:32.997379",
+    "level": "INFO",
+    "message": "Output packaged: confidence=0.81, badge=full"
+  },
+  {
+    "timestamp": "2026-03-15T10:23:46.635662",
+    "level": "INFO",
+    "message": "Planning task for: tesla"
+  },
+  {
+    "timestamp": "2026-03-15T10:23:46.658665",
+    "level": "INFO",
+    "message": "Using mock planner",
+    "data": {
+      "plan": {
+        "intent": "Get tesla news",
+        "domain": "tesla",
+        "steps": [
+          {
+            "tool": "news_fetcher",
+            "params": {
+              "topic": "tesla",
+              "sources": [
+                "google"
+              ],
+              "limit": 5
+            }
+          },
+          {
+            "tool": "exporter",
+            "params": {
+              "filename": "tesla_report",
+              "format": "json"
+            }
+          }
+        ]
+      }
+    }
+  },
+  {
+    "timestamp": "2026-03-15T10:23:46.684660",
+    "level": "INFO",
+    "message": "Supervisor: depth=standard, pipelines=['news']"
+  },
+  {
+    "timestamp": "2026-03-15T10:23:46.710664",
+    "level": "INFO",
+    "message": "Executing plan: Get tesla news",
+    "data": {
+      "steps": 2
+    }
+  },
+  {
+    "timestamp": "2026-03-15T10:23:46.736111",
+    "level": "DEBUG",
+    "message": "Running tool: news_fetcher",
+    "data": {
+      "params": [
+        "topic",
+        "sources",
+        "limit"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-03-15T10:23:46.756514",
+    "level": "INFO",
+    "message": "Multi-source fetch for: tesla"
+  },
+  {
+    "timestamp": "2026-03-15T10:23:54.333312",
+    "level": "INFO",
+    "message": "Multi-source complete: 12 articles from 3 sources",
+    "data": {
+      "rss": {
+        "success": true,
+        "count": 5
+      },
+      "gnews": {
+        "success": true,
+        "count": 5
+      },
+      "tavily": {
+        "success": true,
+        "count": 5
+      }
+    }
+  },
+  {
+    "timestamp": "2026-03-15T10:23:54.360309",
+    "level": "DEBUG",
+    "message": "Running tool: exporter",
+    "data": {
+      "params": [
+        "filename",
+        "format",
+        "data"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-03-15T10:23:54.571943",
+    "level": "INFO",
+    "message": "Execution complete: 2 tools run, 0 skipped, 0 fallbacks used"
+  },
+  {
+    "timestamp": "2026-03-15T10:23:54.598943",
+    "level": "INFO",
+    "message": "News pipeline complete in 7882ms",
+    "data": {
+      "node": "news_pipeline",
+      "status": "success",
+      "duration_ms": 7882,
+      "tools_executed": 2,
+      "errors": 0,
+      "skipped": 0,
+      "fallbacks": 0
+    }
+  },
+  {
+    "timestamp": "2026-03-15T10:23:54.627944",
     "level": "INFO",
     "message": "Fusion complete: ['news'] in 0ms"
   },
   {
-    "timestamp": "2026-02-23T02:19:41.128716",
+    "timestamp": "2026-03-15T10:23:55.039506",
     "level": "INFO",
-    "message": "Memory saved: query='claude 4.6', score=100, entities=0, trends=0"
+    "message": "Memory saved: query='tesla', score=100, entities=0, trends=0"
   },
   {
-    "timestamp": "2026-02-23T02:19:41.164881",
+    "timestamp": "2026-03-15T10:23:55.067506",
     "level": "INFO",
     "message": "Output packaged: confidence=0.68, badge=partial"
   },
   {
-    "timestamp": "2026-02-23T02:20:17.644961",
+    "timestamp": "2026-03-15T10:24:54.174743",
+    "level": "INFO",
+    "message": "Planning task for: tesla"
+  },
+  {
+    "timestamp": "2026-03-15T10:24:54.194741",
+    "level": "INFO",
+    "message": "Using mock planner",
+    "data": {
+      "plan": {
+        "intent": "Get tesla news",
+        "domain": "tesla",
+        "steps": [
+          {
+            "tool": "news_fetcher",
+            "params": {
+              "topic": "tesla",
+              "sources": [
+                "google"
+              ],
+              "limit": 5
+            }
+          },
+          {
+            "tool": "summarizer",
+            "params": {}
+          },
+          {
+            "tool": "sentiment",
+            "params": {}
+          },
+          {
+            "tool": "trends",
+            "params": {}
+          },
+          {
+            "tool": "entity_extractor",
+            "params": {}
+          },
+          {
+            "tool": "social_monitor",
+            "params": {
+              "topic": "tesla",
+              "platforms": [
+                "reddit"
+              ]
+            }
+          },
+          {
+            "tool": "exporter",
+            "params": {
+              "filename": "tesla_report",
+              "format": "json"
+            }
+          }
+        ]
+      }
+    }
+  },
+  {
+    "timestamp": "2026-03-15T13:02:38.076698",
+    "level": "INFO",
+    "message": "Planning task for: tesla"
+  },
+  {
+    "timestamp": "2026-03-15T13:02:38.107502",
+    "level": "INFO",
+    "message": "Using mock planner",
+    "data": {
+      "plan": {
+        "intent": "Get tesla news",
+        "domain": "tesla",
+        "steps": [
+          {
+            "tool": "news_fetcher",
+            "params": {
+              "topic": "tesla",
+              "sources": [
+                "google"
+              ],
+              "limit": 5
+            }
+          },
+          {
+            "tool": "exporter",
+            "params": {
+              "filename": "tesla_report",
+              "format": "json"
+            }
+          }
+        ]
+      }
+    }
+  },
+  {
+    "timestamp": "2026-03-15T13:02:38.129368",
+    "level": "INFO",
+    "message": "Supervisor: depth=quick, pipelines=['news']"
+  },
+  {
+    "timestamp": "2026-03-15T13:02:38.159288",
+    "level": "INFO",
+    "message": "Executing plan: Get tesla news",
+    "data": {
+      "steps": 2
+    }
+  },
+  {
+    "timestamp": "2026-03-15T13:02:38.181685",
+    "level": "DEBUG",
+    "message": "Running tool: news_fetcher",
+    "data": {
+      "params": [
+        "topic",
+        "sources",
+        "limit"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-03-15T13:02:38.204067",
+    "level": "INFO",
+    "message": "Multi-source fetch for: tesla"
+  },
+  {
+    "timestamp": "2026-03-15T13:02:44.977256",
+    "level": "INFO",
+    "message": "Multi-source complete: 12 articles from 3 sources",
+    "data": {
+      "rss": {
+        "success": true,
+        "count": 5
+      },
+      "gnews": {
+        "success": true,
+        "count": 5
+      },
+      "tavily": {
+        "success": true,
+        "count": 5
+      }
+    }
+  },
+  {
+    "timestamp": "2026-03-15T13:02:45.005309",
+    "level": "DEBUG",
+    "message": "Running tool: exporter",
+    "data": {
+      "params": [
+        "filename",
+        "format",
+        "data"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-03-15T13:02:45.218873",
+    "level": "INFO",
+    "message": "Execution complete: 2 tools run, 0 skipped, 0 fallbacks used"
+  },
+  {
+    "timestamp": "2026-03-15T13:02:45.244147",
+    "level": "INFO",
+    "message": "News pipeline complete in 7083ms",
+    "data": {
+      "node": "news_pipeline",
+      "status": "success",
+      "duration_ms": 7083,
+      "tools_executed": 2,
+      "errors": 0,
+      "skipped": 0,
+      "fallbacks": 0
+    }
+  },
+  {
+    "timestamp": "2026-03-15T13:02:45.272623",
+    "level": "INFO",
+    "message": "Fusion complete: ['news'] in 1ms"
+  },
+  {
+    "timestamp": "2026-03-15T13:02:45.497443",
+    "level": "INFO",
+    "message": "Memory saved: query='tesla', score=100, entities=0, trends=0"
+  },
+  {
+    "timestamp": "2026-03-15T13:02:45.521447",
+    "level": "INFO",
+    "message": "Output packaged: confidence=0.68, badge=partial"
+  },
+  {
+    "timestamp": "2026-03-15T13:02:47.586934",
+    "level": "INFO",
+    "message": "Planning task for: tesla"
+  },
+  {
+    "timestamp": "2026-03-15T13:02:47.603935",
+    "level": "INFO",
+    "message": "Using mock planner",
+    "data": {
+      "plan": {
+        "intent": "Get tesla news",
+        "domain": "tesla",
+        "steps": [
+          {
+            "tool": "news_fetcher",
+            "params": {
+              "topic": "tesla",
+              "sources": [
+                "google"
+              ],
+              "limit": 5
+            }
+          },
+          {
+            "tool": "exporter",
+            "params": {
+              "filename": "tesla_report",
+              "format": "json"
+            }
+          }
+        ]
+      }
+    }
+  },
+  {
+    "timestamp": "2026-03-15T13:02:47.623933",
+    "level": "INFO",
+    "message": "Supervisor: depth=standard, pipelines=['news']"
+  },
+  {
+    "timestamp": "2026-03-15T13:02:47.645931",
+    "level": "INFO",
+    "message": "Executing plan: Get tesla news",
+    "data": {
+      "steps": 2
+    }
+  },
+  {
+    "timestamp": "2026-03-15T13:02:47.668423",
+    "level": "DEBUG",
+    "message": "Running tool: news_fetcher",
+    "data": {
+      "params": [
+        "topic",
+        "sources",
+        "limit"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-03-15T13:02:47.687418",
+    "level": "INFO",
+    "message": "Multi-source fetch for: tesla"
+  },
+  {
+    "timestamp": "2026-03-15T13:02:53.157319",
+    "level": "INFO",
+    "message": "Multi-source complete: 12 articles from 3 sources",
+    "data": {
+      "rss": {
+        "success": true,
+        "count": 5
+      },
+      "gnews": {
+        "success": true,
+        "count": 5
+      },
+      "tavily": {
+        "success": true,
+        "count": 5
+      }
+    }
+  },
+  {
+    "timestamp": "2026-03-15T13:02:53.174319",
+    "level": "DEBUG",
+    "message": "Running tool: exporter",
+    "data": {
+      "params": [
+        "filename",
+        "format",
+        "data"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-03-15T13:02:53.321646",
+    "level": "INFO",
+    "message": "Execution complete: 2 tools run, 0 skipped, 0 fallbacks used"
+  },
+  {
+    "timestamp": "2026-03-15T13:02:53.342647",
+    "level": "INFO",
+    "message": "News pipeline complete in 5693ms",
+    "data": {
+      "node": "news_pipeline",
+      "status": "success",
+      "duration_ms": 5693,
+      "tools_executed": 2,
+      "errors": 0,
+      "skipped": 0,
+      "fallbacks": 0
+    }
+  },
+  {
+    "timestamp": "2026-03-15T13:02:53.363647",
+    "level": "INFO",
+    "message": "Fusion complete: ['news'] in 0ms"
+  },
+  {
+    "timestamp": "2026-03-15T13:02:53.516843",
+    "level": "INFO",
+    "message": "Memory saved: query='tesla', score=100, entities=0, trends=0"
+  },
+  {
+    "timestamp": "2026-03-15T13:02:53.537844",
+    "level": "INFO",
+    "message": "Output packaged: confidence=0.68, badge=partial"
+  },
+  {
+    "timestamp": "2026-03-15T13:02:55.588979",
+    "level": "INFO",
+    "message": "Planning task for: tesla"
+  },
+  {
+    "timestamp": "2026-03-15T13:02:55.607979",
+    "level": "INFO",
+    "message": "Using mock planner",
+    "data": {
+      "plan": {
+        "intent": "Get tesla news",
+        "domain": "tesla",
+        "steps": [
+          {
+            "tool": "news_fetcher",
+            "params": {
+              "topic": "tesla",
+              "sources": [
+                "google"
+              ],
+              "limit": 5
+            }
+          },
+          {
+            "tool": "exporter",
+            "params": {
+              "filename": "tesla_report",
+              "format": "json"
+            }
+          }
+        ]
+      }
+    }
+  },
+  {
+    "timestamp": "2026-03-15T13:02:55.625616",
+    "level": "INFO",
+    "message": "Supervisor: depth=standard, pipelines=['news', 'social', 'research']"
+  },
+  {
+    "timestamp": "2026-03-15T13:02:55.645613",
+    "level": "INFO",
+    "message": "Executing plan: Get tesla news",
+    "data": {
+      "steps": 2
+    }
+  },
+  {
+    "timestamp": "2026-03-15T13:02:55.663615",
+    "level": "DEBUG",
+    "message": "Running tool: news_fetcher",
+    "data": {
+      "params": [
+        "topic",
+        "sources",
+        "limit"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-03-15T13:02:55.687612",
+    "level": "INFO",
+    "message": "Multi-source fetch for: tesla"
+  },
+  {
+    "timestamp": "2026-03-15T13:03:01.344379",
+    "level": "INFO",
+    "message": "Multi-source complete: 12 articles from 3 sources",
+    "data": {
+      "rss": {
+        "success": true,
+        "count": 5
+      },
+      "gnews": {
+        "success": true,
+        "count": 5
+      },
+      "tavily": {
+        "success": true,
+        "count": 5
+      }
+    }
+  },
+  {
+    "timestamp": "2026-03-15T13:03:01.370455",
+    "level": "DEBUG",
+    "message": "Running tool: exporter",
+    "data": {
+      "params": [
+        "filename",
+        "format",
+        "data"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-03-15T13:03:01.553076",
+    "level": "INFO",
+    "message": "Execution complete: 2 tools run, 0 skipped, 0 fallbacks used"
+  },
+  {
+    "timestamp": "2026-03-15T13:03:01.579270",
+    "level": "INFO",
+    "message": "News pipeline complete in 5927ms",
+    "data": {
+      "node": "news_pipeline",
+      "status": "success",
+      "duration_ms": 5927,
+      "tools_executed": 2,
+      "errors": 0,
+      "skipped": 0,
+      "fallbacks": 0
+    }
+  },
+  {
+    "timestamp": "2026-03-15T13:03:03.187604",
+    "level": "INFO",
+    "message": "Tool social_monitor executed",
+    "data": {
+      "tool": "social_monitor",
+      "success": true,
+      "duration_seconds": 0.0,
+      "params": {
+        "topic": "tesla",
+        "platforms": [
+          "reddit"
+        ]
+      },
+      "result": {
+        "total_mentions": 25
+      }
+    }
+  },
+  {
+    "timestamp": "2026-03-15T13:03:03.206108",
+    "level": "INFO",
+    "message": "Social pipeline complete in 1605ms"
+  },
+  {
+    "timestamp": "2026-03-15T13:03:03.423128",
+    "level": "INFO",
+    "message": "Tool research_assistant executed",
+    "data": {
+      "tool": "research_assistant",
+      "success": true,
+      "duration_seconds": 0.0,
+      "params": {
+        "topic": "tesla",
+        "type": "comprehensive"
+      },
+      "result": {
+        "total_sources": 25
+      }
+    }
+  },
+  {
+    "timestamp": "2026-03-15T13:03:03.441128",
+    "level": "INFO",
+    "message": "Research pipeline complete in 1835ms"
+  },
+  {
+    "timestamp": "2026-03-15T13:03:03.459128",
+    "level": "INFO",
+    "message": "Fusion complete: ['news', 'social', 'research'] in 0ms"
+  },
+  {
+    "timestamp": "2026-03-15T13:03:03.622678",
+    "level": "INFO",
+    "message": "Memory saved: query='tesla', score=100, entities=0, trends=0"
+  },
+  {
+    "timestamp": "2026-03-15T13:03:03.643679",
+    "level": "INFO",
+    "message": "Output packaged: confidence=0.85, badge=full"
+  },
+  {
+    "timestamp": "2026-03-15T13:05:42.708969",
+    "level": "INFO",
+    "message": "Nova v3 graph compiled successfully"
+  },
+  {
+    "timestamp": "2026-03-15T13:05:42.733104",
     "level": "INFO",
     "message": "Planning task for: claude 4.6 with summarize and sentiment analysis and trends and full article content and entity extraction and image analysis and social media monitoring and research papers"
   },
   {
-    "timestamp": "2026-02-23T02:20:17.662088",
+    "timestamp": "2026-03-15T13:05:42.753498",
     "level": "INFO",
     "message": "Using mock planner",
     "data": {
@@ -868,12 +1456,12 @@
     }
   },
   {
-    "timestamp": "2026-02-23T02:20:17.678114",
+    "timestamp": "2026-03-15T13:05:42.773023",
     "level": "INFO",
     "message": "Supervisor: depth=deep, pipelines=['news', 'social', 'research', 'market']"
   },
   {
-    "timestamp": "2026-02-23T02:20:17.696367",
+    "timestamp": "2026-03-15T13:05:42.796022",
     "level": "INFO",
     "message": "Executing plan: Get claude news",
     "data": {
@@ -881,7 +1469,7 @@
     }
   },
   {
-    "timestamp": "2026-02-23T02:20:17.714339",
+    "timestamp": "2026-03-15T13:05:42.817024",
     "level": "DEBUG",
     "message": "Running tool: news_fetcher",
     "data": {
@@ -893,14 +1481,14 @@
     }
   },
   {
-    "timestamp": "2026-02-23T02:20:17.729795",
+    "timestamp": "2026-03-15T13:05:42.838039",
     "level": "INFO",
     "message": "Multi-source fetch for: claude"
   },
   {
-    "timestamp": "2026-02-23T02:20:22.450226",
+    "timestamp": "2026-03-15T13:05:49.832092",
     "level": "INFO",
-    "message": "Multi-source complete: 14 articles from 3 sources",
+    "message": "Multi-source complete: 15 articles from 3 sources",
     "data": {
       "rss": {
         "success": true,
@@ -917,7 +1505,7 @@
     }
   },
   {
-    "timestamp": "2026-02-23T02:20:22.469527",
+    "timestamp": "2026-03-15T13:05:49.853101",
     "level": "DEBUG",
     "message": "Running tool: summarizer",
     "data": {
@@ -927,7 +1515,7 @@
     }
   },
   {
-    "timestamp": "2026-02-23T02:20:22.497126",
+    "timestamp": "2026-03-15T13:05:49.876313",
     "level": "DEBUG",
     "message": "Running tool: sentiment",
     "data": {
@@ -937,7 +1525,7 @@
     }
   },
   {
-    "timestamp": "2026-02-23T02:20:22.528183",
+    "timestamp": "2026-03-15T13:05:49.901317",
     "level": "DEBUG",
     "message": "Running tool: trends",
     "data": {
@@ -947,7 +1535,7 @@
     }
   },
   {
-    "timestamp": "2026-02-23T02:20:25.673249",
+    "timestamp": "2026-03-15T13:05:53.572783",
     "level": "DEBUG",
     "message": "Running tool: web_scraper",
     "data": {
@@ -957,7 +1545,7 @@
     }
   },
   {
-    "timestamp": "2026-02-23T02:20:26.716250",
+    "timestamp": "2026-03-15T13:05:55.404287",
     "level": "INFO",
     "message": "Tool web_scraper executed",
     "data": {
@@ -965,16 +1553,16 @@
       "success": true,
       "duration_seconds": 0.0,
       "params": {
-        "url": "https://www.thenews.com.pk/latest/1393222-anthropics-claude-code-security-triggers-billions-in-cybersecurity-stock-losses"
+        "url": "https://www.xda-developers.com/claude-pro-extended-thinking-worth-it/"
       },
       "result": {
         "success": true,
-        "word_count": 308
+        "word_count": 863
       }
     }
   },
   {
-    "timestamp": "2026-02-23T02:20:26.742653",
+    "timestamp": "2026-03-15T13:05:55.427289",
     "level": "DEBUG",
     "message": "Running tool: entity_extractor",
     "data": {
@@ -984,7 +1572,7 @@
     }
   },
   {
-    "timestamp": "2026-02-23T02:20:26.790161",
+    "timestamp": "2026-03-15T13:05:55.457291",
     "level": "INFO",
     "message": "Tool entity_extractor executed",
     "data": {
@@ -992,15 +1580,15 @@
       "success": true,
       "duration_seconds": 0.0,
       "params": {
-        "article_count": 14
+        "article_count": 15
       },
       "result": {
-        "entity_count": 16
+        "entity_count": 13
       }
     }
   },
   {
-    "timestamp": "2026-02-23T02:20:26.813610",
+    "timestamp": "2026-03-15T13:05:55.477288",
     "level": "DEBUG",
     "message": "Running tool: image_analyzer",
     "data": {
@@ -1010,7 +1598,7 @@
     }
   },
   {
-    "timestamp": "2026-02-23T02:20:30.809721",
+    "timestamp": "2026-03-15T13:06:00.539048",
     "level": "INFO",
     "message": "Tool image_analyzer executed",
     "data": {
@@ -1019,16 +1607,16 @@
       "duration_seconds": 0.0,
       "params": {
         "article_count": 1,
-        "total_images": 1
+        "total_images": 2
       },
       "result": {
-        "successful": 1,
+        "successful": 2,
         "failed": 0
       }
     }
   },
   {
-    "timestamp": "2026-02-23T02:20:30.842827",
+    "timestamp": "2026-03-15T13:06:00.559416",
     "level": "DEBUG",
     "message": "Running tool: social_monitor",
     "data": {
@@ -1039,7 +1627,7 @@
     }
   },
   {
-    "timestamp": "2026-02-23T02:20:32.975486",
+    "timestamp": "2026-03-15T13:06:02.080501",
     "level": "INFO",
     "message": "Tool social_monitor executed",
     "data": {
@@ -1058,7 +1646,7 @@
     }
   },
   {
-    "timestamp": "2026-02-23T02:20:32.999357",
+    "timestamp": "2026-03-15T13:06:02.106503",
     "level": "DEBUG",
     "message": "Running tool: research_assistant",
     "data": {
@@ -1068,7 +1656,7 @@
     }
   },
   {
-    "timestamp": "2026-02-23T02:20:33.643669",
+    "timestamp": "2026-03-15T13:06:03.174762",
     "level": "INFO",
     "message": "Tool research_assistant executed",
     "data": {
@@ -1085,7 +1673,7 @@
     }
   },
   {
-    "timestamp": "2026-02-23T02:20:33.666801",
+    "timestamp": "2026-03-15T13:06:03.199755",
     "level": "DEBUG",
     "message": "Running tool: exporter",
     "data": {
@@ -1097,23 +1685,23 @@
     }
   },
   {
-    "timestamp": "2026-02-23T02:20:33.701142",
+    "timestamp": "2026-03-15T13:06:03.230275",
     "level": "INFO",
     "message": "Sentiment-Trend fusion applied"
   },
   {
-    "timestamp": "2026-02-23T02:20:33.852949",
+    "timestamp": "2026-03-15T13:06:03.378592",
     "level": "INFO",
     "message": "Execution complete: 10 tools run, 0 skipped, 0 fallbacks used"
   },
   {
-    "timestamp": "2026-02-23T02:20:33.880692",
+    "timestamp": "2026-03-15T13:06:03.400593",
     "level": "INFO",
-    "message": "News pipeline complete in 16176ms",
+    "message": "News pipeline complete in 20605ms",
     "data": {
       "node": "news_pipeline",
       "status": "success",
-      "duration_ms": 16176,
+      "duration_ms": 20605,
       "tools_executed": 10,
       "errors": 0,
       "skipped": 0,
@@ -1121,23 +1709,23 @@
     }
   },
   {
-    "timestamp": "2026-02-23T02:20:33.909739",
+    "timestamp": "2026-03-15T13:06:03.424596",
     "level": "INFO",
     "message": "Multi-source fetch for: claude 4.6 with summarize and sentiment analysis and trends and full article content and entity extraction and image analysis and social media monitoring and research papers market stock finance"
   },
   {
-    "timestamp": "2026-02-23T02:20:35.392823",
+    "timestamp": "2026-03-15T13:06:05.082277",
     "level": "ERROR",
     "message": "GNews failed: Client error '400 Bad Request' for url 'https://gnews.io/api/v4/search?apikey=a7519075e5f8447070cc6f0047260ca2&q=claude%204.6%20with%20summarize%20and%20sentiment%20analysis%20and%20trends%20and%20full%20article%20content%20and%20entity%20extraction%20and%20image%20analysis%20and%20social%20media%20monitoring%20and%20research%20papers%20market%20stock%20finance&lang=en&max=5'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400"
   },
   {
-    "timestamp": "2026-02-23T02:20:40.189403",
+    "timestamp": "2026-03-15T13:06:07.379251",
     "level": "INFO",
-    "message": "Multi-source complete: 10 articles from 3 sources",
+    "message": "Multi-source complete: 4 articles from 3 sources",
     "data": {
       "rss": {
         "success": true,
-        "count": 5
+        "count": 4
       },
       "gnews": {
         "success": false,
@@ -1145,17 +1733,17 @@
       },
       "tavily": {
         "success": true,
-        "count": 5
+        "count": 0
       }
     }
   },
   {
-    "timestamp": "2026-02-23T02:20:41.807614",
+    "timestamp": "2026-03-15T13:06:09.645660",
     "level": "INFO",
-    "message": "Market pipeline complete in 7903ms"
+    "message": "Market pipeline complete in 6223ms"
   },
   {
-    "timestamp": "2026-02-23T02:20:43.335944",
+    "timestamp": "2026-03-15T13:06:11.660566",
     "level": "INFO",
     "message": "Tool research_assistant executed",
     "data": {
@@ -1172,12 +1760,12 @@
     }
   },
   {
-    "timestamp": "2026-02-23T02:20:43.356995",
+    "timestamp": "2026-03-15T13:06:11.689336",
     "level": "INFO",
-    "message": "Research pipeline complete in 9451ms"
+    "message": "Research pipeline complete in 8262ms"
   },
   {
-    "timestamp": "2026-02-23T02:20:44.392928",
+    "timestamp": "2026-03-15T13:06:12.457125",
     "level": "INFO",
     "message": "Tool social_monitor executed",
     "data": {
@@ -1196,48 +1784,48 @@
     }
   },
   {
-    "timestamp": "2026-02-23T02:20:44.412259",
+    "timestamp": "2026-03-15T13:06:12.487121",
     "level": "INFO",
-    "message": "Social pipeline complete in 10507ms"
+    "message": "Social pipeline complete in 9059ms"
   },
   {
-    "timestamp": "2026-02-23T02:20:44.431407",
+    "timestamp": "2026-03-15T13:06:12.517202",
     "level": "INFO",
     "message": "Fusion complete: ['news', 'social', 'research', 'market'] in 0ms"
   },
   {
-    "timestamp": "2026-02-23T02:20:44.457717",
+    "timestamp": "2026-03-15T13:06:12.550168",
     "level": "INFO",
-    "message": "Critic: score=82/100, approved=True, feedback=[]"
+    "message": "Critic: score=84/100, approved=True, feedback=[]"
   },
   {
-    "timestamp": "2026-02-23T02:20:44.608019",
+    "timestamp": "2026-03-15T13:06:12.812192",
     "level": "INFO",
-    "message": "Memory saved: query='claude 4.6 with summarize and sentiment analysis and trends and full article content and entity extraction and image analysis and social media monitoring and research papers', score=82, entities=0, trends=10"
+    "message": "Memory saved: query='claude 4.6 with summarize and sentiment analysis and trends and full article content and entity extraction and image analysis and social media monitoring and research papers', score=84, entities=0, trends=15"
   },
   {
-    "timestamp": "2026-02-23T02:20:44.632267",
+    "timestamp": "2026-03-15T13:06:12.840919",
     "level": "INFO",
-    "message": "Output packaged: confidence=0.93, badge=full"
+    "message": "Output packaged: confidence=0.94, badge=full"
   },
   {
-    "timestamp": "2026-02-23T02:27:22.446754",
+    "timestamp": "2026-03-15T13:08:23.200095",
     "level": "INFO",
-    "message": "Planning task for: AWS outage with summarize and sentiment analysis and trends and full article content and entity extraction and image analysis and social media monitoring and research papers"
+    "message": "Planning task for: Iran War with summarize and sentiment analysis and trends and full article content and entity extraction and image analysis and social media monitoring and research papers"
   },
   {
-    "timestamp": "2026-02-23T02:27:22.465628",
+    "timestamp": "2026-03-15T13:08:23.232155",
     "level": "INFO",
     "message": "Using mock planner",
     "data": {
       "plan": {
-        "intent": "Get aws news",
-        "domain": "aws",
+        "intent": "Get iran news",
+        "domain": "iran",
         "steps": [
           {
             "tool": "news_fetcher",
             "params": {
-              "topic": "aws",
+              "topic": "iran",
               "sources": [
                 "google"
               ],
@@ -1271,7 +1859,7 @@
           {
             "tool": "social_monitor",
             "params": {
-              "topic": "aws",
+              "topic": "iran",
               "platforms": [
                 "reddit"
               ]
@@ -1280,13 +1868,13 @@
           {
             "tool": "research_assistant",
             "params": {
-              "query": "aws"
+              "query": "iran"
             }
           },
           {
             "tool": "exporter",
             "params": {
-              "filename": "aws_report",
+              "filename": "iran_report",
               "format": "json"
             }
           }
@@ -1295,20 +1883,20 @@
     }
   },
   {
-    "timestamp": "2026-02-23T02:27:22.479354",
+    "timestamp": "2026-03-15T13:08:23.259980",
     "level": "INFO",
     "message": "Supervisor: depth=deep, pipelines=['news', 'social', 'research', 'market']"
   },
   {
-    "timestamp": "2026-02-23T02:27:22.499923",
+    "timestamp": "2026-03-15T13:08:23.286050",
     "level": "INFO",
-    "message": "Executing plan: Get aws news",
+    "message": "Executing plan: Get iran news",
     "data": {
       "steps": 10
     }
   },
   {
-    "timestamp": "2026-02-23T02:27:22.521129",
+    "timestamp": "2026-03-15T13:08:23.316702",
     "level": "DEBUG",
     "message": "Running tool: news_fetcher",
     "data": {
@@ -1320,438 +1908,12 @@
     }
   },
   {
-    "timestamp": "2026-02-23T02:27:22.543596",
+    "timestamp": "2026-03-15T13:08:23.343957",
     "level": "INFO",
-    "message": "Multi-source fetch for: aws"
+    "message": "Multi-source fetch for: iran"
   },
   {
-    "timestamp": "2026-02-23T02:27:31.025097",
-    "level": "INFO",
-    "message": "Multi-source complete: 15 articles from 3 sources",
-    "data": {
-      "rss": {
-        "success": true,
-        "count": 5
-      },
-      "gnews": {
-        "success": true,
-        "count": 5
-      },
-      "tavily": {
-        "success": true,
-        "count": 5
-      }
-    }
-  },
-  {
-    "timestamp": "2026-02-23T02:27:31.041127",
-    "level": "DEBUG",
-    "message": "Running tool: summarizer",
-    "data": {
-      "params": [
-        "news_items"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-02-23T02:27:31.054643",
-    "level": "DEBUG",
-    "message": "Running tool: sentiment",
-    "data": {
-      "params": [
-        "news_items"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-02-23T02:27:31.078020",
-    "level": "DEBUG",
-    "message": "Running tool: trends",
-    "data": {
-      "params": [
-        "news_items"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-02-23T02:27:32.660312",
-    "level": "DEBUG",
-    "message": "Running tool: web_scraper",
-    "data": {
-      "params": [
-        "url"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-02-23T02:27:37.812232",
-    "level": "INFO",
-    "message": "Tool web_scraper executed",
-    "data": {
-      "tool": "web_scraper",
-      "success": true,
-      "duration_seconds": 0.0,
-      "params": {
-        "url": "https://www.heise.de/en/news/Experience-report-Obstacle-course-when-migrating-from-Amazon-AWS-to-EU-cloud-11185185.html"
-      },
-      "result": {
-        "success": true,
-        "word_count": 0
-      }
-    }
-  },
-  {
-    "timestamp": "2026-02-23T02:27:37.833500",
-    "level": "DEBUG",
-    "message": "Running tool: entity_extractor",
-    "data": {
-      "params": [
-        "articles"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-02-23T02:27:37.865243",
-    "level": "INFO",
-    "message": "Tool entity_extractor executed",
-    "data": {
-      "tool": "entity_extractor",
-      "success": true,
-      "duration_seconds": 0.0,
-      "params": {
-        "article_count": 15
-      },
-      "result": {
-        "entity_count": 18
-      }
-    }
-  },
-  {
-    "timestamp": "2026-02-23T02:27:37.885794",
-    "level": "DEBUG",
-    "message": "Running tool: image_analyzer",
-    "data": {
-      "params": [
-        "articles"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-02-23T02:27:43.626219",
-    "level": "INFO",
-    "message": "Tool image_analyzer executed",
-    "data": {
-      "tool": "image_analyzer",
-      "success": true,
-      "duration_seconds": 0.0,
-      "params": {
-        "article_count": 1,
-        "total_images": 2
-      },
-      "result": {
-        "successful": 1,
-        "failed": 1
-      }
-    }
-  },
-  {
-    "timestamp": "2026-02-23T02:27:43.642371",
-    "level": "DEBUG",
-    "message": "Running tool: social_monitor",
-    "data": {
-      "params": [
-        "topic",
-        "platforms"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-02-23T02:27:46.853898",
-    "level": "INFO",
-    "message": "Tool social_monitor executed",
-    "data": {
-      "tool": "social_monitor",
-      "success": true,
-      "duration_seconds": 0.0,
-      "params": {
-        "topic": "aws",
-        "platforms": [
-          "reddit"
-        ]
-      },
-      "result": {
-        "total_mentions": 25
-      }
-    }
-  },
-  {
-    "timestamp": "2026-02-23T02:27:46.873485",
-    "level": "DEBUG",
-    "message": "Running tool: research_assistant",
-    "data": {
-      "params": [
-        "topic"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-02-23T02:27:47.858821",
-    "level": "INFO",
-    "message": "Tool research_assistant executed",
-    "data": {
-      "tool": "research_assistant",
-      "success": true,
-      "duration_seconds": 0.0,
-      "params": {
-        "topic": "aws",
-        "type": "comprehensive"
-      },
-      "result": {
-        "total_sources": 25
-      }
-    }
-  },
-  {
-    "timestamp": "2026-02-23T02:27:47.880360",
-    "level": "DEBUG",
-    "message": "Running tool: exporter",
-    "data": {
-      "params": [
-        "filename",
-        "format",
-        "data"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-02-23T02:27:47.907488",
-    "level": "INFO",
-    "message": "Sentiment-Trend fusion applied"
-  },
-  {
-    "timestamp": "2026-02-23T02:27:48.027636",
-    "level": "INFO",
-    "message": "Execution complete: 10 tools run, 0 skipped, 0 fallbacks used"
-  },
-  {
-    "timestamp": "2026-02-23T02:27:48.050713",
-    "level": "INFO",
-    "message": "News pipeline complete in 25547ms",
-    "data": {
-      "node": "news_pipeline",
-      "status": "success",
-      "duration_ms": 25547,
-      "tools_executed": 10,
-      "errors": 0,
-      "skipped": 0,
-      "fallbacks": 0
-    }
-  },
-  {
-    "timestamp": "2026-02-23T02:27:48.071013",
-    "level": "INFO",
-    "message": "Multi-source fetch for: AWS outage with summarize and sentiment analysis and trends and full article content and entity extraction and image analysis and social media monitoring and research papers market stock finance"
-  },
-  {
-    "timestamp": "2026-02-23T02:27:55.196606",
-    "level": "INFO",
-    "message": "Multi-source complete: 6 articles from 3 sources",
-    "data": {
-      "rss": {
-        "success": true,
-        "count": 1
-      },
-      "gnews": {
-        "success": true,
-        "count": 0
-      },
-      "tavily": {
-        "success": true,
-        "count": 5
-      }
-    }
-  },
-  {
-    "timestamp": "2026-02-23T02:27:56.756594",
-    "level": "INFO",
-    "message": "Market pipeline complete in 8689ms"
-  },
-  {
-    "timestamp": "2026-02-23T02:28:00.221894",
-    "level": "INFO",
-    "message": "Tool social_monitor executed",
-    "data": {
-      "tool": "social_monitor",
-      "success": true,
-      "duration_seconds": 0.0,
-      "params": {
-        "topic": "AWS outage with summarize and sentiment analysis and trends and full article content and entity extraction and image analysis and social media monitoring and research papers",
-        "platforms": [
-          "reddit"
-        ]
-      },
-      "result": {
-        "total_mentions": 25
-      }
-    }
-  },
-  {
-    "timestamp": "2026-02-23T02:28:00.241012",
-    "level": "INFO",
-    "message": "Social pipeline complete in 12173ms"
-  },
-  {
-    "timestamp": "2026-02-23T02:28:02.373670",
-    "level": "INFO",
-    "message": "Tool research_assistant executed",
-    "data": {
-      "tool": "research_assistant",
-      "success": true,
-      "duration_seconds": 0.0,
-      "params": {
-        "topic": "AWS outage with summarize and sentiment analysis and trends and full article content and entity extraction and image analysis and social media monitoring and research papers",
-        "type": "comprehensive"
-      },
-      "result": {
-        "total_sources": 5
-      }
-    }
-  },
-  {
-    "timestamp": "2026-02-23T02:28:02.394203",
-    "level": "INFO",
-    "message": "Research pipeline complete in 14321ms"
-  },
-  {
-    "timestamp": "2026-02-23T02:28:02.415501",
-    "level": "INFO",
-    "message": "Fusion complete: ['news', 'social', 'research', 'market'] in 0ms"
-  },
-  {
-    "timestamp": "2026-02-23T02:28:02.436602",
-    "level": "INFO",
-    "message": "Critic: score=82/100, approved=True, feedback=[]"
-  },
-  {
-    "timestamp": "2026-02-23T02:28:02.592150",
-    "level": "INFO",
-    "message": "Memory saved: query='AWS outage with summarize and sentiment analysis and trends and full article content and entity extraction and image analysis and social media monitoring and research papers', score=82, entities=0, trends=15"
-  },
-  {
-    "timestamp": "2026-02-23T02:28:02.617072",
-    "level": "INFO",
-    "message": "Output packaged: confidence=0.93, badge=full"
-  },
-  {
-    "timestamp": "2026-03-01T16:16:13.683759",
-    "level": "INFO",
-    "message": "Tool social_monitor executed",
-    "data": {
-      "tool": "social_monitor",
-      "success": true,
-      "duration_seconds": 0.0,
-      "params": {
-        "topic": "Artificial Intelligence",
-        "platforms": [
-          "reddit"
-        ]
-      },
-      "result": {
-        "total_mentions": 25
-      }
-    }
-  },
-  {
-    "timestamp": "2026-03-01T16:20:57.553041",
-    "level": "INFO",
-    "message": "Nova v3 graph compiled successfully"
-  },
-  {
-    "timestamp": "2026-03-01T16:20:57.573500",
-    "level": "INFO",
-    "message": "Planning task for: India AI with research papers and github repos and stackoverflow questions and image analysis and social media monitoring"
-  },
-  {
-    "timestamp": "2026-03-01T16:20:57.590692",
-    "level": "INFO",
-    "message": "Using mock planner",
-    "data": {
-      "plan": {
-        "intent": "Get india news",
-        "domain": "india",
-        "steps": [
-          {
-            "tool": "news_fetcher",
-            "params": {
-              "topic": "india",
-              "sources": [
-                "google"
-              ],
-              "limit": 5
-            }
-          },
-          {
-            "tool": "image_analyzer",
-            "params": {}
-          },
-          {
-            "tool": "social_monitor",
-            "params": {
-              "topic": "india",
-              "platforms": [
-                "reddit"
-              ]
-            }
-          },
-          {
-            "tool": "research_assistant",
-            "params": {
-              "query": "india"
-            }
-          },
-          {
-            "tool": "exporter",
-            "params": {
-              "filename": "india_report",
-              "format": "json"
-            }
-          }
-        ]
-      }
-    }
-  },
-  {
-    "timestamp": "2026-03-01T16:20:57.609118",
-    "level": "INFO",
-    "message": "Supervisor: depth=deep, pipelines=['news', 'social', 'research', 'market']"
-  },
-  {
-    "timestamp": "2026-03-01T16:20:57.626846",
-    "level": "INFO",
-    "message": "Executing plan: Get india news",
-    "data": {
-      "steps": 5
-    }
-  },
-  {
-    "timestamp": "2026-03-01T16:20:57.646250",
-    "level": "DEBUG",
-    "message": "Running tool: news_fetcher",
-    "data": {
-      "params": [
-        "topic",
-        "sources",
-        "limit"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-03-01T16:20:57.666561",
-    "level": "INFO",
-    "message": "Multi-source fetch for: india"
-  },
-  {
-    "timestamp": "2026-03-01T16:21:04.388703",
+    "timestamp": "2026-03-15T13:08:30.356103",
     "level": "INFO",
     "message": "Multi-source complete: 14 articles from 3 sources",
     "data": {
@@ -1770,7 +1932,90 @@
     }
   },
   {
-    "timestamp": "2026-03-01T16:21:04.406748",
+    "timestamp": "2026-03-15T13:08:30.377332",
+    "level": "DEBUG",
+    "message": "Running tool: summarizer",
+    "data": {
+      "params": [
+        "news_items"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-03-15T13:08:30.399911",
+    "level": "DEBUG",
+    "message": "Running tool: sentiment",
+    "data": {
+      "params": [
+        "news_items"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-03-15T13:08:30.423936",
+    "level": "DEBUG",
+    "message": "Running tool: trends",
+    "data": {
+      "params": [
+        "news_items"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-03-15T13:08:32.664617",
+    "level": "DEBUG",
+    "message": "Running tool: web_scraper",
+    "data": {
+      "params": [
+        "url"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-03-15T13:08:33.439846",
+    "level": "INFO",
+    "message": "Tool web_scraper executed",
+    "data": {
+      "tool": "web_scraper",
+      "success": true,
+      "duration_seconds": 0.0,
+      "params": {
+        "url": "https://www.theguardian.com/world/2026/mar/13/trump-military-kharg-island-iran-oil-export"
+      },
+      "result": {
+        "success": true,
+        "word_count": 1341
+      }
+    }
+  },
+  {
+    "timestamp": "2026-03-15T13:08:33.466182",
+    "level": "DEBUG",
+    "message": "Running tool: entity_extractor",
+    "data": {
+      "params": [
+        "articles"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-03-15T13:08:33.496660",
+    "level": "INFO",
+    "message": "Tool entity_extractor executed",
+    "data": {
+      "tool": "entity_extractor",
+      "success": true,
+      "duration_seconds": 0.0,
+      "params": {
+        "article_count": 14
+      },
+      "result": {
+        "entity_count": 19
+      }
+    }
+  },
+  {
+    "timestamp": "2026-03-15T13:08:33.521624",
     "level": "DEBUG",
     "message": "Running tool: image_analyzer",
     "data": {
@@ -1780,7 +2025,7 @@
     }
   },
   {
-    "timestamp": "2026-03-01T16:21:10.797395",
+    "timestamp": "2026-03-15T13:08:36.766420",
     "level": "INFO",
     "message": "Tool image_analyzer executed",
     "data": {
@@ -1788,17 +2033,17 @@
       "success": true,
       "duration_seconds": 0.0,
       "params": {
-        "article_count": 5,
-        "total_images": 5
+        "article_count": 1,
+        "total_images": 1
       },
       "result": {
-        "successful": 5,
+        "successful": 1,
         "failed": 0
       }
     }
   },
   {
-    "timestamp": "2026-03-01T16:21:10.822867",
+    "timestamp": "2026-03-15T13:08:36.791524",
     "level": "DEBUG",
     "message": "Running tool: social_monitor",
     "data": {
@@ -1809,7 +2054,7 @@
     }
   },
   {
-    "timestamp": "2026-03-01T16:21:12.341319",
+    "timestamp": "2026-03-15T13:08:38.234741",
     "level": "INFO",
     "message": "Tool social_monitor executed",
     "data": {
@@ -1817,7 +2062,7 @@
       "success": true,
       "duration_seconds": 0.0,
       "params": {
-        "topic": "india",
+        "topic": "iran",
         "platforms": [
           "reddit"
         ]
@@ -1828,7 +2073,7 @@
     }
   },
   {
-    "timestamp": "2026-03-01T16:21:12.362996",
+    "timestamp": "2026-03-15T13:08:38.258870",
     "level": "DEBUG",
     "message": "Running tool: research_assistant",
     "data": {
@@ -1838,7 +2083,7 @@
     }
   },
   {
-    "timestamp": "2026-03-01T16:21:13.362955",
+    "timestamp": "2026-03-15T13:08:39.177482",
     "level": "INFO",
     "message": "Tool research_assistant executed",
     "data": {
@@ -1846,7 +2091,7 @@
       "success": true,
       "duration_seconds": 0.0,
       "params": {
-        "topic": "india",
+        "topic": "iran",
         "type": "comprehensive"
       },
       "result": {
@@ -1855,7 +2100,7 @@
     }
   },
   {
-    "timestamp": "2026-03-01T16:21:13.385414",
+    "timestamp": "2026-03-15T13:08:39.213044",
     "level": "DEBUG",
     "message": "Running tool: exporter",
     "data": {
@@ -1867,37 +2112,42 @@
     }
   },
   {
-    "timestamp": "2026-03-01T16:21:13.532871",
+    "timestamp": "2026-03-15T13:08:39.255023",
     "level": "INFO",
-    "message": "Execution complete: 5 tools run, 0 skipped, 0 fallbacks used"
+    "message": "Sentiment-Trend fusion applied"
   },
   {
-    "timestamp": "2026-03-01T16:21:13.551267",
+    "timestamp": "2026-03-15T13:08:39.474276",
     "level": "INFO",
-    "message": "News pipeline complete in 15921ms",
+    "message": "Execution complete: 10 tools run, 0 skipped, 0 fallbacks used"
+  },
+  {
+    "timestamp": "2026-03-15T13:08:39.502917",
+    "level": "INFO",
+    "message": "News pipeline complete in 16211ms",
     "data": {
       "node": "news_pipeline",
       "status": "success",
-      "duration_ms": 15921,
-      "tools_executed": 5,
+      "duration_ms": 16211,
+      "tools_executed": 10,
       "errors": 0,
       "skipped": 0,
       "fallbacks": 0
     }
   },
   {
-    "timestamp": "2026-03-01T16:21:13.571075",
+    "timestamp": "2026-03-15T13:08:39.534998",
     "level": "INFO",
-    "message": "Multi-source fetch for: India AI with research papers and github repos and stackoverflow questions and image analysis and social media monitoring market stock finance"
+    "message": "Multi-source fetch for: Iran War with summarize and sentiment analysis and trends and full article content and entity extraction and image analysis and social media monitoring and research papers market stock finance"
   },
   {
-    "timestamp": "2026-03-01T16:21:20.232690",
+    "timestamp": "2026-03-15T13:08:46.643062",
     "level": "INFO",
-    "message": "Multi-source complete: 4 articles from 3 sources",
+    "message": "Multi-source complete: 8 articles from 3 sources",
     "data": {
       "rss": {
-        "success": false,
-        "count": 0
+        "success": true,
+        "count": 5
       },
       "gnews": {
         "success": true,
@@ -1910,12 +2160,12 @@
     }
   },
   {
-    "timestamp": "2026-03-01T16:21:23.011840",
+    "timestamp": "2026-03-15T13:08:49.029795",
     "level": "INFO",
-    "message": "Market pipeline complete in 9435ms"
+    "message": "Market pipeline complete in 9501ms"
   },
   {
-    "timestamp": "2026-03-01T16:21:25.358583",
+    "timestamp": "2026-03-15T13:08:50.614164",
     "level": "INFO",
     "message": "Tool research_assistant executed",
     "data": {
@@ -1923,7 +2173,7 @@
       "success": true,
       "duration_seconds": 0.0,
       "params": {
-        "topic": "India AI with research papers and github repos and stackoverflow questions and image analysis and social media monitoring",
+        "topic": "Iran War with summarize and sentiment analysis and trends and full article content and entity extraction and image analysis and social media monitoring and research papers",
         "type": "comprehensive"
       },
       "result": {
@@ -1932,12 +2182,12 @@
     }
   },
   {
-    "timestamp": "2026-03-01T16:21:25.379489",
+    "timestamp": "2026-03-15T13:08:50.641107",
     "level": "INFO",
-    "message": "Research pipeline complete in 11806ms"
+    "message": "Research pipeline complete in 11112ms"
   },
   {
-    "timestamp": "2026-03-01T16:21:25.869215",
+    "timestamp": "2026-03-15T13:08:51.714018",
     "level": "INFO",
     "message": "Tool social_monitor executed",
     "data": {
@@ -1945,7 +2195,7 @@
       "success": true,
       "duration_seconds": 0.0,
       "params": {
-        "topic": "India AI with research papers and github repos and stackoverflow questions and image analysis and social media monitoring",
+        "topic": "Iran War with summarize and sentiment analysis and trends and full article content and entity extraction and image analysis and social media monitoring and research papers",
         "platforms": [
           "reddit"
         ]
@@ -1956,298 +2206,28 @@
     }
   },
   {
-    "timestamp": "2026-03-01T16:21:25.890174",
+    "timestamp": "2026-03-15T13:08:51.740024",
     "level": "INFO",
-    "message": "Social pipeline complete in 12320ms"
+    "message": "Social pipeline complete in 12214ms"
   },
   {
-    "timestamp": "2026-03-01T16:21:25.912809",
+    "timestamp": "2026-03-15T13:08:51.765099",
     "level": "INFO",
     "message": "Fusion complete: ['news', 'social', 'research', 'market'] in 0ms"
   },
   {
-    "timestamp": "2026-03-01T16:21:25.933816",
+    "timestamp": "2026-03-15T13:08:51.788698",
     "level": "INFO",
-    "message": "Critic: score=74/100, approved=True, feedback=['Summary too shallow: only 0 words']"
+    "message": "Critic: score=82/100, approved=True, feedback=[]"
   },
   {
-    "timestamp": "2026-03-01T16:21:26.094185",
+    "timestamp": "2026-03-15T13:08:52.020886",
     "level": "INFO",
-    "message": "Memory saved: query='India AI with research papers and github repos and stackoverflow questions and image analysis and social media monitoring', score=74, entities=0, trends=0"
+    "message": "Memory saved: query='Iran War with summarize and sentiment analysis and trends and full article content and entity extraction and image analysis and social media monitoring and research papers', score=82, entities=0, trends=15"
   },
   {
-    "timestamp": "2026-03-01T16:21:26.129973",
+    "timestamp": "2026-03-15T13:08:52.051158",
     "level": "INFO",
-    "message": "Output packaged: confidence=0.83, badge=full"
-  },
-  {
-    "timestamp": "2026-03-15T01:46:00.811772",
-    "level": "INFO",
-    "message": "Nova v3 graph compiled successfully"
-  },
-  {
-    "timestamp": "2026-03-15T01:46:00.834936",
-    "level": "INFO",
-    "message": "Planning task for: tesla news"
-  },
-  {
-    "timestamp": "2026-03-15T01:46:00.850934",
-    "level": "INFO",
-    "message": "Using mock planner",
-    "data": {
-      "plan": {
-        "intent": "Get tesla news",
-        "domain": "tesla",
-        "steps": [
-          {
-            "tool": "news_fetcher",
-            "params": {
-              "topic": "tesla",
-              "sources": [
-                "google"
-              ],
-              "limit": 5
-            }
-          },
-          {
-            "tool": "exporter",
-            "params": {
-              "filename": "tesla_report",
-              "format": "json"
-            }
-          }
-        ]
-      }
-    }
-  },
-  {
-    "timestamp": "2026-03-15T01:46:00.868939",
-    "level": "INFO",
-    "message": "Supervisor: depth=quick, pipelines=['news']"
-  },
-  {
-    "timestamp": "2026-03-15T01:46:00.890980",
-    "level": "INFO",
-    "message": "Executing plan: Get tesla news",
-    "data": {
-      "steps": 2
-    }
-  },
-  {
-    "timestamp": "2026-03-15T01:46:00.908980",
-    "level": "DEBUG",
-    "message": "Running tool: news_fetcher",
-    "data": {
-      "params": [
-        "topic",
-        "sources",
-        "limit"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-03-15T01:46:00.928978",
-    "level": "INFO",
-    "message": "Multi-source fetch for: tesla"
-  },
-  {
-    "timestamp": "2026-03-15T01:46:07.036040",
-    "level": "INFO",
-    "message": "Multi-source complete: 13 articles from 3 sources",
-    "data": {
-      "rss": {
-        "success": true,
-        "count": 5
-      },
-      "gnews": {
-        "success": true,
-        "count": 5
-      },
-      "tavily": {
-        "success": true,
-        "count": 5
-      }
-    }
-  },
-  {
-    "timestamp": "2026-03-15T01:46:07.050353",
-    "level": "DEBUG",
-    "message": "Running tool: exporter",
-    "data": {
-      "params": [
-        "filename",
-        "format",
-        "data"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-03-15T01:46:07.150051",
-    "level": "INFO",
-    "message": "Execution complete: 2 tools run, 0 skipped, 0 fallbacks used"
-  },
-  {
-    "timestamp": "2026-03-15T01:46:07.169051",
-    "level": "INFO",
-    "message": "News pipeline complete in 6278ms",
-    "data": {
-      "node": "news_pipeline",
-      "status": "success",
-      "duration_ms": 6278,
-      "tools_executed": 2,
-      "errors": 0,
-      "skipped": 0,
-      "fallbacks": 0
-    }
-  },
-  {
-    "timestamp": "2026-03-15T01:46:07.188140",
-    "level": "INFO",
-    "message": "Fusion complete: ['news'] in 0ms"
-  },
-  {
-    "timestamp": "2026-03-15T01:46:07.302666",
-    "level": "INFO",
-    "message": "Memory saved: query='tesla news', score=100, entities=0, trends=0"
-  },
-  {
-    "timestamp": "2026-03-15T01:46:07.322665",
-    "level": "INFO",
-    "message": "Output packaged: confidence=0.68, badge=partial"
-  },
-  {
-    "timestamp": "2026-03-15T01:53:47.276809",
-    "level": "INFO",
-    "message": "Nova v3 graph compiled successfully"
-  },
-  {
-    "timestamp": "2026-03-15T01:53:47.297805",
-    "level": "INFO",
-    "message": "Planning task for: tesla news"
-  },
-  {
-    "timestamp": "2026-03-15T01:53:47.322844",
-    "level": "INFO",
-    "message": "Using mock planner",
-    "data": {
-      "plan": {
-        "intent": "Get tesla news",
-        "domain": "tesla",
-        "steps": [
-          {
-            "tool": "news_fetcher",
-            "params": {
-              "topic": "tesla",
-              "sources": [
-                "google"
-              ],
-              "limit": 5
-            }
-          },
-          {
-            "tool": "exporter",
-            "params": {
-              "filename": "tesla_report",
-              "format": "json"
-            }
-          }
-        ]
-      }
-    }
-  },
-  {
-    "timestamp": "2026-03-15T01:53:47.339844",
-    "level": "INFO",
-    "message": "Supervisor: depth=standard, pipelines=['news']"
-  },
-  {
-    "timestamp": "2026-03-15T01:53:47.363844",
-    "level": "INFO",
-    "message": "Executing plan: Get tesla news",
-    "data": {
-      "steps": 2
-    }
-  },
-  {
-    "timestamp": "2026-03-15T01:53:47.386167",
-    "level": "DEBUG",
-    "message": "Running tool: news_fetcher",
-    "data": {
-      "params": [
-        "topic",
-        "sources",
-        "limit"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-03-15T01:53:47.404165",
-    "level": "INFO",
-    "message": "Multi-source fetch for: tesla"
-  },
-  {
-    "timestamp": "2026-03-15T01:53:54.134949",
-    "level": "INFO",
-    "message": "Multi-source complete: 13 articles from 3 sources",
-    "data": {
-      "rss": {
-        "success": true,
-        "count": 5
-      },
-      "gnews": {
-        "success": true,
-        "count": 5
-      },
-      "tavily": {
-        "success": true,
-        "count": 5
-      }
-    }
-  },
-  {
-    "timestamp": "2026-03-15T01:53:54.151949",
-    "level": "DEBUG",
-    "message": "Running tool: exporter",
-    "data": {
-      "params": [
-        "filename",
-        "format",
-        "data"
-      ]
-    }
-  },
-  {
-    "timestamp": "2026-03-15T01:53:54.255524",
-    "level": "INFO",
-    "message": "Execution complete: 2 tools run, 0 skipped, 0 fallbacks used"
-  },
-  {
-    "timestamp": "2026-03-15T01:53:54.275525",
-    "level": "INFO",
-    "message": "News pipeline complete in 6910ms",
-    "data": {
-      "node": "news_pipeline",
-      "status": "success",
-      "duration_ms": 6910,
-      "tools_executed": 2,
-      "errors": 0,
-      "skipped": 0,
-      "fallbacks": 0
-    }
-  },
-  {
-    "timestamp": "2026-03-15T01:53:54.294527",
-    "level": "INFO",
-    "message": "Fusion complete: ['news'] in 0ms"
-  },
-  {
-    "timestamp": "2026-03-15T01:53:54.414917",
-    "level": "INFO",
-    "message": "Memory saved: query='tesla news', score=100, entities=0, trends=0"
-  },
-  {
-    "timestamp": "2026-03-15T01:53:54.434158",
-    "level": "INFO",
-    "message": "Output packaged: confidence=0.68, badge=partial"
+    "message": "Output packaged: confidence=0.93, badge=full"
   }
 ]

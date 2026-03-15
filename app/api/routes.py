@@ -100,7 +100,7 @@ async def process_command(request: CommandRequest) -> Dict[str, Any]:
     # Step 1: Plan the task
     try:
         print(f"[API v2] Planning task for: {request.text}")
-        plan_dict = plan_task(request.text)
+        plan_dict = plan_task(request.text, feature_toggles=request.feature_toggles or {})
         save_plan(plan_dict, request.text)
         print(f"[API v2] Plan created: {plan_dict.get('intent', 'unknown')}")
     except Exception as e:

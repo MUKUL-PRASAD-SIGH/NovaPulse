@@ -90,7 +90,7 @@ async def supervisor_node(state: Dict[str, Any]) -> Dict[str, Any]:
     pipelines = select_pipelines(query, toggles, depth)
 
     # 3. Generate plan via existing planner
-    plan = plan_task(query)
+    plan = plan_task(query, feature_toggles=toggles)
 
     # 4. Set strategy
     duration = round((time.time() - start) * 1000)
