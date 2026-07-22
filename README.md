@@ -55,6 +55,9 @@ Most "AI news tools" are glorified API wrappers. Nova is architecturally differe
                              |Detector |           | Monitor  |  Asst   |
                              +---------+           +----------+---------+
 ```
+<p align="center">
+  <img src="./assets/architecture.png" alt="NovaPulse Architecture" width="100%">
+</p>
 
 > 📰 News · 🧠 Summarizer · 💭 Sentiment · 📊 Trends · 🌐 Scraper · 👤 Entities · 🖼️ Images · 📱 Social · 📚 Research
 
