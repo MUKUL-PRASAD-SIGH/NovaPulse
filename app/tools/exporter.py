@@ -3,7 +3,10 @@ import json
 import os
 import csv
 from datetime import datetime
+from pathlib import Path
 from typing import Dict, Any
+
+from app.core.runtime_paths import get_runtime_directory
 
 # Optional imports for Word and PDF
 try:
@@ -25,7 +28,11 @@ except ImportError:
     HAS_PDF = False
 
 
-OUTPUT_DIR = "output"
+OUTPUT_DIR = str(get_runtime_directory(
+    "exports",
+    env_var="NOVA_OUTPUT_DIR",
+    local_directory=Path(__file__).resolve().parents[2] / "output",
+))
 
 
 def export_data(

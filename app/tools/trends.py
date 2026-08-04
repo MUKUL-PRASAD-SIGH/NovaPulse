@@ -4,8 +4,11 @@ import json
 import os
 from collections import Counter
 from datetime import datetime, timedelta
+from pathlib import Path
 from typing import List, Dict, Tuple
 from dateutil import parser as date_parser
+
+from app.core.runtime_paths import get_runtime_directory
 
 # Stopwords for filtering - includes generic headline words
 STOPWORDS = {
@@ -39,7 +42,11 @@ SOURCE_WEIGHTS = {
 }
 
 # Trend history file
-TRENDS_HISTORY_FILE = "app/memory/trends_history.json"
+TRENDS_HISTORY_FILE = str(get_runtime_directory(
+    "memory",
+    env_var="NOVA_DATA_DIR",
+    local_directory=Path(__file__).resolve().parents[1] / "memory",
+) / "trends_history.json")
 
 
 def extract_trends(news_items: List[Dict]) -> Dict:

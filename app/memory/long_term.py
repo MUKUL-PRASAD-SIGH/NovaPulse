@@ -14,40 +14,20 @@ import json
 import sqlite3
 import time
 from datetime import datetime, timedelta
+from pathlib import Path
 from typing import Dict, List, Any, Optional
 from threading import Lock
 
+from app.core.runtime_paths import get_runtime_directory
+
 
 def _ensure_db_dir() -> str:
-    """
-    Ensure a writable database directory exists and return its path.
-
-    - Prefer an explicit NOVA_DB_DIR env var if provided.
-    - Fallback to a local ./db folder next to this file (for local dev).
-    - On read-only filesystems (e.g. Vercel /var/task), transparently
-      fall back to /tmp/nova_memory_db which is writable.
-    """
-    # 1) Explicit override (e.g. NOVA_DB_DIR=/tmp/nova_memory_db on Vercel)
-    env_dir = os.getenv("NOVA_DB_DIR")
-    if env_dir:
-        try:
-            os.makedirs(env_dir, exist_ok=True)
-            return env_dir
-        except OSError:
-            # If even the env dir is not writable, fall through to /tmp
-            pass
-
-    # 2) Default next to this file (works locally)
-    default_dir = os.path.join(os.path.dirname(__file__), "db")
-    try:
-        os.makedirs(default_dir, exist_ok=True)
-        return default_dir
-    except OSError:
-        # Most hosted/serverless environments (like Vercel) make the code
-        # directory read-only. Use the standard writable temp dir there.
-        tmp_dir = os.path.join("/tmp", "nova_memory_db")
-        os.makedirs(tmp_dir, exist_ok=True)
-        return tmp_dir
+    """Return the shared, verified-writable database directory."""
+    return str(get_runtime_directory(
+        "database",
+        env_var="NOVA_DB_DIR",
+        local_directory=Path(__file__).parent / "db",
+    ))
 
 
 class LongTermMemory:

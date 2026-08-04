@@ -1,13 +1,23 @@
 """Memory store for plans, results, and logs."""
 import json
 import os
+import threading
 from datetime import datetime
+from pathlib import Path
 from typing import Dict, List, Any, Optional
 
-MEMORY_DIR = os.path.join(os.path.dirname(__file__))
+from app.core.runtime_paths import get_runtime_directory
+
+
+MEMORY_DIR = get_runtime_directory(
+    "memory",
+    env_var="NOVA_DATA_DIR",
+    local_directory=Path(__file__).parent,
+)
+_STORE_LOCK = threading.RLock()
 
 def _get_path(filename: str) -> str:
-    return os.path.join(MEMORY_DIR, filename)
+    return str(MEMORY_DIR / filename)
 
 def _load(filename: str) -> List[Dict]:
     path = _get_path(filename)
@@ -15,32 +25,47 @@ def _load(filename: str) -> List[Dict]:
         try:
             with open(path, 'r', encoding='utf-8') as f:
                 return json.load(f)
-        except:
+        except (OSError, json.JSONDecodeError, TypeError):
             return []
     return []
 
-def _save(filename: str, data: List[Dict], max_entries: int = 100):
+def _save(filename: str, data: List[Dict], max_entries: int = 100) -> bool:
     path = _get_path(filename)
-    with open(path, 'w', encoding='utf-8') as f:
-        json.dump(data[-max_entries:], f, indent=2)
+    temp_path = f"{path}.{os.getpid()}.tmp"
+    try:
+        with _STORE_LOCK:
+            with open(temp_path, 'w', encoding='utf-8') as f:
+                json.dump(data[-max_entries:], f, indent=2, default=str)
+            os.replace(temp_path, path)
+        return True
+    except OSError:
+        try:
+            os.remove(temp_path)
+        except OSError:
+            pass
+        return False
 
-def save_plan(plan: Dict, user_input: str):
-    plans = _load("plans.json")
-    plans.append({"timestamp": datetime.now().isoformat(), "user_input": user_input, "plan": plan})
-    _save("plans.json", plans, 50)
+def save_plan(plan: Dict, user_input: str) -> bool:
+    with _STORE_LOCK:
+        plans = _load("plans.json")
+        plans.append({"timestamp": datetime.now().isoformat(), "user_input": user_input, "plan": plan})
+        return _save("plans.json", plans, 50)
 
-def save_result(result: Dict):
-    results = _load("results.json")
-    results.append({"timestamp": datetime.now().isoformat(), "result": result})
-    _save("results.json", results, 50)
+def save_result(result: Dict) -> bool:
+    with _STORE_LOCK:
+        results = _load("results.json")
+        results.append({"timestamp": datetime.now().isoformat(), "result": result})
+        return _save("results.json", results, 50)
 
-def log(level: str, message: str, data: Optional[Dict] = None):
-    logs = _load("logs.json")
-    entry = {"timestamp": datetime.now().isoformat(), "level": level.upper(), "message": message}
-    if data:
-        entry["data"] = data
-    logs.append(entry)
-    _save("logs.json", logs, 200)
+def log(level: str, message: str, data: Optional[Dict] = None) -> bool:
+    """Best-effort runtime logging that can never stop the pipeline."""
+    with _STORE_LOCK:
+        logs = _load("logs.json")
+        entry = {"timestamp": datetime.now().isoformat(), "level": level.upper(), "message": message}
+        if data:
+            entry["data"] = data
+        logs.append(entry)
+        return _save("logs.json", logs, 200)
 
 def get_recent_plans(limit: int = 10) -> List[Dict]:
     return _load("plans.json")[-limit:]
