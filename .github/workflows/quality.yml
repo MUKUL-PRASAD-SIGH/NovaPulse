@@ -20,6 +20,8 @@ jobs:
       USE_MOCK_PLANNER: "true"
       USE_V3_GRAPH: "false"
       VERCEL: "1"
+      # Test-only value; production must supply a private secret.
+      NOVA_RATE_LIMIT_PEPPER: "novapulse-ci-only-pepper-32-characters"
 
     steps:
       - name: Check out repository
@@ -39,6 +41,9 @@ jobs:
           python -m compileall -q app main.py mcp_server.py run_server.py
           node --check frontend/app.js
           python -m json.tool vercel.json > /dev/null
+
+      - name: Run rate-limit and monitor tests
+        run: python -m unittest discover -s tests -v
 
       - name: Run serverless end-to-end smoke test
         shell: bash

@@ -10,7 +10,7 @@ import asyncio
 import json
 import time
 import uuid
-from typing import Dict, List, Any, Optional
+from typing import Awaitable, Callable, Dict, List, Any, Optional
 from fastapi import WebSocket, WebSocketDisconnect
 
 
@@ -56,8 +56,9 @@ class MonitorTask:
 
     def __init__(self, topic: str, interval_minutes: int = 30,
                  duration_hours: int = 24, depth: str = "standard",
-                 owner_key: str = "unknown"):
-        self.id = str(uuid.uuid4())[:8]
+                 owner_key: str = "unknown", monitor_id: Optional[str] = None,
+                 release_callback: Optional[Callable[[str], Awaitable[None]]] = None):
+        self.id = monitor_id or str(uuid.uuid4())[:8]
         self.topic = topic
         self.interval_minutes = interval_minutes
         self.duration_hours = duration_hours
@@ -69,6 +70,10 @@ class MonitorTask:
         self.changes_detected = 0
         self.active = True
         self._task: Optional[asyncio.Task] = None
+        self._expiry_task: Optional[asyncio.Task] = None
+        self._release_callback = release_callback
+        self._release_lock = asyncio.Lock()
+        self._slot_released = False
 
     def to_dict(self) -> Dict[str, Any]:
         return {
@@ -85,10 +90,14 @@ class MonitorTask:
             "elapsed_hours": round((time.time() - self.created_at) / 3600, 2),
         }
 
-    def cancel(self):
-        self.active = False
-        if self._task and not self._task.done():
-            self._task.cancel()
+    async def release_slot(self) -> None:
+        """Release the shared worker lease exactly once."""
+        async with self._release_lock:
+            if self._slot_released:
+                return
+            if self._release_callback:
+                await self._release_callback(self.id)
+            self._slot_released = True
 
 
 class ContinuousIntelligenceEngine:
@@ -97,7 +106,7 @@ class ContinuousIntelligenceEngine:
     Usage:
         engine = ContinuousIntelligenceEngine(ws_manager, graph_runner)
         task_id = await engine.start_monitor("Tesla", interval=30, duration=24)
-        engine.stop_monitor(task_id)
+        await engine.stop_monitor(task_id)
     """
 
     def __init__(self, ws_manager: ConnectionManager):
@@ -112,7 +121,9 @@ class ContinuousIntelligenceEngine:
     async def start_monitor(self, topic: str, interval_minutes: int = 30,
                              duration_hours: int = 24,
                              depth: str = "standard",
-                             owner_key: str = "unknown") -> str:
+                             owner_key: str = "unknown",
+                             monitor_id: Optional[str] = None,
+                             release_callback: Optional[Callable[[str], Awaitable[None]]] = None) -> str:
         """Start a continuous monitoring task."""
         monitor = MonitorTask(
             topic=topic,
@@ -120,10 +131,13 @@ class ContinuousIntelligenceEngine:
             duration_hours=duration_hours,
             depth=depth,
             owner_key=owner_key,
+            monitor_id=monitor_id,
+            release_callback=release_callback,
         )
 
         self.monitors[monitor.id] = monitor
         monitor._task = asyncio.create_task(self._run_monitor(monitor))
+        monitor._expiry_task = asyncio.create_task(self._expire_monitor(monitor))
 
         # Notify clients
         await self.ws_manager.broadcast({
@@ -133,13 +147,22 @@ class ContinuousIntelligenceEngine:
 
         return monitor.id
 
-    def stop_monitor(self, monitor_id: str) -> bool:
+    async def stop_monitor(self, monitor_id: str) -> bool:
         """Stop a running monitor."""
         monitor = self.monitors.get(monitor_id)
         if not monitor:
             return False
 
-        monitor.cancel()
+        monitor.active = False
+        if monitor._expiry_task and not monitor._expiry_task.done():
+            monitor._expiry_task.cancel()
+
+        try:
+            await monitor.release_slot()
+        finally:
+            if monitor._task and not monitor._task.done():
+                monitor._task.cancel()
+                await asyncio.gather(monitor._task, return_exceptions=True)
         return True
 
     def get_active_monitors(self, owner_key: Optional[str] = None) -> List[Dict]:
@@ -153,6 +176,20 @@ class ContinuousIntelligenceEngine:
     def get_all_monitors(self) -> List[Dict]:
         """List all monitors (active and stopped)."""
         return [m.to_dict() for m in self.monitors.values()]
+
+    async def _expire_monitor(self, monitor: MonitorTask) -> None:
+        """Release a monitor's shared slot exactly at its duration deadline."""
+        deadline = monitor.created_at + (monitor.duration_hours * 3600)
+        try:
+            await asyncio.sleep(max(0.0, deadline - time.time()))
+            monitor.active = False
+            try:
+                await asyncio.shield(monitor.release_slot())
+            finally:
+                if monitor._task and not monitor._task.done():
+                    monitor._task.cancel()
+        except asyncio.CancelledError:
+            pass
 
     async def _run_monitor(self, monitor: MonitorTask):
         """Core monitoring loop — runs periodically and detects changes."""
@@ -223,6 +260,12 @@ class ContinuousIntelligenceEngine:
             pass
         finally:
             monitor.active = False
+            if monitor._expiry_task and not monitor._expiry_task.done():
+                monitor._expiry_task.cancel()
+            try:
+                await asyncio.shield(monitor.release_slot())
+            except Exception as exc:
+                print(f"[MONITOR] Failed to release slot {monitor.id}: {exc}")
             await self.ws_manager.broadcast({
                 "type": "monitor_stopped",
                 "monitor_id": monitor.id,

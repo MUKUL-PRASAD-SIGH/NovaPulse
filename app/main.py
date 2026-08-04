@@ -26,6 +26,7 @@ from app.core.rate_limiter import (
     IPRateLimitMiddleware,
     build_rate_limit_rules,
     rate_limiter,
+    validate_rate_limit_configuration,
 )
 import asyncio
 import httpx
@@ -328,6 +329,7 @@ if os.path.exists(frontend_dir):
 @app.on_event("startup")
 async def startup_event():
     """Initialize on startup."""
+    validate_rate_limit_configuration()
     await init_auth_db()
     await rate_limiter.initialize()
     asyncio.create_task(background_cleanup())

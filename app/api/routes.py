@@ -10,6 +10,7 @@ from typing import Dict, Any, Optional
 import httpx
 import os
 import io
+import time
 import traceback
 from dotenv import load_dotenv
 
@@ -18,6 +19,7 @@ from app.agents.planner_agent import plan_task
 from app.agents.executor_agent import execute_plan
 from app.memory.store import save_plan, get_recent_plans, get_recent_results
 from app.core.tool_registry import list_tools
+from app.core.rate_limiter import rate_limiter
 from app.tools.exporter import export_data
 
 # v3 Phase 3: Memory manager and WebSocket
@@ -433,7 +435,12 @@ async def start_monitor(request: MonitorRequest, http_request: Request) -> Dict[
         max_active = max(1, int(os.getenv("NOVA_MAX_ACTIVE_MONITORS_PER_IP", "1")))
     except ValueError:
         max_active = 1
-    if len(continuous_engine.get_active_monitors(owner_key=owner_key)) >= max_active:
+    monitor_id = await rate_limiter.acquire_monitor_slot(
+        identity_hash=owner_key,
+        limit=max_active,
+        expires_at=time.time() + (request.duration_hours * 3600),
+    )
+    if monitor_id is None:
         raise HTTPException(
             status_code=429,
             detail=f"This IP address already has {max_active} active monitor(s).",
@@ -443,13 +450,19 @@ async def start_monitor(request: MonitorRequest, http_request: Request) -> Dict[
     if continuous_engine._graph_runner is None and NOVA_V3_AVAILABLE:
         continuous_engine.set_graph_runner(run_graph)
 
-    task_id = await continuous_engine.start_monitor(
-        topic=request.topic,
-        interval_minutes=request.interval_minutes,
-        duration_hours=request.duration_hours,
-        depth=request.depth,
-        owner_key=owner_key,
-    )
+    try:
+        task_id = await continuous_engine.start_monitor(
+            topic=request.topic,
+            interval_minutes=request.interval_minutes,
+            duration_hours=request.duration_hours,
+            depth=request.depth,
+            owner_key=owner_key,
+            monitor_id=monitor_id,
+            release_callback=rate_limiter.release_monitor_slot,
+        )
+    except Exception:
+        await rate_limiter.release_monitor_slot(monitor_id)
+        raise
 
     return {
         "success": True,
@@ -464,7 +477,7 @@ async def stop_monitor(monitor_id: str) -> Dict[str, Any]:
     if not CONTINUOUS_AVAILABLE:
         raise HTTPException(status_code=503, detail="Continuous mode not available")
 
-    success = continuous_engine.stop_monitor(monitor_id)
+    success = await continuous_engine.stop_monitor(monitor_id)
     if not success:
         raise HTTPException(status_code=404, detail=f"Monitor '{monitor_id}' not found")
 
