@@ -51,8 +51,11 @@ Demo Videos/
 # ==========================================
 test_*.py
 _test_*.py
+debug_*.py
 check*.py
 diagnose*.py
+*.log
+uvilog.txt
 
 # ==========================================
 # 📝 Internal Dev Docs & Drafts

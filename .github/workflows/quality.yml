@@ -1,0 +1,121 @@
+name: NovaPulse quality
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: novapulse-quality-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  end-to-end:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      USE_MOCK_PLANNER: "true"
+      USE_V3_GRAPH: "false"
+      VERCEL: "1"
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install runtime dependencies
+        run: python -m pip install -r requirements.txt
+
+      - name: Validate Python and browser scripts
+        run: |
+          python -m compileall -q app main.py mcp_server.py run_server.py
+          node --check frontend/app.js
+          python -m json.tool vercel.json > /dev/null
+
+      - name: Run serverless end-to-end smoke test
+        shell: bash
+        run: |
+          python - <<'PY'
+          import asyncio
+          from collections import Counter
+          from unittest.mock import patch
+
+          import httpx
+          from bs4 import BeautifulSoup
+
+          from app.api import routes
+          from app.main import app
+
+
+          def fake_tool(name):
+              if name == "news_fetcher":
+                  return lambda **kwargs: [{
+                      "title": "NovaPulse pipeline verified",
+                      "link": "https://example.com/nova",
+                      "source": "CI",
+                  }]
+              if name == "summarizer":
+                  return lambda **kwargs: {
+                      "summary": "The full pipeline completed.",
+                      "key_points": ["Serverless storage is writable"],
+                  }
+              if name == "exporter":
+                  return lambda **kwargs: "/tmp/nova-report.json"
+              raise AssertionError(f"unexpected tool: {name}")
+
+
+          async def main():
+              routes.USE_V3_GRAPH = False
+              transport = httpx.ASGITransport(app=app)
+              async with httpx.AsyncClient(
+                  transport=transport,
+                  base_url="http://novapulse.test",
+              ) as client:
+                  health = await client.get("/api/health")
+                  assert health.status_code == 200
+                  assert health.json()["status"] == "ok"
+
+                  landing = await client.get("/")
+                  assert landing.status_code == 200
+                  soup = BeautifulSoup(landing.text, "html.parser")
+                  ids = [node["id"] for node in soup.select("[id]")]
+                  assert not [key for key, count in Counter(ids).items() if count > 1]
+                  assert len(soup.select("[data-workspace-tab]")) == 5
+                  assert len(soup.select("[data-workspace-panel]")) == 5
+                  assert soup.select_one("#executionTraceDetails")
+
+                  with patch(
+                      "app.agents.executor_agent.get_tool",
+                      side_effect=fake_tool,
+                  ):
+                      command = await client.post("/api/command", json={
+                          "text": "NovaPulse summary",
+                          "feature_toggles": {"news": True, "summary": True},
+                      })
+
+                  payload = command.json()
+                  assert command.status_code == 200, payload
+                  assert payload["success"] is True, payload
+                  assert payload["result"]["success"] is True, payload
+                  assert payload["result"]["data"]["summary"]["summary"]
+                  assert not payload["errors"], payload
+
+                  exported = await client.post("/api/export", json={
+                      "data": payload["result"]["data"],
+                      "format": "json",
+                      "filename": "nova-ci",
+                  })
+                  assert exported.status_code == 200, exported.text
+                  assert exported.headers["content-type"].startswith("application/json")
+
+
+          asyncio.run(main())
+          PY
