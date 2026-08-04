@@ -55,12 +55,14 @@ class MonitorTask:
     """Represents a running continuous intelligence monitor."""
 
     def __init__(self, topic: str, interval_minutes: int = 30,
-                 duration_hours: int = 24, depth: str = "standard"):
+                 duration_hours: int = 24, depth: str = "standard",
+                 owner_key: str = "unknown"):
         self.id = str(uuid.uuid4())[:8]
         self.topic = topic
         self.interval_minutes = interval_minutes
         self.duration_hours = duration_hours
         self.depth = depth
+        self.owner_key = owner_key
         self.created_at = time.time()
         self.last_run_at: Optional[float] = None
         self.run_count = 0
@@ -109,13 +111,15 @@ class ContinuousIntelligenceEngine:
 
     async def start_monitor(self, topic: str, interval_minutes: int = 30,
                              duration_hours: int = 24,
-                             depth: str = "standard") -> str:
+                             depth: str = "standard",
+                             owner_key: str = "unknown") -> str:
         """Start a continuous monitoring task."""
         monitor = MonitorTask(
             topic=topic,
             interval_minutes=interval_minutes,
             duration_hours=duration_hours,
             depth=depth,
+            owner_key=owner_key,
         )
 
         self.monitors[monitor.id] = monitor
@@ -138,9 +142,13 @@ class ContinuousIntelligenceEngine:
         monitor.cancel()
         return True
 
-    def get_active_monitors(self) -> List[Dict]:
+    def get_active_monitors(self, owner_key: Optional[str] = None) -> List[Dict]:
         """List all active monitoring tasks."""
-        return [m.to_dict() for m in self.monitors.values() if m.active]
+        return [
+            m.to_dict()
+            for m in self.monitors.values()
+            if m.active and (owner_key is None or m.owner_key == owner_key)
+        ]
 
     def get_all_monitors(self) -> List[Dict]:
         """List all monitors (active and stopped)."""

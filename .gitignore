@@ -10,6 +10,7 @@
 # ==========================================
 *.md
 !README.md
+!docs/RATE_LIMITING.md
 
 # ==========================================
 # 🐍 Python
@@ -50,6 +51,7 @@ Demo Videos/
 # 🧪 One-Time Test/Debug Scripts
 # ==========================================
 test_*.py
+!tests/test_rate_limiter.py
 _test_*.py
 debug_*.py
 check*.py

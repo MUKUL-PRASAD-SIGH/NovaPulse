@@ -133,6 +133,7 @@ The footer credits:
 | 💊 **Execution Pipeline** | Live step-by-step progress overlay with retry/fallback tracking | JS state machine |
 | 🎛️ **Dynamic Panels** | Toggle-responsive layout with smooth CSS animations | CSS Grid + auto-fit |
 | 🎯 **Smart Tooltips** | Hover over finance terms for instant explanations | JS hover detection |
+| ☀️ **Polished Light Theme** | High-contrast daylight palette with persistent theme preference | CSS design tokens + LocalStorage |
 
 ---
 
@@ -143,6 +144,9 @@ NovaOS utilizes a robust, frictionless, and modern security architecture:
 1. **Passwordless Access**: Users authenticate utilizing a secure 6-digit Time-Based One-Time Password (OTP) dispatched to their registered email.
 2. **Stateless JWT Sessions**: Upon successful OTP validation, the backend generates an HMAC-SHA256 authenticated JSON Web Token (JWT) establishing the user session securely without requiring heavy database queries on every authenticated endpoint.
 3. **Database Security**: Powered by strictly-typed `aiosqlite`. Sensitive pending registrations and active session tokens are hashed, salted (`pbkdf2_hmac`), and subject to strict 10-minute expiration TTLs.
+4. **Per-IP Fair Use**: Credit-consuming intelligence requests use atomic, SQLite-backed burst and daily limits. OTP sends and monitor creation have separate abuse limits, and raw IP addresses are hashed before they are stored.
+
+Default limits are 10 intelligence commands per minute and 100 per day per IP, 2 monitor starts per hour and 4 per day per IP, and 5 OTP sends per 10 minutes and 20 per day per IP. A client over quota receives HTTP `429` with `Retry-After` and `X-RateLimit-*` headers. See [Rate Limiting](docs/RATE_LIMITING.md) for configuration and proxy guidance.
 
 ---
 
@@ -597,6 +601,7 @@ NovaAI/
 │   │
 │   ├── core/
 │   │   ├── __init__.py
+│   │   ├── rate_limiter.py          # Persistent per-IP fair-use protection
 │   │   ├── tool_registry.py         # Agent management
 │   │   └── plan_validator.py        # Plan validation
 │   │
@@ -634,6 +639,9 @@ NovaAI/
 │   ├── style.css                    # Professional dark theme
 │   └── mas_styles.css               # MAS agent panel styles
 │
+├── docs/
+│   └── RATE_LIMITING.md              # Fair-use limits and deployment guidance
+│
 ├── output/                          # Exported report files
 ├── .env                             # API keys (not in git)
 ├── .env.example                     # Template for .env
@@ -658,6 +666,8 @@ NovaAI/
 | GET | `/api/languages` | Get available translation languages |
 | GET | `/api/dictionary/{word}` | Get word definition |
 
+`POST /api/command`, `POST /api/monitor`, and `POST /api/auth/send-otp` are rate-limited per IP. Successful responses include the active quota in `X-RateLimit-Limit`, `X-RateLimit-Remaining`, `X-RateLimit-Reset`, and `X-RateLimit-Policy` headers.
+
 ### Example Request
 
 ```bash
@@ -678,6 +688,16 @@ curl -X POST http://localhost:8000/api/command \
 | `TAVILY_API_KEY` | Optional | Tavily web search |
 | `GNEWS_API_KEY` | Optional | GNews API |
 | `USE_MOCK_PLANNER` | Optional | Use mock for testing |
+| `NOVA_RATE_LIMIT_ENABLED` | Optional | Enable per-IP limits (default: `true`) |
+| `NOVA_COMMANDS_PER_MINUTE` | Optional | Intelligence command burst limit per IP (default: `10`) |
+| `NOVA_COMMANDS_PER_DAY` | Optional | Intelligence command daily limit per IP (default: `100`) |
+| `NOVA_MONITORS_PER_HOUR` | Optional | Monitor starts allowed per IP per hour (default: `2`) |
+| `NOVA_MONITORS_PER_DAY` | Optional | Monitor starts allowed per IP per day (default: `4`) |
+| `NOVA_MAX_ACTIVE_MONITORS_PER_IP` | Optional | Concurrent monitors allowed per IP (default: `1`) |
+| `NOVA_OTPS_PER_TEN_MINUTES` | Optional | OTP sends allowed per IP per 10 minutes (default: `5`) |
+| `NOVA_OTPS_PER_DAY` | Optional | OTP sends allowed per IP per day (default: `20`) |
+| `NOVA_TRUST_PROXY_HEADERS` | Optional | Trust proxy-provided client IPs; enable only behind a trusted proxy/CDN |
+| `NOVA_RATE_LIMIT_SALT` | Recommended | Private salt used when hashing IP addresses for storage |
 
 ---
 

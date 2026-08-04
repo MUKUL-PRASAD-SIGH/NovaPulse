@@ -3,9 +3,9 @@
 v3: Routes through LangGraph pipeline with v2 fallback.
 Phase 3: Memory endpoints + Continuous monitoring.
 """
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter, HTTPException, Request
 from fastapi.responses import StreamingResponse
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 from typing import Dict, Any, Optional
 import httpx
 import os
@@ -414,19 +414,30 @@ async def _get_free_dictionary(word: str) -> Dict[str, Any]:
 
 class MonitorRequest(BaseModel):
     topic: str
-    interval_minutes: int = 30
-    duration_hours: int = 24
+    interval_minutes: int = Field(default=30, ge=15, le=1440)
+    duration_hours: int = Field(default=24, ge=1, le=24)
     depth: str = "standard"
 
 
 @router.post("/monitor")
-async def start_monitor(request: MonitorRequest) -> Dict[str, Any]:
+async def start_monitor(request: MonitorRequest, http_request: Request) -> Dict[str, Any]:
     """Start a continuous intelligence monitor.
     
     Body: {"topic": "Tesla", "interval_minutes": 30, "duration_hours": 24}
     """
     if not CONTINUOUS_AVAILABLE:
         raise HTTPException(status_code=503, detail="Continuous mode not available")
+
+    owner_key = getattr(http_request.state, "client_ip_hash", "unknown")
+    try:
+        max_active = max(1, int(os.getenv("NOVA_MAX_ACTIVE_MONITORS_PER_IP", "1")))
+    except ValueError:
+        max_active = 1
+    if len(continuous_engine.get_active_monitors(owner_key=owner_key)) >= max_active:
+        raise HTTPException(
+            status_code=429,
+            detail=f"This IP address already has {max_active} active monitor(s).",
+        )
 
     # Inject graph runner if not set
     if continuous_engine._graph_runner is None and NOVA_V3_AVAILABLE:
@@ -437,6 +448,7 @@ async def start_monitor(request: MonitorRequest) -> Dict[str, Any]:
         interval_minutes=request.interval_minutes,
         duration_hours=request.duration_hours,
         depth=request.depth,
+        owner_key=owner_key,
     )
 
     return {

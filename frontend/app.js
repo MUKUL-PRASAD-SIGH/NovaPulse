@@ -2474,13 +2474,30 @@ document.addEventListener('DOMContentLoaded', () => {
     // 1. Dark/Light Mode Theme Toggle
     const themeToggleBtn = document.getElementById('themeToggleBtn');
     if (themeToggleBtn) {
-        themeToggleBtn.addEventListener('click', () => {
-            const isActive = themeToggleBtn.classList.toggle('active');
-            if (isActive) {
-                document.body.classList.remove('light-theme'); // Dark mode
-            } else {
-                document.body.classList.add('light-theme'); // Light mode
+        const applyTheme = (theme, persist = true) => {
+            const isDark = theme !== 'light';
+            const nextTheme = isDark ? 'dark' : 'light';
+
+            document.documentElement.dataset.theme = nextTheme;
+            document.body.classList.toggle('light-theme', !isDark);
+            themeToggleBtn.classList.toggle('active', isDark);
+            themeToggleBtn.setAttribute('aria-checked', String(isDark));
+            themeToggleBtn.setAttribute('aria-label', isDark ? 'Use dark theme' : 'Use light theme');
+            themeToggleBtn.title = isDark ? 'Dark theme is on' : 'Light theme is on';
+
+            if (persist) {
+                try {
+                    localStorage.setItem('novaTheme', nextTheme);
+                } catch (_) {
+                    // Theme still works when storage is unavailable.
+                }
             }
+        };
+
+        applyTheme(document.documentElement.dataset.theme || 'dark', false);
+        themeToggleBtn.addEventListener('click', () => {
+            const nextTheme = document.documentElement.dataset.theme === 'light' ? 'dark' : 'light';
+            applyTheme(nextTheme);
         });
     }
 

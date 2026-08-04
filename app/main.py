@@ -22,6 +22,11 @@ from app.api.auth_db import (
     cleanup_expired_tokens, register_oauth_user
 )
 from app.api.email_service import send_otp_email
+from app.core.rate_limiter import (
+    IPRateLimitMiddleware,
+    build_rate_limit_rules,
+    rate_limiter,
+)
 import asyncio
 import httpx
 from fastapi.responses import RedirectResponse
@@ -51,6 +56,15 @@ app = FastAPI(
     version="3.0.0"
 )
 
+# Fair-use protection for endpoints that consume provider credits or send email.
+# CORS is registered below and wraps this middleware so quota headers remain
+# visible to browser clients, including on 429 responses.
+app.add_middleware(
+    IPRateLimitMiddleware,
+    limiter=rate_limiter,
+    rules=build_rate_limit_rules(),
+)
+
 # Background tasks
 async def background_cleanup():
     """Runs every hour to delete expired OTPs and refresh tokens from the db."""
@@ -70,6 +84,13 @@ app.add_middleware(
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
+    expose_headers=[
+        "Retry-After",
+        "X-RateLimit-Limit",
+        "X-RateLimit-Remaining",
+        "X-RateLimit-Reset",
+        "X-RateLimit-Policy",
+    ],
 )
 
 # API routes
@@ -308,6 +329,7 @@ if os.path.exists(frontend_dir):
 async def startup_event():
     """Initialize on startup."""
     await init_auth_db()
+    await rate_limiter.initialize()
     asyncio.create_task(background_cleanup())
 
     print("=" * 60)
