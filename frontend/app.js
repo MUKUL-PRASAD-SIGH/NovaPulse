@@ -152,6 +152,7 @@ document.querySelectorAll('.toggle-badge').forEach(badge => {
 
         updateSelectAllState();
         updateStatusHint();
+        if (typeof updatePanelVisibility === 'function') updatePanelVisibility();
     });
 });
 
@@ -261,8 +262,10 @@ function buildCommand(topic) {
 
 async function sendCommand(topic) {
     const fullCommand = buildCommand(topic);
+    executionInProgress = true;
     sendBtn.disabled = true;
     clearResults();
+    hideSummaryChip();
 
     // Save to history
     saveToHistory(topic);
@@ -276,7 +279,7 @@ async function sendCommand(topic) {
     const startTime = Date.now();
 
     try {
-        // Simulate step progression (news_fetcher always first)
+        // Start the visible trace without delaying the real network request.
         await simulateStepProgress(steps, 0, 'news_fetcher');
 
         const response = await fetch(`${API_BASE}/command`, {
@@ -297,28 +300,50 @@ async function sendCommand(topic) {
         }
 
         const data = await response.json();
+        const result = data.result || {};
+        const errorMessages = [...new Set([
+            ...(Array.isArray(data.errors) ? data.errors : []),
+            ...(Array.isArray(result.errors) ? result.errors : [])
+        ].filter(Boolean))];
 
         // Mark all steps complete based on actual result
-        await markStepsFromResult(steps, data.result);
+        await markStepsFromResult(steps, result);
 
         // Show summary
         const elapsed = ((Date.now() - startTime) / 1000).toFixed(1);
-        showExecutionSummary(steps, elapsed, data.result?.errors?.length || 0);
-
-        // Wait a bit then hide overlay and show results
-        await delay(1500);
-        hideExecutionPipeline();
+        const traceEntries = buildExecutionTrace(result);
+        showExecutionSummary(steps, elapsed, errorMessages, traceEntries);
 
         displayResults(data);
-        setStatus('✅ Intelligence report ready!', 'success');
+        const succeeded = data.success === true && result.success !== false;
+        document.getElementById('agentStatus').textContent = succeeded ? 'Execution complete' : 'Execution needs attention';
+        setStatus(
+            succeeded
+                ? '✅ Intelligence report ready. Use the tabs to explore it.'
+                : `⚠️ Pipeline returned ${errorMessages.length || 1} issue(s). Open Trace for details.`,
+            succeeded ? 'success' : 'error'
+        );
+
+        if (succeeded) {
+            schedulePipelineCollapse();
+        }
 
     } catch (error) {
         console.error('API error:', error);
         markStepFailed(steps, 0);
-        await delay(1000);
-        hideExecutionPipeline();
+        const elapsed = ((Date.now() - startTime) / 1000).toFixed(1);
+        const errorMessages = [error.message || 'Request failed'];
+        showExecutionSummary(steps, elapsed, errorMessages, [{
+            label: 'API request',
+            status: 'failed',
+            detail: errorMessages[0]
+        }]);
+        document.getElementById('agentStatus').textContent = 'Execution failed';
         setStatus(`❌ Error: ${error.message}`, 'error');
     } finally {
+        executionInProgress = false;
+        const overlay = document.getElementById('executionOverlay');
+        if (overlay?.classList.contains('hidden')) showSummaryChip();
         sendBtn.disabled = false;
     }
 }
@@ -367,6 +392,10 @@ function showExecutionPipeline(steps, topic) {
     const strategy = document.getElementById('executionStrategy');
     const summary = document.getElementById('executionSummary');
 
+    clearTimeout(pipelineCollapseTimer);
+    closeExecutionTrace();
+    document.getElementById('agentStatus').textContent = `Planning ${topic}`;
+
     // Set strategy text
     const toolNames = steps.map(s => s.name.toLowerCase()).join(' → ');
     strategy.textContent = `Agent Strategy: ${toolNames}`;
@@ -391,7 +420,7 @@ function showExecutionPipeline(steps, topic) {
     overlay.classList.remove('fade-out');
 
     // Start first step immediately
-    updateStepStatus(steps[0].id, 'active', 'Running...');
+    if (steps[0]) updateStepStatus(steps[0].id, 'active', 'Running...');
 }
 
 // Update a step's visual status
@@ -426,29 +455,38 @@ function updateStepStatus(stepId, status, statusText, time = null) {
 
 // Simulate step progression with delays
 async function simulateStepProgress(steps, startIdx, currentTool) {
-    const stepDelay = 800; // ms between visual updates
-
-    for (let i = startIdx; i < steps.length; i++) {
-        const step = steps[i];
-
-        // Mark current as active
-        updateStepStatus(step.id, 'active', 'Processing...');
-
-        // Wait a bit to show activity
-        await delay(stepDelay);
+    if (steps[startIdx]) {
+        updateStepStatus(steps[startIdx].id, 'active', 'Processing...');
     }
+    await Promise.resolve(currentTool);
 }
 
 // Mark steps based on actual API result
 async function markStepsFromResult(steps, result) {
     if (!result) return;
 
-    const toolResults = result.tools_executed || [];
-    const skipped = result.skipped || [];
+    const toolResults = Array.isArray(result.tools_executed) ? result.tools_executed : [];
+    const skipped = Array.isArray(result.skipped) ? result.skipped : [];
+    const errors = Array.isArray(result.errors) ? result.errors.filter(Boolean) : [];
+    const outputKeyByTool = {
+        news_fetcher: 'news',
+        web_scraper: 'scraped_articles',
+        summarizer: 'summary',
+        sentiment: 'sentiment',
+        trends: 'trends',
+        entity_extractor: 'entities',
+        image_analyzer: 'images',
+        social_monitor: 'social',
+        research_assistant: 'research',
+        exporter: 'exported_file'
+    };
+    let unresolvedFailureShown = false;
 
     for (const step of steps) {
         const executed = toolResults.find(t => t.tool === step.id);
         const wasSkipped = skipped.find(s => s.tool === step.id);
+        const outputKey = outputKeyByTool[step.id];
+        const hasOutput = outputKey && result.data && result.data[outputKey] != null;
 
         if (executed) {
             if (executed.success) {
@@ -458,8 +496,15 @@ async function markStepsFromResult(steps, result) {
             }
         } else if (wasSkipped) {
             updateStepStatus(step.id, 'skipped', wasSkipped.reason || 'Skipped');
-        } else {
+        } else if (hasOutput || (result.success === true && step.id === 'exporter')) {
             updateStepStatus(step.id, 'completed', 'Done!');
+        } else if (result.success === false && !unresolvedFailureShown) {
+            updateStepStatus(step.id, 'failed', errors[0] || 'Pipeline failed');
+            unresolvedFailureShown = true;
+        } else if (result.success === false) {
+            updateStepStatus(step.id, 'skipped', 'Not run');
+        } else {
+            updateStepStatus(step.id, 'skipped', 'No trace returned');
         }
 
         await delay(200); // Stagger the visual updates
@@ -474,10 +519,11 @@ function markStepFailed(steps, idx) {
 }
 
 // Show the execution summary
-function showExecutionSummary(steps, elapsed, errorCount) {
+function showExecutionSummary(steps, elapsed, errorMessages = [], traceEntries = []) {
     const summary = document.getElementById('executionSummary');
     const summaryText = document.getElementById('summaryText');
     const summaryIcon = summary.querySelector('.summary-icon');
+    const errorCount = errorMessages.length;
 
     const completedCount = steps.filter(s =>
         document.querySelector(`[data-step-id="${s.id}"]`)?.classList.contains('completed')
@@ -496,17 +542,27 @@ function showExecutionSummary(steps, elapsed, errorCount) {
     }
 
     // Save state for summary chip
-    lastExecutionState = { steps, elapsed, errorCount };
+    lastExecutionState = { steps, elapsed, errorCount, errorMessages, traceEntries };
+    renderTraceDetails(traceEntries, errorMessages);
 
     summary.classList.remove('hidden');
 }
 
 // Last execution state for chip expansion
-let lastExecutionState = { steps: [], elapsed: 0, errorCount: 0 };
+let lastExecutionState = { steps: [], elapsed: 0, errorCount: 0, errorMessages: [], traceEntries: [] };
+let pipelineCollapseTimer = null;
+let executionInProgress = false;
+
+function schedulePipelineCollapse() {
+    clearTimeout(pipelineCollapseTimer);
+    pipelineCollapseTimer = setTimeout(hideExecutionPipeline, 3500);
+}
 
 // Hide the execution pipeline overlay and show summary chip
 function hideExecutionPipeline() {
     const overlay = document.getElementById('executionOverlay');
+    clearTimeout(pipelineCollapseTimer);
+    closeExecutionTrace();
     overlay.classList.add('fade-out');
 
     setTimeout(() => {
@@ -524,6 +580,14 @@ function showSummaryChip() {
     const chipIcon = document.getElementById('chipIcon');
 
     if (!chip || !chipText) return;
+
+    if (executionInProgress) {
+        if (chipIcon) chipIcon.textContent = '⚡';
+        chipText.textContent = 'Pipeline running…';
+        chip.classList.remove('has-errors', 'hidden');
+        chip.classList.add('visible');
+        return;
+    }
 
     const { steps, elapsed, errorCount } = lastExecutionState;
     const completedCount = steps.filter(s =>
@@ -559,6 +623,7 @@ function hideSummaryChip() {
 function expandFromChip() {
     hideSummaryChip();
     const overlay = document.getElementById('executionOverlay');
+    closeExecutionTrace();
     overlay.classList.remove('hidden');
     overlay.classList.remove('fade-out');
 }
@@ -572,10 +637,166 @@ function delay(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-// View trace button handler
-document.getElementById('viewTraceBtn')?.addEventListener('click', () => {
-    // Keep overlay visible longer for inspection
-    document.getElementById('executionSummary').classList.add('hidden');
+function buildExecutionTrace(result = {}) {
+    const trace = [];
+    const graphTrace = result.v3_meta?.graph_trace;
+
+    if (Array.isArray(graphTrace)) {
+        graphTrace.forEach(entry => trace.push({
+            label: entry.node || 'Graph step',
+            status: entry.status || 'completed',
+            detail: entry.error || (entry.duration_ms != null ? `${entry.duration_ms}ms` : '')
+        }));
+    }
+
+    (Array.isArray(result.tools_executed) ? result.tools_executed : []).forEach(entry => trace.push({
+        label: entry.tool || 'Tool',
+        status: entry.success === false ? 'failed' : 'completed',
+        detail: entry.error || (entry.retries ? `${entry.retries} retr${entry.retries === 1 ? 'y' : 'ies'}` : 'Completed')
+    }));
+
+    (Array.isArray(result.skipped) ? result.skipped : []).forEach(entry => trace.push({
+        label: entry.tool || 'Tool',
+        status: 'skipped',
+        detail: entry.reason || 'Skipped'
+    }));
+
+    return trace;
+}
+
+function renderTraceDetails(traceEntries = [], errorMessages = []) {
+    const list = document.getElementById('traceDetailsList');
+    if (!list) return;
+    list.replaceChildren();
+
+    const entries = [...traceEntries];
+    errorMessages.forEach((message, index) => entries.push({
+        label: errorMessages.length > 1 ? `Pipeline error ${index + 1}` : 'Pipeline error',
+        status: 'failed',
+        detail: message
+    }));
+
+    if (!entries.length) {
+        entries.push({ label: 'Pipeline', status: 'completed', detail: 'Completed without additional trace data.' });
+    }
+
+    entries.forEach(entry => {
+        const row = document.createElement('div');
+        row.className = `trace-entry ${entry.status || 'completed'}`;
+
+        const marker = document.createElement('span');
+        marker.className = 'trace-entry-marker';
+        marker.textContent = entry.status === 'failed' ? '!' : entry.status === 'skipped' ? '−' : '✓';
+
+        const copy = document.createElement('div');
+        const title = document.createElement('strong');
+        title.textContent = entry.label || 'Pipeline step';
+        const detail = document.createElement('p');
+        detail.textContent = entry.detail || entry.status || 'Completed';
+        copy.append(title, detail);
+        row.append(marker, copy);
+        list.append(row);
+    });
+}
+
+function openExecutionTrace() {
+    if (!lastExecutionState.steps.length && !lastExecutionState.traceEntries.length) {
+        setStatus('Run a search to create an execution trace.', 'error');
+        return;
+    }
+    clearTimeout(pipelineCollapseTimer);
+    hideSummaryChip();
+    const overlay = document.getElementById('executionOverlay');
+    overlay.classList.remove('hidden', 'fade-out');
+    overlay.querySelector('.execution-container')?.classList.add('trace-mode');
+    document.getElementById('executionTraceDetails')?.classList.remove('hidden');
+}
+
+function closeExecutionTrace() {
+    document.querySelector('.execution-container')?.classList.remove('trace-mode');
+    document.getElementById('executionTraceDetails')?.classList.add('hidden');
+}
+
+document.getElementById('viewTraceBtn')?.addEventListener('click', openExecutionTrace);
+document.getElementById('traceBackBtn')?.addEventListener('click', closeExecutionTrace);
+document.getElementById('viewResultsBtn')?.addEventListener('click', hideExecutionPipeline);
+document.getElementById('pipelineMinimizeBtn')?.addEventListener('click', hideExecutionPipeline);
+
+// ===== TABBED WORKSPACE & UTILITY ACTIONS =====
+
+function selectWorkspaceTab(tabName, { focus = false } = {}) {
+    const tab = document.querySelector(`[data-workspace-tab="${tabName}"]`);
+    const panel = document.querySelector(`[data-workspace-panel="${tabName}"]`);
+    if (!tab || !panel) return;
+
+    document.querySelectorAll('[data-workspace-tab]').forEach(item => {
+        const active = item === tab;
+        item.classList.toggle('active', active);
+        item.setAttribute('aria-selected', String(active));
+        item.tabIndex = active ? 0 : -1;
+    });
+
+    document.querySelectorAll('[data-workspace-panel]').forEach(item => {
+        const active = item === panel;
+        item.classList.toggle('active', active);
+        item.hidden = !active;
+    });
+
+    if (focus) tab.focus();
+}
+
+function focusNewSearch() {
+    document.querySelector('.bento-main-dialog')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    setTimeout(() => textInput?.focus(), 350);
+}
+
+document.querySelectorAll('[data-workspace-tab]').forEach(tab => {
+    tab.addEventListener('click', () => selectWorkspaceTab(tab.dataset.workspaceTab));
+    tab.addEventListener('keydown', event => {
+        if (!['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key)) return;
+        event.preventDefault();
+        const tabs = [...document.querySelectorAll('[data-workspace-tab]')];
+        const current = tabs.indexOf(tab);
+        const nextIndex = event.key === 'Home'
+            ? 0
+            : event.key === 'End'
+                ? tabs.length - 1
+                : (current + (event.key === 'ArrowRight' ? 1 : -1) + tabs.length) % tabs.length;
+        selectWorkspaceTab(tabs[nextIndex].dataset.workspaceTab, { focus: true });
+    });
+});
+
+document.querySelectorAll('[data-workspace-tab-target]').forEach(button => {
+    button.addEventListener('click', () => {
+        selectWorkspaceTab(button.dataset.workspaceTabTarget, { focus: true });
+        document.getElementById('workspaceShell')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        quickAccessPanel?.classList.remove('visible');
+        setTimeout(() => quickAccessPanel?.classList.add('hidden'), 300);
+    });
+});
+
+['workspaceNewSearchBtn', 'quickNewSearchBtn', 'overviewFocusSearchBtn', 'articlesNewSearchBtn'].forEach(id => {
+    document.getElementById(id)?.addEventListener('click', focusNewSearch);
+});
+
+['workspaceTraceBtn', 'quickTraceBtn'].forEach(id => {
+    document.getElementById(id)?.addEventListener('click', openExecutionTrace);
+});
+
+['workspaceExportBtn', 'quickExportBtn'].forEach(id => {
+    document.getElementById(id)?.addEventListener('click', () => document.getElementById('openPackageBuilder')?.click());
+});
+
+document.querySelectorAll('[data-open-package]').forEach(button => {
+    button.addEventListener('click', () => document.getElementById('openPackageBuilder')?.click());
+});
+
+document.getElementById('overviewClearHistoryBtn')?.addEventListener('click', () => {
+    document.getElementById('clearHistoryBtn')?.click();
+});
+
+['workspaceHomeBtn', 'dashboardBackBtn'].forEach(id => {
+    document.getElementById(id)?.addEventListener('click', goToMarketing);
 });
 
 // ===== DYNAMIC PANEL VISIBILITY =====
@@ -693,6 +914,11 @@ function displayResults(data) {
         if (data.v3 && data.result.v3_meta) {
             displayV3Context(data.result.v3_meta);
         }
+
+        const resultData = data.result.data;
+        const hasIntelligence = ['summary', 'sentiment', 'trends', 'market'].some(key => resultData[key]);
+        const hasArticles = Array.isArray(resultData.news) && resultData.news.length > 0;
+        selectWorkspaceTab(hasIntelligence ? 'intelligence' : hasArticles ? 'articles' : 'overview');
     }
 }
 
@@ -2330,8 +2556,9 @@ let tempEmail = '';
 
 function switchAuth(mode) {
     authMode = mode;
-    document.querySelectorAll('.auth-tab').forEach(t => t.classList.remove('active'));
-    event.target.classList.add('active');
+    document.querySelectorAll('.auth-tab').forEach((tab, index) => {
+        tab.classList.toggle('active', (mode === 'login' && index === 0) || (mode === 'register' && index === 1));
+    });
 
     if (mode === 'register') {
         authUsername.style.display = 'block';
@@ -2441,11 +2668,14 @@ if (otpForm) {
 function goToAuth() {
     if (marketingView) marketingView.style.display = 'none';
     if (authView) authView.style.display = 'flex';
+    if (dashboardView) dashboardView.style.display = 'none';
 }
 
 function goToMarketing() {
     if (marketingView) marketingView.style.display = 'block';
     if (authView) authView.style.display = 'none';
+    if (dashboardView) dashboardView.style.display = 'none';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 function showDashboard(username) {
@@ -2463,7 +2693,6 @@ function logout() {
     if (authView) authView.style.display = 'none';
     if (dashboardView) dashboardView.style.display = 'none';
     if (authUsername) authUsername.value = '';
-    if (authPassword) authPassword.value = '';
     if (authError) {
         authError.textContent = 'Logged out successfully.';
         authError.style.color = "#fff";

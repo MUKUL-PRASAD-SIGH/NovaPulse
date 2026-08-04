@@ -221,6 +221,7 @@
         <!-- Header with Settings -->
         <header class="header">
             <div class="header-left">
+                <button id="dashboardBackBtn" class="dashboard-back-btn" title="Back to NovaOS home" aria-label="Back to NovaOS home">←</button>
                 <button id="quickAccessBtn" class="top-left-quick-btn" title="Quick Access Dashboard">☰</button>
             </div>
             <div class="header-titles">
@@ -245,9 +246,12 @@
                 <button id="closeQuickAccess" class="close-btn">&times;</button>
             </div>
             <div class="quick-access-body">
+                <button class="quick-menu-item" data-workspace-tab-target="overview">⌂ Workspace home</button>
+                <button class="quick-menu-item" id="quickNewSearchBtn">＋ New intelligence search</button>
+                <button class="quick-menu-item" id="quickTraceBtn">↗ Latest execution trace</button>
+                <button class="quick-menu-item" id="quickExportBtn">⇩ Export intelligence</button>
                 <button class="quick-menu-item" onclick="document.getElementById('settingsBtn').click()">⚙️ Settings</button>
                 <button class="quick-menu-item" onclick="document.getElementById('themeToggleBtn').click()">🎨 Theme Toggle</button>
-                <button class="quick-menu-item" onclick="updateStatusHint()">⚡ Mini Dashboard</button>
             </div>
         </div>
 
@@ -478,8 +482,7 @@
                 <div class="bento-header-actions">
                     <button id="clearHistoryBtnRight" class="bento-action red"
                         onclick="document.getElementById('clearHistoryBtn').click()">🗑️ Clear</button>
-                    <button class="bento-action dark" onclick="document.getElementById('openPackageBuilder').click()">📥
-                        Export</button>
+                    <button id="openPackageBuilder" class="bento-action dark">📥 Export</button>
                     <button class="bento-action dark" onclick="startRoboTour()">▶ Guide</button>
                     <button class="bento-action dark" onclick="document.getElementById('settingsBtn').click()">⚙️
                         Settings</button>
@@ -548,34 +551,39 @@
             <!-- Hidden original elements required by Javascript logic -->
         </div>
 
-        <!-- Status -->
-        <div id="status" class="status"></div>
-
-        <!-- Search History -->
-        <div class="panel history-panel">
-            <div class="panel-header">
-                <h3>🕒 Recent Searches</h3>
-            </div>
-            <div id="historyList" class="history-list"></div>
-        </div>
-
         <!-- Live Execution Pipeline Overlay -->
-        <div id="executionOverlay" class="execution-overlay hidden">
+        <div id="executionOverlay" class="execution-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="agentStatus">
             <div class="execution-container">
                 <div class="execution-header">
-                    <div class="agent-thinking">
-                        <span class="thinking-icon">🧠</span>
-                        <span id="agentStatus">Agent Thinking...</span>
+                    <div class="execution-header-row">
+                        <div class="agent-thinking">
+                            <span class="thinking-icon">🧠</span>
+                            <span id="agentStatus">Agent Thinking...</span>
+                        </div>
+                        <button id="pipelineMinimizeBtn" class="execution-icon-btn" type="button" title="Minimize pipeline" aria-label="Minimize pipeline">−</button>
                     </div>
                     <div class="execution-strategy" id="executionStrategy"></div>
                 </div>
                 <div class="pipeline-steps" id="pipelineSteps">
                     <!-- Steps will be injected here -->
                 </div>
+                <div class="execution-trace-details hidden" id="executionTraceDetails">
+                    <div class="trace-details-header">
+                        <div>
+                            <span class="workspace-eyebrow">Execution details</span>
+                            <h3>Latest pipeline trace</h3>
+                        </div>
+                        <button id="traceBackBtn" class="trace-back-btn" type="button">← Back</button>
+                    </div>
+                    <div id="traceDetailsList" class="trace-details-list"></div>
+                </div>
                 <div class="execution-summary hidden" id="executionSummary">
                     <span class="summary-icon">✅</span>
                     <span id="summaryText">Plan executed</span>
-                    <button class="view-trace-btn" id="viewTraceBtn">View trace</button>
+                    <div class="execution-summary-actions">
+                        <button class="view-trace-btn" id="viewTraceBtn" type="button">View trace</button>
+                        <button class="view-results-btn" id="viewResultsBtn" type="button">View results</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -588,97 +596,145 @@
             <button class="chip-dismiss-btn" id="chipDismissBtn" title="Dismiss">×</button>
         </div>
 
-        <!-- Results Grid -->
-        <div class="results-grid">
+        <!-- Tabbed Intelligence Workspace -->
+        <section id="workspaceShell" class="workspace-shell" aria-label="Intelligence workspace">
+            <div class="workspace-topbar">
+                <div>
+                    <span class="workspace-eyebrow">Mission workspace</span>
+                    <h2>Intelligence, without the endless scroll</h2>
+                </div>
+                <div class="workspace-utilities" aria-label="Workspace utilities">
+                    <button id="workspaceNewSearchBtn" class="workspace-utility primary" type="button">＋ New search</button>
+                    <button id="workspaceTraceBtn" class="workspace-utility" type="button">↗ Trace</button>
+                    <button id="workspaceExportBtn" class="workspace-utility" type="button">⇩ Export</button>
+                    <button id="workspaceHomeBtn" class="workspace-utility" type="button">← NovaOS</button>
+                </div>
+            </div>
 
-            <!-- Intelligence Panel -->
-            <div class="panel intel-panel">
-                <div class="panel-header">
-                    <h3>🧠 Intelligence Report</h3>
-                    <div class="header-controls">
-                        <!-- Dictionary Toggle & Search -->
-                        <div class="dict-controls">
-                            <button id="dictToggleBtn" class="dict-toggle-btn" title="Dictionary Lookup">Dict</button>
-                            <div id="dictSearchBox" class="dict-search-box hidden">
-                                <input type="text" id="dictWordInput" placeholder="Enter word..." autocomplete="off">
-                                <button id="dictSearchBtn" class="dict-go-btn">Go</button>
+            <!-- Status stays visible across tabs -->
+            <div id="status" class="status workspace-status" aria-live="polite"></div>
+
+            <div class="workspace-tabs" role="tablist" aria-label="Intelligence sections">
+                <button id="workspaceTabOverview" class="workspace-tab active" type="button" role="tab" aria-selected="true" aria-controls="workspacePanelOverview" data-workspace-tab="overview">Overview</button>
+                <button id="workspaceTabIntelligence" class="workspace-tab" type="button" role="tab" aria-selected="false" aria-controls="workspacePanelIntelligence" data-workspace-tab="intelligence">Intelligence</button>
+                <button id="workspaceTabArticles" class="workspace-tab" type="button" role="tab" aria-selected="false" aria-controls="workspacePanelArticles" data-workspace-tab="articles">Articles</button>
+                <button id="workspaceTabMedia" class="workspace-tab" type="button" role="tab" aria-selected="false" aria-controls="workspacePanelMedia" data-workspace-tab="media">Entities & media</button>
+                <button id="workspaceTabSignals" class="workspace-tab" type="button" role="tab" aria-selected="false" aria-controls="workspacePanelSignals" data-workspace-tab="signals">Social & research</button>
+            </div>
+
+            <div class="workspace-panels">
+                <section id="workspacePanelOverview" class="workspace-panel active" role="tabpanel" aria-labelledby="workspaceTabOverview" data-workspace-panel="overview">
+                    <div class="workspace-overview-grid">
+                        <div class="panel history-panel">
+                            <div class="panel-header workspace-card-header">
+                                <div>
+                                    <span class="workspace-eyebrow">Pick up where you left off</span>
+                                    <h3>🕒 Recent searches</h3>
+                                </div>
+                                <button id="overviewClearHistoryBtn" class="panel-utility-btn" type="button">Clear</button>
+                            </div>
+                            <div id="historyList" class="history-list"></div>
+                        </div>
+                        <div class="panel quick-topics-panel">
+                            <div class="panel-header workspace-card-header">
+                                <div>
+                                    <span class="workspace-eyebrow">Start quickly</span>
+                                    <h3>⚡ Quick topics</h3>
+                                </div>
+                            </div>
+                            <div class="examples">
+                                <div class="example-chips">
+                                    <button class="chip" data-cmd="AI">AI</button>
+                                    <button class="chip" data-cmd="crypto">Crypto</button>
+                                    <button class="chip" data-cmd="Tesla">Tesla</button>
+                                    <button class="chip" data-cmd="stock market">Stocks</button>
+                                    <button class="chip" data-cmd="climate change">Climate</button>
+                                </div>
+                                <button class="workspace-start-btn" id="overviewFocusSearchBtn" type="button">Enter a custom topic ↑</button>
                             </div>
                         </div>
-                        <!-- Translate -->
-                        <div class="translate-controls">
-                            <select id="translateLang" class="translate-select">
-                                <option value="">Translate</option>
-                            </select>
+                    </div>
+                </section>
+
+                <section id="workspacePanelIntelligence" class="workspace-panel" role="tabpanel" aria-labelledby="workspaceTabIntelligence" data-workspace-panel="intelligence" hidden>
+                    <div class="workspace-panel-heading">
+                        <button class="tab-back-btn" type="button" data-workspace-tab-target="overview">← Overview</button>
+                        <div><span class="workspace-eyebrow">Synthesized view</span><h3>Intelligence report</h3></div>
+                        <button class="panel-utility-btn" type="button" data-open-package>Export report</button>
+                    </div>
+                    <div class="results-grid intelligence-results-grid">
+                        <div class="panel intel-panel">
+                            <div class="panel-header">
+                                <h3>🧠 Intelligence report</h3>
+                                <div class="header-controls">
+                                    <div class="dict-controls">
+                                        <button id="dictToggleBtn" class="dict-toggle-btn" title="Dictionary Lookup">Dict</button>
+                                        <div id="dictSearchBox" class="dict-search-box hidden">
+                                            <input type="text" id="dictWordInput" placeholder="Enter word..." autocomplete="off">
+                                            <button id="dictSearchBtn" class="dict-go-btn">Go</button>
+                                        </div>
+                                    </div>
+                                    <div class="translate-controls">
+                                        <select id="translateLang" class="translate-select">
+                                            <option value="">Translate</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="intelOutput" class="intel-content"></div>
                         </div>
                     </div>
-                </div>
-                <div id="intelOutput" class="intel-content"></div>
-            </div>
+                </section>
 
-            <!-- Entity Network Panel (NEW) -->
-            <div id="entityPanel" class="panel entity-panel hidden">
-                <div class="panel-header">
-                    <h3>👤 Entity Network</h3>
-                    <button class="collapse-btn" data-target="entityContent">▼</button>
-                </div>
-                <div id="entityContent" class="panel-content">
-                    <div id="entityOutput"></div>
-                </div>
-            </div>
+                <section id="workspacePanelArticles" class="workspace-panel" role="tabpanel" aria-labelledby="workspaceTabArticles" data-workspace-panel="articles" hidden>
+                    <div class="workspace-panel-heading">
+                        <button class="tab-back-btn" type="button" data-workspace-tab-target="overview">← Overview</button>
+                        <div><span class="workspace-eyebrow">Source desk</span><h3>Latest articles</h3></div>
+                        <button class="panel-utility-btn" id="articlesNewSearchBtn" type="button">New search</button>
+                    </div>
+                    <div class="panel news-panel">
+                        <div class="panel-header"><h3>📰 Articles</h3></div>
+                        <div id="newsOutput" class="news-grid"></div>
+                    </div>
+                </section>
 
-            <!-- Image Gallery Panel (NEW) -->
-            <div id="imagePanel" class="panel image-panel hidden">
-                <div class="panel-header">
-                    <h3>🖼️ Image Intelligence</h3>
-                    <button class="collapse-btn" data-target="imageContent">▼</button>
-                </div>
-                <div id="imageContent" class="panel-content">
-                    <div id="imageOutput" class="image-grid"></div>
-                </div>
-            </div>
+                <section id="workspacePanelMedia" class="workspace-panel" role="tabpanel" aria-labelledby="workspaceTabMedia" data-workspace-panel="media" hidden>
+                    <div class="workspace-panel-heading">
+                        <button class="tab-back-btn" type="button" data-workspace-tab-target="overview">← Overview</button>
+                        <div><span class="workspace-eyebrow">Context map</span><h3>Entities & visual intelligence</h3></div>
+                        <button class="panel-utility-btn" type="button" data-workspace-tab-target="articles">View sources</button>
+                    </div>
+                    <div class="results-grid">
+                        <div id="entityPanel" class="panel entity-panel hidden">
+                            <div class="panel-header"><h3>👤 Entity network</h3><button class="collapse-btn" data-target="entityContent">▼</button></div>
+                            <div id="entityContent" class="panel-content"><div id="entityOutput"></div></div>
+                        </div>
+                        <div id="imagePanel" class="panel image-panel hidden">
+                            <div class="panel-header"><h3>🖼️ Image intelligence</h3><button class="collapse-btn" data-target="imageContent">▼</button></div>
+                            <div id="imageContent" class="panel-content"><div id="imageOutput" class="image-grid"></div></div>
+                        </div>
+                    </div>
+                </section>
 
-            <!-- Social Media Panel (NEW) -->
-            <div id="socialPanel" class="panel social-panel hidden">
-                <div class="panel-header">
-                    <h3>📱 Social Media Intelligence</h3>
-                    <button class="collapse-btn" data-target="socialContent">▼</button>
-                </div>
-                <div id="socialContent" class="panel-content">
-                    <div id="socialOutput"></div>
-                </div>
+                <section id="workspacePanelSignals" class="workspace-panel" role="tabpanel" aria-labelledby="workspaceTabSignals" data-workspace-panel="signals" hidden>
+                    <div class="workspace-panel-heading">
+                        <button class="tab-back-btn" type="button" data-workspace-tab-target="overview">← Overview</button>
+                        <div><span class="workspace-eyebrow">Wider signal</span><h3>Social & research intelligence</h3></div>
+                        <button class="panel-utility-btn" type="button" data-workspace-tab-target="intelligence">View report</button>
+                    </div>
+                    <div class="results-grid">
+                        <div id="socialPanel" class="panel social-panel hidden">
+                            <div class="panel-header"><h3>📱 Social intelligence</h3><button class="collapse-btn" data-target="socialContent">▼</button></div>
+                            <div id="socialContent" class="panel-content"><div id="socialOutput"></div></div>
+                        </div>
+                        <div id="researchPanel" class="panel research-panel hidden">
+                            <div class="panel-header"><h3>📚 Research library</h3><button class="collapse-btn" data-target="researchContent">▼</button></div>
+                            <div id="researchContent" class="panel-content"><div id="researchOutput"></div></div>
+                        </div>
+                    </div>
+                </section>
             </div>
-
-            <!-- Research Library Panel (NEW) -->
-            <div id="researchPanel" class="panel research-panel hidden">
-                <div class="panel-header">
-                    <h3>📚 Research Library</h3>
-                    <button class="collapse-btn" data-target="researchContent">▼</button>
-                </div>
-                <div id="researchContent" class="panel-content">
-                    <div id="researchOutput"></div>
-                </div>
-            </div>
-        </div>
-
-        <!-- News Articles -->
-        <div class="panel news-panel">
-            <div class="panel-header">
-                <h3>📰 Articles</h3>
-            </div>
-            <div id="newsOutput" class="news-grid"></div>
-        </div>
-
-        <!-- Quick Topics -->
-        <div class="examples">
-            <p>Quick topics:</p>
-            <div class="example-chips">
-                <button class="chip" data-cmd="AI">AI</button>
-                <button class="chip" data-cmd="crypto">Crypto</button>
-                <button class="chip" data-cmd="Tesla">Tesla</button>
-                <button class="chip" data-cmd="stock market">Stocks</button>
-                <button class="chip" data-cmd="climate change">Climate</button>
-            </div>
-        </div>
+        </section>
     </div>
 
     </div>
