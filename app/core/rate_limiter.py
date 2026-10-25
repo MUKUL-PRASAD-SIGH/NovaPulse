@@ -7,10 +7,14 @@ hashed before storage and raw addresses are never written to disk.
 
 from __future__ import annotations
 
+import asyncio
 import hashlib
+import hmac
 import ipaddress
 import os
+import secrets
 import time
+import uuid
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Iterable, Sequence
@@ -66,28 +70,65 @@ class SQLiteIPRateLimiter:
 
     def __init__(self, db_path: str):
         self.db_path = db_path
+        self._initialized = False
+        self._initialize_lock = asyncio.Lock()
 
     async def initialize(self) -> None:
-        async with aiosqlite.connect(self.db_path) as db:
-            await db.execute("PRAGMA journal_mode=WAL")
-            await db.execute("PRAGMA busy_timeout=5000")
-            await db.execute(
-                """
-                CREATE TABLE IF NOT EXISTS rate_limit_events (
-                    id INTEGER PRIMARY KEY AUTOINCREMENT,
-                    bucket TEXT NOT NULL,
-                    identity_hash TEXT NOT NULL,
-                    occurred_at REAL NOT NULL
+        """Create storage once, including on platforms that skip ASGI lifespan."""
+        if self._initialized:
+            return
+
+        async with self._initialize_lock:
+            if self._initialized:
+                return
+            async with aiosqlite.connect(self.db_path) as db:
+                await db.execute("PRAGMA journal_mode=WAL")
+                await db.execute("PRAGMA busy_timeout=5000")
+                await db.execute(
+                    """
+                    CREATE TABLE IF NOT EXISTS rate_limit_events (
+                        id INTEGER PRIMARY KEY AUTOINCREMENT,
+                        bucket TEXT NOT NULL,
+                        identity_hash TEXT NOT NULL,
+                        occurred_at REAL NOT NULL
+                    )
+                    """
                 )
-                """
-            )
-            await db.execute(
-                """
-                CREATE INDEX IF NOT EXISTS idx_rate_limit_lookup
-                ON rate_limit_events (bucket, identity_hash, occurred_at)
-                """
-            )
-            await db.commit()
+                await db.execute(
+                    """
+                    CREATE INDEX IF NOT EXISTS idx_rate_limit_lookup
+                    ON rate_limit_events (bucket, identity_hash, occurred_at)
+                    """
+                )
+                await db.execute(
+                    """
+                    CREATE INDEX IF NOT EXISTS idx_rate_limit_cleanup
+                    ON rate_limit_events (bucket, occurred_at)
+                    """
+                )
+                await db.execute(
+                    """
+                    CREATE TABLE IF NOT EXISTS active_monitor_leases (
+                        monitor_id TEXT PRIMARY KEY,
+                        identity_hash TEXT NOT NULL,
+                        expires_at REAL NOT NULL
+                    )
+                    """
+                )
+                await db.execute(
+                    """
+                    CREATE INDEX IF NOT EXISTS idx_monitor_lease_owner
+                    ON active_monitor_leases (identity_hash, expires_at)
+                    """
+                )
+                await db.execute(
+                    """
+                    CREATE INDEX IF NOT EXISTS idx_monitor_lease_cleanup
+                    ON active_monitor_leases (expires_at)
+                    """
+                )
+                await db.commit()
+            self._initialized = True
 
     async def check_and_record(
         self,
@@ -95,6 +136,7 @@ class SQLiteIPRateLimiter:
         identity_hash: str,
         windows: Sequence[RateLimitWindow],
     ) -> RateLimitDecision:
+        await self.initialize()
         now = time.time()
         longest_window = max(window.seconds for window in windows)
 
@@ -162,6 +204,64 @@ class SQLiteIPRateLimiter:
                 await db.rollback()
                 raise
 
+    async def acquire_monitor_slot(
+        self,
+        identity_hash: str,
+        limit: int,
+        expires_at: float,
+    ) -> str | None:
+        """Atomically reserve a monitor slot shared by all database workers."""
+        await self.initialize()
+        now = time.time()
+        monitor_id = str(uuid.uuid4())[:8]
+
+        async with aiosqlite.connect(self.db_path) as db:
+            await db.execute("PRAGMA busy_timeout=5000")
+            await db.execute("BEGIN IMMEDIATE")
+            try:
+                await db.execute(
+                    "DELETE FROM active_monitor_leases WHERE expires_at <= ?",
+                    (now,),
+                )
+                async with db.execute(
+                    """
+                    SELECT COUNT(*)
+                    FROM active_monitor_leases
+                    WHERE identity_hash = ? AND expires_at > ?
+                    """,
+                    (identity_hash, now),
+                ) as cursor:
+                    active_count = int((await cursor.fetchone())[0])
+
+                if active_count >= max(1, limit):
+                    await db.rollback()
+                    return None
+
+                await db.execute(
+                    """
+                    INSERT INTO active_monitor_leases
+                        (monitor_id, identity_hash, expires_at)
+                    VALUES (?, ?, ?)
+                    """,
+                    (monitor_id, identity_hash, expires_at),
+                )
+                await db.commit()
+                return monitor_id
+            except Exception:
+                await db.rollback()
+                raise
+
+    async def release_monitor_slot(self, monitor_id: str) -> None:
+        """Release a persistent monitor lease when the task stops or expires."""
+        await self.initialize()
+        async with aiosqlite.connect(self.db_path) as db:
+            await db.execute("PRAGMA busy_timeout=5000")
+            await db.execute(
+                "DELETE FROM active_monitor_leases WHERE monitor_id = ?",
+                (monitor_id,),
+            )
+            await db.commit()
+
 
 def _validated_ip(value: str | None) -> str | None:
     if not value:
@@ -198,9 +298,29 @@ def get_client_ip(request: Request, trust_proxy_headers: bool = False) -> str:
     return "unknown"
 
 
-def hash_client_ip(client_ip: str) -> str:
-    salt = os.getenv("NOVA_RATE_LIMIT_SALT", "nova-rate-limit-v1")
-    return hashlib.sha256(f"{salt}:{client_ip}".encode("utf-8")).hexdigest()
+def get_rate_limit_pepper() -> str:
+    """Return the required secret used to make stored IP hashes unlinkable."""
+    pepper = os.getenv("NOVA_RATE_LIMIT_PEPPER", "").strip()
+    if len(pepper) < 32:
+        raise RuntimeError(
+            "NOVA_RATE_LIMIT_PEPPER must be set to a private value of at least "
+            "32 characters when rate limiting is enabled."
+        )
+    return pepper
+
+
+def hash_client_ip(client_ip: str, pepper: str) -> str:
+    return hmac.new(
+        pepper.encode("utf-8"),
+        client_ip.encode("utf-8"),
+        hashlib.sha256,
+    ).hexdigest()
+
+
+def validate_rate_limit_configuration() -> None:
+    """Fail at startup instead of silently hashing IPs with a public default."""
+    if _env_bool("NOVA_RATE_LIMIT_ENABLED", True):
+        get_rate_limit_pepper()
 
 
 def build_rate_limit_rules() -> tuple[RateLimitRule, ...]:
@@ -263,6 +383,7 @@ class IPRateLimitMiddleware(BaseHTTPMiddleware):
             for rule in rules
         }
         self.enabled = _env_bool("NOVA_RATE_LIMIT_ENABLED", True)
+        self.pepper = get_rate_limit_pepper() if self.enabled else secrets.token_urlsafe(32)
         self.trust_proxy_headers = _env_bool(
             "NOVA_TRUST_PROXY_HEADERS",
             default=bool(os.getenv("VERCEL")),
@@ -274,7 +395,7 @@ class IPRateLimitMiddleware(BaseHTTPMiddleware):
         call_next: RequestResponseEndpoint,
     ) -> Response:
         client_ip = get_client_ip(request, self.trust_proxy_headers)
-        identity_hash = hash_client_ip(client_ip)
+        identity_hash = hash_client_ip(client_ip, self.pepper)
         request.state.client_ip_hash = identity_hash
 
         rule = self.rules.get(

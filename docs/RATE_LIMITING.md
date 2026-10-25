@@ -16,6 +16,7 @@ All limits are configurable:
 
 ```env
 NOVA_RATE_LIMIT_ENABLED=true
+NOVA_RATE_LIMIT_PEPPER=generate-a-private-random-value-of-at-least-32-characters
 NOVA_COMMANDS_PER_MINUTE=10
 NOVA_COMMANDS_PER_DAY=100
 NOVA_MONITORS_PER_HOUR=2
@@ -23,12 +24,13 @@ NOVA_MONITORS_PER_DAY=4
 NOVA_MAX_ACTIVE_MONITORS_PER_IP=1
 NOVA_OTPS_PER_TEN_MINUTES=5
 NOVA_OTPS_PER_DAY=20
-NOVA_RATE_LIMIT_SALT=replace_with_a_long_random_value
 ```
+
+`NOVA_RATE_LIMIT_PEPPER` is required when the limiter is enabled. Generate it with `python -c "import secrets; print(secrets.token_urlsafe(32))"` and keep it private. NovaOS refuses to start with a missing or shorter value rather than producing predictable IP hashes.
 
 ## Client behavior
 
-Allowed requests return:
+For example, an allowed `POST /api/command` request returns command-quota headers like:
 
 ```text
 X-RateLimit-Limit: 10
@@ -37,7 +39,7 @@ X-RateLimit-Reset: 1785840000
 X-RateLimit-Policy: 10;w=60, 100;w=86400
 ```
 
-Requests over quota return `429 Too Many Requests` with the same headers plus `Retry-After`:
+An over-quota `POST /api/command` request returns `429 Too Many Requests` with the same command-quota headers plus `Retry-After`:
 
 ```json
 {
@@ -49,7 +51,7 @@ Requests over quota return `429 Too Many Requests` with the same headers plus `R
 
 ## Storage and privacy
 
-Rate-limit events are stored in `nova_rate_limits.db` within NovaOS's writable runtime database directory. SQLite transactions make the check-and-increment operation atomic across concurrent requests and local workers. Raw IP addresses are never stored; the limiter saves a SHA-256 hash salted with `NOVA_RATE_LIMIT_SALT`.
+Rate-limit events and active-monitor leases are stored in `nova_rate_limits.db` within NovaOS's writable runtime database directory. SQLite transactions make both quota increments and monitor-slot reservations atomic across concurrent requests and workers that share the database. Raw IP addresses are never stored; the limiter saves an HMAC-SHA-256 digest keyed with the private `NOVA_RATE_LIMIT_PEPPER`.
 
 Set `NOVA_DB_DIR` when the default application directory is not writable.
 
@@ -63,7 +65,7 @@ NOVA_TRUST_PROXY_HEADERS=true
 
 NovaOS then resolves the first valid address from `X-Forwarded-For`, followed by `X-Real-IP` or `X-Vercel-Forwarded-For`. Vercel deployments enable this behavior automatically unless the variable is explicitly set.
 
-The SQLite store is shared across workers on one filesystem. For a horizontally scaled deployment where instances do not share a filesystem, enforce the same limits at the API gateway/CDN or replace the storage adapter with a shared transactional store. Do not rely on forwarding headers when the application can also be reached directly.
+Active-monitor slots use expiring database leases, so workers sharing the SQLite file enforce one combined per-IP limit and crashed workers cannot reserve a slot forever. For a horizontally scaled deployment where instances do not share a filesystem, place the database on shared storage, enforce the same limits at the API gateway/CDN, or replace the storage adapter with a shared transactional store. Do not rely on forwarding headers when the application can also be reached directly.
 
 ## Disabling limits locally
 

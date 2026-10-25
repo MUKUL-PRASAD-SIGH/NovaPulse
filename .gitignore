@@ -4,6 +4,7 @@
 .env
 .env.*
 *.env
+!.env.example
 
 # ==========================================
 # 📝 Markdown (keep only main README)
@@ -24,6 +25,11 @@ venv/
 *.egg-info/
 dist/
 build/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
 
 # ==========================================
 # 📊 Runtime Data (user-specific)
@@ -32,7 +38,11 @@ app/memory/logs.json
 app/memory/plans.json
 app/memory/results.json
 app/memory/trends_history.json
+app/memory/db/
 *.db
+*.db-journal
+*.db-shm
+*.db-wal
 
 # ==========================================
 # 📁 Generated Output

@@ -144,7 +144,7 @@ NovaOS utilizes a robust, frictionless, and modern security architecture:
 1. **Passwordless Access**: Users authenticate utilizing a secure 6-digit Time-Based One-Time Password (OTP) dispatched to their registered email.
 2. **Stateless JWT Sessions**: Upon successful OTP validation, the backend generates an HMAC-SHA256 authenticated JSON Web Token (JWT) establishing the user session securely without requiring heavy database queries on every authenticated endpoint.
 3. **Database Security**: Powered by strictly-typed `aiosqlite`. Sensitive pending registrations and active session tokens are hashed, salted (`pbkdf2_hmac`), and subject to strict 10-minute expiration TTLs.
-4. **Per-IP Fair Use**: Credit-consuming intelligence requests use atomic, SQLite-backed burst and daily limits. OTP sends and monitor creation have separate abuse limits, and raw IP addresses are hashed before they are stored.
+4. **Per-IP Fair Use**: Credit-consuming intelligence requests use atomic, SQLite-backed burst and daily limits. OTP sends and monitor creation have separate abuse limits, and raw IP addresses are stored only as keyed, non-reversible digests.
 
 Default limits are 10 intelligence commands per minute and 100 per day per IP, 2 monitor starts per hour and 4 per day per IP, and 5 OTP sends per 10 minutes and 20 per day per IP. A client over quota receives HTTP `429` with `Retry-After` and `X-RateLimit-*` headers. See [Rate Limiting](docs/RATE_LIMITING.md) for configuration and proxy guidance.
 
@@ -697,7 +697,7 @@ curl -X POST http://localhost:8000/api/command \
 | `NOVA_OTPS_PER_TEN_MINUTES` | Optional | OTP sends allowed per IP per 10 minutes (default: `5`) |
 | `NOVA_OTPS_PER_DAY` | Optional | OTP sends allowed per IP per day (default: `20`) |
 | `NOVA_TRUST_PROXY_HEADERS` | Optional | Trust proxy-provided client IPs; enable only behind a trusted proxy/CDN |
-| `NOVA_RATE_LIMIT_SALT` | Recommended | Private salt used when hashing IP addresses for storage |
+| `NOVA_RATE_LIMIT_PEPPER` | Yes* | Private value of at least 32 characters used when hashing IP addresses (*required when rate limiting is enabled) |
 
 ---
 
